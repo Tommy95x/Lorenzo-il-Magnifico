@@ -1,3 +1,4 @@
+package elements;
 
 public class CartaEdifici extends CartaSviluppo{
 
@@ -7,7 +8,7 @@ public class CartaEdifici extends CartaSviluppo{
 	private int costoPietra;
 	private int costoServitore;
 	
-	//A seconda della carta estratta verranno settati i costi della carta stessa
+	//A seconda della carta estratta dal DB verranno settati i costi della carta stessa
 	public void setCarta() {
 				
 	}

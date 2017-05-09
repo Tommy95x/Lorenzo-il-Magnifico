@@ -1,6 +1,8 @@
+package elements;
 
 public class DiscoMilitare extends Disco{
 
+	//Disco che servirà per il conto dei punti militari accumulati
 	private int puntiMilitari;
 	
 	public DiscoMilitare(String color) {

@@ -1,3 +1,4 @@
+package elements;
 
 public class CartaImprese extends CartaSviluppo{
 
@@ -8,9 +9,9 @@ public class CartaImprese extends CartaSviluppo{
 	private int costoPuntiMilitari;
 	private int costoServitore;
 	
-	//A seconda della carta estratta verranno settati i costi della carta stessa
+	//A seconda della carta estratta dal DB verranno settati i costi della carta stessa
 	public void setCosti() {
-				
+			
 	}
 	
 }

@@ -1,6 +1,9 @@
+package elements;
 
 public class Disco {
 
+	/*Attributi e metodi comuni dei differenti dischi oltre che ad essere il disco utilizzato per settare l'ordine di gioco
+	  dei giocatori*/
 	private String color;
 	private int ordine;
 	

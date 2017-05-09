@@ -1,6 +1,8 @@
+package elements;
 
 public class DiscoFede extends Disco{
-
+	
+	//Disco che sarà piazzato nel tabellone sulla linea della fede
 	private int puntiFede;
 	
 	public DiscoFede(String color) {
