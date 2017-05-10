@@ -2,6 +2,7 @@ package server.element;
 
 public class Giocatore extends Thread{
 
+	private String name;
 	private String color;
 	private Disco[] discoGiocatore;
 	private Portafoglio risorse;
@@ -9,7 +10,8 @@ public class Giocatore extends Thread{
 	private CuboScomunica[] cubiScomunica = new CuboScomunica[3];
 	private Partita partita;
 	
-	public Giocatore(String color, Partita partita){
+	public Giocatore(String color, Partita partita, String name){
+		this.name=name;
 		int i;
 		this.setColor(color);
 		discoGiocatore[0]=new Disco(color);

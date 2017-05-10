@@ -10,7 +10,7 @@ public class Partita {
 	
 	public Partita(String lobby, String namePlayer){
 		this.setLobby(lobby);
-		addGiocatore(new Giocatore(namePlayer, this));
+		addGiocatore(new Giocatore(lobby, this,namePlayer));
 	}
 	
 	public void startPartita(){
@@ -21,7 +21,7 @@ public class Partita {
 		return lobby;
 	}
 
-	private void addGiocatore(Giocatore giocatore) {
+	public void addGiocatore(Giocatore giocatore) {
 		if(giocatori.length<4)
 			giocatori[(giocatori.length)+1]= giocatore;
 	}
