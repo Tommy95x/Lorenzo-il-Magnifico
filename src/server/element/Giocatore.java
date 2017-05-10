@@ -1,4 +1,4 @@
-package elements;
+package server.element;
 
 public class Giocatore extends Thread{
 

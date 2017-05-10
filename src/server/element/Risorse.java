@@ -1,4 +1,4 @@
-package elements;
+package server.element;
 import java.io.Serializable;
 
 //Classe generica delle risorse 

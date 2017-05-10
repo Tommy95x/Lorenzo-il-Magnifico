@@ -1,4 +1,4 @@
-package elements;
+package server.element;
 
 //Classe del familiare che verrà piazzato dal giocatore per eseguire le azioni possibili 
 public class Familiare extends FamiliareNeutro{

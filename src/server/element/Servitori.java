@@ -1,4 +1,4 @@
-package elements;
+package server.element;
 
 //Classe risorsa servitore
 public class Servitori extends Risorse{

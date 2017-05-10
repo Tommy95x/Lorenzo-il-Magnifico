@@ -1,4 +1,4 @@
-package elements;
+package server.element;
 
 /*Tessera che verrà posizionata sul tabellone a inizio partita, possiede un effetto e un turno in cui può essere attivata
   su ogni giocatore scomunicato*/

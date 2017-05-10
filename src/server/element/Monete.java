@@ -1,4 +1,4 @@
-package elements;
+package server.element;
 
 //Classe specifica delle monete
 public class Monete extends Risorse{

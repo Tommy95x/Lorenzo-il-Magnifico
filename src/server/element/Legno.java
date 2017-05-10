@@ -1,4 +1,4 @@
-package elements;
+package server.element;
 
 //Classe specifica della risorsa del legno
 public class Legno extends Risorse{

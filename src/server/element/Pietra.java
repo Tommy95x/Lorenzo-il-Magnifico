@@ -1,4 +1,4 @@
-package elements;
+package server.element;
 
 //Classe specifica della risorsa pietra
 public class Pietra extends Risorse{

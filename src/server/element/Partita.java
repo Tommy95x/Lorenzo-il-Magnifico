@@ -1,4 +1,4 @@
-package elements;
+package server.element;
 
 /*Parte condivisa dai vari giocatori e che possiederà tutte le azioni che un giocatore può eseguire. Ogni azione della partita
   sarà un metodo synchronized*/
