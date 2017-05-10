@@ -6,20 +6,30 @@ public class Partita {
 
 	private int turno;
 	private String lobby;
+	private Giocatore[] giocatori=new Giocatore[4];
 	
-	public Partita(String lobby){
+	public Partita(String lobby, String namePlayer){
 		this.setLobby(lobby);
+		addGiocatore(new Giocatore(namePlayer, this));
 	}
 	
 	public void startPartita(){
 		turno=1;
-		
 	}
 
 	public String getLobby() {
 		return lobby;
 	}
 
+	private void addGiocatore(Giocatore giocatore) {
+		if(giocatori.length<4)
+			giocatori[(giocatori.length)+1]= giocatore;
+	}
+
+	public int numberOfPlayer(){
+		return giocatori.length;
+	}
+	
 	public void setLobby(String lobby) {
 		this.lobby = lobby;
 	}

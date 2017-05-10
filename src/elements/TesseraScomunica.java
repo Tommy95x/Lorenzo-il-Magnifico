@@ -6,12 +6,12 @@ public class TesseraScomunica {
 
 	private String oggettoPenalita;
 	private int valorePenalita;
-	private int turno;
+	private int periodo;
 	
-	public TesseraScomunica(String oggettoPenalita, int valorePenalita, int turno){
+	public TesseraScomunica(String oggettoPenalita, int valorePenalita, int periodo){
 		this.setOggettoPenalita(oggettoPenalita);
 		this.setValorePenalita(valorePenalita);
-		this.setTurno(turno);
+		this.setTurno(periodo);
 	}
 
 	public String getOggettoPenalita() {
@@ -31,11 +31,11 @@ public class TesseraScomunica {
 	}
 
 	public int getTurno() {
-		return turno;
+		return periodo;
 	}
 
 	public void setTurno(int turno) {
-		this.turno = turno;
+		this.periodo = turno;
 	}
 
 }
