@@ -10,7 +10,6 @@ import java.util.Scanner;
 *di conseguenza implementa l'interfaccia Runnable che verra' eseguito da un Executor istanziato in precedenza alla creazione di una 
 *connessione da parte di un client.
 **/
-
 public class ThreadSocketServer implements Runnable {
 
 	private StartServer commonServer;
