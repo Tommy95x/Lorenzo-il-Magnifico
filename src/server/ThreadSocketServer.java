@@ -5,7 +5,11 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
-
+/*
+*Classe che comunica con un SocketClient che ha istanziato e creato una nuva connessione inprecedenza con il ServerSocket, la classe
+*di conseguenza implementa l'interfaccia Runnable che verra' eseguito da un Executor istanziato in precedenza alla creazione di una 
+*connessione da parte di un client.
+**/
 
 public class ThreadSocketServer implements Runnable {
 
@@ -44,6 +48,12 @@ public class ThreadSocketServer implements Runnable {
 		}
 	}
 	
+	private void listOfLobbies(PrintWriter output){
+		for(int i=0;i<commonServer.getDimLobbies();i++){
+			output.println(commonServer.getNameLobby(i));
+		}
+	}
+	
 	@Override
 	public void run() {
 		try {
@@ -68,7 +78,11 @@ public class ThreadSocketServer implements Runnable {
 						commonServer.addGame(lobby,account);
 						break;
 					case "enter in a lobby":
+<<<<<<< HEAD
 						sendLobbies(output);
+=======
+						listOfLobbies(output);
+>>>>>>> branch 'develop' of https://github.com/Tommy95x/Lorenzo-il-Magnifico.git
 						break;
 					case "select a game":
 						lobby=input.nextLine();
