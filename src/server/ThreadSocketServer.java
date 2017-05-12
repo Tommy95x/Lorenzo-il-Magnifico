@@ -20,6 +20,7 @@ public class ThreadSocketServer implements Runnable {
 	private String lobby;
 	private int positionGame;
 	
+	
 	public ThreadSocketServer(Socket executorSocket, StartServer commonServer) {
 		this.commonServer=commonServer;
 		this.socket=executorSocket;
