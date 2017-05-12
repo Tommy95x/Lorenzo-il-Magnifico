@@ -78,11 +78,8 @@ public class ThreadSocketServer implements Runnable {
 						commonServer.addGame(lobby,account);
 						break;
 					case "enter in a lobby":
-<<<<<<< HEAD
 						sendLobbies(output);
-=======
 						listOfLobbies(output);
->>>>>>> branch 'develop' of https://github.com/Tommy95x/Lorenzo-il-Magnifico.git
 						break;
 					case "select a game":
 						lobby=input.nextLine();
