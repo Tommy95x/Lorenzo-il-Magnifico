@@ -9,9 +9,11 @@ public class Giocatore extends Thread{
 	private FamiliareNeutro[] familiari = new FamiliareNeutro[4];
 	private CuboScomunica[] cubiScomunica = new CuboScomunica[3];
 	private Partita partita;
+	private int positionGame;
 	
-	public Giocatore(String color, Partita partita, String name){
+	public Giocatore(String color, Partita partita, String name, int positionGame){
 		this.name=name;
+		this.positionGame=positionGame;
 		int i;
 		this.setColor(color);
 		discoGiocatore[0]=new Disco(color);

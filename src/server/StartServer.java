@@ -7,7 +7,7 @@ import server.element.Partita;
 
 public class StartServer {
 
-	private ArrayList<String> utente = new ArrayList<String>();
+	private ArrayList<String> utente= new ArrayList<String>();
 	private ArrayList<Partita> lobbies = new ArrayList <Partita>();
 	private Database db = new Database();
 	
@@ -21,7 +21,7 @@ public class StartServer {
 		ss.start();
 	}
 
-	public String addPlayer(String account, String pw){
+	public String addClient(String account, String pw){
 		String mom=account+pw;
 		for(int i=0; i<utente.size();i++){
 			if((mom).equals(utente.get(i)))
@@ -35,15 +35,15 @@ public class StartServer {
 	}
 	
 	public String addGame(String partita,String account){
-		for(int i=0;i<lobbies.size();i++){
+		for(int i=0;i<getDimLobbies();i++){
 			if(partita.equals(lobbies.get(i)))
 				return "Sorry, but the name of the game is already use change name";
 		}
-		lobbies.add(new Partita(partita,account));
+		lobbies.add(new Partita(partita,account,getDimLobbies()));
 		return "Welcome to the lobby";
 	}
 
-	public void register(String account, String pw, String email) {
+	public void registerNewClient(String account, String pw, String email) {
 		// Metodo d'aggiunta di un nuovo utente al sistema
 		
 	}
@@ -56,9 +56,9 @@ public class StartServer {
 		return i;
 	}
 	
-	public Partita getPartita(int indice){
+	/*public Partita getPartita(int indice){
 		return lobbies.get(indice);
-	}
+	}*/
 
 	public int getDimLobbies() {
 		return lobbies.size();
@@ -69,7 +69,6 @@ public class StartServer {
 	}
 
 	public void addGamer(int positionGame, String color, String account) {
-		lobbies.get(positionGame).addGiocatore(new Giocatore(color,lobbies.get(positionGame),account));
-		
+		lobbies.get(positionGame).addGiocatore(new Giocatore(color,lobbies.get(positionGame),account, positionGame));
 	}
 }

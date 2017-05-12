@@ -17,7 +17,7 @@ public class SocketServer extends Thread{
 		this.commonServer=commonServer;
 	}
 
-	public void startSocketServer(int port){
+	private void startSocketServer(int port){
 		ExecutorService ex=Executors.newCachedThreadPool();
 		ServerSocket socket = null;
 		try {

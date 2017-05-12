@@ -8,9 +8,9 @@ public class Partita {
 	private String lobby;
 	private Giocatore[] giocatori=new Giocatore[4];
 	
-	public Partita(String lobby, String namePlayer){
+	public Partita(String lobby, String namePlayer, int positionGame){
 		this.setLobby(lobby);
-		addGiocatore(new Giocatore(lobby, this,namePlayer));
+		addGiocatore(new Giocatore(lobby, this,namePlayer,positionGame));
 	}
 	
 	public void startPartita(){

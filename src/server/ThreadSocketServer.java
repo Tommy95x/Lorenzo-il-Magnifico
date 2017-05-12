@@ -33,8 +33,14 @@ public class ThreadSocketServer implements Runnable {
 		output.close();
 	}
 	
-	private void play(Scanner input, PrintWriter output) {
+	public void play(Scanner input, PrintWriter output) {
 		// TODO Auto-generated method stub
+	}
+	
+	private void sendLobbies(PrintWriter output){
+		for(int i=0;i<commonServer.getDimLobbies();i++){
+			output.println(commonServer.getNameLobby(i));
+		}
 	}
 	
 	@Override
@@ -48,26 +54,20 @@ public class ThreadSocketServer implements Runnable {
 					case "login":
 						account=input.nextLine();
 						pw=input.nextLine();
-						output.println(commonServer.addPlayer(account, pw));
+						output.println(commonServer.addClient(account, pw));
 						break;
 					case "register":
 						account=input.nextLine();
 						pw=input.nextLine();
-						if(!input.nextLine().equals(pw)){
-							output.println("Error second password incorrect");
-							break;
-						}
 						email = input.nextLine();
-						commonServer.register(account,pw,email);
+						commonServer.registerNewClient(account,pw,email);
 						break;
 					case "create new lobby":
 						lobby=input.nextLine();
 						commonServer.addGame(lobby,account);
 						break;
 					case "enter in a lobby":
-						for(int i=0;i<commonServer.getDimLobbies();i++){
-							output.println(commonServer.getNameLobby(i));
-						}
+						sendLobbies(output);
 						break;
 					case "select a game":
 						lobby=input.nextLine();
