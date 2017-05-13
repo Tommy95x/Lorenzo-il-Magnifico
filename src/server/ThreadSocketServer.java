@@ -42,12 +42,6 @@ public class ThreadSocketServer implements Runnable {
 		// TODO Auto-generated method stub
 	}
 	
-	private void sendLobbies(PrintWriter output){
-		for(int i=0;i<commonServer.getDimLobbies();i++){
-			output.println(commonServer.getNameLobby(i));
-		}
-	}
-	
 	private void listOfLobbies(PrintWriter output){
 		for(int i=0;i<commonServer.getDimLobbies();i++){
 			output.println(commonServer.getNameLobby(i));
@@ -78,7 +72,6 @@ public class ThreadSocketServer implements Runnable {
 						commonServer.addGame(lobby,account);
 						break;
 					case "enter in a lobby":
-						sendLobbies(output);
 						listOfLobbies(output);
 						break;
 					case "select a game":
