@@ -22,12 +22,12 @@ public class ThreadSocketServer implements Runnable {
 	private String email;
 	private String lobby;
 	private int positionGame;
-	private ImplementsServerInterface actionsServer;
+	private ImplementServerInterface actionsServer;
 	
 	public ThreadSocketServer(Socket executorSocket, StartServer commonServer) {
 		this.commonServer=commonServer;
 		this.socket=executorSocket;
-		actionsServer=new ImplementsServerInterface(); 
+		actionsServer=new ImplementServerInterface(); 
 	}
 
 	
