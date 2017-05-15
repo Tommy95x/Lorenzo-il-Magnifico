@@ -2,6 +2,9 @@ package server;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+
+import server.element.Partita;
 
 
 /*
@@ -10,28 +13,53 @@ import java.rmi.RemoteException;
 **/
 public class ImplementServerInterface implements ServerInterface, Remote{
 
-	public ImplementServerInterface(StartServer commonServer) {
-		// TODO Auto-generated constructor stub
+	StartServer commonServer;
+	
+	public ImplementServerInterface(StartServer commonServer){
+		this.commonServer=commonServer;
 	}
 
-	@Override
-	public boolean login(String username, String pw) throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
+	public String login(String username, String pw1) throws RemoteException {
+		return commonServer.addClient(username, pw1);
 	}
 
-	@Override
-	public boolean register(String username, String pw1, String email) throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
+	
+	public boolean register(String username, String pw1, String pw2, String email) throws RemoteException {
+		if(!pw1.equals(pw2))
+			return false;
+		return commonServer.registerNewClient(username, pw1, email);
 	}
 
-	@Override
-	public void createNewLobby(String lobby) throws RemoteException {
-		// TODO Auto-generated method stub
+	public int createNewLobby(String lobby, String account) throws RemoteException {
+		commonServer.addGame(lobby, account);
+		return commonServer.getIndicePartita(lobby);
 		
 	}
 
+	public int startPartita(String account, int game) throws RemoteException{
+			commonServer.getLobbyByNumber(game).start(account);
+			return commonServer.getLobbyByNumber(game).numberOfPlayer();
+	}
 
+	public ArrayList<Partita> getLobby() throws RemoteException{
+		return commonServer.getLobbies();
+	}
+	
+	public int selectLobby(String lobby, String account, String color) throws RemoteException{
+		int numberGame=commonServer.getIndicePartita(lobby);
+		commonServer.addGamer(numberGame, color, account);
+		return numberGame;
+	}
+
+	public String[] getColors(String lobby) throws RemoteException{
+		return commonServer.getLobbyByName(lobby).getColors();
+	}
+
+	public void adviseOtherGamers(String account, int positionGame) {
+		commonServer.getLobbyByNumber(positionGame).adviseGamers();		
+	}
+	
+	
+	
 }
 

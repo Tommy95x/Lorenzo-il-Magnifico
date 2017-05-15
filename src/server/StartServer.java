@@ -31,25 +31,26 @@ public class StartServer {
 				return "Player alredy login";
 		}
 		if(/*Ritorna la presenza o meno del giocatore all'interno del db gli vanno passati sia l'account che la pw*/){
-			utente.add(mom);
 			return "Welcome to the game";
 		}else
 			return "For player must register a new account";
 	}
 	
+	public boolean registerNewClient(String account, String pw, String email) {
+		return false;
+		// Metodo d'aggiunta di un nuovo utente al sistema
+		
+	}
+	
 	public String addGame(String partita,String account){
 		for(int i=0;i<getDimLobbies();i++){
 			if(partita.equals(lobbies.get(i)))
-				return "Sorry, but the name of the game is already use change name";
+				return "Sorry, but the name of the game is already use, change name";
 		}
 		lobbies.add(new Partita(partita,account,getDimLobbies()));
 		return "Welcome to the lobby";
 	}
 
-	public void registerNewClient(String account, String pw, String email) {
-		// Metodo d'aggiunta di un nuovo utente al sistema
-		
-	}
 	
 	public int getIndicePartita(String name){
 		int i=0;
@@ -58,10 +59,6 @@ public class StartServer {
 		}
 		return i;
 	}
-	
-	/*public Partita getPartita(int indice){
-		return lobbies.get(indice);
-	}*/
 
 	public int getDimLobbies() {
 		return lobbies.size();
@@ -74,4 +71,20 @@ public class StartServer {
 	public void addGamer(int positionGame, String color, String account) {
 		lobbies.get(positionGame).addGiocatore(new Giocatore(color,lobbies.get(positionGame),account, positionGame));
 	}
+
+	public ArrayList<Partita> getLobbies() {
+		return lobbies;
+	}
+	
+	public Partita getLobbyByNumber(int number){
+		return lobbies.get(number);
+	}
+	
+	public Partita getLobbyByName(String lobby){
+		for(Partita p:lobbies)
+			if(p.getLobby().equals(lobby))
+				return p;
+		return null;
+	}
+	
 }

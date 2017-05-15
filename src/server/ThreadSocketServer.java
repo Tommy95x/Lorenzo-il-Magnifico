@@ -3,6 +3,7 @@ package server;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.rmi.RemoteException;
 import java.util.Scanner;
 
 /*
@@ -18,37 +19,37 @@ public class ThreadSocketServer implements Runnable {
 	private PrintWriter output;
 	private String account;
 	private String pw;
+	private String pw2;
 	private String action;
 	private String email;
 	private String lobby;
+	private String color;
 	private int positionGame;
 	private ImplementServerInterface actionsServer;
 	
 	public ThreadSocketServer(Socket executorSocket, StartServer commonServer) {
 		this.commonServer=commonServer;
 		this.socket=executorSocket;
-		actionsServer=new ImplementServerInterface(); 
+		actionsServer=new ImplementServerInterface(commonServer); 
 	}
 
 	
 	public void closeSocket(){
 		output.println("Gioco finito");
-		//Bisognerà scrivere la classifica della partita
 		input.close();
 		output.close();
 	}
 	
-	public void play(Scanner input, PrintWriter output) {
-		// TODO Auto-generated method stub
+	private void outArray(String[] colors, PrintWriter output2) {
+		for(String s:colors)
+			output.println(s);
 	}
 	
-	private void listOfLobbies(PrintWriter output){
-		for(int i=0;i<commonServer.getDimLobbies();i++){
-			output.println(commonServer.getNameLobby(i));
-		}
+	private void closeAGamer(){
+		actionsServer.adviseOtherGamers(account,positionGame);
+		
 	}
 	
-	@Override
 	public void run() {
 		try {
 			input = new Scanner(socket.getInputStream());
@@ -65,25 +66,35 @@ public class ThreadSocketServer implements Runnable {
 					case "register":
 						account=input.nextLine();
 						pw=input.nextLine();
+						pw2=input.nextLine();
 						email = input.nextLine();
-						output.println(actionsServer.register(account, pw, email));
+						output.println(actionsServer.register(account, pw, pw2,email));
 						output.flush();
 						break;
 					case "create new lobby":
 						lobby=input.nextLine();
-						commonServer.addGame(lobby,account);
+						//account=input.nextLine();
+						actionsServer.createNewLobby(lobby, account);
+						break;
+					case "get lobbies":
+						output.println(actionsServer.getLobby());
 						break;
 					case "enter in a lobby":
-						listOfLobbies(output);
-						break;
-					case "select a game":
 						lobby=input.nextLine();
-						positionGame=commonServer.getIndicePartita(lobby);
-						String color=input.nextLine();
-						commonServer.addGamer(positionGame,color,account);
+						//account=input.nextLine();
+						outArray(actionsServer.getColors(lobby),output);
+						color=input.nextLine();
+						actionsServer.selectLobby(lobby, account, color);
+						break;
+					case "start":
+						//account=input.nextLine();
+						positionGame=input.nextInt();	
+						actionsServer.startPartita(account, positionGame);
 						break;
 					case "play":
-						play(input,output);
+						break;
+					case "quit":
+						closeSocket();
 						break;
 				}
 			}

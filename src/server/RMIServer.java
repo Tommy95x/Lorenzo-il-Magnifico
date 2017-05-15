@@ -36,4 +36,8 @@ public class RMIServer extends Thread{
 		System.out.println("Waiting for invocations from clients");
 	}
 	
+	public void run(){
+		this.startConnectionRMI();
+	}
+	
 }

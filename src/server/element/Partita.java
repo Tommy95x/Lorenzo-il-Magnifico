@@ -4,16 +4,19 @@ package server.element;
   sarà un metodo synchronized*/
 public class Partita {
 
+	private final int DIM=4;
 	private int turno;
 	private String lobby;
-	private Giocatore[] giocatori=new Giocatore[4];
+	private Giocatore[] giocatori=new Giocatore[DIM];
+	private boolean[] start=new boolean[DIM];
 	
 	public Partita(String lobby, String namePlayer, int positionGame){
 		this.setLobby(lobby);
 		addGiocatore(new Giocatore(lobby, this,namePlayer,positionGame));
 	}
 	
-	public void startPartita(){
+	
+	private void startPartita(){
 		turno=1;
 	}
 
@@ -22,7 +25,7 @@ public class Partita {
 	}
 
 	public void addGiocatore(Giocatore giocatore) {
-		if(giocatori.length<4)
+		if(giocatori.length<DIM)
 			giocatori[(giocatori.length)+1]= giocatore;
 	}
 
@@ -34,10 +37,6 @@ public class Partita {
 		this.lobby = lobby;
 	}
 
-	public int getTurno() {
-		return turno;
-	}
-
 	public boolean addTurno() {
 		if(turno<7){
 			turno++;
@@ -45,4 +44,40 @@ public class Partita {
 		}else
 			return false;
 	}
+	
+	public String getCreator(){
+		return giocatori[0].getName();
+	}
+
+	public void start(String account) {
+		for(int i=0;i<DIM;i++){
+			if(start[i]!=true)
+				start[i]=true;
+		}
+		if(start.length==giocatori.length){
+			for(boolean flag:start){
+				if(!flag)
+					return;
+			}
+			startPartita();
+		}else
+			return;
+	}
+	
+	public String[] getColors(){
+		String[] colors=new String[DIM];
+		for(int i=0;i<DIM;i++){
+			if(giocatori[i]!=null)
+				colors[i]=giocatori[i].getColor();
+		}
+		return colors;	
+	}
+
+	public void adviseGamers() {
+		//Chiedere al prof come referenziare per avvisare gli altri giocatori
+		
+	}
+	
+	
+	
 }
