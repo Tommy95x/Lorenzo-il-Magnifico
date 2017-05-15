@@ -22,10 +22,12 @@ public class ThreadSocketServer implements Runnable {
 	private String email;
 	private String lobby;
 	private int positionGame;
+	private ImplementsServerInterface actionsServer;
 	
 	public ThreadSocketServer(Socket executorSocket, StartServer commonServer) {
 		this.commonServer=commonServer;
 		this.socket=executorSocket;
+		actionsServer=new ImplementsServerInterface(); 
 	}
 
 	
@@ -57,13 +59,15 @@ public class ThreadSocketServer implements Runnable {
 					case "login":
 						account=input.nextLine();
 						pw=input.nextLine();
-						output.println(commonServer.addClient(account, pw));
+						output.println(actionsServer.login(account, pw));
+						output.flush();
 						break;
 					case "register":
 						account=input.nextLine();
 						pw=input.nextLine();
 						email = input.nextLine();
-						commonServer.registerNewClient(account,pw,email);
+						output.println(actionsServer.register(account, pw, email));
+						output.flush();
 						break;
 					case "create new lobby":
 						lobby=input.nextLine();

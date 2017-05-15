@@ -1,5 +1,5 @@
 package server;
 
-public class ImplementsRMIServerInterface implements RMIServerInterface{
+public class ImplementsServerInterface implements RMIServerInterface{
 
 }
