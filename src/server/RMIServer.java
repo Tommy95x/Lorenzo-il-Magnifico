@@ -1,5 +1,9 @@
 package server;
 
+/*
+*Classe utilizzata utilizzata per creare una connessione passiva RMI che permette agli utenti di connettersi e giocare con una connessione 
+*differente dai Socket.
+*/
 public class RMIServer extends Thread{
 
 	private int port;
