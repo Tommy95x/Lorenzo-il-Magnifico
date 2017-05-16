@@ -2,7 +2,7 @@ package server.element;
 
 public class CartaEdifici extends CartaSviluppo{
 
-	//Le carte edifici possiedono un costo che può diminuire le monte e/o il legno e/o la pietra di un giocatore
+	//Le carte edifici possiedono un costo che deve essere pagato con le risorse del giocatore che intende possederle
 	private int costoMoneta;
 	private int costoLegno;
 	private int costoPietra;

@@ -2,7 +2,7 @@ package server.element;
 
 public class DiscoMilitare extends Disco{
 
-	//Disco che servir√† per il conto dei punti militari accumulati
+	//Disco che servir‡ per il conto dei punti militari accumulati
 	private int puntiMilitari;
 	
 	public DiscoMilitare(String color) {

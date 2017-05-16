@@ -1,6 +1,6 @@
 package server.element;
 
-//Familiare neutro che potr√† di conseguenza essere sempre giocato per un valore pari a zero
+//Familiare senza colore specifico che potr‡† di conseguenza essere giocato solo spendendo servitori
 public class FamiliareNeutro {
 
 	

@@ -1,8 +1,8 @@
 package server.element;
 
 /*
-*Classe di isco generico, i dischi vengono utilizati per segnare sul tabellone l'ordine di gioco,  i punti vittoria, i puti fede e i punti militari.
-*Questa classe di conseguenza viene estesa da differenti e specializzati dischi.
+*Classe di disco generico, i dischi vengono utilizati per segnare sul tabellone l'ordine di gioco,  i punti vittoria, i puti fede e i punti militari.
+*Questa classe di conseguenza viene estesa a differenti e specializzati dischi.
 */
 public class Disco {
 

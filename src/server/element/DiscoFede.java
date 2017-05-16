@@ -2,7 +2,7 @@ package server.element;
 
 public class DiscoFede extends Disco{
 	
-	//Disco che sar√† piazzato nel tabellone sulla linea della fede
+	//Disco che sar‡ piazzato nel tabellone sulla linea della fede
 	private int puntiFede;
 	
 	public DiscoFede(String color) {

@@ -2,8 +2,8 @@ package server.element;
 
 import java.util.ArrayList;
 
-/*Classe che verr√† posseduta da ogni giocatore e che conterr√† tutti i punti per categoria di risorsa che il 
-  giocatore accumuler√† durante la partita*/
+/*Classe che verr‡ posseduta da ogni giocatore e che conterr‡ tutti i punti per categoria di risorsa che il 
+  giocatore accumuler‡ durante la partita*/
 public class Portafoglio {
 
 	private ArrayList<Legno> legno = new ArrayList<Legno>();

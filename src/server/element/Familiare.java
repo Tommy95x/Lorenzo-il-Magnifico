@@ -1,6 +1,6 @@
 package server.element;
 
-//Classe del familiare che verr√† piazzato dal giocatore per eseguire le azioni possibili 
+//Classe del familiare che verr‡† piazzato dal giocatore sul tabellone per eseguire le azioni possibili 
 public class Familiare extends FamiliareNeutro{
 
 	public String diceColor;

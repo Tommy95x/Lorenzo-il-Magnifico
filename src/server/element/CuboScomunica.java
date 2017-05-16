@@ -2,7 +2,7 @@ package server.element;
 
 public class CuboScomunica {
 
-	//Possieder√† degli attributi che contraddistingueranno il cubo in caso d'istanza di mancato sostegno della chiesa
+	//Possieder‡† degli attributi che contraddistingueranno il cubo in caso d'istanza di mancato sostegno della chiesa
 	private String color;
 	private int periodo;
 	private TesseraScomunica scomunica;
@@ -10,7 +10,7 @@ public class CuboScomunica {
 	public CuboScomunica(String color, int periodo, TesseraScomunica scomunica) {
 		this.setColor(color);
 		this.setPeriodo(periodo);
-		//Verifica per vedere se il match tra cubo e la tessera scomunica √® corretto
+		//Verifica per vedere se il match tra cubo e la tessera scomunica Ë corretto
 		try{
 			if(scomunica.getTurno()==periodo)
 				this.setScomunica(scomunica);
@@ -43,6 +43,4 @@ public class CuboScomunica {
 	public void setScomunica(TesseraScomunica scomunica) {
 		this.scomunica = scomunica;
 	}
-
-	
 }

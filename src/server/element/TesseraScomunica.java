@@ -1,6 +1,6 @@
 package server.element;
 
-/*Tessera che verrà posizionata sul tabellone a inizio partita, possiede un effetto e un turno in cui può essere attivata
+/*Tessera che verr� posizionata sul tabellone a inizio partita, possiede un periodo e un effetto che viene attivato
   su ogni giocatore scomunicato*/
 public class TesseraScomunica {
 
@@ -8,6 +8,7 @@ public class TesseraScomunica {
 	private int valorePenalita;
 	private int periodo;
 	
+	//Vengono settati i parametri della tessera scomunica
 	public TesseraScomunica(String oggettoPenalita, int valorePenalita, int periodo){
 		this.setOggettoPenalita(oggettoPenalita);
 		this.setValorePenalita(valorePenalita);

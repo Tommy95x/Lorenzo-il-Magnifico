@@ -2,7 +2,7 @@ package server.element;
 import java.io.Serializable;
 
 /*
-*Clase che verra' istanziata ad ogni partita in un array di 3 elementi. Il  dado iteragisce con il giocatore che lo lancia fornendogli
+*Classe che verra' istanziata ad ogni partita in un array di 3 elementi. Il  dado iteragisce con il giocatore che lo lancia fornendogli
 *il valore casuale tra 1 e 6 che acquistera' dal rispettivo metodo.
 */
 public class Dado implements Serializable{

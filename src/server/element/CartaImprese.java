@@ -2,7 +2,7 @@ package server.element;
 
 public class CartaImprese extends CartaSviluppo{
 
-	//Le carte impresa hanno due differenti costi impresa e il giocatore puÃ² decidere quale dei due costi scegliere
+	//Le carte impresa hanno due differenti costi impresa e il giocatore può decidere quale dei due costi scegliere tra risorse o punti militari
 	private int costoLegno;
 	private int costoPietra;
 	private int costoMoneta;
