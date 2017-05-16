@@ -2,6 +2,7 @@ package server;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import server.element.Partita;
@@ -11,11 +12,12 @@ import server.element.Partita;
 *Classe per l'implementazione dei metodi utilizzati nelle classi RMIServer e ThreadSocketServer, meodoti richiamati e utilizzati per giocare
 *dai giocatori durante una partita.
 **/
-public class ImplementServerInterface implements ServerInterface, Remote{
+public class ImplementServerInterface extends UnicastRemoteObject implements ServerInterface{
 
-	StartServer commonServer;
+	private static final long serialVersionUID = 1L;
+	private StartServer commonServer;
 	
-	public ImplementServerInterface(StartServer commonServer){
+	public ImplementServerInterface(StartServer commonServer) throws RemoteException{
 		this.commonServer=commonServer;
 	}
 

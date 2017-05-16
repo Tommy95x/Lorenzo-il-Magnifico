@@ -1,8 +1,10 @@
 package server.element;
 
+import java.io.Serializable;
+
 /*Parte condivisa dai vari giocatori e che possiederà tutte le azioni che un giocatore può eseguire. Ogni azione della partita
   sarà un metodo synchronized*/
-public class Partita {
+public class Partita implements Serializable{
 
 	private final int DIM=4;
 	private int turno;

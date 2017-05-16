@@ -30,7 +30,12 @@ public class ThreadSocketServer implements Runnable {
 	public ThreadSocketServer(Socket executorSocket, StartServer commonServer) {
 		this.commonServer=commonServer;
 		this.socket=executorSocket;
-		actionsServer=new ImplementServerInterface(commonServer); 
+		try {
+			actionsServer=new ImplementServerInterface(commonServer);
+		} catch (RemoteException e) {
+			System.out.println("Error not create a new ImplementInterface");
+			e.printStackTrace();
+		} 
 	}
 
 	
