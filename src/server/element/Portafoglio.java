@@ -10,6 +10,10 @@ public class Portafoglio {
 	private ArrayList<Pietra> pietra = new ArrayList<Pietra>();
 	private ArrayList<Monete> monete = new ArrayList<Monete>();
 	private ArrayList<Servitori> servitori = new ArrayList<Servitori>();
+	private ArrayList<CartaSviluppo> carte = new ArrayList<CartaSviluppo>();
+	private int puntiTot;
+	private int puntiMilitari;
+	private int puntiFede;
 	
 	public Portafoglio(){
 		int i;
@@ -19,6 +23,9 @@ public class Portafoglio {
 			pietra.add(new Pietra(false));
 		for(i=0;i<3;i++)
 			monete.add(new Monete(false));
+		puntiTot=0;
+		puntiMilitari=0;
+		puntiFede=0;
 	}
 	
 	public void addServitori(Servitori s){
@@ -35,6 +42,10 @@ public class Portafoglio {
 	
 	public void addPietra(Pietra p){
 		pietra.add(p);
+	}
+	
+	public void addCarta(CartaSviluppo c){
+		carte.add(c);
 	}
 	
 	public int getDimRisorse(String risorsa){

@@ -4,7 +4,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import server.element.CartaSviluppo;
+import server.element.FamiliareNeutro;
 
 /*
 *Classe che comunica con un SocketClient che ha istanziato e creato una nuva connessione inprecedenza con il ServerSocket, la classe
@@ -26,6 +30,8 @@ public class ThreadSocketServer implements Runnable {
 	private String color;
 	private int positionGame;
 	private ImplementServerInterface actionsServer;
+	private int x;
+	private int y;
 	
 	public ThreadSocketServer(Socket executorSocket, StartServer commonServer) {
 		this.commonServer=commonServer;
@@ -51,9 +57,31 @@ public class ThreadSocketServer implements Runnable {
 	}
 	
 	private void closeAGamer(){
-		actionsServer.adviseOtherGamers(account,positionGame);
+		try {
+			actionsServer.adviseOtherGamers(account,positionGame);
+		} catch (Exception e) {
+			// Pensare per la gestione dell'eccezione
+			e.printStackTrace();
+		}
 		
 	}
+	
+	private void play(PrintWriter output, Scanner input) {
+		action=input.nextLine();
+		for(int i=0;i<4;i++){
+				color=input.nextLine();
+				x=input.nextInt();
+				y=input.nextInt();
+				try {
+					actionsServer.mossa(account, positionGame, color, x, y);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			action=input.nextLine();
+	}
+
 	
 	public void run() {
 		try {
@@ -95,8 +123,10 @@ public class ThreadSocketServer implements Runnable {
 						//account=input.nextLine();
 						positionGame=input.nextInt();	
 						actionsServer.startPartita(account, positionGame);
+						getCards(output);
 						break;
 					case "play":
+						play(output,input);
 						break;
 					case "quit":
 						closeSocket();
@@ -111,5 +141,19 @@ public class ThreadSocketServer implements Runnable {
 			e.printStackTrace();
 		}	
 	}
-	
+
+
+	private void getCards(PrintWriter output2) {
+		ArrayList<CartaSviluppo> mom = null;
+		try {
+			mom = actionsServer.getCards(positionGame);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for(CartaSviluppo c:mom){
+			output.println(c.getImage());
+			output.flush();
+		}
+	}	
 }

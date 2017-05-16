@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import server.element.CartaSviluppo;
 import server.element.Partita;
 
 
@@ -34,6 +35,7 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 
 	public int createNewLobby(String lobby, String account) throws RemoteException {
 		commonServer.addGame(lobby, account);
+		commonServer.setCards(commonServer.getLobbyByName(lobby),account);
 		return commonServer.getIndicePartita(lobby);
 		
 	}
@@ -57,8 +59,18 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		return commonServer.getLobbyByName(lobby).getColors();
 	}
 
-	public void adviseOtherGamers(String account, int positionGame) {
+	//Chiedere per sentire come gestire al meglio il caso 
+	/*public void adviseOtherGamers(String account, int positionGame) throws RemoteException {
 		commonServer.getLobbyByNumber(positionGame).adviseGamers();		
+	}*/
+
+	public ArrayList<CartaSviluppo> getCards(int positionGame) throws RemoteException{
+		return commonServer.getLobbyByNumber(positionGame).getCards();
+	}
+
+	public void mossa(String account, int positionGame, String color, int x, int y) throws RemoteException{
+		
+		
 	}
 	
 	

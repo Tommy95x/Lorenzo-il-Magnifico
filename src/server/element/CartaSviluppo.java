@@ -21,5 +21,9 @@ public class CartaSviluppo {
 	public void setCarta() {
 					
 	}
+
+	public Image getImage() {
+		return image;
+	}
 	
 }

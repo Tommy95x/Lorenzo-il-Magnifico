@@ -1,8 +1,11 @@
 package server;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import server.database.ConnectionDatabase;
+import server.element.CartaSviluppo;
 import server.element.Giocatore;
 import server.element.Partita;
 
@@ -14,7 +17,7 @@ public class StartServer {
 
 	private ArrayList<String> utente= new ArrayList<String>();
 	private ArrayList<Partita> lobbies = new ArrayList <Partita>();
-	private ConnectionDatabase DB = new ConnectionDatabase();
+	private ConnectionDatabase DB = new ConnectionDatabase(20, 10);
 	
 	
 	public static void main(String[] args) {
@@ -88,4 +91,17 @@ public class StartServer {
 				return p;
 		return null;
 	}
+
+
+	public void setCards(Partita partita, String account) {
+		try {
+			partita.setCards(DB.getConnection(account));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+	}
+
+	
+	
 }

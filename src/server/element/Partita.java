@@ -1,16 +1,24 @@
 package server.element;
 
-import java.io.Serializable;
+import java.sql.Connection;
+import java.util.ArrayList;
+
+import server.database.ConnectionDatabase;
 
 /*Parte condivisa dai vari giocatori e che possiederà tutte le azioni che un giocatore può eseguire. Ogni azione della partita
   sarà un metodo synchronized*/
-public class Partita implements Serializable{
+public class Partita{
 
 	private final int DIM=4;
+	private final int NUMCARTE=3;
 	private int turno;
 	private String lobby;
-	private Giocatore[] giocatori=new Giocatore[DIM];
-	private boolean[] start=new boolean[DIM];
+	private Giocatore[] giocatori = new Giocatore[DIM];
+	private boolean[] start = new boolean[DIM];
+	private CartaPersonaggi[] cartePersonaggio = new CartaPersonaggi[NUMCARTE];
+	private CartaImprese[] carteImprese = new CartaImprese[NUMCARTE];
+	private CartaEdifici[] carteEdifici = new CartaEdifici[NUMCARTE];
+	private CartaTerritori[] carteTerritori = new CartaTerritori[NUMCARTE];
 	
 	public Partita(String lobby, String namePlayer, int positionGame){
 		this.setLobby(lobby);
@@ -20,6 +28,7 @@ public class Partita implements Serializable{
 	
 	private void startPartita(){
 		turno=1;
+		
 	}
 
 	public String getLobby() {
@@ -79,7 +88,27 @@ public class Partita implements Serializable{
 		//Chiedere al prof come referenziare per avvisare gli altri giocatori
 		
 	}
+
+	public ArrayList<CartaSviluppo> getCards() {
+		ArrayList<CartaSviluppo> mom = new ArrayList<CartaSviluppo>();
+		for(int i=0; i<NUMCARTE;i++){
+			mom.add(carteTerritori[i]);
+		}
+		for(int i=0; i<NUMCARTE;i++){
+			mom.add(carteImprese[i]);
+		}
+		for(int i=0; i<NUMCARTE;i++){
+			mom.add(carteEdifici[i]);
+		}
+		for(int i=0; i<NUMCARTE;i++){
+			mom.add(cartePersonaggio[i]);
+		}
+		return mom;
+	}
 	
-	
+	//Crea la connesione al Db e il metodo per otterene tutti le carte del gioco
+	public void setCards(Connection connection){
+		
+	}
 	
 }

@@ -13,9 +13,17 @@ public class ConnectionDatabase {
 	private String driverString;
 	
 	
-	public ConnectionDatabase(int numCon, int inc ) throws ClassNotFoundException, SQLException{
+	public ConnectionDatabase(int numCon, int inc ){
 		pool = new PoolDatabase(numCon, inc);
-		newConnection();
+		try {
+			newConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private void newConnection() throws ClassNotFoundException, SQLException {
