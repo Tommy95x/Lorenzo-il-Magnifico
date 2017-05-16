@@ -2,6 +2,7 @@ package server;
 
 import java.util.ArrayList;
 
+import server.database.ConnectionDatabase;
 import server.element.Giocatore;
 import server.element.Partita;
 
@@ -13,6 +14,7 @@ public class StartServer {
 
 	private ArrayList<String> utente= new ArrayList<String>();
 	private ArrayList<Partita> lobbies = new ArrayList <Partita>();
+	private ConnectionDatabase DB = new ConnectionDatabase();
 	
 	
 	public static void main(String[] args) {
