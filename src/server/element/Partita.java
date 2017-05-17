@@ -10,7 +10,7 @@ import server.database.ConnectionDatabase;
 public class Partita{
 
 	private final int DIM=4;
-	private final int NUMCARTE=3;
+	private final int NUMCARTE=4;
 	private int turno;
 	private String lobby;
 	private Giocatore[] giocatori = new Giocatore[DIM];
@@ -28,7 +28,8 @@ public class Partita{
 	
 	private void startPartita(){
 		turno=1;
-		
+		//Chiedere come notificare che è iniziata la partita ai giocatori
+		//Cercare e implementare metodo per primo ordine casuale di gioco
 	}
 
 	public String getLobby() {
@@ -62,17 +63,18 @@ public class Partita{
 
 	public void start(String account) {
 		for(int i=0;i<DIM;i++){
-			if(start[i]!=true)
+			if(giocatori[i].getName().equals(account)){
 				start[i]=true;
-		}
-		if(start.length==giocatori.length){
-			for(boolean flag:start){
-				if(!flag)
-					return;
+				break;
 			}
+		}
+		
+		for(int i=0;i<DIM;i++){
+			if(!start[i])
+				return;
+		else
 			startPartita();
-		}else
-			return;
+		}
 	}
 	
 	public String[] getColors(){

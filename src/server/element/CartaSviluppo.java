@@ -25,5 +25,9 @@ public class CartaSviluppo {
 	public Image getImage() {
 		return image;
 	}
+
+	public String getNameCard() {
+		return name;
+	}
 	
 }

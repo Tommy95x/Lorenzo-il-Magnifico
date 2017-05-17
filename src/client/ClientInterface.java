@@ -1,8 +1,21 @@
 package client;
 
+import java.util.ArrayList;
+
 public interface ClientInterface {
 
-	public void login(String account, String pw);
-	public void register(String account, String pw, String pw2, String email);
+	public String login(String account, String pw);
+	public String register(String account, String pw, String pw2, String email);
+	public boolean createANewLobby(String lobby);
+	public ArrayList<String> lobbiesView();
+	public void enterInALobby(String lobby);
+	public void selectColorGamer(String color);
+	public void startGame();
+	public void lanciaDadi();
+	public void posizionareFamiliare(String color, int x, int y);
+	public void spendereRisorse(String risorsa, int qta);
+	public void takeCards(String name);
+	public void sostegnoChiesa(boolean flag);
+	public void richiestaRegistrazione();
 	
 }

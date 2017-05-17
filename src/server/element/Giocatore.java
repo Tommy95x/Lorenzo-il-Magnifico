@@ -1,6 +1,6 @@
 package server.element;
 
-public class Giocatore extends Thread{
+public class Giocatore{
 
 	private String name;
 	private String color;
@@ -52,6 +52,10 @@ public class Giocatore extends Thread{
 
 	public void setRisorse(Risorse ris) {
 		risorse.addRis(ris);
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	

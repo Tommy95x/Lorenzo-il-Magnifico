@@ -52,11 +52,14 @@ public class ThreadSocketServer implements Runnable {
 	}
 	
 	private void outArray(String[] colors, PrintWriter output2) {
-		for(String s:colors)
+		for(String s:colors){
 			output.println(s);
+			output.flush();
+		}
+			
 	}
 	
-	private void closeAGamer(){
+	/*private void closeAGamer(){
 		try {
 			actionsServer.adviseOtherGamers(account,positionGame);
 		} catch (Exception e) {
@@ -64,7 +67,7 @@ public class ThreadSocketServer implements Runnable {
 			e.printStackTrace();
 		}
 		
-	}
+	}*/
 	
 	private void play(PrintWriter output, Scanner input) {
 		action=input.nextLine();
@@ -107,7 +110,7 @@ public class ThreadSocketServer implements Runnable {
 					case "create new lobby":
 						lobby=input.nextLine();
 						//account=input.nextLine();
-						actionsServer.createNewLobby(lobby, account);
+						output.println(actionsServer.createNewLobby(lobby, account));
 						break;
 					case "get lobbies":
 						output.println(actionsServer.getLobby());
@@ -115,14 +118,19 @@ public class ThreadSocketServer implements Runnable {
 					case "enter in a lobby":
 						lobby=input.nextLine();
 						//account=input.nextLine();
-						outArray(actionsServer.getColors(lobby),output);
+						positionGame=commonServer.getIndicePartita(lobby);
+						output.println(positionGame);
+						output.flush();
+						output.println(actionsServer.getColors(lobby));
+						output.flush();
 						color=input.nextLine();
 						actionsServer.selectLobby(lobby, account, color);
 						break;
 					case "start":
 						//account=input.nextLine();
 						positionGame=input.nextInt();	
-						actionsServer.startPartita(account, positionGame);
+						output.println(actionsServer.startPartita(account, positionGame));
+						output.flush();
 						getCards(output);
 						break;
 					case "play":
@@ -152,8 +160,11 @@ public class ThreadSocketServer implements Runnable {
 			e.printStackTrace();
 		}
 		for(CartaSviluppo c:mom){
+			output.println(c.getNameCard());
+			output.flush();
 			output.println(c.getImage());
 			output.flush();
 		}
+		output.println("endCards");
 	}	
 }
