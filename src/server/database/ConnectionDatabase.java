@@ -10,6 +10,7 @@ public class ConnectionDatabase {
 	private String dbUrl="jdbc:h2:tcp://localhost/~/test";
 	private String username="sa";
 	private String pwDB="";
+	//??????
 	private String driverString;
 	
 	
@@ -28,6 +29,7 @@ public class ConnectionDatabase {
 
 	private void newConnection() throws ClassNotFoundException, SQLException {
 		startConnection();
+		//?????
 		Class.forName(driverString);
 		for(int i=0;i<pool.getNumConnection();i++){
 			pool.setConnection(i,DriverManager.getConnection(dbUrl, username, pwDB));

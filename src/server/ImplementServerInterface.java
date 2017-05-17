@@ -5,7 +5,9 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import javafx.scene.image.Image;
 import server.element.CartaSviluppo;
+import server.element.Giocatore;
 import server.element.Partita;
 
 
@@ -18,7 +20,7 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 	private static final long serialVersionUID = 1L;
 	private StartServer commonServer;
 	
-	public ImplementServerInterface(StartServer commonServer) throws RemoteException{
+	public ImplementServerInterface(StartServer commonServer) throws RemoteException {
 		this.commonServer=commonServer;
 	}
 
@@ -70,6 +72,66 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 
 	public void mossa(String account, int positionGame, String color, int x, int y) throws RemoteException{
 		
+		
+	}
+
+	/*@Override
+	public void moveDisco(int x, int y) throws RemoteException{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void moveFamiliareAvv(int x, int y, String nameMove) throws RemoteException{
+		// TODO Auto-generated method stub
+		
+	}*/
+
+	@Override
+	public void showDiceValues(int values) throws RemoteException{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void showCards(Image card, String nameCard) throws RemoteException{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void richestaSostegnoChiesa() throws RemoteException{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void restTabellone() throws RemoteException{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void getTurno(String name) throws RemoteException{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void giveResources(String resource, int qta) throws RemoteException{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void givePunti(String gamer, int qta, String tipoPunti) throws RemoteException{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void endGame(Giocatore[] giocatoriPartita) throws RemoteException {
+		// TODO Auto-generated method stub
 		
 	}
 	

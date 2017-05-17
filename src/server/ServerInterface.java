@@ -20,15 +20,15 @@ public interface ServerInterface extends Remote {
 	public String[] getColors(String lobby) throws RemoteException;
 	public ArrayList<CartaSviluppo> getCards(int positionGame) throws RemoteException;
 	public void mossa(String account, int positionGame, String color, int x, int y) throws RemoteException;
-	public void moveDisco(int x, int y, /*Aggiungere elemento grafico utilizzato per il disco*/, String nameMove);
-	public void moveFamiliareAvv(int x, int y, String nameMove, /*Aggiungere elemento grafico che rappresenta il familiare*/);
-	public void showDiceValues(int values);
-	public void showCards(Image card, String nameCard);
-	public void richestaSostegnoChiesa();
-	public void restTabellone();
-	public void getTurno(String name);
-	public void giveResources(String resource, int qta);
-	public void givePunti(String gamer, int qta, String tipoPunti);
-	public void endGame(Giocatore[] giocatoriPartita);
+	//public void moveDisco(int x, int y, /*Aggiungere elemento grafico utilizzato per il disco*/, String nameMove) throws RemoteException;
+	//public void moveFamiliareAvv(int x, int y, String nameMove, /*Aggiungere elemento grafico che rappresenta il familiare*/) throws RemoteException;
+	public void showDiceValues(int values) throws RemoteException;
+	public void showCards(Image card, String nameCard) throws RemoteException;
+	public void richestaSostegnoChiesa() throws RemoteException;
+	public void restTabellone() throws RemoteException;
+	public void getTurno(String name) throws RemoteException;
+	public void giveResources(String resource, int qta) throws RemoteException;
+	public void givePunti(String gamer, int qta, String tipoPunti) throws RemoteException;
+	public void endGame(Giocatore[] giocatoriPartita) throws RemoteException;
 	
 }

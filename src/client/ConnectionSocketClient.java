@@ -8,6 +8,8 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import server.element.Partita;
+
 /*
  * Classe che implementa il socket
  */
@@ -18,7 +20,7 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 	private Scanner inputSocket;
 	private ObjectInputStream inputSocketObject;
 	private PrintWriter outputSocket;
-	private String ip="localhost";
+	private String ip="127.0.0.1";
 	private int port=3000;
 	private int positionGame;
 	
@@ -83,7 +85,7 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		return true;
 	}
 
-	public ArrayList<String> lobbiesView() {
+	public ArrayList<Partita> lobbiesView() {
 		outputSocket.println("get lobbies");
 		outputSocket.flush();
 		try {

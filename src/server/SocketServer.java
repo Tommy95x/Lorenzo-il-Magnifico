@@ -8,8 +8,8 @@ import java.util.concurrent.Executors;
 
 public class SocketServer extends Thread{
 
-	private int port;
-	private String ip;
+	private int port=3000;
+	private String ip="127.0.0.1";
 	private StartServer commonServer;
 	
 	public SocketServer(int i, StartServer server) {
