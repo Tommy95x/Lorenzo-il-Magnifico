@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /*
- * Classe che implementa
+ * Classe che implementa il socket
  */
 
 public class ConnectionSocketClient extends ConnectionClient implements ClientInterface{

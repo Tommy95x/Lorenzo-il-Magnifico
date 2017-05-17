@@ -7,6 +7,9 @@ import java.rmi.registry.Registry;
 
 import server.ServerInterface;
 
+/*
+ * Classe di implementazione 
+ */
 public class ConnectionRmiClient extends ConnectionClient implements ClientInterface{
 
 	private String ip;
