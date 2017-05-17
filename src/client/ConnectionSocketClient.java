@@ -8,6 +8,10 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/*
+ * Classe che implementa
+ */
+
 public class ConnectionSocketClient extends ConnectionClient implements ClientInterface{
 
 	private Socket socket;
