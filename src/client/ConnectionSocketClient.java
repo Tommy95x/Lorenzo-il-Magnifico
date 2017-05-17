@@ -6,7 +6,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
-public class ConnectionSocketClient extends ConnectionClient{
+public class ConnectionSocketClient extends ConnectionClient implements ClientInterface{
 
 	private Socket socket;
 	private Scanner inputSocket;
