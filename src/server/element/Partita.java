@@ -29,7 +29,7 @@ public class Partita{
 	private void startPartita(){
 		turno=1;
 		//Chiedere come notificare che è iniziata la partita ai giocatori
-		//Cercare e implementare metodo per primo ordine casuale di gioco
+		//Cercare e implementare metodo per primo ordine casuale di gioco -> trovato su una pagina ubuntu
 	}
 
 	public String getLobby() {
@@ -62,6 +62,7 @@ public class Partita{
 	}
 
 	public void start(String account) {
+		//Riguardare metodo che e' errato in quanto la partita parte solo e soltanto per 4 giocatori.
 		for(int i=0;i<DIM;i++){
 			if(giocatori[i].getName().equals(account)){
 				start[i]=true;
