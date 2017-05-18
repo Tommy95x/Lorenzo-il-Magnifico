@@ -6,8 +6,9 @@ public class Giocatore{
 	private String color;
 	private Disco[] discoGiocatore;
 	private Portafoglio risorse;
-	private FamiliareNeutro[] familiari = new FamiliareNeutro[4];
-	private CuboScomunica[] cubiScomunica = new CuboScomunica[3];
+	private FamiliareNeutro[] familiari;
+	private CuboScomunica[] cubiScomunica;
+	private Dado[] dadi;
 	private Partita partita;
 	private int positionGame;
 	
@@ -21,6 +22,9 @@ public class Giocatore{
 		discoGiocatore[2]=new DiscoMilitare(color);
 		discoGiocatore[3]=new DiscoVittoria(color);
 		risorse=new Portafoglio();
+		familiari = new FamiliareNeutro[4];
+		cubiScomunica = new CuboScomunica[3];
+		dadi = new Dado[3];
 		for(i=0;i<4;i++){
 			switch(i){
 				case 0:
@@ -58,6 +62,10 @@ public class Giocatore{
 		return name;
 	}
 
-	
-	
+	public Dado[] setDadi(){
+		for(Dado d:dadi){
+			d.setValue();
+		}
+		return dadi;
+	}
 }

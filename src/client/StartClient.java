@@ -11,7 +11,7 @@ public class StartClient {
 	
 	public static void main(String[] args) {
 		System.out.println("Welcome to the login game");
-		//StartClientGui startgui=new StartClientGui(args);
+		StartClientGui startgui=new StartClientGui(args);
 		decision();
 	}
 

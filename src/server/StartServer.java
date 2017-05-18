@@ -1,7 +1,9 @@
 package server;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import server.database.ConnectionDatabase;
@@ -33,15 +35,29 @@ public class StartServer {
 			if((mom).equals(utente.get(i)))
 				return "Player alredy login";
 		}
-		if(/*Ritorna la presenza o meno del giocatore all'interno del db gli vanno passati sia l'account che la pw*/){
-			return "Welcome to the game";
-		}else
+		String query = null;//Scrivere query per verificare il login deve ritornare un boolean
+		try {
+			if(DB.getConnection(account).createStatement().execute(query))//Verificare se effettivamente è così che si accetta un risultato di uan query boolean
+				return "Welcome to the game";
+			else
+				return "For player must register a new account";
+		} catch (SQLException e) {
+			e.printStackTrace();
 			return "For player must register a new account";
+		}
+			
 	}
 	
 	public boolean registerNewClient(String account, String pw, String email) {
-		return false;
-		// Metodo d'aggiunta di un nuovo utente al sistema
+		// Scrivere la query per aggiungere un nuovo utente al sistema
+		String query = null;
+		try {
+			return DB.getConnection(account).createStatement().execute(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 		
 	}
 	

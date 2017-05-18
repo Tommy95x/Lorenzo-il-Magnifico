@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import javafx.scene.image.Image;
 import server.element.CartaSviluppo;
+import server.element.Dado;
 import server.element.Giocatore;
 import server.element.Partita;
 
@@ -88,14 +89,14 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 	}*/
 
 	@Override
-	public void showDiceValues(int values) throws RemoteException{
-		// TODO Auto-generated method stub
+	public Dado[] showDiceValues(int positionGame, String name) throws RemoteException{
+		return commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).setDadi();
 		
 	}
 
 	@Override
 	public void showCards(Image card, String nameCard) throws RemoteException{
-		// TODO Auto-generated method stub
+		
 		
 	}
 

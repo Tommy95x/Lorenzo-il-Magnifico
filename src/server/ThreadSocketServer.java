@@ -90,8 +90,8 @@ public class ThreadSocketServer implements Runnable{
 		try {
 			input = new Scanner(socket.getInputStream());
 			output = new PrintWriter(socket.getOutputStream());
-			action=input.nextLine();
 			while(true){
+				action=input.nextLine();
 				switch(action){
 					case "login":
 						account=input.nextLine();
@@ -135,6 +135,13 @@ public class ThreadSocketServer implements Runnable{
 						break;
 					case "play":
 						play(output,input);
+						break;
+					case "dices":
+						output.println(actionsServer.showDiceValues(positionGame, account));
+						output.flush();
+						break;
+					case "mossa familiare":
+						//Discutere con Mattia per vedere come implementare il tutto
 						break;
 					case "quit":
 						closeSocket();

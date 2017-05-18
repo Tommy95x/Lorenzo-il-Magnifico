@@ -20,8 +20,8 @@ public class Dado implements Serializable{
 	}
 	
 	//Set del valore dopo il lancio del primo giocatore del turno
-	public void setValore() {
-		valore = (int) (Math.random()*6);
+	public void setValue() {
+		 valore = (int) (Math.random()*6);
 	}
 	
 	public int getValore() {

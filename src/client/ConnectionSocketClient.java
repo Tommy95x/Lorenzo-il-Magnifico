@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import javafx.scene.image.Image;
+import server.element.Dado;
 import server.element.Partita;
 
 /*
@@ -24,6 +25,7 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 	private String ip="127.0.0.1";
 	private int port=3000;
 	private int positionGame;
+	private int numberOfGamers;
 	
 	public ConnectionSocketClient(){
 		System.out.println("Start Socket Client");
@@ -122,8 +124,9 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 	public void startGame() {
 		outputSocket.println("start");
 		outputSocket.flush();
+		
 		//Richiamo al metodo grafico per iniziare a comporre il tabellone e a settare il numero corretto di plance, nel metodo metto la riga sotto che rappresenta il numero dei gicatori
-		inputSocket.nextInt();
+		numberOfGamers=inputSocket.nextInt();
 		String mom=inputSocket.nextLine();
 		while(!mom.equals("endCards")){
 			try {
@@ -140,8 +143,18 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 
 	@Override
 	public void lanciaDadi() {
-		outputSocket.println("dadi");
+		outputSocket.println("dices");
 		outputSocket.flush();
+		//chiamata al metodo grafico che mi ritorna i dadi lanciati
+		try {
+			Dado[] momd = (Dado[]) inputSocketObject.readObject();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 	}
@@ -149,8 +162,9 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 
 	@Override
 	public void posizionareFamiliare(String color, int x, int y) {
-		// TODO Auto-generated method stub
-		
+		outputSocket.println("mossa familiare");
+		outputSocket.flush();
+		//Dovrà rinviare indietro le modifiche da apportare
 	}
 
 

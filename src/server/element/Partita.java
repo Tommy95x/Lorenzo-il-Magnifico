@@ -73,6 +73,14 @@ public class Partita{
 			giocatori[(giocatori.length)+1]= giocatore;
 	}
 
+	public Giocatore getGiocatoreByName(String name){
+		for(Giocatore g: giocatori){
+			if(g.getName().equals(name))
+				return g;
+		}
+		return null;
+	}
+	
 	public int numberOfPlayer(){
 		return giocatori.length;
 	}
