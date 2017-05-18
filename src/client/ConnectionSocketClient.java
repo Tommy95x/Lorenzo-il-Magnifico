@@ -8,6 +8,7 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javafx.scene.image.Image;
 import server.element.Partita;
 
 /*
@@ -125,7 +126,12 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		inputSocket.nextInt();
 		String mom=inputSocket.nextLine();
 		while(!mom.equals("endCards")){
-			(Image)inputSocketObject.readObject();
+			try {
+				Image im=(Image) inputSocketObject.readObject();
+			} catch (ClassNotFoundException e) {
+				//Gestire eccezione
+			} catch (IOException e) {
+			}
 			//L'oggetto immagine ricevuto sopra, insieme al nome della carta, verrano inserite nel metodo che posiziona graficamente la carta
 			mom=inputSocket.nextLine();
 		}
@@ -134,7 +140,9 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 
 	@Override
 	public void lanciaDadi() {
-		// TODO Auto-generated method stub
+		outputSocket.println("dadi");
+		outputSocket.flush();
+		
 		
 	}
 

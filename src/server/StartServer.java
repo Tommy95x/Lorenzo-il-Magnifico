@@ -19,12 +19,10 @@ public class StartServer {
 	private ArrayList<Partita> lobbies = new ArrayList <Partita>();
 	private ConnectionDatabase DB = new ConnectionDatabase(20, 10);
 	
-	
 	public static void main(String[] args) {
 		StartServer server = new StartServer();
 		RMIServer rmi = new RMIServer(1099, server);
 		SocketServer ss = new SocketServer(3000,server);
-		
 		rmi.start();
 		ss.start();
 	}

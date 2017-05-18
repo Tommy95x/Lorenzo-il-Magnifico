@@ -28,9 +28,41 @@ public class Partita{
 	
 	private void startPartita(){
 		turno=1;
+		beShuffled();
 		//Chiedere come notificare che è iniziata la partita ai giocatori
-		//Cercare e implementare metodo per primo ordine casuale di gioco -> trovato su una pagina ubuntu
 	}
+
+	private void beShuffled() {
+		Giocatore[] mom=new Giocatore[DIM];
+		Giocatore[] ordine=new Giocatore[DIM];
+		boolean flag=false;
+		for(int i=0;i<DIM;i++){
+			mom[i]=giocatori[i];
+		}
+		int con=DIM;
+		for(int i=0;i<DIM;i++){
+			int casuale=(int) (Math.random()*con);
+			if(mom[casuale]!=null){
+				ordine[i]=mom[casuale];
+				mom[casuale]=null;
+				con--;
+			}else{
+				for(int j=0;j<DIM;j++){
+					if(mom[i]!=null)
+						flag=false;
+					else
+						flag=true;
+				}
+				if(!flag)
+					i--;
+				else
+					break;
+			}	
+		}
+		for(int i=0;i<DIM;i++)
+			giocatori[i]=ordine[i];
+	}
+
 
 	public String getLobby() {
 		return lobby;
@@ -111,7 +143,24 @@ public class Partita{
 	
 	//Crea la connesione al Db e il metodo per otterene tutti le carte del gioco
 	public void setCards(Connection connection){
-		
+		int casuale= ((int) Math.random()*24)+1;
+		String query;
+		for(CartaSviluppo c:carteTerritori){
+			query="";//Scrivere la query in modo che cerchi differenti carte in generale
+			c.setCarta(connection,query);
+		}
+		for(CartaSviluppo c:cartePersonaggio){
+			query="";//Scrivere la query in modo che cerchi differenti carte in generale
+			c.setCarta(connection,query);
+		}
+		for(CartaSviluppo c:carteEdifici){
+			query="";//Scrivere la query in modo che cerchi differenti carte in generale
+			c.setCarta(connection,query);
+		}
+		for(CartaSviluppo c:carteImprese){
+			query="";//Scrivere la query in modo che cerchi differenti carte in generale
+			c.setCarta(connection,query);
+		}
 	}
 	
 }

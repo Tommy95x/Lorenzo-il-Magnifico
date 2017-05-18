@@ -1,6 +1,10 @@
 package server.element;
 
 import java.awt.Image;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /*
 *Classe base delle carte presenti nel gioco. Possiedera' tutti gli attributi e metodi comuni a tutti i tipi di carte sviluppo all'interno del gioco stesso.
@@ -18,8 +22,18 @@ public class CartaSviluppo {
 	private Image image;
 	
 	//A seconda della carta estratta dal DB verranno settati i costi della carta stessa
-	public void setCarta() {
-					
+	public void setCarta(Connection connection, String query ) {
+		try {
+			Statement stmt = connection.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while(rs.next()){
+				//Riempire i campi con i risultati della query
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	public Image getImage() {

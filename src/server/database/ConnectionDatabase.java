@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ConnectionDatabase {
 
 	private PoolDatabase pool; 
-	private String dbUrl="jdbc:h2:tcp://localhost/~/test";
+	private String dbUrl="jdbc:h2:~/test";
 	private String username="sa";
 	private String pwDB="";
 	private String driverString="org.h2.Driver";
@@ -28,7 +28,6 @@ public class ConnectionDatabase {
 
 	private void newConnection() throws ClassNotFoundException, SQLException {
 		startConnection();
-		//?????
 		Class.forName(driverString);
 		for(int i=0;i<pool.getNumConnection();i++){
 			pool.setConnection(i,DriverManager.getConnection(dbUrl, username, pwDB));
