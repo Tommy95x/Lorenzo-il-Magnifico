@@ -10,8 +10,7 @@ public class ConnectionDatabase {
 	private String dbUrl="jdbc:h2:tcp://localhost/~/test";
 	private String username="sa";
 	private String pwDB="";
-	//??????
-	private String driverString;
+	private String driverString="org.h2.Driver";
 	
 	
 	public ConnectionDatabase(int numCon, int inc ){

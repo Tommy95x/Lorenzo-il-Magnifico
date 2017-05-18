@@ -39,7 +39,6 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		commonServer.addGame(lobby, account);
 		commonServer.setCards(commonServer.getLobbyByName(lobby),account);
 		return commonServer.getIndicePartita(lobby);
-		
 	}
 
 	public int startPartita(String account, int game) throws RemoteException{
