@@ -78,11 +78,6 @@ public class Portafoglio {
 		return dim;
 	}
 	
-	private int getDimPortafoglio(){
-		int dim=0;
-		return dim;
-	}
-
 	public void addRis(Risorse ris) {
 		switch(ris.getTipo()){
 		case "legno":

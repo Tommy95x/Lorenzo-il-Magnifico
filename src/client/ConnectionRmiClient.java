@@ -7,6 +7,7 @@ import java.rmi.registry.Registry;
 import java.util.ArrayList;
 
 import server.ServerInterface;
+import server.element.CartaSviluppo;
 import server.element.Partita;
 
 /*
@@ -16,7 +17,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 
 	private String ip;
 	private int port;
-	private ServerInterface serverMethod;
+	private ServerInterface serverMethods;
 	private int positionGame;
 	private String name;
 	private int numberOfGamers;
@@ -35,7 +36,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 			for(String mom:e)
 				System.out.println(mom);
 			String remoteInterface="ServerInterface";
-			serverMethod = (ServerInterface) registry.lookup(remoteInterface);
+			serverMethods = (ServerInterface) registry.lookup(remoteInterface);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Error connection not create");
@@ -52,7 +53,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	public String login(String account, String pw) {
 		name=account;
 		try {
-			return serverMethod.login(account, pw);
+			return serverMethods.login(account, pw);
 		} catch (RemoteException e) {
 			//Gestire l'eccezione
 			e.printStackTrace();
@@ -70,7 +71,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	
 	public String register(String account, String pw, String pw2, String email) {
 		try {
-			return String.valueOf(serverMethod.register(account, pw, pw2, email));
+			return String.valueOf(serverMethods.register(account, pw, pw2, email));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -83,7 +84,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 
 	public boolean createANewLobby(String lobby) {
 		try {
-			positionGame=serverMethod.createNewLobby(lobby, name);
+			positionGame=serverMethods.createNewLobby(lobby, name);
 			return true;
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -95,7 +96,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 
 	public ArrayList<Partita> lobbiesView() {
 		try {
-			return serverMethod.getLobby();
+			return serverMethods.getLobby();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -106,9 +107,9 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	public void enterInALobby(String lobby) {
 		try {
 			//Metodo grafico per richiedere il colore al giocatore passandogli i colori disponibili
-			serverMethod.getColors(lobby);
+			serverMethods.getColors(lobby);
 			String color = null;
-			positionGame=serverMethod.selectLobby(lobby, name, color);
+			positionGame=serverMethods.selectLobby(lobby, name, color);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -127,7 +128,13 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	@Override
 	public void startGame() {
 		try {
-			numberOfGamers=serverMethod.startPartita(name, positionGame);
+			numberOfGamers=serverMethods.startPartita(name, positionGame);
+			ArrayList<CartaSviluppo> carte = serverMethods.getCards(positionGame);
+			for(int i=0;i<carte.size();i++){
+				//CHiamare il metodo grafico per settare le carte
+				carte.get(i).getNameCard();
+				carte.get(i).getImage();
+			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -137,7 +144,13 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 
 	@Override
 	public void lanciaDadi() {
-		// TODO Auto-generated method stub
+		//Risposta al metodo grafico con il lancio di un metodo grafico che modificherà il tabellone 
+		try {
+			serverMethods.showDiceValues(positionGame, name);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 

@@ -14,11 +14,23 @@ public class StartClientGui extends Application{
 		launch(args);
 	}
 	
+	@SuppressWarnings("static-access")
 	public void start(Stage primaryStage) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource(""));
+		FXMLLoader loader = new FXMLLoader();
+		Parent root = loader.load(this.getClass().getResource(""));
 		primaryStage.setResizable(false);
 		primaryStage.setTitle("Lorenzo il Magnifico Login");
+		//primaryStage.getIcons().add(e);
+		ControllerLogin login = loader.getController();
+		login.getStartClientGui(this, primaryStage);
 		primaryStage.setScene(new Scene(root));
+		primaryStage.show();
 	}
+	
+	
+	public void changeStage(Stage oldStage, Stage newStage){
+		
+	}
+	
 	
 }
