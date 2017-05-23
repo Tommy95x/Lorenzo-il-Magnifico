@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import server.ServerInterface;
 import server.element.CartaSviluppo;
@@ -25,9 +26,25 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	public ConnectionRmiClient(){
 		System.out.println("New Rmi client create");
 		connect();
+		loginMom();
 	}
-
-
+	
+	
+	private void loginMom() {
+		Scanner input = new Scanner(System.in);
+		System.out.println("Inserisci il nome dell'account");
+		String account = input.nextLine();
+		System.out.println("Inserisci la password");
+		String pw = input.nextLine();
+		try {
+			System.out.println(serverMethods.login(account, pw));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 	private void connect() {
 		try {
 			Registry registry = LocateRegistry.getRegistry(port);
@@ -144,7 +161,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 
 	@Override
 	public void lanciaDadi() {
-		//Risposta al metodo grafico con il lancio di un metodo grafico che modificherà il tabellone 
+		//Risposta al metodo grafico con il lancio di un metodo grafico che modificherï¿½ il tabellone 
 		try {
 			serverMethods.showDiceValues(positionGame, name);
 		} catch (RemoteException e) {

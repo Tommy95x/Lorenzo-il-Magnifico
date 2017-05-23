@@ -30,10 +30,9 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 	public ConnectionSocketClient(){
 		System.out.println("Start Socket Client");
 		connect();
-		
 	}
-	
-	
+
+
 	private void connect(){
 		try {
 			socket=new Socket(ip,port);
@@ -164,7 +163,7 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 	public void posizionareFamiliare(String color, int x, int y) {
 		outputSocket.println("mossa familiare");
 		outputSocket.flush();
-		//Dovrà rinviare indietro le modifiche da apportare
+		//Dovrï¿½ rinviare indietro le modifiche da apportare
 	}
 
 

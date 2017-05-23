@@ -35,9 +35,9 @@ public class StartServer {
 			if((mom).equals(utente.get(i)))
 				return "Player alredy login";
 		}
-		String query = null;//Scrivere query per verificare il login deve ritornare un boolean
+		String query = "SELECT CASE WHEN EXISTS( SELECT * FROM UTENTE WHERE (NOMEUTENTE='"+account+"' AND PASSWORD='"+pw+"'))THEN CAST (1 AS BIT) ELSE CAST(0 AS BIT) END";
 		try {
-			if(DB.getConnection(account).createStatement().execute(query))//Verificare se effettivamente è così che si accetta un risultato di uan query boolean
+			if(DB.getConnection(account).createStatement().execute(query))//Verificare se effettivamente ï¿½ cosï¿½ che si accetta un risultato di uan query boolean
 				return "Welcome to the game";
 			else
 				return "For player must register a new account";
