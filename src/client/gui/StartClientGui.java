@@ -1,8 +1,6 @@
 package client.gui;
 
 import java.io.IOException;
-import java.util.Scanner;
-
 import client.ConnectionClient;
 import client.gui.controllers.ControllerConnection;
 import client.gui.controllers.ControllerGame;
@@ -13,7 +11,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class StartClientGui extends Application{
@@ -85,6 +82,7 @@ public class StartClientGui extends Application{
 				break;
 			case 2:
 				try {
+					loader = new FXMLLoader();
 					loader.setLocation(this.getClass().getResource(""));
 					root = loader.load();
 					primaryStage.setTitle("Lorenzo il Magnifico Register");
@@ -101,6 +99,7 @@ public class StartClientGui extends Application{
 				break;
 			case 3:
 				try {
+					loader = new FXMLLoader();
 					loader.setLocation(this.getClass().getResource(""));
 					root = loader.load();
 					primaryStage.setResizable(true);
@@ -115,6 +114,20 @@ public class StartClientGui extends Application{
 				break;
 			case 4:
 				try {
+					loader = new FXMLLoader();
+					loader.setLocation(this.getClass().getResource(""));
+					root = loader.load();
+					ControllerGame game = loader.getController();
+					game.getStartClient(this);
+					primaryStage.setScene(new Scene(root));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
+			case 5:
+				try {
+					loader = new FXMLLoader();
 					loader.setLocation(this.getClass().getResource(""));
 					root = loader.load();
 					ControllerGame game = loader.getController();

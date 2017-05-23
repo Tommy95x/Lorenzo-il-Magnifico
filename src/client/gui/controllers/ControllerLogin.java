@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Font;
 
 public class ControllerLogin {
 
@@ -20,10 +21,13 @@ public class ControllerLogin {
 	PasswordField pw;
 	@FXML
 	Label clickHere;
+	@FXML
+	Label login;
 	
 	
 	public void getStartClientGui(StartClientGui startClientGui) {
 		setStart(startClientGui);
+		Font.loadFont(getClass().getResourceAsStream("Sketch Gothic School.ttf"), 50.0);
 	}
 
 	public StartClientGui getStart() {
@@ -37,20 +41,19 @@ public class ControllerLogin {
 	
 	@FXML
 	public void pressSingIn(){
-		
-		
+		if(start.getClient().login(name.getText(), pw.getText()).equals("Welcome to the game"))
+			start.changeStage(3);
 		
 	}
 	
 	@FXML
 	public void pressRegister(){
-		
+		start.changeStage(2);
 	}
 	
 	@FXML
 	public void inClickHere(){
 		clickHere.setCursor(Cursor.HAND);
-		//clickHere
 	}
 	
 	@FXML
@@ -67,5 +70,5 @@ public class ControllerLogin {
 	public void mouseOut(){
 		clickHere.setCursor(Cursor.DEFAULT);
 	}
-	
+
 }
