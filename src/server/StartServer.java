@@ -35,7 +35,7 @@ public class StartServer {
 			if((mom).equals(utente.get(i)))
 				return "Player alredy login";
 		}
-		String query = "SELECT CASE WHEN EXISTS( SELECT * FROM UTENTE WHERE (NOMEUTENTE='"+account+"' AND PASSWORD='"+pw+"'))THEN CAST (1 AS BIT) ELSE CAST(0 AS BIT) END";
+		String query = "SELECT CASE WHEN EXISTS( SELECT * FROM UTENTE WHERE (NOMEUTENTE='"+account.toLowerCase()+"' AND PASSWORD='"+pw.toLowerCase()+"'))THEN CAST (1 AS BIT) ELSE CAST(0 AS BIT) END";
 		try {
 			if(DB.getConnection(account).createStatement().execute(query))//Verificare se effettivamente � cos� che si accetta un risultato di uan query boolean
 				return "Welcome to the game";
