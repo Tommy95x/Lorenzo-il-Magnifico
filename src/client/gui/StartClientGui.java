@@ -62,8 +62,10 @@ public class StartClientGui extends Application{
 		switch(numberOfStage){
 			case 1:
 				try {
-					loader.setLocation(this.getClass().getResource(""));
+					loader = new FXMLLoader();
+					loader.setLocation(StartClientGui.class.getResource("controllers/LoginGui.fxml"));
 					root = loader.load();
+					
 					primaryStage.setTitle("Lorenzo il Magnifico Login");
 					ControllerLogin login = loader.getController();
 					login.getStartClientGui(this);

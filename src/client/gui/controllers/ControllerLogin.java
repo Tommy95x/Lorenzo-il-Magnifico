@@ -2,7 +2,10 @@ package client.gui.controllers;
 
 import client.gui.StartClientGui;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class ControllerLogin {
@@ -10,11 +13,13 @@ public class ControllerLogin {
 	private StartClientGui start;
 	
 	@FXML
-	Button loginbutton;
+	Button singIn;
 	@FXML
 	TextField name;
 	@FXML
-	TextField pw;
+	PasswordField pw;
+	@FXML
+	Label clickHere;
 	
 	
 	public void getStartClientGui(StartClientGui startClientGui) {
@@ -37,4 +42,19 @@ public class ControllerLogin {
 		
 	}
 	
+	@FXML
+	public void pressRegister(){
+		
+	}
+	
+	@FXML
+	public void inClickHere(){
+		clickHere.setCursor(Cursor.HAND);
+		//clickHere
+	}
+	
+	@FXML
+	public void outClickHere(){
+		clickHere.setCursor(Cursor.DEFAULT);
+	}
 }
