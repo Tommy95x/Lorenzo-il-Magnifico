@@ -1,6 +1,5 @@
-package client.gui.controllers;
+package client.gui;
 
-import client.gui.StartClientGui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;

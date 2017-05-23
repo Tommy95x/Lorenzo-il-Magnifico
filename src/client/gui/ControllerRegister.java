@@ -1,12 +1,10 @@
-package client.gui.controllers;
+package client.gui;
 
-import client.gui.StartClientGui;
-
-public class ControllerGame {
+public class ControllerRegister {
 
 	private StartClientGui start;
 	
-	public void getStartClient(StartClientGui startClientGui) {
+	public void getStartClientGui(StartClientGui startClientGui) {
 		
 		this.setStart(startClientGui);
 		

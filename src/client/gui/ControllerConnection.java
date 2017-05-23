@@ -1,23 +1,20 @@
-package client.gui.controllers;
+package client.gui;
 
 import client.ConnectionClient;
 import client.ConnectionRmiClient;
 import client.ConnectionSocketClient;
-import client.gui.StartClientGui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 
 public class ControllerConnection {
 
 	private StartClientGui start;
+	private ConnectionClient client;
 	
 	@FXML
-	CheckBox rmi;
+	Button rmi;
 	@FXML
-	CheckBox socket;
-	@FXML
-	Button confirm;
+	Button socket;
 	
 	public void getStartClientGui(StartClientGui startClientGui) {
 		this.setStart(startClientGui);
@@ -32,16 +29,17 @@ public class ControllerConnection {
 	}
 	
 	@FXML
-	public void pressConfirm(){
-		ConnectionClient client;
-		if(rmi.isSelected()){
-			client = new ConnectionRmiClient();
-		}else{
-			client = new ConnectionSocketClient();
-		}
+	public void pressRMI(){
+		client = new ConnectionRmiClient();
 		start.getClient(client);
 		start.changeStage(1);
 	}
 	
+	@FXML
+	public void pressSocket(){
+		client = new ConnectionSocketClient();
+		start.getClient(client);
+		start.changeStage(1);
+	}
 	
 }

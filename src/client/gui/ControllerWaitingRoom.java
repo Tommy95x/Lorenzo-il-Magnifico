@@ -1,13 +1,10 @@
-package client.gui.controllers;
+package client.gui;
 
-import client.gui.StartClientGui;
-
-public class ControllerRegister {
+public class ControllerWaitingRoom {
 
 	private StartClientGui start;
 	
 	public void getStartClientGui(StartClientGui startClientGui) {
-		
 		this.setStart(startClientGui);
 		
 	}
