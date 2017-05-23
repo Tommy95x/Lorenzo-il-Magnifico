@@ -1,8 +1,9 @@
-package client.gui;
+package client.gui.controllers;
 
 import client.ConnectionClient;
 import client.ConnectionRmiClient;
 import client.ConnectionSocketClient;
+import client.gui.StartClientGui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 

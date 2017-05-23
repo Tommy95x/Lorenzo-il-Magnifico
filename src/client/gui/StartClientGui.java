@@ -3,6 +3,11 @@ package client.gui;
 import java.io.IOException;
 
 import client.ConnectionClient;
+import client.gui.controllers.ControllerConnection;
+import client.gui.controllers.ControllerGame;
+import client.gui.controllers.ControllerLogin;
+import client.gui.controllers.ControllerRegister;
+import client.gui.controllers.ControllerWaitingRoom;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,7 +16,7 @@ import javafx.stage.Stage;
 
 public class StartClientGui extends Application{
 
-	private FXMLLoader loader ;
+	private FXMLLoader loader = new FXMLLoader(); ;
 	private Parent root;
 	private Stage primaryStage;
 	private ConnectionClient client;
@@ -23,13 +28,11 @@ public class StartClientGui extends Application{
 	}
 	
 	
-	@SuppressWarnings("static-access")
 	public void start(Stage primaryStage) throws IOException {
 		
-		loader = new FXMLLoader();
 		this.primaryStage = primaryStage;
 		
-		loader.setLocation(getClass().getResource("ConncectionGui.fxml"));
+		loader.setLocation(StartClientGui.class.getResource("controllers/ConnectionGui.fxml"));
 		root = loader.load();
 		
 		primaryStage.setResizable(false);
@@ -40,21 +43,20 @@ public class StartClientGui extends Application{
 		
 		primaryStage.setScene(new Scene(root, 600, 400));
 		primaryStage.show();
-		noGraphics();
+		//noGraphics();
 	}
 	
 	
-	private void noGraphics() {
-		/*System.out.println("Premi 0 su linea di comando per giocare in console");
+	/*private void noGraphics() {
+		System.out.println("Premi 0 su linea di comando per giocare in console");
 		Scanner inKey = new Scanner(System.in);
 		if(inKey.nextInt()==0){
 			decision();
-		}*/
+		}
 		
-	}
+	}*/
 
 
-	@SuppressWarnings("static-access")
 	public void changeStage(int numberOfStage){
 		
 		switch(numberOfStage){
