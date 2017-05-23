@@ -41,7 +41,8 @@ public class ThreadSocketServer implements Runnable{
 		} catch (RemoteException e) {
 			System.out.println("Error not create a new ImplementInterface");
 			e.printStackTrace();
-		} 
+		}
+		System.out.println("Creato nuovo executor di gestione client");
 	}
 
 	
@@ -94,6 +95,7 @@ public class ThreadSocketServer implements Runnable{
 				action=input.nextLine();
 				switch(action){
 					case "login":
+						System.out.println("Richiesto login");
 						account=input.nextLine();
 						pw=input.nextLine();
 						output.println(actionsServer.login(account, pw));

@@ -1,6 +1,7 @@
 package client.gui;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 import client.ConnectionClient;
 import client.gui.controllers.ControllerConnection;
@@ -12,6 +13,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class StartClientGui extends Application{
@@ -37,11 +39,14 @@ public class StartClientGui extends Application{
 		
 		primaryStage.setResizable(false);
 		primaryStage.setTitle("Lorenzo il Magnifico Connection");
-		//primaryStage.getIcons().add(e);
+		//primaryStage.getIcons().add(new Image(""));
 		ControllerConnection connection = loader.getController();
 		connection.getStartClientGui(this);
 		
-		primaryStage.setScene(new Scene(root, 600, 400));
+		root.setId("pane");
+		Scene scene = new Scene(root, 600, 400);
+		scene.getStylesheets().addAll(this.getClass().getResource("controllers/pane.css").toExternalForm());
+		primaryStage.setScene(scene);
 		primaryStage.show();
 		//noGraphics();
 	}
@@ -51,7 +56,7 @@ public class StartClientGui extends Application{
 		System.out.println("Premi 0 su linea di comando per giocare in console");
 		Scanner inKey = new Scanner(System.in);
 		if(inKey.nextInt()==0){
-			decision();
+			//decision();
 		}
 		
 	}*/
@@ -69,7 +74,10 @@ public class StartClientGui extends Application{
 					primaryStage.setTitle("Lorenzo il Magnifico Login");
 					ControllerLogin login = loader.getController();
 					login.getStartClientGui(this);
-					primaryStage.setScene(new Scene(root,600,400));
+					root.setId("pane");
+					Scene scene = new Scene(root, 600, 400);
+					scene.getStylesheets().addAll(this.getClass().getResource("controllers/pane.css").toExternalForm());
+					primaryStage.setScene(scene);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -82,7 +90,10 @@ public class StartClientGui extends Application{
 					primaryStage.setTitle("Lorenzo il Magnifico Register");
 					ControllerRegister register = loader.getController();
 					register.getStartClientGui(this);
-					primaryStage.setScene(new Scene(root,600,400));
+					root.setId("pane");
+					Scene scene = new Scene(root, 600, 400);
+					scene.getStylesheets().addAll(this.getClass().getResource("controllers/pane.css").toExternalForm());
+					primaryStage.setScene(scene);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -122,9 +133,6 @@ public class StartClientGui extends Application{
 		System.exit(0);
 	}
 
-	public void getClient(ConnectionClient client) {
-		this.client=client;
-	}
 
 	public ConnectionClient getClient() {
 		return client;

@@ -32,6 +32,7 @@ public class SocketServer extends Thread{
 			try {
 				executorSocket=socket.accept();
 				ex.submit(new ThreadSocketServer(executorSocket,commonServer));
+				System.out.println("Un nuovo utente ha richiesto una connessione");
 			} catch (IOException e) {
 				System.out.println("Error no space for new connection");
 				e.printStackTrace();

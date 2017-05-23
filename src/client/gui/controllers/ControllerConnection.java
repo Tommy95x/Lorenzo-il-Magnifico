@@ -5,6 +5,7 @@ import client.ConnectionRmiClient;
 import client.ConnectionSocketClient;
 import client.gui.StartClientGui;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 
 public class ControllerConnection {
@@ -31,16 +32,36 @@ public class ControllerConnection {
 	
 	@FXML
 	public void pressRMI(){
-		client = new ConnectionRmiClient();
-		start.getClient(client);
+		System.out.println("Premuto bottone rmi");
+		start.setClient(new ConnectionRmiClient());
 		start.changeStage(1);
 	}
 	
 	@FXML
-	public void pressSocket(){
-		client = new ConnectionSocketClient();
-		start.getClient(client);
+	public void pressSocket(){ 
+		System.out.println("Premuto bottone socket");
 		start.changeStage(1);
+		start.setClient(new ConnectionSocketClient());
+		
 	}
 	
+	@FXML
+	public void mouseInRMI(){
+		rmi.setCursor(Cursor.HAND);
+	}
+	
+	@FXML
+	public void mouseOutRMI(){
+		rmi.setCursor(Cursor.DEFAULT);
+	}
+	
+	@FXML
+	public void mouseInSocket(){
+		socket.setCursor(Cursor.HAND);
+	}
+	
+	@FXML
+	public void mouseOutSocket(){
+		socket.setCursor(Cursor.DEFAULT);
+	}
 }
