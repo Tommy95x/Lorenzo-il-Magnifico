@@ -35,11 +35,12 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 
 	private void connect(){
 		try {
-			socket=new Socket(ip,port);
+			socket = new Socket(ip,port);
+			System.out.println("Creato nuovo socket");
 			//Creo i canali di comunicazione
 			inputSocket = new Scanner(socket.getInputStream());
 			outputSocket = new PrintWriter(socket.getOutputStream());
-			inputSocketObject = new ObjectInputStream(socket.getInputStream());
+			//inputSocketObject = new ObjectInputStream(socket.getInputStream());
 			System.out.println("Create a new connection");
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
@@ -53,6 +54,7 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 	public String login(String account, String pw) {
 		outputSocket.println("login");
 		outputSocket.flush();
+
 		outputSocket.println(account);
 		outputSocket.flush();
 		outputSocket.println(pw);

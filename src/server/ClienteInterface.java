@@ -1,5 +1,3 @@
-package client;
-
 import java.util.ArrayList;
 
 import server.element.Partita;

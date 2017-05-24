@@ -26,11 +26,11 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	public ConnectionRmiClient(){
 		System.out.println("New Rmi client create");
 		connect();
-		loginMom();
+		//loginMom();
 	}
 	
-	
-	private void loginMom() {
+	//Metodo di test per il login
+	/*private void loginMom() {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Inserisci il nome dell'account");
 		String account = input.nextLine();
@@ -43,7 +43,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 			e.printStackTrace();
 		}
 		
-	}
+	}*/
 	
 	private void connect() {
 		try {

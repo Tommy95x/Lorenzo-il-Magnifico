@@ -1,7 +1,6 @@
 package client.gui;
 
 import java.io.IOException;
-
 import client.ConnectionClient;
 import client.gui.controllers.ControllerConnection;
 import client.gui.controllers.ControllerGame;
@@ -16,42 +15,66 @@ import javafx.stage.Stage;
 
 public class StartClientGui extends Application{
 
-	private FXMLLoader loader;
+	private FXMLLoader loader = new FXMLLoader(); ;
 	private Parent root;
 	private Stage primaryStage;
 	private ConnectionClient client;
 	
 	
 	
-	public StartClientGui(String[] args){
+	public static void main(String[] args) {
 		launch(args);
-		loader = new FXMLLoader();
 	}
 	
-	@SuppressWarnings("static-access")
+	
 	public void start(Stage primaryStage) throws IOException {
-		root = loader.load(this.getClass().getResource(""));
+		
+		this.primaryStage = primaryStage;
+		
+		loader.setLocation(StartClientGui.class.getResource("controllers/ConnectionGui.fxml"));
+		root = loader.load();
+		
 		primaryStage.setResizable(false);
 		primaryStage.setTitle("Lorenzo il Magnifico Connection");
-		//primaryStage.getIcons().add(e);
+		//primaryStage.getIcons().add(new Image(""));
 		ControllerConnection connection = loader.getController();
 		connection.getStartClientGui(this);
-		primaryStage.setScene(new Scene(root, 600, 400));
+		
+		root.setId("pane");
+		Scene scene = new Scene(root, 600, 400);
+		scene.getStylesheets().addAll(this.getClass().getResource("controllers/pane.css").toExternalForm());
+		primaryStage.setScene(scene);
 		primaryStage.show();
+		//noGraphics();
 	}
 	
 	
-	@SuppressWarnings("static-access")
+	/*private void noGraphics() {
+		System.out.println("Premi 0 su linea di comando per giocare in console");
+		Scanner inKey = new Scanner(System.in);
+		if(inKey.nextInt()==0){
+			//decision();
+		}
+		
+	}*/
+
+
 	public void changeStage(int numberOfStage){
 		
 		switch(numberOfStage){
 			case 1:
 				try {
-					root = loader.load(this.getClass().getResource(""));
+					loader = new FXMLLoader();
+					loader.setLocation(StartClientGui.class.getResource("controllers/LoginGui.fxml"));
+					root = loader.load();
+					
 					primaryStage.setTitle("Lorenzo il Magnifico Login");
 					ControllerLogin login = loader.getController();
 					login.getStartClientGui(this);
-					primaryStage.setScene(new Scene(root,600,400));
+					root.setId("pane");
+					Scene scene = new Scene(root, 600, 400);
+					scene.getStylesheets().addAll(this.getClass().getResource("controllers/pane.css").toExternalForm());
+					primaryStage.setScene(scene);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -59,11 +82,16 @@ public class StartClientGui extends Application{
 				break;
 			case 2:
 				try {
-					root = loader.load(this.getClass().getResource(""));
+					loader = new FXMLLoader();
+					loader.setLocation(this.getClass().getResource(""));
+					root = loader.load();
 					primaryStage.setTitle("Lorenzo il Magnifico Register");
 					ControllerRegister register = loader.getController();
 					register.getStartClientGui(this);
-					primaryStage.setScene(new Scene(root,600,400));
+					root.setId("pane");
+					Scene scene = new Scene(root, 600, 400);
+					scene.getStylesheets().addAll(this.getClass().getResource("controllers/pane.css").toExternalForm());
+					primaryStage.setScene(scene);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -71,11 +99,13 @@ public class StartClientGui extends Application{
 				break;
 			case 3:
 				try {
-					root = loader.load(this.getClass().getResource(""));
+					loader = new FXMLLoader();
+					loader.setLocation(this.getClass().getResource(""));
+					root = loader.load();
 					primaryStage.setResizable(true);
 					primaryStage.setTitle("Lorenzo il Magnifico");
-					ControllerWaitingRoom waitingRoom = loader.getController();
-					waitingRoom.getStartClientGui(this);
+					ControllerMenu menu = loader.getController();
+					menu.getStartClient(this);
 					primaryStage.setScene(new Scene(root));
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -84,7 +114,22 @@ public class StartClientGui extends Application{
 				break;
 			case 4:
 				try {
-					root = loader.load(this.getClass().getResource(""));
+					loader = new FXMLLoader();
+					loader.setLocation(this.getClass().getResource(""));
+					root = loader.load();
+					ControllerWaitingRoom waitingRoom = loader.getController();
+					waitingRoom.getStartClientGui(this);
+					primaryStage.setScene(new Scene(root));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
+			case 5:
+				try {
+					loader = new FXMLLoader();
+					loader.setLocation(this.getClass().getResource(""));
+					root = loader.load();
 					ControllerGame game = loader.getController();
 					game.getStartClient(this);
 					primaryStage.setScene(new Scene(root));
@@ -101,9 +146,6 @@ public class StartClientGui extends Application{
 		System.exit(0);
 	}
 
-	public void getClient(ConnectionClient client) {
-		this.client=client;
-	}
 
 	public ConnectionClient getClient() {
 		return client;
@@ -112,5 +154,16 @@ public class StartClientGui extends Application{
 	public void setClient(ConnectionClient client) {
 		this.client = client;
 	}
+	
+	//Metodo test per l'avvio della connessione
+		/*private static void decision(){
+			Scanner in=new Scanner(System.in);
+			System.out.println("Do you want to create a RMI connction or a Socket connection?");
+			String decision=in.nextLine();
+			if(decision.equals("RMI")||decision.equals("rmi")||decision.equals("Rmi"))
+				client = new ConnectionRmiClient();
+			else 
+				client = new ConnectionSocketClient();
+		}*/
 	
 }
