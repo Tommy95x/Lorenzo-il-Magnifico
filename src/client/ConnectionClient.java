@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import server.element.Partita;
 
-public class ConnectionClient implements ClientInterface{
+public class ConnectionClient implements ClientInterface extends UnicastRemoteObject{
 
 	@Override
 	public String login(String account, String pw) {
