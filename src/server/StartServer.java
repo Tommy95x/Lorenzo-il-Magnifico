@@ -1,13 +1,9 @@
 package server;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import server.database.ConnectionDatabase;
-import server.element.CartaSviluppo;
 import server.element.Giocatore;
 import server.element.Partita;
 

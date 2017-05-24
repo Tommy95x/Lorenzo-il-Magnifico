@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import client.ConnectionRmiClient;
 import javafx.scene.image.Image;
 import server.element.CartaSviluppo;
 import server.element.Dado;
@@ -36,9 +37,11 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		return commonServer.registerNewClient(username, pw1, email);
 	}
 
-	public int createNewLobby(String lobby, String account) throws RemoteException {
+	public int createNewLobby(String lobby, String account, String color, ConnectionRmiClient connectionRmiClient) throws RemoteException {
 		commonServer.addGame(lobby, account);
 		commonServer.setCards(commonServer.getLobbyByName(lobby),account);
+		commonServer.getLobbyByName(lobby).addGiocatore(new Giocatore(color,commonServer.getLobbyByName(lobby), account, commonServer.getIndicePartita(lobby)));
+		commonServer.getLobbyByName(lobby).getGiocatoreByName(account).getClient(connectionRmiClient);
 		return commonServer.getIndicePartita(lobby);
 	}
 
@@ -51,9 +54,10 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		return commonServer.getLobbies();
 	}
 	
-	public int selectLobby(String lobby, String account, String color) throws RemoteException{
+	public int selectLobby(String lobby, String account, String color, ConnectionRmiClient connectionRmiClient) throws RemoteException{
 		int numberGame=commonServer.getIndicePartita(lobby);
 		commonServer.addGamer(numberGame, color, account);
+		commonServer.getLobbyByName(lobby).getGiocatoreByName(account).getClient(connectionRmiClient);
 		return numberGame;
 	}
 
@@ -134,8 +138,6 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		// TODO Auto-generated method stub
 		
 	}
-	
-	
-	
+
 }
 

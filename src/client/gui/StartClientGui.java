@@ -5,6 +5,7 @@ import client.ConnectionClient;
 import client.gui.controllers.ControllerConnection;
 import client.gui.controllers.ControllerGame;
 import client.gui.controllers.ControllerLogin;
+import client.gui.controllers.ControllerMenu;
 import client.gui.controllers.ControllerRegister;
 import client.gui.controllers.ControllerWaitingRoom;
 import javafx.application.Application;
@@ -83,7 +84,7 @@ public class StartClientGui extends Application{
 			case 2:
 				try {
 					loader = new FXMLLoader();
-					loader.setLocation(this.getClass().getResource(""));
+					loader.setLocation(this.getClass().getResource("controllers/RegisterGui.fxml"));
 					root = loader.load();
 					primaryStage.setTitle("Lorenzo il Magnifico Register");
 					ControllerRegister register = loader.getController();
@@ -106,7 +107,7 @@ public class StartClientGui extends Application{
 					primaryStage.setTitle("Lorenzo il Magnifico");
 					ControllerMenu menu = loader.getController();
 					menu.getStartClient(this);
-					primaryStage.setScene(new Scene(root));
+					primaryStage.setScene(new Scene(root,600,400));
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -115,9 +116,10 @@ public class StartClientGui extends Application{
 			case 4:
 				try {
 					loader = new FXMLLoader();
-					loader.setLocation(this.getClass().getResource(""));
+					loader.setLocation(this.getClass().getResource("controllers/LoadingGui.fxml"));
 					root = loader.load();
 					ControllerWaitingRoom waitingRoom = loader.getController();
+					primaryStage.setResizable(true);
 					waitingRoom.getStartClientGui(this);
 					primaryStage.setScene(new Scene(root));
 				} catch (IOException e) {

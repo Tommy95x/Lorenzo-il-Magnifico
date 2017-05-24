@@ -1,11 +1,21 @@
-package client.gui.controllers
+package client.gui.controllers;
 
-public Class ControllerMenu{
+import client.gui.StartClientGui;
 
-  private StartClient client;
+public class ControllerMenu{
 
-  public void getStartClient(StartClient client){
-    this.client = client;
+  private StartClientGui client;
+
+  public void getStartClient(StartClientGui client){
+    this.setClient(client);
   }
+
+public StartClientGui getClient() {
+	return client;
+}
+
+public void setClient(StartClientGui client) {
+	this.client = client;
+}
 
 }

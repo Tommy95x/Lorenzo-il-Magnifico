@@ -5,8 +5,6 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
-import java.util.Scanner;
-
 import server.ServerInterface;
 import server.element.CartaSviluppo;
 import server.element.Partita;
@@ -14,9 +12,8 @@ import server.element.Partita;
 /*
  * Classe di implementazione 
  */
-public class ConnectionRmiClient extends ConnectionClient implements ClientInterface{
+public class ConnectionRmiClient extends ConnectionClient implements ClientInterface, RMIClientInterface{
 
-	private String ip;
 	private int port;
 	private ServerInterface serverMethods;
 	private int positionGame;
@@ -101,7 +98,8 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 
 	public boolean createANewLobby(String lobby) {
 		try {
-			positionGame=serverMethods.createNewLobby(lobby, name);
+			String color = null;
+			positionGame=serverMethods.createNewLobby(lobby, name, color ,this);
 			return true;
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -126,7 +124,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 			//Metodo grafico per richiedere il colore al giocatore passandogli i colori disponibili
 			serverMethods.getColors(lobby);
 			String color = null;
-			positionGame=serverMethods.selectLobby(lobby, name, color);
+			positionGame=serverMethods.selectLobby(lobby, name, color, this);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -145,7 +143,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	@Override
 	public void startGame() {
 		try {
-			numberOfGamers=serverMethods.startPartita(name, positionGame);
+			setNumberOfGamers(serverMethods.startPartita(name, positionGame));
 			ArrayList<CartaSviluppo> carte = serverMethods.getCards(positionGame);
 			for(int i=0;i<carte.size();i++){
 				//CHiamare il metodo grafico per settare le carte
@@ -186,17 +184,27 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	}
 
 
-	@Override
-	public void takeCards(String name) {
-		// TODO Auto-generated method stub
-		
-	}
-
 
 	@Override
 	public void sostegnoChiesa(boolean flag) {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public int getNumberOfGamers() {
+		return numberOfGamers;
+	}
+
+	public void setNumberOfGamers(int numberOfGamers) {
+		this.numberOfGamers = numberOfGamers;
+	}
+
+	@Override
+	public void notifyStartGame() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 	
 }

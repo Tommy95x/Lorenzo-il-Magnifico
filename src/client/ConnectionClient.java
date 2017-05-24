@@ -2,9 +2,10 @@ package client;
 
 import java.util.ArrayList;
 
+import client.gui.StartClientGui;
 import server.element.Partita;
 
-public class ConnectionClient implements ClientInterface extends UnicastRemoteObject{
+public class ConnectionClient implements ClientInterface{
 
 	@Override
 	public String login(String account, String pw) {
@@ -67,12 +68,6 @@ public class ConnectionClient implements ClientInterface extends UnicastRemoteOb
 	}
 
 	@Override
-	public void takeCards(String name) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void sostegnoChiesa(boolean flag) {
 		// TODO Auto-generated method stub
 		
@@ -80,6 +75,17 @@ public class ConnectionClient implements ClientInterface extends UnicastRemoteOb
 
 	@Override
 	public void richiestaRegistrazione() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void waitStartGame(StartClientGui start) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void takeCards(String name) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -8,6 +8,7 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import client.gui.StartClientGui;
 import javafx.scene.image.Image;
 import server.element.Dado;
 import server.element.Partita;
@@ -59,6 +60,7 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		outputSocket.flush();
 		outputSocket.println(pw);
 		outputSocket.flush();
+		System.out.println("Inviati i dati di login");
 		return inputSocket.nextLine();
 	}
 
@@ -84,8 +86,8 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 	public boolean createANewLobby(String lobby) {
 		outputSocket.println(lobby);
 		outputSocket.flush();
-		positionGame=inputSocket.nextInt();
-		selectColorGamer(/*Metodo grafico che restituisce il colore scelto dal giocatore*/);
+		setPositionGame(inputSocket.nextInt());
+		outputSocket.println(selectColorGamer(/*Metodo grafico che restituisce il colore scelto dal giocatore*/));
 		return true;
 	}
 
@@ -109,7 +111,7 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		outputSocket.flush();
 		outputSocket.println(lobby);
 		outputSocket.flush();
-		positionGame=inputSocket.nextInt();
+		setPositionGame(inputSocket.nextInt());
 		/*Chiamata al metodo grafico che stampa tutti i colori che deve essere messo all'interno del metodo sottostante*/inputSocketObject.readObject();
 		selectColorGamer(/*Metodo grafico che restituisce il colore scelto dal giocatore*/);
 		//L'unica cosa che manca è il metodo per il cambio di stage
@@ -127,7 +129,7 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		outputSocket.flush();
 		
 		//Richiamo al metodo grafico per iniziare a comporre il tabellone e a settare il numero corretto di plance, nel metodo metto la riga sotto che rappresenta il numero dei gicatori
-		numberOfGamers=inputSocket.nextInt();
+		setNumberOfGamers(inputSocket.nextInt());
 		String mom=inputSocket.nextLine();
 		while(!mom.equals("endCards")){
 			try {
@@ -161,6 +163,11 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 	}
 
 
+	public void waitStartGame(StartClientGui start) {
+		if(inputSocket.nextLine().equals("start"))
+				start.changeStage(4);
+	}
+	
 	@Override
 	public void posizionareFamiliare(String color, int x, int y) {
 		outputSocket.println("mossa familiare");
@@ -187,6 +194,26 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 	public void sostegnoChiesa(boolean flag) {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+	public int getPositionGame() {
+		return positionGame;
+	}
+
+
+	public void setPositionGame(int positionGame) {
+		this.positionGame = positionGame;
+	}
+
+
+	public int getNumberOfGamers() {
+		return numberOfGamers;
+	}
+
+
+	public void setNumberOfGamers(int numberOfGamers) {
+		this.numberOfGamers = numberOfGamers;
 	}
 	
 }

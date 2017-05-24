@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import server.element.CartaSviluppo;
-import server.element.FamiliareNeutro;
 
 /*
 *Classe che comunica con un SocketClient che ha istanziato e creato una nuva connessione inprecedenza con il ServerSocket, la classe
@@ -112,7 +111,9 @@ public class ThreadSocketServer implements Runnable{
 					case "create new lobby":
 						lobby=input.nextLine();
 						//account=input.nextLine();
-						output.println(actionsServer.createNewLobby(lobby, account));
+						color = input.nextLine();
+						output.println(actionsServer.createNewLobby(lobby, account,color,null));
+						commonServer.getLobbyByName(lobby).getGiocatoreByName(account).getSocket(this);
 						break;
 					case "get lobbies":
 						output.println(actionsServer.getLobby());
@@ -126,7 +127,8 @@ public class ThreadSocketServer implements Runnable{
 						output.println(actionsServer.getColors(lobby));
 						output.flush();
 						color=input.nextLine();
-						actionsServer.selectLobby(lobby, account, color);
+						actionsServer.selectLobby(lobby, account, color,null);
+						commonServer.getLobbyByName(lobby).getGiocatoreByName(account).getSocket(this);
 						break;
 					case "start":
 						//account=input.nextLine();
@@ -175,5 +177,11 @@ public class ThreadSocketServer implements Runnable{
 			output.flush();
 		}
 		output.println("endCards");
+	}
+
+
+	public void notifyStartGame() {
+		// TODO Auto-generated method stub
+		
 	}	
 }

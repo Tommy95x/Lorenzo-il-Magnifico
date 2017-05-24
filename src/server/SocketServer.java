@@ -9,14 +9,15 @@ import java.util.concurrent.Executors;
 public class SocketServer extends Thread{
 
 	private int port=3000;
+	@SuppressWarnings("unused")
 	private String ip="127.0.0.1";
 	private StartServer commonServer;
 	
 	public SocketServer(int i, StartServer server) {
-		this.port=port;
-		this.commonServer=commonServer;
+		this.commonServer=server;
 	}
 
+	@SuppressWarnings("resource")
 	private void startSocketServer(int port){
 		ExecutorService ex=Executors.newCachedThreadPool();
 		ServerSocket socket = null;
