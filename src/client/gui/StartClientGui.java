@@ -104,8 +104,8 @@ public class StartClientGui extends Application{
 					root = loader.load();
 					primaryStage.setResizable(true);
 					primaryStage.setTitle("Lorenzo il Magnifico");
-					ControllerWaitingRoom waitingRoom = loader.getController();
-					waitingRoom.getStartClientGui(this);
+					ControllerMenu menu = loader.getController();
+					menu.getStartClient(this);
 					primaryStage.setScene(new Scene(root));
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -117,8 +117,8 @@ public class StartClientGui extends Application{
 					loader = new FXMLLoader();
 					loader.setLocation(this.getClass().getResource(""));
 					root = loader.load();
-					ControllerGame game = loader.getController();
-					game.getStartClient(this);
+					ControllerWaitingRoom waitingRoom = loader.getController();
+					waitingRoom.getStartClientGui(this);
 					primaryStage.setScene(new Scene(root));
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
