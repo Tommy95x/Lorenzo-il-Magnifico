@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import server.element.Partita;
 
-public interface ClientInterface {
+public interface ClientInterface extends Remote{
 
 	public String login(String account, String pw);
 	public String register(String account, String pw, String pw2, String email);
