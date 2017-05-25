@@ -51,14 +51,13 @@ public class StartServer {
 	public String registerNewClient(String account, String pw, String email) {
 		// Scrivere la query per aggiungere un nuovo utente al sistema
 		String query = "SELECT CASE WHEN EXISTS( SELECT * FROM UTENTE WHERE (NOMEUTENTE='"+account.toLowerCase()+"' AND PASSWORD='"+pw.toLowerCase()+"'))THEN CAST (1 AS BIT) ELSE CAST(0 AS BIT) END";
-		Statement stmt=con.createStatement;
 		try {
-			if(!(DB.getConnection(account).createStatement().execute(query)))
-				stmt.executeUpdate("INSERT INTO UTENTE" + "VALUES('1','MATTIA','AAA@AAA.COM','AAAA')");
+			if(!(DB.getConnection(account).createStatement().execute(query))){
+				DB.getConnection(account).createStatement().executeUpdate("INSERT INTO UTENTE" + "VALUES('1','"+account.toLowerCase()+"','"+email.toLowerCase()+"','"+pw.toLowerCase()+"')");
 			    return "You are now registered!";
-			    stmt.close();
-			else 
+			}else{
 				return "You are registered yet!";
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
