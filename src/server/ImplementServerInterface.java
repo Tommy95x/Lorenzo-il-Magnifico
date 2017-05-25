@@ -9,6 +9,7 @@ import client.ConnectionRmiClient;
 import javafx.scene.image.Image;
 import server.element.CartaSviluppo;
 import server.element.Dado;
+import server.element.Flag;
 import server.element.Giocatore;
 import server.element.Partita;
 
@@ -27,6 +28,7 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 	}
 
 	public String login(String username, String pw1) throws RemoteException {
+		System.out.println("Classe implementazione interfaccia");
 		return commonServer.addClient(username, pw1);
 	}
 
@@ -42,6 +44,7 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		commonServer.setCards(commonServer.getLobbyByName(lobby),account);
 		commonServer.getLobbyByName(lobby).addGiocatore(new Giocatore(color,commonServer.getLobbyByName(lobby), account, commonServer.getIndicePartita(lobby)));
 		commonServer.getLobbyByName(lobby).getGiocatoreByName(account).getClient(connectionRmiClient);
+		commonServer.getLobbyByName(lobby).getGiocatoreByName(account).setFlag(new Flag(color, commonServer, account));
 		return commonServer.getIndicePartita(lobby);
 	}
 
@@ -58,6 +61,7 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		int numberGame=commonServer.getIndicePartita(lobby);
 		commonServer.addGamer(numberGame, color, account);
 		commonServer.getLobbyByName(lobby).getGiocatoreByName(account).getClient(connectionRmiClient);
+		commonServer.getLobbyByName(lobby).getGiocatoreByName(account).setFlag(new Flag(color, commonServer, account));
 		return numberGame;
 	}
 

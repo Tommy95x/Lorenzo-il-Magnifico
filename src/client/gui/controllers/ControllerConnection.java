@@ -53,11 +53,7 @@ public class ControllerConnection {
 	public void pressSocket(){ 
 		System.out.println("Premuto bottone socket");
 		start.changeStage(1);
-		ExecutorService ex=Executors.newCachedThreadPool();
-		ConnectionSocketClient mom = new ConnectionSocketClient();
-		start.setClient(mom);
-		ex.submit(mom);
-		
+		start.setClient(new ConnectionSocketClient());
 	}
 	
 	@FXML

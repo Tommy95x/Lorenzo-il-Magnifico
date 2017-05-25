@@ -92,6 +92,7 @@ public class ThreadSocketServer implements Runnable{
 			output = new PrintWriter(socket.getOutputStream());
 			while(true){
 				action=input.nextLine();
+				System.out.println(action);
 				switch(action){
 					case "login":
 						System.out.println("Richiesto login");
@@ -140,10 +141,10 @@ public class ThreadSocketServer implements Runnable{
 					case "play":
 						play(output,input);
 						break;
-					case "dices":
+					/*case "dices":
 						output.println(actionsServer.showDiceValues(positionGame, account));
 						output.flush();
-						break;
+						break;*/
 					case "mossa familiare":
 						//Discutere con Mattia per vedere come implementare il tutto
 						break;

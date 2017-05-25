@@ -120,7 +120,7 @@ public class StartClientGui extends Application{
 			case 5:
 				try {
 					loader = new FXMLLoader();
-					loader.setLocation(this.getClass().getResource(""));
+					loader.setLocation(this.getClass().getResource("controllers/GameGui.fxml"));
 					root = loader.load();
 					ControllerGame game = loader.getController();
 					game.getStartClient(this);

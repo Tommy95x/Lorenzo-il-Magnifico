@@ -27,6 +27,7 @@ public class StartServer {
 
 	public String addClient(String account, String pw){
 		String mom=account+pw;
+		System.out.println(mom);
 		for(int i=0; i<utente.size();i++){
 			if((mom).equals(utente.get(i)))
 				return "Player alredy login";

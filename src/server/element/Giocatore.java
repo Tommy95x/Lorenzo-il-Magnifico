@@ -17,6 +17,7 @@ public class Giocatore{
 	private int positionGame;
 	private ThreadSocketServer server = null;
 	private ConnectionRmiClient client = null;
+	private Flag flag;
 	
 	public Giocatore(String color, Partita partita, String name, int positionGame){
 		this.name=name;
@@ -90,5 +91,13 @@ public class Giocatore{
 			server.notifyStartGame();
 		else
 			client.notifyStartGame();
+	}
+
+	public Flag getFlag() {
+		return flag;
+	}
+
+	public void setFlag(Flag flag) {
+		this.flag = flag;
 	}
 }
