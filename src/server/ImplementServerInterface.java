@@ -92,26 +92,8 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 	}*/
 
 	@Override
-	public Dado[] showDiceValues(int positionGame, String name) throws RemoteException{
-		return commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).setDadi();
-		
-	}
-
-	@Override
 	public void showCards(Image card, String nameCard) throws RemoteException{
 		
-		
-	}
-
-	@Override
-	public void richestaSostegnoChiesa() throws RemoteException{
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void restTabellone() throws RemoteException{
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -132,12 +114,5 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public void endGame(Giocatore[] giocatoriPartita) throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
 

@@ -49,7 +49,7 @@ public class StartServer {
 		String query = "SELECT CASE WHEN EXISTS( SELECT * FROM UTENTE WHERE (NOMEUTENTE='"+account.toLowerCase()+"' AND PASSWORD='"+pw.toLowerCase()+"'))THEN CAST (1 AS BIT) ELSE CAST(0 AS BIT) END";
 		try {
 			if(!(DB.getConnection(account).createStatement().execute(query))){
-				DB.getConnection(account).createStatement().executeUpdate("INSERT INTO UTENTE" + "VALUES('1','"+account.toLowerCase()+"','"+email.toLowerCase()+"','"+pw.toLowerCase()+"')");
+				DB.getConnection(account).createStatement().executeUpdate("INSERT INTO UTENTE" + "VALUES('2','"+account.toLowerCase()+"','"+email.toLowerCase()+"','"+pw.toLowerCase()+"')");
 			    return "You are now registered!";
 			}else{
 				return "You are registered yet!";

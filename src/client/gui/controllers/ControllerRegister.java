@@ -40,6 +40,7 @@ public class ControllerRegister {
 	@FXML
 	public void registerConfirm(){
 		
+			System.out.println(start.getClient().register(username.getText(), pw1.getText(), pw2.getText(), email.getText()));	
 	}
 	
 }

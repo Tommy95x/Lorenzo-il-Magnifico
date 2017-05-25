@@ -1,21 +1,47 @@
 package client.gui.controllers;
 
+import java.util.ArrayList;
+
+import ObservableList;
 import client.gui.StartClientGui;
+import javafx.collections.FXCollections;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import server.element.Partita;
 
-public class ControllerMenu{
+public class ControllerMenu {
 
-  private StartClientGui client;
+	private StartClientGui start;
 
-  public void getStartClient(StartClientGui client){
-    this.setClient(client);
-  }
+	@FXML
+	public Button create;
+	@FXML
+	public Button enter;
+	@FXML
+	public ListView lobbies;
+	
+	
+	public void getStartClient(StartClientGui start) {
+		this.setClient(start);
+	}
 
-public StartClientGui getClient() {
-	return client;
-}
+	public StartClientGui getClient() {
+		return start;
+	}
 
-public void setClient(StartClientGui client) {
-	this.client = client;
-}
+	public void setClient(StartClientGui client) {
+		this.start = start;
+	}
+	
+	@FXML
+	public void enterInALobby(){
+		ArrayList<Partita> arrayLobbies = start.getClient().lobbiesView();
+		ArrayList<String> nameLobbies;
+		for(Partita mom : arrayLobbies)
+			nameLobbies.add(mom.getLobby());
+		ObservableList<String> mom = FXCollections.observableArrayList(nameLobbies);
+		lobbies.setItems(mom);
+	}
 
 }

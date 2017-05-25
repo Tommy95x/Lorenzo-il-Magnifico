@@ -7,12 +7,13 @@ import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import client.gui.StartClientGui;
 import server.ServerInterface;
 import server.element.Partita;
 
 public class ConnectionClientConsole extends ConnectionRmiClient{
 
-	private int port = 3000;
+	private int port;
 	private ServerInterface serverMethods;
 	private int positionGame;
 	private String name;

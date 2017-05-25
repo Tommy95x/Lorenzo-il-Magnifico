@@ -11,6 +11,7 @@ import client.gui.StartClientGui;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 
 public class ControllerConnection {
@@ -26,6 +27,8 @@ public class ControllerConnection {
 	MenuItem close;
 	@FXML
 	MenuItem playWithConsole;
+	@FXML
+	MenuBar menu;
 	
 	public void getStartClientGui(StartClientGui startClientGui) {
 		this.setStart(startClientGui);

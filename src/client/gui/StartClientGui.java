@@ -1,11 +1,7 @@
 package client.gui;
 
 import java.io.IOException;
-import java.util.concurrent.Future;
-
 import client.ConnectionClient;
-import client.ConnectionRmiClient;
-import client.ConnectionSocketClient;
 import client.gui.controllers.ControllerConnection;
 import client.gui.controllers.ControllerGame;
 import client.gui.controllers.ControllerLogin;
@@ -50,18 +46,7 @@ public class StartClientGui extends Application{
 		scene.getStylesheets().addAll(this.getClass().getResource("controllers/pane.css").toExternalForm());
 		primaryStage.setScene(scene);
 		primaryStage.show();
-		//noGraphics();
 	}
-	
-	
-	/*private void noGraphics() {
-		System.out.println("Premi 0 su linea di comando per giocare in console");
-		Scanner inKey = new Scanner(System.in);
-		if(inKey.nextInt()==0){
-			//decision();
-		}
-		
-	}*/
 
 
 	public void changeStage(int numberOfStage){
@@ -164,7 +149,6 @@ public class StartClientGui extends Application{
 
 	public void closeStageForPlayWithConsole() {
 		primaryStage.close();
-		
 	}
 	
 	//Metodo test per l'avvio della connessione

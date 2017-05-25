@@ -14,7 +14,7 @@ import server.element.Partita;
  */
 public class ConnectionRmiClient extends ConnectionClient implements ClientInterface, RMIClientInterface{
 
-	private int port=3000;
+	private int port;
 	private ServerInterface serverMethods;
 	private int positionGame;
 	private String name;
@@ -68,7 +68,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	
 	public String register(String account, String pw, String pw2, String email) {
 		try {
-			return String.valueOf(serverMethods.register(account, pw, pw2, email));
+			return serverMethods.register(account, pw, pw2, email);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
