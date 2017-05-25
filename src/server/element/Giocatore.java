@@ -1,5 +1,9 @@
 package server.element;
 
+import client.ConnectionRmiClient;
+import server.RMIClientInterface;
+import server.ThreadSocketServer;
+
 public class Giocatore{
 
 	private String name;
@@ -11,6 +15,8 @@ public class Giocatore{
 	private Dado[] dadi;
 	private Partita partita;
 	private int positionGame;
+	private ThreadSocketServer server = null;
+	private ConnectionRmiClient client = null;
 	
 	public Giocatore(String color, Partita partita, String name, int positionGame){
 		this.name=name;
@@ -67,5 +73,22 @@ public class Giocatore{
 			d.setValue();
 		}
 		return dadi;
+	}
+	
+	public void getSocket(ThreadSocketServer server){
+		if(client == null && server == null )
+			this.server=server;
+	}
+	
+	public void getClient(ConnectionRmiClient client){
+		if(client == null && server == null )	
+			this.client = client;
+	}
+
+	public void notifyStartGame() {
+		if(client == null)
+			server.notifyStartGame();
+		else
+			client.notifyStartGame();
 	}
 }

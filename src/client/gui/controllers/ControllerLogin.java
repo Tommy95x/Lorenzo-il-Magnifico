@@ -42,7 +42,7 @@ public class ControllerLogin {
 	@FXML
 	public void pressSingIn(){
 		if(start.getClient().login(name.getText(), pw.getText()).equals("Welcome to the game"))
-			start.changeStage(3);
+			start.changeStage(4);
 		
 	}
 	

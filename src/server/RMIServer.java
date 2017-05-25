@@ -12,7 +12,6 @@ import java.rmi.registry.Registry;
 public class RMIServer extends Thread{
 
 	private int port;
-	private String ip;
 	private StartServer commonServer;
 	
 	public RMIServer(int port, StartServer commonServer){

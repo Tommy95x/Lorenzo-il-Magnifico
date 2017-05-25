@@ -64,4 +64,12 @@ public class ControllerConnection {
 	public void mouseOutSocket(){
 		socket.setCursor(Cursor.DEFAULT);
 	}
+
+	public ConnectionClient getClient() {
+		return client;
+	}
+
+	public void setClient(ConnectionClient client) {
+		this.client = client;
+	}
 }

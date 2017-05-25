@@ -29,6 +29,9 @@ public class Partita{
 	private void startPartita(){
 		turno=1;
 		beShuffled();
+		for(int i = 0; i<4; i++){
+			giocatori[i].notifyStartGame();
+		}
 		//Chiedere come notificare che è iniziata la partita ai giocatori
 	}
 
