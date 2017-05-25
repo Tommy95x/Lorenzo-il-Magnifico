@@ -1,12 +1,17 @@
 package client.gui.controllers;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import client.ConnectionClient;
+import client.ConnectionClientConsole;
 import client.ConnectionRmiClient;
 import client.ConnectionSocketClient;
 import client.gui.StartClientGui;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
 
 public class ControllerConnection {
 
@@ -17,6 +22,10 @@ public class ControllerConnection {
 	Button rmi;
 	@FXML
 	Button socket;
+	@FXML
+	MenuItem close;
+	@FXML
+	MenuItem playWithConsole;
 	
 	public void getStartClientGui(StartClientGui startClientGui) {
 		this.setStart(startClientGui);
@@ -41,7 +50,10 @@ public class ControllerConnection {
 	public void pressSocket(){ 
 		System.out.println("Premuto bottone socket");
 		start.changeStage(1);
-		start.setClient(new ConnectionSocketClient());
+		ExecutorService ex=Executors.newCachedThreadPool();
+		ConnectionSocketClient mom = new ConnectionSocketClient();
+		start.setClient(mom);
+		ex.submit(mom);
 		
 	}
 	
@@ -64,7 +76,18 @@ public class ControllerConnection {
 	public void mouseOutSocket(){
 		socket.setCursor(Cursor.DEFAULT);
 	}
+	
+	@FXML
+	public void exit(){
+		System.exit(0);
+	}
 
+	@FXML
+	public void playWithConsole(){
+		start.setClient(new ConnectionClientConsole());
+		start.closeStageForPlayWithConsole();
+	}
+	
 	public ConnectionClient getClient() {
 		return client;
 	}

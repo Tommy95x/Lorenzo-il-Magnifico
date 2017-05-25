@@ -14,7 +14,7 @@ import server.element.Partita;
 public interface ServerInterface extends Remote {
 	
 	public String login(String username, String pw1) throws RemoteException;
-	boolean register(String username, String pw1, String pw2, String email) throws RemoteException;
+	String register(String username, String pw1, String pw2, String email) throws RemoteException;
 	public int createNewLobby(String lobby, String account, String color, ConnectionRmiClient connectionRmiClient) throws RemoteException;
 	public int startPartita(String account, int game) throws RemoteException;
 	public ArrayList<Partita> getLobby() throws RemoteException;

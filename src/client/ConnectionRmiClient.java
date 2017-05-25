@@ -14,7 +14,7 @@ import server.element.Partita;
  */
 public class ConnectionRmiClient extends ConnectionClient implements ClientInterface, RMIClientInterface{
 
-	private int port;
+	private int port=3000;
 	private ServerInterface serverMethods;
 	private int positionGame;
 	private String name;
@@ -23,24 +23,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	public ConnectionRmiClient(){
 		System.out.println("New Rmi client create");
 		connect();
-		//loginMom();
 	}
-	
-	//Metodo di test per il login
-	/*private void loginMom() {
-		Scanner input = new Scanner(System.in);
-		System.out.println("Inserisci il nome dell'account");
-		String account = input.nextLine();
-		System.out.println("Inserisci la password");
-		String pw = input.nextLine();
-		try {
-			System.out.println(serverMethods.login(account, pw));
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}*/
 	
 	private void connect() {
 		try {

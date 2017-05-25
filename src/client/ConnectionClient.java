@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import client.gui.StartClientGui;
 import server.element.Partita;
 
-public class ConnectionClient implements ClientInterface{
+public class ConnectionClient implements ClientInterface {
 
 	@Override
 	public String login(String account, String pw) {
@@ -89,7 +89,5 @@ public class ConnectionClient implements ClientInterface{
 		// TODO Auto-generated method stub
 		
 	}
-	
-	
 	
 }

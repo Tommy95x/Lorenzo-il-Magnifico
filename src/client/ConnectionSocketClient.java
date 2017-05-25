@@ -17,7 +17,7 @@ import server.element.Partita;
  * Classe che implementa il socket
  */
 
-public class ConnectionSocketClient extends ConnectionClient implements ClientInterface{
+public class ConnectionSocketClient extends ConnectionClient implements ClientInterface, Runnable{
 
 	private Socket socket;
 	private Scanner inputSocket;
@@ -28,10 +28,10 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 	private int positionGame;
 	private int numberOfGamers;
 	
-	public ConnectionSocketClient(){
-		System.out.println("Start Socket Client");
-		connect();
-	}
+	/*public ConnectionSocketClient(){
+		
+		
+	}*/
 
 
 	private void connect(){
@@ -214,6 +214,14 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 
 	public void setNumberOfGamers(int numberOfGamers) {
 		this.numberOfGamers = numberOfGamers;
+	}
+
+
+	@Override
+	public void run() {
+		System.out.println("Start Socket Client");
+		connect();
+		
 	}
 	
 }

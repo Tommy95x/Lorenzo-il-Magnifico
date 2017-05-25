@@ -1,7 +1,11 @@
 package client.gui;
 
 import java.io.IOException;
+import java.util.concurrent.Future;
+
 import client.ConnectionClient;
+import client.ConnectionRmiClient;
+import client.ConnectionSocketClient;
 import client.gui.controllers.ControllerConnection;
 import client.gui.controllers.ControllerGame;
 import client.gui.controllers.ControllerLogin;
@@ -153,8 +157,14 @@ public class StartClientGui extends Application{
 		return client;
 	}
 
-	public void setClient(ConnectionClient client) {
-		this.client = client;
+	public void setClient(ConnectionClient mom) {
+		this.client = mom;
+	}
+
+
+	public void closeStageForPlayWithConsole() {
+		primaryStage.close();
+		
 	}
 	
 	//Metodo test per l'avvio della connessione
