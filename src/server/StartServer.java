@@ -48,17 +48,22 @@ public class StartServer {
 			
 	}
 	
-	public boolean registerNewClient(String account, String pw, String email) {
+	public String registerNewClient(String account, String pw, String email) {
 		// Scrivere la query per aggiungere un nuovo utente al sistema
-		String query = null;
+		String query = "SELECT CASE WHEN EXISTS( SELECT * FROM UTENTE WHERE (NOMEUTENTE='"+account.toLowerCase()+"' AND PASSWORD='"+pw.toLowerCase()+"'))THEN CAST (1 AS BIT) ELSE CAST(0 AS BIT) END";
+		Statement stmt=con.createStatement;
 		try {
-			return DB.getConnection(account).createStatement().execute(query);
+			if(!(DB.getConnection(account).createStatement().execute(query)))
+				stmt.executeUpdate("INSERT INTO UTENTE" + "VALUES('1','MATTIA','AAA@AAA.COM','AAAA')");
+			    return "You are now registered!";
+			    stmt.close();
+			else 
+				return "You are registered yet!";
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
-		
 	}
 	
 	public String addGame(String partita,String account){
