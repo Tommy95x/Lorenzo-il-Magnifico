@@ -7,6 +7,8 @@ import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import server.ServerInterface;
 import server.element.CartaSviluppo;
+import server.element.Dado;
+import server.element.Giocatore;
 import server.element.Partita;
 
 /*
@@ -186,6 +188,30 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	public void notifyStartGame() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void richestaSostegnoChiesa() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void restTabellone() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void endGame(Giocatore[] giocatoriPartita) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Dado[] showDiceValues(int positionGame, String name) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

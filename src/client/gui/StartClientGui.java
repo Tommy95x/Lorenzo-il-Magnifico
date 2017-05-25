@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 public class StartClientGui extends Application{
 
@@ -90,7 +91,7 @@ public class StartClientGui extends Application{
 			case 3:
 				try {
 					loader = new FXMLLoader();
-					loader.setLocation(this.getClass().getResource(""));
+					loader.setLocation(this.getClass().getResource("controllers/MenuGui.fxml"));
 					root = loader.load();
 					primaryStage.setResizable(true);
 					primaryStage.setTitle("Lorenzo il Magnifico");
@@ -150,16 +151,10 @@ public class StartClientGui extends Application{
 	public void closeStageForPlayWithConsole() {
 		primaryStage.close();
 	}
-	
-	//Metodo test per l'avvio della connessione
-		/*private static void decision(){
-			Scanner in=new Scanner(System.in);
-			System.out.println("Do you want to create a RMI connction or a Socket connection?");
-			String decision=in.nextLine();
-			if(decision.equals("RMI")||decision.equals("rmi")||decision.equals("Rmi"))
-				client = new ConnectionRmiClient();
-			else 
-				client = new ConnectionSocketClient();
-		}*/
+
+
+	public Stage getStage() {
+		return primaryStage;
+	}
 	
 }
