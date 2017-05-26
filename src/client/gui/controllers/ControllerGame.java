@@ -11,6 +11,10 @@ import javafx.scene.layout.VBox;
 public class ControllerGame {
 
 	private StartClientGui start;
+	private ImageView[] arrayCarteTerritori;
+	private ImageView[] arrayCarteImpresa; 
+	private ImageView[] arrayCartePersonaggi;
+	private ImageView[] arrayCarteEdifici;
 	
 	//Componenti tabellone
 	@FXML
@@ -22,21 +26,9 @@ public class ControllerGame {
 	@FXML
 	public VBox carteImprese;
 	@FXML
-	public VBox puntiMilitari;
-	@FXML
-	public VBox puntidal21al49;
-	@FXML
 	public VBox posizioni;
 	@FXML
-	public VBox puntidal71al99;
-	@FXML
-	public HBox puntiFede;
-	@FXML
 	public HBox municipio;
-	@FXML
-	public HBox puntiFino20;
-	@FXML
-	public HBox puntidal50al70;
 	@FXML
 	public HBox azioniTerritoridapiuGiocatori;
 	@FXML
@@ -91,6 +83,22 @@ public class ControllerGame {
 	public ImageView pianoTerzoPalazzoTerritori;
 	@FXML
 	public ImageView pianoQuestoPalazzoTerritori;
+	@FXML
+	public ImageView puntiVittoriaBlu;
+	@FXML
+	public ImageView puntiVittoriaBianco;
+	@FXML
+	public ImageView puntiVittoriaArancio;
+	@FXML
+	public ImageView puntiVittoriaVerde;
+	@FXML
+	public ImageView puntiFedeBlu;
+	@FXML
+	public ImageView puntiFedeArancio;
+	@FXML
+	public ImageView puntiFedeBianco;
+	@FXML
+	public ImageView puntiFedeVerde;
 	
 	//Componenti plancia
 	@FXML

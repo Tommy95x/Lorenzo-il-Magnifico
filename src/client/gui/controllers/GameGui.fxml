@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.3753910323253389" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<SplitPane dividerPositions="0.3753910323253389" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1000.0" prefWidth="960.0">
          <children>
@@ -23,9 +23,9 @@
             <VBox alignment="BOTTOM_LEFT" layoutX="193.0" layoutY="51.0" prefHeight="502.0" prefWidth="75.0" />
             <VBox alignment="BOTTOM_LEFT" layoutX="331.0" layoutY="51.0" prefHeight="502.0" prefWidth="75.0" />
             <VBox alignment="BOTTOM_LEFT" layoutX="469.0" layoutY="51.0" prefHeight="502.0" prefWidth="75.0" />
-            <HBox layoutX="53.0" layoutY="735.0" prefHeight="30.0" prefWidth="557.0" />
+            <VBox layoutX="551.0" layoutY="543.0" prefHeight="131.0" prefWidth="46.0" />
             <HBox layoutX="132.0" layoutY="904.0" prefHeight="38.0" prefWidth="123.0" />
-            <VBox layoutX="627.0" layoutY="61.0" prefHeight="902.0" prefWidth="37.0" />
+            <HBox layoutX="348.0" layoutY="574.0" prefHeight="38.0" prefWidth="164.0" />
             <ImageView fitHeight="38.0" fitWidth="46.0" layoutX="53.0" layoutY="820.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fitHeight="38.0" fitWidth="46.0" layoutX="53.0" layoutY="904.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fitHeight="38.0" fitWidth="46.0" layoutX="377.0" layoutY="913.0" pickOnBounds="true" preserveRatio="true" />
@@ -35,7 +35,6 @@
             <ImageView fitHeight="38.0" fitWidth="46.0" layoutX="454.0" layoutY="801.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fitHeight="38.0" fitWidth="46.0" layoutX="391.0" layoutY="801.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fitHeight="38.0" fitWidth="46.0" layoutX="564.0" layoutY="866.0" pickOnBounds="true" preserveRatio="true" />
-            <HBox layoutX="348.0" layoutY="574.0" prefHeight="38.0" prefWidth="164.0" />
             <ImageView fitHeight="38.0" fitWidth="46.0" layoutX="553.0" layoutY="474.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fitHeight="38.0" fitWidth="46.0" layoutX="553.0" layoutY="344.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fitHeight="38.0" fitWidth="46.0" layoutX="553.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true" />
@@ -53,11 +52,18 @@
             <ImageView fitHeight="38.0" fitWidth="46.0" layoutX="139.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fitHeight="38.0" fitWidth="46.0" layoutX="139.0" layoutY="344.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fitHeight="38.0" fitWidth="46.0" layoutX="139.0" layoutY="474.0" pickOnBounds="true" preserveRatio="true" />
-            <HBox layoutX="1.0" layoutY="-1.0" prefHeight="30.0" prefWidth="716.0" />
-            <HBox layoutY="969.0" prefHeight="30.0" prefWidth="716.0" />
-            <VBox layoutX="1.0" layoutY="57.0" prefHeight="902.0" prefWidth="37.0" />
-            <VBox layoutX="685.0" layoutY="57.0" prefHeight="902.0" prefWidth="37.0" />
-            <VBox layoutX="551.0" layoutY="543.0" prefHeight="131.0" prefWidth="46.0" />
+            <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="50.0" layoutY="736.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="54.0" layoutY="740.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="61.0" layoutY="744.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="66.0" layoutY="749.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="-1.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="8.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="18.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="18.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="18.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="18.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="20.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="25.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1000.0" prefWidth="960.0">
          <children>
