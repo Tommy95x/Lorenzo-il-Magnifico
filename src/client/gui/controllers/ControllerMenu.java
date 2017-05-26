@@ -1,25 +1,19 @@
 package client.gui.controllers;
 
 import java.util.ArrayList;
-import java.util.Optional;
-
 import client.gui.StartClientGui;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import server.element.Partita;
 
 public class ControllerMenu {
@@ -36,11 +30,13 @@ public class ControllerMenu {
 	public ListView<String> lobbies;
 	@FXML
 	public Button back;
+	@FXML
+	public Label title;
 	
 	
 	public void getStartClient(StartClientGui start) {
 		this.setClient(start);
-		Font.loadFont(getClass().getResourceAsStream("Sketch Gothic School.ttf"), 50.0);
+		Font.loadFont(getClass().getResourceAsStream("Sketch Gothic School.ttf"), 0);
 	}
 
 	public StartClientGui getClient() {
@@ -97,8 +93,9 @@ public class ControllerMenu {
 			colorSelect();
 			popup.close();
 		});
-		box.getChildren().addAll(confirm, textLobby);
+		box.getChildren().addAll(new Label("Write e confirm lobby's name"),new Label(),confirm, textLobby);
 		Scene scene = new Scene(box,200,200);
+		popup.centerOnScreen();
 		popup.setScene(scene);
 		popup.show();
 	}
@@ -114,6 +111,7 @@ public class ControllerMenu {
 		
 		box.getChildren().addAll(boxColors,boxButton);
 		Scene scene = new Scene(box,200,200);
+		popup.centerOnScreen();
 		popup.setScene(scene);
 		popup.show();
 	}

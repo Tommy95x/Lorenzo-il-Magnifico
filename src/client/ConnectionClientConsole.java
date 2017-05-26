@@ -7,10 +7,12 @@ import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import client.gui.StartClientGui;
+import com.sun.glass.events.KeyEvent;
+
 import server.ServerInterface;
 import server.element.Partita;
 
+@SuppressWarnings("restriction")
 public class ConnectionClientConsole extends ConnectionRmiClient{
 
 	private int port;
@@ -110,7 +112,7 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 				System.out.println("Inserisci il colore che vorrai avere");
 				color = input.nextLine();
 				try {
-					positionGame = serverMethods.createNewLobby(lobby, account, color, this);
+					setPositionGame(serverMethods.createNewLobby(lobby, account, color, this));
 				} catch (RemoteException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -146,8 +148,41 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				waitGamer();
 				break;
 		}
+	}
+
+	private void waitGamer() {
+		System.out.println("Premi enter se sei pronto a entrare nel gioco o attendi");
+		while(true)
+			if(keyPressed(new KeyEvent())){
+				break;
+			}
+		System.out.println("In attesa degli altri giocatori...");
+	}
+
+	private boolean keyPressed(KeyEvent e) {
+		if(e.equals(KeyEvent.VK_ENTER)){
+			return true;
+		}
+		return false;
+	}
+
+	public int getPositionGame() {
+		return positionGame;
+	}
+
+	private void setPositionGame(int positionGame) {
+		this.positionGame = positionGame;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	private void setName(String name) {
+		this.name = name;
 	}
 	
 }

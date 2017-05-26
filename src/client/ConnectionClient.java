@@ -3,6 +3,8 @@ package client;
 import java.util.ArrayList;
 
 import client.gui.StartClientGui;
+import javafx.scene.image.Image;
+import server.element.Dado;
 import server.element.Partita;
 
 public class ConnectionClient implements ClientInterface {
@@ -50,7 +52,8 @@ public class ConnectionClient implements ClientInterface {
 	}
 
 	@Override
-	public void lanciaDadi() {
+	public Dado[] lanciaDadi() {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}
@@ -88,6 +91,12 @@ public class ConnectionClient implements ClientInterface {
 	public void takeCards(String name) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Image getImageDadi(int valore) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

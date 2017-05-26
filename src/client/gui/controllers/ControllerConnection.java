@@ -1,8 +1,5 @@
 package client.gui.controllers;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 import client.ConnectionClient;
 import client.ConnectionClientConsole;
 import client.ConnectionRmiClient;

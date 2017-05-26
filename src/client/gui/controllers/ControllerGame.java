@@ -4,9 +4,11 @@ import client.gui.StartClientGui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import server.element.Dado;
 
 public class ControllerGame {
 
@@ -121,6 +123,14 @@ public class ControllerGame {
 	public ImageView bandiera;
 	@FXML
 	public Button lanciaDadi;
+	@FXML
+	public ImageView familiareNeutro;
+	@FXML
+	public ImageView familiareNero;
+	@FXML
+	public ImageView familiareArancio;
+	@FXML
+	public ImageView familiareBianco;
 	
 	
 	
@@ -138,4 +148,34 @@ public class ControllerGame {
 		this.start = start;
 	}
 
+	private void setBandiera(Image bandiera){
+		this.bandiera.setImage(bandiera);
+	}
+	
+	private void setPietra(int pietra){
+		this.pietra.setText(Integer.toString(pietra));
+	}
+	
+	private void setMonete(int monete){
+		this.monete.setText(Integer.toString(monete));
+	}
+	
+	private void setServitori(int servitori){
+		this.servitori.setText(Integer.toString(servitori));
+	}
+	
+	private void addCompaniesPlayer(Image image){
+		
+	}
+	
+	
+	@FXML
+	private void lanciaDadi(){
+		Dado[] dadi = new Dado[3];
+		dadi = start.getClient().lanciaDadi();
+		dadoNero.setImage(start.getClient().getImageDadi(dadi[0].getValore()));
+		dadoBianco.setImage(start.getClient().getImageDadi(dadi[1].getValore()));
+		dadoArancio.setImage(start.getClient().getImageDadi(dadi[2].getValore()));
+	}
+	
 }

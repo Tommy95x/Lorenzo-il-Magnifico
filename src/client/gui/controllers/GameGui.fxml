@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.3753910323253389" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<SplitPane dividerPositions="0.3753910323253389" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.gui.controllers.ControllerGame">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1000.0" prefWidth="960.0">
          <children>
@@ -102,7 +102,11 @@
             </ImageView>
             <HBox layoutX="792.0" layoutY="499.0" prefHeight="193.0" prefWidth="393.0" />
             <HBox layoutX="802.0" layoutY="692.0" prefHeight="193.0" prefWidth="393.0" />
-            <Button layoutX="792.0" layoutY="894.0" mnemonicParsing="false" prefHeight="107.0" prefWidth="140.0" text="Lancia Dadi" />
+            <Button layoutX="792.0" layoutY="886.0" mnemonicParsing="false" prefHeight="115.0" prefWidth="95.0" text="Lancia Dadi" />
+            <ImageView fitHeight="115.0" fitWidth="75.0" layoutX="886.0" layoutY="886.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="115.0" fitWidth="75.0" layoutX="961.0" layoutY="886.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="115.0" fitWidth="75.0" layoutX="1036.0" layoutY="886.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="115.0" fitWidth="75.0" layoutX="1111.0" layoutY="886.0" pickOnBounds="true" preserveRatio="true" />
          </children></AnchorPane>
   </items>
 </SplitPane>

@@ -1,0 +1,6 @@
+#back{
+    -fx-background-image: url("sfondo-rosso.jpg");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 100%;
+    -fx-background-position: center center;
+}

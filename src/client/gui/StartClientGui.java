@@ -13,7 +13,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 public class StartClientGui extends Application{
 
@@ -97,7 +96,10 @@ public class StartClientGui extends Application{
 					primaryStage.setTitle("Lorenzo il Magnifico");
 					ControllerMenu menu = loader.getController();
 					menu.getStartClient(this);
-					primaryStage.setScene(new Scene(root,600,400));
+					root.setId("pane");
+					Scene scene = new Scene(root, 600, 400);
+					scene.getStylesheets().addAll(this.getClass().getResource("controllers/pane.css").toExternalForm());
+					primaryStage.setScene(scene);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -124,7 +126,10 @@ public class StartClientGui extends Application{
 					root = loader.load();
 					ControllerGame game = loader.getController();
 					game.getStartClient(this);
-					primaryStage.setScene(new Scene(root));
+					root.setId("back");
+					Scene scene = new Scene(root);
+					scene.getStylesheets().addAll(this.getClass().getResource("controllers/gameBackGround.css").toExternalForm());
+					primaryStage.setScene(scene);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
