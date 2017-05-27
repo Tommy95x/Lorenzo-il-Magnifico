@@ -143,13 +143,13 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 
 
 	@Override
-	public void lanciaDadi() {
+	public Dado[] lanciaDadi() {
 		//Risposta al metodo grafico con il lancio di un metodo grafico che modificher� il tabellone 
 		try {
-			serverMethods.showDiceValues(positionGame, name);
+			return serverMethods.showDiceValues(positionGame, name);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}
 		
 	}

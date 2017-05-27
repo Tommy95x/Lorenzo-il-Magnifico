@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import client.ConnectionRmiClient;
 import javafx.scene.image.Image;
 import server.element.CartaSviluppo;
+import server.element.Dado;
 import server.element.Partita;
 
 public interface ServerInterface extends Remote {
@@ -24,4 +25,5 @@ public interface ServerInterface extends Remote {
 	public void getTurno(String name) throws RemoteException;
 	public void giveResources(String resource, int qta) throws RemoteException;
 	public void givePunti(String gamer, int qta, String tipoPunti) throws RemoteException;
+	public Dado[] showDiceValues(int positionGame, String name) throws RemoteException;
 }

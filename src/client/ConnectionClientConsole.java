@@ -10,6 +10,7 @@ import java.util.Scanner;
 import com.sun.glass.events.KeyEvent;
 
 import server.ServerInterface;
+import server.element.Dado;
 import server.element.Partita;
 
 @SuppressWarnings("restriction")
@@ -161,6 +162,7 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 			}
 		System.out.println("In attesa degli altri giocatori...");
 	}
+	
 
 	private boolean keyPressed(KeyEvent e) {
 		if(e.equals(KeyEvent.VK_ENTER)){
@@ -168,21 +170,127 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 		}
 		return false;
 	}
-
-	public int getPositionGame() {
-		return positionGame;
+	
+	private void setName(String name) {
+		this.name = name;
 	}
 
 	private void setPositionGame(int positionGame) {
 		this.positionGame = positionGame;
+	}
+	
+	public int getPositionGame() {
+		return positionGame;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	private void setName(String name) {
-		this.name = name;
+	public void startGame(String name){
+		System.out.println("Il gioco è iniziato");
+		System.out.println("Inizia il turno "+name);
 	}
 	
+	public void notifyTurno() throws RemoteException{
+		int mosseDisponibili = 4;
+		System.out.println("Fai le tue mosse nel seguente ordine:\n1)Lancia i dadi(verranno lanciati all'inizio del tuo turno mostrando i loro valori)\n2)Scrivi il colore del familiare che vuoi spostare (ricorda i familiari sono di colore Arancio, Nero, Bianco, Neutro)\n3)Scrivi la posizione numerica nel tabellone in cui vuoi inserire il familiare (scrivendo back de-selezioni il familiare selezionato)\n4)Acquisisci carte e vedi i relativi effetti\n5)Verifichi il tuo punteggio, scrivendo punteggio o personal score\n");
+		Dado[] dadi = serverMethods.showDiceValues(positionGame, account);
+		for(int i=0; i<3;i++){
+			System.out.println("Il dado "+dadi[i].getColor()+" vale "+dadi[i].getValore());
+		}
+		do{
+			String action = input.nextLine();
+			switch(action.toLowerCase()){
+			case "nero":
+				System.out.println("Inserisci la posizione o scrivi back per tornare indietro");
+				action = input.nextLine();
+				if(action.equals("back"))
+					break;
+				else{
+					
+				}
+				break;
+			case "black":
+				System.out.println("Inserisci la posizione o scrivi back per tornare indietro");
+				action = input.nextLine();
+				if(action.equals("back"))
+					break;
+				else{
+					
+				}
+				break;
+			case "orange":
+				System.out.println("Inserisci la posizione o scrivi back per tornare indietro");
+				action = input.nextLine();
+				if(action.equals("back"))
+					break;
+				else{
+					
+				}
+				break;
+			case "arancione":
+				System.out.println("Inserisci la posizione o scrivi back per tornare indietro");
+				action = input.nextLine();
+				if(action.equals("back"))
+					break;
+				else{
+					
+				}
+				break;
+			case "white":
+				System.out.println("Inserisci la posizione o scrivi back per tornare indietro");
+				action = input.nextLine();
+				if(action.equals("back"))
+					break;
+				else{
+					
+				}
+				break;
+			case "bianco":
+				System.out.println("Inserisci la posizione o scrivi back per tornare indietro");
+				action = input.nextLine();
+				if(action.equals("back"))
+					break;
+				else{
+					
+				}
+				break;
+			case "neutro":
+				System.out.println("Inserisci la posizione o scrivi back per tornare indietro");
+				action = input.nextLine();
+				if(action.equals("back"))
+					break;
+				else{
+					
+				}
+				break;
+			case "neutral":
+				System.out.println("Inserisci la posizione o scrivi back per tornare indietro");
+				action = input.nextLine();
+				if(action.equals("back"))
+					break;
+				else{
+					
+				}
+				break;
+			case "mostra le posizioni":
+				//serverMethods.getPositions();
+				//Guardare le hash maps per utilizzare direttamente quelle
+				break;
+			case "personal score":
+				//serverMethods.showPersonalScore(account,positionGame);
+				//Guardare le hash maps per utilizzare direttamente quelle
+				break;
+			case "punteggio":
+				//serverMethods.showPersonalScore(account,positionGame);
+				//Guardare le hash maps per utilizzare direttamente quelle
+				break;
+			}
+		}while(mosseDisponibili>0);
+	}
+	
+	public void play(){
+		
+	}
 }
