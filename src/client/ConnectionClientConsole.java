@@ -4,6 +4,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -192,7 +193,7 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 		System.out.println("Inizia il turno "+name);
 	}
 	
-	public void notifyTurno() throws RemoteException{
+	public void notifyTurno() throws RemoteException, SQLException{
 		int mosseDisponibili = 4;
 		System.out.println("Fai le tue mosse nel seguente ordine:\n1)Lancia i dadi(verranno lanciati all'inizio del tuo turno mostrando i loro valori)\n2)Scrivi il colore del familiare che vuoi spostare (ricorda i familiari sono di colore Arancio, Nero, Bianco, Neutro)\n3)Scrivi la posizione numerica nel tabellone in cui vuoi inserire il familiare (scrivendo back de-selezioni il familiare selezionato)\n4)Acquisisci carte e vedi i relativi effetti\n5)Verifichi il tuo punteggio, scrivendo punteggio o personal score\n");
 		Dado[] dadi = serverMethods.showDiceValues(positionGame, account);
@@ -208,7 +209,8 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 				if(action.equals("back"))
 					break;
 				else{
-					
+					//Chiama il metodo che sposta il familiare, veirifica che il familiare si aeffettivamente posizionabile li ecc.. 
+					mosseDisponibili--;
 				}
 				break;
 			case "black":
@@ -217,7 +219,8 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 				if(action.equals("back"))
 					break;
 				else{
-					
+					//Chiama il metodo che sposta il familiare, veirifica che il familiare si aeffettivamente posizionabile li ecc.. 
+					mosseDisponibili--;
 				}
 				break;
 			case "orange":
@@ -226,7 +229,8 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 				if(action.equals("back"))
 					break;
 				else{
-					
+					//Chiama il metodo che sposta il familiare, veirifica che il familiare si aeffettivamente posizionabile li ecc.. 
+					mosseDisponibili--;
 				}
 				break;
 			case "arancione":
@@ -235,7 +239,8 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 				if(action.equals("back"))
 					break;
 				else{
-					
+					//Chiama il metodo che sposta il familiare, veirifica che il familiare si aeffettivamente posizionabile li ecc.. 
+					mosseDisponibili--;
 				}
 				break;
 			case "white":
@@ -244,7 +249,8 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 				if(action.equals("back"))
 					break;
 				else{
-					
+					//Chiama il metodo che sposta il familiare, veirifica che il familiare si aeffettivamente posizionabile li ecc.. 
+					mosseDisponibili--;
 				}
 				break;
 			case "bianco":
@@ -253,7 +259,8 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 				if(action.equals("back"))
 					break;
 				else{
-					
+					//Chiama il metodo che sposta il familiare, veirifica che il familiare si aeffettivamente posizionabile li ecc.. 
+					mosseDisponibili--;
 				}
 				break;
 			case "neutro":
@@ -262,7 +269,8 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 				if(action.equals("back"))
 					break;
 				else{
-					
+					//Chiama il metodo che sposta il familiare, veirifica che il familiare si aeffettivamente posizionabile li ecc.. 
+					mosseDisponibili--;
 				}
 				break;
 			case "neutral":
@@ -271,7 +279,8 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 				if(action.equals("back"))
 					break;
 				else{
-					
+					//Chiama il metodo che sposta il familiare, veirifica che il familiare si aeffettivamente posizionabile li ecc.. 
+					mosseDisponibili--;
 				}
 				break;
 			case "mostra le posizioni":

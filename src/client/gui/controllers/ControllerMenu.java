@@ -1,5 +1,6 @@
 package client.gui.controllers;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import client.gui.StartClientGui;
 import javafx.collections.FXCollections;
@@ -12,6 +13,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import server.element.Partita;
@@ -75,7 +78,8 @@ public class ControllerMenu {
 		lobby = null;
 		if(e.getClickCount() == 2)
 			lobby = (String) lobbies.getSelectionModel().getSelectedItem();
-		start.getClient().enterInALobby(lobby);
+		colorSelect();
+		start.getClient().enterInALobby(lobby,color);
 		start.changeStage(4);
 		e.consume();
 	}
@@ -89,8 +93,8 @@ public class ControllerMenu {
 		Button confirm = new Button("Confirm");
 		TextField textLobby = new TextField();
 		confirm.setOnAction(event -> {
-			start.getClient().createANewLobby(textLobby.getText());
 			colorSelect();
+			start.getClient().createANewLobby(textLobby.getText());
 			popup.close();
 		});
 		box.getChildren().addAll(new Label("Write e confirm lobby's name"),new Label(),confirm, textLobby);
@@ -101,19 +105,74 @@ public class ControllerMenu {
 	}
 
 	private void colorSelect() {
-		Stage popup = new Stage();
-		popup.setTitle("Select Colors");
-		VBox box = new VBox();
-		HBox boxColors = new HBox();
-		HBox boxButton = new HBox();
-		
-		//Ciclo per riempire il box dei colori e per ogni colore crero un nuovo bottone
-		
-		box.getChildren().addAll(boxColors,boxButton);
-		Scene scene = new Scene(box,200,200);
-		popup.centerOnScreen();
-		popup.setScene(scene);
-		popup.show();
+		try {
+			
+			Stage popup = new Stage();
+			popup.setTitle("Select Colors");
+			VBox box = new VBox();
+			HBox boxColors = new HBox();
+			HBox boxButton = new HBox();
+			Circle circle;
+			Button b;
+			String[] colors = start.getClient().getColors();
+			for(int i=0; i<4;i++){
+				if(colors[i] != null){
+					switch(colors[i]){
+					case "black":
+						circle = new Circle();
+						circle.setFill(Color.BLACK);
+						boxColors.getChildren().add(circle);
+						b = new Button("Black");
+						b.setOnAction(event ->{
+							color = "black";
+							event.consume();
+						});
+						boxButton.getChildren().add(b);
+						break;
+					case "orange":
+						circle = new Circle();
+						circle.setFill(Color.ORANGERED);
+						boxColors.getChildren().add(circle);
+						b = new Button("Orange");
+						b.setOnAction(event ->{
+							color = "orange";
+							event.consume();
+						});
+						boxButton.getChildren().add(b);
+						break;
+					case "white":
+						circle = new Circle();
+						circle.setFill(Color.ANTIQUEWHITE);
+						boxColors.getChildren().add(circle);
+						b = new Button("White");
+						b.setOnAction(event ->{
+							color = "white";
+							event.consume();
+						});
+						boxButton.getChildren().add(b);
+						break;
+					case "green":
+						circle = new Circle();
+						circle.setFill(Color.DARKGREEN);
+						boxColors.getChildren().add(circle);
+						b = new Button("Green");
+						b.setOnAction(event ->{
+							color = "Green";
+							event.consume();
+						});
+						boxButton.getChildren().add(b);
+						break;
+					}
+				}
+			}
+			box.getChildren().addAll(new Label("Selezione il colore che vuoi per le tue pedine") ,boxColors);
+			Scene scene = new Scene(box,200,200);
+			popup.centerOnScreen();
+			popup.setScene(scene);
+			popup.show();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

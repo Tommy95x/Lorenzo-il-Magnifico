@@ -107,6 +107,16 @@
             <ImageView fitHeight="115.0" fitWidth="75.0" layoutX="961.0" layoutY="886.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fitHeight="115.0" fitWidth="75.0" layoutX="1036.0" layoutY="886.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fitHeight="115.0" fitWidth="75.0" layoutX="1111.0" layoutY="886.0" pickOnBounds="true" preserveRatio="true" />
+            <Label layoutX="4.0" layoutY="456.0" prefHeight="43.0" prefWidth="75.0" text="Turno :">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="86.0" layoutY="456.0" prefHeight="43.0" prefWidth="21.0" text="0" textFill="#dd1010">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Label>
          </children></AnchorPane>
   </items>
 </SplitPane>

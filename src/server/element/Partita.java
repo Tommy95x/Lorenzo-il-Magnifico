@@ -19,10 +19,15 @@ public class Partita{
 	private CartaImprese[] carteImprese = new CartaImprese[NUMCARTE];
 	private CartaEdifici[] carteEdifici = new CartaEdifici[NUMCARTE];
 	private CartaTerritori[] carteTerritori = new CartaTerritori[NUMCARTE];
+	private String[] colors = new String[DIM];
 	
 	public Partita(String lobby, String namePlayer, int positionGame){
 		this.setLobby(lobby);
 		addGiocatore(new Giocatore(lobby, this,namePlayer,positionGame));
+		colors[0] = "balck"; 
+		colors[1] = "orange";
+		colors[2] = "white";
+		colors[3] = "green"; 
 	}
 	
 	
@@ -122,11 +127,6 @@ public class Partita{
 	}
 	
 	public String[] getColors(){
-		String[] colors=new String[DIM];
-		for(int i=0;i<DIM;i++){
-			if(giocatori[i]!=null)
-				colors[i]=giocatori[i].getColor();
-		}
 		return colors;	
 	}
 
@@ -172,6 +172,17 @@ public class Partita{
 			query="";//Scrivere la query in modo che cerchi differenti carte in generale
 			c.setCarta(connection,query);
 		}
+	}
+
+
+	public void changeColors(String color) {
+		for(int i = 0; i<DIM;i++){
+			if(colors[i].equals(color)){
+				colors[i] = null;
+				break;
+			}
+		}
+		
 	}
 	
 }

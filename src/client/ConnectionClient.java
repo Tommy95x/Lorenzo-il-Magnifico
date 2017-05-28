@@ -1,5 +1,7 @@
 package client;
 
+import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import client.gui.StartClientGui;
@@ -34,7 +36,7 @@ public class ConnectionClient implements ClientInterface {
 	}
 
 	@Override
-	public void enterInALobby(String lobby) {
+	public void enterInALobby(String lobby, String string) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -51,12 +53,6 @@ public class ConnectionClient implements ClientInterface {
 		
 	}
 
-	@Override
-	public Dado[] lanciaDadi() {
-		return null;
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void posizionareFamiliare(String color, int x, int y) {
@@ -93,10 +89,13 @@ public class ConnectionClient implements ClientInterface {
 		
 	}
 
-	@Override
-	public Image getImageDadi(int valore) {
+	public Dado[] lanciaDadi(int positionGame, String name) throws SQLException, RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
+	public String[] getColors() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

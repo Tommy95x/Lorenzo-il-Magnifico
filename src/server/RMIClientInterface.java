@@ -3,7 +3,6 @@ package server;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-import server.element.Dado;
 import server.element.Giocatore;
 
 public interface RMIClientInterface extends Remote{

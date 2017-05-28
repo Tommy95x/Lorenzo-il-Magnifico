@@ -2,6 +2,7 @@ package server;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import client.ConnectionRmiClient;
@@ -18,12 +19,13 @@ public interface ServerInterface extends Remote {
 	public int startPartita(String account, int game) throws RemoteException;
 	public ArrayList<Partita> getLobby() throws RemoteException;
 	public int selectLobby(String lobby, String account, String color, ConnectionRmiClient connectionRmiClient) throws RemoteException;
-	public String[] getColors(String lobby) throws RemoteException;
+	public String[] getColors(int positionGame) throws RemoteException;
 	public ArrayList<CartaSviluppo> getCards(int positionGame) throws RemoteException;
 	public void mossa(String account, int positionGame, String color, int x, int y) throws RemoteException;
 	public void showCards(Image card, String nameCard) throws RemoteException;
 	public void getTurno(String name) throws RemoteException;
 	public void giveResources(String resource, int qta) throws RemoteException;
 	public void givePunti(String gamer, int qta, String tipoPunti) throws RemoteException;
-	public Dado[] showDiceValues(int positionGame, String name) throws RemoteException;
+	public Dado[] showDiceValues(int positionGame, String name) throws RemoteException, SQLException;
+	public String[] getColors(String lobby)throws RemoteException;
 }

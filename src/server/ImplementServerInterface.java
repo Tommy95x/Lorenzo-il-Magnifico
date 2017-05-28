@@ -3,6 +3,7 @@ package server;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import client.ConnectionRmiClient;
@@ -43,6 +44,7 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		commonServer.addGame(lobby, account);
 		commonServer.setCards(commonServer.getLobbyByName(lobby),account);
 		commonServer.getLobbyByName(lobby).addGiocatore(new Giocatore(color,commonServer.getLobbyByName(lobby), account, commonServer.getIndicePartita(lobby)));
+		commonServer.getLobbyByName(lobby).changeColors(color);
 		commonServer.getLobbyByName(lobby).getGiocatoreByName(account).getClient(connectionRmiClient);
 		commonServer.getLobbyByName(lobby).getGiocatoreByName(account).setFlag(new Flag(color, commonServer, account));
 		return commonServer.getIndicePartita(lobby);
@@ -60,13 +62,14 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 	public int selectLobby(String lobby, String account, String color, ConnectionRmiClient connectionRmiClient) throws RemoteException{
 		int numberGame=commonServer.getIndicePartita(lobby);
 		commonServer.addGamer(numberGame, color, account);
+		commonServer.getLobbyByName(lobby).changeColors(color);
 		commonServer.getLobbyByName(lobby).getGiocatoreByName(account).getClient(connectionRmiClient);
 		commonServer.getLobbyByName(lobby).getGiocatoreByName(account).setFlag(new Flag(color, commonServer, account));
 		return numberGame;
 	}
 
-	public String[] getColors(String lobby) throws RemoteException{
-		return commonServer.getLobbyByName(lobby).getColors();
+	public String[] getColors(int positionGame) throws RemoteException{
+		return commonServer.getLobbyByNumber(positionGame).getColors();
 	}
 
 	//Chiedere per sentire come gestire al meglio il caso 
@@ -117,6 +120,16 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 	public void givePunti(String gamer, int qta, String tipoPunti) throws RemoteException{
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Dado[] showDiceValues(int positionGame, String name) throws RemoteException, SQLException {
+		
+		return commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).setDadi(commonServer.getDBConnection().getConnection(name));
+	}
+
+	public String[] getColors(String lobby) throws RemoteException {
+		return commonServer.getLobbyByName(lobby).getColors();
 	}
 }
 

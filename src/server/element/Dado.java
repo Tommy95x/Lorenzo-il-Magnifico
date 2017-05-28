@@ -1,5 +1,8 @@
 package server.element;
 import java.io.Serializable;
+import java.sql.Connection;
+
+import javafx.scene.image.Image;
 
 /*
 *Classe che verra' istanziata ad ogni partita in un array di 3 elementi. Il  dado iteragisce con il giocatore che lo lancia fornendogli
@@ -9,6 +12,7 @@ public class Dado implements Serializable{
 
 	private String color;
 	private int valore;
+	private Image immagineValore;
 	
 	public Dado(String color) {
 		this.color=color;
@@ -20,12 +24,17 @@ public class Dado implements Serializable{
 	}
 	
 	//Set del valore dopo il lancio del primo giocatore del turno
-	public void setValue() {
+	public void setValue(Connection connection) {
 		 valore = (int) (Math.random()*6);
+		 //creare una query d'interrogazione per avre l'immagine corrispondente dei dadi
 	}
 	
 	public int getValore() {
 		return valore;
+	}
+
+	public Image getImage() {
+		return immagineValore;
 	}
 	
 }

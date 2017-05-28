@@ -1,5 +1,8 @@
 package client.gui.controllers;
 
+import java.rmi.RemoteException;
+import java.sql.SQLException;
+
 import client.gui.StartClientGui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -170,12 +173,12 @@ public class ControllerGame {
 	
 	
 	@FXML
-	private void lanciaDadi(){
+	private void lanciaDadi() throws RemoteException, SQLException{
 		Dado[] dadi = new Dado[3];
-		dadi = start.getClient().lanciaDadi();
-		dadoNero.setImage(start.getClient().getImageDadi(dadi[0].getValore()));
-		dadoBianco.setImage(start.getClient().getImageDadi(dadi[1].getValore()));
-		dadoArancio.setImage(start.getClient().getImageDadi(dadi[2].getValore()));
+		dadi = start.getClient().lanciaDadi(0,null);
+		dadoNero.setImage(dadi[0].getImage());
+		dadoBianco.setImage(dadi[0].getImage());
+		dadoArancio.setImage(dadi[0].getImage());
 	}
 	
 }

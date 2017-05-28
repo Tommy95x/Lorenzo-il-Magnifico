@@ -147,7 +147,6 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 	}
 
 
-	@Override
 	public void lanciaDadi() {
 		outputSocket.println("dices");
 		outputSocket.flush();

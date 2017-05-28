@@ -13,5 +13,4 @@ public interface RMIClientInterface extends Remote{
 	public void richestaSostegnoChiesa() throws RemoteException;
 	public void restTabellone() throws RemoteException;
 	public void endGame(Giocatore[] giocatoriPartita) throws RemoteException;
-	public Dado[] showDiceValues(int positionGame, String name) throws RemoteException;
 }

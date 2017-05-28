@@ -1,5 +1,7 @@
 package server.element;
 
+import java.sql.Connection;
+
 import client.ConnectionRmiClient;
 import server.RMIClientInterface;
 import server.ThreadSocketServer;
@@ -69,9 +71,9 @@ public class Giocatore{
 		return name;
 	}
 
-	public Dado[] setDadi(){
+	public Dado[] setDadi(Connection connection){
 		for(Dado d:dadi){
-			d.setValue();
+			d.setValue(connection);
 		}
 		return dadi;
 	}

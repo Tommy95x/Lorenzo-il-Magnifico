@@ -4,6 +4,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import server.ServerInterface;
 import server.element.CartaSviluppo;
@@ -104,11 +105,8 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		}
 	}
 	
-	public void enterInALobby(String lobby) {
+	public void enterInALobby(String lobby, String color) {
 		try {
-			//Metodo grafico per richiedere il colore al giocatore passandogli i colori disponibili
-			serverMethods.getColors(lobby);
-			String color = null;
 			positionGame=serverMethods.selectLobby(lobby, name, color, this);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -143,10 +141,10 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 
 
 	@Override
-	public Dado[] lanciaDadi() {
+	public Dado[] lanciaDadi(int positionGame, String name) throws SQLException {
 		//Risposta al metodo grafico con il lancio di un metodo grafico che modificher� il tabellone 
 		try {
-			return serverMethods.showDiceValues(positionGame, name);
+			return serverMethods.showDiceValues(this.positionGame, this.name);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return null;
@@ -154,7 +152,11 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		
 	}
 
-
+	public String[] getColors() throws RemoteException {
+		
+		return serverMethods.getColors(positionGame);
+	}
+	
 	@Override
 	public void posizionareFamiliare(String color, int x, int y) {
 		// TODO Auto-generated method stub
@@ -207,13 +209,6 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public Dado[] showDiceValues(int positionGame, String name) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
+	
 	
 }
