@@ -194,7 +194,7 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 	}
 
 	public void startGame(String name){
-		System.out.println("Il gioco � iniziato");
+		System.out.println("Il gioco e' iniziato");
 		System.out.println("Inizia il turno "+name);
 	}
 	
@@ -214,7 +214,16 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 				if(action.equals("back"))
 					break;
 				else{
-					//Chiama il metodo che sposta il familiare, veirifica che il familiare si aeffettivamente posizionabile li ecc.. 
+					double y = input.nextDouble();
+					input.nextLine();
+					String mom = serverMethods.controlloPosizionamento("black", positionGame, name, Double.valueOf(action), y);
+					if(mom.equals("OK")){
+						System.out.println("Familiare posizionato");
+					}else{
+						System.out.println(mom);
+						mosseDisponibili++;
+					}
+					serverMethods.notifySpostamento("black",Double.valueOf(action) , y, name, positionGame);  
 					mosseDisponibili--;
 				}
 				break;
@@ -224,7 +233,16 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 				if(action.equals("back"))
 					break;
 				else{
-					//Chiama il metodo che sposta il familiare, veirifica che il familiare si aeffettivamente posizionabile li ecc.. 
+					double y = input.nextDouble();
+					input.nextLine();
+					String mom = serverMethods.controlloPosizionamento("black", positionGame, name, Double.valueOf(action), y);
+					if(mom.equals("OK")){
+						System.out.println("Familiare posizionato");
+					}else{
+						System.out.println(mom);
+						mosseDisponibili++;
+					}
+					serverMethods.notifySpostamento("black",Double.valueOf(action) , y, name, positionGame);
 					mosseDisponibili--;
 				}
 				break;
@@ -234,7 +252,16 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 				if(action.equals("back"))
 					break;
 				else{
-					//Chiama il metodo che sposta il familiare, veirifica che il familiare si aeffettivamente posizionabile li ecc.. 
+					double y = input.nextDouble();
+					input.nextLine();
+					String mom = serverMethods.controlloPosizionamento("orange", positionGame, name, Double.valueOf(action), y);
+					if(mom.equals("OK")){
+						System.out.println("Familiare posizionato");
+					}else{
+						System.out.println(mom);
+						mosseDisponibili++;
+					}
+					serverMethods.notifySpostamento("orange",Double.valueOf(action) , y, name, positionGame); 
 					mosseDisponibili--;
 				}
 				break;
@@ -244,7 +271,16 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 				if(action.equals("back"))
 					break;
 				else{
-					//Chiama il metodo che sposta il familiare, veirifica che il familiare si aeffettivamente posizionabile li ecc.. 
+					double y = input.nextDouble();
+					input.nextLine();
+					String mom = serverMethods.controlloPosizionamento("orange", positionGame, name, Double.valueOf(action), y);
+					if(mom.equals("OK")){
+						System.out.println("Familiare posizionato");
+					}else{
+						System.out.println(mom);
+						mosseDisponibili++;
+					}
+					serverMethods.notifySpostamento("orange",Double.valueOf(action) , y, name, positionGame); 
 					mosseDisponibili--;
 				}
 				break;
@@ -254,17 +290,35 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 				if(action.equals("back"))
 					break;
 				else{
-					//Chiama il metodo che sposta il familiare, veirifica che il familiare si aeffettivamente posizionabile li ecc.. 
+					double y = input.nextDouble();
+					input.nextLine();
+					String mom = serverMethods.controlloPosizionamento("white", positionGame, name, Double.valueOf(action), y);
+					if(mom.equals("OK")){
+						System.out.println("Familiare posizionato");
+					}else{
+						System.out.println(mom);
+						mosseDisponibili++;
+					}
+					serverMethods.notifySpostamento("white",Double.valueOf(action) , y, name, positionGame); 
 					mosseDisponibili--;
 				}
 				break;
 			case "bianco":
-				System.out.println("Inserisci la posizione o scrivi back per tornare indietro");
+				System.out.println("Inserisci la posizione x e poi o scrivi back per tornare indietro");
 				action = input.nextLine();
 				if(action.equals("back"))
 					break;
 				else{
-					//Chiama il metodo che sposta il familiare, veirifica che il familiare si aeffettivamente posizionabile li ecc.. 
+					double y = input.nextDouble();
+					input.nextLine();
+					String mom = serverMethods.controlloPosizionamento("white", positionGame, name, Double.valueOf(action), y);
+					if(mom.equals("OK")){
+						System.out.println("Familiare posizionato");
+					}else{
+						System.out.println(mom);
+						mosseDisponibili++;
+					}
+					serverMethods.notifySpostamento("white",Double.valueOf(action) , y, name, positionGame); 
 					mosseDisponibili--;
 				}
 				break;
@@ -274,7 +328,16 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 				if(action.equals("back"))
 					break;
 				else{
-					//Chiama il metodo che sposta il familiare, veirifica che il familiare si aeffettivamente posizionabile li ecc.. 
+					double y = input.nextDouble();
+					input.nextLine();
+					String mom = serverMethods.controlloPosizionamento("neutro", positionGame, name, Double.valueOf(action), y);
+					if(mom.equals("OK")){
+						System.out.println("Familiare posizionato");
+					}else{
+						System.out.println(mom);
+						mosseDisponibili++;
+					}
+					serverMethods.notifySpostamento("neutro",Double.valueOf(action) , y, name, positionGame); 
 					mosseDisponibili--;
 				}
 				break;
@@ -284,7 +347,16 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 				if(action.equals("back"))
 					break;
 				else{
-					//Chiama il metodo che sposta il familiare, veirifica che il familiare si aeffettivamente posizionabile li ecc.. 
+					double y = input.nextDouble();
+					input.nextLine();
+					String mom = serverMethods.controlloPosizionamento("neutro", positionGame, name, Double.valueOf(action), y);
+					if(mom.equals("OK")){
+						System.out.println("Familiare posizionato");
+					}else{
+						System.out.println(mom);
+						mosseDisponibili++;
+					}
+					serverMethods.notifySpostamento("neutro",Double.valueOf(action) , y, name, positionGame); 
 					mosseDisponibili--;
 				}
 				break;
@@ -302,9 +374,17 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 				break;
 			}
 		}while(mosseDisponibili>0);
+		serverMethods.changeGamer(positionGame);
 	}
 	
-	public void play(){
-		
+	public void moveDisco(double x, double y, String colorPlayer, String colorDisco) throws RemoteException{
+		System.out.println("Il giocatore di colore "+colorPlayer+ "ha totalizzato dei punti il suo disco dei punti vittoria si muove nella posizione "+x+" "+y);
 	}
+	public void moveDiscoFede(double x, double y, String colorPlayer, String colorDisco) throws RemoteException{
+		System.out.println("Il giocatore di colore "+colorPlayer+ "sostiene il credo e la chiesa il suo disco fede si muove nella posizione "+x+" "+y);
+	}
+	public void moveFamiliareAvv(double x, double y, String colorPlayer, String colorFam) throws RemoteException{
+		System.out.println("Il giocatore di colore "+colorPlayer+ "ha mosso il suo familiare di colore "+colorFam+" nella posizione "+x+" "+y);
+	}
+	
 }

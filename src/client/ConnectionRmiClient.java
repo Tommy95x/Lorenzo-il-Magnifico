@@ -6,6 +6,10 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import client.gui.StartClientGui;
+import client.gui.controllers.ControllerGame;
+import javafx.scene.control.Tooltip;
 import server.ServerInterface;
 import server.element.CartaSviluppo;
 import server.element.Dado;
@@ -22,6 +26,8 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	private int positionGame;
 	private String name;
 	private int numberOfGamers;
+	private ControllerGame guiGame;
+	private StartClientGui start;
 	
 	public ConnectionRmiClient(){
 		System.out.println("New Rmi client create");
@@ -130,12 +136,11 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	@Override
 	public void startGame() {
 		try {
-			setNumberOfGamers(serverMethods.startPartita(name, positionGame));
-			ArrayList<CartaSviluppo> carte = serverMethods.getCards(positionGame);
-			for(int i=0;i<carte.size();i++){
-				//CHiamare il metodo grafico per settare le carte
-				carte.get(i).getNameCard();
-				carte.get(i).getImage();
+			try {
+				setNumberOfGamers(serverMethods.startPartita(name, positionGame));
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -191,9 +196,15 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	}
 
 	@Override
-	public void notifyStartGame() {
-		// TODO Auto-generated method stub
-		
+	public void notifyStartGame() throws RemoteException {
+		start.changeStage(4);
+		ArrayList<CartaSviluppo> carte = serverMethods.getCards(positionGame);
+		for(int i=0;i<carte.size();i++){
+			//CHiamare il metodo grafico per settare le carte
+			carte.get(i).getNameCard();
+			carte.get(i).getImage();
+		}
+		guiGame.setCards(carte);
 	}
 
 	@Override
@@ -214,10 +225,6 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		
 	}
 
-	public void playGamer() {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	public String controlloPosizionamento(String color, double x, double y) throws RemoteException {
 		try {
@@ -228,5 +235,47 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 			return null;
 		}
 	}
+
+	public void setGuiGame(ControllerGame guiGame){
+		this.guiGame = guiGame;
+	}
 	
+	public void moveDisco(double x, double y, String colorPlayer, String colorDisco) throws RemoteException {
+		guiGame.movePunti(colorDisco, x, y);
+		
+	}
+
+	public void moveFamiliareAvv(double x, double y, String colorPlayer, String colorFamiliare) throws RemoteException {
+		guiGame.moveFamAvv(colorPlayer, colorFamiliare, x, y);
+		
+	}
+
+	@Override
+	public void moveDiscoFede(double x, double y, String colorPlayer, String colorDisco) throws RemoteException {
+		guiGame.movePuntiFede(colorDisco, x, y);
+		
+	}
+
+	public void addScomunica(int nScomuniche, Tooltip tooltip) throws RemoteException {
+		guiGame.addScomunica(nScomuniche, tooltip);
+		
+	}
+
+	public StartClientGui getStart() {
+		return start;
+	}
+
+	public void setStart(StartClientGui start) {
+		this.start = start;
+	}
+
+	public void notifyTurno() throws RemoteException, SQLException {
+		guiGame.notifyTurno();
+		
+	}
+	
+	public void notifySpostamento(String color, double x, double y) throws RemoteException {
+		serverMethods.notifySpostamento(color,x,y,name,positionGame);
+		
+	}
 }

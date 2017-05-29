@@ -16,7 +16,7 @@ public interface ServerInterface extends Remote {
 	public String login(String username, String pw1) throws RemoteException;
 	String register(String username, String pw1, String pw2, String email) throws RemoteException;
 	public int createNewLobby(String lobby, String account, String color, ConnectionRmiClient connectionRmiClient) throws RemoteException, SQLException;
-	public int startPartita(String account, int game) throws RemoteException;
+	public int startPartita(String account, int game) throws RemoteException, SQLException;
 	public ArrayList<Partita> getLobby() throws RemoteException;
 	public int selectLobby(String lobby, String account, String color, ConnectionRmiClient connectionRmiClient) throws RemoteException;
 	public String[] getColors(int positionGame) throws RemoteException;
@@ -29,4 +29,6 @@ public interface ServerInterface extends Remote {
 	public Dado[] showDiceValues(int positionGame, String name) throws RemoteException, SQLException;
 	public String[] getColors(String lobby)throws RemoteException;
 	public String controlloPosizionamento(String color,int posisitionGame, String name, double x, double y)throws RemoteException, SQLException;
+	public void changeGamer(int positionGame) throws RemoteException, SQLException;
+	public void notifySpostamento(String color, double x, double y, String name, int positionGame)throws RemoteException;
 }

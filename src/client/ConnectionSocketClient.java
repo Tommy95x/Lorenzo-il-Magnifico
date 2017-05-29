@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import client.gui.StartClientGui;
+import client.gui.controllers.ControllerGame;
 import javafx.scene.image.Image;
 import server.element.Dado;
 import server.element.Partita;
@@ -29,6 +30,8 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 	private int positionGame;
 	private int numberOfGamers;
 	private String name;
+	private ControllerGame guiGame;
+	private StartClientGui start;
 	
 	public ConnectionSocketClient(){
 		System.out.println("Start Socket Client");
@@ -195,6 +198,10 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		return inputSocket.nextLine();
 	}
 	
+	public void setGuiGame(ControllerGame guiGame){
+		this.guiGame = guiGame;
+	}
+	
 	@Override
 	public void spendereRisorse(String risorsa, int qta) {
 		// TODO Auto-generated method stub
@@ -233,6 +240,21 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 
 	public void setNumberOfGamers(int numberOfGamers) {
 		this.numberOfGamers = numberOfGamers;
+	}
+	
+	public void setStage(StartClientGui start) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public StartClientGui getStart() {
+		return start;
+	}
+
+
+	public void setStart(StartClientGui start) {
+		this.start = start;
 	}
 	
 }

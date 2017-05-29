@@ -1,15 +1,19 @@
 package server.element;
 
+import javafx.scene.control.Tooltip;
+
 public class CuboScomunica {
 
 	//Possiederà  degli attributi che contraddistingueranno il cubo in caso d'istanza di mancato sostegno della chiesa
 	private String color;
 	private int periodo;
 	private TesseraScomunica scomunica;
+	private Tooltip tooltip;
 	
 	public CuboScomunica(String color, int periodo, TesseraScomunica scomunica) {
 		this.setColor(color);
 		this.setPeriodo(periodo);
+		this.tooltip = scomunica.getTooltip();
 		//Verifica per vedere se il match tra cubo e la tessera scomunica è corretto
 		try{
 			if(scomunica.getTurno()==periodo)

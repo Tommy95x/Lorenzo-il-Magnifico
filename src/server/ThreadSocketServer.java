@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javafx.scene.control.Tooltip;
 import server.element.CartaSviluppo;
 
 /*
@@ -137,7 +138,6 @@ public class ThreadSocketServer implements Runnable{
 						positionGame=input.nextInt();	
 						output.println(actionsServer.startPartita(account, positionGame));
 						output.flush();
-						getCards(output);
 						break;
 					case "play":
 						play(output,input);
@@ -164,7 +164,7 @@ public class ThreadSocketServer implements Runnable{
 	}
 
 
-	private void getCards(PrintWriter output2) {
+	private void getCards(PrintWriter output) {
 		ArrayList<CartaSviluppo> mom = null;
 		try {
 			mom = actionsServer.getCards(positionGame);
@@ -183,12 +183,24 @@ public class ThreadSocketServer implements Runnable{
 
 
 	public void notifyStartGame() {
+		
+		//Una volta ricevuto la notifica l'utente richiede le carte
+	}
+
+
+	public void playGamer() {
 		// TODO Auto-generated method stub
 		
 	}
 
 
-	public void playGamer() {
+	public void addScomunica(int nScomuniche, Tooltip tooltip) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void notifyTurno() {
 		// TODO Auto-generated method stub
 		
 	}	

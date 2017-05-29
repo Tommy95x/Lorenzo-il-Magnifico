@@ -1,16 +1,21 @@
 package client.gui.controllers;
 
+import java.rmi.RemoteException;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
+import javafx.scene.layout.VBox;
 
 public class Immagine extends ImageView{
 
 	private ImageView destinazione;
 	private ControllerGame game;
 	private String color;
+	private VBox box;
+	private boolean flag;
 	
 	public Immagine (Image im, ControllerGame game){
 		this.setGame(game);
@@ -75,16 +80,41 @@ public class Immagine extends ImageView{
         
         
         setOnDragDone(event ->{
-        	destinazione.setImage(this.getImage());
         	this.setImage(new Image(getClass().getResourceAsStream("")));
-        	game.controlloPosizionamento(getColor(), this.getX(), this.getY());
+        	if(game.controlloPosizionamento(getColor(), this.getX(), this.getY()))
+        		if(flag){
+        			destinazione.setImage(this.getImage());
+        			this.setDisable(true);
+        			try {
+						game.notifySpostamento(this.getColor(),this.getX(), this.getY());
+					} catch (RemoteException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+        		}
+        		else{
+        			box.getChildren().add(new ImageView(this.getImage()));
+        			this.setDisable(true);
+        			try {
+						game.notifySpostamento(this.getColor(),this.getX(), this.getY());
+					} catch (RemoteException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+        		}
         });
 	}
 	
 	public void getDestinazione(ImageView destinazione){
 		this.destinazione=destinazione;
+		flag = true;
 	}
 
+	public void getDestinazione(VBox box){
+		this.box = box;
+		flag = false;
+	}
+	
 	public ControllerGame getGame() {
 		return game;
 	}

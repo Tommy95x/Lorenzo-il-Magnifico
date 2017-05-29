@@ -51,7 +51,7 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		return commonServer.getIndicePartita(lobby);
 	}
 
-	public int startPartita(String account, int game) throws RemoteException{
+	public int startPartita(String account, int game) throws RemoteException, SQLException{
 			commonServer.getLobbyByNumber(game).start(account);
 			return commonServer.getLobbyByNumber(game).numberOfPlayer();
 	}
@@ -135,6 +135,16 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 
 	public String controlloPosizionamento(String color, int posisitionGame, String name, double x, double y) throws RemoteException, SQLException {	
 		return commonServer.getLobbyByNumber(posisitionGame).getGiocatoreByName(name).controlloPosizionamento(color, x,y, commonServer.getDBConnection().getConnection(name));
+	}
+
+	public void changeGamer(int positionGame) throws RemoteException, SQLException {
+		commonServer.getLobbyByNumber(positionGame).changeGamer();
+		
+	}
+
+	@Override
+	public void notifySpostamento(String color, double x, double y, String name, int positionGame) throws RemoteException {
+		commonServer.getLobbyByNumber(positionGame).notifySpostamento(color,commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name),x,y);
 	}
 }
 

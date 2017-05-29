@@ -1,12 +1,14 @@
 package server.element;
 
+import java.rmi.RemoteException;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 import client.ConnectionRmiClient;
 import server.RMIClientInterface;
 import server.ThreadSocketServer;
 
-public class Giocatore{
+public class Giocatore {
 
 	private String name;
 	private String color;
@@ -20,33 +22,34 @@ public class Giocatore{
 	private ThreadSocketServer server = null;
 	private ConnectionRmiClient client = null;
 	private Flag flag;
-	
-	public Giocatore(String color, Partita partita, String name, int positionGame){
-		this.name=name;
-		this.positionGame=positionGame;
+	private int nScomuniche = 0;
+
+	public Giocatore(String color, Partita partita, String name, int positionGame) {
+		this.name = name;
+		this.positionGame = positionGame;
 		int i;
 		this.setColor(color);
-		discoGiocatore[0]=new Disco(color);
-		discoGiocatore[1]=new DiscoFede(color);
-		discoGiocatore[2]=new DiscoMilitare(color);
-		discoGiocatore[3]=new DiscoVittoria(color);
-		risorse=new Portafoglio();
+		discoGiocatore[0] = new Disco(color);
+		discoGiocatore[1] = new DiscoFede(color);
+		discoGiocatore[2] = new DiscoMilitare(color);
+		discoGiocatore[3] = new DiscoVittoria(color);
+		risorse = new Portafoglio();
 		familiari = new FamiliareNeutro[4];
 		cubiScomunica = new CuboScomunica[3];
 		dadi = new Dado[3];
-		for(i=0;i<4;i++){
-			switch(i){
-				case 0:
-					familiari[i]=new FamiliareNeutro();
-					break;
-				case 1:
-					familiari[i]=new Familiare("black");
-					break;
-				case 2:
-					familiari[i]=new Familiare("orange");
-					break;
-				case 3:
-					familiari[i]=new Familiare("white");
+		for (i = 0; i < 4; i++) {
+			switch (i) {
+			case 0:
+				familiari[i] = new FamiliareNeutro();
+				break;
+			case 1:
+				familiari[i] = new Familiare("black");
+				break;
+			case 2:
+				familiari[i] = new Familiare("orange");
+				break;
+			case 3:
+				familiari[i] = new Familiare("white");
 			}
 		}
 	}
@@ -71,28 +74,29 @@ public class Giocatore{
 		return name;
 	}
 
-	public Dado[] setDadi(Connection connection){
-		for(Dado d:dadi){
+	public Dado[] setDadi(Connection connection) {
+		for (Dado d : dadi) {
 			d.setValue(connection);
 		}
 		return dadi;
 	}
-	
-	public void getSocket(ThreadSocketServer server){
-		if(client == null && server == null )
-			this.server=server;
+
+	public void getSocket(ThreadSocketServer server) {
+		if (client == null && server == null)
+			this.server = server;
 	}
-	
-	public void getClient(ConnectionRmiClient client){
-		if(client == null && server == null )	
+
+	public void getClient(ConnectionRmiClient client) {
+		if (client == null && server == null)
 			this.client = client;
 	}
 
-	public void notifyStartGame() {
-		if(client == null)
+	public void notifyStartGame() throws RemoteException {
+		if (client == null){
 			server.notifyStartGame();
-		else
+		}else{
 			client.notifyStartGame();
+		}
 	}
 
 	public Flag getFlag() {
@@ -101,13 +105,6 @@ public class Giocatore{
 
 	public void setFlag(Flag flag) {
 		this.flag = flag;
-	}
-
-	public void play() {
-		if(client == null)
-			server.playGamer();
-		else
-			client.playGamer();
 	}
 
 	public String controlloPosizionamento(String color, double x, double y, Connection connection) {
@@ -119,9 +116,37 @@ public class Giocatore{
 		}
 		//Scrivere la query che fornisce il valore nella tabella corrispondenza del valore tabellone
 		String query;
-		if(dadoMom.getValore() >= )
-			return "OK";
-		else if(da)
-			return "Pay";
+		if(){
+			
+		}else{
+			if(dadoMom.getValore() >= )
+				return "OK";
+			else if()
+				return "Pay";
+		}
+	}
+	
+	public void getScomunica(TesseraScomunica scomunica) throws RemoteException{
+		cubiScomunica[nScomuniche] = new CuboScomunica(color, nScomuniche, scomunica);
+		if (client == null)
+			server.addScomunica(nScomuniche, scomunica.getTooltip());
+		else
+			client.addScomunica(nScomuniche,scomunica.getTooltip());
+	}
+
+	public void notifyTurno() throws RemoteException, SQLException {
+		if (client == null)
+			server.notifyTurno();
+		else
+			client.notifyTurno();
+		
+	}
+
+	public void notifySpostamento(String color, String colorPlayer, double x, double y) {
+		if (client == null)
+			
+		else
+			client.moveFamiliareAvv(x, y, colorPlayer, color);
+		
 	}
 }

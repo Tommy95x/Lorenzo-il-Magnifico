@@ -2,6 +2,7 @@ package server.element;
 
 import java.sql.Connection;
 
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 
 /*Tessera che verr� posizionata sul tabellone a inizio partita, possiede un periodo e un effetto che viene attivato
@@ -12,6 +13,7 @@ public class TesseraScomunica {
 	private int valorePenalita;
 	private int periodo;
 	private ImageView image;
+	private Tooltip tooltip;
 	
 	//Vengono settati i parametri della tessera scomunica
 	public TesseraScomunica(){
@@ -44,6 +46,22 @@ public class TesseraScomunica {
 	public void setTessera(Connection connection) {
 		//Scrivere query e riempire i campi delle tessere scomunica
 		
+	}
+
+	public Tooltip getTooltip() {
+		return tooltip;
+	}
+
+	public void setTooltip(Tooltip tooltip) {
+		this.tooltip = tooltip;
+	}
+
+	public ImageView getImage() {
+		return image;
+	}
+
+	public void setImage(ImageView image) {
+		this.image = image;
 	}
 
 }

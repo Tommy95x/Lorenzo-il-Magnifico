@@ -21,7 +21,7 @@ public class CartaSviluppo {
 	private String descrizioneEffettoImmediato;
 	private int qtaEffettoPermanente; 
 	private int qtaEffettoImmediato;
-	private Image image;
+	private javafx.scene.image.Image image;
 	private Tooltip tooltip;
 	
 	//A seconda della carta estratta dal DB verranno settati i costi della carta stessa
@@ -39,7 +39,7 @@ public class CartaSviluppo {
 		
 	}
 
-	public Image getImage() {
+	public javafx.scene.image.Image getImage() {
 		return image;
 	}
 

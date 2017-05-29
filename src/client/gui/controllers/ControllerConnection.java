@@ -43,6 +43,7 @@ public class ControllerConnection {
 	public void pressRMI(){
 		System.out.println("Premuto bottone rmi");
 		start.setClient(new ConnectionRmiClient());
+		start.getClient().setStage(start);
 		start.changeStage(1);
 	}
 	
@@ -51,6 +52,7 @@ public class ControllerConnection {
 		System.out.println("Premuto bottone socket");
 		start.changeStage(1);
 		start.setClient(new ConnectionSocketClient());
+		start.getClient().setStage(start);
 	}
 	
 	@FXML

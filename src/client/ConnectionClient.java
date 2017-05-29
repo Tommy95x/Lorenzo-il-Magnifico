@@ -5,12 +5,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import client.gui.StartClientGui;
+import client.gui.controllers.ControllerGame;
 import javafx.scene.image.Image;
 import server.element.Dado;
 import server.element.Partita;
 
 public class ConnectionClient implements ClientInterface {
 
+	
 	@Override
 	public String login(String account, String pw) {
 		// TODO Auto-generated method stub
@@ -101,5 +103,18 @@ public class ConnectionClient implements ClientInterface {
 
 	public String controlloPosizionamento(String color, double x, double y) throws RemoteException {
 		return color;
+	}
+	
+	public void setGuiGame(ControllerGame guiGame){
+	}
+
+	public void setStage(StartClientGui start) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void notifySpostamento(String color, double x, double y) throws RemoteException {
+		// TODO Auto-generated method stub
+		
 	}
 }

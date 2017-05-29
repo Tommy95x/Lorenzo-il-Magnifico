@@ -2,6 +2,7 @@ package client.gui.controllers;
 
 import java.rmi.RemoteException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import client.gui.StartClientGui;
 import javafx.event.Event;
@@ -10,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,17 +22,19 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import server.element.CartaSviluppo;
 import server.element.Dado;
+import server.element.Legno;
 
 public class ControllerGame {
 
 	private StartClientGui start;
 	private ImageView[] arrayCarteTerritori;
-	private ImageView[] arrayCarteImpresa; 
+	private ImageView[] arrayCarteImpresa;
 	private ImageView[] arrayCartePersonaggi;
 	private ImageView[] arrayCarteEdifici;
-	
-	//Componenti tabellone
+
+	// Componenti tabellone
 	@FXML
 	public VBox carteTerritori;
 	@FXML
@@ -113,8 +117,40 @@ public class ControllerGame {
 	public ImageView puntiFedeBianco;
 	@FXML
 	public ImageView puntiFedeVerde;
-	
-	//Componenti plancia
+	@FXML
+	public ImageView familiareBlue1;
+	@FXML
+	public ImageView familiareBlue2;
+	@FXML
+	public ImageView familiareBlue3;
+	@FXML
+	public ImageView familiareBlue4;
+	@FXML
+	public ImageView familiareOrange1;
+	@FXML
+	public ImageView familiareOrange2;
+	@FXML
+	public ImageView familiareOrange3;
+	@FXML
+	public ImageView familiareOrange4;
+	@FXML
+	public ImageView familiareGreen1;
+	@FXML
+	public ImageView familiareGreen2;
+	@FXML
+	public ImageView familiareGreen3;
+	@FXML
+	public ImageView familiareGreen4;
+	@FXML
+	public ImageView familiareWhite1;
+	@FXML
+	public ImageView familiareWhite2;
+	@FXML
+	public ImageView familiareWhite3;
+	@FXML
+	public ImageView familiareWhite4;
+
+	// Componenti plancia
 	@FXML
 	public HBox carteImpresaGiocatore;
 	@FXML
@@ -143,15 +179,20 @@ public class ControllerGame {
 	public Immagine familiareArancio;
 	@FXML
 	public Immagine familiareBianco;
-	
-	
-	
+	@FXML
+	public Immagine cuboScomunica1;
+	@FXML
+	public Immagine cuboScomunica2;
+	@FXML
+	public Immagine cuboScomunica3;
+
 	public void getStartClient(StartClientGui startClientGui) {
 		this.setStart(startClientGui);
 		familiareNeutro.setColor("neutro");
 		familiareNero.setColor("black");
 		familiareArancio.setColor("orange");
 		familiareBianco.setColor("white");
+		start.getClient().setGuiGame(this);
 	}
 
 	public StartClientGui getStart() {
@@ -162,90 +203,396 @@ public class ControllerGame {
 		this.start = start;
 	}
 
-	private void setBandiera(Image bandiera){
+	private void setBandiera(Image bandiera) {
 		this.bandiera.setImage(bandiera);
 	}
-	
-	private void setPietra(int pietra){
+
+	private void setPietra(int pietra) {
 		this.pietra.setText(Integer.toString(pietra));
 	}
-	
-	private void setMonete(int monete){
+
+	private void setMonete(int monete) {
 		this.monete.setText(Integer.toString(monete));
 	}
-	
-	private void setServitori(int servitori){
+
+	private void setServitori(int servitori) {
 		this.servitori.setText(Integer.toString(servitori));
 	}
 
 	/*
-	 * Controllo per verificare se si ha un numero di punti del dado 
+	 * Controllo per verificare se si ha un numero di punti del dado
 	 */
-	public void controlloPosizionamento(String color, double x, double y) {
+	public boolean controlloPosizionamento(String color, double x, double y) {
 		String mom = null;
+		boolean risposta = false;
 		try {
 			mom = start.getClient().controlloPosizionamento(color, x, y);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if(mom.equals("Pay")){
+		if (mom.equals("Pay")) {
 			Stage popup = new Stage();
 			popup.setTitle("Pay or not Pay");
 			VBox box = new VBox();
 			HBox buttonBox = new HBox();
-			Label title = new Label("Non potresti posizionare qui il tuo familiare, a meno che non paghi qualche servitore\nVuoi pagare?\nQuanto?");
+			Label title = new Label(
+					"Non potresti posizionare qui il tuo familiare, a meno che non paghi qualche servitore\nVuoi pagare?\nQuanto?");
 			TextField text = new TextField();
 			Button bOk = new Button("OK");
 			Button bCancel = new Button("Cancel");
-			bOk.setOnAction( event ->{
-				
+			bOk.setOnAction(event -> {
+				risposta = true;
 			});
-			bCancel.setOnAction( event ->{
-				switch(color){
+			bCancel.setOnAction(event -> {
+				switch (color) {
 				case "neutro":
-					setFamiliare(familiareNeutro);
+					familiareNeutro.setImage(new Image(getClass().getResourceAsStream("")));
 					break;
 				case "black":
-					familiareNero.setImage(getClass().getResourceAsStream(""));
+					familiareNero.setImage(new Image(getClass().getResourceAsStream("")));
 					break;
 				case "orange":
+					familiareArancio.setImage(new Image(getClass().getResourceAsStream("")));
 					break;
 				case "white":
-					
+					familiareBianco.setImage(new Image(getClass().getResourceAsStream("")));
 					break;
 				}
+				risposta = false;
 			});
-		}else if(mom == null){
+		} else if (mom == null) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.initOwner(start.getStage());
 			alert.setTitle("Lost DB connection");
 			alert.setContentText("Ci dispiace ma il nostro servizio a smesso di funzionare");
 			alert.showAndWait();
 		}
+		return risposta;
+	}
+
+	public void movePuntiFede(String color, double x, double y) {
+		double momX;
+		double momY;
+		switch (color) {
+		case "blue":
+			momX = puntiFedeBlu.getX();
+			momY = puntiFedeBlu.getY();
+			while (momX == x && momY == y) {
+				if (momX == x) {
+					momY++;
+					puntiFedeBlu.setY(momY);
+				} else if (momY == y) {
+					momX++;
+					puntiFedeBlu.setY(momX);
+				} else {
+					momY++;
+					puntiFedeBlu.setY(momY);
+					momX++;
+					puntiFedeBlu.setY(momX);
+				}
+			}
+			break;
+		case "white":
+			momX = puntiFedeBianco.getX();
+			momY = puntiFedeBianco.getY();
+			while (momX == x && momY == y) {
+				if (momX == x) {
+					momY++;
+					puntiFedeBianco.setY(momY);
+				} else if (momY == y) {
+					momX++;
+					puntiFedeBianco.setY(momX);
+				} else {
+					momY++;
+					puntiFedeBianco.setY(momY);
+					momX++;
+					puntiFedeBianco.setY(momX);
+				}
+			}
+			break;
+		case "orange":
+			momX = puntiFedeArancio.getX();
+			momY = puntiFedeArancio.getY();
+			while (momX == x && momY == y) {
+				if (momX == x) {
+					momY++;
+					puntiFedeArancio.setY(momY);
+				} else if (momY == y) {
+					momX++;
+					puntiFedeArancio.setY(momX);
+				} else {
+					momY++;
+					puntiFedeArancio.setY(momY);
+					momX++;
+					puntiFedeArancio.setY(momX);
+				}
+			}
+			break;
+		case "green":
+			momX = puntiFedeVerde.getX();
+			momY = puntiFedeVerde.getY();
+			while (momX == x && momY == y) {
+				if (momX == x) {
+					momY++;
+					puntiFedeVerde.setY(momY);
+				} else if (momY == y) {
+					momX++;
+					puntiFedeVerde.setY(momX);
+				} else {
+					momY++;
+					puntiFedeVerde.setY(momY);
+					momX++;
+					puntiFedeVerde.setY(momX);
+				}
+			}
+			break;
+		}
+	}
+
+	public void moveFamAvv(String colorAvv, String colorFamm, double x, double y) {
+		switch (colorAvv) {
+		case "blue":
+			switch (colorFamm) {
+			case "white":
+				familiareBlue1.setX(x);
+				familiareBlue1.setY(y);
+				break;
+			case "black":
+				familiareBlue2.setX(x);
+				familiareBlue2.setY(y);
+				break;
+			case "orange":
+				familiareBlue3.setX(x);
+				familiareBlue3.setY(y);
+				break;
+			case "neutro":
+				familiareBlue4.setX(x);
+				familiareBlue4.setY(y);
+				break;
+			}
+			break;
+		case "white":
+			switch (colorFamm) {
+			case "white":
+				familiareWhite1.setX(x);
+				familiareWhite1.setY(y);
+				break;
+			case "black":
+				familiareWhite2.setX(x);
+				familiareWhite2.setY(y);
+				break;
+			case "orange":
+				familiareWhite3.setX(x);
+				familiareWhite3.setY(y);
+				break;
+			case "neutro":
+				familiareWhite4.setX(x);
+				familiareWhite4.setY(y);
+				break;
+			}
+			break;
+		case "orange":
+			switch (colorFamm) {
+			case "white":
+				familiareOrange1.setX(x);
+				familiareOrange1.setY(y);
+				break;
+			case "black":
+				familiareOrange2.setX(x);
+				familiareOrange2.setY(y);
+				break;
+			case "orange":
+				familiareOrange3.setX(x);
+				familiareOrange3.setY(y);
+				break;
+			case "neutro":
+				familiareOrange4.setX(x);
+				familiareOrange4.setY(y);
+				break;
+			}
+			break;
+		case "green":
+			switch (colorFamm) {
+			case "white":
+				familiareGreen1.setX(x);
+				familiareGreen1.setY(y);
+				break;
+			case "black":
+				familiareGreen2.setX(x);
+				familiareGreen2.setY(y);
+				break;
+			case "orange":
+				familiareGreen3.setX(x);
+				familiareGreen3.setY(y);
+				break;
+			case "neutro":
+				familiareGreen4.setX(x);
+				familiareGreen4.setY(y);
+				break;
+			}
+			break;
+		}
+	}
+
+	public void movePunti(String color, double x, double y) {
+		double momX;
+		double momY;
+		switch (color) {
+		case "blue":
+			momX = puntiVittoriaBlu.getX();
+			momY = puntiVittoriaBlu.getY();
+			while (momX == x && momY == y) {
+				if (momX == x) {
+					momY++;
+					puntiVittoriaBlu.setY(momY);
+				} else if (momY == y) {
+					momX++;
+					puntiVittoriaBlu.setY(momX);
+				} else {
+					momY++;
+					puntiVittoriaBlu.setY(momY);
+					momX++;
+					puntiVittoriaBlu.setY(momX);
+				}
+			}
+			break;
+		case "white":
+			momX = puntiVittoriaBianco.getX();
+			momY = puntiVittoriaBianco.getY();
+			while (momX == x && momY == y) {
+				if (momX == x) {
+					momY++;
+					puntiVittoriaBianco.setY(momY);
+				} else if (momY == y) {
+					momX++;
+					puntiVittoriaBianco.setY(momX);
+				} else {
+					momY++;
+					puntiVittoriaBianco.setY(momY);
+					momX++;
+					puntiVittoriaBianco.setY(momX);
+				}
+			}
+			break;
+		case "orange":
+			momX = puntiVittoriaArancio.getX();
+			momY = puntiVittoriaArancio.getY();
+			while (momX == x && momY == y) {
+				if (momX == x) {
+					momY++;
+					puntiVittoriaArancio.setY(momY);
+				} else if (momY == y) {
+					momX++;
+					puntiVittoriaArancio.setY(momX);
+				} else {
+					momY++;
+					puntiVittoriaArancio.setY(momY);
+					momX++;
+					puntiVittoriaArancio.setY(momX);
+				}
+			}
+			break;
+		case "green":
+			momX = puntiVittoriaVerde.getX();
+			momY = puntiVittoriaVerde.getY();
+			while (momX == x && momY == y) {
+				if (momX == x) {
+					momY++;
+					puntiVittoriaVerde.setY(momY);
+				} else if (momY == y) {
+					momX++;
+					puntiVittoriaVerde.setY(momX);
+				} else {
+					momY++;
+					puntiVittoriaVerde.setY(momY);
+					momX++;
+					puntiVittoriaVerde.setY(momX);
+				}
+			}
+			break;
+		}
 	}
 
 	@FXML
-	public void lanciaDadi() throws RemoteException, SQLException{
+	public void lanciaDadi() throws RemoteException, SQLException {
 		Dado[] dadi = new Dado[3];
-		dadi = start.getClient().lanciaDadi(0,null);
+		dadi = start.getClient().lanciaDadi(0, null);
 		dadoNero.setImage(dadi[0].getImage());
 		dadoBianco.setImage(dadi[0].getImage());
 		dadoArancio.setImage(dadi[0].getImage());
 	}
-	
+
 	@FXML
-	public void enteredDrag(){
-		//Chiedere al prof come catturare l'immagine in cui viene posizionata
-		//if()
-		//Devo controllare se è libero se no non posso piazzare
+	public void enteredDragImage() {
+		// Chiedere al prof come catturare l'immagine in cui viene posizionata
+		// if()
+		// Devo controllare se è libero se no non posso piazzare
 		familiareNeutro.getDestinazione(null);
 		familiareNero.getDestinazione(null);
 		familiareArancio.getDestinazione(null);
 		familiareBianco.getDestinazione(null);
+	}
+
+	@FXML
+	public void enterDragBox(){
+		familiareNeutro.getDestinazione(null);
+		familiareNero.getDestinazione(null);
+		familiareArancio.getDestinazione(null);
+		familiareBianco.getDestinazione(null);
+	}
+	
+	public void addScomunica(int nScomuniche, Tooltip tooltip) {
+		switch (nScomuniche) {
+		case 0:
+			cuboScomunica1.setVisible(true);
+			Tooltip.install(cuboScomunica1, tooltip);
+			break;
+		case 1:
+			cuboScomunica2.setVisible(true);
+			Tooltip.install(cuboScomunica2, tooltip);
+			break;
+		case 2:
+			cuboScomunica2.setVisible(true);
+			Tooltip.install(cuboScomunica2, tooltip);
+			break;
+		}
+	}
+
+	public void setCards(ArrayList<CartaSviluppo> carte) {
+		for (int i = 0; i < 4; i++) {
+			arrayCarteTerritori[i].setImage(carte.get(i).getImage());
+			Tooltip.install(arrayCarteTerritori[i],carte.get(i).getTooltip() );
+		}
+		for (int i = 4; i < 8; i++) {
+			arrayCarteEdifici[i].setImage(carte.get(i).getImage());
+			Tooltip.install(arrayCarteTerritori[i],carte.get(i).getTooltip() );
+		}
+		for (int i = 8; i < 12; i++) {
+			arrayCartePersonaggi[i].setImage(carte.get(i).getImage());
+			Tooltip.install(arrayCarteTerritori[i],carte.get(i).getTooltip() );
+		}
+		for (int i = 12; i < 16; i++) {
+			arrayCarteImpresa[i].setImage(carte.get(i).getImage());
+			Tooltip.install(arrayCarteTerritori[i],carte.get(i).getTooltip() );
+		}
+		carteTerritori.getChildren().addAll(arrayCarteTerritori);
+		carteEdifici.getChildren().addAll(arrayCarteEdifici);
+		cartePersonaggi.getChildren().addAll(arrayCartePersonaggi);
+		carteImprese.getChildren().addAll(arrayCarteImpresa);
+	}
+
+	public void notifyTurno() {
+		familiareNeutro.setDisable(false);
+		familiareNero.setDisable(false);
+		familiareArancio.setDisable(false);
+		familiareBianco.setDisable(false);
+	}
+
+	public void notifySpostamento(String color, double x, double y) throws RemoteException {
+		
+		start.getClient().notifySpostamento(color,x,y);
 		
 	}
 
-	
-	
 }

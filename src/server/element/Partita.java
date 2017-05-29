@@ -1,5 +1,6 @@
 package server.element;
 
+import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class Partita{
 	private CartaTerritori[] carteTerritori = new CartaTerritori[NUMCARTE];
 	private TesseraScomunica[] tessereScomunica = new TesseraScomunica[3];
 	private String[] colors = new String[DIM];
+	private int giocatore = 0;
 	
 	public Partita(String lobby, String namePlayer, int positionGame){
 		this.setLobby(lobby);
@@ -33,13 +35,13 @@ public class Partita{
 	}
 	
 	
-	private void startPartita(){
+	private void startPartita() throws RemoteException, SQLException{
 		turno=1;
 		beShuffled();
 		for(int i = 0; i<4; i++){
 			giocatori[i].notifyStartGame();
 		}
-		giocatori[0].play();
+		giocatori[giocatore].notifyTurno();
 		//Chiedere come notificare che è iniziata la partita ai giocatori
 	}
 
@@ -112,7 +114,7 @@ public class Partita{
 		return giocatori[0].getName();
 	}
 
-	public void start(String account) {
+	public void start(String account) throws RemoteException, SQLException {
 		//Riguardare metodo che e' errato in quanto la partita parte solo e soltanto per 4 giocatori.
 		for(int i=0;i<DIM;i++){
 			if(giocatori[i].getName().equals(account)){
@@ -192,6 +194,27 @@ public class Partita{
 	public void setCardsScomunica(ConnectionDatabase connectionDatabase, String account) throws SQLException {
 		for(TesseraScomunica mom : tessereScomunica){
 			mom.setTessera(connectionDatabase.getConnection(account));
+		}
+		
+	}
+
+
+	public void changeGamer() throws RemoteException, SQLException {
+		giocatore++;
+		if(giocatore>4){
+			addTurno();
+		}else{
+			giocatori[giocatore].notifyTurno();
+		}
+		
+	}
+
+
+	public void notifySpostamento(String color, Giocatore giocatoreByName, double x, double y) {
+		for(Giocatore g : giocatori){
+			if(!g.equals(giocatoreByName)){
+				g.notifySpostamento(color,giocatoreByName.getColor(),x,y);
+			}
 		}
 		
 	}

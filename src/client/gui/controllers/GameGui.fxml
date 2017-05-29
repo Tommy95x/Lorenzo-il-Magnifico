@@ -65,6 +65,9 @@
             <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="18.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="20.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="25.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="80.0" fitWidth="46.0" layoutX="148.0" layoutY="620.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="80.0" fitWidth="46.0" layoutX="201.0" layoutY="620.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="80.0" fitWidth="46.0" layoutX="254.0" layoutY="620.0" pickOnBounds="true" preserveRatio="true" />
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1000.0" prefWidth="960.0">
          <children>
@@ -103,7 +106,7 @@
             </ImageView>
             <HBox layoutX="792.0" layoutY="499.0" prefHeight="193.0" prefWidth="393.0" />
             <HBox layoutX="802.0" layoutY="692.0" prefHeight="193.0" prefWidth="393.0" />
-            <Button layoutX="792.0" layoutY="886.0" mnemonicParsing="false" prefHeight="115.0" prefWidth="95.0" text="Lancia Dadi" />
+            <Button fx:id="lanciaDadi" layoutX="792.0" layoutY="886.0" mnemonicParsing="false" prefHeight="115.0" prefWidth="95.0" text="Lancia Dadi" />
             <ImageView fitHeight="115.0" fitWidth="75.0" layoutX="886.0" layoutY="886.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fitHeight="115.0" fitWidth="75.0" layoutX="961.0" layoutY="886.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fitHeight="115.0" fitWidth="75.0" layoutX="1036.0" layoutY="886.0" pickOnBounds="true" preserveRatio="true" />
@@ -118,6 +121,9 @@
                   <Font size="29.0" />
                </font>
             </Label>
+            <ImageView fx:id="cuboScomunica1" fitHeight="71.0" fitWidth="75.0" layoutX="107.0" layoutY="428.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="71.0" fitWidth="75.0" layoutX="182.0" layoutY="428.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="71.0" fitWidth="75.0" layoutX="265.0" layoutY="428.0" pickOnBounds="true" preserveRatio="true" />
          </children></AnchorPane>
   </items>
 </SplitPane>
