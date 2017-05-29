@@ -213,6 +213,20 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		// TODO Auto-generated method stub
 		
 	}
+
+	public void playGamer() {
+		// TODO Auto-generated method stub
+		
+	}
 	
+	public String controlloPosizionamento(String color, double x, double y) throws RemoteException {
+		try {
+			return serverMethods.controlloPosizionamento(color, positionGame, name, x, y);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
 	
 }

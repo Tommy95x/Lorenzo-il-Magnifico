@@ -98,4 +98,8 @@ public class ConnectionClient implements ClientInterface {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public String controlloPosizionamento(String color, double x, double y) throws RemoteException {
+		return color;
+	}
 }

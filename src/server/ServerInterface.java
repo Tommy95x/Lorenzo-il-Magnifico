@@ -28,4 +28,5 @@ public interface ServerInterface extends Remote {
 	public void givePunti(String gamer, int qta, String tipoPunti) throws RemoteException;
 	public Dado[] showDiceValues(int positionGame, String name) throws RemoteException, SQLException;
 	public String[] getColors(String lobby)throws RemoteException;
+	public String controlloPosizionamento(String color,int posisitionGame, String name, double x, double y)throws RemoteException, SQLException;
 }

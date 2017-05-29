@@ -185,5 +185,11 @@ public class ThreadSocketServer implements Runnable{
 	public void notifyStartGame() {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+	public void playGamer() {
+		// TODO Auto-generated method stub
+		
 	}	
 }

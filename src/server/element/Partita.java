@@ -26,7 +26,7 @@ public class Partita{
 	public Partita(String lobby, String namePlayer, int positionGame){
 		this.setLobby(lobby);
 		addGiocatore(new Giocatore(lobby, this,namePlayer,positionGame));
-		colors[0] = "balck"; 
+		colors[0] = "black"; 
 		colors[1] = "orange";
 		colors[2] = "white";
 		colors[3] = "green"; 
@@ -39,6 +39,7 @@ public class Partita{
 		for(int i = 0; i<4; i++){
 			giocatori[i].notifyStartGame();
 		}
+		giocatori[0].play();
 		//Chiedere come notificare che è iniziata la partita ai giocatori
 	}
 

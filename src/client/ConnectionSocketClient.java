@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -27,6 +28,7 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 	private int port=3000;
 	private int positionGame;
 	private int numberOfGamers;
+	private String name;
 	
 	public ConnectionSocketClient(){
 		System.out.println("Start Socket Client");
@@ -59,6 +61,7 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 
 		outputSocket.println(account);
 		outputSocket.flush();
+		name=account;
 		
 		outputSocket.println(pw);
 		outputSocket.flush();
@@ -177,7 +180,21 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		//Dovr� rinviare indietro le modifiche da apportare
 	}
 
-
+	public String controlloPosizionamento(String color, double x, double y){
+		outputSocket.println("controllo posizionamento");
+		outputSocket.flush();
+		outputSocket.print(color);
+		outputSocket.flush();
+		outputSocket.println(x);
+		outputSocket.flush();
+		outputSocket.println(y);
+		outputSocket.flush();
+		outputSocket.println(positionGame);
+		outputSocket.flush();
+		outputSocket.println(name);
+		return inputSocket.nextLine();
+	}
+	
 	@Override
 	public void spendereRisorse(String risorsa, int qta) {
 		// TODO Auto-generated method stub

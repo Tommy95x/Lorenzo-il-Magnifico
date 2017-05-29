@@ -102,4 +102,26 @@ public class Giocatore{
 	public void setFlag(Flag flag) {
 		this.flag = flag;
 	}
+
+	public void play() {
+		if(client == null)
+			server.playGamer();
+		else
+			client.playGamer();
+	}
+
+	public String controlloPosizionamento(String color, double x, double y, Connection connection) {
+		Dado dadoMom;
+		for(Dado d : dadi){
+			if(d.getColor().equals(color))
+				dadoMom=d;
+				break;
+		}
+		//Scrivere la query che fornisce il valore nella tabella corrispondenza del valore tabellone
+		String query;
+		if(dadoMom.getValore() >= )
+			return "OK";
+		else if(da)
+			return "Pay";
+	}
 }

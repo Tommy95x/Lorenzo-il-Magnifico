@@ -10,6 +10,7 @@ public class Immagine extends ImageView{
 
 	private ImageView destinazione;
 	private ControllerGame game;
+	private String color;
 	
 	public Immagine (Image im, ControllerGame game){
 		this.setGame(game);
@@ -76,7 +77,7 @@ public class Immagine extends ImageView{
         setOnDragDone(event ->{
         	destinazione.setImage(this.getImage());
         	this.setImage(new Image(getClass().getResourceAsStream("")));
-        	game.controlloPosizionamento();
+        	game.controlloPosizionamento(getColor(), this.getX(), this.getY());
         });
 	}
 	
@@ -90,6 +91,14 @@ public class Immagine extends ImageView{
 
 	public void setGame(ControllerGame game) {
 		this.game = game;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
 	}
 	
 }
