@@ -28,7 +28,7 @@
             <Font size="28.0" />
          </font>
       </Label>
-      <MenuBar fx:id="menu" layoutY="2.0">
+      <MenuBar layoutY="2.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>

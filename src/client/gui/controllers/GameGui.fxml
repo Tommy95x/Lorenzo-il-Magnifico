@@ -26,6 +26,7 @@
             <VBox layoutX="551.0" layoutY="543.0" prefHeight="131.0" prefWidth="46.0" />
             <HBox layoutX="132.0" layoutY="904.0" prefHeight="38.0" prefWidth="123.0" />
             <HBox layoutX="348.0" layoutY="574.0" prefHeight="38.0" prefWidth="164.0" />
+            <HBox layoutX="139.0" layoutY="820.0" prefHeight="38.0" prefWidth="123.0" />
             <ImageView fitHeight="38.0" fitWidth="46.0" layoutX="53.0" layoutY="820.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fitHeight="38.0" fitWidth="46.0" layoutX="53.0" layoutY="904.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fitHeight="38.0" fitWidth="46.0" layoutX="377.0" layoutY="913.0" pickOnBounds="true" preserveRatio="true" />
@@ -112,7 +113,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label layoutX="86.0" layoutY="456.0" prefHeight="43.0" prefWidth="21.0" text="0" textFill="#dd1010">
+            <Label layoutX="86.0" layoutY="456.0" prefHeight="43.0" prefWidth="21.0" text="0" textFill="#282828">
                <font>
                   <Font size="29.0" />
                </font>

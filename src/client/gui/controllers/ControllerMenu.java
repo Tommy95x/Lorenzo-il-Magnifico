@@ -157,7 +157,7 @@ public class ControllerMenu {
 						boxColors.getChildren().add(circle);
 						b = new Button("Green");
 						b.setOnAction(event ->{
-							color = "Green";
+							color = "green";
 							event.consume();
 						});
 						boxButton.getChildren().add(b);

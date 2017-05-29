@@ -4,11 +4,16 @@ import java.rmi.RemoteException;
 import java.sql.SQLException;
 
 import client.gui.StartClientGui;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import server.element.Dado;
@@ -127,20 +132,19 @@ public class ControllerGame {
 	@FXML
 	public Button lanciaDadi;
 	@FXML
-	public ImageView familiareNeutro;
+	public Immagine familiareNeutro;
 	@FXML
-	public ImageView familiareNero;
+	public Immagine familiareNero;
 	@FXML
-	public ImageView familiareArancio;
+	public Immagine familiareArancio;
 	@FXML
-	public ImageView familiareBianco;
+	public Immagine familiareBianco;
 	
 	
 	
 	public void getStartClient(StartClientGui startClientGui) {
 		
 		this.setStart(startClientGui);
-		
 	}
 
 	public StartClientGui getStart() {
@@ -170,15 +174,31 @@ public class ControllerGame {
 	private void addCompaniesPlayer(Image image){
 		
 	}
-	
+
+	public void controlloPosizionamento() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	@FXML
-	private void lanciaDadi() throws RemoteException, SQLException{
+	public void lanciaDadi() throws RemoteException, SQLException{
 		Dado[] dadi = new Dado[3];
 		dadi = start.getClient().lanciaDadi(0,null);
 		dadoNero.setImage(dadi[0].getImage());
 		dadoBianco.setImage(dadi[0].getImage());
 		dadoArancio.setImage(dadi[0].getImage());
 	}
+	
+	@FXML
+	public void enteredDrag(){
+		//Chiedere al prof come catturare l'immagine in cui viene posizionata
+		familiareNeutro.getDestinazione(null);
+		familiareNero.getDestinazione(null);
+		familiareArancio.getDestinazione(null);
+		familiareBianco.getDestinazione(null);
+		
+	}
+
+	
 	
 }
