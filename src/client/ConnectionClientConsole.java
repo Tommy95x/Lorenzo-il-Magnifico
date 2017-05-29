@@ -65,7 +65,12 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 			String pw = input.nextLine();
 			try {
 				System.out.println(serverMethods.login(account, pw));
-				startMenu();
+				try {
+					startMenu();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -92,7 +97,7 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 		}
 	}
 	
-	private void startMenu() {
+	private void startMenu() throws SQLException {
 		System.out.println("Premi 1 se vuoi creare una nuova lobby di gioco o 2 se vuoi entrare in una lobby gia' esistente");
 		String lobby;
 		String[] colors = null;
@@ -189,7 +194,7 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 	}
 
 	public void startGame(String name){
-		System.out.println("Il gioco è iniziato");
+		System.out.println("Il gioco ï¿½ iniziato");
 		System.out.println("Inizia il turno "+name);
 	}
 	

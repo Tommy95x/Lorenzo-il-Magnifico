@@ -1,18 +1,20 @@
 package server.element;
 
-/*Tessera che verrà  posizionata sul tabellone a inizio partita, possiede un periodo e un effetto che viene attivato
+import java.sql.Connection;
+
+import javafx.scene.image.ImageView;
+
+/*Tessera che verrï¿½ posizionata sul tabellone a inizio partita, possiede un periodo e un effetto che viene attivato
   su ogni giocatore scomunicato*/
 public class TesseraScomunica {
 
 	private String oggettoPenalita;
 	private int valorePenalita;
 	private int periodo;
+	private ImageView image;
 	
 	//Vengono settati i parametri della tessera scomunica
-	public TesseraScomunica(String oggettoPenalita, int valorePenalita, int periodo){
-		this.setOggettoPenalita(oggettoPenalita);
-		this.setValorePenalita(valorePenalita);
-		this.setTurno(periodo);
+	public TesseraScomunica(){
 	}
 
 	public String getOggettoPenalita() {
@@ -37,6 +39,11 @@ public class TesseraScomunica {
 
 	public void setTurno(int turno) {
 		this.periodo = turno;
+	}
+
+	public void setTessera(Connection connection) {
+		//Scrivere query e riempire i campi delle tessere scomunica
+		
 	}
 
 }

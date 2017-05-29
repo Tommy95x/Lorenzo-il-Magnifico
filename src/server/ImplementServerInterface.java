@@ -40,9 +40,10 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		return commonServer.registerNewClient(username, pw1, email);
 	}
 
-	public int createNewLobby(String lobby, String account, String color, ConnectionRmiClient connectionRmiClient) throws RemoteException {
+	public int createNewLobby(String lobby, String account, String color, ConnectionRmiClient connectionRmiClient) throws RemoteException, SQLException {
 		commonServer.addGame(lobby, account);
 		commonServer.setCards(commonServer.getLobbyByName(lobby),account);
+		commonServer.getLobbyByName(lobby).setCardsScomunica(commonServer.getDBConnection(), account);
 		commonServer.getLobbyByName(lobby).addGiocatore(new Giocatore(color,commonServer.getLobbyByName(lobby), account, commonServer.getIndicePartita(lobby)));
 		commonServer.getLobbyByName(lobby).changeColors(color);
 		commonServer.getLobbyByName(lobby).getGiocatoreByName(account).getClient(connectionRmiClient);

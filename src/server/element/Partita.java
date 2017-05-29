@@ -1,6 +1,7 @@
 package server.element;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import server.database.ConnectionDatabase;
@@ -19,6 +20,7 @@ public class Partita{
 	private CartaImprese[] carteImprese = new CartaImprese[NUMCARTE];
 	private CartaEdifici[] carteEdifici = new CartaEdifici[NUMCARTE];
 	private CartaTerritori[] carteTerritori = new CartaTerritori[NUMCARTE];
+	private TesseraScomunica[] tessereScomunica = new TesseraScomunica[3];
 	private String[] colors = new String[DIM];
 	
 	public Partita(String lobby, String namePlayer, int positionGame){
@@ -181,6 +183,14 @@ public class Partita{
 				colors[i] = null;
 				break;
 			}
+		}
+		
+	}
+
+
+	public void setCardsScomunica(ConnectionDatabase connectionDatabase, String account) throws SQLException {
+		for(TesseraScomunica mom : tessereScomunica){
+			mom.setTessera(connectionDatabase.getConnection(account));
 		}
 		
 	}

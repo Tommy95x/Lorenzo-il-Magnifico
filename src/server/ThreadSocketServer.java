@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -153,7 +154,7 @@ public class ThreadSocketServer implements Runnable{
 						break;
 				}
 			}
-		} catch (IOException e) {
+		} catch (IOException | SQLException e) {
 			System.err.println("Error lost socket connection");
 			output.println("Error lost socket connection");
 			output.close();
