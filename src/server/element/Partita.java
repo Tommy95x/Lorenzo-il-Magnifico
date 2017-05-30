@@ -218,5 +218,11 @@ public class Partita{
 		}
 		
 	}
+
+
+	public String getNamePosition(double x, double y, Connection connection) {
+		// Scrivere query che fornisce il nome della posizione tipo primo piano palazzo...
+		return null;
+	}
 	
 }

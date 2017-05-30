@@ -85,6 +85,7 @@ public class Immagine extends ImageView{
         		if(flag){
         			destinazione.setImage(this.getImage());
         			this.setDisable(true);
+        			game.setCard(game.getNamePosition(this.getX(),this.getY()));
         			try {
 						game.notifySpostamento(this.getColor(),this.getX(), this.getY());
 					} catch (RemoteException e) {

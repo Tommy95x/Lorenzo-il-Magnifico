@@ -22,17 +22,21 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import server.element.CartaEdifici;
+import server.element.CartaImprese;
+import server.element.CartaPersonaggi;
 import server.element.CartaSviluppo;
+import server.element.CartaTerritori;
 import server.element.Dado;
 import server.element.Legno;
 
 public class ControllerGame {
 
 	private StartClientGui start;
-	private ImageView[] arrayCarteTerritori;
-	private ImageView[] arrayCarteImpresa;
-	private ImageView[] arrayCartePersonaggi;
-	private ImageView[] arrayCarteEdifici;
+	private CartaTerritori[] arrayCarteTerritori;
+	private CartaImprese[] arrayCarteImpresa;
+	private CartaPersonaggi[] arrayCartePersonaggi;
+	private CartaEdifici[] arrayCarteEdifici;
 
 	// Componenti tabellone
 	@FXML
@@ -561,25 +565,33 @@ public class ControllerGame {
 
 	public void setCards(ArrayList<CartaSviluppo> carte) {
 		for (int i = 0; i < 4; i++) {
-			arrayCarteTerritori[i].setImage(carte.get(i).getImage());
-			Tooltip.install(arrayCarteTerritori[i],carte.get(i).getTooltip() );
+			arrayCarteTerritori[i] = (CartaTerritori) carte.get(i);
+			ImageView mom = new ImageView();
+			mom.setImage(carte.get(i).getImage());
+			Tooltip.install(mom,carte.get(i).getTooltip() );
+			carteTerritori.getChildren().add(mom);
 		}
 		for (int i = 4; i < 8; i++) {
-			arrayCarteEdifici[i].setImage(carte.get(i).getImage());
-			Tooltip.install(arrayCarteTerritori[i],carte.get(i).getTooltip() );
+			arrayCarteEdifici[i] = (CartaEdifici) carte.get(i);
+			ImageView mom = new ImageView();
+			mom.setImage(carte.get(i).getImage());
+			Tooltip.install(mom,carte.get(i).getTooltip() );
+			carteEdifici.getChildren().add(mom);
 		}
 		for (int i = 8; i < 12; i++) {
-			arrayCartePersonaggi[i].setImage(carte.get(i).getImage());
-			Tooltip.install(arrayCarteTerritori[i],carte.get(i).getTooltip() );
+			arrayCartePersonaggi[i] = (CartaPersonaggi) carte.get(i);
+			ImageView mom = new ImageView();
+			mom.setImage(carte.get(i).getImage());
+			Tooltip.install(mom,carte.get(i).getTooltip() );
+			cartePersonaggi.getChildren().add(mom);
 		}
 		for (int i = 12; i < 16; i++) {
-			arrayCarteImpresa[i].setImage(carte.get(i).getImage());
-			Tooltip.install(arrayCarteTerritori[i],carte.get(i).getTooltip() );
+			arrayCarteImpresa[i] = (CartaImprese) carte.get(i);
+			ImageView mom = new ImageView();
+			mom.setImage(carte.get(i).getImage());
+			Tooltip.install(mom,carte.get(i).getTooltip() );
+			carteImprese.getChildren().add(mom);
 		}
-		carteTerritori.getChildren().addAll(arrayCarteTerritori);
-		carteEdifici.getChildren().addAll(arrayCarteEdifici);
-		cartePersonaggi.getChildren().addAll(arrayCartePersonaggi);
-		carteImprese.getChildren().addAll(arrayCarteImpresa);
 	}
 
 	public void notifyTurno() {
@@ -593,6 +605,92 @@ public class ControllerGame {
 		
 		start.getClient().notifySpostamento(color,x,y);
 		
+	}
+
+	public String getNamePosition(double x, double y) {
+		try {
+			return start.getClient().getNamePosition(x,y);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public void setCard(String namePosition) {
+		switch(namePosition){
+		case "primo piano territori":
+			carteTerritoriGiocatore.getChildren().add(carteTerritori.getChildren().get(0));
+			carteTerritori.getChildren().set(0, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			start.getClient().getCard(arrayCarteTerritori[0]);
+			//Acquisire gli effetti della carta e modificarla
+			break;
+		case "secondo piano territori":
+			carteTerritoriGiocatore.getChildren().add(carteTerritori.getChildren().get(1));
+			carteTerritori.getChildren().set(1, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			break;
+		case "terzo piano territori":
+			carteTerritoriGiocatore.getChildren().add(carteTerritori.getChildren().get(2));
+			carteTerritori.getChildren().set(2, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			break;
+		case "quarto piano territori":
+			carteTerritoriGiocatore.getChildren().add(carteTerritori.getChildren().get(3));
+			carteTerritori.getChildren().set(3, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			break;
+		case "primo piano edifici":
+			carteEdificiGiocatore.getChildren().add(carteTerritori.getChildren().get(0));
+			carteEdifici.getChildren().set(0, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			break;
+		case "secondo piano edifici":
+			carteEdificiGiocatore.getChildren().add(carteTerritori.getChildren().get(1));
+			carteEdifici.getChildren().set(1, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			break;
+		case "terzo piano edifici":
+			carteEdificiGiocatore.getChildren().add(carteTerritori.getChildren().get(2));
+			carteEdifici.getChildren().set(2, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			break;
+		case "quarto piano edifici":
+			carteEdificiGiocatore.getChildren().add(carteTerritori.getChildren().get(3));
+			carteEdifici.getChildren().set(3, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			break;
+		case "primo piano imprese":
+			carteImpresaGiocatore.getChildren().add(carteTerritori.getChildren().get(0));
+			carteImprese.getChildren().set(0, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			break;
+		case "secondo piano imprese":
+			carteImpresaGiocatore.getChildren().add(carteTerritori.getChildren().get(1));
+			carteImprese.getChildren().set(1, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			break;
+		case "terzo piano imprese":
+			carteImpresaGiocatore.getChildren().add(carteTerritori.getChildren().get(2));
+			carteImprese.getChildren().set(2, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			break;
+		case "quarto piano imprese":
+			carteImpresaGiocatore.getChildren().add(carteTerritori.getChildren().get(3));
+			carteImprese.getChildren().set(3, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			break;
+		case "primo piano personaggi":
+			cartePersonaggiGiocatore.getChildren().add(carteTerritori.getChildren().get(0));
+			cartePersonaggi.getChildren().set(0, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			break;
+		case "secondo piano personaggi":
+			cartePersonaggiGiocatore.getChildren().add(carteTerritori.getChildren().get(1));
+			cartePersonaggi.getChildren().set(1, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			break;
+		case "terzo piano personaggi":
+			cartePersonaggiGiocatore.getChildren().add(carteTerritori.getChildren().get(2));
+			cartePersonaggi.getChildren().set(2, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			break;
+		case "quarto piano personaggi":
+			cartePersonaggiGiocatore.getChildren().add(carteTerritori.getChildren().get(3));
+			cartePersonaggi.getChildren().set(3, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			break;
+		//Vanno aggiunti i casi del tabellone, ossia gli spazi singoli
+		}
 	}
 
 }

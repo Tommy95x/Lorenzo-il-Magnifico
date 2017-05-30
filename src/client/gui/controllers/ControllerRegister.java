@@ -47,15 +47,18 @@ public class ControllerRegister {
 			alert.setTitle("Invalid Registered");
 			alert.setContentText("Manca un campo obbligatorio per la registrazione");
 			alert.showAndWait();
-		} else if (!email.getText().contains(".com") || !email.getText().contains(".it")
-				|| !email.getText().equals("@")) {
+		} else if (!email.getText().contains("@")){
+			//Chiedere a Campi
+			System.out.println(!email.getText().contains(".com") || !email.getText().contains(".it"));
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.initOwner(start.getStage());
 			alert.setTitle("Invalid Registered");
 			alert.setContentText("Email non valida");
 			alert.showAndWait();
 		} else {
+			start.getClient().richiestaRegistrazione();
 			String mom = start.getClient().register(username.getText(), pw1.getText(), pw2.getText(), email.getText());
+			System.out.println(mom);
 			if(mom.equals("You are now registered!"))
 				start.changeStage(3);
 			else{

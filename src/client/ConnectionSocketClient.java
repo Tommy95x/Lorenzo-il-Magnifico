@@ -12,6 +12,7 @@ import java.util.Scanner;
 import client.gui.StartClientGui;
 import client.gui.controllers.ControllerGame;
 import javafx.scene.image.Image;
+import server.element.CartaSviluppo;
 import server.element.Dado;
 import server.element.Partita;
 
@@ -92,11 +93,12 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 				
 	}
 
-	public boolean createANewLobby(String lobby) {
+	public boolean createANewLobby(String lobby, String color) {
 		outputSocket.println(lobby);
 		outputSocket.flush();
 		setPositionGame(inputSocket.nextInt());
-		outputSocket.println(selectColorGamer(/*Metodo grafico che restituisce il colore scelto dal giocatore*/));
+		outputSocket.println(color);
+		outputSocket.flush();
 		return true;
 	}
 
@@ -115,15 +117,14 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		return null;
 	}
 
-	public void enterInALobby(String lobby) {
+	public void enterInALobby(String lobby, String color) {
 		outputSocket.println("enter in a lobby");
 		outputSocket.flush();
 		outputSocket.println(lobby);
 		outputSocket.flush();
+		outputSocket.print(color);
+		outputSocket.flush();
 		setPositionGame(inputSocket.nextInt());
-		/*Chiamata al metodo grafico che stampa tutti i colori che deve essere messo all'interno del metodo sottostante*/inputSocketObject.readObject();
-		selectColorGamer(/*Metodo grafico che restituisce il colore scelto dal giocatore*/);
-		//L'unica cosa che manca è il metodo per il cambio di stage
 	}
 
 	public void selectColorGamer(String color) {
@@ -257,4 +258,13 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		this.start = start;
 	}
 	
+	public String getNamePosition(double x, double y) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public void getCard(int positionGame, String name, CartaSviluppo carta) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
 }

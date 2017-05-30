@@ -12,6 +12,7 @@ import client.gui.controllers.ControllerGame;
 import javafx.scene.control.Tooltip;
 import server.ServerInterface;
 import server.element.CartaSviluppo;
+import server.element.CartaTerritori;
 import server.element.Dado;
 import server.element.Giocatore;
 import server.element.Partita;
@@ -271,11 +272,21 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 
 	public void notifyTurno() throws RemoteException, SQLException {
 		guiGame.notifyTurno();
-		
 	}
 	
 	public void notifySpostamento(String color, double x, double y) throws RemoteException {
 		serverMethods.notifySpostamento(color,x,y,name,positionGame);
+	}
+	public String getNamePosition(double x, double y) throws RemoteException, SQLException {
+		return serverMethods.getNamePosition(x,y,positionGame,name);
+	}
+	public void getCard(CartaSviluppo carta) {
+		try {
+			serverMethods.getCard(positionGame,name,carta);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 }

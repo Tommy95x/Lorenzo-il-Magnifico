@@ -6,7 +6,6 @@ public class Servitori extends Risorse{
 	private String tipo;
 	
 	public Servitori(boolean big) {
-		super(big);
 		setTipo("servitori");
 	}
 

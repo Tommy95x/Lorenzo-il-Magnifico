@@ -3,6 +3,7 @@ package server.element;
 import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import client.ConnectionRmiClient;
 import server.RMIClientInterface;
@@ -17,6 +18,7 @@ public class Giocatore {
 	private FamiliareNeutro[] familiari;
 	private CuboScomunica[] cubiScomunica;
 	private Dado[] dadi;
+	private ArrayList<CartaSviluppo> carte;
 	private Partita partita;
 	private int positionGame;
 	private ThreadSocketServer server = null;
@@ -144,9 +146,19 @@ public class Giocatore {
 
 	public void notifySpostamento(String color, String colorPlayer, double x, double y) {
 		if (client == null)
-			
+			server.moveFamiliareAvv(x,y,colorPlayer,color);
 		else
-			client.moveFamiliareAvv(x, y, colorPlayer, color);
+			try {
+				client.moveFamiliareAvv(x, y, colorPlayer, color);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		
+	}
+
+	public void getCard(CartaSviluppo carta) {
+		carte.add(carta);
+		//Molto probabilmente bisognerà notificare gli altri giocatori
 	}
 }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import client.gui.StartClientGui;
 import client.gui.controllers.ControllerGame;
-import javafx.scene.image.Image;
+import server.element.CartaTerritori;
 import server.element.Dado;
 import server.element.Partita;
 
@@ -26,7 +26,7 @@ public class ConnectionClient implements ClientInterface {
 	}
 
 	@Override
-	public boolean createANewLobby(String lobby) {
+	public boolean createANewLobby(String lobby, String color) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -38,7 +38,7 @@ public class ConnectionClient implements ClientInterface {
 	}
 
 	@Override
-	public void enterInALobby(String lobby, String string) {
+	public void enterInALobby(String lobby, String color) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -114,6 +114,16 @@ public class ConnectionClient implements ClientInterface {
 	}
 
 	public void notifySpostamento(String color, double x, double y) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public String getNamePosition(double x, double y) throws RemoteException, SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void getCard(CartaTerritori cartaTerritori) {
 		// TODO Auto-generated method stub
 		
 	}

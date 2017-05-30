@@ -50,7 +50,9 @@ public class StartServer {
 		// Scrivere la query per aggiungere un nuovo utente al sistema
 		String query = "SELECT CASE WHEN EXISTS( SELECT * FROM UTENTE WHERE (NOMEUTENTE='"+account.toLowerCase()+"' AND PASSWORD='"+pw.toLowerCase()+"'))THEN CAST (1 AS BIT) ELSE CAST(0 AS BIT) END";
 		try {
-			if(!(DB.getConnection(account).createStatement().execute(query))){
+			boolean mom = DB.getConnection(account).createStatement().execute(query);
+			System.out.println(mom);
+			if(!mom){
 				DB.getConnection(account).createStatement().executeUpdate("INSERT INTO UTENTE" + "VALUES('2','"+account.toLowerCase()+"','"+email.toLowerCase()+"','"+pw.toLowerCase()+"')");
 			    return "You are now registered!";
 			}else{

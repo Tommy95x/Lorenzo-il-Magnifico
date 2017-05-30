@@ -146,5 +146,14 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 	public void notifySpostamento(String color, double x, double y, String name, int positionGame) throws RemoteException {
 		commonServer.getLobbyByNumber(positionGame).notifySpostamento(color,commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name),x,y);
 	}
+
+	public String getNamePosition(double x, double y, int positionGame, String name) throws RemoteException, SQLException {
+		return commonServer.getLobbyByNumber(positionGame).getNamePosition(x,y,commonServer.getDBConnection().getConnection(name));
+	}
+
+	public void getCard(int positionGame, String name, CartaSviluppo carta) throws RemoteException {
+		commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).getCard(carta);
+		
+	}
 }
 

@@ -31,4 +31,6 @@ public interface ServerInterface extends Remote {
 	public String controlloPosizionamento(String color,int posisitionGame, String name, double x, double y)throws RemoteException, SQLException;
 	public void changeGamer(int positionGame) throws RemoteException, SQLException;
 	public void notifySpostamento(String color, double x, double y, String name, int positionGame)throws RemoteException;
+	public String getNamePosition(double x, double y, int positionGame, String name)throws RemoteException, SQLException;
+	public void getCard(int positionGame, String name, CartaSviluppo carta)throws RemoteException;
 }

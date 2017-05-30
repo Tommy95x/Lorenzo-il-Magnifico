@@ -94,7 +94,7 @@ public class ControllerMenu {
 		TextField textLobby = new TextField();
 		confirm.setOnAction(event -> {
 			colorSelect();
-			start.getClient().createANewLobby(textLobby.getText());
+			start.getClient().createANewLobby(textLobby.getText(), color);
 			popup.close();
 		});
 		box.getChildren().addAll(new Label("Write e confirm lobby's name"),new Label(),confirm, textLobby);

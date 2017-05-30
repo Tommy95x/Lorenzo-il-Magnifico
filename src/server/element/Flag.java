@@ -3,16 +3,26 @@ package server.element;
 import javafx.scene.image.Image;
 import server.StartServer;
 
+/**
+ * @author Tommy
+ *Class that contain in to every Gamer.
+ */
 public class Flag {
 
 	private String color;
 	private Image flagImage;
-	
+	/**
+	 * Constructor Flag Class where set color and image parameter
+	 * 
+	 * @param color from Gamer's color
+	 * @param commonServer for DB connection request
+	 * @param account Gamer's name
+	 */
 	public Flag(String color, StartServer commonServer, String account){
 		this.setColor(color);
 		setFlagImage(commonServer, account);
 	}
-
+	
 	public String getColor() {
 		return color;
 	}

@@ -104,6 +104,7 @@ public class ThreadSocketServer implements Runnable{
 						output.flush();
 						break;
 					case "register":
+						System.out.println("Richiesta registrazione");
 						account=input.nextLine();
 						pw=input.nextLine();
 						pw2=input.nextLine();
@@ -201,6 +202,12 @@ public class ThreadSocketServer implements Runnable{
 
 
 	public void notifyTurno() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void moveFamiliareAvv(double x2, double y2, String colorPlayer, String color2) {
 		// TODO Auto-generated method stub
 		
 	}	
