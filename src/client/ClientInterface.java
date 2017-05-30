@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 import server.element.Partita;
 
+/**
+ * 
+ * @author tommy
+ *
+ */
 public interface ClientInterface {
 
 	public String login(String account, String pw);
