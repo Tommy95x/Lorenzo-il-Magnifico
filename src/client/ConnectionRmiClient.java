@@ -1,5 +1,6 @@
 package client;
 
+import java.io.Serializable;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -89,10 +90,9 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 
 
 
-	public boolean createANewLobby(String lobby) {
+	public boolean createANewLobby(String lobby,String color) {
 		try {
-			String color = null;
-			positionGame=serverMethods.createNewLobby(lobby, name, color ,this);
+			positionGame=serverMethods.createNewLobby(lobby, name, color ,(server.RMIClientInterface) this);
 			return true;
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -118,7 +118,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	
 	public void enterInALobby(String lobby, String color) {
 		try {
-			positionGame=serverMethods.selectLobby(lobby, name, color, this);
+			positionGame=serverMethods.selectLobby(lobby, name, color, (server.RMIClientInterface) this);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

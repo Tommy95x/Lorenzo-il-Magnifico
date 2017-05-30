@@ -92,7 +92,6 @@ public class StartClientGui extends Application{
 					loader = new FXMLLoader();
 					loader.setLocation(this.getClass().getResource("controllers/MenuGui.fxml"));
 					root = loader.load();
-					primaryStage.setResizable(true);
 					primaryStage.setTitle("Lorenzo il Magnifico");
 					ControllerMenu menu = loader.getController();
 					menu.getStartClient(this);
@@ -114,6 +113,7 @@ public class StartClientGui extends Application{
 					primaryStage.setResizable(true);
 					waitingRoom.getStartClientGui(this);
 					primaryStage.setScene(new Scene(root));
+					//getClient().waitStartGame(this);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

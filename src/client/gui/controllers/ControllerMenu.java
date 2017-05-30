@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import client.gui.StartClientGui;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -35,8 +36,7 @@ public class ControllerMenu {
 	public Button back;
 	@FXML
 	public Label title;
-	
-	
+
 	public void getStartClient(StartClientGui start) {
 		this.setClient(start);
 		Font.loadFont(getClass().getResourceAsStream("Sketch Gothic School.ttf"), 0);
@@ -49,43 +49,45 @@ public class ControllerMenu {
 	public void setClient(StartClientGui start) {
 		this.start = start;
 	}
-	
+
 	@FXML
-	public void enterInALobby(){
+	public void enterInALobby() {
 		ArrayList<Partita> arrayLobbies = start.getClient().lobbiesView();
-		ArrayList<String> nameLobbies = new ArrayList<String>();
-		for(Partita mom : arrayLobbies)
-			nameLobbies.add(mom.getLobby());
-		javafx.collections.ObservableList<String> mom = FXCollections.observableArrayList(nameLobbies);
-		lobbies.setItems(mom);
+		System.out.println(arrayLobbies.size());
+		//ObservableList<String> nameLobbies = FXCollections.observableArrayList();
+		for (Partita mom : arrayLobbies){
+			//nameLobbies.add(mom.getLobbyName());
+			System.out.println(mom.getLobbyName());
+		}
+		//lobbies.setItems(nameLobbies);
 		lobbies.setOpacity(1);
 		lobbies.setDisable(false);
 		back.setDisable(false);
-		back.setOpacity(0);
+		back.setOpacity(1);
 	}
-	
+
 	@FXML
-	public void back(){
+	public void back() {
 		lobbies.setItems(FXCollections.observableArrayList(""));
 		lobbies.setOpacity(0);
 		lobbies.setDisable(true);
 		back.setOpacity(0);
 		back.setDisable(true);
 	}
-	
+
 	@FXML
-	public void selectLobby(MouseEvent e){
+	public void selectLobby(MouseEvent e) {
 		lobby = null;
-		if(e.getClickCount() == 2)
+		if (e.getClickCount() == 2)
 			lobby = (String) lobbies.getSelectionModel().getSelectedItem();
 		colorSelect();
-		start.getClient().enterInALobby(lobby,color);
+		start.getClient().enterInALobby(lobby, color);
 		start.changeStage(4);
 		e.consume();
 	}
 
 	@FXML
-	public void createANewLobby(){
+	public void createANewLobby() {
 		Stage popup = new Stage();
 		popup.setTitle("Write name for a new Lobby");
 		popup.setResizable(false);
@@ -93,20 +95,85 @@ public class ControllerMenu {
 		Button confirm = new Button("Confirm");
 		TextField textLobby = new TextField();
 		confirm.setOnAction(event -> {
-			colorSelect();
-			start.getClient().createANewLobby(textLobby.getText(), color);
 			popup.close();
+			colorSelectFirstTime();
+			if(!textLobby.getText().equals(""))
+				lobby = textLobby.getText();
+				
 		});
-		box.getChildren().addAll(new Label("Write e confirm lobby's name"),new Label(),confirm, textLobby);
-		Scene scene = new Scene(box,200,200);
+		box.getChildren().addAll(new Label("Write e confirm lobby's name"), new Label(), confirm, textLobby);
+		Scene scene = new Scene(box, 200, 200);
 		popup.centerOnScreen();
+		popup.setScene(scene);
+		popup.show();
+	}
+
+	private void colorSelectFirstTime() {
+		Stage popup = new Stage();
+		popup.setTitle("Select Colors");
+		VBox box = new VBox();
+		HBox boxColors = new HBox();
+		HBox boxButton = new HBox();
+		Circle circle;
+		Button b;
+		circle = new Circle();
+		circle.setFill(Color.BLUE);
+		circle.setRadius(50.0);
+		boxColors.getChildren().add(circle);
+		b = new Button("Blue");
+		b.setOnAction(event -> {
+			color = "black";
+			System.out.println(start.getClient().createANewLobby(lobby, color));
+			popup.close();
+			event.consume();
+		});
+		boxButton.getChildren().add(b);
+		circle = new Circle();
+		circle.setFill(Color.ORANGERED);
+		circle.setRadius(50.0);
+		boxColors.getChildren().add(circle);
+		b = new Button("Orange");
+		b.setOnAction(event -> {
+			color = "orange";
+			System.out.println(start.getClient().createANewLobby(lobby, color));
+			popup.close();
+			event.consume();
+		});
+		boxButton.getChildren().add(b);
+		circle = new Circle();
+		circle.setFill(Color.ANTIQUEWHITE);
+		circle.setRadius(50.0);
+		boxColors.getChildren().add(circle);
+		b = new Button("White");
+		b.setOnAction(event -> {
+			color = "white";
+			System.out.println(start.getClient().createANewLobby(lobby, color));
+			popup.close();
+			event.consume();
+		});
+		boxButton.getChildren().add(b);
+		circle = new Circle();
+		circle.setFill(Color.DARKGREEN);
+		circle.setRadius(50.0);
+		boxColors.getChildren().add(circle);
+		b = new Button("Green");
+		b.setOnAction(event -> {
+			color = "green";
+			System.out.println(start.getClient().createANewLobby(lobby, color));
+			popup.close();
+			event.consume();
+		});
+		boxButton.getChildren().add(b);
+		box.getChildren().addAll(boxColors,boxButton);
+		popup.centerOnScreen();
+		Scene scene = new Scene(box, 200, 200);
 		popup.setScene(scene);
 		popup.show();
 	}
 
 	private void colorSelect() {
 		try {
-			
+
 			Stage popup = new Stage();
 			popup.setTitle("Select Colors");
 			VBox box = new VBox();
@@ -115,15 +182,15 @@ public class ControllerMenu {
 			Circle circle;
 			Button b;
 			String[] colors = start.getClient().getColors();
-			for(int i=0; i<4;i++){
-				if(colors[i] != null){
-					switch(colors[i]){
-					case "black":
+			for (int i = 0; i < 4; i++) {
+				if (colors[i] != null) {
+					switch (colors[i]) {
+					case "blue":
 						circle = new Circle();
-						circle.setFill(Color.BLACK);
+						circle.setFill(Color.BLUE);
 						boxColors.getChildren().add(circle);
 						b = new Button("Black");
-						b.setOnAction(event ->{
+						b.setOnAction(event -> {
 							color = "black";
 							event.consume();
 						});
@@ -134,7 +201,7 @@ public class ControllerMenu {
 						circle.setFill(Color.ORANGERED);
 						boxColors.getChildren().add(circle);
 						b = new Button("Orange");
-						b.setOnAction(event ->{
+						b.setOnAction(event -> {
 							color = "orange";
 							event.consume();
 						});
@@ -145,7 +212,7 @@ public class ControllerMenu {
 						circle.setFill(Color.ANTIQUEWHITE);
 						boxColors.getChildren().add(circle);
 						b = new Button("White");
-						b.setOnAction(event ->{
+						b.setOnAction(event -> {
 							color = "white";
 							event.consume();
 						});
@@ -156,7 +223,7 @@ public class ControllerMenu {
 						circle.setFill(Color.DARKGREEN);
 						boxColors.getChildren().add(circle);
 						b = new Button("Green");
-						b.setOnAction(event ->{
+						b.setOnAction(event -> {
 							color = "green";
 							event.consume();
 						});
@@ -165,8 +232,8 @@ public class ControllerMenu {
 					}
 				}
 			}
-			box.getChildren().addAll(new Label("Selezione il colore che vuoi per le tue pedine") ,boxColors);
-			Scene scene = new Scene(box,200,200);
+			box.getChildren().addAll(new Label("Selezione il colore che vuoi per le tue pedine"), boxColors);
+			Scene scene = new Scene(box, 200, 200);
 			popup.centerOnScreen();
 			popup.setScene(scene);
 			popup.show();
@@ -174,5 +241,5 @@ public class ControllerMenu {
 			e.printStackTrace();
 		}
 	}
-	
+
 }

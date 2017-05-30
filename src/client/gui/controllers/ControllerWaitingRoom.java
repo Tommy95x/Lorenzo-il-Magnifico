@@ -47,7 +47,6 @@ public class ControllerWaitingRoom {
 	}
 	
 	public void fade() throws IOException{
-		
 		FileReader file = new FileReader("C:/Users/tommy/git/Lorenzo-il-Magnifico/src/client/gui/controllers/Images.txt");//creo il file da leggere
 		fileReader = new BufferedReader(file);
 		int random = (int) (Math.random()*4);//devo moltiplicare per il numero massimo di immagini che inserisco
@@ -75,7 +74,6 @@ public class ControllerWaitingRoom {
 		fadeTransition2.setFromValue(0.0);
 		fadeTransition2.setToValue(1.0);
 		fadeTransition2.play();
-		//start.getClient().waitStartGame(start);
 	}
 
 	@FXML
@@ -87,5 +85,4 @@ public class ControllerWaitingRoom {
 			e.printStackTrace();
 		}
 	}
-	
 }

@@ -22,7 +22,7 @@ public class Giocatore {
 	private Partita partita;
 	private int positionGame;
 	private ThreadSocketServer server = null;
-	private ConnectionRmiClient client = null;
+	private RMIClientInterface client = null;
 	private Flag flag;
 	private int nScomuniche = 0;
 
@@ -88,9 +88,9 @@ public class Giocatore {
 			this.server = server;
 	}
 
-	public void getClient(ConnectionRmiClient client) {
-		if (client == null && server == null)
-			this.client = client;
+	public void getClient(RMIClientInterface client2) {
+		if (client2 == null && server == null)
+			this.client = client2;
 	}
 
 	public void notifyStartGame() throws RemoteException {

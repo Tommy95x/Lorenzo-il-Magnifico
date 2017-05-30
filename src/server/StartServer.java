@@ -88,7 +88,7 @@ public class StartServer {
 	}
 	
 	public String getNameLobby(int i){
-		return lobbies.get(i).getLobby();
+		return lobbies.get(i).getLobbyName();
 	}
 
 	public void addGamer(int positionGame, String color, String account) {
@@ -105,7 +105,7 @@ public class StartServer {
 	
 	public Partita getLobbyByName(String lobby){
 		for(Partita p:lobbies)
-			if(p.getLobby().equals(lobby))
+			if(p.getLobbyName().equals(lobby))
 				return p;
 		return null;
 	}

@@ -14,7 +14,7 @@ public class Partita{
 	private final int DIM=4;
 	private final int NUMCARTE=4;
 	private int turno;
-	private String lobby;
+	private String name;
 	private Giocatore[] giocatori = new Giocatore[DIM];
 	private boolean[] start = new boolean[DIM];
 	private CartaPersonaggi[] cartePersonaggio = new CartaPersonaggi[NUMCARTE];
@@ -77,8 +77,8 @@ public class Partita{
 	}
 
 
-	public String getLobby() {
-		return lobby;
+	public String getLobbyName() {
+		return name;
 	}
 
 	public void addGiocatore(Giocatore giocatore) {
@@ -99,7 +99,7 @@ public class Partita{
 	}
 	
 	public void setLobby(String lobby) {
-		this.lobby = lobby;
+		this.name = lobby;
 	}
 
 	public boolean addTurno() {

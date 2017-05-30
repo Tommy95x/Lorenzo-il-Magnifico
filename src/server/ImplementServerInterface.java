@@ -40,7 +40,7 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		return commonServer.registerNewClient(username, pw1, email);
 	}
 
-	public int createNewLobby(String lobby, String account, String color, ConnectionRmiClient connectionRmiClient) throws RemoteException, SQLException {
+	public int createNewLobby(String lobby, String account, String color, RMIClientInterface connectionRmiClient) throws RemoteException, SQLException {
 		commonServer.addGame(lobby, account);
 		commonServer.setCards(commonServer.getLobbyByName(lobby),account);
 		commonServer.getLobbyByName(lobby).setCardsScomunica(commonServer.getDBConnection(), account);
@@ -60,11 +60,11 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		return commonServer.getLobbies();
 	}
 	
-	public int selectLobby(String lobby, String account, String color, ConnectionRmiClient connectionRmiClient) throws RemoteException{
+	public int selectLobby(String lobby, String account, String color, RMIClientInterface client) throws RemoteException{
 		int numberGame=commonServer.getIndicePartita(lobby);
 		commonServer.addGamer(numberGame, color, account);
 		commonServer.getLobbyByName(lobby).changeColors(color);
-		commonServer.getLobbyByName(lobby).getGiocatoreByName(account).getClient(connectionRmiClient);
+		commonServer.getLobbyByName(lobby).getGiocatoreByName(account).getClient(client);
 		commonServer.getLobbyByName(lobby).getGiocatoreByName(account).setFlag(new Flag(color, commonServer, account));
 		return numberGame;
 	}
@@ -86,18 +86,6 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		
 		
 	}
-
-	/*@Override
-	public void moveDisco(int x, int y) throws RemoteException{
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void moveFamiliareAvv(int x, int y, String nameMove) throws RemoteException{
-		// TODO Auto-generated method stub
-		
-	}*/
 
 	@Override
 	public void showCards(Image card, String nameCard) throws RemoteException{
@@ -155,5 +143,6 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).getCard(carta);
 		
 	}
+
 }
 
