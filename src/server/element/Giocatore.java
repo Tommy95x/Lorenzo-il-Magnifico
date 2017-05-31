@@ -1,15 +1,16 @@
 package server.element;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import client.ConnectionRmiClient;
-import server.RMIClientInterface;
+import client.RMIClientInterface;
 import server.ThreadSocketServer;
 
-public class Giocatore {
+public class Giocatore implements Serializable{
 
 	private String name;
 	private String color;
@@ -29,29 +30,31 @@ public class Giocatore {
 	public Giocatore(String color, Partita partita, String name, int positionGame) {
 		this.name = name;
 		this.positionGame = positionGame;
-		int i;
 		this.setColor(color);
-		discoGiocatore[0] = new Disco(color);
-		discoGiocatore[1] = new DiscoFede(color);
-		discoGiocatore[2] = new DiscoMilitare(color);
-		discoGiocatore[3] = new DiscoVittoria(color);
+		
 		risorse = new Portafoglio();
 		familiari = new FamiliareNeutro[4];
 		cubiScomunica = new CuboScomunica[3];
+		discoGiocatore = new Disco[4];
 		dadi = new Dado[3];
-		for (i = 0; i < 4; i++) {
+		for (int i = 0; i < 4; i++) {
 			switch (i) {
 			case 0:
 				familiari[i] = new FamiliareNeutro();
+				discoGiocatore[i] = new Disco(color);
 				break;
 			case 1:
 				familiari[i] = new Familiare("black");
+				discoGiocatore[i] = new DiscoFede(color);
 				break;
 			case 2:
 				familiari[i] = new Familiare("orange");
+				discoGiocatore[i] = new DiscoMilitare(color);
 				break;
 			case 3:
 				familiari[i] = new Familiare("white");
+				discoGiocatore[i] = new DiscoVittoria(color);
+				break;
 			}
 		}
 	}

@@ -98,24 +98,17 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 	}
 	
 	private void startMenu() throws SQLException {
-		System.out.println("Premi 1 se vuoi creare una nuova lobby di gioco o 2 se vuoi entrare in una lobby gia' esistente");
 		String lobby;
 		String[] colors = null;
 		String color;
+		System.out.println("Premi 1 se vuoi creare una nuova lobby di gioco o 2 se vuoi entrare in una lobby gia' esistente");
 		int menu = input.nextInt();
+		input.nextLine();
 		switch(menu){
 			case 1: 
 				System.out.println("Inserisci il nome della nuova lobby");
 				lobby = input.nextLine();
-				try {
-					colors = serverMethods.getColors(lobby);
-				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				for(int i=0;i<colors.length;i++){
-					System.out.println(colors);
-				}
+				System.out.println("Questi sono i colori che puoi scegliere: blue, orange, white e green");
 				System.out.println("Inserisci il colore che vorrai avere");
 				color = input.nextLine();
 				try {
@@ -134,7 +127,7 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 					e.printStackTrace();
 				}
 				for(int i=0; i<lobbies.size();i++){
-					System.out.println(lobbies.get(i).getLobby());
+					System.out.println(lobbies.get(i).getLobbyName());
 				}
 				System.out.println("Scrivi il nome della lobby in cui vuoi entrare");
 				lobby = input.nextLine();

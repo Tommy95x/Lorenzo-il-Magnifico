@@ -1,10 +1,14 @@
 package server.element;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-/*Classe che verr� posseduta da ogni giocatore e che conterr� tutti i punti per categoria di risorsa che il 
-  giocatore accumuler� durante la partita*/
-public class Portafoglio {
+/**
+ * @author Tommy
+ *
+ *Classe che verra' posseduta da ogni giocatore e che conterra' tutti i punti per categoria di risorsa che il giocatore accumulera' durante la partita
+ */
+public class Portafoglio implements Serializable{
 
 	private ArrayList<Legno> legno = new ArrayList<Legno>();
 	private ArrayList<Pietra> pietra = new ArrayList<Pietra>();
@@ -18,13 +22,13 @@ public class Portafoglio {
 	public Portafoglio(){
 		int i;
 		for(i=0;i<2;i++)
-			legno.add(new Legno(false));
+			legno.add(new Legno());
 		for(i=0;i<2;i++)
-			pietra.add(new Pietra(false));
+			pietra.add(new Pietra());
 		for(i=0;i<3;i++)
-			servitori.add(new Servitori(false));
+			servitori.add(new Servitori());
 		for(i=0;i<5;i++)
-			monete.add(new Monete(false));
+			monete.add(new Monete());
 		puntiTot=0;
 		puntiMilitari=0;
 		puntiFede=0;
@@ -55,23 +59,21 @@ public class Portafoglio {
 		int i;
 		switch(risorsa){
 			case "legno":
-				for(i=0;i<legno.size();i++){
-					dim=dim+legno.get(i).getValue();
-				}
+				dim=legno.size();
 				break;
 			case "monete":
 				for(i=0;i<monete.size();i++){
-					dim=dim+monete.get(i).getValue();
+					dim=monete.size();
 				}
 				break;
 			case "pietra":
 				for(i=0;i<pietra.size();i++){
-					dim=dim+pietra.get(i).getValue();
+					dim=pietra.size();
 				}
 				break;
 			case "servitori":
 				for(i=0;i<servitori.size();i++){
-					dim=dim+servitori.get(i).getValue();
+					dim=servitori.size();
 				}
 				break;
 		}

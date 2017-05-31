@@ -82,8 +82,8 @@ public class ControllerConnection {
 
 	@FXML
 	public void playWithConsole(){
-		start.setClient(new ConnectionClientConsole());
 		start.closeStageForPlayWithConsole();
+		start.setClient(new ConnectionClientConsole());
 	}
 	
 	public ConnectionClient getClient() {

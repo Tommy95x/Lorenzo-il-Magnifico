@@ -1,5 +1,6 @@
 package server.element;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -9,7 +10,7 @@ import server.database.ConnectionDatabase;
 
 /*Parte condivisa dai vari giocatori e che possiederà tutte le azioni che un giocatore può eseguire. Ogni azione della partita
   sarà un metodo synchronized*/
-public class Partita{
+public class Partita implements Serializable{
 
 	private final int DIM=4;
 	private final int NUMCARTE=4;
@@ -27,8 +28,7 @@ public class Partita{
 	
 	public Partita(String lobby, String namePlayer, int positionGame){
 		this.setLobby(lobby);
-		addGiocatore(new Giocatore(lobby, this,namePlayer,positionGame));
-		colors[0] = "black"; 
+		colors[0] = "blue"; 
 		colors[1] = "orange";
 		colors[2] = "white";
 		colors[3] = "green"; 
@@ -82,8 +82,12 @@ public class Partita{
 	}
 
 	public void addGiocatore(Giocatore giocatore) {
-		if(giocatori.length<DIM)
-			giocatori[(giocatori.length)+1]= giocatore;
+		for(int i=0;i<giocatori.length;i++){
+			if(giocatori[i]==null){
+				giocatori[i]=giocatore;
+				return;
+			}
+		}
 	}
 
 	public Giocatore getGiocatoreByName(String name){
@@ -182,7 +186,7 @@ public class Partita{
 
 	public void changeColors(String color) {
 		for(int i = 0; i<DIM;i++){
-			if(colors[i].equals(color)){
+			if(colors[i].equals(color) || colors[i]==null){
 				colors[i] = null;
 				break;
 			}

@@ -14,6 +14,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * @author Tommy
+ *
+ *Claase che viene avviata direttamente dall'utente all'avvio del gioco, main dell'applicazione lato client inizialmente di pura grafica successivamente diventa anche di logica nel momento in cui l'utente deciderà
+ *in quale modalità giocare. Le modalità disponibili sono mediante una grafica con una connessione RMI o Socket, o da Console con una sola connessione RMI.
+ */
 public class StartClientGui extends Application{
 
 	private FXMLLoader loader = new FXMLLoader(); ;

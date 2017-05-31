@@ -21,7 +21,7 @@ import server.element.Partita;
 /*
  * Classe di implementazione 
  */
-public class ConnectionRmiClient extends ConnectionClient implements ClientInterface, RMIClientInterface{
+public class ConnectionRmiClient extends ConnectionClient implements ClientInterface, RMIClientInterface,Serializable{
 
 	private int port;
 	private ServerInterface serverMethods;
@@ -92,7 +92,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 
 	public boolean createANewLobby(String lobby,String color) {
 		try {
-			positionGame=serverMethods.createNewLobby(lobby, name, color ,(server.RMIClientInterface) this);
+			positionGame=serverMethods.createNewLobby(lobby, name, color , this);
 			return true;
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -118,7 +118,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	
 	public void enterInALobby(String lobby, String color) {
 		try {
-			positionGame=serverMethods.selectLobby(lobby, name, color, (server.RMIClientInterface) this);
+			positionGame=serverMethods.selectLobby(lobby, name, color, (client.RMIClientInterface) this);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -1,5 +1,6 @@
 package server.element;
 
+import java.io.Serializable;
 import java.sql.Connection;
 
 import javafx.scene.control.Tooltip;
@@ -10,7 +11,7 @@ import javafx.scene.image.ImageView;
  *Tessera che verra' posizionata sul tabellone a inizio partita, possiede un periodo e un effetto che viene attivato
   su ogni giocatore scomunicato
  */
-public class TesseraScomunica {
+public class TesseraScomunica implements Serializable{
 
 	private String oggettoPenalita;
 	private int valorePenalita;

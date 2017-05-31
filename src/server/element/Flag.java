@@ -1,5 +1,7 @@
 package server.element;
 
+import java.io.Serializable;
+
 import javafx.scene.image.Image;
 import server.StartServer;
 
@@ -7,7 +9,7 @@ import server.StartServer;
  * @author Tommy
  *Class that contain in to every Gamer.
  */
-public class Flag {
+public class Flag implements Serializable{
 
 	private String color;
 	private Image flagImage;

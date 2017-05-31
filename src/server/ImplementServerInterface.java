@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import client.ConnectionRmiClient;
+import client.RMIClientInterface;
 import javafx.scene.image.Image;
 import server.element.CartaSviluppo;
 import server.element.Dado;
@@ -42,12 +43,12 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 
 	public int createNewLobby(String lobby, String account, String color, RMIClientInterface connectionRmiClient) throws RemoteException, SQLException {
 		commonServer.addGame(lobby, account);
-		commonServer.setCards(commonServer.getLobbyByName(lobby),account);
-		commonServer.getLobbyByName(lobby).setCardsScomunica(commonServer.getDBConnection(), account);
+		//commonServer.setCards(commonServer.getLobbyByName(lobby),account);
+		//commonServer.getLobbyByName(lobby).setCardsScomunica(commonServer.getDBConnection(), account);
 		commonServer.getLobbyByName(lobby).addGiocatore(new Giocatore(color,commonServer.getLobbyByName(lobby), account, commonServer.getIndicePartita(lobby)));
 		commonServer.getLobbyByName(lobby).changeColors(color);
 		commonServer.getLobbyByName(lobby).getGiocatoreByName(account).getClient(connectionRmiClient);
-		commonServer.getLobbyByName(lobby).getGiocatoreByName(account).setFlag(new Flag(color, commonServer, account));
+		//commonServer.getLobbyByName(lobby).getGiocatoreByName(account).setFlag(new Flag(color, commonServer, account));
 		return commonServer.getIndicePartita(lobby);
 	}
 
@@ -57,6 +58,7 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 	}
 
 	public ArrayList<Partita> getLobby() throws RemoteException{
+		System.out.println(commonServer.getLobbies().size());
 		return commonServer.getLobbies();
 	}
 	

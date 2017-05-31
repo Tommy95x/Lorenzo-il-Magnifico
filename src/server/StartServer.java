@@ -71,14 +71,20 @@ public class StartServer {
 				return "Sorry, but the name of the game is already use, change name";
 		}
 		lobbies.add(new Partita(partita,account,getDimLobbies()));
+		for(Partita mom : lobbies){
+			System.out.println(mom.getLobbyName());
+		}
 		return "Welcome to the lobby";
 	}
 
 	
 	public int getIndicePartita(String name){
 		int i=0;
-		while(!name.equals(lobbies.get(i))){
-			i++;
+		while(true){
+			if(!lobbies.get(i).getLobbyName().equals(name))
+				i++;
+			else
+				break;
 		}
 		return i;
 	}

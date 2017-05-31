@@ -5,8 +5,7 @@ public class Legno extends Risorse{
 
 	private String tipo;
 	
-	public Legno(boolean big) {
-		super(big);
+	public Legno() {
 		setTipo("legno");
 	}
 

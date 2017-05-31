@@ -5,8 +5,7 @@ public class Monete extends Risorse{
 
 	private String tipo;
 	
-	public Monete(boolean big) {
-		super(big);
+	public Monete() {
 		setTipo("monete");
 	}
 

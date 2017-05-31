@@ -5,8 +5,7 @@ public class Pietra extends Risorse{
 
 	private String tipo;
 	
-	public Pietra(boolean big) {
-		super(big);
+	public Pietra() {
 		setTipo("pietra");
 	}
 
