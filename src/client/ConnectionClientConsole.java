@@ -209,7 +209,7 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 				else{
 					double y = input.nextDouble();
 					input.nextLine();
-					String mom = serverMethods.controlloPosizionamento("black", positionGame, name, Double.valueOf(action), y);
+					String mom = serverMethods.controlloPosizionamento("black", positionGame, name, Double.valueOf(action), y, 0);
 					if(mom.equals("OK")){
 						System.out.println("Familiare posizionato");
 					}else{
@@ -228,7 +228,7 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 				else{
 					double y = input.nextDouble();
 					input.nextLine();
-					String mom = serverMethods.controlloPosizionamento("black", positionGame, name, Double.valueOf(action), y);
+					String mom = serverMethods.controlloPosizionamento("black", positionGame, name, Double.valueOf(action), y,0);
 					if(mom.equals("OK")){
 						System.out.println("Familiare posizionato");
 					}else{
@@ -247,7 +247,7 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 				else{
 					double y = input.nextDouble();
 					input.nextLine();
-					String mom = serverMethods.controlloPosizionamento("orange", positionGame, name, Double.valueOf(action), y);
+					String mom = serverMethods.controlloPosizionamento("orange", positionGame, name, Double.valueOf(action), y,0);
 					if(mom.equals("OK")){
 						System.out.println("Familiare posizionato");
 					}else{
@@ -266,7 +266,7 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 				else{
 					double y = input.nextDouble();
 					input.nextLine();
-					String mom = serverMethods.controlloPosizionamento("orange", positionGame, name, Double.valueOf(action), y);
+					String mom = serverMethods.controlloPosizionamento("orange", positionGame, name, Double.valueOf(action), y,0);
 					if(mom.equals("OK")){
 						System.out.println("Familiare posizionato");
 					}else{
@@ -285,7 +285,7 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 				else{
 					double y = input.nextDouble();
 					input.nextLine();
-					String mom = serverMethods.controlloPosizionamento("white", positionGame, name, Double.valueOf(action), y);
+					String mom = serverMethods.controlloPosizionamento("white", positionGame, name, Double.valueOf(action), y,0);
 					if(mom.equals("OK")){
 						System.out.println("Familiare posizionato");
 					}else{
@@ -304,7 +304,7 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 				else{
 					double y = input.nextDouble();
 					input.nextLine();
-					String mom = serverMethods.controlloPosizionamento("white", positionGame, name, Double.valueOf(action), y);
+					String mom = serverMethods.controlloPosizionamento("white", positionGame, name, Double.valueOf(action), y,0);
 					if(mom.equals("OK")){
 						System.out.println("Familiare posizionato");
 					}else{
@@ -323,7 +323,7 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 				else{
 					double y = input.nextDouble();
 					input.nextLine();
-					String mom = serverMethods.controlloPosizionamento("neutro", positionGame, name, Double.valueOf(action), y);
+					String mom = serverMethods.controlloPosizionamento("neutro", positionGame, name, Double.valueOf(action), y,0);
 					if(mom.equals("OK")){
 						System.out.println("Familiare posizionato");
 					}else{
@@ -342,7 +342,7 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 				else{
 					double y = input.nextDouble();
 					input.nextLine();
-					String mom = serverMethods.controlloPosizionamento("neutro", positionGame, name, Double.valueOf(action), y);
+					String mom = serverMethods.controlloPosizionamento("neutro", positionGame, name, Double.valueOf(action), y,0);
 					if(mom.equals("OK")){
 						System.out.println("Familiare posizionato");
 					}else{

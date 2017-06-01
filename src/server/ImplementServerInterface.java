@@ -84,11 +84,6 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		return commonServer.getLobbyByNumber(positionGame).getCards();
 	}
 
-	public void mossa(String account, int positionGame, String color, int x, int y) throws RemoteException{
-		
-		
-	}
-
 	@Override
 	public void showCards(Image card, String nameCard) throws RemoteException{
 		
@@ -123,8 +118,8 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		return commonServer.getLobbyByName(lobby).getColors();
 	}
 
-	public String controlloPosizionamento(String color, int posisitionGame, String name, double x, double y) throws RemoteException, SQLException {	
-		return commonServer.getLobbyByNumber(posisitionGame).getGiocatoreByName(name).controlloPosizionamento(color, x,y, commonServer.getDBConnection().getConnection(name));
+	public String controlloPosizionamento(String color, int posisitionGame, String name, double x, double y, Integer agg) throws RemoteException, SQLException {	
+		return commonServer.getLobbyByNumber(posisitionGame).getGiocatoreByName(name).controlloPosizionamento(color, x,y, commonServer.getDBConnection().getConnection(name), agg);
 	}
 
 	public void changeGamer(int positionGame) throws RemoteException, SQLException {
@@ -145,13 +140,17 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		
 	}
 
-	public void exitToTheGame(String lobby, String color, String name) {
+	public void exitToTheGame(String lobby, String color, String name) throws RemoteException{
 		commonServer.getLobbyByName(lobby).exitToGame(name,color);
 	}
 
-	@Override
-	public ArrayList<CartaSviluppo> getCardsGamer(int positionGame, String name) {
+	public ArrayList<CartaSviluppo> getCardsGamer(int positionGame, String name) throws RemoteException{
 		return commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).getCardsGamer();
+	}
+
+	public void giveCard(CartaSviluppo carta, String name, int positionGame) throws RemoteException {
+		commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).addCard(carta);
+		
 	}
 
 }

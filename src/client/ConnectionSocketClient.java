@@ -11,7 +11,6 @@ import java.util.Scanner;
 
 import client.gui.StartClientGui;
 import client.gui.controllers.ControllerGame;
-import javafx.scene.image.Image;
 import server.element.CartaSviluppo;
 import server.element.Dado;
 import server.element.Partita;
@@ -33,6 +32,7 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 	private String name;
 	private ControllerGame guiGame;
 	private StartClientGui start;
+	private String lobby;
 	
 	public ConnectionSocketClient(){
 		System.out.println("Start Socket Client");
@@ -47,7 +47,7 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 			//Creo i canali di comunicazione
 			inputSocket = new Scanner(socket.getInputStream());
 			outputSocket = new PrintWriter(socket.getOutputStream());
-			//inputSocketObject = new ObjectInputStream(socket.getInputStream());
+			inputSocketObject = new ObjectInputStream(socket.getInputStream());
 			System.out.println("Create a new connection");
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
@@ -120,6 +120,7 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 	}
 
 	public void enterInALobby(String lobby, String color) {
+		this.lobby = lobby;
 		outputSocket.println("enter in a lobby");
 		outputSocket.flush();
 		outputSocket.println(lobby);
@@ -171,7 +172,7 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		//Dovr� rinviare indietro le modifiche da apportare
 	}
 
-	public String controlloPosizionamento(String color, double x, double y){
+	public String controlloPosizionamento(String color, double x, double y, int agg){
 		outputSocket.println("controllo posizionamento");
 		outputSocket.flush();
 		outputSocket.print(color);
@@ -183,6 +184,9 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		outputSocket.println(positionGame);
 		outputSocket.flush();
 		outputSocket.println(name);
+		outputSocket.flush();
+		outputSocket.println(agg);
+		outputSocket.flush();
 		return inputSocket.nextLine();
 	}
 	
@@ -283,5 +287,15 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 	public void waitTurno() {
 		if(inputSocket.nextLine().equals("gioca"))
 			guiGame.enableGame();
+	}
+	
+	public void setCardGiocatore(CartaSviluppo carta) {
+		outputSocket.println("getCardsGamer");
+		outputSocket.flush();
+		outputSocket.println(lobby);
+		outputSocket.flush();
+		outputSocket.println(name);
+		outputSocket.println(carta);
+		outputSocket.flush();
 	}
 }

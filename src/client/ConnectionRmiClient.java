@@ -149,8 +149,6 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		}
 	}
 
-
-	@Override
 	public Dado[] lanciaDadi(int positionGame, String name) throws SQLException {
 		//Risposta al metodo grafico con il lancio di un metodo grafico che modificher� il tabellone 
 		try {
@@ -227,9 +225,9 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	}
 
 	
-	public String controlloPosizionamento(String color, double x, double y) throws RemoteException {
+	public String controlloPosizionamento(String color, double x, double y, Integer agg) throws RemoteException {
 		try {
-			return serverMethods.controlloPosizionamento(color, positionGame, name, x, y);
+			return serverMethods.controlloPosizionamento(color, positionGame, name, x, y,agg);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -271,7 +269,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	}
 
 	public void notifyTurno() throws RemoteException, SQLException {
-		guiGame.notifyTurno();
+		guiGame.enableGame();
 	}
 	
 	public void notifySpostamento(String color, double x, double y) throws RemoteException {
@@ -282,20 +280,33 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		return serverMethods.getNamePosition(x,y,positionGame,name);
 	}
 	
-	public void getCard(CartaSviluppo carta) {
+	public void exitToTheGame(String lobby,String color) {
 		try {
-			serverMethods.getCard(positionGame,name,carta);
+			serverMethods.exitToTheGame(lobby, color, name);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
-	}
-	
-	public void exitToTheGame(String lobby,String color) {
-		serverMethods.exitToTheGame(lobby, color, name);
+		}
 	}
 	
 	public ArrayList<CartaSviluppo> getCardsGamer() {
-		return serverMethods.getCardsGamer(positionGame,name);
+		try {
+			return serverMethods.getCardsGamer(positionGame,name);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
+	
+	public void setCardGiocatore(CartaSviluppo carta) {
+		try {
+			serverMethods.giveCard(carta,name,positionGame);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 }

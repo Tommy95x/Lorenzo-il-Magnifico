@@ -227,11 +227,11 @@ public class ControllerGame {
 	/*
 	 * Controllo per verificare se si ha un numero di punti del dado
 	 */
-	public boolean controlloPosizionamento(String color, double x, double y) {
+	public boolean controlloPosizionamento(String color, double x, double y, Integer integer) {
 		String mom = null;
 		boolean risposta = false;
 		try {
-			mom = start.getClient().controlloPosizionamento(color, x, y);
+			mom = start.getClient().controlloPosizionamento(color, x, y, integer);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -247,7 +247,7 @@ public class ControllerGame {
 			Button bOk = new Button("OK");
 			Button bCancel = new Button("Cancel");
 			bOk.setOnAction(event -> {
-				risposta = true;
+				controlloPosizionamento(color,x,y,Integer.getInteger(text.getText()));
 			});
 			bCancel.setOnAction(event -> {
 				switch (color) {
@@ -264,7 +264,6 @@ public class ControllerGame {
 					familiareBianco.setImage(new Image(getClass().getResourceAsStream("")));
 					break;
 				}
-				risposta = false;
 			});
 		} else if (mom == null) {
 			Alert alert = new Alert(AlertType.WARNING);
@@ -272,8 +271,10 @@ public class ControllerGame {
 			alert.setTitle("Lost DB connection");
 			alert.setContentText("Ci dispiace ma il nostro servizio a smesso di funzionare");
 			alert.showAndWait();
-		}
-		return risposta;
+			return false;
+		}else if(mom.equals("OK"))
+			return true;
+		return false;
 	}
 
 	public void movePuntiFede(String color, double x, double y) {
@@ -595,17 +596,8 @@ public class ControllerGame {
 		}
 	}
 
-	public void notifyTurno() {
-		familiareNeutro.setDisable(false);
-		familiareNero.setDisable(false);
-		familiareArancio.setDisable(false);
-		familiareBianco.setDisable(false);
-	}
-
 	public void notifySpostamento(String color, double x, double y) throws RemoteException {
-		
 		start.getClient().notifySpostamento(color,x,y);
-		
 	}
 
 	public String getNamePosition(double x, double y) {
@@ -622,73 +614,87 @@ public class ControllerGame {
 		}
 	}
 
-	public void setCard(String namePosition) {
+	public void setCardGiocatore(String namePosition) {
 		switch(namePosition){
 		case "primo piano territori":
 			carteTerritoriGiocatore.getChildren().add(carteTerritori.getChildren().get(0));
 			carteTerritori.getChildren().set(0, new ImageView(new Image(getClass().getResourceAsStream(""))));
-			start.getClient().getCard(arrayCarteTerritori[0]);
-			//Acquisire gli effetti della carta e modificarla
+			start.getClient().setCardGiocatore(arrayCarteTerritori[0]);
 			break;
 		case "secondo piano territori":
 			carteTerritoriGiocatore.getChildren().add(carteTerritori.getChildren().get(1));
 			carteTerritori.getChildren().set(1, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			start.getClient().setCardGiocatore(arrayCarteTerritori[1]);
 			break;
 		case "terzo piano territori":
 			carteTerritoriGiocatore.getChildren().add(carteTerritori.getChildren().get(2));
 			carteTerritori.getChildren().set(2, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			start.getClient().setCardGiocatore(arrayCarteTerritori[2]);
 			break;
 		case "quarto piano territori":
 			carteTerritoriGiocatore.getChildren().add(carteTerritori.getChildren().get(3));
 			carteTerritori.getChildren().set(3, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			start.getClient().setCardGiocatore(arrayCarteTerritori[3]);
 			break;
 		case "primo piano edifici":
 			carteEdificiGiocatore.getChildren().add(carteTerritori.getChildren().get(0));
 			carteEdifici.getChildren().set(0, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			start.getClient().setCardGiocatore(arrayCarteEdifici[0]);
 			break;
 		case "secondo piano edifici":
 			carteEdificiGiocatore.getChildren().add(carteTerritori.getChildren().get(1));
 			carteEdifici.getChildren().set(1, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			start.getClient().setCardGiocatore(arrayCarteEdifici[1]);
 			break;
 		case "terzo piano edifici":
 			carteEdificiGiocatore.getChildren().add(carteTerritori.getChildren().get(2));
 			carteEdifici.getChildren().set(2, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			start.getClient().setCardGiocatore(arrayCarteEdifici[2]);
 			break;
 		case "quarto piano edifici":
 			carteEdificiGiocatore.getChildren().add(carteTerritori.getChildren().get(3));
 			carteEdifici.getChildren().set(3, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			start.getClient().setCardGiocatore(arrayCarteEdifici[3]);
 			break;
 		case "primo piano imprese":
 			carteImpresaGiocatore.getChildren().add(carteTerritori.getChildren().get(0));
 			carteImprese.getChildren().set(0, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			start.getClient().setCardGiocatore(arrayCarteImpresa[0]);
 			break;
 		case "secondo piano imprese":
 			carteImpresaGiocatore.getChildren().add(carteTerritori.getChildren().get(1));
 			carteImprese.getChildren().set(1, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			start.getClient().setCardGiocatore(arrayCarteImpresa[1]);
 			break;
 		case "terzo piano imprese":
 			carteImpresaGiocatore.getChildren().add(carteTerritori.getChildren().get(2));
 			carteImprese.getChildren().set(2, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			start.getClient().setCardGiocatore(arrayCarteImpresa[2]);
 			break;
 		case "quarto piano imprese":
 			carteImpresaGiocatore.getChildren().add(carteTerritori.getChildren().get(3));
 			carteImprese.getChildren().set(3, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			start.getClient().setCardGiocatore(arrayCarteImpresa[3]);
 			break;
 		case "primo piano personaggi":
 			cartePersonaggiGiocatore.getChildren().add(carteTerritori.getChildren().get(0));
 			cartePersonaggi.getChildren().set(0, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			start.getClient().setCardGiocatore(arrayCartePersonaggi[0]);
 			break;
 		case "secondo piano personaggi":
 			cartePersonaggiGiocatore.getChildren().add(carteTerritori.getChildren().get(1));
 			cartePersonaggi.getChildren().set(1, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			start.getClient().setCardGiocatore(arrayCartePersonaggi[1]);
 			break;
 		case "terzo piano personaggi":
 			cartePersonaggiGiocatore.getChildren().add(carteTerritori.getChildren().get(2));
 			cartePersonaggi.getChildren().set(2, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			start.getClient().setCardGiocatore(arrayCartePersonaggi[2]);
 			break;
 		case "quarto piano personaggi":
 			cartePersonaggiGiocatore.getChildren().add(carteTerritori.getChildren().get(3));
 			cartePersonaggi.getChildren().set(3, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			start.getClient().setCardGiocatore(arrayCartePersonaggi[3]);
 			break;
 		//Vanno aggiunti i casi del tabellone, ossia gli spazi singoli
 		}

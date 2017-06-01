@@ -102,7 +102,7 @@ public class ConnectionClient implements ClientInterface {
 		return null;
 	}
 
-	public String controlloPosizionamento(String color, double x, double y) throws RemoteException {
+	public String controlloPosizionamento(String color, double x, double y, Integer integer) throws RemoteException {
 		return color;
 	}
 	
@@ -124,11 +124,6 @@ public class ConnectionClient implements ClientInterface {
 		return null;
 	}
 
-	public void getCard(CartaTerritori cartaTerritori) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	public void exitToTheGame(String lobby, String color) {
 		// TODO Auto-generated method stub
 		
@@ -142,5 +137,10 @@ public class ConnectionClient implements ClientInterface {
 	public ArrayList<CartaSviluppo> getCardsGamer() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public void setCardGiocatore(CartaSviluppo carta) {
+		// TODO Auto-generated method stub
+		
 	}
 }
