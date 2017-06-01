@@ -26,7 +26,7 @@
       </Label>
       <ListView fx:id="lobbies" disable="true" layoutX="32.0" layoutY="103.0" onMouseClicked="#selectLobby" opacity="0.0" prefHeight="284.0" prefWidth="542.0" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="103.0" />
       <Button fx:id="back" disable="true" layoutX="269.0" layoutY="68.0" mnemonicParsing="false" onAction="#back" opacity="0.0" text="Back" AnchorPane.bottomAnchor="306.0" AnchorPane.leftAnchor="269.0" AnchorPane.rightAnchor="281.0" AnchorPane.topAnchor="68.0" />
-      <Label fx:id="label" disable="true" layoutX="185.0" layoutY="245.0" opacity="0.0" prefHeight="26.0" prefWidth="237.0" text="Press start when you want to start the game" />
+      <Label fx:id="label" disable="true" layoutX="185.0" layoutY="245.0" opacity="0.0" prefHeight="26.0" prefWidth="237.0" text="Press start when you want to start the game" textFill="WHITE" />
       <Button fx:id="startGame" disable="true" layoutX="191.0" layoutY="292.0" mnemonicParsing="false" onAction="#startGame" opacity="0.0" prefHeight="94.0" prefWidth="218.0" text="Start">
          <font>
             <Font size="43.0" />

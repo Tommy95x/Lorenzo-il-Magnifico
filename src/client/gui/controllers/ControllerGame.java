@@ -196,6 +196,7 @@ public class ControllerGame {
 		familiareNero.setColor("black");
 		familiareArancio.setColor("orange");
 		familiareBianco.setColor("white");
+		setCards(start.getClient().);
 		start.getClient().setGuiGame(this);
 		start.getClient().waitTurno();
 	}
@@ -704,7 +705,7 @@ public class ControllerGame {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.initOwner(start.getStage());
 		alert.setTitle("Notifica Turno");
-		alert.setContentText("Hei, è iniziato il tuo turno fai le tue mosse");
+		alert.setContentText("Hei, e' iniziato il tuo turno fai le tue mosse");
 		alert.showAndWait();
 		familiareNeutro.setDisable(false);
 		familiareNero.setDisable(false);
@@ -712,6 +713,7 @@ public class ControllerGame {
 		familiareBianco.setDisable(false);
 		lanciaDadi.setDisable(false);
 		ArrayList<CartaSviluppo> carte = start.getClient().getCardsGamer();
+		//Metodo da implementare per controllare se sono presenti carte con effetti che durano per tutta la partita
 	}
 
 }

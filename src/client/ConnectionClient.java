@@ -143,4 +143,9 @@ public class ConnectionClient implements ClientInterface {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public ArrayList<CartaSviluppo> getCardsGame() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

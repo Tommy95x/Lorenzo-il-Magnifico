@@ -197,13 +197,6 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	@Override
 	public void notifyStartGame() throws RemoteException {
 		start.changeStage(4);
-		ArrayList<CartaSviluppo> carte = serverMethods.getCards(positionGame);
-		for(int i=0;i<carte.size();i++){
-			//CHiamare il metodo grafico per settare le carte
-			carte.get(i).getNameCard();
-			carte.get(i).getImage();
-		}
-		guiGame.setCards(carte);
 	}
 
 	@Override
@@ -306,7 +299,15 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+	}
+	
+	public ArrayList<CartaSviluppo> getCardsGame() {
+		try {
+			return serverMethods.getCards(positionGame);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 }

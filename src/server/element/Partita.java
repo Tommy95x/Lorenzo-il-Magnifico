@@ -8,8 +8,12 @@ import java.util.ArrayList;
 
 import server.database.ConnectionDatabase;
 
-/*Parte condivisa dai vari giocatori e che possiederà tutte le azioni che un giocatore può eseguire. Ogni azione della partita
-  sarà un metodo synchronized*/
+/**
+ * @author Tommy
+ *
+ *Classe che rappresentera' la partita. Puo' contenere al massimo 4 giocatori, tutte le carte giocate (sempre rappresentate da degli array) e il turno che far� terminare la partita una volta che raggiungera' il 
+ *valore pari a 6.
+ */
 public class Partita implements Serializable{
 
 	private final int DIM=4;
@@ -56,8 +60,8 @@ public class Partita implements Serializable{
 		for(int i = 0; i<4; i++){
 			giocatori[i].notifyStartGame();
 		}
+		//Vedi regole e assegna a seconda della posizione le risorse di posizione
 		giocatori[giocatore].notifyTurno();
-		//Chiedere come notificare che è iniziata la partita ai giocatori
 	}
 
 	/**
