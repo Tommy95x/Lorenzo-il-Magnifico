@@ -32,6 +32,9 @@ public class Partita implements Serializable{
 		colors[1] = "orange";
 		colors[2] = "white";
 		colors[3] = "green"; 
+		for(int i=0;i<DIM;i++){
+			start[i]=false;
+		}
 	}
 	
 	
@@ -139,11 +142,6 @@ public class Partita implements Serializable{
 		return colors;	
 	}
 
-	public void adviseGamers() {
-		//Chiedere al prof come referenziare per avvisare gli altri giocatori
-		
-	}
-
 	public ArrayList<CartaSviluppo> getCards() {
 		ArrayList<CartaSviluppo> mom = new ArrayList<CartaSviluppo>();
 		for(int i=0; i<NUMCARTE;i++){
@@ -227,6 +225,22 @@ public class Partita implements Serializable{
 	public String getNamePosition(double x, double y, Connection connection) {
 		// Scrivere query che fornisce il nome della posizione tipo primo piano palazzo...
 		return null;
+	}
+
+
+	public void exitToGame(String name, String color) {
+		int i;
+		for(i=0;i<giocatori.length;i++){
+			if(giocatori[i].getName().equals(name)){
+				giocatori[i]=null;
+			}
+			for( i =0;i<colors.length;i++){
+				if(colors[i] == null){
+					colors[i] = color;
+					break;
+				}
+			}
+		}
 	}
 	
 }

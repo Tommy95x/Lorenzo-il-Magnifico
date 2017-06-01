@@ -277,16 +277,25 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	public void notifySpostamento(String color, double x, double y) throws RemoteException {
 		serverMethods.notifySpostamento(color,x,y,name,positionGame);
 	}
+	
 	public String getNamePosition(double x, double y) throws RemoteException, SQLException {
 		return serverMethods.getNamePosition(x,y,positionGame,name);
 	}
+	
 	public void getCard(CartaSviluppo carta) {
 		try {
 			serverMethods.getCard(positionGame,name,carta);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
+		}	
+	}
+	
+	public void exitToTheGame(String lobby,String color) {
+		serverMethods.exitToTheGame(lobby, color, name);
+	}
+	
+	public ArrayList<CartaSviluppo> getCardsGamer() {
+		return serverMethods.getCardsGamer(positionGame,name);
 	}
 }

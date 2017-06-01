@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import client.gui.StartClientGui;
 import client.gui.controllers.ControllerGame;
+import server.element.CartaSviluppo;
 import server.element.CartaTerritori;
 import server.element.Dado;
 import server.element.Partita;
@@ -126,5 +127,20 @@ public class ConnectionClient implements ClientInterface {
 	public void getCard(CartaTerritori cartaTerritori) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public void exitToTheGame(String lobby, String color) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void waitTurno() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public ArrayList<CartaSviluppo> getCardsGamer() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

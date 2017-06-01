@@ -94,11 +94,13 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 	}
 
 	public boolean createANewLobby(String lobby, String color) {
+		outputSocket.println("create new lobby");
+		outputSocket.flush();
 		outputSocket.println(lobby);
 		outputSocket.flush();
-		setPositionGame(inputSocket.nextInt());
 		outputSocket.println(color);
 		outputSocket.flush();
+		setPositionGame(inputSocket.nextInt());
 		return true;
 	}
 
@@ -124,7 +126,7 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		outputSocket.flush();
 		outputSocket.print(color);
 		outputSocket.flush();
-		setPositionGame(inputSocket.nextInt());
+		setPositionGame(Integer.parseInt( inputSocket.nextLine()));
 	}
 
 	public void selectColorGamer(String color) {
@@ -133,24 +135,12 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 	}
 
 
-	@Override
 	public void startGame() {
 		outputSocket.println("start");
 		outputSocket.flush();
-		
-		//Richiamo al metodo grafico per iniziare a comporre il tabellone e a settare il numero corretto di plance, nel metodo metto la riga sotto che rappresenta il numero dei gicatori
+		outputSocket.print(positionGame);
+		outputSocket.flush();
 		setNumberOfGamers(inputSocket.nextInt());
-		String mom=inputSocket.nextLine();
-		while(!mom.equals("endCards")){
-			try {
-				Image im=(Image) inputSocketObject.readObject();
-			} catch (ClassNotFoundException e) {
-				//Gestire eccezione
-			} catch (IOException e) {
-			}
-			//L'oggetto immagine ricevuto sopra, insieme al nome della carta, verrano inserite nel metodo che posiziona graficamente la carta
-			mom=inputSocket.nextLine();
-		}
 	}
 
 
@@ -166,9 +156,7 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-		
+		}	
 	}
 
 
@@ -177,7 +165,6 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 				start.changeStage(4);
 	}
 	
-	@Override
 	public void posizionareFamiliare(String color, int x, int y) {
 		outputSocket.println("mossa familiare");
 		outputSocket.flush();
@@ -258,6 +245,22 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		this.start = start;
 	}
 	
+	public String[] getColors(String lobby) throws RemoteException {
+		outputSocket.println("getColors");
+		outputSocket.flush();
+		outputSocket.print(lobby);
+		outputSocket.flush();
+		try {
+			return (String[]) inputSocketObject.readObject();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public String getNamePosition(double x, double y) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
@@ -266,5 +269,19 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 	public void getCard(int positionGame, String name, CartaSviluppo carta) throws RemoteException {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void exitToTheGame(String lobby, String color) {
+		outputSocket.println("exitToTheGame");
+		outputSocket.flush();
+		outputSocket.print(lobby);
+		outputSocket.flush();
+		outputSocket.println(color);
+		outputSocket.flush();
+	}
+	
+	public void waitTurno() {
+		if(inputSocket.nextLine().equals("gioca"))
+			guiGame.enableGame();
 	}
 }

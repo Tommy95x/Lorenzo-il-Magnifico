@@ -160,8 +160,12 @@ public class Giocatore implements Serializable{
 		
 	}
 
-	public void getCard(CartaSviluppo carta) {
+	public void addCard(CartaSviluppo carta) {
 		carte.add(carta);
 		//Molto probabilmente bisognerà notificare gli altri giocatori
+	}
+	
+	public ArrayList<CartaSviluppo> getCardsGamer(){
+		return carte;
 	}
 }

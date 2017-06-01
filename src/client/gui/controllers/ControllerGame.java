@@ -197,6 +197,7 @@ public class ControllerGame {
 		familiareArancio.setColor("orange");
 		familiareBianco.setColor("white");
 		start.getClient().setGuiGame(this);
+		start.getClient().waitTurno();
 	}
 
 	public StartClientGui getStart() {
@@ -691,6 +692,20 @@ public class ControllerGame {
 			break;
 		//Vanno aggiunti i casi del tabellone, ossia gli spazi singoli
 		}
+	}
+
+	public void enableGame() {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.initOwner(start.getStage());
+		alert.setTitle("Notifica Turno");
+		alert.setContentText("Hei, è iniziato il tuo turno fai le tue mosse");
+		alert.showAndWait();
+		familiareNeutro.setDisable(false);
+		familiareNero.setDisable(false);
+		familiareArancio.setDisable(false);
+		familiareBianco.setDisable(false);
+		lanciaDadi.setDisable(false);
+		ArrayList<CartaSviluppo> carte = start.getClient().getCardsGamer();
 	}
 
 }

@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 import javafx.scene.control.Tooltip;
 import server.element.CartaSviluppo;
+import server.element.Giocatore;
 
 /*
 *Classe che comunica con un SocketClient che ha istanziato e creato una nuva connessione inprecedenza con il ServerSocket, la classe
@@ -71,20 +72,20 @@ public class ThreadSocketServer implements Runnable{
 		
 	}*/
 	
-	private void play(PrintWriter output, Scanner input) {
+	private void play() throws RemoteException, SQLException {
 		action=input.nextLine();
-		for(int i=0;i<4;i++){
-				color=input.nextLine();
-				x=input.nextInt();
-				y=input.nextInt();
-				try {
-					actionsServer.mossa(account, positionGame, color, x, y);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			action=input.nextLine();
+		switch(action){
+		case "dices":
+			output.println(actionsServer.showDiceValues(positionGame, account));
+			output.flush();
+			break;
+		case "mossa familiare":
+			//Discutere con Mattia per vedere come implementare il tutto
+			break;
+		case "quit":
+			closeSocket();
+			break;
+		}
 	}
 
 	
@@ -123,35 +124,26 @@ public class ThreadSocketServer implements Runnable{
 						output.println(actionsServer.getLobby());
 						break;
 					case "enter in a lobby":
-						lobby=input.nextLine();
-						//account=input.nextLine();
-						positionGame=commonServer.getIndicePartita(lobby);
-						output.println(positionGame);
+						lobby = input.nextLine();
+						color = input.nextLine();
+						commonServer.getLobbyByName(lobby).addGiocatore(new Giocatore(color, commonServer.getLobbyByName(lobby),account, commonServer.getIndicePartita(lobby)));
+						output.println(commonServer.getIndicePartita(lobby));
 						output.flush();
-						output.println(actionsServer.getColors(lobby));
+						break;
+					case "getColors":
+						lobby = input.nextLine();
+						output.println(commonServer.getLobbyByName(lobby).getColors());
 						output.flush();
-						color=input.nextLine();
-						actionsServer.selectLobby(lobby, account, color,null);
-						commonServer.getLobbyByName(lobby).getGiocatoreByName(account).getSocket(this);
+						break;
+					case "exitToTheGame":
+						lobby = input.nextLine();
+						color = input.nextLine();
+						commonServer.getLobbyByName(lobby).exitToGame(account, color);
 						break;
 					case "start":
-						//account=input.nextLine();
 						positionGame=input.nextInt();	
 						output.println(actionsServer.startPartita(account, positionGame));
 						output.flush();
-						break;
-					case "play":
-						play(output,input);
-						break;
-					/*case "dices":
-						output.println(actionsServer.showDiceValues(positionGame, account));
-						output.flush();
-						break;*/
-					case "mossa familiare":
-						//Discutere con Mattia per vedere come implementare il tutto
-						break;
-					case "quit":
-						closeSocket();
 						break;
 				}
 			}
@@ -184,8 +176,14 @@ public class ThreadSocketServer implements Runnable{
 
 
 	public void notifyStartGame() {
-		
-		//Una volta ricevuto la notifica l'utente richiede le carte
+		output.println("gioca");
+		output.flush();
+		try {
+			play();
+		} catch (RemoteException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 

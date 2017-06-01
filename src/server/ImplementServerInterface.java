@@ -132,7 +132,6 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		
 	}
 
-	@Override
 	public void notifySpostamento(String color, double x, double y, String name, int positionGame) throws RemoteException {
 		commonServer.getLobbyByNumber(positionGame).notifySpostamento(color,commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name),x,y);
 	}
@@ -142,8 +141,17 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 	}
 
 	public void getCard(int positionGame, String name, CartaSviluppo carta) throws RemoteException {
-		commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).getCard(carta);
+		commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).addCard(carta);
 		
+	}
+
+	public void exitToTheGame(String lobby, String color, String name) {
+		commonServer.getLobbyByName(lobby).exitToGame(name,color);
+	}
+
+	@Override
+	public ArrayList<CartaSviluppo> getCardsGamer(int positionGame, String name) {
+		return commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).getCardsGamer();
 	}
 
 }
