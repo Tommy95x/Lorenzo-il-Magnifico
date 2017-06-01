@@ -26,7 +26,7 @@ public class Partita implements Serializable{
 	private String[] colors = new String[DIM];
 	private int giocatore = 0;
 	
-	public Partita(String lobby, String namePlayer, int positionGame){
+	public Partita(String lobby, String namePlayer, int positionGame, Connection connection) throws SQLException{
 		this.setLobby(lobby);
 		colors[0] = "blue"; 
 		colors[1] = "orange";
@@ -35,6 +35,18 @@ public class Partita implements Serializable{
 		for(int i=0;i<DIM;i++){
 			start[i]=false;
 		}
+		String queryterritorio;
+		String queryimpresa;
+		String querypersonaggio;
+		String queryedificio;
+		queryterritorio="CREATE VIEW CARTETERRITORIOPARTITA AS (SELECT * FROM CARTATERRITORIO ORDER BY RAND(), PERIODO)";
+		queryimpresa="CREATE VIEW CARTEIMPRESAPARTITA AS (SELECT * FROM CARTAIMPRESA ORDER BY RAND(), PERIODO)";
+		querypersonaggio="CREATE VIEW CARTEPERSONAGGIOPARTITA AS (SELECT * FROM CARTAPERSONAGGIO ORDER BY RAND(), PERIODO)";
+		queryedificio="CREATE VIEW CARTEEDIFICIOPARTITA AS (SELECT * FROM CARTAEDIFICIO ORDER BY RAND(), PERIODO)";
+		connection.createStatement().executeQuery(queryterritorio);
+		connection.createStatement().executeQuery(queryimpresa);
+		connection.createStatement().executeQuery(querypersonaggio);
+		connection.createStatement().executeQuery(queryedificio);
 	}
 	
 	
@@ -48,6 +60,12 @@ public class Partita implements Serializable{
 		//Chiedere come notificare che è iniziata la partita ai giocatori
 	}
 
+	/**
+	 * This method take the array of the gamers and shuffle it to decide the start 
+	 * order of the first turn of the game.
+	 * 
+	 * @author Mattia
+	 */
 	private void beShuffled() {
 		Giocatore[] mom=new Giocatore[DIM];
 		Giocatore[] ordine=new Giocatore[DIM];
@@ -159,28 +177,42 @@ public class Partita implements Serializable{
 		return mom;
 	}
 	
-	//Crea la connesione al Db e il metodo per otterene tutti le carte del gioco
-	public void setCards(Connection connection){
-		int casuale= ((int) Math.random()*24)+1;
+	/**
+	 * This method is used to set all the cards that will be used during the game.
+	 * 
+	 * @author Mattia
+	 * @param connection
+	 * @throws SQLException
+	 */
+	public void setCards(Connection connection) throws SQLException{
 		String query;
+		String queryelimina;
+		
 		for(CartaSviluppo c:carteTerritori){
-			query="";//Scrivere la query in modo che cerchi differenti carte in generale
+			query="SELECT * FROM CARTETERRITORIOPARTITA LIMIT 1";//Scrivere la query in modo che cerchi differenti carte in generale
 			c.setCarta(connection,query);
+			queryelimina="DELETE TOP 1 FROM CARTETERRITORIOPARTITA";
+			connection.createStatement().executeUpdate(queryelimina);
 		}
 		for(CartaSviluppo c:cartePersonaggio){
-			query="";//Scrivere la query in modo che cerchi differenti carte in generale
+			query="SELECT * FROM CARTEPERSONAGGIOPARTITA LIMIT 1";//Scrivere la query in modo che cerchi differenti carte in generale
 			c.setCarta(connection,query);
+			queryelimina="DELETE TOP 1 FROM CARTEPERSONAGGIOPARTITA";
+			connection.createStatement().executeUpdate(queryelimina);
 		}
 		for(CartaSviluppo c:carteEdifici){
-			query="";//Scrivere la query in modo che cerchi differenti carte in generale
+			query="SELECT * FROM CARTEEDIFICIOPARTITA LIMIT 1";//Scrivere la query in modo che cerchi differenti carte in generale
 			c.setCarta(connection,query);
+			queryelimina="DELETE TOP 1 FROM CARTEEDIFICIOPARTITA";
+			connection.createStatement().executeUpdate(queryelimina);
 		}
 		for(CartaSviluppo c:carteImprese){
-			query="";//Scrivere la query in modo che cerchi differenti carte in generale
+			query="SELECT * FROM CARTEIMPRESAPARTITA LIMIT 1";//Scrivere la query in modo che cerchi differenti carte in generale
 			c.setCarta(connection,query);
+			queryelimina="DELETE TOP 1 FROM CARTEIMPRESAPARTITA";
+			connection.createStatement().executeUpdate(queryelimina);
 		}
 	}
-
 
 	public void changeColors(String color) {
 		for(int i = 0; i<DIM;i++){

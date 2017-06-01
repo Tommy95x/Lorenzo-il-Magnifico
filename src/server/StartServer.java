@@ -1,6 +1,7 @@
 package server;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -25,13 +26,22 @@ public class StartServer {
 		rmi.start();
 		ss.start();
 	}
-
+	
+	/**
+	 * This method is used to control that the user who wants to play is already registered,
+	 * if he is, he can start the game, else he to register an account.
+	 * 
+	 * @author Mattia
+	 * @param account
+	 * @param pw
+	 * @return
+	 */
 	public String addClient(String account, String pw){
 		String mom=account+pw;
 		System.out.println(mom);
 		for(int i=0; i<utente.size();i++){
 			if((mom).equals(utente.get(i)))
-				return "Player alredy login";
+				return "Player already login";
 		}
 		String query = "SELECT CASE WHEN EXISTS( SELECT * FROM UTENTE WHERE (NOMEUTENTE='"+account.toLowerCase()+"' AND PASSWORD='"+pw.toLowerCase()+"'))THEN CAST (1 AS BIT) ELSE CAST(0 AS BIT) END";
 		try {
@@ -46,17 +56,30 @@ public class StartServer {
 			
 	}
 	
+	/**
+	 * Method used to register a new user, if that user is already registered, 
+	 * the system warns him.
+	 * If he is not registered, the method store his credentials in the database 
+	 * 
+	 * @author Mattia
+	 * @param account
+	 * @param pw
+	 * @param email
+	 * @return Return one of two strings, it advise you if you are already registered or if you has been registered
+	 */
 	public String registerNewClient(String account, String pw, String email) {
 		// Scrivere la query per aggiungere un nuovo utente al sistema
-		String query = "SELECT CASE WHEN EXISTS( SELECT * FROM UTENTE WHERE (NOMEUTENTE='"+account.toLowerCase()+"' AND PASSWORD='"+pw.toLowerCase()+"'))THEN CAST (1 AS BIT) ELSE CAST(0 AS BIT) END";
+		String query = "SELECT COUNT(*) AS C FROM UTENTE WHERE (NOMEUTENTE='"+account.toLowerCase()+"' AND PASSWORD='"+pw.toLowerCase()+"')";
 		try {
-			boolean mom = DB.getConnection(account).createStatement().execute(query);
-			System.out.println(mom);
-			if(!mom){
-				DB.getConnection(account).createStatement().executeUpdate("INSERT INTO UTENTE" + "VALUES('2','"+account.toLowerCase()+"','"+email.toLowerCase()+"','"+pw.toLowerCase()+"')");
-			    return "You are now registered!";
+			ResultSet res = DB.getConnection(account).createStatement().executeQuery(query);
+			res.next();
+				int conta = res.getInt("C");
+			res.close();
+			if(conta>0){
+			    return "You are registered yet! You have to login!";
 			}else{
-				return "You are registered yet!";
+				DB.getConnection(account).createStatement().executeUpdate("INSERT INTO UTENTE (NOMEUTENTE, EMAIL, PASSWORD) VALUES ('"+account.toLowerCase()+"','"+email.toLowerCase()+"','"+pw.toLowerCase()+"'");
+				return "You are now registered!";
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -65,6 +88,15 @@ public class StartServer {
 		}
 	}
 	
+	/**
+	 * Method used to create a new game where other users can enter to play, it also 
+	 * controls that all the lobbies have different names.
+	 * 
+	 * @author Mattia
+	 * @param partita
+	 * @param account
+	 * @return
+	 */
 	public String addGame(String partita,String account){
 		for(int i=0;i<getDimLobbies();i++){
 			if(partita.equals(lobbies.get(i)))
