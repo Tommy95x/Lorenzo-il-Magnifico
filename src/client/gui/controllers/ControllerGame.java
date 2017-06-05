@@ -196,7 +196,7 @@ public class ControllerGame {
 		familiareNero.setColor("black");
 		familiareArancio.setColor("orange");
 		familiareBianco.setColor("white");
-		setCards(start.getClient().);
+		setCards(start.getClient().getCardsGame());
 		start.getClient().setGuiGame(this);
 		start.getClient().waitTurno();
 	}
