@@ -12,3 +12,108 @@ org.h2.message.DbException: Wrong user name or password [28000-194]
 Caused by: org.h2.jdbc.JdbcSQLException: Wrong user name or password [28000-194]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
 	... 9 more
+2017-05-25 15:08:08 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/parke/test.mv.db [1.4.194/7]" [50000-194]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:295)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:378)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:361)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2930)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2474)
+	at org.h2.engine.Database.open(Database.java:697)
+	at org.h2.engine.Database.openDatabase(Database.java:276)
+	at org.h2.engine.Database.<init>(Database.java:270)
+	at org.h2.engine.Engine.openSession(Engine.java:64)
+	at org.h2.engine.Engine.openSession(Engine.java:176)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:154)
+	at org.h2.engine.Engine.createSession(Engine.java:137)
+	at org.h2.server.TcpServerThread.run(TcpServerThread.java:148)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: org.h2.jdbc.JdbcSQLException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/parke/test.mv.db [1.4.194/7]" [50000-194]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 18 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/parke/test.mv.db [1.4.194/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:765)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:347)
+	... 13 more
+2017-05-25 15:08:13 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/parke/test.mv.db [1.4.194/7]" [50000-194]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:295)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:378)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:361)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2930)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2474)
+	at org.h2.engine.Database.open(Database.java:697)
+	at org.h2.engine.Database.openDatabase(Database.java:276)
+	at org.h2.engine.Database.<init>(Database.java:270)
+	at org.h2.engine.Engine.openSession(Engine.java:64)
+	at org.h2.engine.Engine.openSession(Engine.java:176)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:154)
+	at org.h2.engine.Engine.createSession(Engine.java:137)
+	at org.h2.server.TcpServerThread.run(TcpServerThread.java:148)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: org.h2.jdbc.JdbcSQLException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/parke/test.mv.db [1.4.194/7]" [50000-194]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 18 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/parke/test.mv.db [1.4.194/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:765)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:347)
+	... 13 more
+2017-05-26 11:21:32 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/parke/test.mv.db [1.4.194/7]" [50000-194]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:295)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:378)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:361)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2930)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2474)
+	at org.h2.engine.Database.open(Database.java:697)
+	at org.h2.engine.Database.openDatabase(Database.java:276)
+	at org.h2.engine.Database.<init>(Database.java:270)
+	at org.h2.engine.Engine.openSession(Engine.java:64)
+	at org.h2.engine.Engine.openSession(Engine.java:176)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:154)
+	at org.h2.engine.Engine.createSession(Engine.java:137)
+	at org.h2.server.TcpServerThread.run(TcpServerThread.java:148)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: org.h2.jdbc.JdbcSQLException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/parke/test.mv.db [1.4.194/7]" [50000-194]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 18 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/parke/test.mv.db [1.4.194/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:765)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:347)
+	... 13 more
+06-01 11:46:07 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO UTENTE (NOMEUTENTE, EMAIL, PASSWORD) VALUES ('dfrrd','lkjh@ljk.it','questa'[*]"; expected "[, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+INSERT INTO UTENTE (NOMEUTENTE, EMAIL, PASSWORD) VALUES ('dfrrd','lkjh@ljk.it','questa' [42001-182]
+06-01 11:46:30 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO UTENTE (NOMEUTENTE, EMAIL, PASSWORD) VALUES ('dfrrd','lkjh@ljk.it','questa'[*]"; expected "[, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+INSERT INTO UTENTE (NOMEUTENTE, EMAIL, PASSWORD) VALUES ('dfrrd','lkjh@ljk.it','questa' [42001-182]
+06-01 11:47:28 jdbc[8]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO UTENTE (NOMEUTENTE, EMAIL, PASSWORD) VALUES ('qwert','xcv@po.it','questa'[*]"; expected "[, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+INSERT INTO UTENTE (NOMEUTENTE, EMAIL, PASSWORD) VALUES ('qwert','xcv@po.it','questa' [42001-182]
+06-01 11:51:02 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO UTENTE (NOMEUTENTE, EMAIL, PASSWORD) VALUES ('qwertyu','dxcv@lip.it','questa'[*]"; expected "[, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+INSERT INTO UTENTE (NOMEUTENTE, EMAIL, PASSWORD) VALUES ('qwertyu','dxcv@lip.it','questa' [42001-182]
+06-01 12:05:51 jdbc[8]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO UTENTE (NOMEUTENTE, EMAIL, PASSWORD) VALUES ('asdfg','ert@poiu.it','questa'[*]"; expected "[, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+INSERT INTO UTENTE (NOMEUTENTE, EMAIL, PASSWORD) VALUES ('asdfg','ert@poiu.it','questa' [42001-182]
+06-01 12:05:56 jdbc[10]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO UTENTE (NOMEUTENTE, EMAIL, PASSWORD) VALUES ('asdfg','ert@poiu.it','questa'[*]"; expected "[, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+INSERT INTO UTENTE (NOMEUTENTE, EMAIL, PASSWORD) VALUES ('asdfg','ert@poiu.it','questa' [42001-182]
+06-01 12:05:58 jdbc[12]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO UTENTE (NOMEUTENTE, EMAIL, PASSWORD) VALUES ('asdfg','ert@poiu.it','questa'[*]"; expected "[, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+INSERT INTO UTENTE (NOMEUTENTE, EMAIL, PASSWORD) VALUES ('asdfg','ert@poiu.it','questa' [42001-182]
