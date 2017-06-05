@@ -30,6 +30,15 @@ public class Partita implements Serializable{
 	private String[] colors = new String[DIM];
 	private int giocatore = 0;
 	
+	/**
+	 * 
+	 * 
+	 * @param lobby
+	 * @param namePlayer
+	 * @param positionGame
+	 * @param connection
+	 * @throws SQLException
+	 */
 	public Partita(String lobby, String namePlayer, int positionGame, Connection connection) throws SQLException{
 		this.setLobby(lobby);
 		colors[0] = "blue"; 
