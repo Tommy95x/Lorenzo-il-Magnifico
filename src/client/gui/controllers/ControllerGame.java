@@ -80,7 +80,7 @@ public class ControllerGame {
 	@FXML
 	public ImageView pianoTerzoPalazzoMilitare;
 	@FXML
-	public ImageView pianoQuestoPalazzoMilitare;
+	public ImageView pianoQuartoPalazzoMilitare;
 	@FXML
 	public ImageView pianoPrimoPalazzoPersonaggi;
 	@FXML
@@ -88,7 +88,7 @@ public class ControllerGame {
 	@FXML
 	public ImageView pianoTerzoPalazzoPersonaggi;
 	@FXML
-	public ImageView pianoQuestoPalazzoPersonaggi;
+	public ImageView pianoQuartoPalazzoPersonaggi;
 	@FXML
 	public ImageView pianoPrimoPalazzoEdifici;
 	@FXML
@@ -96,7 +96,7 @@ public class ControllerGame {
 	@FXML
 	public ImageView pianoTerzoPalazzoEdifici;
 	@FXML
-	public ImageView pianoQuestoPalazzoEdifici;
+	public ImageView pianoQuartoPalazzoEdifici;
 	@FXML
 	public ImageView pianoPrimoPalazzoTerritori;
 	@FXML
@@ -104,7 +104,15 @@ public class ControllerGame {
 	@FXML
 	public ImageView pianoTerzoPalazzoTerritori;
 	@FXML
-	public ImageView pianoQuestoPalazzoTerritori;
+	public ImageView pianoQuartoPalazzoTerritori;
+	@FXML
+	public ImageView cartaScomunica1;
+	@FXML
+	public ImageView cartaScomunica2;
+	@FXML
+	public ImageView cartaScomunica3;
+	
+	//Componenti tabellone avversari
 	@FXML
 	public ImageView puntiVittoriaBlu;
 	@FXML
@@ -122,13 +130,19 @@ public class ControllerGame {
 	@FXML
 	public ImageView puntiFedeVerde;
 	@FXML
+	public ImageView puntiMilitariArancio;
+	@FXML
+	public ImageView puntiMilitariVerde;
+	@FXML
+	public ImageView puntiMilitariBlu;
+	@FXML
+	public ImageView puntiMilitariBianco;
+	@FXML
 	public ImageView familiareBlue1;
 	@FXML
 	public ImageView familiareBlue2;
 	@FXML
 	public ImageView familiareBlue3;
-	@FXML
-	public ImageView familiareBlue4;
 	@FXML
 	public ImageView familiareOrange1;
 	@FXML
@@ -136,24 +150,18 @@ public class ControllerGame {
 	@FXML
 	public ImageView familiareOrange3;
 	@FXML
-	public ImageView familiareOrange4;
-	@FXML
 	public ImageView familiareGreen1;
 	@FXML
 	public ImageView familiareGreen2;
 	@FXML
 	public ImageView familiareGreen3;
 	@FXML
-	public ImageView familiareGreen4;
-	@FXML
 	public ImageView familiareWhite1;
 	@FXML
 	public ImageView familiareWhite2;
 	@FXML
 	public ImageView familiareWhite3;
-	@FXML
-	public ImageView familiareWhite4;
-
+	
 	// Componenti plancia
 	@FXML
 	public HBox carteImpresaGiocatore;
@@ -697,7 +705,7 @@ public class ControllerGame {
 			cartePersonaggi.getChildren().set(3, new ImageView(new Image(getClass().getResourceAsStream(""))));
 			start.getClient().setCardGiocatore(arrayCartePersonaggi[3]);
 			break;
-		//Vanno aggiunti i casi del tabellone, ossia gli spazi singoli
+		//Vanno aggiunti i casi del tabellone, ossia gli spazi singoli d'azione
 		}
 	}
 
@@ -716,4 +724,11 @@ public class ControllerGame {
 		//Metodo da implementare per controllare se sono presenti carte con effetti che durano per tutta la partita
 	}
 
+	
+	public void resetTabellon(){
+		
+		setCards(start.getClient().getCardsGame());
+		start.getClient().waitTurno();
+	}
+	
 }

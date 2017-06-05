@@ -108,7 +108,6 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		
 	}
 
-	@Override
 	public Dado[] showDiceValues(int positionGame, String name) throws RemoteException, SQLException {
 		
 		return commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).setDadi(commonServer.getDBConnection().getConnection(name));
