@@ -80,7 +80,7 @@ public class ControllerGame {
 	@FXML
 	public ImageView pianoTerzoPalazzoMilitare;
 	@FXML
-	public ImageView pianoQuestoPalazzoMilitare;
+	public ImageView pianoQuartoPalazzoMilitare;
 	@FXML
 	public ImageView pianoPrimoPalazzoPersonaggi;
 	@FXML
@@ -88,7 +88,7 @@ public class ControllerGame {
 	@FXML
 	public ImageView pianoTerzoPalazzoPersonaggi;
 	@FXML
-	public ImageView pianoQuestoPalazzoPersonaggi;
+	public ImageView pianoQuartoPalazzoPersonaggi;
 	@FXML
 	public ImageView pianoPrimoPalazzoEdifici;
 	@FXML
@@ -96,7 +96,7 @@ public class ControllerGame {
 	@FXML
 	public ImageView pianoTerzoPalazzoEdifici;
 	@FXML
-	public ImageView pianoQuestoPalazzoEdifici;
+	public ImageView pianoQuartoPalazzoEdifici;
 	@FXML
 	public ImageView pianoPrimoPalazzoTerritori;
 	@FXML
@@ -104,7 +104,7 @@ public class ControllerGame {
 	@FXML
 	public ImageView pianoTerzoPalazzoTerritori;
 	@FXML
-	public ImageView pianoQuestoPalazzoTerritori;
+	public ImageView pianoQuartoPalazzoTerritori;
 	@FXML
 	public ImageView puntiVittoriaBlu;
 	@FXML
@@ -196,7 +196,7 @@ public class ControllerGame {
 		familiareNero.setColor("black");
 		familiareArancio.setColor("orange");
 		familiareBianco.setColor("white");
-		setCards(start.getClient().);
+		setCards(start.getClient().getCardsGame());
 		start.getClient().setGuiGame(this);
 		start.getClient().waitTurno();
 	}
@@ -716,4 +716,11 @@ public class ControllerGame {
 		//Metodo da implementare per controllare se sono presenti carte con effetti che durano per tutta la partita
 	}
 
+	
+	public void resetTabellon(){
+		
+		setCards(start.getClient().getCardsGame());
+		start.getClient().waitTurno();
+	}
+	
 }

@@ -11,7 +11,7 @@ import server.database.ConnectionDatabase;
 /**
  * @author Tommy
  *
- *Classe che rappresentera' la partita. Puo' contenere al massimo 4 giocatori, tutte le carte giocate (sempre rappresentate da degli array) e il turno che farà terminare la partita una volta che raggiungera' il 
+ *Classe che rappresentera' la partita. Puo' contenere al massimo 4 giocatori, tutte le carte giocate (sempre rappresentate da degli array) e il turno che farï¿½ terminare la partita una volta che raggiungera' il 
  *valore pari a 6.
  */
 public class Partita implements Serializable{
@@ -39,14 +39,10 @@ public class Partita implements Serializable{
 		for(int i=0;i<DIM;i++){
 			start[i]=false;
 		}
-		String queryterritorio;
-		String queryimpresa;
-		String querypersonaggio;
-		String queryedificio;
-		queryterritorio="CREATE VIEW CARTETERRITORIOPARTITA AS (SELECT * FROM CARTATERRITORIO ORDER BY RAND(), PERIODO)";
-		queryimpresa="CREATE VIEW CARTEIMPRESAPARTITA AS (SELECT * FROM CARTAIMPRESA ORDER BY RAND(), PERIODO)";
-		querypersonaggio="CREATE VIEW CARTEPERSONAGGIOPARTITA AS (SELECT * FROM CARTAPERSONAGGIO ORDER BY RAND(), PERIODO)";
-		queryedificio="CREATE VIEW CARTEEDIFICIOPARTITA AS (SELECT * FROM CARTAEDIFICIO ORDER BY RAND(), PERIODO)";
+		String queryterritorio = "CREATE VIEW CARTETERRITORIOPARTITA AS (SELECT * FROM CARTATERRITORIO ORDER BY RAND(), PERIODO)";
+		String queryimpresa = "CREATE VIEW CARTEIMPRESAPARTITA AS (SELECT * FROM CARTAIMPRESA ORDER BY RAND(), PERIODO)";
+		String querypersonaggio = "CREATE VIEW CARTEPERSONAGGIOPARTITA AS (SELECT * FROM CARTAPERSONAGGIO ORDER BY RAND(), PERIODO)";
+		String queryedificio = "CREATE VIEW CARTEEDIFICIOPARTITA AS (SELECT * FROM CARTAEDIFICIO ORDER BY RAND(), PERIODO)";
 		connection.createStatement().executeQuery(queryterritorio);
 		connection.createStatement().executeQuery(queryimpresa);
 		connection.createStatement().executeQuery(querypersonaggio);
@@ -64,6 +60,14 @@ public class Partita implements Serializable{
 		giocatori[giocatore].notifyTurno();
 	}
 
+	private boolean checkBoolean(int dim){
+		for(int i=0;i<dim;i++){
+			if(!start[i])
+				return false;
+		}
+		return true;
+	}
+	
 	/**
 	 * This method take the array of the gamers and shuffle it to decide the start 
 	 * order of the first turn of the game.
@@ -151,13 +155,16 @@ public class Partita implements Serializable{
 				break;
 			}
 		}
-		
-		for(int i=0;i<DIM;i++){
-			if(!start[i])
-				return;
-		else
+		int dim = 0;
+		for(Giocatore g : giocatori)
+			if(g != null)
+				dim++;
+				else
+					break;
+		if(checkBoolean(dim))
 			startPartita();
-		}
+		else
+			return;
 	}
 	
 	public String[] getColors(){
