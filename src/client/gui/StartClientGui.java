@@ -26,6 +26,7 @@ public class StartClientGui extends Application{
 	private Parent root;
 	private Stage primaryStage;
 	private ConnectionClient client;
+	private String color;
 	
 	
 	
@@ -166,6 +167,16 @@ public class StartClientGui extends Application{
 
 	public Stage getStage() {
 		return primaryStage;
+	}
+
+
+	public String getColor() {
+		return color;
+	}
+
+
+	public void setColor(String color) {
+		this.color = color;
 	}
 	
 }

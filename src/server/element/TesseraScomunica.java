@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Connection;
 
 import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
@@ -16,7 +17,7 @@ public class TesseraScomunica implements Serializable{
 	private String oggettoPenalita;
 	private int valorePenalita;
 	private int periodo;
-	private ImageView image;
+	private Image image;
 	private Tooltip tooltip;
 	
 	//Vengono settati i parametri della tessera scomunica
@@ -65,11 +66,11 @@ public class TesseraScomunica implements Serializable{
 		this.tooltip = tooltip;
 	}
 
-	public ImageView getImage() {
+	public Image getImage() {
 		return image;
 	}
 
-	public void setImage(ImageView image) {
+	public void setImage(Image image) {
 		this.image = image;
 	}
 

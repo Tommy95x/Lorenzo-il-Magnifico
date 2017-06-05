@@ -17,6 +17,8 @@ import server.element.CartaTerritori;
 import server.element.Dado;
 import server.element.Giocatore;
 import server.element.Partita;
+import server.element.Portafoglio;
+import server.element.TesseraScomunica;
 
 /*
  * Classe di implementazione 
@@ -69,13 +71,6 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		}
 		
 	}
-
-
-	public void richiestaRegistrazione() {
-		// TODO Auto-generated method stub
-		
-	}
-	
 	
 	public String register(String account, String pw, String pw2, String email) {
 		try {
@@ -127,14 +122,10 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	}
 
 
-	@Override
-	public void selectColorGamer(String color) {
-		
-		
+	public TesseraScomunica[] getCardsScomunica() throws RemoteException{
+		return serverMethods.getCardsScomunica(positionGame);
 	}
 
-
-	@Override
 	public void startGame() {
 		try {
 			try {
@@ -149,8 +140,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		}
 	}
 
-	public Dado[] lanciaDadi(int positionGame, String name) throws SQLException {
-		//Risposta al metodo grafico con il lancio di un metodo grafico che modificher� il tabellone 
+	public Dado[] lanciaDadi(int positionGame) throws SQLException {
 		try {
 			return serverMethods.showDiceValues(this.positionGame, this.name);
 		} catch (RemoteException e) {
@@ -164,27 +154,6 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		
 		return serverMethods.getColors(positionGame);
 	}
-	
-	@Override
-	public void posizionareFamiliare(String color, int x, int y) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void spendereRisorse(String risorsa, int qta) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	@Override
-	public void sostegnoChiesa(boolean flag) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	public int getNumberOfGamers() {
 		return numberOfGamers;
@@ -194,29 +163,9 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		this.numberOfGamers = numberOfGamers;
 	}
 
-	@Override
 	public void notifyStartGame() throws RemoteException {
 		start.changeStage(4);
 	}
-
-	@Override
-	public void richestaSostegnoChiesa() throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void restTabellone() throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void endGame(Giocatore[] giocatoriPartita) throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
-
 	
 	public String controlloPosizionamento(String color, double x, double y, Integer agg) throws RemoteException {
 		try {
@@ -242,7 +191,6 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		
 	}
 
-	@Override
 	public void moveDiscoFede(double x, double y, String colorPlayer, String colorDisco) throws RemoteException {
 		guiGame.movePuntiFede(colorDisco, x, y);
 		
@@ -310,4 +258,31 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		}
 	}
 	
+	public Portafoglio getRisorse() throws RemoteException {
+		return serverMethods.getRisorse(positionGame, name);
+	}
+
+	@Override
+	public void sostegnoChiesa(boolean flag) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void richestaSostegnoChiesa() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void restTabellone() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void endGame(Giocatore[] giocatoriPartita) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
 }

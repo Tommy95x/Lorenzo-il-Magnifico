@@ -11,6 +11,8 @@ import javafx.scene.image.Image;
 import server.element.CartaSviluppo;
 import server.element.Dado;
 import server.element.Partita;
+import server.element.Portafoglio;
+import server.element.TesseraScomunica;
 
 public interface ServerInterface extends Remote {
 	
@@ -35,4 +37,6 @@ public interface ServerInterface extends Remote {
 	public void exitToTheGame(String lobby, String color, String name) throws RemoteException;
 	public ArrayList<CartaSviluppo> getCardsGamer(int positionGame, String name)throws RemoteException;
 	public void giveCard(CartaSviluppo carta, String name, int positionGame)throws RemoteException;
+	public TesseraScomunica[] getCardsScomunica(int positionGame) throws RemoteException;
+	public Portafoglio getRisorse(int positionGame, String name)throws RemoteException;
 }

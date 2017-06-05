@@ -29,6 +29,8 @@ import server.element.CartaSviluppo;
 import server.element.CartaTerritori;
 import server.element.Dado;
 import server.element.Legno;
+import server.element.Portafoglio;
+import server.element.TesseraScomunica;
 
 public class ControllerGame {
 
@@ -144,11 +146,15 @@ public class ControllerGame {
 	@FXML
 	public ImageView familiareBlue3;
 	@FXML
+	public ImageView familiareBlue4;
+	@FXML
 	public ImageView familiareOrange1;
 	@FXML
 	public ImageView familiareOrange2;
 	@FXML
 	public ImageView familiareOrange3;
+	@FXML
+	public ImageView familiareOrange4;
 	@FXML
 	public ImageView familiareGreen1;
 	@FXML
@@ -156,11 +162,16 @@ public class ControllerGame {
 	@FXML
 	public ImageView familiareGreen3;
 	@FXML
+	public ImageView familiareGreen4;
+	@FXML
 	public ImageView familiareWhite1;
 	@FXML
 	public ImageView familiareWhite2;
 	@FXML
 	public ImageView familiareWhite3;
+	@FXML
+	public ImageView familiareWhite4;
+	
 	
 	// Componenti plancia
 	@FXML
@@ -198,41 +209,172 @@ public class ControllerGame {
 	@FXML
 	public Immagine cuboScomunica3;
 
-	public void getStartClient(StartClientGui startClientGui) {
+	public void getStartClient(StartClientGui startClientGui) throws RemoteException {
 		this.setStart(startClientGui);
-		familiareNeutro.setColor("neutro");
-		familiareNero.setColor("black");
-		familiareArancio.setColor("orange");
-		familiareBianco.setColor("white");
+		setColorsParents(start.getColor());
+		setColorCubiScomunica(start.getColor());
 		setCards(start.getClient().getCardsGame());
+		setCardsScomunica(start.getClient().getCardsScomunica());
+		setRisorse(start.getClient().getRisorse());
 		start.getClient().setGuiGame(this);
 		start.getClient().waitTurno();
 	}
 
-	public StartClientGui getStart() {
-		return start;
+
+	private void setRisorse(Portafoglio risorse) {
+		setLegno(risorse.getDimRisorse("legno"));
+		setPietra(risorse.getDimRisorse("pietra"));
+		setServitori(risorse.getDimRisorse("servitori"));
+		setMonete(risorse.getDimRisorse("monete"));
+	}
+
+
+	private void setCardsScomunica(TesseraScomunica[] cardsScomunica) {
+		cartaScomunica1.setImage(cardsScomunica[0].getImage());
+		cartaScomunica2.setImage(cardsScomunica[1].getImage());
+		cartaScomunica3.setImage(cardsScomunica[2].getImage());
+		
+	}
+
+
+	private void setColorCubiScomunica(String color) {
+		cuboScomunica1.setColor(color);
+		cuboScomunica2.setColor(color);
+		cuboScomunica3.setColor(color);
+		switch(color){
+			case "blue":
+				cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaBlu.png")));
+				cuboScomunica2.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaBlu.png")));
+				cuboScomunica3.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaBlu.png")));
+				break;
+			case "green":
+				cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaVerde.png")));
+				cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaVerde.png")));
+				cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaVerde.png")));
+				break;
+			case "white":
+				cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaBianco.png")));
+				cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaBianco.png")));
+				cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaBianco.png")));
+				break;
+			case "orange":
+				cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaArancio.png")));
+				cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaArancio.png")));
+				cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaArancio.png")));
+				break;
+		}
+	}
+
+
+	private void setColorsParents(String color) {
+		familiareNeutro.setColor("neutro");
+		familiareNero.setColor("black");
+		familiareArancio.setColor("orange");
+		familiareBianco.setColor("white");
+		switch(color){
+			case "blue":
+				familiareNeutro.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareNero.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareArancio.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareBianco.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareOrange1.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareOrange2.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareOrange3.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareOrange4.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareGreen1.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareGreen2.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareGreen3.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareGreen4.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareGreen1.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareWhite2.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareWhite3.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareWhite4.setImage(new Image(getClass().getResourceAsStream("")));
+				break;
+			case "green":
+				familiareNeutro.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareNero.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareArancio.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareBianco.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareOrange1.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareOrange2.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareOrange3.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareOrange4.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareBlue1.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareBlue2.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareBlue3.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareBlue4.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareWhite1.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareWhite2.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareWhite3.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareWhite4.setImage(new Image(getClass().getResourceAsStream("")));
+				break;
+			case "white":
+				familiareNeutro.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareNero.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareArancio.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareBianco.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareOrange1.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareOrange2.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareOrange3.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareOrange4.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareBlue1.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareBlue2.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareBlue3.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareBlue4.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareGreen1.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareGreen2.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareGreen3.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareGreen4.setImage(new Image(getClass().getResourceAsStream("")));
+				break;
+			case "orange":
+				familiareNeutro.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareNero.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareArancio.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareBianco.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareBlue1.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareBlue2.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareBlue3.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareBlue4.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareGreen1.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareGreen2.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareGreen3.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareGreen4.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareWhite1.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareWhite2.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareWhite3.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareWhite4.setImage(new Image(getClass().getResourceAsStream("")));
+				break;
+		}
 	}
 
 	private void setStart(StartClientGui start) {
 		this.start = start;
 	}
 
-	private void setBandiera(Image bandiera) {
+	public StartClientGui getStart() {
+		return start;
+	}
+	
+	public void setBandiera(Image bandiera) {
 		this.bandiera.setImage(bandiera);
 	}
 
-	private void setPietra(int pietra) {
+	public void setPietra(int pietra) {
 		this.pietra.setText(Integer.toString(pietra));
 	}
 
-	private void setMonete(int monete) {
+	public void setMonete(int monete) {
 		this.monete.setText(Integer.toString(monete));
 	}
 
-	private void setServitori(int servitori) {
+	public void setServitori(int servitori) {
 		this.servitori.setText(Integer.toString(servitori));
 	}
-
+	
+	public void setLegno(int legno){
+		this.lengo.setText(Integer.toString(legno));
+	}
+	
 	/*
 	 * Controllo per verificare se si ha un numero di punti del dado
 	 */
@@ -528,34 +670,6 @@ public class ControllerGame {
 			break;
 		}
 	}
-
-	@FXML
-	public void lanciaDadi() throws RemoteException, SQLException {
-		Dado[] dadi = new Dado[3];
-		dadi = start.getClient().lanciaDadi(0, null);
-		dadoNero.setImage(dadi[0].getImage());
-		dadoBianco.setImage(dadi[0].getImage());
-		dadoArancio.setImage(dadi[0].getImage());
-	}
-
-	@FXML
-	public void enteredDragImage() {
-		// Chiedere al prof come catturare l'immagine in cui viene posizionata
-		// if()
-		// Devo controllare se è libero se no non posso piazzare
-		familiareNeutro.getDestinazione(null);
-		familiareNero.getDestinazione(null);
-		familiareArancio.getDestinazione(null);
-		familiareBianco.getDestinazione(null);
-	}
-
-	@FXML
-	public void enterDragBox(){
-		familiareNeutro.getDestinazione(null);
-		familiareNero.getDestinazione(null);
-		familiareArancio.getDestinazione(null);
-		familiareBianco.getDestinazione(null);
-	}
 	
 	public void addScomunica(int nScomuniche, Tooltip tooltip) {
 		switch (nScomuniche) {
@@ -708,7 +822,7 @@ public class ControllerGame {
 		//Vanno aggiunti i casi del tabellone, ossia gli spazi singoli d'azione
 		}
 	}
-
+	
 	public void enableGame() {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.initOwner(start.getStage());
@@ -720,15 +834,40 @@ public class ControllerGame {
 		familiareArancio.setDisable(false);
 		familiareBianco.setDisable(false);
 		lanciaDadi.setDisable(false);
-		ArrayList<CartaSviluppo> carte = start.getClient().getCardsGamer();
-		//Metodo da implementare per controllare se sono presenti carte con effetti che durano per tutta la partita
 	}
 
 	
 	public void resetTabellon(){
-		
 		setCards(start.getClient().getCardsGame());
 		start.getClient().waitTurno();
+	}
+	
+	@FXML
+	public void lanciaDadi() throws RemoteException, SQLException {
+		Dado[] dadi = new Dado[3];
+		dadi = start.getClient().lanciaDadi(0);
+		dadoNero.setImage(dadi[0].getImage());
+		dadoBianco.setImage(dadi[0].getImage());
+		dadoArancio.setImage(dadi[0].getImage());
+	}
+
+	@FXML
+	public void enteredDragImage() {
+		// Chiedere al prof come catturare l'immagine in cui viene posizionata
+		// if()
+		// Devo controllare se è libero se no non posso piazzare
+		familiareNeutro.getDestinazione(null);
+		familiareNero.getDestinazione(null);
+		familiareArancio.getDestinazione(null);
+		familiareBianco.getDestinazione(null);
+	}
+
+	@FXML
+	public void enterDragBox(){
+		familiareNeutro.getDestinazione(null);
+		familiareNero.getDestinazione(null);
+		familiareArancio.getDestinazione(null);
+		familiareBianco.getDestinazione(null);
 	}
 	
 }

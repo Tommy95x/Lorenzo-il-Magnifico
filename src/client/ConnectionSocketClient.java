@@ -6,14 +6,18 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import client.gui.StartClientGui;
 import client.gui.controllers.ControllerGame;
+import javafx.scene.control.Tooltip;
 import server.element.CartaSviluppo;
 import server.element.Dado;
 import server.element.Partita;
+import server.element.Portafoglio;
+import server.element.TesseraScomunica;
 
 /*
  * Classe che implementa il socket
@@ -130,12 +134,12 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		setPositionGame(Integer.parseInt( inputSocket.nextLine()));
 	}
 
-	public void selectColorGamer(String color) {
-		outputSocket.println(color);
+	public TesseraScomunica[] getCardsScomunica() throws ClassNotFoundException, IOException{
+		outputSocket.println("getTessereScomunica");
 		outputSocket.flush();
+		return (TesseraScomunica[]) inputSocketObject.readObject();
 	}
-
-
+	
 	public void startGame() {
 		outputSocket.println("start");
 		outputSocket.flush();
@@ -144,32 +148,39 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		setNumberOfGamers(inputSocket.nextInt());
 	}
 
-
-	public void lanciaDadi() {
+	public Dado[] lanciaDadi() throws ClassNotFoundException, IOException {
 		outputSocket.println("dices");
 		outputSocket.flush();
-		//chiamata al metodo grafico che mi ritorna i dadi lanciati
+		return (Dado[]) inputSocketObject.readObject();
+	}
+	
+	public String[] getColors(String lobby) throws RemoteException {
+		outputSocket.println("getColors");
+		outputSocket.flush();
+		outputSocket.print(lobby);
+		outputSocket.flush();
 		try {
-			Dado[] momd = (Dado[]) inputSocketObject.readObject();
+			return (String[]) inputSocketObject.readObject();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
+		}
+		return null;
 	}
 
-
-	public void waitStartGame(StartClientGui start) {
-		if(inputSocket.nextLine().equals("start"))
-				start.changeStage(4);
+	public int getNumberOfGamers() {
+		return numberOfGamers;
 	}
 	
-	public void posizionareFamiliare(String color, int x, int y) {
-		outputSocket.println("mossa familiare");
+	public void setNumberOfGamers(int numberOfGamers) {
+		this.numberOfGamers = numberOfGamers;
+	}
+	
+	public void selectColorGamer(String color) {
+		outputSocket.println(color);
 		outputSocket.flush();
-		//Dovr� rinviare indietro le modifiche da apportare
 	}
 
 	public String controlloPosizionamento(String color, double x, double y, int agg){
@@ -193,86 +204,58 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 	public void setGuiGame(ControllerGame guiGame){
 		this.guiGame = guiGame;
 	}
-	
-	@Override
-	public void spendereRisorse(String risorsa, int qta) {
-		// TODO Auto-generated method stub
-		
-	}
 
-
-	@Override
-	public void takeCards(String name) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void sostegnoChiesa(boolean flag) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	public int getPositionGame() {
-		return positionGame;
-	}
-
-
-	public void setPositionGame(int positionGame) {
-		this.positionGame = positionGame;
-	}
-
-
-	public int getNumberOfGamers() {
-		return numberOfGamers;
-	}
-
-
-	public void setNumberOfGamers(int numberOfGamers) {
-		this.numberOfGamers = numberOfGamers;
-	}
-	
-	public void setStage(StartClientGui start) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	public StartClientGui getStart() {
-		return start;
-	}
-
-
-	public void setStart(StartClientGui start) {
-		this.start = start;
-	}
-	
-	public String[] getColors(String lobby) throws RemoteException {
-		outputSocket.println("getColors");
-		outputSocket.flush();
-		outputSocket.print(lobby);
-		outputSocket.flush();
-		try {
-			return (String[]) inputSocketObject.readObject();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+	public void notifyTurno() {
+		double x;
+		double y;
+		String colorPlayer; 
+		String color;
+		if(inputSocket.nextLine().equals("move")){
+			switch(inputSocket.nextLine()){
+				case "disco":
+					x = inputSocket.nextDouble();
+					y = inputSocket.nextDouble();
+					colorPlayer = inputSocket.nextLine();
+					color = inputSocket.nextLine();
+					guiGame.movePunti(color, x, y);
+					break;
+				case "familiareAvv":
+					x = inputSocket.nextDouble();
+					y = inputSocket.nextDouble();
+					colorPlayer = inputSocket.nextLine();
+					color = inputSocket.nextLine();
+					guiGame.moveFamAvv(colorPlayer, color, x, y);
+					break;
+				case "discoFede":
+					x = inputSocket.nextDouble();
+					y = inputSocket.nextDouble();
+					colorPlayer = inputSocket.nextLine();
+					color = inputSocket.nextLine();
+					guiGame.movePuntiFede(color, x, y);
+					break;
+				case "startTurno":
+					guiGame.enableGame();
+			}		
 		}
-		return null;
+	}
+	
+	public void notifySpostamento(String color, double x, double y){
+		outputSocket.println("notifySpostamento");
+		outputSocket.flush();
+		outputSocket.println(color);
+		outputSocket.flush();
+		outputSocket.println(x);
+		outputSocket.flush();
+		outputSocket.println(y);
+		outputSocket.flush();
 	}
 	
 	public String getNamePosition(double x, double y) throws RemoteException {
-		// TODO Auto-generated method stub
+		outputSocket.println("getNamePosition");
+		outputSocket.flush();
+		outputSocket.println(x);
+		outputSocket.println(y);
 		return null;
-	}
-	
-	public void getCard(int positionGame, String name, CartaSviluppo carta) throws RemoteException {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	public void exitToTheGame(String lobby, String color) {
@@ -284,9 +267,11 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		outputSocket.flush();
 	}
 	
-	public void waitTurno() {
-		if(inputSocket.nextLine().equals("gioca"))
-			guiGame.enableGame();
+	public ArrayList<CartaSviluppo> getCardsGamer() throws ClassNotFoundException, IOException{
+		outputSocket.println("getCardsGamer");
+		outputSocket.flush();
+		return (ArrayList<CartaSviluppo>) inputSocketObject.readObject();
+		
 	}
 	
 	public void setCardGiocatore(CartaSviluppo carta) {
@@ -297,5 +282,70 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		outputSocket.println(name);
 		outputSocket.println(carta);
 		outputSocket.flush();
+	}
+	
+	public ArrayList<CartaSviluppo> getCardsGame() throws ClassNotFoundException, IOException {
+		outputSocket.println("getCardsGame");
+		outputSocket.flush();
+		return (ArrayList<CartaSviluppo>) inputSocketObject.readObject();
+	}
+	
+	public Portafoglio getRisorse() throws ClassNotFoundException, IOException{
+		outputSocket.println("getPortafoglio");
+		outputSocket.flush();
+		return (Portafoglio) inputSocketObject.readObject();
+	}
+	
+	public int getPositionGame() {
+		return positionGame;
+	}
+
+
+	public void waitStartGame(StartClientGui start) {
+		if(inputSocket.nextLine().equals("start"))
+				start.changeStage(4);
+	}
+	
+	public void setPositionGame(int positionGame) {
+		this.positionGame = positionGame;
+	}
+
+	public void setStart(StartClientGui start) {
+		this.start = start;
+	}
+	
+	public StartClientGui getStart() {
+		return start;
+	}
+	
+	public void waitTurno() {
+		if(inputSocket.nextLine().equals("gioca"))
+			guiGame.enableGame();
+	}
+	
+	@Override
+	public void spendereRisorse(String risorsa, int qta) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void takeCards(String name) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void sostegnoChiesa(boolean flag) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void getCard(int positionGame, String name, CartaSviluppo carta) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void addScomunica(int nScomuniche, Tooltip tooltip){
 	}
 }

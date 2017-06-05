@@ -14,6 +14,8 @@ import server.element.Dado;
 import server.element.Flag;
 import server.element.Giocatore;
 import server.element.Partita;
+import server.element.Portafoglio;
+import server.element.TesseraScomunica;
 
 
 /*
@@ -150,6 +152,14 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 	public void giveCard(CartaSviluppo carta, String name, int positionGame) throws RemoteException {
 		commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).addCard(carta);
 		
+	}
+
+	public TesseraScomunica[] getCardsScomunica(int positionGame) throws RemoteException {
+		return commonServer.getLobbyByNumber(positionGame).getCardsScomunica();
+	}
+
+	public Portafoglio getRisorse(int positionGame, String name) throws RemoteException {
+		return commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).getRisorse();
 	}
 
 }

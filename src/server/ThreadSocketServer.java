@@ -72,6 +72,8 @@ public class ThreadSocketServer implements Runnable {
 	 */
 
 	private void play() throws RemoteException, SQLException {
+		double x;
+		double y;
 		action = input.nextLine();
 		while (true) {
 			switch (action) {
@@ -81,8 +83,8 @@ public class ThreadSocketServer implements Runnable {
 				break;
 			case "controllo posizionamento":
 				color = input.nextLine();
-				double x = input.nextDouble();
-				double y = input.nextDouble();
+				x = input.nextDouble();
+				y = input.nextDouble();
 				positionGame = input.nextInt();
 				account = input.nextLine();
 				int agg = input.nextInt();
@@ -100,8 +102,28 @@ public class ThreadSocketServer implements Runnable {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
 				break;
+			case "getNamePosition":
+				output.println(commonServer.getLobbyByNumber(positionGame).getNamePosition(input.nextDouble(), input.nextDouble(),commonServer.getDBConnection().getConnection(account)));
+				output.flush();
+				break;
+			case "getPortafoglio":
+				output.println(commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(account).getRisorse());
+				output.flush();
+				break;
+			case "getTessereScomunica":
+				output.println(commonServer.getLobbyByNumber(positionGame).getCardsScomunica());
+				output.flush();
+				break;
+			case "getCardsGame":
+				output.println(commonServer.getLobbyByNumber(positionGame).getCards());
+				output.flush();
+				break;
+			case "notifySpostamento":
+				String color = input.nextLine();
+				x = input.nextDouble();
+				y = input.nextDouble();
+				commonServer.getLobbyByNumber(positionGame).notifySpostamento(color, commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(account), x, y);
 			case "quit":
 				closeSocket();
 				break;
@@ -207,23 +229,53 @@ public class ThreadSocketServer implements Runnable {
 		}
 	}
 
-	public void playGamer() {
-		// TODO Auto-generated method stub
+	public void notifyTurno() {
+		output.println("startTurno");
+		output.flush();
 
+	}
+
+	public void moveFamiliareAvv(double x, double y, String colorPlayer, String color) {
+		output.println("familiareAvv");
+		output.flush();
+		output.println(x);
+		output.flush();
+		output.println(y);
+		output.flush();
+		output.println(colorPlayer);
+		output.flush();
+		output.println(color);
+		output.flush();
+	}
+	
+	public void moveDisco(double x, double y, String colorPlayer, String colorDisco) {
+		output.println("disco");
+		output.flush();
+		output.println(x);
+		output.flush();
+		output.println(y);
+		output.flush();
+		output.println(colorPlayer);
+		output.flush();
+		output.println(colorDisco);
+		output.flush();
+	}
+	
+	public void moveDiscoFede(double x, double y, String colorPlayer, String colorDisco) {
+		output.println("discoFede");
+		output.flush();
+		output.println(x);
+		output.flush();
+		output.println(y);
+		output.flush();
+		output.println(colorPlayer);
+		output.flush();
+		output.println(colorDisco);
+		output.flush();
 	}
 
 	public void addScomunica(int nScomuniche, Tooltip tooltip) {
-		// TODO Auto-generated method stub
-
+				
 	}
-
-	public void notifyTurno() {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void moveFamiliareAvv(double x2, double y2, String colorPlayer, String color2) {
-		// TODO Auto-generated method stub
-
-	}
+	
 }
