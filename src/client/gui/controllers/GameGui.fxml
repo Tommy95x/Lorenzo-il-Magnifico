@@ -23,7 +23,7 @@
             <VBox fx:id="cartePersonaggi" alignment="BOTTOM_LEFT" layoutX="193.0" layoutY="51.0" prefHeight="502.0" prefWidth="75.0" />
             <VBox fx:id="carteEdifici" alignment="BOTTOM_LEFT" layoutX="331.0" layoutY="51.0" prefHeight="502.0" prefWidth="75.0" />
             <VBox fx:id="carteImprese" alignment="BOTTOM_LEFT" layoutX="469.0" layoutY="51.0" prefHeight="502.0" prefWidth="75.0" />
-            <VBox layoutX="551.0" layoutY="543.0" prefHeight="131.0" prefWidth="46.0" />
+            <VBox fx:id="posizioni" layoutX="551.0" layoutY="543.0" prefHeight="131.0" prefWidth="46.0" />
             <HBox fx:id="azioniTerritoridapiuGiocatori" layoutX="132.0" layoutY="904.0" prefHeight="38.0" prefWidth="123.0" />
             <HBox fx:id="municipio" layoutX="348.0" layoutY="574.0" prefHeight="38.0" prefWidth="164.0" />
             <HBox fx:id="azioniEdificidapiuGiocatori" layoutX="139.0" layoutY="820.0" prefHeight="38.0" prefWidth="123.0" />
@@ -61,9 +61,9 @@
             <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="8.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="18.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="20.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="80.0" fitWidth="46.0" layoutX="148.0" layoutY="620.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="80.0" fitWidth="46.0" layoutX="201.0" layoutY="620.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="80.0" fitWidth="46.0" layoutX="254.0" layoutY="620.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="cartaScomunica1" fitHeight="80.0" fitWidth="46.0" layoutX="148.0" layoutY="620.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="cartaScomunica2" fitHeight="80.0" fitWidth="46.0" layoutX="201.0" layoutY="620.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="cartaScomunica3" fitHeight="80.0" fitWidth="46.0" layoutX="254.0" layoutY="620.0" pickOnBounds="true" preserveRatio="true" />
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1000.0" prefWidth="960.0">
          <children>
@@ -117,9 +117,9 @@
                   <Font size="29.0" />
                </font>
             </Label>
-            <ImageView fx:id="cuboScomunica1" fitHeight="29.0" fitWidth="31.0" layoutX="111.0" layoutY="468.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="cuboScomunica2" fitHeight="71.0" fitWidth="75.0" layoutX="182.0" layoutY="428.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="cuboScomunica3" fitHeight="71.0" fitWidth="75.0" layoutX="265.0" layoutY="428.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="cuboScomunica1" fitHeight="35.0" fitWidth="35.0" layoutX="111.0" layoutY="463.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="cuboScomunica2" fitHeight="35.0" fitWidth="35.0" layoutX="155.0" layoutY="463.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="cuboScomunica3" fitHeight="35.0" fitWidth="35.0" layoutX="265.0" layoutY="463.0" pickOnBounds="true" preserveRatio="true" />
          </children></AnchorPane>
   </items>
 </SplitPane>
