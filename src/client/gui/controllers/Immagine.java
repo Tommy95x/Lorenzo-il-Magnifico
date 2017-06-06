@@ -1,5 +1,6 @@
 package client.gui.controllers;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 
 import javafx.scene.image.Image;
@@ -87,10 +88,15 @@ public class Immagine extends ImageView{
         			ImageView v = (ImageView) event.getAcceptingObject();
         			destinazione.setImage(this.getImage());
         			this.setDisable(true);
-        			game.setCardGiocatore(game.getNamePosition(this.getX(),this.getY()));
+        			try {
+						game.setCardGiocatore(game.getNamePosition(this.getX(),this.getY()));
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
         			try {
 						game.notifySpostamento(this.getColor(),this.getX(), this.getY());
-					} catch (RemoteException e) {
+					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
@@ -100,7 +106,7 @@ public class Immagine extends ImageView{
         			this.setDisable(true);
         			try {
 						game.notifySpostamento(this.getColor(),this.getX(), this.getY());
-					} catch (RemoteException e) {
+					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}

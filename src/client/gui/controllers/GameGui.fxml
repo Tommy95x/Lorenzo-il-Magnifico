@@ -14,28 +14,16 @@
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="768.0" prefWidth="683.0">
          <children>
-            <ImageView fitHeight="1000.0" fitWidth="960.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="928.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="756.0" AnchorPane.topAnchor="0.0">
+            <ImageView fitHeight="768.0" fitWidth="960.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="928.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="756.0" AnchorPane.topAnchor="0.0">
                <image>
                   <Image url="@../../../../Media/IMG_20170523_155418.png" />
                </image>
             </ImageView>
-            <VBox fx:id="carteTerritori" alignment="BOTTOM_LEFT" layoutX="53.0" layoutY="51.0" prefHeight="502.0" prefWidth="75.0" />
-            <VBox fx:id="cartePersonaggi" alignment="BOTTOM_LEFT" layoutX="193.0" layoutY="51.0" prefHeight="502.0" prefWidth="75.0" />
-            <VBox fx:id="carteEdifici" alignment="BOTTOM_LEFT" layoutX="331.0" layoutY="51.0" prefHeight="502.0" prefWidth="75.0" />
-            <VBox fx:id="carteImprese" alignment="BOTTOM_LEFT" layoutX="469.0" layoutY="51.0" prefHeight="502.0" prefWidth="75.0" />
-            <VBox fx:id="posizioni" layoutX="551.0" layoutY="543.0" prefHeight="131.0" prefWidth="46.0" />
-            <HBox fx:id="azioniTerritoridapiuGiocatori" layoutX="132.0" layoutY="904.0" prefHeight="38.0" prefWidth="123.0" />
-            <HBox fx:id="municipio" layoutX="348.0" layoutY="574.0" prefHeight="38.0" prefWidth="164.0" />
-            <HBox fx:id="azioniEdificidapiuGiocatori" layoutX="139.0" layoutY="820.0" prefHeight="38.0" prefWidth="123.0" />
-            <ImageView fx:id="azioniEdificidaunGiocatore" fitHeight="38.0" fitWidth="46.0" layoutX="53.0" layoutY="820.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="azioniTerritoridaunGiocatore" fitHeight="38.0" fitWidth="46.0" layoutX="53.0" layoutY="904.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="dadoNero" fitHeight="38.0" fitWidth="46.0" layoutX="377.0" layoutY="913.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="dadoBianco" fitHeight="38.0" fitWidth="46.0" layoutX="446.0" layoutY="913.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="dadoArancio" fitHeight="38.0" fitWidth="46.0" layoutX="507.0" layoutY="913.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="mercatoPosMoneteMilitari" fitHeight="38.0" fitWidth="46.0" layoutX="518.0" layoutY="820.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="mercatoPosServitori" fitHeight="38.0" fitWidth="46.0" layoutX="454.0" layoutY="801.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="mercatoPosMonete" fitHeight="38.0" fitWidth="46.0" layoutX="391.0" layoutY="801.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="mercatoPosMunicipio" fitHeight="38.0" fitWidth="46.0" layoutX="564.0" layoutY="866.0" pickOnBounds="true" preserveRatio="true" />
+            <VBox fx:id="carteTerritori" alignment="BOTTOM_LEFT" layoutX="36.0" layoutY="37.0" prefHeight="390.0" prefWidth="63.0" />
+            <VBox fx:id="cartePersonaggi" alignment="BOTTOM_LEFT" layoutX="145.0" layoutY="40.0" prefHeight="383.0" prefWidth="63.0" />
+            <VBox fx:id="carteEdifici" alignment="BOTTOM_LEFT" layoutX="254.0" layoutY="41.0" prefHeight="383.0" prefWidth="63.0" />
+            <VBox fx:id="carteImprese" alignment="BOTTOM_LEFT" layoutX="360.0" layoutY="42.0" prefHeight="383.0" prefWidth="63.0" />
+            <HBox fx:id="municipio" layoutX="265.0" layoutY="440.0" prefHeight="38.0" prefWidth="123.0" />
             <ImageView fx:id="pianoPrimoPalazzoMilitare" fitHeight="38.0" fitWidth="46.0" layoutX="553.0" layoutY="474.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="pianoSecondoPalazzoMilitare" fitHeight="38.0" fitWidth="46.0" layoutX="553.0" layoutY="344.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="pianoTerzoPalazzoMilitare" fitHeight="38.0" fitWidth="46.0" layoutX="553.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true" />
@@ -64,6 +52,24 @@
             <ImageView fx:id="cartaScomunica1" fitHeight="80.0" fitWidth="46.0" layoutX="148.0" layoutY="620.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="cartaScomunica2" fitHeight="80.0" fitWidth="46.0" layoutX="201.0" layoutY="620.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="cartaScomunica3" fitHeight="80.0" fitWidth="46.0" layoutX="254.0" layoutY="620.0" pickOnBounds="true" preserveRatio="true" />
+            <Label layoutX="235.0" layoutY="511.0" prefHeight="43.0" prefWidth="89.0" text="Turno :">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="323.0" layoutY="518.0" prefHeight="25.0" prefWidth="21.0" text="0" textFill="#282828">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Label>
+            <VBox fx:id="posizioni" layoutX="425.0" layoutY="410.0" prefHeight="111.0" prefWidth="35.0" />
+            <HBox fx:id="azioniEdificidapiuGiocatori" layoutX="105.0" layoutY="628.0" prefHeight="35.0" prefWidth="96.0" />
+            <HBox fx:id="azioniTerritoridapiuGiocatori" layoutX="100.0" layoutY="691.0" prefHeight="35.0" prefWidth="96.0" />
+            <ImageView fx:id="azioniEdificidaunGiocatore" fitHeight="38.0" fitWidth="35.0" layoutX="43.0" layoutY="621.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="azioniTerritoridaunGiocatore" fitHeight="38.0" fitWidth="35.0" layoutX="41.0" layoutY="685.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="dadoNero" fitHeight="35.0" fitWidth="35.0" layoutX="290.0" layoutY="698.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="dadoBianco" fitHeight="35.0" fitWidth="35.0" layoutX="341.0" layoutY="699.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="dadoArancio" fitHeight="35.0" fitWidth="35.0" layoutX="391.0" layoutY="699.0" pickOnBounds="true" preserveRatio="true" />
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="768.0" prefWidth="683.0">
          <children>
@@ -72,16 +78,6 @@
                   <Image url="@../../../../Media/plancia.jpg" />
                </image>
             </ImageView>
-            <Label layoutX="10.0" layoutY="341.0" prefHeight="43.0" prefWidth="75.0" text="Turno :">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label layoutX="93.0" layoutY="338.0" prefHeight="43.0" prefWidth="21.0" text="0" textFill="#282828">
-               <font>
-                  <Font size="29.0" />
-               </font>
-            </Label>
             <ImageView fx:id="cuboScomunica1" fitHeight="35.0" fitWidth="35.0" layoutX="111.0" layoutY="342.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="cuboScomunica2" fitHeight="35.0" fitWidth="35.0" layoutX="143.0" layoutY="342.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="cuboScomunica3" fitHeight="35.0" fitWidth="35.0" layoutX="176.0" layoutY="340.0" pickOnBounds="true" preserveRatio="true" />

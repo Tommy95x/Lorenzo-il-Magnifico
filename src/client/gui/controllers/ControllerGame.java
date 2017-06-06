@@ -721,11 +721,11 @@ public class ControllerGame {
 		}
 	}
 
-	public void notifySpostamento(String color, double x, double y) throws RemoteException {
+	public void notifySpostamento(String color, double x, double y) throws IOException {
 		start.getClient().notifySpostamento(color,x,y);
 	}
 
-	public String getNamePosition(double x, double y) {
+	public String getNamePosition(double x, double y) throws IOException {
 		try {
 			return start.getClient().getNamePosition(x,y);
 		} catch (RemoteException e) {
@@ -739,7 +739,7 @@ public class ControllerGame {
 		}
 	}
 
-	public void setCardGiocatore(String namePosition) {
+	public void setCardGiocatore(String namePosition) throws IOException {
 		switch(namePosition){
 		case "primo piano territori":
 			carteTerritoriGiocatore.getChildren().add(carteTerritori.getChildren().get(0));
@@ -857,7 +857,7 @@ public class ControllerGame {
 	}
 
 	
-	public void resetTabellon(){
+	public void resetTabellon() throws ClassNotFoundException, IOException{
 		try {
 			setCards(start.getClient().getCardsGame());
 		} catch (ClassNotFoundException | IOException e) {

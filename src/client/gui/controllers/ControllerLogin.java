@@ -1,5 +1,7 @@
 package client.gui.controllers;
 
+import java.io.IOException;
+
 import client.gui.StartClientGui;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
@@ -44,7 +46,7 @@ public class ControllerLogin {
 	}
 
 	@FXML
-	public void pressSingIn() {
+	public void pressSingIn() throws ClassNotFoundException, IOException {
 		if (pw.getText().equals("") || name.getText().equals("")) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.initOwner(start.getStage());

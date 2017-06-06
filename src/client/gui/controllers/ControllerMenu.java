@@ -1,5 +1,6 @@
 package client.gui.controllers;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import client.gui.StartClientGui;
@@ -61,7 +62,7 @@ public class ControllerMenu {
 	}
 
 	@FXML
-	public void enterInALobby() {
+	public void enterInALobby() throws IOException {
 		ArrayList<Partita> arrayLobbies = new ArrayList<Partita>();
 		arrayLobbies = start.getClient().lobbiesView();
 		ObservableList<String> nameLobbies = FXCollections.observableArrayList();
@@ -117,13 +118,13 @@ public class ControllerMenu {
 	}
 	
 	@FXML
-	public void startGame(){
+	public void startGame() throws IOException{
 		start.getClient().startGame();
 		start.changeStage(4);
 	}
 
 	@FXML
-	public void close(){
+	public void close() throws IOException{
 		if(!exitToGame.isDisable())
 			start.getClient().exitToTheGame(lobby, start.getColor());
 		System.exit(0);
@@ -135,7 +136,7 @@ public class ControllerMenu {
 	}
 	
 	@FXML
-	public void extiToTheGame(){
+	public void extiToTheGame() throws IOException{
 		exitToGame.setDisable(true);
 		start.getClient().exitToTheGame(lobby, start.getColor());
 	}
@@ -155,7 +156,12 @@ public class ControllerMenu {
 		b = new Button("Blue");
 		b.setOnAction(event -> {
 			start.setColor("black");
-			System.out.println(start.getClient().createANewLobby(lobby, start.getColor()));
+			try {
+				System.out.println(start.getClient().createANewLobby(lobby, start.getColor()));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			viewStartButton();
 			popup.close();
 			event.consume();
@@ -168,7 +174,12 @@ public class ControllerMenu {
 		b = new Button("Orange");
 		b.setOnAction(event -> {
 			start.setColor("orange");
-			System.out.println(start.getClient().createANewLobby(lobby, start.getColor()));
+			try {
+				System.out.println(start.getClient().createANewLobby(lobby, start.getColor()));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			viewStartButton();
 			popup.close();
 			event.consume();
@@ -181,7 +192,12 @@ public class ControllerMenu {
 		b = new Button("White");
 		b.setOnAction(event -> {
 			start.setColor("white");
-			System.out.println(start.getClient().createANewLobby(lobby, start.getColor()));
+			try {
+				System.out.println(start.getClient().createANewLobby(lobby, start.getColor()));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			viewStartButton();
 			popup.close();
 			event.consume();
@@ -194,7 +210,12 @@ public class ControllerMenu {
 		b = new Button("Green");
 		b.setOnAction(event -> {
 			start.setColor("white");
-			System.out.println(start.getClient().createANewLobby(lobby, start.getColor()));
+			try {
+				System.out.println(start.getClient().createANewLobby(lobby, start.getColor()));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			viewStartButton();
 			popup.close();
 			event.consume();
@@ -229,7 +250,12 @@ public class ControllerMenu {
 						b = new Button("blue");
 						b.setOnAction(event -> {
 							start.setColor("blue");
-							start.getClient().enterInALobby(lobby, start.getColor());
+							try {
+								start.getClient().enterInALobby(lobby, start.getColor());
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 							popup.close();
 							viewStartButton();
 							event.consume();
@@ -244,7 +270,12 @@ public class ControllerMenu {
 						b = new Button("Orange");
 						b.setOnAction(event -> {
 							start.setColor("orange");
-							start.getClient().enterInALobby(lobby, start.getColor());
+							try {
+								start.getClient().enterInALobby(lobby, start.getColor());
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 							popup.close();
 							viewStartButton();
 							event.consume();
@@ -259,7 +290,12 @@ public class ControllerMenu {
 						b = new Button("White");
 						b.setOnAction(event -> {
 							start.setColor("white");
-							start.getClient().enterInALobby(lobby, start.getColor());
+							try {
+								start.getClient().enterInALobby(lobby, start.getColor());
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 							popup.close();
 							viewStartButton();
 							event.consume();
@@ -274,7 +310,12 @@ public class ControllerMenu {
 						b = new Button("Green");
 						b.setOnAction(event -> {
 							start.setColor("green");
-							start.getClient().enterInALobby(lobby, start.getColor());
+							try {
+								start.getClient().enterInALobby(lobby, start.getColor());
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 							popup.close();
 							viewStartButton();
 							event.consume();

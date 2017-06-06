@@ -57,17 +57,13 @@ public class Partita implements Serializable{
 		queryimpresa="SELECT * FROM CARTEIMPRESAPARTITA ORDER BY PERIODO";
 		querypersonaggio="SELECT * FROM CARTEPERSONAGGIOPARTITA ORDER BY PERIODO";
 		queryedificio="SELECT * FROM CARTEEDIFICIOPARTITA ORDER BY PERIODO";
-		for(int i=0;i<DIM;i++){
-			start[i]=false;
-		}
-		String queryterritorio = "CREATE VIEW CARTETERRITORIOPARTITA AS (SELECT * FROM CARTATERRITORIO ORDER BY RAND(), PERIODO)";
-		String queryimpresa = "CREATE VIEW CARTEIMPRESAPARTITA AS (SELECT * FROM CARTAIMPRESA ORDER BY RAND(), PERIODO)";
-		String querypersonaggio = "CREATE VIEW CARTEPERSONAGGIOPARTITA AS (SELECT * FROM CARTAPERSONAGGIO ORDER BY RAND(), PERIODO)";
-		String queryedificio = "CREATE VIEW CARTEEDIFICIOPARTITA AS (SELECT * FROM CARTAEDIFICIO ORDER BY RAND(), PERIODO)";
 		connection.createStatement().executeQuery(queryterritorio);
 		connection.createStatement().executeQuery(queryimpresa);
 		connection.createStatement().executeQuery(querypersonaggio);
 		connection.createStatement().executeQuery(queryedificio);
+		for(int i=0;i<DIM;i++){
+			start[i]=false;
+		}
 	}
 	
 	
@@ -158,12 +154,22 @@ public class Partita implements Serializable{
 
 	public boolean addTurno() {
 		if(turno<7){
+			if(turno == 2 || turno == 4)
+				sostegnoChiesa();
 			turno++;
 			return true;
-		}else
+		}else{
+			sostegnoChiesa();
 			return false;
+		}
 	}
 	
+	private void sostegnoChiesa() {
+		
+		
+	}
+
+
 	public String getCreator(){
 		return giocatori[0].getName();
 	}

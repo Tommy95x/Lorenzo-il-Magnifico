@@ -1,5 +1,6 @@
 package client;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import server.element.Partita;
@@ -11,16 +12,16 @@ import server.element.Partita;
  */
 public interface ClientInterface {
 
-	public String login(String account, String pw);
-	public String register(String account, String pw, String pw2, String email);
-	public boolean createANewLobby(String lobby, String color);
-	public ArrayList<Partita> lobbiesView();
-	public void selectColorGamer(String color);
+	public String login(String account, String pw) throws ClassNotFoundException, IOException;
+	public String register(String account, String pw, String pw2, String email) throws IOException, ClassNotFoundException;
+	public boolean createANewLobby(String lobby, String color) throws IOException;
+	public ArrayList<Partita> lobbiesView() throws IOException;
+	public void selectColorGamer(String color) throws IOException;
 	public void posizionareFamiliare(String color, int x, int y);
 	public void spendereRisorse(String risorsa, int qta);
-	public void startGame();
+	public void startGame() throws IOException;
 	public void sostegnoChiesa(boolean flag);
-	public void richiestaRegistrazione();
+	public void richiestaRegistrazione() throws IOException;
 	public void takeCards(String name);
-	void enterInALobby(String lobby, String string);
+	void enterInALobby(String lobby, String string) throws IOException;
 }
