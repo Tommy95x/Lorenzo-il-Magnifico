@@ -3,6 +3,7 @@ package server;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import server.database.ConnectionDatabase;
@@ -66,15 +67,20 @@ public class StartServer {
 	 * @param pw
 	 * @param email
 	 * @return Return one of two strings, it advise you if you are already registered or if you has been registered
+	 * @throws SQLException 
 	 */
-	public String registerNewClient(String account, String pw, String email) {
+	public String registerNewClient(String account, String pw, String email) throws SQLException {
 		// Scrivere la query per aggiungere un nuovo utente al sistema
 		String query = "SELECT COUNT(*) AS C FROM UTENTE WHERE (NOMEUTENTE='"+account.toLowerCase()+"' AND PASSWORD='"+pw.toLowerCase()+"')";
+		Connection connection=DB.getConnection(account);
 		try {
-			ResultSet res = DB.getConnection(account).createStatement().executeQuery(query);
+			Statement stmt = connection.createStatement();
+			ResultSet res = stmt.executeQuery(query);
 			res.next();
 				int conta = res.getInt("C");
 			res.close();
+			stmt.close();
+			connection.close();
 			if(conta>0){
 			    return "You are registered yet! You have to login!";
 			}else{
