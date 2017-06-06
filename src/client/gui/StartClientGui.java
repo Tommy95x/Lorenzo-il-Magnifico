@@ -47,7 +47,6 @@ public class StartClientGui extends Application{
 		primaryStage.getIcons().add(new Image("file:logo.png"));
 		ControllerConnection connection = loader.getController();
 		connection.getStartClientGui(this);
-		
 		root.setId("pane");
 		Scene scene = new Scene(root, 600, 400);
 		scene.getStylesheets().addAll(this.getClass().getResource("controllers/pane.css").toExternalForm());
