@@ -10,6 +10,7 @@ import client.gui.controllers.ControllerGame;
 import server.element.CartaSviluppo;
 import server.element.CartaTerritori;
 import server.element.Dado;
+import server.element.Giocatore;
 import server.element.Partita;
 import server.element.Portafoglio;
 import server.element.TesseraScomunica;
@@ -158,6 +159,16 @@ public class ConnectionClient implements ClientInterface {
 	}
 
 	public Portafoglio getRisorse() throws ClassNotFoundException, IOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Giocatore[] getGiocatori() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getName() {
 		// TODO Auto-generated method stub
 		return null;
 	}

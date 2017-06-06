@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -24,22 +25,18 @@
             <VBox fx:id="carteEdifici" alignment="BOTTOM_LEFT" layoutX="254.0" layoutY="41.0" prefHeight="383.0" prefWidth="63.0" />
             <VBox fx:id="carteImprese" alignment="BOTTOM_LEFT" layoutX="360.0" layoutY="42.0" prefHeight="383.0" prefWidth="63.0" />
             <HBox fx:id="municipio" layoutX="265.0" layoutY="440.0" prefHeight="38.0" prefWidth="123.0" />
-            <ImageView fx:id="pianoPrimoPalazzoMilitare" fitHeight="38.0" fitWidth="46.0" layoutX="553.0" layoutY="474.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="pianoSecondoPalazzoMilitare" fitHeight="38.0" fitWidth="46.0" layoutX="553.0" layoutY="344.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="pianoTerzoPalazzoMilitare" fitHeight="38.0" fitWidth="46.0" layoutX="553.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="pianoQuartoPalazzoMilitare" fitHeight="38.0" fitWidth="46.0" layoutX="553.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="pianoQuartoPalazzoEdifici" fitHeight="38.0" fitWidth="46.0" layoutX="312.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="pianoTerzoPalazzoEdifici" fitHeight="38.0" fitWidth="46.0" layoutX="311.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="pianoSecondoPalazzoEdifici" fitHeight="38.0" fitWidth="46.0" layoutX="313.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="pianoPrimoPalazzoEdifici" fitHeight="38.0" fitWidth="46.0" layoutX="312.0" layoutY="449.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="pianoPrimoPalazzoPersonaggi" fitHeight="38.0" fitWidth="46.0" layoutX="277.0" layoutY="474.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="pianoSecondoPalazzoPersonaggi" fitHeight="38.0" fitWidth="46.0" layoutX="277.0" layoutY="344.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="pianoTerzoPalazzoPersonaggi" fitHeight="38.0" fitWidth="46.0" layoutX="277.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="38.0" fitWidth="46.0" layoutX="277.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="pianoQuartoPalazzoPersonaggi" fitHeight="38.0" fitWidth="46.0" layoutX="283.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="pianoQuartoPalazzoTerritori" fitHeight="38.0" fitWidth="46.0" layoutX="139.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="pianoTerzoPalazzoTerritori" fitHeight="38.0" fitWidth="46.0" layoutX="139.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="pianoSecondoPalazzoTerritori" fitHeight="38.0" fitWidth="46.0" layoutX="139.0" layoutY="344.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="pianoPrimoPalazzoEdifici" fitHeight="38.0" fitWidth="46.0" layoutX="313.0" layoutY="357.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="pianoPrimoPalazzoPersonaggi" fitHeight="38.0" fitWidth="46.0" layoutX="206.0" layoutY="352.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="pianoSecondoPalazzoPersonaggi" fitHeight="38.0" fitWidth="46.0" layoutX="206.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="pianoTerzoPalazzoPersonaggi" fitHeight="38.0" fitWidth="46.0" layoutX="206.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="38.0" fitWidth="46.0" layoutX="206.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="pianoQuartoPalazzoPersonaggi" fitHeight="38.0" fitWidth="46.0" layoutX="101.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="pianoQuartoPalazzoTerritori" fitHeight="38.0" fitWidth="46.0" layoutX="102.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="pianoTerzoPalazzoTerritori" fitHeight="38.0" fitWidth="46.0" layoutX="101.0" layoutY="256.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="pianoSecondoPalazzoTerritori" fitHeight="38.0" fitWidth="46.0" layoutX="100.0" layoutY="354.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="pianoPrimoPalazzoTerritori" fitHeight="38.0" fitWidth="46.0" layoutX="139.0" layoutY="474.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="puntiFedeArancio" fitHeight="29.0" fitWidth="31.0" layoutX="50.0" layoutY="736.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="puntiFedeBianco" fitHeight="29.0" fitWidth="31.0" layoutX="54.0" layoutY="740.0" pickOnBounds="true" preserveRatio="true" />
@@ -74,6 +71,9 @@
             <ImageView fx:id="mercatoPosServitori" fitHeight="35.0" fitWidth="35.0" layoutX="350.0" layoutY="612.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="mercatoPosMoneteMilitari" fitHeight="35.0" fitWidth="35.0" layoutX="397.0" layoutY="623.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="mercatoPosMoneteMilitari1" fitHeight="35.0" fitWidth="35.0" layoutX="433.0" layoutY="660.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="cuboScomunica1" fitHeight="35.0" fitWidth="35.0" layoutX="234.0" layoutY="615.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="cuboScomunica2" fitHeight="35.0" fitWidth="35.0" layoutX="239.0" layoutY="665.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="cuboScomunica3" fitHeight="35.0" fitWidth="35.0" layoutX="239.0" layoutY="706.0" pickOnBounds="true" preserveRatio="true" />
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="768.0" prefWidth="683.0">
          <children>
@@ -82,9 +82,6 @@
                   <Image url="@../../../../Media/plancia.jpg" />
                </image>
             </ImageView>
-            <ImageView fx:id="cuboScomunica1" fitHeight="35.0" fitWidth="35.0" layoutX="111.0" layoutY="342.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="cuboScomunica2" fitHeight="35.0" fitWidth="35.0" layoutX="143.0" layoutY="342.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="cuboScomunica3" fitHeight="35.0" fitWidth="35.0" layoutX="176.0" layoutY="340.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fitHeight="292.0" fitWidth="299.0" layoutX="607.0" layoutY="380.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../Media/Immagine.png" />
@@ -124,6 +121,30 @@
             <ImageView fx:id="bandiera" fitHeight="80.0" fitWidth="46.0" layoutX="3.0" layoutY="681.0" pickOnBounds="true" preserveRatio="true" />
             <HBox fx:id="carteImpresaGiocatore" layoutX="616.0" layoutY="380.0" prefHeight="143.0" prefWidth="231.0" />
             <HBox fx:id="cartePersonaggiGiocatore" layoutX="619.0" layoutY="525.0" prefHeight="143.0" prefWidth="231.0" />
+            <ScrollPane layoutX="4.0" prefHeight="375.0" prefWidth="280.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="375.0" prefWidth="285.0">
+                     <children>
+                        <Label layoutY="6.0" prefHeight="25.0" prefWidth="96.0" text="Giocatore:" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+            <ScrollPane layoutX="285.0" layoutY="-1.0" prefHeight="375.0" prefWidth="280.0">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="377.0" prefWidth="285.0">
+                     <children>
+                        <Label layoutX="13.0" layoutY="15.0" prefHeight="25.0" prefWidth="96.0" text="Giocatore:" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </ScrollPane>
+            <ScrollPane layoutX="565.0" layoutY="4.0" prefHeight="375.0" prefWidth="283.0">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="377.0" prefWidth="280.0" />
+               </content>
+            </ScrollPane>
+            <Label layoutX="465.0" layoutY="220.0" text="Label" />
          </children></AnchorPane>
   </items>
 </SplitPane>

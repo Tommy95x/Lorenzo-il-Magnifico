@@ -1,15 +1,12 @@
 package client.gui.controllers;
 
 import java.io.IOException;
-import java.rmi.RemoteException;
-
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
 public class Immagine extends ImageView{
 
@@ -82,10 +79,8 @@ public class Immagine extends ImageView{
         
         
         setOnDragDone(event ->{
-        	this.setImage(new Image(getClass().getResourceAsStream("")));
         	if(game.controlloPosizionamento(getColor(), this.getX(), this.getY(),0))
         		if(flag){
-        			ImageView v = (ImageView) event.getAcceptingObject();
         			destinazione.setImage(this.getImage());
         			this.setDisable(true);
         			try {
@@ -111,6 +106,7 @@ public class Immagine extends ImageView{
 						e.printStackTrace();
 					}
         		}
+        	this.setImage(new Image(getClass().getResourceAsStream("")));
         });
 	}
 	

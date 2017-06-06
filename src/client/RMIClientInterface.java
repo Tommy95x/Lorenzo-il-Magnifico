@@ -5,7 +5,9 @@ import java.rmi.RemoteException;
 import java.sql.SQLException;
 
 import javafx.scene.control.Tooltip;
+import server.element.CartaSviluppo;
 import server.element.Giocatore;
+import server.element.Portafoglio;
 
 public interface RMIClientInterface extends Remote{
 	public void notifyStartGame() throws RemoteException;
@@ -17,4 +19,5 @@ public interface RMIClientInterface extends Remote{
 	public void endGame(Giocatore[] giocatoriPartita) throws RemoteException;
 	public void addScomunica(int nScomuniche, Tooltip tooltip) throws RemoteException;
 	public void notifyTurno() throws RemoteException, SQLException;
+	public void notifyAddCard(CartaSviluppo carta, String string, Portafoglio portafoglio)throws RemoteException;
 }

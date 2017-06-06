@@ -1,5 +1,6 @@
 package server.element;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.sql.Connection;
@@ -71,10 +72,20 @@ public class Partita implements Serializable{
 		turno=1;
 		beShuffled();
 		for(int i = 0; i<4; i++){
-			giocatori[i].notifyStartGame();
+			try {
+				giocatori[i].notifyStartGame();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		//Vedi regole e assegna a seconda della posizione le risorse di posizione
-		giocatori[giocatore].notifyTurno();
+		try {
+			giocatori[giocatore].notifyTurno();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private boolean checkBoolean(int dim){
@@ -277,7 +288,12 @@ public class Partita implements Serializable{
 		if(giocatore>4){
 			addTurno();
 		}else{
-			giocatori[giocatore].notifyTurno();
+			try {
+				giocatori[giocatore].notifyTurno();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 	}
@@ -286,7 +302,12 @@ public class Partita implements Serializable{
 	public void notifySpostamento(String color, Giocatore giocatoreByName, double x, double y) {
 		for(Giocatore g : giocatori){
 			if(!g.equals(giocatoreByName)){
-				g.notifySpostamento(color,giocatoreByName.getColor(),x,y);
+				try {
+					g.notifySpostamento(color,giocatoreByName.getColor(),x,y);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 		
@@ -317,6 +338,19 @@ public class Partita implements Serializable{
 
 	public TesseraScomunica[] getCardsScomunica() {
 		return tessereScomunica;
+	}
+
+	public Giocatore[] getGiocatori() {
+		return giocatori;
+	}
+
+
+	public void notifyAddCardGiocatore(String name, CartaSviluppo carta) throws RemoteException {
+		for(Giocatore g : giocatori){
+			if(!g.getName().equals(name) &&  g!=null){
+				g.notifyAddCard(carta);
+			}
+		}
 	}
 	
 }

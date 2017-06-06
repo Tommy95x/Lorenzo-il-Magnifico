@@ -1,8 +1,10 @@
 package client;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import server.element.CartaSviluppo;
 import server.element.Partita;
 
 /**
@@ -23,5 +25,5 @@ public interface ClientInterface {
 	public void sostegnoChiesa(boolean flag);
 	public void richiestaRegistrazione() throws IOException;
 	public void takeCards(String name);
-	void enterInALobby(String lobby, String string) throws IOException;
+	public void enterInALobby(String lobby, String string) throws IOException;
 }

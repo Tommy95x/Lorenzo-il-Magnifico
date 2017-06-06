@@ -262,6 +262,19 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		return serverMethods.getRisorse(positionGame, name);
 	}
 
+	public Giocatore[] getGiocatori() throws RemoteException {
+		return serverMethods.getGiocatori(positionGame);
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void notifyAddCard(CartaSviluppo carta, String nameAvv,Portafoglio portafoglio) throws RemoteException {
+		guiGame.notifyAddCardAvv(carta, nameAvv,portafoglio);
+		
+	}
+	
 	@Override
 	public void sostegnoChiesa(boolean flag) {
 		// TODO Auto-generated method stub

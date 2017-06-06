@@ -10,6 +10,7 @@ import client.RMIClientInterface;
 import javafx.scene.image.Image;
 import server.element.CartaSviluppo;
 import server.element.Dado;
+import server.element.Giocatore;
 import server.element.Partita;
 import server.element.Portafoglio;
 import server.element.TesseraScomunica;
@@ -39,4 +40,5 @@ public interface ServerInterface extends Remote {
 	public void giveCard(CartaSviluppo carta, String name, int positionGame)throws RemoteException;
 	public TesseraScomunica[] getCardsScomunica(int positionGame) throws RemoteException;
 	public Portafoglio getRisorse(int positionGame, String name)throws RemoteException;
+	public Giocatore[] getGiocatori(int positionGame)throws RemoteException;
 }

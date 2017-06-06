@@ -1,5 +1,6 @@
 package server.element;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.sql.Connection;
@@ -96,7 +97,7 @@ public class Giocatore implements Serializable{
 			this.client = client2;
 	}
 
-	public void notifyStartGame() throws RemoteException {
+	public void notifyStartGame() throws IOException {
 		if (client == null){
 			server.notifyStartGame();
 		}else{
@@ -139,7 +140,7 @@ public class Giocatore implements Serializable{
 			client.addScomunica(nScomuniche,scomunica.getTooltip());
 	}
 
-	public void notifyTurno() throws RemoteException, SQLException {
+	public void notifyTurno() throws SQLException, IOException {
 		if (client == null)
 			server.notifyTurno();
 		else
@@ -147,7 +148,7 @@ public class Giocatore implements Serializable{
 		
 	}
 
-	public void notifySpostamento(String color, String colorPlayer, double x, double y) {
+	public void notifySpostamento(String color, String colorPlayer, double x, double y) throws IOException {
 		if (client == null)
 			server.moveFamiliareAvv(x,y,colorPlayer,color);
 		else
@@ -162,9 +163,22 @@ public class Giocatore implements Serializable{
 
 	public void addCard(CartaSviluppo carta) {
 		carte.add(carta);
-		//Molto probabilmente bisognerà notificare gli altri giocatori
+		activateCard(carta);
 	}
 	
+	public void notifyAddCard(CartaSviluppo carta) throws RemoteException {
+		if (client == null){
+			server.notifyAddCard(carta, this.getName(),this.getRisorse());
+		}else{
+			client.notifyAddCard(carta, this.getName(),this.getRisorse());
+		}
+	}
+
+	private void activateCard(CartaSviluppo carta) {
+		
+		
+	}
+
 	public ArrayList<CartaSviluppo> getCardsGamer(){
 		return carte;
 	}

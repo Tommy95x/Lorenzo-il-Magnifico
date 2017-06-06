@@ -13,6 +13,7 @@ import java.util.Scanner;
 import javafx.scene.control.Tooltip;
 import server.element.CartaSviluppo;
 import server.element.Giocatore;
+import server.element.Portafoglio;
 
 /*
 *Classe che comunica con un SocketClient che ha istanziato e creato una nuva connessione inprecedenza con il ServerSocket, la classe
@@ -281,6 +282,11 @@ public class ThreadSocketServer implements Runnable {
 
 	public void addScomunica(int nScomuniche, Tooltip tooltip) {
 				
+	}
+
+	public void notifyAddCard(CartaSviluppo carta, String string, Portafoglio portafoglio) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
