@@ -49,15 +49,20 @@ public class StartServer {
 			Connection connection = DB.getConnection(account);
 			Statement stmt = connection.createStatement();
 			ResultSet res = stmt.executeQuery(query);
+			res.next();
 			int conta = res.getInt("C");
-			res.close();
-			stmt.close();
-			connection.close();
 			if(conta>0){
 				utente.add(mom);
+				res.close();
+				stmt.close();
+				connection.close();
 				return "Welcome to the game";
-			}else
+			}else{
+				res.close();
+				stmt.close();
+				connection.close();
 				return "For player must register a new account";
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return "For player must register a new account";

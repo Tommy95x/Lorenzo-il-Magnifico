@@ -73,7 +73,8 @@ public class Partita implements Serializable{
 		beShuffled();
 		for(int i = 0; i<4; i++){
 			try {
-				giocatori[i].notifyStartGame();
+				if(giocatori[i] != null)
+					giocatori[i].notifyStartGame();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -177,7 +178,9 @@ public class Partita implements Serializable{
 
 
 	private void sostegnoChiesa() {
-		// TODO Auto-generated method stub
+		/*Deve scorrere i giocatori e vedere quanti punti fede si è accoumulati in base al turno di gioco.
+		 * Se minori da quanto richiesto attribuisco scomunica, altrimenti chiedi se sostenere o no
+		 */
 		
 	}
 
@@ -237,28 +240,32 @@ public class Partita implements Serializable{
 	public void setCards(Connection connection) throws SQLException{
 		String query;
 		String queryelimina;
-		
-		for(CartaSviluppo c:carteTerritori){
+		int i;
+		for(i=0;i<NUMCARTE;i++){
 			query="SELECT * FROM "+name.toUpperCase()+"CARTETERRITORIOPARTITA LIMIT 1";//Scrivere la query in modo che cerchi differenti carte in generale
-			c.setCarta(connection,query);
+			carteTerritori[i] = new CartaTerritori();
+			carteTerritori[i].setCarta(connection,query);
 			queryelimina="DELETE TOP 1 FROM "+name.toUpperCase()+"CARTETERRITORIOPARTITA";
 			connection.createStatement().executeUpdate(queryelimina);
 		}
-		for(CartaSviluppo c:cartePersonaggio){
+		for(i=0;i<NUMCARTE;i++){
 			query="SELECT * FROM "+name.toUpperCase()+"CARTEPERSONAGGIOPARTITA LIMIT 1";//Scrivere la query in modo che cerchi differenti carte in generale
-			c.setCarta(connection,query);
+			cartePersonaggio[i] = new CartaPersonaggi();
+			cartePersonaggio[i].setCarta(connection,query);
 			queryelimina="DELETE TOP 1 FROM "+name.toUpperCase()+"CARTEPERSONAGGIOPARTITA";
 			connection.createStatement().executeUpdate(queryelimina);
 		}
-		for(CartaSviluppo c:carteEdifici){
+		for(i=0;i<NUMCARTE;i++){
 			query="SELECT * FROM "+name.toUpperCase()+"CARTEEDIFICIOPARTITA LIMIT 1";//Scrivere la query in modo che cerchi differenti carte in generale
-			c.setCarta(connection,query);
+			carteEdifici[i] = new CartaEdifici();
+			carteEdifici[i].setCarta(connection,query);
 			queryelimina="DELETE TOP 1 FROM "+name.toUpperCase()+"CARTEEDIFICIOPARTITA";
 			connection.createStatement().executeUpdate(queryelimina);
 		}
-		for(CartaSviluppo c:carteImprese){
+		for(i=0;i<NUMCARTE;i++){
 			query="SELECT * FROM "+name.toUpperCase()+"CARTEIMPRESAPARTITA LIMIT 1";//Scrivere la query in modo che cerchi differenti carte in generale
-			c.setCarta(connection,query);
+			carteImprese[i] = new CartaImprese();
+			carteImprese[i].setCarta(connection,query);
 			queryelimina="DELETE TOP 1 FROM "+name.toUpperCase()+"CARTEIMPRESAPARTITA";
 			connection.createStatement().executeUpdate(queryelimina);
 		}

@@ -92,9 +92,9 @@ public class Giocatore implements Serializable{
 			this.server = server;
 	}
 
-	public void getClient(RMIClientInterface client2) {
-		if (client2 == null && server == null)
-			this.client = client2;
+	public void getClient(RMIClientInterface client) {
+		if (this.client == null && server == null)
+			this.client = client;
 	}
 
 	public void notifyStartGame() throws IOException {
