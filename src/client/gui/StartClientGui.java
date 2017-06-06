@@ -1,6 +1,8 @@
 package client.gui;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
+
 import client.ConnectionClient;
 import client.gui.controllers.ControllerConnection;
 import client.gui.controllers.ControllerGame;
@@ -28,6 +30,7 @@ public class StartClientGui extends Application{
 	private Stage primaryStage;
 	private ConnectionClient client;
 	private String color;
+	private boolean create = false;
 	
 	
 	
@@ -99,6 +102,7 @@ public class StartClientGui extends Application{
 					loader.setLocation(this.getClass().getResource("controllers/MenuGui.fxml"));
 					root = loader.load();
 					primaryStage.setTitle("Lorenzo il Magnifico");
+					primaryStage.setOnCloseRequest(event -> exit(primaryStage));
 					ControllerMenu menu = loader.getController();
 					menu.getStartClient(this);
 					root.setId("pane");
@@ -151,7 +155,14 @@ public class StartClientGui extends Application{
 		}
 	}
 	
-	public void exit(){
+	public void exit(Stage primaryStage2){
+		if(create)
+			try {
+				getClient().deleteView();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		primaryStage.close();
 		System.exit(0);
 	}
@@ -183,6 +194,11 @@ public class StartClientGui extends Application{
 
 	public void setColor(String color) {
 		this.color = color;
+	}
+
+
+	public void setCreate(boolean b) {
+		create = b;
 	}
 	
 }

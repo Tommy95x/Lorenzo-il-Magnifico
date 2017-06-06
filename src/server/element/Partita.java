@@ -352,5 +352,10 @@ public class Partita implements Serializable{
 			}
 		}
 	}
+
+	public void deleteView(Connection connection) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

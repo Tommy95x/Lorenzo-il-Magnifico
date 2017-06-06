@@ -37,7 +37,7 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 	}
 
 	
-	public String register(String username, String pw1, String pw2, String email) throws RemoteException {
+	public String register(String username, String pw1, String pw2, String email) throws RemoteException, SQLException {
 		if(!pw1.equals(pw2))
 			return "The passwords are not equal";
 		return commonServer.registerNewClient(username, pw1, email);
@@ -165,6 +165,12 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 
 	public Giocatore[] getGiocatori(int positionGame) throws RemoteException {
 		return commonServer.getLobbyByNumber(positionGame).getGiocatori();
+	}
+	
+	public void deleteView(int positionGame) throws RemoteException {
+		commonServer.getLobbyByNumber(positionGame).deleteView(commonServer.getDBConnection().getConnection("Server"));
+		commonServer.deletLobby(positionGame);
+		
 	}
 
 }

@@ -170,4 +170,9 @@ public class ConnectionClient implements ClientInterface {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public void deleteView() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -75,7 +75,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	public String register(String account, String pw, String pw2, String email) {
 		try {
 			return serverMethods.register(account, pw, pw2, email);
-		} catch (RemoteException e) {
+		} catch (RemoteException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return "false";
@@ -272,6 +272,11 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	
 	public void notifyAddCard(CartaSviluppo carta, String nameAvv,Portafoglio portafoglio) throws RemoteException {
 		guiGame.notifyAddCardAvv(carta, nameAvv,portafoglio);
+		
+	}
+	
+	public void deleteView() throws RemoteException {
+		serverMethods.deleteView(positionGame);
 		
 	}
 	

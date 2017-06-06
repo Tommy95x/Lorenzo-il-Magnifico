@@ -168,5 +168,11 @@ public class StartServer {
 	public ConnectionDatabase getDBConnection(){
 		return DB;
 	}
+
+	public void deletLobby(int positionGame) {
+		for(int i=0;i<lobbies.size();i++)
+			/*if(i==positionGame)
+				chiedere perchè non mi si piazza a null*/
+	}
 	
 }
