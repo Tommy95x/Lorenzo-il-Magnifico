@@ -12,6 +12,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -41,10 +42,9 @@ public class StartClientGui extends Application{
 		
 		loader.setLocation(StartClientGui.class.getResource("controllers/ConnectionGui.fxml"));
 		root = loader.load();
-		
 		primaryStage.setResizable(false);
 		primaryStage.setTitle("Lorenzo il Magnifico Connection");
-		//primaryStage.getIcons().add(new Image(""));
+		primaryStage.getIcons().add(new Image("file:logo.png"));
 		ControllerConnection connection = loader.getController();
 		connection.getStartClientGui(this);
 		

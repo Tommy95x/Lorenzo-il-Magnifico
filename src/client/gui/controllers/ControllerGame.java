@@ -502,22 +502,22 @@ public class ControllerGame {
 		familiareBianco.setColor("white");
 		switch(color){
 			case "blue":
-				familiareNeutro.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareNero.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareArancio.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareBianco.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareOrange1.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareOrange2.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareOrange3.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareOrange4.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareGreen1.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareGreen2.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareGreen3.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareGreen4.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareWhite2.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareWhite2.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareWhite3.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareWhite4.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareNeutro.setImage(new Image("file:FamiliareBluNeutro.png"));
+				familiareNero.setImage(new Image("file:FamiliareBluNero.png"));
+				familiareArancio.setImage(new Image("file:FamiliareBluArancio.png"));
+				familiareBianco.setImage(new Image("file:FamiliareBluBianco.png"));
+				familiareOrange1.setImage(new Image("file:FamiliareArancioNeutro.png"));
+				familiareOrange2.setImage(new Image("file:FamiliareArancioArancio.png"));
+				familiareOrange3.setImage(new Image("file:FamiliareArancioBianco.png"));
+				familiareOrange4.setImage(new Image("file:FamiliareArancioNero.png"));
+				familiareGreen1.setImage(new Image("file:FamiliareVerdeNeutro.png"));
+				familiareGreen2.setImage(new Image("file:FamiliareVerdeArancio.png"));
+				familiareGreen3.setImage(new Image("file:FamiliareVerdeBianco.png"));
+				familiareGreen4.setImage(new Image("file:FamiliareVerdeNero.png"));
+				familiareWhite1.setImage(new Image("file:FamiliareBiancoNeutro.png"));
+				familiareWhite2.setImage(new Image("file:FamiliareBiancoArancio.png"));
+				familiareWhite3.setImage(new Image("file:FamiliareBiancoBianco.png"));
+				familiareWhite4.setImage(new Image("file:FamiliareBiancoNero.png"));
 				familiareOrange1.setOpacity(1);
 				familiareOrange2.setOpacity(1);
 				familiareOrange3.setOpacity(1);
@@ -544,22 +544,22 @@ public class ControllerGame {
 				familiareWhite4.setDisable(false);
 				break;
 			case "green":
-				familiareNeutro.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareNero.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareArancio.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareBianco.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareOrange1.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareOrange2.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareOrange3.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareOrange4.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareBlue1.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareBlue2.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareBlue3.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareBlue4.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareWhite1.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareWhite2.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareWhite3.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareWhite4.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareNeutro.setImage(new Image("file:FamiliareVerdeNeutro.png"));
+				familiareNero.setImage(new Image("file:FamiliareVerdeNero.png"));
+				familiareArancio.setImage(new Image("file:FamiliareVerdeArancio.png"));
+				familiareBianco.setImage(new Image("file:FamiliareVerdeBianco.png"));
+				familiareOrange1.setImage(new Image("file:FamiliareArancioNeutro.png"));
+				familiareOrange2.setImage(new Image("file:FamiliareArancioArancio.png"));
+				familiareOrange3.setImage(new Image("file:FamiliareArancioBianco.png"));
+				familiareOrange4.setImage(new Image("file:FamiliareArancioNero.png"));
+				familiareBlue1.setImage(new Image("file:FamiliareBluNeutro.png"));
+				familiareBlue2.setImage(new Image("file:FamiliareBluArancio.png"));
+				familiareBlue3.setImage(new Image("file:FamiliareBluBianco.png"));
+				familiareBlue4.setImage(new Image("file:FamiliareBluNero.png"));
+				familiareWhite1.setImage(new Image("file:FamiliareBiancoNeutro.png"));
+				familiareWhite2.setImage(new Image("file:FamiliareBiancoArancio.png"));
+				familiareWhite3.setImage(new Image("file:FamiliareBiancoBianco.png"));
+				familiareWhite4.setImage(new Image("file:FamiliareBiancoNero.png"));
 				familiareOrange1.setOpacity(1);
 				familiareOrange2.setOpacity(1);
 				familiareOrange3.setOpacity(1);
@@ -586,22 +586,22 @@ public class ControllerGame {
 				familiareWhite4.setDisable(false);
 				break;
 			case "white":
-				familiareNeutro.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareNero.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareArancio.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareBianco.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareOrange1.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareOrange2.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareOrange3.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareOrange4.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareBlue1.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareBlue2.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareBlue3.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareBlue4.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareGreen1.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareGreen2.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareGreen3.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareGreen4.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareNeutro.setImage(new Image("file:FamiliareBiancoNeutro.png"));
+				familiareNero.setImage(new Image("file:FamiliareBiancoNero.png"));
+				familiareArancio.setImage(new Image("file:FamiliareBiancoArancio.png"));
+				familiareBianco.setImage(new Image("file:FamiliareBiancoBianco.png"));
+				familiareOrange1.setImage(new Image("file:FamiliareArancioNeutro.png"));
+				familiareOrange2.setImage(new Image("file:FamiliareArancioArancio.png"));
+				familiareOrange3.setImage(new Image("file:FamiliareArancioBianco.png"));
+				familiareOrange4.setImage(new Image("file:FamiliareArancioNero.png"));
+				familiareBlue1.setImage(new Image("file:FamiliareBluNeutro.png"));
+				familiareBlue2.setImage(new Image("file:FamiliareBluArancio.png"));
+				familiareBlue3.setImage(new Image("file:FamiliareBluBianco.png"));
+				familiareBlue4.setImage(new Image("file:FamiliareBluNero.png"));
+				familiareGreen1.setImage(new Image("file:FamiliareVerdeNeutro.png"));
+				familiareGreen2.setImage(new Image("file:FamiliareVerdeArancio.png"));
+				familiareGreen3.setImage(new Image("file:FamiliareVerdeBianco.png"));
+				familiareGreen4.setImage(new Image("file:FamiliareVerdeNero.png"));
 				familiareOrange1.setOpacity(1);
 				familiareOrange2.setOpacity(1);
 				familiareOrange3.setOpacity(1);
@@ -628,26 +628,26 @@ public class ControllerGame {
 				familiareBlue1.setDisable(false);
 				break;
 			case "orange":
-				familiareNeutro.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareNero.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareArancio.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareBianco.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareBlue1.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareBlue2.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareBlue3.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareBlue4.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareGreen1.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareGreen2.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareGreen3.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareGreen4.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareWhite1.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareWhite2.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareWhite3.setImage(new Image(getClass().getResourceAsStream("")));
-				familiareWhite4.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareNeutro.setImage(new Image("file:FamiliareArancioNeutro.png"));
+				familiareNero.setImage(new Image("file:FamiliareArancioNero.png"));
+				familiareArancio.setImage(new Image("file:FamiliareArancioArancio.png"));
+				familiareBianco.setImage(new Image("file:FamiliareArancioBianco.png"));
+				familiareBlue1.setImage(new Image("file:FamiliareBluNeutro.png"));
+				familiareBlue2.setImage(new Image("file:FamiliareBluArancio.png"));
+				familiareBlue3.setImage(new Image("file:FamiliareBluBianco.png"));
+				familiareBlue4.setImage(new Image("file:FamiliareBluNero.png"));
+				familiareGreen1.setImage(new Image("file:FamiliareVerdeNeutro.png"));
+				familiareGreen2.setImage(new Image("file:FamiliareVerdeArancio.png"));
+				familiareGreen3.setImage(new Image("file:FamiliareVerdeBianco.png"));
+				familiareGreen4.setImage(new Image("file:FamiliareVerdeNero.png"));
+				familiareWhite1.setImage(new Image("file:FamiliareBiancoNeutro.png"));
+				familiareWhite2.setImage(new Image("file:FamiliareBiancoArancio.png"));
+				familiareWhite3.setImage(new Image("file:FamiliareBiancoBianco.png"));
+				familiareWhite4.setImage(new Image("file:FamiliareBiancoNero.png"));
 				familiareBlue1.setOpacity(1);
-				familiareBlue1.setOpacity(1);
-				familiareBlue1.setOpacity(1);
-				familiareBlue1.setOpacity(1);
+				familiareBlue2.setOpacity(1);
+				familiareBlue3.setOpacity(1);
+				familiareBlue4.setOpacity(1);
 				familiareGreen1.setOpacity(1);
 				familiareGreen2.setOpacity(1);
 				familiareGreen3.setOpacity(1);
@@ -1160,24 +1160,6 @@ public class ControllerGame {
 			Tooltip.install(cartePersonaggiGiocatore.getChildren().get(3), arrayCartePersonaggi[3].getTooltip());
 			cartePersonaggi.getChildren().set(3, new ImageView(new Image(getClass().getResourceAsStream(""))));
 			start.getClient().setCardGiocatore(arrayCartePersonaggi[3]);
-			break;
-		case "":
-			break;
-		case "":
-			break;
-		case "":
-			break;
-		case "":
-			break;
-		case "":
-			break;
-		case "":
-			break;
-		case "":
-			break;
-		case "":
-			break;
-		case "":
 			break;
 		}
 	}
