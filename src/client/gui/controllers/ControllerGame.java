@@ -1,5 +1,6 @@
 package client.gui.controllers;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -209,7 +211,7 @@ public class ControllerGame {
 	@FXML
 	public Immagine cuboScomunica3;
 
-	public void getStartClient(StartClientGui startClientGui) throws RemoteException {
+	public void getStartClient(StartClientGui startClientGui) throws ClassNotFoundException, IOException {
 		this.setStart(startClientGui);
 		setColorsParents(start.getColor());
 		setColorCubiScomunica(start.getColor());
@@ -741,81 +743,99 @@ public class ControllerGame {
 		switch(namePosition){
 		case "primo piano territori":
 			carteTerritoriGiocatore.getChildren().add(carteTerritori.getChildren().get(0));
+			Tooltip.install(carteTerritoriGiocatore.getChildren().get(0), arrayCarteTerritori[0].getTooltip());
 			carteTerritori.getChildren().set(0, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			
 			start.getClient().setCardGiocatore(arrayCarteTerritori[0]);
 			break;
 		case "secondo piano territori":
 			carteTerritoriGiocatore.getChildren().add(carteTerritori.getChildren().get(1));
+			Tooltip.install(carteTerritoriGiocatore.getChildren().get(1), arrayCarteTerritori[1].getTooltip());
 			carteTerritori.getChildren().set(1, new ImageView(new Image(getClass().getResourceAsStream(""))));
 			start.getClient().setCardGiocatore(arrayCarteTerritori[1]);
 			break;
 		case "terzo piano territori":
 			carteTerritoriGiocatore.getChildren().add(carteTerritori.getChildren().get(2));
+			Tooltip.install(carteTerritoriGiocatore.getChildren().get(2), arrayCarteTerritori[2].getTooltip());
 			carteTerritori.getChildren().set(2, new ImageView(new Image(getClass().getResourceAsStream(""))));
 			start.getClient().setCardGiocatore(arrayCarteTerritori[2]);
 			break;
 		case "quarto piano territori":
 			carteTerritoriGiocatore.getChildren().add(carteTerritori.getChildren().get(3));
+			Tooltip.install(carteTerritoriGiocatore.getChildren().get(3), arrayCarteTerritori[3].getTooltip());
 			carteTerritori.getChildren().set(3, new ImageView(new Image(getClass().getResourceAsStream(""))));
 			start.getClient().setCardGiocatore(arrayCarteTerritori[3]);
 			break;
 		case "primo piano edifici":
-			carteEdificiGiocatore.getChildren().add(carteTerritori.getChildren().get(0));
+			carteEdificiGiocatore.getChildren().add(carteEdifici.getChildren().get(0));
+			Tooltip.install(carteEdificiGiocatore.getChildren().get(0), arrayCarteEdifici[0].getTooltip());
 			carteEdifici.getChildren().set(0, new ImageView(new Image(getClass().getResourceAsStream(""))));
+
 			start.getClient().setCardGiocatore(arrayCarteEdifici[0]);
 			break;
 		case "secondo piano edifici":
-			carteEdificiGiocatore.getChildren().add(carteTerritori.getChildren().get(1));
+			carteEdificiGiocatore.getChildren().add(carteEdifici.getChildren().get(1));
+			Tooltip.install(carteEdificiGiocatore.getChildren().get(1), arrayCarteEdifici[1].getTooltip());
 			carteEdifici.getChildren().set(1, new ImageView(new Image(getClass().getResourceAsStream(""))));
 			start.getClient().setCardGiocatore(arrayCarteEdifici[1]);
 			break;
 		case "terzo piano edifici":
-			carteEdificiGiocatore.getChildren().add(carteTerritori.getChildren().get(2));
+			carteEdificiGiocatore.getChildren().add(carteEdifici.getChildren().get(2));
+			Tooltip.install(carteEdificiGiocatore.getChildren().get(2), arrayCarteEdifici[2].getTooltip());
 			carteEdifici.getChildren().set(2, new ImageView(new Image(getClass().getResourceAsStream(""))));
 			start.getClient().setCardGiocatore(arrayCarteEdifici[2]);
 			break;
 		case "quarto piano edifici":
-			carteEdificiGiocatore.getChildren().add(carteTerritori.getChildren().get(3));
+			carteEdificiGiocatore.getChildren().add(carteEdifici.getChildren().get(3));
+			Tooltip.install(carteEdificiGiocatore.getChildren().get(3), arrayCarteEdifici[3].getTooltip());
 			carteEdifici.getChildren().set(3, new ImageView(new Image(getClass().getResourceAsStream(""))));
 			start.getClient().setCardGiocatore(arrayCarteEdifici[3]);
 			break;
 		case "primo piano imprese":
-			carteImpresaGiocatore.getChildren().add(carteTerritori.getChildren().get(0));
+			carteImpresaGiocatore.getChildren().add(carteImprese.getChildren().get(0));
+			Tooltip.install(carteImpresaGiocatore.getChildren().get(0), arrayCarteImpresa[0].getTooltip());
 			carteImprese.getChildren().set(0, new ImageView(new Image(getClass().getResourceAsStream(""))));
 			start.getClient().setCardGiocatore(arrayCarteImpresa[0]);
 			break;
 		case "secondo piano imprese":
-			carteImpresaGiocatore.getChildren().add(carteTerritori.getChildren().get(1));
+			carteImpresaGiocatore.getChildren().add(carteImprese.getChildren().get(1));
+			Tooltip.install(carteImpresaGiocatore.getChildren().get(1), arrayCarteImpresa[1].getTooltip());
 			carteImprese.getChildren().set(1, new ImageView(new Image(getClass().getResourceAsStream(""))));
 			start.getClient().setCardGiocatore(arrayCarteImpresa[1]);
 			break;
 		case "terzo piano imprese":
-			carteImpresaGiocatore.getChildren().add(carteTerritori.getChildren().get(2));
+			carteImpresaGiocatore.getChildren().add(carteImprese.getChildren().get(2));
+			Tooltip.install(carteImpresaGiocatore.getChildren().get(2), arrayCarteImpresa[2].getTooltip());
 			carteImprese.getChildren().set(2, new ImageView(new Image(getClass().getResourceAsStream(""))));
 			start.getClient().setCardGiocatore(arrayCarteImpresa[2]);
 			break;
 		case "quarto piano imprese":
-			carteImpresaGiocatore.getChildren().add(carteTerritori.getChildren().get(3));
+			carteImpresaGiocatore.getChildren().add(carteImprese.getChildren().get(3));
+			Tooltip.install(carteImpresaGiocatore.getChildren().get(3), arrayCarteImpresa[3].getTooltip());
 			carteImprese.getChildren().set(3, new ImageView(new Image(getClass().getResourceAsStream(""))));
 			start.getClient().setCardGiocatore(arrayCarteImpresa[3]);
 			break;
 		case "primo piano personaggi":
-			cartePersonaggiGiocatore.getChildren().add(carteTerritori.getChildren().get(0));
+			cartePersonaggiGiocatore.getChildren().add(cartePersonaggi.getChildren().get(0));
+			Tooltip.install(cartePersonaggiGiocatore.getChildren().get(0), arrayCartePersonaggi[0].getTooltip());
 			cartePersonaggi.getChildren().set(0, new ImageView(new Image(getClass().getResourceAsStream(""))));
 			start.getClient().setCardGiocatore(arrayCartePersonaggi[0]);
 			break;
 		case "secondo piano personaggi":
-			cartePersonaggiGiocatore.getChildren().add(carteTerritori.getChildren().get(1));
+			cartePersonaggiGiocatore.getChildren().add(cartePersonaggi.getChildren().get(1));
+			Tooltip.install(cartePersonaggiGiocatore.getChildren().get(1), arrayCartePersonaggi[1].getTooltip());
 			cartePersonaggi.getChildren().set(1, new ImageView(new Image(getClass().getResourceAsStream(""))));
 			start.getClient().setCardGiocatore(arrayCartePersonaggi[1]);
 			break;
 		case "terzo piano personaggi":
-			cartePersonaggiGiocatore.getChildren().add(carteTerritori.getChildren().get(2));
+			cartePersonaggiGiocatore.getChildren().add(cartePersonaggi.getChildren().get(2));
+			Tooltip.install(cartePersonaggiGiocatore.getChildren().get(2), arrayCartePersonaggi[2].getTooltip());
 			cartePersonaggi.getChildren().set(2, new ImageView(new Image(getClass().getResourceAsStream(""))));
 			start.getClient().setCardGiocatore(arrayCartePersonaggi[2]);
 			break;
 		case "quarto piano personaggi":
-			cartePersonaggiGiocatore.getChildren().add(carteTerritori.getChildren().get(3));
+			cartePersonaggiGiocatore.getChildren().add(cartePersonaggi.getChildren().get(3));
+			Tooltip.install(cartePersonaggiGiocatore.getChildren().get(3), arrayCartePersonaggi[3].getTooltip());
 			cartePersonaggi.getChildren().set(3, new ImageView(new Image(getClass().getResourceAsStream(""))));
 			start.getClient().setCardGiocatore(arrayCartePersonaggi[3]);
 			break;
@@ -838,36 +858,49 @@ public class ControllerGame {
 
 	
 	public void resetTabellon(){
-		setCards(start.getClient().getCardsGame());
+		try {
+			setCards(start.getClient().getCardsGame());
+		} catch (ClassNotFoundException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		start.getClient().waitTurno();
 	}
 	
 	@FXML
 	public void lanciaDadi() throws RemoteException, SQLException {
 		Dado[] dadi = new Dado[3];
-		dadi = start.getClient().lanciaDadi(0);
+		try {
+			dadi = start.getClient().lanciaDadi();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		dadoNero.setImage(dadi[0].getImage());
 		dadoBianco.setImage(dadi[0].getImage());
 		dadoArancio.setImage(dadi[0].getImage());
 	}
 
 	@FXML
-	public void enteredDragImage() {
+	public void enteredDropImage(DragEvent e) {
 		// Chiedere al prof come catturare l'immagine in cui viene posizionata
 		// if()
 		// Devo controllare se è libero se no non posso piazzare
-		familiareNeutro.getDestinazione(null);
-		familiareNero.getDestinazione(null);
-		familiareArancio.getDestinazione(null);
-		familiareBianco.getDestinazione(null);
+		familiareNeutro.getDestinazione((ImageView) e.getAcceptingObject());
+		familiareNero.getDestinazione((ImageView) e.getAcceptingObject());
+		familiareArancio.getDestinazione((ImageView) e.getAcceptingObject());
+		familiareBianco.getDestinazione((ImageView) e.getAcceptingObject());
 	}
 
 	@FXML
-	public void enterDragBox(){
-		familiareNeutro.getDestinazione(null);
-		familiareNero.getDestinazione(null);
-		familiareArancio.getDestinazione(null);
-		familiareBianco.getDestinazione(null);
+	public void enterDropBox(DragEvent e){
+		familiareNeutro.getDestinazione( (HBox) e.getAcceptingObject());
+		familiareNero.getDestinazione((HBox) e.getAcceptingObject());
+		familiareArancio.getDestinazione((HBox) e.getAcceptingObject());
+		familiareBianco.getDestinazione((HBox) e.getAcceptingObject());
 	}
 	
 }

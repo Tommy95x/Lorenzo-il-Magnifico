@@ -7,6 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class Immagine extends ImageView{
@@ -14,7 +15,7 @@ public class Immagine extends ImageView{
 	private ImageView destinazione;
 	private ControllerGame game;
 	private String color;
-	private VBox box;
+	private HBox box;
 	private boolean flag;
 	
 	public Immagine (Image im, ControllerGame game){
@@ -83,6 +84,7 @@ public class Immagine extends ImageView{
         	this.setImage(new Image(getClass().getResourceAsStream("")));
         	if(game.controlloPosizionamento(getColor(), this.getX(), this.getY(),0))
         		if(flag){
+        			ImageView v = (ImageView) event.getAcceptingObject();
         			destinazione.setImage(this.getImage());
         			this.setDisable(true);
         			game.setCardGiocatore(game.getNamePosition(this.getX(),this.getY()));
@@ -110,11 +112,6 @@ public class Immagine extends ImageView{
 		this.destinazione=destinazione;
 		flag = true;
 	}
-
-	public void getDestinazione(VBox box){
-		this.box = box;
-		flag = false;
-	}
 	
 	public ControllerGame getGame() {
 		return game;
@@ -130,6 +127,12 @@ public class Immagine extends ImageView{
 
 	public void setColor(String color) {
 		this.color = color;
+	}
+
+	public void getDestinazione(HBox box) {
+		this.box = box;
+		flag = false;
+		
 	}
 	
 }

@@ -1,5 +1,6 @@
 package client;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -10,6 +11,8 @@ import server.element.CartaSviluppo;
 import server.element.CartaTerritori;
 import server.element.Dado;
 import server.element.Partita;
+import server.element.Portafoglio;
+import server.element.TesseraScomunica;
 
 public class ConnectionClient implements ClientInterface {
 
@@ -92,7 +95,7 @@ public class ConnectionClient implements ClientInterface {
 		
 	}
 
-	public Dado[] lanciaDadi(int positionGame, String name) throws SQLException, RemoteException {
+	public Dado[] lanciaDadi() throws SQLException, RemoteException, ClassNotFoundException, IOException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -134,7 +137,7 @@ public class ConnectionClient implements ClientInterface {
 		
 	}
 
-	public ArrayList<CartaSviluppo> getCardsGamer() {
+	public ArrayList<CartaSviluppo> getCardsGamer() throws ClassNotFoundException, IOException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -144,7 +147,17 @@ public class ConnectionClient implements ClientInterface {
 		
 	}
 
-	public ArrayList<CartaSviluppo> getCardsGame() {
+	public ArrayList<CartaSviluppo> getCardsGame() throws ClassNotFoundException, IOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public TesseraScomunica[] getCardsScomunica() throws ClassNotFoundException, IOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Portafoglio getRisorse() throws ClassNotFoundException, IOException {
 		// TODO Auto-generated method stub
 		return null;
 	}
