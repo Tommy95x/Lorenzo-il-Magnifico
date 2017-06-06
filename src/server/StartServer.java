@@ -96,14 +96,13 @@ public class StartServer {
 	 * @param partita
 	 * @param account
 	 * @return
-	 * @throws SQLException 
 	 */
-	public String addGame(String partita,String account) throws SQLException{
+	public String addGame(String partita,String account){
 		for(int i=0;i<getDimLobbies();i++){
 			if(partita.equals(lobbies.get(i)))
 				return "Sorry, but the name of the game is already use, change name";
 		}
-		lobbies.add(new Partita(partita,account,getDimLobbies(), DB.getConnection(account)));
+		lobbies.add(new Partita(partita,account,getDimLobbies()));
 		for(Partita mom : lobbies){
 			System.out.println(mom.getLobbyName());
 		}
