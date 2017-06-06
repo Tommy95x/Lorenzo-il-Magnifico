@@ -163,11 +163,6 @@ public class Partita implements Serializable{
 			return false;
 		}
 	}
-	
-	private void sostegnoChiesa() {
-		
-		
-	}
 
 
 	public String getCreator(){
