@@ -47,9 +47,9 @@ public class Partita implements Serializable{
 		colors[2] = "white";
 		colors[3] = "green"; 
 		String queryterritorio = "CREATE VIEW "+lobby.toUpperCase()+"CARTETERRITORIOPARTITA AS (SELECT * FROM CARTATERRITORIO ORDER BY RAND())";
-		String queryimpresa = "CREATE VIEW "+lobby.toUpperCase()+" CARTEIMPRESAPARTITA AS (SELECT * FROM CARTAIMPRESA ORDER BY RAND())";
-		String querypersonaggio = "CREATE VIEW "+lobby.toUpperCase()+" CARTEPERSONAGGIOPARTITA AS (SELECT * FROM CARTAPERSONAGGIO ORDER BY RAND())";
-		String queryedificio = "CREATE VIEW "+lobby.toUpperCase()+" CARTEEDIFICIOPARTITA AS (SELECT * FROM CARTAEDIFICIO ORDER BY RAND())";
+		String queryimpresa = "CREATE VIEW "+lobby.toUpperCase()+"CARTEIMPRESAPARTITA AS (SELECT * FROM CARTAIMPRESA ORDER BY RAND())";
+		String querypersonaggio = "CREATE VIEW "+lobby.toUpperCase()+"CARTEPERSONAGGIOPARTITA AS (SELECT * FROM CARTAPERSONAGGIO ORDER BY RAND())";
+		String queryedificio = "CREATE VIEW "+lobby.toUpperCase()+"CARTEEDIFICIOPARTITA AS (SELECT * FROM CARTAEDIFICIO ORDER BY RAND())";
 		connection.createStatement().execute(queryterritorio);
 		connection.createStatement().execute(queryimpresa);
 		connection.createStatement().execute(querypersonaggio);
@@ -239,27 +239,27 @@ public class Partita implements Serializable{
 		String queryelimina;
 		
 		for(CartaSviluppo c:carteTerritori){
-			query="SELECT * FROM CARTETERRITORIOPARTITA LIMIT 1";//Scrivere la query in modo che cerchi differenti carte in generale
+			query="SELECT * FROM "+name.toUpperCase()+"CARTETERRITORIOPARTITA LIMIT 1";//Scrivere la query in modo che cerchi differenti carte in generale
 			c.setCarta(connection,query);
-			queryelimina="DELETE TOP 1 FROM CARTETERRITORIOPARTITA";
+			queryelimina="DELETE TOP 1 FROM "+name.toUpperCase()+"CARTETERRITORIOPARTITA";
 			connection.createStatement().executeUpdate(queryelimina);
 		}
 		for(CartaSviluppo c:cartePersonaggio){
-			query="SELECT * FROM CARTEPERSONAGGIOPARTITA LIMIT 1";//Scrivere la query in modo che cerchi differenti carte in generale
+			query="SELECT * FROM "+name.toUpperCase()+"CARTEPERSONAGGIOPARTITA LIMIT 1";//Scrivere la query in modo che cerchi differenti carte in generale
 			c.setCarta(connection,query);
-			queryelimina="DELETE TOP 1 FROM CARTEPERSONAGGIOPARTITA";
+			queryelimina="DELETE TOP 1 FROM "+name.toUpperCase()+"CARTEPERSONAGGIOPARTITA";
 			connection.createStatement().executeUpdate(queryelimina);
 		}
 		for(CartaSviluppo c:carteEdifici){
-			query="SELECT * FROM CARTEEDIFICIOPARTITA LIMIT 1";//Scrivere la query in modo che cerchi differenti carte in generale
+			query="SELECT * FROM "+name.toUpperCase()+"CARTEEDIFICIOPARTITA LIMIT 1";//Scrivere la query in modo che cerchi differenti carte in generale
 			c.setCarta(connection,query);
-			queryelimina="DELETE TOP 1 FROM CARTEEDIFICIOPARTITA";
+			queryelimina="DELETE TOP 1 FROM "+name.toUpperCase()+"CARTEEDIFICIOPARTITA";
 			connection.createStatement().executeUpdate(queryelimina);
 		}
 		for(CartaSviluppo c:carteImprese){
-			query="SELECT * FROM CARTEIMPRESAPARTITA LIMIT 1";//Scrivere la query in modo che cerchi differenti carte in generale
+			query="SELECT * FROM "+name.toUpperCase()+"CARTEIMPRESAPARTITA LIMIT 1";//Scrivere la query in modo che cerchi differenti carte in generale
 			c.setCarta(connection,query);
-			queryelimina="DELETE TOP 1 FROM CARTEIMPRESAPARTITA";
+			queryelimina="DELETE TOP 1 FROM "+name.toUpperCase()+"CARTEIMPRESAPARTITA";
 			connection.createStatement().executeUpdate(queryelimina);
 		}
 	}

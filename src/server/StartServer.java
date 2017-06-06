@@ -44,9 +44,16 @@ public class StartServer {
 			if((mom).equals(utente.get(i)))
 				return "Player already login";
 		}
-		String query = "SELECT CASE WHEN EXISTS( SELECT * FROM UTENTE WHERE (NOMEUTENTE='"+account.toLowerCase()+"' AND PASSWORD='"+pw.toLowerCase()+"'))THEN CAST (1 AS BIT) ELSE CAST(0 AS BIT) END";
+		String query = "SELECT COUNT(*) AS C FROM UTENTE WHERE (NOMEUTENTE='"+account.toLowerCase()+"' AND PASSWORD='"+pw.toLowerCase()+"')";
 		try {
-			if(DB.getConnection(account).createStatement().execute(query))//Verificare se effettivamente � cos� che si accetta un risultato di uan query boolean
+			Connection connection = DB.getConnection(account);
+			Statement stmt = connection.createStatement();
+			ResultSet res = stmt.executeQuery(query);
+			int conta = res.getInt("C");
+			res.close();
+			stmt.close();
+			connection.close();
+			if(conta>0)//Verificare se effettivamente � cos� che si accetta un risultato di uan query boolean
 				return "Welcome to the game";
 			else
 				return "For player must register a new account";
@@ -84,7 +91,9 @@ public class StartServer {
 			if(conta>0){
 			    return "You are registered yet! You have to login!";
 			}else{
-				DB.getConnection(account).createStatement().executeUpdate("INSERT INTO UTENTE (NOMEUTENTE, EMAIL, PASSWORD) VALUES ('"+account.toLowerCase()+"','"+email.toLowerCase()+"','"+pw.toLowerCase()+"'");
+				Connection connection2 = DB.getConnection(account);
+				connection2.createStatement().executeUpdate("INSERT INTO UTENTE (NOMEUTENTE, EMAIL, PASSWORD) VALUES ('"+account.toLowerCase()+"','"+email.toLowerCase()+"','"+pw.toLowerCase()+"')");
+				connection2.close();
 				return "You are now registered!";
 			}
 		} catch (SQLException e) {

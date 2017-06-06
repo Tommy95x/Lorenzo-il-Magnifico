@@ -75,7 +75,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	public String register(String account, String pw, String pw2, String email) {
 		try {
 			return serverMethods.register(account, pw, pw2, email);
-		} catch (RemoteException e) {
+		} catch (RemoteException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return "false";

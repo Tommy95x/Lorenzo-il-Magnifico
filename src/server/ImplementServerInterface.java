@@ -37,7 +37,7 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 	}
 
 	
-	public String register(String username, String pw1, String pw2, String email) throws RemoteException {
+	public String register(String username, String pw1, String pw2, String email) throws RemoteException, SQLException {
 		if(!pw1.equals(pw2))
 			return "The passwords are not equal";
 		return commonServer.registerNewClient(username, pw1, email);
