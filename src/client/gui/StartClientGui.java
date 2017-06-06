@@ -44,7 +44,7 @@ public class StartClientGui extends Application{
 		root = loader.load();
 		primaryStage.setResizable(false);
 		primaryStage.setTitle("Lorenzo il Magnifico Connection");
-		primaryStage.getIcons().add(new Image("file:logo.png"));
+		primaryStage.getIcons().add(new Image(this.getClass().getResourceAsStream("logo.png")));
 		ControllerConnection connection = loader.getController();
 		connection.getStartClientGui(this);
 		
