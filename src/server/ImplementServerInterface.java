@@ -168,7 +168,12 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 	}
 	
 	public void deleteView(int positionGame) throws RemoteException {
-		commonServer.getLobbyByNumber(positionGame).deleteView(commonServer.getDBConnection().getConnection("Server"));
+		try {
+			commonServer.getLobbyByNumber(positionGame).deleteView(commonServer.getDBConnection().getConnection("Server"));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		commonServer.deletLobby(positionGame);
 		
 	}

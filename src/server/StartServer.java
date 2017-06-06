@@ -41,14 +41,15 @@ public class StartServer {
 		String mom=account+pw;
 		System.out.println(mom);
 		for(int i=0; i<utente.size();i++){
-			if((mom).equals(utente.get(i)))
+			if(mom.equals(utente.get(i)))
 				return "Player already login";
 		}
 		String query = "SELECT CASE WHEN EXISTS( SELECT * FROM UTENTE WHERE (NOMEUTENTE='"+account.toLowerCase()+"' AND PASSWORD='"+pw.toLowerCase()+"'))THEN CAST (1 AS BIT) ELSE CAST(0 AS BIT) END";
 		try {
-			if(DB.getConnection(account).createStatement().execute(query))//Verificare se effettivamente � cos� che si accetta un risultato di uan query boolean
+			if(DB.getConnection(account).createStatement().execute(query)){//Verificare se effettivamente � cos� che si accetta un risultato di uan query boolean
+				utente.add(mom);
 				return "Welcome to the game";
-			else
+			}else
 				return "For player must register a new account";
 		} catch (SQLException e) {
 			e.printStackTrace();
