@@ -32,29 +32,24 @@
             <ImageView fx:id="pianoPrimoPalazzoPersonaggi" fitHeight="38.0" fitWidth="46.0" layoutX="206.0" layoutY="352.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="pianoSecondoPalazzoPersonaggi" fitHeight="38.0" fitWidth="46.0" layoutX="206.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="pianoTerzoPalazzoPersonaggi" fitHeight="38.0" fitWidth="46.0" layoutX="206.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="38.0" fitWidth="46.0" layoutX="206.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="pianoQuartoPalazzoPersonaggi" fitHeight="38.0" fitWidth="46.0" layoutX="101.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="pianoQuartoPalazzoTerritori" fitHeight="38.0" fitWidth="46.0" layoutX="102.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="pianoTerzoPalazzoTerritori" fitHeight="38.0" fitWidth="46.0" layoutX="101.0" layoutY="256.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="pianoSecondoPalazzoTerritori" fitHeight="38.0" fitWidth="46.0" layoutX="100.0" layoutY="354.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="pianoPrimoPalazzoTerritori" fitHeight="38.0" fitWidth="46.0" layoutX="139.0" layoutY="474.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="puntiFedeArancio" fitHeight="29.0" fitWidth="31.0" layoutX="50.0" layoutY="736.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="puntiFedeBianco" fitHeight="29.0" fitWidth="31.0" layoutX="54.0" layoutY="740.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="puntiFedeBlu" fitHeight="29.0" fitWidth="31.0" layoutX="61.0" layoutY="744.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="puntiFedeVerde" fitHeight="29.0" fitWidth="31.0" layoutX="66.0" layoutY="749.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="-1.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="8.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="18.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="20.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="cartaScomunica1" fitHeight="80.0" fitWidth="46.0" layoutX="148.0" layoutY="620.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="cartaScomunica2" fitHeight="80.0" fitWidth="46.0" layoutX="201.0" layoutY="620.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="cartaScomunica3" fitHeight="80.0" fitWidth="46.0" layoutX="254.0" layoutY="620.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="pianoQuartoPalazzoPersonaggi" fitHeight="38.0" fitWidth="46.0" layoutX="206.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="pianoQuartoPalazzoTerritori" fitHeight="38.0" fitWidth="46.0" layoutX="101.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="pianoTerzoPalazzoTerritori" fitHeight="38.0" fitWidth="46.0" layoutX="102.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="pianoSecondoPalazzoTerritori" fitHeight="38.0" fitWidth="46.0" layoutX="101.0" layoutY="256.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="pianoPrimoPalazzoTerritori" fitHeight="38.0" fitWidth="46.0" layoutX="100.0" layoutY="354.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="puntiFedeArancio" fitHeight="29.0" fitWidth="31.0" layoutX="35.0" layoutY="561.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="puntiFedeBianco" fitHeight="29.0" fitWidth="31.0" layoutX="39.0" layoutY="565.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="puntiFedeBlu" fitHeight="29.0" fitWidth="31.0" layoutX="46.0" layoutY="569.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="puntiFedeVerde" fitHeight="29.0" fitWidth="31.0" layoutX="51.0" layoutY="574.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="cartaScomunica1" fitHeight="70.0" fitWidth="35.0" layoutX="113.0" layoutY="471.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="cartaScomunica2" fitHeight="70.0" fitWidth="35.0" layoutX="154.0" layoutY="476.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="cartaScomunica3" fitHeight="70.0" fitWidth="35.0" layoutX="196.0" layoutY="471.0" pickOnBounds="true" preserveRatio="true" />
             <Label layoutX="235.0" layoutY="511.0" prefHeight="43.0" prefWidth="89.0" text="Turno :">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label layoutX="323.0" layoutY="518.0" prefHeight="25.0" prefWidth="21.0" text="0" textFill="#282828">
+            <Label layoutX="314.0" layoutY="511.0" prefHeight="25.0" prefWidth="21.0" text="0" textFill="#282828">
                <font>
                   <Font size="29.0" />
                </font>
@@ -70,10 +65,22 @@
             <ImageView fx:id="mercatoPosMonete" fitHeight="35.0" fitWidth="35.0" layoutX="300.0" layoutY="608.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="mercatoPosServitori" fitHeight="35.0" fitWidth="35.0" layoutX="350.0" layoutY="612.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="mercatoPosMoneteMilitari" fitHeight="35.0" fitWidth="35.0" layoutX="397.0" layoutY="623.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="mercatoPosMoneteMilitari1" fitHeight="35.0" fitWidth="35.0" layoutX="433.0" layoutY="660.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="mercatoPosMunicipio" fitHeight="35.0" fitWidth="35.0" layoutX="433.0" layoutY="660.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="cuboScomunica1" fitHeight="35.0" fitWidth="35.0" layoutX="234.0" layoutY="615.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="cuboScomunica2" fitHeight="35.0" fitWidth="35.0" layoutX="239.0" layoutY="665.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="cuboScomunica3" fitHeight="35.0" fitWidth="35.0" layoutX="239.0" layoutY="706.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="pianoTerzoPalazzoMilitare" fitHeight="38.0" fitWidth="46.0" layoutX="420.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="pianoQuartoPalazzoMilitare" fitHeight="38.0" fitWidth="46.0" layoutX="420.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="pianoSecondoPalazzoMilitare" fitHeight="38.0" fitWidth="46.0" layoutX="420.0" layoutY="256.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="pianoPrimoPalazzoMilitare" fitHeight="38.0" fitWidth="46.0" layoutX="420.0" layoutY="352.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="puntiVittoriaBlu" fitHeight="35.0" fitWidth="31.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="puntiVittoriaArancio" fitHeight="35.0" fitWidth="31.0" layoutX="5.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="puntiVittoriaBianco" fitHeight="35.0" fitWidth="31.0" layoutX="15.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="puntiVittoriaVerde" fitHeight="35.0" fitWidth="31.0" layoutX="15.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="puntiMilitariArancio" fitHeight="30.0" fitWidth="31.0" layoutX="466.0" layoutY="708.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="puntiMilitariBianco" fitHeight="30.0" fitWidth="31.0" layoutX="480.0" layoutY="711.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="puntiMilitariBlu" fitHeight="30.0" fitWidth="31.0" layoutX="465.0" layoutY="691.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="puntiMilitariVerde" fitHeight="30.0" fitWidth="31.0" layoutX="482.0" layoutY="693.0" pickOnBounds="true" preserveRatio="true" />
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="768.0" prefWidth="683.0">
          <children>
@@ -121,30 +128,53 @@
             <ImageView fx:id="bandiera" fitHeight="80.0" fitWidth="46.0" layoutX="3.0" layoutY="681.0" pickOnBounds="true" preserveRatio="true" />
             <HBox fx:id="carteImpresaGiocatore" layoutX="616.0" layoutY="380.0" prefHeight="143.0" prefWidth="231.0" />
             <HBox fx:id="cartePersonaggiGiocatore" layoutX="619.0" layoutY="525.0" prefHeight="143.0" prefWidth="231.0" />
-            <ScrollPane layoutX="4.0" prefHeight="375.0" prefWidth="280.0">
+            <ScrollPane layoutX="4.0" prefHeight="291.0" prefWidth="280.0">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="375.0" prefWidth="285.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="290.0" prefWidth="285.0" stylesheets="@gameBackGround.css">
                      <children>
-                        <Label layoutY="6.0" prefHeight="25.0" prefWidth="96.0" text="Giocatore:" />
+                        <Label layoutY="6.0" prefHeight="25.0" prefWidth="63.0" text="Giocatore:" />
+                        <Label fx:id="name1" layoutX="71.0" layoutY="6.0" prefHeight="20.0" prefWidth="180.0" />
                      </children>
                   </AnchorPane>
               </content>
             </ScrollPane>
-            <ScrollPane layoutX="285.0" layoutY="-1.0" prefHeight="375.0" prefWidth="280.0">
+            <ScrollPane layoutX="285.0" prefHeight="291.0" prefWidth="280.0">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="377.0" prefWidth="285.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="287.0" prefWidth="285.0" stylesheets="@gameBackGround.css">
                      <children>
-                        <Label layoutX="13.0" layoutY="15.0" prefHeight="25.0" prefWidth="96.0" text="Giocatore:" />
+                        <Label layoutY="6.0" prefHeight="25.0" prefWidth="63.0" text="Giocatore:" />
+                        <Label fx:id="name2" layoutX="63.0" layoutY="9.0" prefHeight="20.0" prefWidth="180.0" />
                      </children>
                   </AnchorPane>
                </content>
             </ScrollPane>
-            <ScrollPane layoutX="565.0" layoutY="4.0" prefHeight="375.0" prefWidth="283.0">
+            <ScrollPane layoutX="565.0" prefHeight="291.0" prefWidth="280.0">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="377.0" prefWidth="280.0" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="289.0" prefWidth="285.0" stylesheets="@gameBackGround.css">
+                     <children>
+                        <Label layoutY="6.0" prefHeight="25.0" prefWidth="63.0" text="Giocatore:" />
+                        <Label fx:id="name3" layoutX="63.0" layoutY="9.0" prefHeight="20.0" prefWidth="180.0" />
+                     </children>
+                  </AnchorPane>
                </content>
             </ScrollPane>
-            <Label layoutX="465.0" layoutY="220.0" text="Label" />
+            <ImageView fx:id="familiareOrange1" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="3.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareOrange2" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="65.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareOrange3" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="111.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareOrange4" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="174.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareBlue1" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="220.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareBlue2" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="266.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareBlue3" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="312.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareBlue4" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="324.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareGreen1" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="370.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareBlue411" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="471.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareGreen2" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="425.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareGreen3" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="565.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareGreen4" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="517.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareWhite1" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="619.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareWhite2" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="665.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareWhite3" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="705.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareWhite4" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="762.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
          </children></AnchorPane>
   </items>
 </SplitPane>
