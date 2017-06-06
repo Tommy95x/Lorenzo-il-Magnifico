@@ -275,6 +275,11 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		
 	}
 	
+	public void deleteView() throws RemoteException {
+		serverMethods.deleteView(positionGame);
+		
+	}
+	
 	@Override
 	public void sostegnoChiesa(boolean flag) {
 		// TODO Auto-generated method stub

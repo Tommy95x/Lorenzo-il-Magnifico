@@ -5,7 +5,6 @@ import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import client.ConnectionRmiClient;
 import client.RMIClientInterface;
 import javafx.scene.image.Image;
 import server.element.CartaSviluppo;
@@ -41,4 +40,5 @@ public interface ServerInterface extends Remote {
 	public TesseraScomunica[] getCardsScomunica(int positionGame) throws RemoteException;
 	public Portafoglio getRisorse(int positionGame, String name)throws RemoteException;
 	public Giocatore[] getGiocatori(int positionGame)throws RemoteException;
+	public void deleteView(int positionGame)throws RemoteException;
 }

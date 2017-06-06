@@ -166,6 +166,17 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 	public Giocatore[] getGiocatori(int positionGame) throws RemoteException {
 		return commonServer.getLobbyByNumber(positionGame).getGiocatori();
 	}
+	
+	public void deleteView(int positionGame) throws RemoteException {
+		try {
+			commonServer.getLobbyByNumber(positionGame).deleteView(commonServer.getDBConnection().getConnection("Server"));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		commonServer.deletLobby(positionGame);
+		
+	}
 
 }
 

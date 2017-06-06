@@ -106,9 +106,10 @@ public class ControllerMenu {
 		confirm.setOnAction(event -> {
 			popup.close();
 			colorSelectFirstTime();
-			if(!textLobby.getText().equals(""))
+			if(!textLobby.getText().equals("")){
 				lobby = textLobby.getText();
-				
+				start.setCreate(true);
+			}
 		});
 		box.getChildren().addAll(new Label("Write e confirm lobby's name"), new Label(), confirm, textLobby);
 		Scene scene = new Scene(box, 200, 100);

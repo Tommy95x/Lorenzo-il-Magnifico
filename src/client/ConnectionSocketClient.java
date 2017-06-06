@@ -324,6 +324,11 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 			guiGame.enableGame();
 	}
 	
+	public void deleteView() {
+		
+		
+	}
+	
 	@Override
 	public void spendereRisorse(String risorsa, int qta) {
 		// TODO Auto-generated method stub

@@ -41,7 +41,7 @@ public class StartServer {
 		String mom=account+pw;
 		System.out.println(mom);
 		for(int i=0; i<utente.size();i++){
-			if((mom).equals(utente.get(i)))
+			if(mom.equals(utente.get(i)))
 				return "Player already login";
 		}
 		String query = "SELECT COUNT(*) AS C FROM UTENTE WHERE (NOMEUTENTE='"+account.toLowerCase()+"' AND PASSWORD='"+pw.toLowerCase()+"')";
@@ -53,9 +53,10 @@ public class StartServer {
 			res.close();
 			stmt.close();
 			connection.close();
-			if(conta>0)//Verificare se effettivamente � cos� che si accetta un risultato di uan query boolean
+			if(conta>0){
+				utente.add(mom);
 				return "Welcome to the game";
-			else
+			}else
 				return "For player must register a new account";
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -176,6 +177,12 @@ public class StartServer {
 
 	public ConnectionDatabase getDBConnection(){
 		return DB;
+	}
+
+	public void deletLobby(int positionGame) {
+		for(int i=0;i<lobbies.size();i++)
+			/*if(i==positionGame)
+				chiedere perchè non mi si piazza a null*/
 	}
 	
 }
