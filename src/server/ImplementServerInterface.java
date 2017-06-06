@@ -151,6 +151,7 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 
 	public void giveCard(CartaSviluppo carta, String name, int positionGame) throws RemoteException {
 		commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).addCard(carta);
+		commonServer.getLobbyByNumber(positionGame).notifyAddCardGiocatore(name,carta);
 		
 	}
 
@@ -160,6 +161,10 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 
 	public Portafoglio getRisorse(int positionGame, String name) throws RemoteException {
 		return commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).getRisorse();
+	}
+
+	public Giocatore[] getGiocatori(int positionGame) throws RemoteException {
+		return commonServer.getLobbyByNumber(positionGame).getGiocatori();
 	}
 
 }

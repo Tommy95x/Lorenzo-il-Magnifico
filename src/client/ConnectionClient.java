@@ -9,6 +9,7 @@ import client.gui.StartClientGui;
 import client.gui.controllers.ControllerGame;
 import server.element.CartaSviluppo;
 import server.element.Dado;
+import server.element.Giocatore;
 import server.element.Partita;
 import server.element.Portafoglio;
 import server.element.TesseraScomunica;
@@ -17,43 +18,43 @@ public class ConnectionClient implements ClientInterface {
 
 	
 	@Override
-	public String login(String account, String pw) {
+	public String login(String account, String pw) throws ClassNotFoundException, IOException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String register(String account, String pw, String pw2, String email) {
+	public String register(String account, String pw, String pw2, String email) throws IOException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean createANewLobby(String lobby, String color) {
+	public boolean createANewLobby(String lobby, String color) throws IOException {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public ArrayList<Partita> lobbiesView() {
+	public ArrayList<Partita> lobbiesView() throws IOException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void enterInALobby(String lobby, String color) {
+	public void enterInALobby(String lobby, String color) throws IOException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void selectColorGamer(String color) {
+	public void selectColorGamer(String color) throws IOException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void startGame() {
+	public void startGame() throws IOException {
 		// TODO Auto-generated method stub
 		
 	}
@@ -78,17 +79,23 @@ public class ConnectionClient implements ClientInterface {
 	}
 
 	@Override
-	public void richiestaRegistrazione() {
+	public void richiestaRegistrazione() throws IOException {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void waitStartGame(StartClientGui start) {
+	public void waitStartGame(StartClientGui start) throws ClassNotFoundException, IOException {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public Dado[] lanciaDadi(int positionGame) throws SQLException, RemoteException, ClassNotFoundException, IOException {
+	@Override
+	public void takeCards(String name) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Dado[] lanciaDadi() throws SQLException, RemoteException, ClassNotFoundException, IOException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -110,22 +117,22 @@ public class ConnectionClient implements ClientInterface {
 		
 	}
 
-	public void notifySpostamento(String color, double x, double y) throws RemoteException {
+	public void notifySpostamento(String color, double x, double y) throws RemoteException, IOException {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public String getNamePosition(double x, double y) throws RemoteException, SQLException {
+	public String getNamePosition(double x, double y) throws RemoteException, SQLException, IOException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public void exitToTheGame(String lobby, String color) {
+	public void exitToTheGame(String lobby, String color) throws IOException {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void waitTurno() {
+	public void waitTurno() throws ClassNotFoundException, IOException {
 		// TODO Auto-generated method stub
 		
 	}
@@ -135,12 +142,22 @@ public class ConnectionClient implements ClientInterface {
 		return null;
 	}
 
-	public void setCardGiocatore(CartaSviluppo carta) {
+	public void setCardGiocatore(CartaSviluppo carta) throws IOException {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public ArrayList<CartaSviluppo> getCardsGame() throws ClassNotFoundException, IOException {
+	public ArrayList<CartaSviluppo> getCardsGame() throws ClassNotFoundException, IOException{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Giocatore[] getGiocatori() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getName() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -152,11 +169,5 @@ public class ConnectionClient implements ClientInterface {
 	public Portafoglio getRisorse() throws RemoteException, ClassNotFoundException, IOException {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public void takeCards(String name) {
-		// TODO Auto-generated method stub
-		
 	}
 }

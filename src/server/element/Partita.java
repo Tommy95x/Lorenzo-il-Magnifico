@@ -1,5 +1,6 @@
 package server.element;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.sql.Connection;
@@ -45,17 +46,25 @@ public class Partita implements Serializable{
 		colors[1] = "orange";
 		colors[2] = "white";
 		colors[3] = "green"; 
-		for(int i=0;i<DIM;i++){
-			start[i]=false;
-		}
-		String queryterritorio = "CREATE VIEW CARTETERRITORIOPARTITA AS (SELECT * FROM CARTATERRITORIO ORDER BY RAND(), PERIODO)";
-		String queryimpresa = "CREATE VIEW CARTEIMPRESAPARTITA AS (SELECT * FROM CARTAIMPRESA ORDER BY RAND(), PERIODO)";
-		String querypersonaggio = "CREATE VIEW CARTEPERSONAGGIOPARTITA AS (SELECT * FROM CARTAPERSONAGGIO ORDER BY RAND(), PERIODO)";
-		String queryedificio = "CREATE VIEW CARTEEDIFICIOPARTITA AS (SELECT * FROM CARTAEDIFICIO ORDER BY RAND(), PERIODO)";
+		String queryterritorio = "CREATE VIEW CARTETERRITORIOPARTITA AS (SELECT * FROM CARTATERRITORIO ORDER BY RAND())";
+		String queryimpresa = "CREATE VIEW CARTEIMPRESAPARTITA AS (SELECT * FROM CARTAIMPRESA ORDER BY RAND())";
+		String querypersonaggio = "CREATE VIEW CARTEPERSONAGGIOPARTITA AS (SELECT * FROM CARTAPERSONAGGIO ORDER BY RAND())";
+		String queryedificio = "CREATE VIEW CARTEEDIFICIOPARTITA AS (SELECT * FROM CARTAEDIFICIO ORDER BY RAND())";
 		connection.createStatement().executeQuery(queryterritorio);
 		connection.createStatement().executeQuery(queryimpresa);
 		connection.createStatement().executeQuery(querypersonaggio);
 		connection.createStatement().executeQuery(queryedificio);
+		queryterritorio="SELECT * FROM CARTETERRITORIOPARTITA ORDER BY PERIODO";
+		queryimpresa="SELECT * FROM CARTEIMPRESAPARTITA ORDER BY PERIODO";
+		querypersonaggio="SELECT * FROM CARTEPERSONAGGIOPARTITA ORDER BY PERIODO";
+		queryedificio="SELECT * FROM CARTEEDIFICIOPARTITA ORDER BY PERIODO";
+		connection.createStatement().executeQuery(queryterritorio);
+		connection.createStatement().executeQuery(queryimpresa);
+		connection.createStatement().executeQuery(querypersonaggio);
+		connection.createStatement().executeQuery(queryedificio);
+		for(int i=0;i<DIM;i++){
+			start[i]=false;
+		}
 	}
 	
 	
@@ -63,10 +72,20 @@ public class Partita implements Serializable{
 		turno=1;
 		beShuffled();
 		for(int i = 0; i<4; i++){
-			giocatori[i].notifyStartGame();
+			try {
+				giocatori[i].notifyStartGame();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		//Vedi regole e assegna a seconda della posizione le risorse di posizione
-		giocatori[giocatore].notifyTurno();
+		try {
+			giocatori[giocatore].notifyTurno();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private boolean checkBoolean(int dim){
@@ -146,12 +165,23 @@ public class Partita implements Serializable{
 
 	public boolean addTurno() {
 		if(turno<7){
+			if(turno == 2 || turno == 4)
+				sostegnoChiesa();
 			turno++;
 			return true;
-		}else
+		}else{
+			sostegnoChiesa();
 			return false;
+		}
 	}
-	
+
+
+	private void sostegnoChiesa() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 	public String getCreator(){
 		return giocatori[0].getName();
 	}
@@ -258,7 +288,12 @@ public class Partita implements Serializable{
 		if(giocatore>4){
 			addTurno();
 		}else{
-			giocatori[giocatore].notifyTurno();
+			try {
+				giocatori[giocatore].notifyTurno();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 	}
@@ -267,7 +302,12 @@ public class Partita implements Serializable{
 	public void notifySpostamento(String color, Giocatore giocatoreByName, double x, double y) {
 		for(Giocatore g : giocatori){
 			if(!g.equals(giocatoreByName)){
-				g.notifySpostamento(color,giocatoreByName.getColor(),x,y);
+				try {
+					g.notifySpostamento(color,giocatoreByName.getColor(),x,y);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 		
@@ -298,6 +338,19 @@ public class Partita implements Serializable{
 
 	public TesseraScomunica[] getCardsScomunica() {
 		return tessereScomunica;
+	}
+
+	public Giocatore[] getGiocatori() {
+		return giocatori;
+	}
+
+
+	public void notifyAddCardGiocatore(String name, CartaSviluppo carta) throws RemoteException {
+		for(Giocatore g : giocatori){
+			if(!g.getName().equals(name) &&  g!=null){
+				g.notifyAddCard(carta);
+			}
+		}
 	}
 	
 }

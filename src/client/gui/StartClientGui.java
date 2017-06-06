@@ -17,8 +17,8 @@ import javafx.stage.Stage;
 /**
  * @author Tommy
  *
- *Claase che viene avviata direttamente dall'utente all'avvio del gioco, main dell'applicazione lato client inizialmente di pura grafica successivamente diventa anche di logica nel momento in cui l'utente deciderà
- *in quale modalità giocare. Le modalità disponibili sono mediante una grafica con una connessione RMI o Socket, o da Console con una sola connessione RMI.
+ *Claase che viene avviata direttamente dall'utente all'avvio del gioco, main dell'applicazione lato client inizialmente di pura grafica successivamente diventa anche di logica nel momento in cui l'utente deciderï¿½
+ *in quale modalitï¿½ giocare. Le modalitï¿½ disponibili sono mediante una grafica con una connessione RMI o Socket, o da Console con una sola connessione RMI.
  */
 public class StartClientGui extends Application{
 
@@ -132,10 +132,17 @@ public class StartClientGui extends Application{
 					loader.setLocation(this.getClass().getResource("controllers/GameGui.fxml"));
 					root = loader.load();
 					ControllerGame game = loader.getController();
-					game.getStartClient(this);
+					try {
+						game.getStartClient(this);
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					root.setId("back");
 					Scene scene = new Scene(root);
 					scene.getStylesheets().addAll(this.getClass().getResource("controllers/gameBackGround.css").toExternalForm());
+					primaryStage.setWidth(1366);
+					primaryStage.setHeight(768);
 					primaryStage.setScene(scene);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block

@@ -1,5 +1,7 @@
 package client.gui.controllers;
 
+import java.io.IOException;
+
 import client.gui.StartClientGui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -39,7 +41,7 @@ public class ControllerRegister {
 	}
 
 	@FXML
-	public void registerConfirm() {
+	public void registerConfirm() throws IOException, ClassNotFoundException {
 		if (username.getText().equals("") || pw1.getText().equals("") || pw2.getText().equals("")
 				|| email.getText().equals("")) {
 			Alert alert = new Alert(AlertType.WARNING);

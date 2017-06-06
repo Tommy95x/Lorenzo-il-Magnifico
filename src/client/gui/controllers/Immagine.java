@@ -1,20 +1,19 @@
 package client.gui.controllers;
 
-import java.rmi.RemoteException;
-
+import java.io.IOException;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 
 public class Immagine extends ImageView{
 
 	private ImageView destinazione;
 	private ControllerGame game;
 	private String color;
-	private VBox box;
+	private HBox box;
 	private boolean flag;
 	
 	public Immagine (Image im, ControllerGame game){
@@ -80,15 +79,19 @@ public class Immagine extends ImageView{
         
         
         setOnDragDone(event ->{
-        	this.setImage(new Image(getClass().getResourceAsStream("")));
         	if(game.controlloPosizionamento(getColor(), this.getX(), this.getY(),0))
         		if(flag){
         			destinazione.setImage(this.getImage());
         			this.setDisable(true);
-        			game.setCardGiocatore(game.getNamePosition(this.getX(),this.getY()));
+        			try {
+						game.setCardGiocatore(game.getNamePosition(this.getX(),this.getY()));
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
         			try {
 						game.notifySpostamento(this.getColor(),this.getX(), this.getY());
-					} catch (RemoteException e) {
+					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
@@ -98,22 +101,18 @@ public class Immagine extends ImageView{
         			this.setDisable(true);
         			try {
 						game.notifySpostamento(this.getColor(),this.getX(), this.getY());
-					} catch (RemoteException e) {
+					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
         		}
+        	this.setImage(new Image(getClass().getResourceAsStream("")));
         });
 	}
 	
 	public void getDestinazione(ImageView destinazione){
 		this.destinazione=destinazione;
 		flag = true;
-	}
-
-	public void getDestinazione(VBox box){
-		this.box = box;
-		flag = false;
 	}
 	
 	public ControllerGame getGame() {
@@ -130,6 +129,12 @@ public class Immagine extends ImageView{
 
 	public void setColor(String color) {
 		this.color = color;
+	}
+
+	public void getDestinazione(HBox box) {
+		this.box = box;
+		flag = false;
+		
 	}
 	
 }
