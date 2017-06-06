@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -24,7 +25,6 @@ public class ControllerMenu {
 
 	private StartClientGui start;
 	private String lobby;
-	private String color;
 
 	@FXML
 	public Button create;
@@ -40,6 +40,12 @@ public class ControllerMenu {
 	public Button startGame;
 	@FXML
 	public Label label;
+	@FXML
+	public MenuItem about;
+	@FXML
+	public MenuItem close;
+	@FXML
+	public MenuItem exitToGame;
 
 	public void getStartClient(StartClientGui start) {
 		this.setClient(start);
@@ -116,6 +122,24 @@ public class ControllerMenu {
 		start.changeStage(4);
 	}
 
+	@FXML
+	public void close(){
+		if(!exitToGame.isDisable())
+			start.getClient().exitToTheGame(lobby, start.getColor());
+		System.exit(0);
+	}
+	
+	@FXML
+	public void help(){
+		
+	}
+	
+	@FXML
+	public void extiToTheGame(){
+		exitToGame.setDisable(true);
+		start.getClient().exitToTheGame(lobby, start.getColor());
+	}
+	
 	private void colorSelectFirstTime() {
 		Stage popup = new Stage();
 		popup.setTitle("Select Colors");
@@ -130,8 +154,8 @@ public class ControllerMenu {
 		boxColors.getChildren().add(circle);
 		b = new Button("Blue");
 		b.setOnAction(event -> {
-			color = "black";
-			System.out.println(start.getClient().createANewLobby(lobby, color));
+			start.setColor("black");
+			System.out.println(start.getClient().createANewLobby(lobby, start.getColor()));
 			viewStartButton();
 			popup.close();
 			event.consume();
@@ -143,8 +167,8 @@ public class ControllerMenu {
 		boxColors.getChildren().add(circle);
 		b = new Button("Orange");
 		b.setOnAction(event -> {
-			color = "orange";
-			System.out.println(start.getClient().createANewLobby(lobby, color));
+			start.setColor("orange");
+			System.out.println(start.getClient().createANewLobby(lobby, start.getColor()));
 			viewStartButton();
 			popup.close();
 			event.consume();
@@ -156,8 +180,8 @@ public class ControllerMenu {
 		boxColors.getChildren().add(circle);
 		b = new Button("White");
 		b.setOnAction(event -> {
-			color = "white";
-			System.out.println(start.getClient().createANewLobby(lobby, color));
+			start.setColor("white");
+			System.out.println(start.getClient().createANewLobby(lobby, start.getColor()));
 			viewStartButton();
 			popup.close();
 			event.consume();
@@ -169,8 +193,8 @@ public class ControllerMenu {
 		boxColors.getChildren().add(circle);
 		b = new Button("Green");
 		b.setOnAction(event -> {
-			color = "green";
-			System.out.println(start.getClient().createANewLobby(lobby, color));
+			start.setColor("white");
+			System.out.println(start.getClient().createANewLobby(lobby, start.getColor()));
 			viewStartButton();
 			popup.close();
 			event.consume();
@@ -204,8 +228,8 @@ public class ControllerMenu {
 						boxColors.getChildren().add(circle);
 						b = new Button("blue");
 						b.setOnAction(event -> {
-							color = "blue";
-							start.getClient().enterInALobby(lobby, color);
+							start.setColor("blue");
+							start.getClient().enterInALobby(lobby, start.getColor());
 							popup.close();
 							viewStartButton();
 							event.consume();
@@ -219,8 +243,8 @@ public class ControllerMenu {
 						boxColors.getChildren().add(circle);
 						b = new Button("Orange");
 						b.setOnAction(event -> {
-							color = "orange";
-							start.getClient().enterInALobby(lobby, color);
+							start.setColor("orange");
+							start.getClient().enterInALobby(lobby, start.getColor());
 							popup.close();
 							viewStartButton();
 							event.consume();
@@ -234,8 +258,8 @@ public class ControllerMenu {
 						boxColors.getChildren().add(circle);
 						b = new Button("White");
 						b.setOnAction(event -> {
-							color = "white";
-							start.getClient().enterInALobby(lobby, color);
+							start.setColor("white");
+							start.getClient().enterInALobby(lobby, start.getColor());
 							popup.close();
 							viewStartButton();
 							event.consume();
@@ -249,8 +273,8 @@ public class ControllerMenu {
 						boxColors.getChildren().add(circle);
 						b = new Button("Green");
 						b.setOnAction(event -> {
-							color = "green";
-							start.getClient().enterInALobby(lobby, color);
+							start.setColor("green");
+							start.getClient().enterInALobby(lobby, start.getColor());
 							popup.close();
 							viewStartButton();
 							event.consume();
@@ -271,6 +295,9 @@ public class ControllerMenu {
 	}
 
 	private void viewStartButton() {
+		back.setOpacity(0);
+		back.setDisable(true);
+		exitToGame.setDisable(false);
 		lobbies.setOpacity(0);
 		lobbies.setDisable(true);
 		startGame.setOpacity(1);

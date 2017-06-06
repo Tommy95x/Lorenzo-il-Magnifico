@@ -112,7 +112,7 @@ public class Giocatore implements Serializable{
 		this.flag = flag;
 	}
 
-	public String controlloPosizionamento(String color, double x, double y, Connection connection) {
+	public String controlloPosizionamento(String color, double x, double y, Connection connection, int agg) {
 		Dado dadoMom;
 		for(Dado d : dadi){
 			if(d.getColor().equals(color))
@@ -124,7 +124,7 @@ public class Giocatore implements Serializable{
 		if(){
 			
 		}else{
-			if(dadoMom.getValore() >= )
+			if(dadoMom.getValore()+agg >= )
 				return "OK";
 			else if()
 				return "Pay";
@@ -160,8 +160,12 @@ public class Giocatore implements Serializable{
 		
 	}
 
-	public void getCard(CartaSviluppo carta) {
+	public void addCard(CartaSviluppo carta) {
 		carte.add(carta);
 		//Molto probabilmente bisognerà notificare gli altri giocatori
+	}
+	
+	public ArrayList<CartaSviluppo> getCardsGamer(){
+		return carte;
 	}
 }

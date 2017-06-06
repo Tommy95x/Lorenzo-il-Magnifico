@@ -29,6 +29,8 @@ import server.element.CartaSviluppo;
 import server.element.CartaTerritori;
 import server.element.Dado;
 import server.element.Legno;
+import server.element.Portafoglio;
+import server.element.TesseraScomunica;
 
 public class ControllerGame {
 
@@ -80,7 +82,7 @@ public class ControllerGame {
 	@FXML
 	public ImageView pianoTerzoPalazzoMilitare;
 	@FXML
-	public ImageView pianoQuestoPalazzoMilitare;
+	public ImageView pianoQuartoPalazzoMilitare;
 	@FXML
 	public ImageView pianoPrimoPalazzoPersonaggi;
 	@FXML
@@ -88,7 +90,7 @@ public class ControllerGame {
 	@FXML
 	public ImageView pianoTerzoPalazzoPersonaggi;
 	@FXML
-	public ImageView pianoQuestoPalazzoPersonaggi;
+	public ImageView pianoQuartoPalazzoPersonaggi;
 	@FXML
 	public ImageView pianoPrimoPalazzoEdifici;
 	@FXML
@@ -96,7 +98,7 @@ public class ControllerGame {
 	@FXML
 	public ImageView pianoTerzoPalazzoEdifici;
 	@FXML
-	public ImageView pianoQuestoPalazzoEdifici;
+	public ImageView pianoQuartoPalazzoEdifici;
 	@FXML
 	public ImageView pianoPrimoPalazzoTerritori;
 	@FXML
@@ -104,7 +106,15 @@ public class ControllerGame {
 	@FXML
 	public ImageView pianoTerzoPalazzoTerritori;
 	@FXML
-	public ImageView pianoQuestoPalazzoTerritori;
+	public ImageView pianoQuartoPalazzoTerritori;
+	@FXML
+	public ImageView cartaScomunica1;
+	@FXML
+	public ImageView cartaScomunica2;
+	@FXML
+	public ImageView cartaScomunica3;
+	
+	//Componenti tabellone avversari
 	@FXML
 	public ImageView puntiVittoriaBlu;
 	@FXML
@@ -121,6 +131,14 @@ public class ControllerGame {
 	public ImageView puntiFedeBianco;
 	@FXML
 	public ImageView puntiFedeVerde;
+	@FXML
+	public ImageView puntiMilitariArancio;
+	@FXML
+	public ImageView puntiMilitariVerde;
+	@FXML
+	public ImageView puntiMilitariBlu;
+	@FXML
+	public ImageView puntiMilitariBianco;
 	@FXML
 	public ImageView familiareBlue1;
 	@FXML
@@ -153,7 +171,8 @@ public class ControllerGame {
 	public ImageView familiareWhite3;
 	@FXML
 	public ImageView familiareWhite4;
-
+	
+	
 	// Componenti plancia
 	@FXML
 	public HBox carteImpresaGiocatore;
@@ -190,47 +209,180 @@ public class ControllerGame {
 	@FXML
 	public Immagine cuboScomunica3;
 
-	public void getStartClient(StartClientGui startClientGui) {
+	public void getStartClient(StartClientGui startClientGui) throws RemoteException {
 		this.setStart(startClientGui);
+		setColorsParents(start.getColor());
+		setColorCubiScomunica(start.getColor());
+		setCards(start.getClient().getCardsGame());
+		setCardsScomunica(start.getClient().getCardsScomunica());
+		setRisorse(start.getClient().getRisorse());
+		start.getClient().setGuiGame(this);
+		start.getClient().waitTurno();
+	}
+
+
+	private void setRisorse(Portafoglio risorse) {
+		setLegno(risorse.getDimRisorse("legno"));
+		setPietra(risorse.getDimRisorse("pietra"));
+		setServitori(risorse.getDimRisorse("servitori"));
+		setMonete(risorse.getDimRisorse("monete"));
+	}
+
+
+	private void setCardsScomunica(TesseraScomunica[] cardsScomunica) {
+		cartaScomunica1.setImage(cardsScomunica[0].getImage());
+		cartaScomunica2.setImage(cardsScomunica[1].getImage());
+		cartaScomunica3.setImage(cardsScomunica[2].getImage());
+		
+	}
+
+
+	private void setColorCubiScomunica(String color) {
+		cuboScomunica1.setColor(color);
+		cuboScomunica2.setColor(color);
+		cuboScomunica3.setColor(color);
+		switch(color){
+			case "blue":
+				cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaBlu.png")));
+				cuboScomunica2.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaBlu.png")));
+				cuboScomunica3.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaBlu.png")));
+				break;
+			case "green":
+				cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaVerde.png")));
+				cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaVerde.png")));
+				cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaVerde.png")));
+				break;
+			case "white":
+				cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaBianco.png")));
+				cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaBianco.png")));
+				cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaBianco.png")));
+				break;
+			case "orange":
+				cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaArancio.png")));
+				cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaArancio.png")));
+				cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaArancio.png")));
+				break;
+		}
+	}
+
+
+	private void setColorsParents(String color) {
 		familiareNeutro.setColor("neutro");
 		familiareNero.setColor("black");
 		familiareArancio.setColor("orange");
 		familiareBianco.setColor("white");
-		start.getClient().setGuiGame(this);
-	}
-
-	public StartClientGui getStart() {
-		return start;
+		switch(color){
+			case "blue":
+				familiareNeutro.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareNero.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareArancio.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareBianco.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareOrange1.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareOrange2.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareOrange3.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareOrange4.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareGreen1.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareGreen2.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareGreen3.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareGreen4.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareGreen1.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareWhite2.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareWhite3.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareWhite4.setImage(new Image(getClass().getResourceAsStream("")));
+				break;
+			case "green":
+				familiareNeutro.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareNero.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareArancio.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareBianco.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareOrange1.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareOrange2.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareOrange3.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareOrange4.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareBlue1.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareBlue2.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareBlue3.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareBlue4.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareWhite1.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareWhite2.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareWhite3.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareWhite4.setImage(new Image(getClass().getResourceAsStream("")));
+				break;
+			case "white":
+				familiareNeutro.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareNero.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareArancio.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareBianco.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareOrange1.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareOrange2.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareOrange3.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareOrange4.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareBlue1.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareBlue2.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareBlue3.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareBlue4.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareGreen1.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareGreen2.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareGreen3.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareGreen4.setImage(new Image(getClass().getResourceAsStream("")));
+				break;
+			case "orange":
+				familiareNeutro.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareNero.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareArancio.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareBianco.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareBlue1.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareBlue2.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareBlue3.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareBlue4.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareGreen1.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareGreen2.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareGreen3.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareGreen4.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareWhite1.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareWhite2.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareWhite3.setImage(new Image(getClass().getResourceAsStream("")));
+				familiareWhite4.setImage(new Image(getClass().getResourceAsStream("")));
+				break;
+		}
 	}
 
 	private void setStart(StartClientGui start) {
 		this.start = start;
 	}
 
-	private void setBandiera(Image bandiera) {
+	public StartClientGui getStart() {
+		return start;
+	}
+	
+	public void setBandiera(Image bandiera) {
 		this.bandiera.setImage(bandiera);
 	}
 
-	private void setPietra(int pietra) {
+	public void setPietra(int pietra) {
 		this.pietra.setText(Integer.toString(pietra));
 	}
 
-	private void setMonete(int monete) {
+	public void setMonete(int monete) {
 		this.monete.setText(Integer.toString(monete));
 	}
 
-	private void setServitori(int servitori) {
+	public void setServitori(int servitori) {
 		this.servitori.setText(Integer.toString(servitori));
 	}
-
+	
+	public void setLegno(int legno){
+		this.lengo.setText(Integer.toString(legno));
+	}
+	
 	/*
 	 * Controllo per verificare se si ha un numero di punti del dado
 	 */
-	public boolean controlloPosizionamento(String color, double x, double y) {
+	public boolean controlloPosizionamento(String color, double x, double y, Integer integer) {
 		String mom = null;
 		boolean risposta = false;
 		try {
-			mom = start.getClient().controlloPosizionamento(color, x, y);
+			mom = start.getClient().controlloPosizionamento(color, x, y, integer);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -246,7 +398,7 @@ public class ControllerGame {
 			Button bOk = new Button("OK");
 			Button bCancel = new Button("Cancel");
 			bOk.setOnAction(event -> {
-				risposta = true;
+				controlloPosizionamento(color,x,y,Integer.getInteger(text.getText()));
 			});
 			bCancel.setOnAction(event -> {
 				switch (color) {
@@ -263,7 +415,6 @@ public class ControllerGame {
 					familiareBianco.setImage(new Image(getClass().getResourceAsStream("")));
 					break;
 				}
-				risposta = false;
 			});
 		} else if (mom == null) {
 			Alert alert = new Alert(AlertType.WARNING);
@@ -271,8 +422,10 @@ public class ControllerGame {
 			alert.setTitle("Lost DB connection");
 			alert.setContentText("Ci dispiace ma il nostro servizio a smesso di funzionare");
 			alert.showAndWait();
-		}
-		return risposta;
+			return false;
+		}else if(mom.equals("OK"))
+			return true;
+		return false;
 	}
 
 	public void movePuntiFede(String color, double x, double y) {
@@ -517,34 +670,6 @@ public class ControllerGame {
 			break;
 		}
 	}
-
-	@FXML
-	public void lanciaDadi() throws RemoteException, SQLException {
-		Dado[] dadi = new Dado[3];
-		dadi = start.getClient().lanciaDadi(0, null);
-		dadoNero.setImage(dadi[0].getImage());
-		dadoBianco.setImage(dadi[0].getImage());
-		dadoArancio.setImage(dadi[0].getImage());
-	}
-
-	@FXML
-	public void enteredDragImage() {
-		// Chiedere al prof come catturare l'immagine in cui viene posizionata
-		// if()
-		// Devo controllare se è libero se no non posso piazzare
-		familiareNeutro.getDestinazione(null);
-		familiareNero.getDestinazione(null);
-		familiareArancio.getDestinazione(null);
-		familiareBianco.getDestinazione(null);
-	}
-
-	@FXML
-	public void enterDragBox(){
-		familiareNeutro.getDestinazione(null);
-		familiareNero.getDestinazione(null);
-		familiareArancio.getDestinazione(null);
-		familiareBianco.getDestinazione(null);
-	}
 	
 	public void addScomunica(int nScomuniche, Tooltip tooltip) {
 		switch (nScomuniche) {
@@ -594,17 +719,8 @@ public class ControllerGame {
 		}
 	}
 
-	public void notifyTurno() {
-		familiareNeutro.setDisable(false);
-		familiareNero.setDisable(false);
-		familiareArancio.setDisable(false);
-		familiareBianco.setDisable(false);
-	}
-
 	public void notifySpostamento(String color, double x, double y) throws RemoteException {
-		
 		start.getClient().notifySpostamento(color,x,y);
-		
 	}
 
 	public String getNamePosition(double x, double y) {
@@ -621,76 +737,137 @@ public class ControllerGame {
 		}
 	}
 
-	public void setCard(String namePosition) {
+	public void setCardGiocatore(String namePosition) {
 		switch(namePosition){
 		case "primo piano territori":
 			carteTerritoriGiocatore.getChildren().add(carteTerritori.getChildren().get(0));
 			carteTerritori.getChildren().set(0, new ImageView(new Image(getClass().getResourceAsStream(""))));
-			start.getClient().getCard(arrayCarteTerritori[0]);
-			//Acquisire gli effetti della carta e modificarla
+			start.getClient().setCardGiocatore(arrayCarteTerritori[0]);
 			break;
 		case "secondo piano territori":
 			carteTerritoriGiocatore.getChildren().add(carteTerritori.getChildren().get(1));
 			carteTerritori.getChildren().set(1, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			start.getClient().setCardGiocatore(arrayCarteTerritori[1]);
 			break;
 		case "terzo piano territori":
 			carteTerritoriGiocatore.getChildren().add(carteTerritori.getChildren().get(2));
 			carteTerritori.getChildren().set(2, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			start.getClient().setCardGiocatore(arrayCarteTerritori[2]);
 			break;
 		case "quarto piano territori":
 			carteTerritoriGiocatore.getChildren().add(carteTerritori.getChildren().get(3));
 			carteTerritori.getChildren().set(3, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			start.getClient().setCardGiocatore(arrayCarteTerritori[3]);
 			break;
 		case "primo piano edifici":
 			carteEdificiGiocatore.getChildren().add(carteTerritori.getChildren().get(0));
 			carteEdifici.getChildren().set(0, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			start.getClient().setCardGiocatore(arrayCarteEdifici[0]);
 			break;
 		case "secondo piano edifici":
 			carteEdificiGiocatore.getChildren().add(carteTerritori.getChildren().get(1));
 			carteEdifici.getChildren().set(1, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			start.getClient().setCardGiocatore(arrayCarteEdifici[1]);
 			break;
 		case "terzo piano edifici":
 			carteEdificiGiocatore.getChildren().add(carteTerritori.getChildren().get(2));
 			carteEdifici.getChildren().set(2, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			start.getClient().setCardGiocatore(arrayCarteEdifici[2]);
 			break;
 		case "quarto piano edifici":
 			carteEdificiGiocatore.getChildren().add(carteTerritori.getChildren().get(3));
 			carteEdifici.getChildren().set(3, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			start.getClient().setCardGiocatore(arrayCarteEdifici[3]);
 			break;
 		case "primo piano imprese":
 			carteImpresaGiocatore.getChildren().add(carteTerritori.getChildren().get(0));
 			carteImprese.getChildren().set(0, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			start.getClient().setCardGiocatore(arrayCarteImpresa[0]);
 			break;
 		case "secondo piano imprese":
 			carteImpresaGiocatore.getChildren().add(carteTerritori.getChildren().get(1));
 			carteImprese.getChildren().set(1, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			start.getClient().setCardGiocatore(arrayCarteImpresa[1]);
 			break;
 		case "terzo piano imprese":
 			carteImpresaGiocatore.getChildren().add(carteTerritori.getChildren().get(2));
 			carteImprese.getChildren().set(2, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			start.getClient().setCardGiocatore(arrayCarteImpresa[2]);
 			break;
 		case "quarto piano imprese":
 			carteImpresaGiocatore.getChildren().add(carteTerritori.getChildren().get(3));
 			carteImprese.getChildren().set(3, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			start.getClient().setCardGiocatore(arrayCarteImpresa[3]);
 			break;
 		case "primo piano personaggi":
 			cartePersonaggiGiocatore.getChildren().add(carteTerritori.getChildren().get(0));
 			cartePersonaggi.getChildren().set(0, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			start.getClient().setCardGiocatore(arrayCartePersonaggi[0]);
 			break;
 		case "secondo piano personaggi":
 			cartePersonaggiGiocatore.getChildren().add(carteTerritori.getChildren().get(1));
 			cartePersonaggi.getChildren().set(1, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			start.getClient().setCardGiocatore(arrayCartePersonaggi[1]);
 			break;
 		case "terzo piano personaggi":
 			cartePersonaggiGiocatore.getChildren().add(carteTerritori.getChildren().get(2));
 			cartePersonaggi.getChildren().set(2, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			start.getClient().setCardGiocatore(arrayCartePersonaggi[2]);
 			break;
 		case "quarto piano personaggi":
 			cartePersonaggiGiocatore.getChildren().add(carteTerritori.getChildren().get(3));
 			cartePersonaggi.getChildren().set(3, new ImageView(new Image(getClass().getResourceAsStream(""))));
+			start.getClient().setCardGiocatore(arrayCartePersonaggi[3]);
 			break;
-		//Vanno aggiunti i casi del tabellone, ossia gli spazi singoli
+		//Vanno aggiunti i casi del tabellone, ossia gli spazi singoli d'azione
 		}
 	}
+	
+	public void enableGame() {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.initOwner(start.getStage());
+		alert.setTitle("Notifica Turno");
+		alert.setContentText("Hei, e' iniziato il tuo turno fai le tue mosse");
+		alert.showAndWait();
+		familiareNeutro.setDisable(false);
+		familiareNero.setDisable(false);
+		familiareArancio.setDisable(false);
+		familiareBianco.setDisable(false);
+		lanciaDadi.setDisable(false);
+	}
 
+	
+	public void resetTabellon(){
+		setCards(start.getClient().getCardsGame());
+		start.getClient().waitTurno();
+	}
+	
+	@FXML
+	public void lanciaDadi() throws RemoteException, SQLException {
+		Dado[] dadi = new Dado[3];
+		dadi = start.getClient().lanciaDadi(0);
+		dadoNero.setImage(dadi[0].getImage());
+		dadoBianco.setImage(dadi[0].getImage());
+		dadoArancio.setImage(dadi[0].getImage());
+	}
+
+	@FXML
+	public void enteredDragImage() {
+		// Chiedere al prof come catturare l'immagine in cui viene posizionata
+		// if()
+		// Devo controllare se è libero se no non posso piazzare
+		familiareNeutro.getDestinazione(null);
+		familiareNero.getDestinazione(null);
+		familiareArancio.getDestinazione(null);
+		familiareBianco.getDestinazione(null);
+	}
+
+	@FXML
+	public void enterDragBox(){
+		familiareNeutro.getDestinazione(null);
+		familiareNero.getDestinazione(null);
+		familiareArancio.getDestinazione(null);
+		familiareBianco.getDestinazione(null);
+	}
+	
 }

@@ -1,6 +1,7 @@
 package server;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.rmi.RemoteException;
@@ -10,13 +11,14 @@ import java.util.Scanner;
 
 import javafx.scene.control.Tooltip;
 import server.element.CartaSviluppo;
+import server.element.Giocatore;
 
 /*
 *Classe che comunica con un SocketClient che ha istanziato e creato una nuva connessione inprecedenza con il ServerSocket, la classe
 *di conseguenza implementa l'interfaccia Runnable che verra' eseguito da un Executor istanziato in precedenza alla creazione di una 
 *connessione da parte di un client.
 **/
-public class ThreadSocketServer implements Runnable{
+public class ThreadSocketServer implements Runnable {
 
 	private StartServer commonServer;
 	private Socket socket;
@@ -33,12 +35,13 @@ public class ThreadSocketServer implements Runnable{
 	private ImplementServerInterface actionsServer;
 	private int x;
 	private int y;
-	
+	private ObjectInputStream inputObject;
+
 	public ThreadSocketServer(Socket executorSocket, StartServer commonServer) {
-		this.commonServer=commonServer;
-		this.socket=executorSocket;
+		this.commonServer = commonServer;
+		this.socket = executorSocket;
 		try {
-			actionsServer=new ImplementServerInterface(commonServer);
+			actionsServer = new ImplementServerInterface(commonServer);
 		} catch (RemoteException e) {
 			System.out.println("Error not create a new ImplementInterface");
 			e.printStackTrace();
@@ -46,113 +49,147 @@ public class ThreadSocketServer implements Runnable{
 		System.out.println("Creato nuovo executor di gestione client");
 	}
 
-	
-	public void closeSocket(){
+	public void closeSocket() {
 		output.println("Gioco finito");
 		input.close();
 		output.close();
 	}
-	
+
 	private void outArray(String[] colors, PrintWriter output2) {
-		for(String s:colors){
+		for (String s : colors) {
 			output.println(s);
 			output.flush();
 		}
-			
+
 	}
-	
-	/*private void closeAGamer(){
-		try {
-			actionsServer.adviseOtherGamers(account,positionGame);
-		} catch (Exception e) {
-			// Pensare per la gestione dell'eccezione
-			e.printStackTrace();
-		}
-		
-	}*/
-	
-	private void play(PrintWriter output, Scanner input) {
-		action=input.nextLine();
-		for(int i=0;i<4;i++){
-				color=input.nextLine();
-				x=input.nextInt();
-				y=input.nextInt();
+
+	/*
+	 * private void closeAGamer(){ try {
+	 * actionsServer.adviseOtherGamers(account,positionGame); } catch (Exception
+	 * e) { // Pensare per la gestione dell'eccezione e.printStackTrace(); }
+	 * 
+	 * }
+	 */
+
+	private void play() throws RemoteException, SQLException {
+		double x;
+		double y;
+		action = input.nextLine();
+		while (true) {
+			switch (action) {
+			case "dices":
+				output.println(actionsServer.showDiceValues(positionGame, account));
+				output.flush();
+				break;
+			case "controllo posizionamento":
+				color = input.nextLine();
+				x = input.nextDouble();
+				y = input.nextDouble();
+				positionGame = input.nextInt();
+				account = input.nextLine();
+				int agg = input.nextInt();
+				output.println(
+						commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(account).controlloPosizionamento(
+								color, x, y, commonServer.getDBConnection().getConnection(account), agg));
+				output.flush();
+				break;
+			case "getCardsGamer":
+				lobby = input.nextLine();
+				account = input.nextLine();
 				try {
-					actionsServer.mossa(account, positionGame, color, x, y);
-				} catch (Exception e) {
+					commonServer.getLobbyByName(lobby).getGiocatoreByName(account).addCard((CartaSviluppo) inputObject.readObject());
+				} catch (ClassNotFoundException | IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				break;
+			case "getNamePosition":
+				output.println(commonServer.getLobbyByNumber(positionGame).getNamePosition(input.nextDouble(), input.nextDouble(),commonServer.getDBConnection().getConnection(account)));
+				output.flush();
+				break;
+			case "getPortafoglio":
+				output.println(commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(account).getRisorse());
+				output.flush();
+				break;
+			case "getTessereScomunica":
+				output.println(commonServer.getLobbyByNumber(positionGame).getCardsScomunica());
+				output.flush();
+				break;
+			case "getCardsGame":
+				output.println(commonServer.getLobbyByNumber(positionGame).getCards());
+				output.flush();
+				break;
+			case "notifySpostamento":
+				String color = input.nextLine();
+				x = input.nextDouble();
+				y = input.nextDouble();
+				commonServer.getLobbyByNumber(positionGame).notifySpostamento(color, commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(account), x, y);
+			case "quit":
+				closeSocket();
+				break;
 			}
-			action=input.nextLine();
+		}
 	}
 
-	
 	public void run() {
 		try {
 			input = new Scanner(socket.getInputStream());
 			output = new PrintWriter(socket.getOutputStream());
-			while(true){
-				action=input.nextLine();
+			inputObject = new ObjectInputStream(socket.getInputStream());
+			while (true) {
+				action = input.nextLine();
 				System.out.println(action);
-				switch(action){
-					case "login":
-						System.out.println("Richiesto login");
-						account=input.nextLine();
-						pw=input.nextLine();
-						output.println(actionsServer.login(account, pw));
-						output.flush();
-						break;
-					case "register":
-						System.out.println("Richiesta registrazione");
-						account=input.nextLine();
-						pw=input.nextLine();
-						pw2=input.nextLine();
-						email = input.nextLine();
-						output.println(actionsServer.register(account, pw, pw2,email));
-						output.flush();
-						break;
-					case "create new lobby":
-						lobby=input.nextLine();
-						//account=input.nextLine();
-						color = input.nextLine();
-						output.println(actionsServer.createNewLobby(lobby, account,color,null));
-						commonServer.getLobbyByName(lobby).getGiocatoreByName(account).getSocket(this);
-						break;
-					case "get lobbies":
-						output.println(actionsServer.getLobby());
-						break;
-					case "enter in a lobby":
-						lobby=input.nextLine();
-						//account=input.nextLine();
-						positionGame=commonServer.getIndicePartita(lobby);
-						output.println(positionGame);
-						output.flush();
-						output.println(actionsServer.getColors(lobby));
-						output.flush();
-						color=input.nextLine();
-						actionsServer.selectLobby(lobby, account, color,null);
-						commonServer.getLobbyByName(lobby).getGiocatoreByName(account).getSocket(this);
-						break;
-					case "start":
-						//account=input.nextLine();
-						positionGame=input.nextInt();	
-						output.println(actionsServer.startPartita(account, positionGame));
-						output.flush();
-						break;
-					case "play":
-						play(output,input);
-						break;
-					/*case "dices":
-						output.println(actionsServer.showDiceValues(positionGame, account));
-						output.flush();
-						break;*/
-					case "mossa familiare":
-						//Discutere con Mattia per vedere come implementare il tutto
-						break;
-					case "quit":
-						closeSocket();
-						break;
+				switch (action) {
+				case "login":
+					System.out.println("Richiesto login");
+					account = input.nextLine();
+					pw = input.nextLine();
+					output.println(actionsServer.login(account, pw));
+					output.flush();
+					break;
+				case "register":
+					System.out.println("Richiesta registrazione");
+					account = input.nextLine();
+					pw = input.nextLine();
+					pw2 = input.nextLine();
+					email = input.nextLine();
+					output.println(actionsServer.register(account, pw, pw2, email));
+					output.flush();
+					break;
+				case "create new lobby":
+					lobby = input.nextLine();
+					// account=input.nextLine();
+					color = input.nextLine();
+					output.println(actionsServer.createNewLobby(lobby, account, color, null));
+					output.flush();
+					commonServer.getLobbyByName(lobby).getGiocatoreByName(account).getSocket(this);
+					break;
+				case "get lobbies":
+					output.println(actionsServer.getLobby());
+					break;
+				case "enter in a lobby":
+					lobby = input.nextLine();
+					color = input.nextLine();
+					commonServer.getLobbyByName(lobby).addGiocatore(new Giocatore(color,
+							commonServer.getLobbyByName(lobby), account, commonServer.getIndicePartita(lobby)));
+					output.println(commonServer.getIndicePartita(lobby));
+					output.flush();
+					break;
+				case "getColors":
+					lobby = input.nextLine();
+					output.println(commonServer.getLobbyByName(lobby).getColors());
+					output.flush();
+					break;
+				case "exitToTheGame":
+					lobby = input.nextLine();
+					color = input.nextLine();
+					commonServer.getLobbyByName(lobby).exitToGame(account, color);
+					break;
+				case "start":
+					positionGame = input.nextInt();
+					output.println(actionsServer.startPartita(account, positionGame));
+					output.flush();
+					break;
 				}
 			}
 		} catch (IOException | SQLException e) {
@@ -161,9 +198,8 @@ public class ThreadSocketServer implements Runnable{
 			output.close();
 			input.close();
 			e.printStackTrace();
-		}	
+		}
 	}
-
 
 	private void getCards(PrintWriter output) {
 		ArrayList<CartaSviluppo> mom = null;
@@ -173,7 +209,7 @@ public class ThreadSocketServer implements Runnable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		for(CartaSviluppo c:mom){
+		for (CartaSviluppo c : mom) {
 			output.println(c.getNameCard());
 			output.flush();
 			output.println(c.getImage());
@@ -182,33 +218,64 @@ public class ThreadSocketServer implements Runnable{
 		output.println("endCards");
 	}
 
-
 	public void notifyStartGame() {
-		
-		//Una volta ricevuto la notifica l'utente richiede le carte
+		output.println("gioca");
+		output.flush();
+		try {
+			play();
+		} catch (RemoteException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-
-
-	public void playGamer() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	public void addScomunica(int nScomuniche, Tooltip tooltip) {
-		// TODO Auto-generated method stub
-		
-	}
-
 
 	public void notifyTurno() {
-		// TODO Auto-generated method stub
-		
+		output.println("startTurno");
+		output.flush();
+
 	}
 
+	public void moveFamiliareAvv(double x, double y, String colorPlayer, String color) {
+		output.println("familiareAvv");
+		output.flush();
+		output.println(x);
+		output.flush();
+		output.println(y);
+		output.flush();
+		output.println(colorPlayer);
+		output.flush();
+		output.println(color);
+		output.flush();
+	}
+	
+	public void moveDisco(double x, double y, String colorPlayer, String colorDisco) {
+		output.println("disco");
+		output.flush();
+		output.println(x);
+		output.flush();
+		output.println(y);
+		output.flush();
+		output.println(colorPlayer);
+		output.flush();
+		output.println(colorDisco);
+		output.flush();
+	}
+	
+	public void moveDiscoFede(double x, double y, String colorPlayer, String colorDisco) {
+		output.println("discoFede");
+		output.flush();
+		output.println(x);
+		output.flush();
+		output.println(y);
+		output.flush();
+		output.println(colorPlayer);
+		output.flush();
+		output.println(colorDisco);
+		output.flush();
+	}
 
-	public void moveFamiliareAvv(double x2, double y2, String colorPlayer, String color2) {
-		// TODO Auto-generated method stub
-		
-	}	
+	public void addScomunica(int nScomuniche, Tooltip tooltip) {
+				
+	}
+	
 }

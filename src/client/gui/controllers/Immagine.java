@@ -81,11 +81,11 @@ public class Immagine extends ImageView{
         
         setOnDragDone(event ->{
         	this.setImage(new Image(getClass().getResourceAsStream("")));
-        	if(game.controlloPosizionamento(getColor(), this.getX(), this.getY()))
+        	if(game.controlloPosizionamento(getColor(), this.getX(), this.getY(),0))
         		if(flag){
         			destinazione.setImage(this.getImage());
         			this.setDisable(true);
-        			game.setCard(game.getNamePosition(this.getX(),this.getY()));
+        			game.setCardGiocatore(game.getNamePosition(this.getX(),this.getY()));
         			try {
 						game.notifySpostamento(this.getColor(),this.getX(), this.getY());
 					} catch (RemoteException e) {

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import client.gui.StartClientGui;
 import client.gui.controllers.ControllerGame;
+import server.element.CartaSviluppo;
 import server.element.CartaTerritori;
 import server.element.Dado;
 import server.element.Partita;
@@ -101,7 +102,7 @@ public class ConnectionClient implements ClientInterface {
 		return null;
 	}
 
-	public String controlloPosizionamento(String color, double x, double y) throws RemoteException {
+	public String controlloPosizionamento(String color, double x, double y, Integer integer) throws RemoteException {
 		return color;
 	}
 	
@@ -123,8 +124,28 @@ public class ConnectionClient implements ClientInterface {
 		return null;
 	}
 
-	public void getCard(CartaTerritori cartaTerritori) {
+	public void exitToTheGame(String lobby, String color) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public void waitTurno() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public ArrayList<CartaSviluppo> getCardsGamer() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void setCardGiocatore(CartaSviluppo carta) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public ArrayList<CartaSviluppo> getCardsGame() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

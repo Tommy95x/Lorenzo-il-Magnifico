@@ -8,8 +8,12 @@ import java.util.ArrayList;
 
 import server.database.ConnectionDatabase;
 
-/*Parte condivisa dai vari giocatori e che possiederà tutte le azioni che un giocatore può eseguire. Ogni azione della partita
-  sarà un metodo synchronized*/
+/**
+ * @author Tommy
+ *
+ *Classe che rappresentera' la partita. Puo' contenere al massimo 4 giocatori, tutte le carte giocate (sempre rappresentate da degli array) e il turno che far� terminare la partita una volta che raggiungera' il 
+ *valore pari a 6.
+ */
 public class Partita implements Serializable{
 
 	private final int DIM=4;
@@ -26,6 +30,15 @@ public class Partita implements Serializable{
 	private String[] colors = new String[DIM];
 	private int giocatore = 0;
 	
+	/**
+	 * 
+	 * 
+	 * @param lobby
+	 * @param namePlayer
+	 * @param positionGame
+	 * @param connection
+	 * @throws SQLException
+	 */
 	public Partita(String lobby, String namePlayer, int positionGame, Connection connection) throws SQLException{
 		this.setLobby(lobby);
 		colors[0] = "blue"; 
@@ -44,6 +57,13 @@ public class Partita implements Serializable{
 		queryimpresa="SELECT * FROM CARTEIMPRESAPARTITA ORDER BY PERIODO";
 		querypersonaggio="SELECT * FROM CARTEPERSONAGGIOPARTITA ORDER BY PERIODO";
 		queryedificio="SELECT * FROM CARTEEDIFICIOPARTITA ORDER BY PERIODO";
+		for(int i=0;i<DIM;i++){
+			start[i]=false;
+		}
+		String queryterritorio = "CREATE VIEW CARTETERRITORIOPARTITA AS (SELECT * FROM CARTATERRITORIO ORDER BY RAND(), PERIODO)";
+		String queryimpresa = "CREATE VIEW CARTEIMPRESAPARTITA AS (SELECT * FROM CARTAIMPRESA ORDER BY RAND(), PERIODO)";
+		String querypersonaggio = "CREATE VIEW CARTEPERSONAGGIOPARTITA AS (SELECT * FROM CARTAPERSONAGGIO ORDER BY RAND(), PERIODO)";
+		String queryedificio = "CREATE VIEW CARTEEDIFICIOPARTITA AS (SELECT * FROM CARTAEDIFICIO ORDER BY RAND(), PERIODO)";
 		connection.createStatement().executeQuery(queryterritorio);
 		connection.createStatement().executeQuery(queryimpresa);
 		connection.createStatement().executeQuery(querypersonaggio);
@@ -57,10 +77,18 @@ public class Partita implements Serializable{
 		for(int i = 0; i<4; i++){
 			giocatori[i].notifyStartGame();
 		}
+		//Vedi regole e assegna a seconda della posizione le risorse di posizione
 		giocatori[giocatore].notifyTurno();
-		//Chiedere come notificare che è iniziata la partita ai giocatori
 	}
 
+	private boolean checkBoolean(int dim){
+		for(int i=0;i<dim;i++){
+			if(!start[i])
+				return false;
+		}
+		return true;
+	}
+	
 	/**
 	 * This method take the array of the gamers and shuffle it to decide the start 
 	 * order of the first turn of the game.
@@ -148,22 +176,20 @@ public class Partita implements Serializable{
 				break;
 			}
 		}
-		
-		for(int i=0;i<DIM;i++){
-			if(!start[i])
-				return;
-		else
+		int dim = 0;
+		for(Giocatore g : giocatori)
+			if(g != null)
+				dim++;
+				else
+					break;
+		if(checkBoolean(dim))
 			startPartita();
-		}
+		else
+			return;
 	}
 	
 	public String[] getColors(){
 		return colors;	
-	}
-
-	public void adviseGamers() {
-		//Chiedere al prof come referenziare per avvisare gli altri giocatori
-		
 	}
 
 	public ArrayList<CartaSviluppo> getCards() {
@@ -263,6 +289,27 @@ public class Partita implements Serializable{
 	public String getNamePosition(double x, double y, Connection connection) {
 		// Scrivere query che fornisce il nome della posizione tipo primo piano palazzo...
 		return null;
+	}
+
+
+	public void exitToGame(String name, String color) {
+		int i;
+		for(i=0;i<giocatori.length;i++){
+			if(giocatori[i].getName().equals(name)){
+				giocatori[i]=null;
+			}
+			for( i =0;i<colors.length;i++){
+				if(colors[i] == null){
+					colors[i] = color;
+					break;
+				}
+			}
+		}
+	}
+
+
+	public TesseraScomunica[] getCardsScomunica() {
+		return tessereScomunica;
 	}
 	
 }

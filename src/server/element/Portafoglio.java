@@ -10,10 +10,10 @@ import java.util.ArrayList;
  */
 public class Portafoglio implements Serializable{
 
-	private ArrayList<Legno> legno = new ArrayList<Legno>();
-	private ArrayList<Pietra> pietra = new ArrayList<Pietra>();
-	private ArrayList<Monete> monete = new ArrayList<Monete>();
-	private ArrayList<Servitori> servitori = new ArrayList<Servitori>();
+	private int legno;
+	private int pietra;
+	private int monete;
+	private int servitori;
 	private ArrayList<CartaSviluppo> carte = new ArrayList<CartaSviluppo>();
 	private int puntiTot;
 	private int puntiMilitari;
@@ -21,33 +21,33 @@ public class Portafoglio implements Serializable{
 	
 	public Portafoglio(){
 		int i;
-		for(i=0;i<2;i++)
-			legno.add(new Legno());
-		for(i=0;i<2;i++)
-			pietra.add(new Pietra());
+		for(i=0;i<2;i++){
+			legno++;
+			pietra++;
+		}
 		for(i=0;i<3;i++)
-			servitori.add(new Servitori());
+			servitori++;
 		for(i=0;i<5;i++)
-			monete.add(new Monete());
+			monete++;
 		puntiTot=0;
 		puntiMilitari=0;
 		puntiFede=0;
 	}
 	
-	public void addServitori(Servitori s){
-		servitori.add(s);
+	public void addServitori(){
+		servitori++;
 	}
 	
-	public void addMonete(Monete m){
-		monete.add(m);
+	public void addMonete(){
+		monete++;
 	}
 	
-	public void addLengo(Legno l){
-		legno.add(l);
+	public void addLengo(){
+		legno++;
 	}
 	
-	public void addPietra(Pietra p){
-		pietra.add(p);
+	public void addPietra(){
+		pietra++;
 	}
 	
 	public void addCarta(CartaSviluppo c){
@@ -55,44 +55,32 @@ public class Portafoglio implements Serializable{
 	}
 	
 	public int getDimRisorse(String risorsa){
-		int dim = 0;
-		int i;
 		switch(risorsa){
 			case "legno":
-				dim=legno.size();
-				break;
+				return legno;
 			case "monete":
-				for(i=0;i<monete.size();i++){
-					dim=monete.size();
-				}
-				break;
+				return monete;
 			case "pietra":
-				for(i=0;i<pietra.size();i++){
-					dim=pietra.size();
-				}
-				break;
+				return pietra;
 			case "servitori":
-				for(i=0;i<servitori.size();i++){
-					dim=servitori.size();
-				}
-				break;
+				return servitori;
 		}
-		return dim;
+		return 0;
 	}
 	
 	public void addRis(Risorse ris) {
 		switch(ris.getTipo()){
 		case "legno":
-			legno.add((Legno) ris);
+			addLengo();
 			break;
 		case "monete":
-			monete.add((Monete) ris);
+			addMonete();
 			break;
 		case "pietra":
-			pietra.add((Pietra) ris);
+			addPietra();
 			break;
 		case "servitori":
-			servitori.add((Servitori) ris);
+			addServitori();
 			break;
 	}
 		
