@@ -165,6 +165,12 @@ public class Partita implements Serializable{
 	}
 
 
+	private void sostegnoChiesa() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 	public String getCreator(){
 		return giocatori[0].getName();
 	}
