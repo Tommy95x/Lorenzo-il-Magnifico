@@ -31,7 +31,7 @@ public class StartServer {
 	 * This method is used to control that the user who wants to play is already registered,
 	 * if he is, he can start the game, else he has to register an account.
 	 * 
-	 * @author Mattia and tommy
+	 * @author Mattia
 	 * @param account
 	 * @param pw
 	 * @return
