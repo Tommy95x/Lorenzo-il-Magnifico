@@ -188,6 +188,14 @@ public class ThreadSocketServer implements Runnable {
 					output.writeObject(actionsServer.startPartita(account, positionGame));
 					output.flush();
 					break;
+				case "deleteView":
+					positionGame = (int) input.readObject();
+					commonServer.deletLobby(positionGame);
+					break;
+				case "exitAccount":
+					commonServer.removeAccount((String) input.readObject());
+					socket.close();
+					break;
 				}
 			}
 		} catch (IOException | SQLException e) {

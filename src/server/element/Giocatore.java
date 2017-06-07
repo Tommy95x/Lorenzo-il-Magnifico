@@ -99,6 +99,7 @@ public class Giocatore implements Serializable {
 
 	public void notifyStartGame() throws IOException {
 		if (client == null) {
+			System.out.println("client null");
 			server.notifyStartGame();
 		} else {
 			client.notifyStartGame();

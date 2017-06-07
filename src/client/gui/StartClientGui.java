@@ -131,6 +131,7 @@ public class StartClientGui extends Application{
 				break;
 			case 5:
 				try {
+					System.out.println("ProvaProva");
 					loader = new FXMLLoader();
 					loader.setLocation(this.getClass().getResource("controllers/GameGui.fxml"));
 					root = loader.load();
@@ -142,28 +143,32 @@ public class StartClientGui extends Application{
 						e.printStackTrace();
 					}
 					root.setId("back");
-					Scene scene = new Scene(root);
+					Scene scene = new Scene(root,1366,768);
 					scene.getStylesheets().addAll(this.getClass().getResource("controllers/gameBackGround.css").toExternalForm());
-					primaryStage.setWidth(1366);
-					primaryStage.setHeight(768);
 					primaryStage.setScene(scene);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				System.out.println("ProvaProvaProva");
 				break;
 		}
 	}
 	
-	public void exit(Stage primaryStage2){
+	public void exit(Stage primaryStage){
 		if(create)
 			try {
 				getClient().deleteView();
-				getClient().removeAccount();
-			} catch (RemoteException e) {
+			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		try {
+			getClient().removeAccount();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		primaryStage.close();
 		System.exit(0);
 	}

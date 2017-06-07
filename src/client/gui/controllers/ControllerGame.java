@@ -176,6 +176,10 @@ public class ControllerGame {
 	public Label name3;
 	@FXML
 	public ImageView flag1;
+	@FXML
+	public ImageView flag2;
+	@FXML
+	public ImageView flag3;
 	
 	// Componenti plancia
 	@FXML
@@ -223,6 +227,7 @@ public class ControllerGame {
 		setTabavv(start.getClient().getGiocatori());
 		start.getClient().setGuiGame(this);
 		start.getClient().waitTurno();
+		setPosizioni();
 		mercatoPosMoneteMilitari.setOnDragDropped(event->{
 			if(mercatoPosMoneteMilitari != null){
 				familiareNeutro.getDestinazione(mercatoPosMoneteMilitari);
@@ -513,6 +518,9 @@ public class ControllerGame {
 				familiareWhite2.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoArancio.png")));
 				familiareWhite3.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoBianco.png")));
 				familiareWhite4.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoNero.png")));
+				flag1.setImage(new Image(this.getClass().getResourceAsStream("BandierinaVerde.png")));
+				flag2.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBianca.png")));
+				flag3.setImage(new Image(this.getClass().getResourceAsStream("BandierinaArancio.png")));
 				familiareOrange1.setOpacity(1);
 				familiareOrange2.setOpacity(1);
 				familiareOrange3.setOpacity(1);
@@ -555,6 +563,9 @@ public class ControllerGame {
 				familiareWhite2.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoArancio.png")));
 				familiareWhite3.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoBianco.png")));
 				familiareWhite4.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoNero.png")));
+				flag1.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBlu.png")));
+				flag2.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBianca.png")));
+				flag3.setImage(new Image(this.getClass().getResourceAsStream("BandierinaArancio.png")));
 				familiareOrange1.setOpacity(1);
 				familiareOrange2.setOpacity(1);
 				familiareOrange3.setOpacity(1);
@@ -597,6 +608,9 @@ public class ControllerGame {
 				familiareGreen2.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeArancio.png")));
 				familiareGreen3.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeBianco.png")));
 				familiareGreen4.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeNero.png")));
+				flag1.setImage(new Image(this.getClass().getResourceAsStream("BandierinaVerde.png")));
+				flag2.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBlu.png")));
+				flag3.setImage(new Image(this.getClass().getResourceAsStream("BandierinaArancio.png")));
 				familiareOrange1.setOpacity(1);
 				familiareOrange2.setOpacity(1);
 				familiareOrange3.setOpacity(1);
@@ -639,6 +653,9 @@ public class ControllerGame {
 				familiareWhite2.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoArancio.png")));
 				familiareWhite3.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoBianco.png")));
 				familiareWhite4.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoNero.png")));
+				flag1.setImage(new Image(this.getClass().getResourceAsStream("")));
+				flag2.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBianca.png")));
+				flag3.setImage(new Image(this.getClass().getResourceAsStream("")));
 				familiareBlue1.setOpacity(1);
 				familiareBlue2.setOpacity(1);
 				familiareBlue3.setOpacity(1);
@@ -1183,6 +1200,10 @@ public class ControllerGame {
 	public void resetTabellon() throws ClassNotFoundException, IOException{
 		try {
 			setCards(start.getClient().getCardsGame());
+			azioniTerritoridapiuGiocatori = new HBox();
+			azioniEdificidapiuGiocatori = new HBox();
+			municipio = new HBox();
+			setPosizioni();
 		} catch (ClassNotFoundException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -1190,6 +1211,33 @@ public class ControllerGame {
 		start.getClient().waitTurno();
 	}
 	
+	private void setPosizioni() {
+		int i=0;
+		try {
+			for(Giocatore g: start.getClient().getGiocatori()){
+				switch(g.getColor()){
+					case "white":
+						posizioni.getChildren().set(i, new ImageView(new Image(getClass().getResourceAsStream("Disco12.png"))));
+						break;
+					case "blue":
+						posizioni.getChildren().set(i, new ImageView(new Image(getClass().getResourceAsStream("Disco1.png"))));
+						break;
+					case "green":
+						posizioni.getChildren().set(i, new ImageView(new Image(getClass().getResourceAsStream("Disco4.png"))));
+						break;
+					case "orange":
+						posizioni.getChildren().set(i, new ImageView(new Image(getClass().getResourceAsStream("Disco3.png"))));
+						break;
+				}
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+
 	@FXML
 	public void lanciaDadi() throws RemoteException, SQLException {
 		Dado[] dadi = new Dado[3];

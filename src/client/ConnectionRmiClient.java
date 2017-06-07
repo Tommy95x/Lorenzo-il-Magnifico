@@ -164,7 +164,10 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	}
 
 	public void notifyStartGame() throws RemoteException {
-		start.changeStage(4);
+		if(start == null)
+			System.out.println("Stage null");
+		start.changeStage(5);
+		System.out.println("Prova");
 	}
 	
 	public String controlloPosizionamento(String color, double x, double y, Integer agg) throws RemoteException {
@@ -282,7 +285,6 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	
 	public void removeAccount() throws RemoteException {
 		serverMethods.removeAccount(name);
-		
 	}
 	
 	@Override

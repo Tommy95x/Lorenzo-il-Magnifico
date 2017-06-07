@@ -70,6 +70,7 @@ public class Partita implements Serializable{
 	
 	private void startPartita() throws RemoteException, SQLException{
 		turno=1;
+		System.out.println("shuffle giocatori ");
 		beShuffled();
 		for(int i = 0; i<4; i++){
 			try {
@@ -81,12 +82,13 @@ public class Partita implements Serializable{
 			}
 		}
 		//Vedi regole e assegna a seconda della posizione le risorse di posizione
-		try {
-			giocatori[giocatore].notifyTurno();
+		/*try {
+	
+			giocatori[i].notifyTurno();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 	}
 	
 	private boolean checkBoolean(int dim){
@@ -203,6 +205,7 @@ public class Partita implements Serializable{
 				dim++;
 				else
 					break;
+		System.out.println(dim);
 		if(dim<2)
 			return;
 		else
@@ -276,8 +279,8 @@ public class Partita implements Serializable{
 
 	public void changeColors(String color) {
 		for(int i = 0; i<DIM;i++){
-			if(colors[i].equals(color) || colors[i]==null){
-				colors[i] = null;
+			if(colors[i].equals(color) || colors[i].equals("")){
+				colors[i] = "";
 				break;
 			}
 		}

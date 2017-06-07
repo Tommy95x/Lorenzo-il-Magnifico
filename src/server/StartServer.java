@@ -38,10 +38,9 @@ public class StartServer {
 	 * @return
 	 */
 	public String addClient(String account, String pw){
-		String mom=account+pw;
-		System.out.println(mom);
+		System.out.println(account);
 		for(int i=0; i<utente.size();i++){
-			if(mom.equals(utente.get(i)))
+			if(account.equals(utente.get(i)))
 				return "Player already login";
 		}
 		String query = "SELECT COUNT(*) AS C FROM UTENTE WHERE (NOMEUTENTE='"+account.toLowerCase()+"' AND PASSWORD='"+pw.toLowerCase()+"')";
@@ -52,18 +51,15 @@ public class StartServer {
 			res.next();
 			int conta = res.getInt("C");
 			if(conta>0){
-				utente.add(mom);
+				utente.add(account);
 				res.close();
 				stmt.close();
 				connection.close();
 				return "Welcome to the game";
 			}else{
-<<<<<<< HEAD
-=======
 				res.close();
 				stmt.close();
 				connection.close();
->>>>>>> branch 'develop' of https://github.com/Tommy95x/Lorenzo-il-Magnifico
 				return "For player must register a new account";
 			}
 		} catch (SQLException e) {
@@ -195,6 +191,7 @@ public class StartServer {
 		for(int i=0;i<utente.size();i++)
 			if(utente.get(i).equals(name))
 				utente.remove(i);
+		System.out.println("Utente "+name+" rimosso");
 	}
 	
 }

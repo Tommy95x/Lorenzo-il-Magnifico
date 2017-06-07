@@ -171,12 +171,12 @@ public class ConnectionClient implements ClientInterface {
 		return null;
 	}
 
-	public void deleteView() throws RemoteException {
+	public void deleteView() throws RemoteException, IOException {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void removeAccount() throws RemoteException {
+	public void removeAccount() throws RemoteException, IOException {
 		// TODO Auto-generated method stub
 		
 	}

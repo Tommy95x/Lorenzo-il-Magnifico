@@ -329,9 +329,18 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 			guiGame.enableGame();
 	}
 	
-	public void deleteView() {
-		
-		
+	public void deleteView() throws IOException {
+		outputSocket.writeObject("deleteView");
+		outputSocket.flush();
+		outputSocket.writeObject(positionGame);
+		outputSocket.flush();
+	}
+	
+	public void removeAccount() throws IOException {
+		outputSocket.writeObject("exitAccount");
+		outputSocket.flush();
+		outputSocket.writeObject(name);
+		outputSocket.flush();
 	}
 	
 	@Override
