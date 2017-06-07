@@ -70,20 +70,21 @@ public class Partita implements Serializable{
 	
 	private void startPartita() throws RemoteException, SQLException{
 		turno=1;
-		System.out.println("shuffle giocatori ");
-		beShuffled();
-		System.out.println("Sistemato ordine gioco");
 		for(int i = 0; i<4; i++){
 			try {
 				if(giocatori[i] != null){
 					System.out.println("notifico giocatori per l'inizio partita");
+					System.out.println(giocatori[i]);
 					giocatori[i].notifyStartGame();
 				}
-			} catch (IOException e) {
+			} catch (IOException | ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
+		System.out.println("shuffle giocatori ");
+		beShuffled();
+		System.out.println("Sistemato ordine gioco");
 		//Vedi regole e assegna a seconda della posizione le risorse di posizione
 		/*try {
 	

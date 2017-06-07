@@ -54,11 +54,10 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		return commonServer.getIndicePartita(lobby);
 	}
 
-	public int startPartita(String account, int game) throws RemoteException, SQLException{
+	public void startPartita(String account, int game) throws RemoteException, SQLException{
 		System.out.println("Ricevuto "+account +" utente pronto");
-			commonServer.getLobbyByNumber(game).start(account);
 			System.out.println("Ritorno da metodo notifica partita");
-			return commonServer.getLobbyByNumber(game).numberOfPlayer();
+			commonServer.getLobbyByNumber(game).start(account);
 	}
 
 	public ArrayList<Partita> getLobby() throws RemoteException{
@@ -153,6 +152,10 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 	public void removeAccount(String name) throws RemoteException {
 		commonServer.removeAccount(name);
 		
+	}
+	
+	public int getNumberOfPlayer(int positionGame) throws RemoteException {
+		return commonServer.getLobbyByNumber(positionGame).numberOfPlayer();
 	}
 	
 	@Override

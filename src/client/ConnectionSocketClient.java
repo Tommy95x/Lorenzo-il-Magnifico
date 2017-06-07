@@ -128,7 +128,7 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		return null;
 	}
 
-	public void enterInALobby(String lobby, String color) throws IOException {
+	public void enterInALobby(String lobby, String color) throws IOException, ClassNotFoundException {
 		this.lobby = lobby;
 		outputSocket.writeObject("enter in a lobby");
 		outputSocket.flush();
@@ -136,7 +136,7 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		outputSocket.flush();
 		outputSocket.writeObject(color);
 		outputSocket.flush();
-		setPositionGame(inputSocket.readInt());
+		setPositionGame((int) inputSocket.readObject());
 	}
 
 	public TesseraScomunica[] getCardsScomunica() throws ClassNotFoundException, IOException{
@@ -145,12 +145,11 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		return (TesseraScomunica[]) inputSocket.readObject();
 	}
 	
-	public void startGame() throws IOException {
+	public void startGame() throws IOException, ClassNotFoundException {
 		outputSocket.writeObject("start");
 		outputSocket.flush();
 		outputSocket.writeObject(positionGame);
 		outputSocket.flush();
-		setNumberOfGamers(inputSocket.readInt());
 	}
 
 	public Dado[] lanciaDadi() throws ClassNotFoundException, IOException {
@@ -159,20 +158,13 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		return (Dado[]) inputSocket.readObject();
 	}
 	
-	public String[] getColors(String lobby) throws IOException {
+	public String[] getColors(String lobby) throws IOException, ClassNotFoundException {
 		outputSocket.writeObject("getColors");
 		outputSocket.flush();
 		outputSocket.writeObject(lobby);
 		outputSocket.flush();
-		try {
-			return (String[]) inputSocket.readObject();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return null;
+		return (String[]) inputSocket.readObject();
+		
 	}
 
 	public int getNumberOfGamers() {
@@ -308,8 +300,13 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 
 
 	public void waitStartGame(StartClientGui start) throws ClassNotFoundException, IOException {
-		if(inputSocket.readObject().toString().equals("start"))
-				start.changeStage(4);
+		System.out.println("Attesa ok");
+		if(inputSocket.readObject().toString().equals("start")){
+			System.out.println("ok");	
+			outputSocket.writeObject("ok");
+			outputSocket.flush();
+			start.changeStage(5);
+		}
 	}
 	
 	public void setPositionGame(int positionGame) {
@@ -341,6 +338,11 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		outputSocket.flush();
 		outputSocket.writeObject(name);
 		outputSocket.flush();
+	}
+	
+	public int getPlayers() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	@Override

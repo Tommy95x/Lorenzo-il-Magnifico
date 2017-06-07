@@ -48,7 +48,7 @@ public class ConnectionClient extends UnicastRemoteObject implements ClientInter
 	}
 
 	@Override
-	public void enterInALobby(String lobby, String color) throws IOException {
+	public void enterInALobby(String lobby, String color) throws IOException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 		
 	}
@@ -60,7 +60,7 @@ public class ConnectionClient extends UnicastRemoteObject implements ClientInter
 	}
 
 	@Override
-	public void startGame() throws IOException {
+	public void startGame() throws IOException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 		
 	}
@@ -106,7 +106,7 @@ public class ConnectionClient extends UnicastRemoteObject implements ClientInter
 		return null;
 	}
 
-	public String[] getColors() throws RemoteException {
+	public String[] getColors(String lobby) throws RemoteException, IOException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -185,5 +185,10 @@ public class ConnectionClient extends UnicastRemoteObject implements ClientInter
 	public void removeAccount() throws RemoteException, IOException {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public int getPlayers() throws RemoteException {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

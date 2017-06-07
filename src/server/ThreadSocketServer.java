@@ -8,7 +8,6 @@ import java.net.Socket;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import javafx.scene.control.Tooltip;
 import server.element.CartaSviluppo;
@@ -170,11 +169,12 @@ public class ThreadSocketServer implements Runnable {
 					color = input.readObject().toString();
 					commonServer.getLobbyByName(lobby).addGiocatore(new Giocatore(color,
 							commonServer.getLobbyByName(lobby), account, commonServer.getIndicePartita(lobby)));
-					output.writeObject(new Integer(commonServer.getIndicePartita(lobby)));
+					output.writeObject(commonServer.getIndicePartita(lobby));
 					output.flush();
+					commonServer.getLobbyByName(lobby).getGiocatoreByName(account).getSocket(this);
 					break;
 				case "getColors":
-					lobby = input.readObject().toString();
+					lobby = (String) input.readObject();
 					output.writeObject(commonServer.getLobbyByName(lobby).getColors());
 					output.flush();
 					break;
@@ -184,9 +184,8 @@ public class ThreadSocketServer implements Runnable {
 					commonServer.getLobbyByName(lobby).exitToGame(account, color);
 					break;
 				case "start":
-					positionGame = input.readInt();
-					output.writeObject(actionsServer.startPartita(account, positionGame));
-					output.flush();
+					positionGame = (int) input.readObject();
+					actionsServer.startPartita(account, positionGame);
 					break;
 				case "deleteView":
 					positionGame = (int) input.readObject();
@@ -232,9 +231,12 @@ public class ThreadSocketServer implements Runnable {
 		output.println("endCards");
 	}
 
-	public void notifyStartGame() throws IOException {
-		output.writeObject("gioca");
+	public void notifyStartGame() throws IOException, ClassNotFoundException {
+		System.out.println("notifica partita");
+		output.writeObject("start");
 		output.flush();
+		if(input.readObject().toString().equals("ok"))
+			System.out.println("Inviata notifica start");
 		try {
 			play();
 		} catch (RemoteException | SQLException | ClassNotFoundException e) {

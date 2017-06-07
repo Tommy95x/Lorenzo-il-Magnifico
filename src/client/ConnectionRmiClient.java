@@ -23,6 +23,7 @@ import server.element.TesseraScomunica;
 /*
  * Classe di implementazione 
  */
+
 public class ConnectionRmiClient extends ConnectionClient implements ClientInterface, RMIClientInterface{
 
 	private int port;
@@ -85,13 +86,17 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 
 
 
-	public boolean createANewLobby(String lobby,String color) throws RemoteException{
+	public boolean createANewLobby(String lobby,String color) {
 		try {
 			positionGame=serverMethods.createNewLobby(lobby, name, color , this);
 			System.out.println(positionGame);
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		} catch (RemoteException e) {
+			System.out.println("Error rmi");
 			e.printStackTrace();
 			return false;
 		}
@@ -127,7 +132,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		try {
 			try {
 				System.out.println(name+" "+positionGame+" "+ serverMethods.toString());
-				setNumberOfGamers(serverMethods.startPartita(name, positionGame));
+				serverMethods.startPartita(name, positionGame);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -286,6 +291,10 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	
 	public void removeAccount() throws RemoteException {
 		serverMethods.removeAccount(name);
+	}
+	
+	public int getPlayers() throws RemoteException{
+		return serverMethods.getNumberOfPlayer(positionGame);
 	}
 	
 	@Override

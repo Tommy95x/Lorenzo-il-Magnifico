@@ -91,7 +91,15 @@ public class ControllerMenu {
 		lobby = "";
 		if (e.getClickCount() == 2){
 			lobby = (String) lobbies.getSelectionModel().getSelectedItem();
-			colorSelect();
+			try {
+				colorSelect();
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 		e.consume();
 	}
@@ -120,19 +128,25 @@ public class ControllerMenu {
 	}
 	
 	@FXML
-	public void startGame() throws IOException{
+	public void startGame() throws IOException, ClassNotFoundException{
 		System.out.println("Lanciato metodo utente pronto a giocare");
-		start.getClient().startGame();
+		try {
+			start.getClient().startGame();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		System.out.println("Notificato al server e cambio scene");
 		start.changeStage(4);
 		System.out.println("Scena cambiata");
+		start.getClient().waitStartGame(start);
 	}
 
 	@FXML
 	public void close() throws IOException{
 		if(!exitToGame.isDisable())
 			start.getClient().exitToTheGame(lobby, start.getColor());
-		System.exit(0);
+		start.exit(start.getStage());
 	}
 	
 	@FXML
@@ -233,9 +247,8 @@ public class ControllerMenu {
 		popup.show();
 	}
 
-	private void colorSelect() {
+	private void colorSelect() throws ClassNotFoundException, IOException {
 		try {
-
 			Stage popup = new Stage();
 			popup.setTitle("Select Colors");
 			VBox box = new VBox();
@@ -243,7 +256,7 @@ public class ControllerMenu {
 			HBox boxButton = new HBox();
 			Circle circle;
 			Button b;
-			String[] colors = start.getClient().getColors();
+			String[] colors = start.getClient().getColors(lobby);
 			for (int i = 0; i < 4; i++) {
 				if (colors[i] != null) {
 					switch (colors[i]) {
@@ -257,7 +270,7 @@ public class ControllerMenu {
 							start.setColor("blue");
 							try {
 								start.getClient().enterInALobby(lobby, start.getColor());
-							} catch (IOException e) {
+							} catch (IOException | ClassNotFoundException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
@@ -277,7 +290,7 @@ public class ControllerMenu {
 							start.setColor("orange");
 							try {
 								start.getClient().enterInALobby(lobby, start.getColor());
-							} catch (IOException e) {
+							} catch (IOException | ClassNotFoundException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
@@ -297,7 +310,7 @@ public class ControllerMenu {
 							start.setColor("white");
 							try {
 								start.getClient().enterInALobby(lobby, start.getColor());
-							} catch (IOException e) {
+							} catch (IOException | ClassNotFoundException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
@@ -317,7 +330,7 @@ public class ControllerMenu {
 							start.setColor("green");
 							try {
 								start.getClient().enterInALobby(lobby, start.getColor());
-							} catch (IOException e) {
+							} catch (IOException | ClassNotFoundException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}

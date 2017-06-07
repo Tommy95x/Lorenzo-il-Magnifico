@@ -24,7 +24,7 @@ public class Giocatore implements Serializable {
 	private Partita partita;
 	private int positionGame;
 	private ThreadSocketServer server = null;
-	private RMIClientInterface client = null;
+	private RMIClientInterface  client = null;
 	private Flag flag;
 	private int nScomuniche = 0;
 
@@ -32,7 +32,6 @@ public class Giocatore implements Serializable {
 		this.name = name;
 		this.positionGame = positionGame;
 		this.setColor(color);
-
 		risorse = new Portafoglio();
 		familiari = new FamiliareNeutro[4];
 		cubiScomunica = new CuboScomunica[3];
@@ -97,9 +96,10 @@ public class Giocatore implements Serializable {
 			this.client = connectionRmiClient;
 	}
 
-	public void notifyStartGame() throws IOException {
+	public void notifyStartGame() throws IOException, ClassNotFoundException {
+		System.out.println("Enter in a notifica start");
 		if (client == null) {
-			System.out.println("utente socket");
+			System.out.println("utente socket"+server.toString());
 			server.notifyStartGame();
 		} else {
 			System.out.println("utente rmi");

@@ -36,6 +36,7 @@ public class ControllerGame {
 	private CartaImprese[] arrayCarteImpresa;
 	private CartaPersonaggi[] arrayCartePersonaggi;
 	private CartaEdifici[] arrayCarteEdifici;
+	private int numberOfGamers;
 
 	// Componenti tabellone
 	@FXML
@@ -219,6 +220,7 @@ public class ControllerGame {
 
 	public void getStartClient(StartClientGui startClientGui) throws ClassNotFoundException, IOException {
 		this.setStart(startClientGui);
+		numberOfGamers = start.getClient().getPlayers();
 		setColorsParents(start.getColor());
 		setColorCubiScomunica(start.getColor());
 		setCards(start.getClient().getCardsGame());

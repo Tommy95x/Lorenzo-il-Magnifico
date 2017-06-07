@@ -21,9 +21,9 @@ public interface ClientInterface {
 	public void selectColorGamer(String color) throws IOException;
 	public void posizionareFamiliare(String color, int x, int y);
 	public void spendereRisorse(String risorsa, int qta);
-	public void startGame() throws IOException;
+	public void startGame() throws IOException, ClassNotFoundException;
 	public void sostegnoChiesa(boolean flag);
 	public void richiestaRegistrazione() throws IOException;
 	public void takeCards(String name);
-	public void enterInALobby(String lobby, String string) throws IOException;
+	public void enterInALobby(String lobby, String string) throws IOException, ClassNotFoundException;
 }
