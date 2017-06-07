@@ -72,10 +72,13 @@ public class Partita implements Serializable{
 		turno=1;
 		System.out.println("shuffle giocatori ");
 		beShuffled();
+		System.out.println("Sistemato ordine gioco");
 		for(int i = 0; i<4; i++){
 			try {
-				if(giocatori[i] != null)
+				if(giocatori[i] != null){
+					System.out.println("notifico giocatori per l'inizio partita");
 					giocatori[i].notifyStartGame();
+				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -193,19 +196,21 @@ public class Partita implements Serializable{
 
 	public void start(String account) throws RemoteException, SQLException {
 		//Riguardare metodo che e' errato in quanto la partita parte solo e soltanto per 4 giocatori.
+		System.out.println("Setto giocatore pronto");
 		for(int i=0;i<DIM;i++){
 			if(giocatori[i].getName().equals(account)){
 				start[i]=true;
 				break;
 			}
 		}
+		System.out.println("Verifico quanti giocatori pronti");
 		int dim = 0;
 		for(Giocatore g : giocatori)
 			if(g != null)
 				dim++;
 				else
 					break;
-		System.out.println(dim);
+		System.out.println("Se minori di due giocatori pronti ritorno");
 		if(dim<2)
 			return;
 		else

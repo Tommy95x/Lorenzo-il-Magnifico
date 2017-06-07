@@ -2,6 +2,7 @@ package client;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -14,9 +15,14 @@ import server.element.Partita;
 import server.element.Portafoglio;
 import server.element.TesseraScomunica;
 
-public class ConnectionClient implements ClientInterface {
+public class ConnectionClient extends UnicastRemoteObject implements ClientInterface{
 
 	
+	protected ConnectionClient() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public String login(String account, String pw) throws ClassNotFoundException, IOException {
 		// TODO Auto-generated method stub

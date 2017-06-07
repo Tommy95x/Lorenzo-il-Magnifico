@@ -1,5 +1,7 @@
 package client.gui.controllers;
 
+import java.rmi.RemoteException;
+
 import client.ConnectionClient;
 import client.ConnectionClientConsole;
 import client.ConnectionRmiClient;
@@ -42,7 +44,12 @@ public class ControllerConnection {
 	@FXML
 	public void pressRMI(){
 		System.out.println("Premuto bottone rmi");
-		start.setClient(new ConnectionRmiClient());
+		try {
+			start.setClient(new ConnectionRmiClient());
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		start.getClient().setStage(start);
 		start.changeStage(1);
 	}
@@ -51,7 +58,12 @@ public class ControllerConnection {
 	public void pressSocket(){ 
 		System.out.println("Premuto bottone socket");
 		start.changeStage(1);
-		start.setClient(new ConnectionSocketClient());
+		try {
+			start.setClient(new ConnectionSocketClient());
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		start.getClient().setStage(start);
 	}
 	
@@ -83,7 +95,12 @@ public class ControllerConnection {
 	@FXML
 	public void playWithConsole(){
 		start.closeStageForPlayWithConsole();
-		start.setClient(new ConnectionClientConsole());
+		try {
+			start.setClient(new ConnectionClientConsole());
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public ConnectionClient getClient() {

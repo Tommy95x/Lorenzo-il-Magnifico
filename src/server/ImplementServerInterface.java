@@ -55,7 +55,9 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 	}
 
 	public int startPartita(String account, int game) throws RemoteException, SQLException{
+		System.out.println("Ricevuto "+account +" utente pronto");
 			commonServer.getLobbyByNumber(game).start(account);
+			System.out.println("Ritorno da metodo notifica partita");
 			return commonServer.getLobbyByNumber(game).numberOfPlayer();
 	}
 

@@ -38,7 +38,7 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 	private StartClientGui start;
 	private String lobby;
 	
-	public ConnectionSocketClient(){
+	public ConnectionSocketClient() throws RemoteException{
 		System.out.println("Start Socket Client");
 		connect();
 	}

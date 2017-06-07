@@ -92,16 +92,17 @@ public class Giocatore implements Serializable {
 			this.server = server;
 	}
 
-	public void getClient(RMIClientInterface client) {
+	public void getClient(RMIClientInterface connectionRmiClient) {
 		if (this.client == null && server == null)
-			this.client = client;
+			this.client = connectionRmiClient;
 	}
 
 	public void notifyStartGame() throws IOException {
 		if (client == null) {
-			System.out.println("client null");
+			System.out.println("utente socket");
 			server.notifyStartGame();
 		} else {
+			System.out.println("utente rmi");
 			client.notifyStartGame();
 		}
 	}

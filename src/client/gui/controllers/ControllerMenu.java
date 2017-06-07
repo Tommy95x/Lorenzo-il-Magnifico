@@ -50,6 +50,7 @@ public class ControllerMenu {
 
 	public void getStartClient(StartClientGui start) {
 		this.setClient(start);
+		start.getClient().setStage(start);
 		Font.loadFont(getClass().getResourceAsStream("Sketch Gothic School.ttf"), 0);
 	}
 
@@ -120,8 +121,11 @@ public class ControllerMenu {
 	
 	@FXML
 	public void startGame() throws IOException{
+		System.out.println("Lanciato metodo utente pronto a giocare");
 		start.getClient().startGame();
+		System.out.println("Notificato al server e cambio scene");
 		start.changeStage(4);
+		System.out.println("Scena cambiata");
 	}
 
 	@FXML

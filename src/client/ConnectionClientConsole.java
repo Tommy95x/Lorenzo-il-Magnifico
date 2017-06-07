@@ -25,7 +25,7 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 	private Scanner input;
 	private String account;
 	
-	public ConnectionClientConsole(){
+	public ConnectionClientConsole() throws RemoteException{
 		
 		connect();
 		login();

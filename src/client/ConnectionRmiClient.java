@@ -23,7 +23,7 @@ import server.element.TesseraScomunica;
 /*
  * Classe di implementazione 
  */
-public class ConnectionRmiClient extends ConnectionClient implements ClientInterface, RMIClientInterface,Serializable{
+public class ConnectionRmiClient extends ConnectionClient implements ClientInterface, RMIClientInterface{
 
 	private int port;
 	private ServerInterface serverMethods;
@@ -33,12 +33,12 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	private ControllerGame guiGame;
 	private StartClientGui start;
 	
-	public ConnectionRmiClient(){
+	public ConnectionRmiClient() throws RemoteException{
 		System.out.println("New Rmi client create");
 		connect();
 	}
 	
-	private void connect() {
+	private void connect() throws RemoteException{
 		try {
 			Registry registry = LocateRegistry.getRegistry(port);
 			System.out.println("Get registry from Server");
@@ -60,7 +60,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 
 
 	
-	public String login(String account, String pw) {
+	public String login(String account, String pw) throws RemoteException{
 		name=account;
 		try {
 			return serverMethods.login(account, pw);
@@ -72,7 +72,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		
 	}
 	
-	public String register(String account, String pw, String pw2, String email) {
+	public String register(String account, String pw, String pw2, String email)throws RemoteException {
 		try {
 			return serverMethods.register(account, pw, pw2, email);
 		} catch (RemoteException | SQLException e) {
@@ -85,14 +85,11 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 
 
 
-	public boolean createANewLobby(String lobby,String color) {
+	public boolean createANewLobby(String lobby,String color) throws RemoteException{
 		try {
 			positionGame=serverMethods.createNewLobby(lobby, name, color , this);
+			System.out.println(positionGame);
 			return true;
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -101,7 +98,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	}
 
 
-	public ArrayList<Partita> lobbiesView() {
+	public ArrayList<Partita> lobbiesView() throws RemoteException{
 		try {
 			return serverMethods.getLobby();
 		} catch (RemoteException e) {
@@ -111,9 +108,9 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		}
 	}
 	
-	public void enterInALobby(String lobby, String color) {
+	public void enterInALobby(String lobby, String color) throws RemoteException{
 		try {
-			positionGame=serverMethods.selectLobby(lobby, name, color, (client.RMIClientInterface) this);
+			positionGame=serverMethods.selectLobby(lobby, name, color,  this);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -126,9 +123,10 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		return serverMethods.getCardsScomunica(positionGame);
 	}
 
-	public void startGame() {
+	public void startGame() throws RemoteException{
 		try {
 			try {
+				System.out.println(name+" "+positionGame+" "+ serverMethods.toString());
 				setNumberOfGamers(serverMethods.startPartita(name, positionGame));
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -138,9 +136,10 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println("Ritorno dal metodo notifica rmiClient");
 	}
 
-	public Dado[] lanciaDadi(int positionGame) throws SQLException {
+	public Dado[] lanciaDadi(int positionGame) throws SQLException, RemoteException {
 		try {
 			return serverMethods.showDiceValues(this.positionGame, this.name);
 		} catch (RemoteException e) {
@@ -164,8 +163,10 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	}
 
 	public void notifyStartGame() throws RemoteException {
+		System.out.println("Notifica inizio partita avvenuta");
 		if(start == null)
 			System.out.println("Stage null");
+		System.out.println("Cambio Stage");
 		start.changeStage(5);
 		System.out.println("Prova");
 	}
