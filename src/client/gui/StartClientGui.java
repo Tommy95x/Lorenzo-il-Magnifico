@@ -159,6 +159,7 @@ public class StartClientGui extends Application{
 		if(create)
 			try {
 				getClient().deleteView();
+				getClient().removeAccount();
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

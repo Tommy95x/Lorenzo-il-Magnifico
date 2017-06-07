@@ -280,6 +280,11 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		
 	}
 	
+	public void removeAccount() throws RemoteException {
+		serverMethods.removeAccount(name);
+		
+	}
+	
 	@Override
 	public void sostegnoChiesa(boolean flag) {
 		// TODO Auto-generated method stub

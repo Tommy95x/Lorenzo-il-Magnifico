@@ -175,4 +175,9 @@ public class ConnectionClient implements ClientInterface {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public void removeAccount() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
 }

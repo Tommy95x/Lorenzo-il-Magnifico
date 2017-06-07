@@ -51,13 +51,19 @@ public class StartServer {
 			ResultSet res = stmt.executeQuery(query);
 			res.next();
 			int conta = res.getInt("C");
-			res.close();
-			stmt.close();
-			connection.close();
 			if(conta>0){
 				utente.add(mom);
+				res.close();
+				stmt.close();
+				connection.close();
 				return "Welcome to the game";
 			}else{
+<<<<<<< HEAD
+=======
+				res.close();
+				stmt.close();
+				connection.close();
+>>>>>>> branch 'develop' of https://github.com/Tommy95x/Lorenzo-il-Magnifico
 				return "For player must register a new account";
 			}
 		} catch (SQLException e) {
@@ -182,9 +188,13 @@ public class StartServer {
 	}
 
 	public void deletLobby(int positionGame) {
-		for(int i=0;i<lobbies.size();i++)
-			/*if(i==positionGame)
-				chiedere perchè non mi si piazza a null*/
+		lobbies.remove(positionGame);	
+	}
+
+	public void removeAccount(String name) {
+		for(int i=0;i<utente.size();i++)
+			if(utente.get(i).equals(name))
+				utente.remove(i);
 	}
 	
 }
