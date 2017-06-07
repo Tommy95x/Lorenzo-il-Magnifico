@@ -353,9 +353,16 @@ public class Partita implements Serializable{
 		}
 	}
 
-	public void deleteView(Connection connection) {
-		// TODO Auto-generated method stub
-		
+	public void deleteView(Connection connection) throws SQLException {
+		String querydroppersonaggi = "DROP VIEW "+name.toUpperCase()+"CARTEPERSONAGGIOPARTITA";
+		String querydropedifici = "DROP VIEW "+name.toUpperCase()+"CARTEEDIFICIOPARTITA";
+		String querydropterritori = "DROP VIEW "+name.toUpperCase()+"CARTETERRITORIOPARTITA";
+		String querydropimprese = "DROP VIEW "+name.toUpperCase()+"CARTEIMPRESAPARTITA";
+		connection.createStatement().execute(querydroppersonaggi);
+		connection.createStatement().execute(querydropedifici);
+		connection.createStatement().execute(querydropterritori);
+		connection.createStatement().execute(querydropimprese);
+		connection.close();
 	}
 	
 }

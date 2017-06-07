@@ -117,3 +117,48 @@ INSERT INTO UTENTE (NOMEUTENTE, EMAIL, PASSWORD) VALUES ('asdfg','ert@poiu.it','
 06-01 12:05:58 jdbc[12]: exception
 org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO UTENTE (NOMEUTENTE, EMAIL, PASSWORD) VALUES ('asdfg','ert@poiu.it','questa'[*]"; expected "[, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
 INSERT INTO UTENTE (NOMEUTENTE, EMAIL, PASSWORD) VALUES ('asdfg','ert@poiu.it','questa' [42001-182]
+06-06 23:01:56 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-06 23:02:34 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-06 23:13:42 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO UTENTE (NOMEUTENTE, EMAIL, PASSWORD) VALUES ('prova2','prova2@prova.it','prova'[*]"; expected "[, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+INSERT INTO UTENTE (NOMEUTENTE, EMAIL, PASSWORD) VALUES ('prova2','prova2@prova.it','prova' [42001-182]
+06-06 23:18:27 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO UTENTE (NOMEUTENTE, EMAIL, PASSWORD) VALUES ('prova2','prova2@prova.it','prova'[*]"; expected "[, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+INSERT INTO UTENTE (NOMEUTENTE, EMAIL, PASSWORD) VALUES ('prova2','prova2@prova.it','prova' [42001-182]
+06-06 23:37:31 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-06 23:44:06 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-07 09:54:55 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: View "PROVACARTETERRITORIOPARTITA" already exists; SQL statement:
+CREATE VIEW PROVACARTETERRITORIOPARTITA AS (SELECT * FROM CARTATERRITORIO ORDER BY RAND()) [90038-182]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.command.ddl.CreateView.update(CreateView.java:85)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:78)
+	at org.h2.command.Command.executeUpdate(Command.java:254)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:184)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:158)
+	at server.element.Partita.<init>(Partita.java:53)
+	at server.StartServer.addGame(StartServer.java:124)
+	at server.ImplementServerInterface.createNewLobby(ImplementServerInterface.java:47)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at sun.rmi.server.UnicastServerRef.dispatch(Unknown Source)
+	at sun.rmi.transport.Transport$1.run(Unknown Source)
+	at sun.rmi.transport.Transport$1.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Unknown Source)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(Unknown Source)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(Unknown Source)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
