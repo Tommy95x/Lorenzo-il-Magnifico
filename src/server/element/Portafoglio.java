@@ -34,20 +34,20 @@ public class Portafoglio implements Serializable{
 		puntiFede=0;
 	}
 	
-	public void addServitori(){
-		servitori++;
+	public void addServitori(int incr){
+		servitori+=incr;
 	}
 	
-	public void addMonete(){
-		monete++;
+	private void addMonete(int incr){
+		monete+=incr;
 	}
 	
-	public void addLengo(){
-		legno++;
+	private void addLengo(int incr){
+		legno+=incr;
 	}
 	
-	public void addPietra(){
-		pietra++;
+	private void addPietra(int incr){
+		pietra+=incr;
 	}
 	
 	public void addCarta(CartaSviluppo c){
@@ -68,19 +68,19 @@ public class Portafoglio implements Serializable{
 		return 0;
 	}
 	
-	public void addRis(Risorse ris) {
-		switch(ris.getTipo()){
+	public void addRis(String ris, int incr) {
+		switch(ris){
 		case "legno":
-			addLengo();
+			addLengo(incr);
 			break;
 		case "monete":
-			addMonete();
+			addMonete(incr);
 			break;
 		case "pietra":
-			addPietra();
+			addPietra(incr);
 			break;
 		case "servitori":
-			addServitori();
+			addServitori(incr);
 			break;
 	}
 		

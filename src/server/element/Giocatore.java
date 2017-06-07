@@ -11,7 +11,7 @@ import client.ConnectionRmiClient;
 import client.RMIClientInterface;
 import server.ThreadSocketServer;
 
-public class Giocatore implements Serializable{
+public class Giocatore implements Serializable {
 
 	private String name;
 	private String color;
@@ -32,7 +32,7 @@ public class Giocatore implements Serializable{
 		this.name = name;
 		this.positionGame = positionGame;
 		this.setColor(color);
-		
+
 		risorse = new Portafoglio();
 		familiari = new FamiliareNeutro[4];
 		cubiScomunica = new CuboScomunica[3];
@@ -72,8 +72,8 @@ public class Giocatore implements Serializable{
 		return risorse;
 	}
 
-	public void setRisorse(Risorse ris) {
-		risorse.addRis(ris);
+	public void setRisorse(String ris) {
+		risorse.addRis(ris,1);
 	}
 
 	public String getName() {
@@ -98,9 +98,9 @@ public class Giocatore implements Serializable{
 	}
 
 	public void notifyStartGame() throws IOException {
-		if (client == null){
+		if (client == null) {
 			server.notifyStartGame();
-		}else{
+		} else {
 			client.notifyStartGame();
 		}
 	}
@@ -122,22 +122,24 @@ public class Giocatore implements Serializable{
 		}
 		//Scrivere la query che fornisce il valore nella tabella corrispondenza del valore tabellone
 		String query;
-		if(){
-			
-		}else{
-			if(dadoMom.getValore()+agg >= )
-				return "OK";
-			else if()
-				return "Pay";
-		}
+		if(risorse.getDimRisorse("servitori") < agg){
+			return "NotEnough";
+			}else{
+				if(dadoMom.getValore()+agg >= ){
+					risorse.addRis("servitori", -incr);
+					return "OK";
+				}else{
+					return "Pay";
+				}
+			}
 	}
-	
-	public void getScomunica(TesseraScomunica scomunica) throws RemoteException{
+
+	public void getScomunica(TesseraScomunica scomunica) throws RemoteException {
 		cubiScomunica[nScomuniche] = new CuboScomunica(color, nScomuniche, scomunica);
 		if (client == null)
 			server.addScomunica(nScomuniche, scomunica.getTooltip());
 		else
-			client.addScomunica(nScomuniche,scomunica.getTooltip());
+			client.addScomunica(nScomuniche, scomunica.getTooltip());
 	}
 
 	public void notifyTurno() throws SQLException, IOException {
@@ -145,12 +147,12 @@ public class Giocatore implements Serializable{
 			server.notifyTurno();
 		else
 			client.notifyTurno();
-		
+
 	}
 
 	public void notifySpostamento(String color, String colorPlayer, double x, double y) throws IOException {
 		if (client == null)
-			server.moveFamiliareAvv(x,y,colorPlayer,color);
+			server.moveFamiliareAvv(x, y, colorPlayer, color);
 		else
 			try {
 				client.moveFamiliareAvv(x, y, colorPlayer, color);
@@ -158,28 +160,27 @@ public class Giocatore implements Serializable{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		
+
 	}
 
 	public void addCard(CartaSviluppo carta) {
 		carte.add(carta);
 		activateCard(carta);
 	}
-	
+
 	public void notifyAddCard(CartaSviluppo carta) throws RemoteException {
-		if (client == null){
-			server.notifyAddCard(carta, this.getName(),this.getRisorse());
-		}else{
-			client.notifyAddCard(carta, this.getName(),this.getRisorse());
+		if (client == null) {
+			server.notifyAddCard(carta, this.getName(), this.getRisorse());
+		} else {
+			client.notifyAddCard(carta, this.getName(), this.getRisorse());
 		}
 	}
 
 	private void activateCard(CartaSviluppo carta) {
-		
-		
+
 	}
 
-	public ArrayList<CartaSviluppo> getCardsGamer(){
+	public ArrayList<CartaSviluppo> getCardsGamer() {
 		return carte;
 	}
 }

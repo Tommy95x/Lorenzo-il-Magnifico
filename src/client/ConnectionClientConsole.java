@@ -91,7 +91,7 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 		try {
 			System.out.println(serverMethods.register(account, pw1, pw2, email));
 			login();
-		} catch (RemoteException e) {
+		} catch (RemoteException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

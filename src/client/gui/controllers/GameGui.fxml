@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.3753910323253389" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.gui.controllers.ControllerGame">
+<SplitPane dividerPositions="0.4112903225806452" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.gui.controllers.ControllerGame">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="768.0" prefWidth="683.0">
          <children>
@@ -121,10 +121,10 @@
                   <Font size="8.0" />
                </font>
             </Button>
-            <ImageView fx:id="familiareArancio" fitHeight="90.0" fitWidth="46.0" layoutX="670.0" layoutY="670.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareBianco" fitHeight="90.0" fitWidth="46.0" layoutX="716.0" layoutY="670.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareNero" fitHeight="90.0" fitWidth="46.0" layoutX="757.0" layoutY="670.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareNeutro" fitHeight="90.0" fitWidth="46.0" layoutX="796.0" layoutY="670.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareArancio" fitHeight="80.0" fitWidth="46.0" layoutX="428.0" layoutY="679.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareBianco" fitHeight="80.0" fitWidth="46.0" layoutX="474.0" layoutY="679.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareNero" fitHeight="80.0" fitWidth="46.0" layoutX="515.0" layoutY="679.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareNeutro" fitHeight="80.0" fitWidth="46.0" layoutX="554.0" layoutY="679.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="bandiera" fitHeight="80.0" fitWidth="46.0" layoutX="3.0" layoutY="681.0" pickOnBounds="true" preserveRatio="true" />
             <HBox fx:id="carteImpresaGiocatore" layoutX="616.0" layoutY="380.0" prefHeight="143.0" prefWidth="231.0" />
             <HBox fx:id="cartePersonaggiGiocatore" layoutX="619.0" layoutY="525.0" prefHeight="143.0" prefWidth="231.0" />
@@ -134,6 +134,7 @@
                      <children>
                         <Label layoutY="6.0" prefHeight="25.0" prefWidth="63.0" text="Giocatore:" />
                         <Label fx:id="name1" layoutX="71.0" layoutY="6.0" prefHeight="20.0" prefWidth="180.0" />
+                        <ImageView fitHeight="90.0" fitWidth="46.0" layoutX="7.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </AnchorPane>
               </content>
@@ -174,7 +175,7 @@
             <ImageView fx:id="familiareWhite1" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="619.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="familiareWhite2" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="665.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="familiareWhite3" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="705.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareWhite4" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="762.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareWhite4" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="751.0" layoutY="292.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
          </children></AnchorPane>
   </items>
 </SplitPane>
