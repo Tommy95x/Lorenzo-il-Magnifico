@@ -170,7 +170,7 @@ public class ThreadSocketServer implements Runnable {
 					color = input.readObject().toString();
 					commonServer.getLobbyByName(lobby).addGiocatore(new Giocatore(color,
 							commonServer.getLobbyByName(lobby), account, commonServer.getIndicePartita(lobby)));
-					output.writeObject(commonServer.getIndicePartita(lobby));
+					output.writeObject(new Integer(commonServer.getIndicePartita(lobby)));
 					output.flush();
 					break;
 				case "getColors":

@@ -88,7 +88,7 @@ public class Partita implements Serializable{
 			e.printStackTrace();
 		}
 	}
-
+	
 	private boolean checkBoolean(int dim){
 		for(int i=0;i<dim;i++){
 			if(!start[i])
@@ -203,10 +203,13 @@ public class Partita implements Serializable{
 				dim++;
 				else
 					break;
-		if(checkBoolean(dim))
-			startPartita();
-		else
+		if(dim<2)
 			return;
+		else
+			if(checkBoolean(dim))
+				startPartita();
+			else
+				return;
 	}
 	
 	public String[] getColors(){

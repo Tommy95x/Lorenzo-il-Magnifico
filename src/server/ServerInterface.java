@@ -41,4 +41,5 @@ public interface ServerInterface extends Remote {
 	public Portafoglio getRisorse(int positionGame, String name)throws RemoteException;
 	public Giocatore[] getGiocatori(int positionGame)throws RemoteException;
 	public void deleteView(int positionGame)throws RemoteException;
+	public void removeAccount(String name)throws RemoteException;
 }

@@ -77,37 +77,8 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		return commonServer.getLobbyByNumber(positionGame).getColors();
 	}
 
-	//Chiedere per sentire come gestire al meglio il caso 
-	/*public void adviseOtherGamers(String account, int positionGame) throws RemoteException {
-		commonServer.getLobbyByNumber(positionGame).adviseGamers();		
-	}*/
-
 	public ArrayList<CartaSviluppo> getCards(int positionGame) throws RemoteException{
 		return commonServer.getLobbyByNumber(positionGame).getCards();
-	}
-
-	@Override
-	public void showCards(Image card, String nameCard) throws RemoteException{
-		
-		
-	}
-
-	@Override
-	public void getTurno(String name) throws RemoteException{
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void giveResources(String resource, int qta) throws RemoteException{
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void givePunti(String gamer, int qta, String tipoPunti) throws RemoteException{
-		// TODO Auto-generated method stub
-		
 	}
 
 	public Dado[] showDiceValues(int positionGame, String name) throws RemoteException, SQLException {
@@ -175,8 +146,36 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 			e.printStackTrace();
 		}
 		commonServer.deletLobby(positionGame);
+	}
+
+	public void removeAccount(String name) throws RemoteException {
+		commonServer.removeAccount(name);
+		
+	}
+	
+	@Override
+	public void showCards(Image card, String nameCard) throws RemoteException{
+		
 		
 	}
 
+	@Override
+	public void getTurno(String name) throws RemoteException{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void giveResources(String resource, int qta) throws RemoteException{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void givePunti(String gamer, int qta, String tipoPunti) throws RemoteException{
+		// TODO Auto-generated method stub
+		
+	}
+	
 }
 

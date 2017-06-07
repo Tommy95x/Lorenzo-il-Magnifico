@@ -185,9 +185,13 @@ public class StartServer {
 	}
 
 	public void deletLobby(int positionGame) {
-		for(int i=0;i<lobbies.size();i++)
-			/*if(i==positionGame)
-				chiedere perchè non mi si piazza a null*/
+		lobbies.remove(positionGame);	
+	}
+
+	public void removeAccount(String name) {
+		for(int i=0;i<utente.size();i++)
+			if(utente.get(i).equals(name))
+				utente.remove(i);
 	}
 	
 }
