@@ -89,8 +89,9 @@ public class Giocatore implements Serializable {
 	}
 
 	public void getSocket(ThreadSocketServer server) {
-		if (client == null && server == null)
+		if (server == null)
 			this.server = server;
+		System.out.println(server);
 	}
 
 	public void getClient(RMIClientInterface connectionRmiClient) {
@@ -100,7 +101,8 @@ public class Giocatore implements Serializable {
 
 	public void notifyStartGame() throws IOException, ClassNotFoundException {
 		System.out.println("Enter in a notifica start");
-		if (client == null) {
+		//if(server != null)
+		if (true) {
 			System.out.println("utente socket"+server.toString());
 			server.notifyStartGame();
 		} else {

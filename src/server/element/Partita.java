@@ -149,6 +149,7 @@ public class Partita implements Serializable{
 		for(int i=0;i<giocatori.length;i++){
 			if(giocatori[i]==null){
 				giocatori[i]=giocatore;
+				System.out.println("Posizione giocatore"+i);
 				return;
 			}
 		}
