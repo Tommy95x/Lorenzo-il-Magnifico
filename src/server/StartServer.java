@@ -58,12 +58,9 @@ public class StartServer {
 				connection.close();
 				return "Welcome to the game";
 			}else{
-<<<<<<< HEAD
-=======
 				res.close();
 				stmt.close();
 				connection.close();
->>>>>>> branch 'develop' of https://github.com/Tommy95x/Lorenzo-il-Magnifico
 				return "For player must register a new account";
 			}
 		} catch (SQLException e) {
