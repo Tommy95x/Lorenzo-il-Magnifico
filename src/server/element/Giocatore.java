@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import client.ConnectionRmiClient;
@@ -115,20 +117,26 @@ public class Giocatore implements Serializable {
 		this.flag = flag;
 	}
 
-	public String controlloPosizionamento(String color, double x, double y, Connection connection, int agg) {
-		Dado dadoMom;
+	public String controlloPosizionamento(String color, double x, double y, Connection connection, int agg) throws SQLException {
+		Dado dadoMom = null;
 		for(Dado d : dadi){
 			if(d.getColor().equals(color))
 				dadoMom=d;
 				break;
 		}
-		//Scrivere la query che fornisce il valore nella tabella corrispondenza del valore tabellone
-		String query;
+		String query="SELECT VALOREAZIONE FROM POSIZIONETABELLONE WHERE "+x+"=POSX AND "+y+"=POSY";
+		Statement stmt = connection.createStatement();
+		ResultSet res = stmt.executeQuery(query);
+		res.next();
+		int valoreazione = res.getInt("VALOREAZIONE");
+		res.close();
+		stmt.close();
+		connection.close();
 		if(risorse.getDimRisorse("servitori") < agg){
 			return "NotEnough";
 			}else{
-				if(dadoMom.getValore()+agg >= ){
-					risorse.addRis("servitori", -incr);
+				if(dadoMom.getValore()+agg >= valoreazione){
+					risorse.addRis("servitori", -agg);
 					return "OK";
 				}else{
 					return "Pay";
