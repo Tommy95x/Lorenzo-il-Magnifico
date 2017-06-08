@@ -32,8 +32,11 @@ public class Partita implements Serializable{
 	private int giocatore = 0;
 	
 	/**
+	 * Questo metodo inizializza la partita creando nuove tabelle contenti le carte del gioco.
+	 * Queste tabelle potranno essere utilizzate per essere modicate durante la partita.
+	 * Alla fine della partita verranno eliminate.
 	 * 
-	 * 
+	 * @author Mattia & Tommy
 	 * @param lobby
 	 * @param namePlayer
 	 * @param positionGame
