@@ -68,11 +68,11 @@ public class Partita implements Serializable{
 		String queryterritorio2 = "DROP TABLE "+lobby.toUpperCase()+"CARTETERRITORIOPARTITARANDOM";
 		String queryimpresa2 = "DROP TABLE "+lobby.toUpperCase()+"CARTEIMPRESAPARTITARANDOM";
 		String querypersonaggio2 = "DROP TABLE "+lobby.toUpperCase()+"CARTEPERSONAGGIOPARTITARANDOM";
-		String queryedificio2 = "DROP TABLE "+lobby.toUpperCase()+"CARTEEDIFICIO PARTITARANDOM";
-		connection.createStatement().execute(queryterritorio2);
-		connection.createStatement().execute(queryimpresa2);
-		connection.createStatement().execute(querypersonaggio2);
-		connection.createStatement().execute(queryedificio2);
+		String queryedificio2 = "DROP TABLE "+lobby.toUpperCase()+"CARTEEDIFICIOPARTITARANDOM";
+		connection.createStatement().executeQuery(queryterritorio2);
+		connection.createStatement().executeQuery(queryimpresa2);
+		connection.createStatement().executeQuery(querypersonaggio2);
+		connection.createStatement().executeQuery(queryedificio2);
 		for(int i=0;i<DIM;i++){
 			start[i]=false;
 		}
