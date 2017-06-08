@@ -16,12 +16,17 @@ import javafx.scene.control.Tooltip;
 */
 public class CartaSviluppo implements Serializable{
 
+	javafx.scene.image.Image image;
+	private String name;
+	private Tooltip tooltip;
+	
 	public void setCarta(Connection connection, String query ) {
 	
 	}
-}
 
-	/*public javafx.scene.image.Image getImage() {
+
+	public javafx.scene.image.Image getImage() {
+		
 		return image;
 	}
 
@@ -37,4 +42,4 @@ public class CartaSviluppo implements Serializable{
 		this.tooltip = tooltip;
 	}
 	
-}*/
+}
