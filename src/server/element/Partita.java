@@ -46,22 +46,30 @@ public class Partita implements Serializable{
 		colors[1] = "orange";
 		colors[2] = "white";
 		colors[3] = "green"; 
-		String queryterritorio = "CREATE VIEW "+lobby.toUpperCase()+"CARTETERRITORIOPARTITA AS (SELECT * FROM CARTATERRITORIO ORDER BY RAND())";
-		String queryimpresa = "CREATE VIEW "+lobby.toUpperCase()+"CARTEIMPRESAPARTITA AS (SELECT * FROM CARTAIMPRESA ORDER BY RAND())";
-		String querypersonaggio = "CREATE VIEW "+lobby.toUpperCase()+"CARTEPERSONAGGIOPARTITA AS (SELECT * FROM CARTAPERSONAGGIO ORDER BY RAND())";
-		String queryedificio = "CREATE VIEW "+lobby.toUpperCase()+"CARTEEDIFICIOPARTITA AS (SELECT * FROM CARTAEDIFICIO ORDER BY RAND())";
+		String queryterritorio = "CREATE TABLE "+lobby.toUpperCase()+"CARTETERRITORIOPARTITARANDOM AS SELECT * FROM CARTATERRITORIO ORDER BY RAND()";
+		String queryimpresa = "CREATE TABLE "+lobby.toUpperCase()+"CARTEIMPRESAPARTITARANDOM AS SELECT * FROM CARTAIMPRESA ORDER BY RAND()";
+		String querypersonaggio = "CREATE TABLE "+lobby.toUpperCase()+"CARTEPERSONAGGIOPARTITARANDOM AS SELECT * FROM CARTAPERSONAGGIO ORDER BY RAND()";
+		String queryedificio = "CREATE TABLE "+lobby.toUpperCase()+"CARTEEDIFICIOPARTITARANDOM AS SELECT * FROM CARTAEDIFICIO ORDER BY RAND()";
 		connection.createStatement().execute(queryterritorio);
 		connection.createStatement().execute(queryimpresa);
 		connection.createStatement().execute(querypersonaggio);
 		connection.createStatement().execute(queryedificio);
-		queryterritorio="SELECT * FROM "+lobby.toUpperCase()+"CARTETERRITORIOPARTITA ORDER BY PERIODO";
-		queryimpresa="SELECT * FROM "+lobby.toUpperCase()+"CARTEIMPRESAPARTITA ORDER BY PERIODO";
-		querypersonaggio="SELECT * FROM "+lobby.toUpperCase()+"CARTEPERSONAGGIOPARTITA ORDER BY PERIODO";
-		queryedificio="SELECT * FROM "+lobby.toUpperCase()+"CARTEEDIFICIOPARTITA ORDER BY PERIODO";
-		connection.createStatement().executeQuery(queryterritorio);
-		connection.createStatement().executeQuery(queryimpresa);
-		connection.createStatement().executeQuery(querypersonaggio);
-		connection.createStatement().executeQuery(queryedificio);
+		String queryterritorio1 = "CREATE TABLE "+lobby.toUpperCase()+"CARTETERRITORIOPARTITA AS SELECT * FROM "+lobby.toUpperCase()+"CARTETERRITORIOPARTITARANDOM ORDER BY PERIODO";
+		String queryimpresa1 = "CREATE TABLE "+lobby.toUpperCase()+"CARTEIMPRESAPARTITA AS SELECT * FROM "+lobby.toUpperCase()+"CARTEIMPRESAPARTITARANDOM ORDER BY PERIODO";
+		String querypersonaggio1 = "CREATE TABLE "+lobby.toUpperCase()+"CARTEPERSONAGGIOPARTITA AS SELECT * FROM "+lobby.toUpperCase()+"CARTEPERSONAGGIOPARTITARANDOM ORDER BY PERIODO";
+		String queryedificio1 = "CREATE TABLE "+lobby.toUpperCase()+"CARTEEDIFICIOPARTITA AS SELECT * FROM "+lobby.toUpperCase()+"CARTEEDIFICIOPARTITARANDOM ORDER BY PERIODO";
+		connection.createStatement().execute(queryterritorio1);
+		connection.createStatement().execute(queryimpresa1);
+		connection.createStatement().execute(querypersonaggio1);
+		connection.createStatement().execute(queryedificio1);
+		String queryterritorio2 = "DROP TABLE "+lobby.toUpperCase()+"CARTETERRITORIOPARTITARANDOM";
+		String queryimpresa2 = "DROP TABLE "+lobby.toUpperCase()+"CARTEIMPRESAPARTITARANDOM";
+		String querypersonaggio2 = "DROP TABLE "+lobby.toUpperCase()+"CARTEPERSONAGGIOPARTITARANDOM";
+		String queryedificio2 = "DROP TABLE "+lobby.toUpperCase()+"CARTEEDIFICIO PARTITARANDOM";
+		connection.createStatement().execute(queryterritorio2);
+		connection.createStatement().execute(queryimpresa2);
+		connection.createStatement().execute(querypersonaggio2);
+		connection.createStatement().execute(queryedificio2);
 		for(int i=0;i<DIM;i++){
 			start[i]=false;
 		}
@@ -374,10 +382,10 @@ public class Partita implements Serializable{
 	}
 
 	public void deleteView(Connection connection) throws SQLException {
-		String querydroppersonaggi = "DROP VIEW "+name.toUpperCase()+"CARTEPERSONAGGIOPARTITA";
-		String querydropedifici = "DROP VIEW "+name.toUpperCase()+"CARTEEDIFICIOPARTITA";
-		String querydropterritori = "DROP VIEW "+name.toUpperCase()+"CARTETERRITORIOPARTITA";
-		String querydropimprese = "DROP VIEW "+name.toUpperCase()+"CARTEIMPRESAPARTITA";
+		String querydroppersonaggi = "DROP TABLE "+name.toUpperCase()+"CARTEPERSONAGGIOPARTITA";
+		String querydropedifici = "DROP TABLE "+name.toUpperCase()+"CARTEEDIFICIOPARTITA";
+		String querydropterritori = "DROP TABLE "+name.toUpperCase()+"CARTETERRITORIOPARTITA";
+		String querydropimprese = "DROP TABLE "+name.toUpperCase()+"CARTEIMPRESAPARTITA";
 		connection.createStatement().execute(querydroppersonaggi);
 		connection.createStatement().execute(querydropedifici);
 		connection.createStatement().execute(querydropterritori);
