@@ -177,7 +177,7 @@ public class Giocatore implements Serializable {
 
 	public void addCard(CartaSviluppo carta) {
 		carte.add(carta);
-		activateCard(carta);
+		activateCardEffettiImmediati(carta);
 	}
 
 	public void notifyAddCard(CartaSviluppo carta) throws RemoteException {
@@ -188,7 +188,7 @@ public class Giocatore implements Serializable {
 		}
 	}
 
-	private void activateCard(CartaSviluppo carta) {
+	private void activateCardEffettiImmediati(CartaSviluppo carta) {
 			
 		
 		
