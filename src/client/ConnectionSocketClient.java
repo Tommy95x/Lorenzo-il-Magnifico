@@ -105,7 +105,7 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		outputSocket.writeObject(color);
 		outputSocket.flush();
 		try {
-			setPositionGame(((Integer) inputSocket.readObject()).intValue());
+			setPositionGame( (int) inputSocket.readObject());
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

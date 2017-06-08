@@ -172,7 +172,7 @@ public class ControllerMenu {
 		boxColors.getChildren().add(circle);
 		b = new Button("Blue");
 		b.setOnAction(event -> {
-			start.setColor("black");
+			start.setColor("blue");
 			try {
 				System.out.println(start.getClient().createANewLobby(lobby, start.getColor()));
 			} catch (IOException e) {

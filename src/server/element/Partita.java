@@ -69,10 +69,10 @@ public class Partita implements Serializable{
 		String queryimpresa2 = "DROP TABLE "+lobby.toUpperCase()+"CARTEIMPRESAPARTITARANDOM";
 		String querypersonaggio2 = "DROP TABLE "+lobby.toUpperCase()+"CARTEPERSONAGGIOPARTITARANDOM";
 		String queryedificio2 = "DROP TABLE "+lobby.toUpperCase()+"CARTEEDIFICIOPARTITARANDOM";
-		connection.createStatement().executeQuery(queryterritorio2);
-		connection.createStatement().executeQuery(queryimpresa2);
-		connection.createStatement().executeQuery(querypersonaggio2);
-		connection.createStatement().executeQuery(queryedificio2);
+		connection.createStatement().executeUpdate(queryterritorio2);
+		connection.createStatement().executeUpdate(queryimpresa2);
+		connection.createStatement().executeUpdate(querypersonaggio2);
+		connection.createStatement().executeUpdate(queryedificio2);
 		for(int i=0;i<DIM;i++){
 			start[i]=false;
 		}
@@ -269,6 +269,7 @@ public class Partita implements Serializable{
 		String query;
 		String queryelimina;
 		int i;
+		System.out.println("All'interno della partita setto le carte");
 		for(i=0;i<NUMCARTE;i++){
 			query="SELECT * FROM "+name.toUpperCase()+"CARTETERRITORIOPARTITA LIMIT 1";//Scrivere la query in modo che cerchi differenti carte in generale
 			carteTerritori[i] = new CartaTerritori();
