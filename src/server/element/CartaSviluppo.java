@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 
 import javafx.scene.control.Tooltip;
 
@@ -15,32 +16,12 @@ import javafx.scene.control.Tooltip;
 */
 public class CartaSviluppo implements Serializable{
 
-	//Le carte sviluppo possiedono differenti costi variabili a seconnda della carta estratta
-	private int costoAzione;
-	private String name; 
-	private String descrizioneEffettoPermanente;
-	private String descrizioneEffettoImmediato;
-	private int qtaEffettoPermanente; 
-	private int qtaEffettoImmediato;
-	private javafx.scene.image.Image image;
-	private Tooltip tooltip;
-	
-	//A seconda della carta estratta dal DB verranno settati i costi della carta stessa
 	public void setCarta(Connection connection, String query ) {
-		try {
-			Statement stmt = connection.createStatement();
-			ResultSet rs = stmt.executeQuery(query);
-			while(rs.next()){
-				//Riempire i campi con i risultati della query ti ho aggiunto anche il tooltip
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+	
 	}
+}
 
-	public javafx.scene.image.Image getImage() {
+	/*public javafx.scene.image.Image getImage() {
 		return image;
 	}
 
@@ -56,4 +37,4 @@ public class CartaSviluppo implements Serializable{
 		this.tooltip = tooltip;
 	}
 	
-}
+}*/
