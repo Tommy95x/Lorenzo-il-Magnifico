@@ -64,4 +64,36 @@ public class CartaTerritori extends CartaSviluppo{
 		image = new Image(getClass().getResourceAsStream(url));
 	}
 	
+	public String getNameCard() {
+		return name;
+	}
+	
+	public HashMap<String, Integer> getEffettoimmediato1(){
+		return effettoimmediato1;
+	}
+	
+	public HashMap<String, Integer> getEffettoimmediato2(){
+		return effettoimmediato2;
+	}
+	
+	public HashMap<String, Integer> getEffettopermanente1(){
+		return effettopermanente1;
+	}
+	
+	public HashMap<String, Integer> getEffettopermanente2(){
+		return effettopermanente2;
+	}
+	
+	public HashMap<String, Integer> getEffettopermanente3(){
+		return effettopermanente3;
+	}
+	
+	public int getCostoAzione(){
+		return costoAzione;
+	}
+	
+	public Image getImage(){
+		return image;
+	}
+	
 }
