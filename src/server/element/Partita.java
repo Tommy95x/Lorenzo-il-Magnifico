@@ -67,6 +67,10 @@ public class Partita implements Serializable{
 		}
 	}
 	
+	public Partita(String name){
+		this.name=name;
+	}
+	
 	
 	private void startPartita() throws RemoteException, SQLException{
 		turno=1;

@@ -1,5 +1,6 @@
 package server.database;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.util.ArrayList;
 

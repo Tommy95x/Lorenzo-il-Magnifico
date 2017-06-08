@@ -1,10 +1,11 @@
 package server.database;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class ConnectionDatabase {
+public class ConnectionDatabase{
 
 	private PoolDatabase pool; 
 	private String dbUrl="jdbc:h2:~/test";

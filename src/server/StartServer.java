@@ -1,5 +1,6 @@
 package server;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,7 +15,7 @@ import server.element.Partita;
 *Classe utilizzata per l'avvio del server. Si istanziano due differenti Threads che avviano in corrispondenza un RMIServer per la
 *connessione dei Clients che utilizzeranno RMI e un SocketServer per tutti quei Clients che si collegheranno mediante Socket.
 */
-public class StartServer {
+public class StartServer{
 
 	private ArrayList<String> utente= new ArrayList<String>();
 	private ArrayList<Partita> lobbies = new ArrayList <Partita>();

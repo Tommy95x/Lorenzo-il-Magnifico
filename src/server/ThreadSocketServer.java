@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.net.Socket;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import javafx.scene.control.Tooltip;
 import server.element.CartaSviluppo;
 import server.element.Giocatore;
+import server.element.Partita;
 import server.element.Portafoglio;
 
 /*
@@ -19,7 +21,7 @@ import server.element.Portafoglio;
 *di conseguenza implementa l'interfaccia Runnable che verra' eseguito da un Executor istanziato in precedenza alla creazione di una 
 *connessione da parte di un client.
 **/
-public class ThreadSocketServer implements Runnable {
+public class ThreadSocketServer implements Runnable{
 
 	private StartServer commonServer;
 	private Socket socket;
@@ -162,7 +164,12 @@ public class ThreadSocketServer implements Runnable {
 					commonServer.getLobbyByName(lobby).getGiocatoreByName(account).getSocket(this);
 					break;
 				case "get lobbies":
-					output.writeObject(actionsServer.getLobby());
+					for(Partita mom : commonServer.getLobbies()){
+						output.writeObject(mom.getLobbyName());
+						output.flush();
+					}
+					output.writeObject("stop");
+					output.flush();
 					break;
 				case "enter in a lobby":
 					lobby = input.readObject().toString();
@@ -235,8 +242,6 @@ public class ThreadSocketServer implements Runnable {
 		System.out.println("notifica partita");
 		output.writeObject("start");
 		output.flush();
-		if(input.readObject().toString().equals("ok"))
-			System.out.println("Inviata notifica start");
 		try {
 			play();
 		} catch (RemoteException | SQLException | ClassNotFoundException e) {

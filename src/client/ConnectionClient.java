@@ -42,7 +42,7 @@ public class ConnectionClient extends UnicastRemoteObject implements ClientInter
 	}
 
 	@Override
-	public ArrayList<Partita> lobbiesView() throws IOException {
+	public ArrayList<Partita> lobbiesView() throws IOException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -63,11 +63,9 @@ public class ControllerMenu {
 	}
 
 	@FXML
-	public void enterInALobby() throws IOException {
-		ArrayList<Partita> arrayLobbies = new ArrayList<Partita>();
-		arrayLobbies = start.getClient().lobbiesView();
+	public void enterInALobby() throws IOException, ClassNotFoundException {
 		ObservableList<String> nameLobbies = FXCollections.observableArrayList();
-		for (Partita mom : arrayLobbies){
+		for (Partita mom : start.getClient().lobbiesView()){
 			nameLobbies.add(mom.getLobbyName());
 		}
 		lobbies.setItems(nameLobbies);

@@ -113,19 +113,19 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		return true;
 	}
 
-	public ArrayList<Partita> lobbiesView() throws IOException {
+	public ArrayList<Partita> lobbiesView() throws IOException, ClassNotFoundException {
+		String mom;
+		ArrayList<Partita> partita = new ArrayList<Partita>();
 		outputSocket.writeObject("get lobbies");
 		outputSocket.flush();
-		try {
-			return (ArrayList)inputSocket.readObject();
-		} catch (ClassNotFoundException e) {
-			// Gestire le eccezioni
-			e.printStackTrace();
-		} catch (IOException e) {
-			// Gestire le eccezioni
-			e.printStackTrace();
+		while(true){
+			mom = (String) inputSocket.readObject();
+			if(mom.equals("stop"))
+				break;
+			else
+				partita.add(new Partita(mom));
 		}
-		return null;
+		return partita;
 	}
 
 	public void enterInALobby(String lobby, String color) throws IOException, ClassNotFoundException {
@@ -303,8 +303,6 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		System.out.println("Attesa ok");
 		if(inputSocket.readObject().toString().equals("start")){
 			System.out.println("ok");	
-			outputSocket.writeObject("ok");
-			outputSocket.flush();
 			start.changeStage(5);
 		}
 	}

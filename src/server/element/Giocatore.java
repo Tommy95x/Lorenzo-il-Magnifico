@@ -88,21 +88,21 @@ public class Giocatore implements Serializable {
 		return dadi;
 	}
 
-	public void getSocket(ThreadSocketServer server) {
+	public void getSocket(ThreadSocketServer mom) {
 		if (server == null)
-			this.server = server;
+			server = mom;
 		System.out.println(server);
 	}
 
 	public void getClient(RMIClientInterface connectionRmiClient) {
 		if (this.client == null && server == null)
 			this.client = connectionRmiClient;
+		System.out.println(client);
 	}
 
 	public void notifyStartGame() throws IOException, ClassNotFoundException {
 		System.out.println("Enter in a notifica start");
-		//if(server != null)
-		if (true) {
+		if (server != null) {
 			System.out.println("utente socket"+server.toString());
 			server.notifyStartGame();
 		} else {
@@ -189,7 +189,9 @@ public class Giocatore implements Serializable {
 	}
 
 	private void activateCard(CartaSviluppo carta) {
-
+			
+		
+		
 	}
 
 	public ArrayList<CartaSviluppo> getCardsGamer() {

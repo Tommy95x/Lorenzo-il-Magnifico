@@ -204,19 +204,19 @@ public class ControllerGame {
 	@FXML
 	public Button lanciaDadi;
 	@FXML
-	public Immagine familiareNeutro;
+	public ImageView familiareNeutro;
 	@FXML
-	public Immagine familiareNero;
+	public ImageView familiareNero;
 	@FXML
-	public Immagine familiareArancio;
+	public ImageView familiareArancio;
 	@FXML
-	public Immagine familiareBianco;
+	public ImageView familiareBianco;
 	@FXML
-	public Immagine cuboScomunica1;
+	public ImageView cuboScomunica1;
 	@FXML
-	public Immagine cuboScomunica2;
+	public ImageView cuboScomunica2;
 	@FXML
-	public Immagine cuboScomunica3;
+	public ImageView cuboScomunica3;
 
 	public void getStartClient(StartClientGui startClientGui) throws ClassNotFoundException, IOException {
 		this.setStart(startClientGui);
@@ -230,7 +230,7 @@ public class ControllerGame {
 		start.getClient().setGuiGame(this);
 		start.getClient().waitTurno();
 		setPosizioni();
-		mercatoPosMoneteMilitari.setOnDragDropped(event->{
+		/*mercatoPosMoneteMilitari.setOnDragDropped(event->{
 			if(mercatoPosMoneteMilitari != null){
 				familiareNeutro.getDestinazione(mercatoPosMoneteMilitari);
 				familiareNero.getDestinazione(mercatoPosMoneteMilitari);
@@ -430,7 +430,7 @@ public class ControllerGame {
 				familiareArancio.getDestinazione(azioniEdificidaunGiocatore);
 				familiareBianco.getDestinazione(azioniEdificidaunGiocatore);
 			}
-		});
+		});*/
 		
 	}
 
@@ -469,9 +469,6 @@ public class ControllerGame {
 
 
 	private void setColorCubiScomunica(String color) {
-		cuboScomunica1.setColor(color);
-		cuboScomunica2.setColor(color);
-		cuboScomunica3.setColor(color);
 		switch(color){
 			case "blue":
 				cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaBlu.png")));
@@ -498,10 +495,10 @@ public class ControllerGame {
 
 
 	private void setColorsParents(String color) {
-		familiareNeutro.setColor("neutro");
+		/*familiareNeutro.setColor("neutro");
 		familiareNero.setColor("black");
 		familiareArancio.setColor("orange");
-		familiareBianco.setColor("white");
+		familiareBianco.setColor("white");*/
 		switch(color){
 			case "blue":
 				familiareNeutro.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNeutro.png")));
@@ -565,9 +562,9 @@ public class ControllerGame {
 				familiareWhite2.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoArancio.png")));
 				familiareWhite3.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoBianco.png")));
 				familiareWhite4.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoNero.png")));
-				flag1.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBlu.png")));
+				/*flag1.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBlu.png")));
 				flag2.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBianca.png")));
-				flag3.setImage(new Image(this.getClass().getResourceAsStream("BandierinaArancio.png")));
+				flag3.setImage(new Image(this.getClass().getResourceAsStream("BandierinaArancio.png")));*/
 				familiareOrange1.setOpacity(1);
 				familiareOrange2.setOpacity(1);
 				familiareOrange3.setOpacity(1);
@@ -610,9 +607,9 @@ public class ControllerGame {
 				familiareGreen2.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeArancio.png")));
 				familiareGreen3.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeBianco.png")));
 				familiareGreen4.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeNero.png")));
-				flag1.setImage(new Image(this.getClass().getResourceAsStream("BandierinaVerde.png")));
+				/*flag1.setImage(new Image(this.getClass().getResourceAsStream("BandierinaVerde.png")));
 				flag2.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBlu.png")));
-				flag3.setImage(new Image(this.getClass().getResourceAsStream("BandierinaArancio.png")));
+				flag3.setImage(new Image(this.getClass().getResourceAsStream("BandierinaArancio.png")));*/
 				familiareOrange1.setOpacity(1);
 				familiareOrange2.setOpacity(1);
 				familiareOrange3.setOpacity(1);
