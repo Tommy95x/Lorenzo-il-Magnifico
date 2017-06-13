@@ -53,6 +53,7 @@ public class CartaImprese extends CartaSviluppo{
 				azioneimmediata.put(rs.getString("AZIONEIMMEDIATA"),rs.getInt("VALOREAZIONEIMMEDIATA"));
 				puntiVittoria=rs.getInt("PUNTIVITTORIA");
 				setImage(rs.getString("IMMAGINE"));
+				tooltip.setText(rs.getString("DESCRIZIONE"));
 				}
 				rs.close();
 				stmt.close();
@@ -114,6 +115,10 @@ public class CartaImprese extends CartaSviluppo{
 			return puntiVittoria;
 		}
 		
+		public Tooltip getTooltip(){
+			return tooltip;
+		}
+		
 		public Image getImage(){
 			return image;
 		}
@@ -164,5 +169,9 @@ public class CartaImprese extends CartaSviluppo{
 		
 		public void setPuntiVittoria(int puntiVittoria){
 			this.puntiVittoria=puntiVittoria;
+		}
+		
+		public void setTooltip(Tooltip tooltip) {
+			this.tooltip = tooltip;
 		}
 }
