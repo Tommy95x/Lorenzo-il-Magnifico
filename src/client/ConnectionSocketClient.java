@@ -96,6 +96,10 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		return inputSocket.readObject().toString();
 				
 	}
+	
+	public int ciao(String lobby, String account, String color, RMIClientInterface client){
+		return 12;
+	}
 
 	public boolean createANewLobby(String lobby, String color) throws IOException {
 		outputSocket.writeObject("create new lobby");

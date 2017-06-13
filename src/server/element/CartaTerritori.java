@@ -51,6 +51,7 @@ public class CartaTerritori extends CartaSviluppo{
 			effettopermanente3.put(nomeffetto, qtaeffetto);
 			costoAzione=rs.getInt("COSTOAZIONE");
 			setImage(rs.getString("IMMAGINE"));
+			tooltip.setText(rs.getString("DESCRIZIONE"));
 			}
 			rs.close();
 			stmt.close();
@@ -96,4 +97,39 @@ public class CartaTerritori extends CartaSviluppo{
 		return image;
 	}
 	
+	public Tooltip getTooltip(){
+		return tooltip;
+	}
+	
+	public void setNameCard(String name){
+		this.name=name;
+	}
+	
+	public void setEffettoImmediato1(HashMap<String, Integer> effettoimmediato1){
+		this.effettoimmediato1=effettoimmediato1;
+	}
+	
+	public void setEffettoImmediato2(HashMap<String, Integer> effettoimmediato2){
+		this.effettoimmediato2=effettoimmediato2;
+	}
+	
+	public void setEffettoPermanente1(HashMap<String, Integer> effettopermanente1){
+		this.effettopermanente1=effettopermanente1;
+	}
+	
+	public void setEffettoPermanente2(HashMap<String, Integer> effettopermanente2){
+		this.effettopermanente2=effettopermanente2;
+	}
+	
+	public void setEffettoPermanente3(HashMap<String, Integer> effettopermanente3){
+		this.effettopermanente3=effettopermanente3;
+	}
+	
+	public void setCostoAzione(int costoAzione){
+		this.costoAzione=costoAzione;
+	}
+	
+	public void setTooltip(Tooltip tooltip) {
+		this.tooltip = tooltip;
+	}
 }

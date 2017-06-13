@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import server.database.ConnectionDatabase;
@@ -350,9 +352,16 @@ public class Partita implements Serializable{
 	}
 
 
-	public String getNamePosition(double x, double y, Connection connection) {
-		// Scrivere query che fornisce il nome della posizione tipo primo piano palazzo...
-		return null;
+	public String getNamePosition(double x, double y, Connection connection) throws SQLException {
+		String nomeposizione;
+		String query="SELECT NOME FROM POSIZIONETABELLONE WHERE POSX="+x+" AND POSY="+y+"";
+		Statement stmt = connection.createStatement();
+		ResultSet rs = stmt.executeQuery(query);// Scrivere query che fornisce il nome della posizione tipo primo piano palazzo...
+		rs.next();
+			nomeposizione=rs.getString("NOME");
+		rs.close();
+		stmt.close();
+		return nomeposizione;
 	}
 
 

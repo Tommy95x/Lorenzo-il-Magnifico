@@ -42,6 +42,10 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 			return "The passwords are not equal";
 		return commonServer.registerNewClient(username, pw1, email);
 	}
+	
+	public int ciao(String lobby, String account, String color, RMIClientInterface client){
+		return 12;
+	}
 
 	public int createNewLobby(String lobby, String account, String color, RMIClientInterface connectionRmiClient) throws RemoteException, SQLException {
 		System.out.println("Creo la partita nell'arraylist partite");
@@ -54,7 +58,7 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		System.out.println("Aggiorno i colori disponibili");
 		commonServer.getLobbyByName(lobby).changeColors(color);
 		System.out.println("Acquisisco la comunicazione del giocatore");
-		commonServer.getLobbyByName(lobby).getGiocatoreByName(account).getClient(connectionRmiClient);
+		//commonServer.getLobbyByName(lobby).getGiocatoreByName(account).getClient(connectionRmiClient);
 		//commonServer.getLobbyByName(lobby).getGiocatoreByName(account).setFlag(new Flag(color, commonServer, account));
 		return commonServer.getIndicePartita(lobby);
 	}

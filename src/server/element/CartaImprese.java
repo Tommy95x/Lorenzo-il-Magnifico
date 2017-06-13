@@ -65,4 +65,104 @@ public class CartaImprese extends CartaSviluppo{
 		public void setImage(String url){
 			image = new Image(getClass().getResourceAsStream(url));
 		}
+		
+		public String getNameCard() {
+			return name;
+		}
+		
+		public int getCostoMoneta(){
+			return costoMoneta;
+		}
+		
+		public int getCostoLegno(){
+			return costoLegno;
+		}
+		
+		public int getCostoPietra(){
+			return costoPietra;
+		}
+		
+		public int getCostoServitori(){
+			return costoServitori;
+		}
+		
+		public int getCostoPuntiMilitari(){
+			return costoPuntiMilitari;
+		}
+		
+		public int getPuntiMilitariRichiesti(){
+			return puntiMilitariRichiesti;
+		}
+		
+		public HashMap<String, Integer> getEffettoimmediato1(){
+			return effettoimmediato1;
+		}
+		
+		public HashMap<String, Integer> getEffettoimmediato2(){
+			return effettoimmediato2;
+		}
+		
+		public HashMap<String, Integer> getEffettoimmediato3(){
+			return effettoimmediato3;
+		}
+		
+		public HashMap<String, Integer> getAzioneImmediata(){
+			return azioneimmediata;
+		}
+		
+		public int getPuntiVittoria(){
+			return puntiVittoria;
+		}
+		
+		public Image getImage(){
+			return image;
+		}
+		
+		public void setNameCard(String name){
+			this.name=name;
+		}
+		
+		public void setCostoMoneta(int costoMoneta){
+			this.costoMoneta=costoMoneta;
+		}
+		
+		public void setCostoPietra(int costoPietra){
+			this.costoPietra=costoPietra;
+		}
+		
+		public void setCostoLegno(int costoLegno){
+			this.costoLegno=costoLegno;
+		}
+		
+		public void setCostoServitori(int costoServitori){
+			this.costoServitori=costoServitori;
+		}
+		
+		public void setCostoPuntiMilitari(int costoPuntiMilitari){
+			this.costoPuntiMilitari=costoPuntiMilitari;
+		}
+		
+		public void setPuntiMilitariRichiesti(int puntiMilitariRichiesti){
+			this.puntiMilitariRichiesti=puntiMilitariRichiesti;
+		}
+		
+		public void setEffettoImmediato1(HashMap<String, Integer> effettoimmediato1){
+			this.effettoimmediato1=effettoimmediato1;
+		}
+		
+		public void setEffettoImmediato2(HashMap<String, Integer> effettoimmediato2){
+			this.effettoimmediato2=effettoimmediato2;
+		}
+		
+		public void setEffettoImmediato3(HashMap<String, Integer> effettoimmediato3){
+			this.effettoimmediato3=effettoimmediato3;
+		}
+		
+		public void setAzioneImmediata(HashMap<String, Integer> azioneimmediata){
+			this.azioneimmediata=azioneimmediata;
+		}
+		
+		public void setPuntiVittoria(int puntiVittoria){
+			this.puntiVittoria=puntiVittoria;
+		}
 }

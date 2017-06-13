@@ -16,7 +16,7 @@ public class CartaPersonaggi extends CartaSviluppo{
 	private String name; 
 	private String nomeffetto;
 	private int qtaeffetto;
-	private HashMap<String, Integer> effettoimmediato = new HashMap<String, Integer>();
+	private HashMap<String, Integer> effettoimmediato1 = new HashMap<String, Integer>();
 	private String perognicarta;
 	private HashMap<String, Integer> azioneimmediata = new HashMap<String, Integer>();
 	private HashMap<String, Integer> scontoazioneimmediata1 = new HashMap<String, Integer>();
@@ -33,9 +33,9 @@ public class CartaPersonaggi extends CartaSviluppo{
 			ResultSet rs = stmt.executeQuery(query);
 			while(rs.next()){
 				name=rs.getString("NOME");
-				nomeffetto=rs.getString("EFFETTOIMMEDIATO1");
-				qtaeffetto=rs.getInt("QTAEFFETTOIMMEDIATO1");
-				effettoimmediato.put(nomeffetto, qtaeffetto);
+				nomeffetto=rs.getString("EFFETTOIMMEDIATO");
+				qtaeffetto=rs.getInt("QTAEFFETTOIMMEDIATO");
+				effettoimmediato1.put(nomeffetto, qtaeffetto);
 				perognicarta=rs.getString("PEROGNICARTA");
 				azioneimmediata.put(rs.getString("AZIONEIMMEDIATA"), rs.getInt("VALOREAZIONEIMMEDIATA"));
 				scontoazioneimmediata1.put(rs.getString("SCONTOAZIONEIMMEDIATA1"), rs.getInt("QTASCONTOAZIONEIMMEDIATA1"));
@@ -58,4 +58,86 @@ public class CartaPersonaggi extends CartaSviluppo{
 		public void setImage(String url){
 			image = new Image(getClass().getResourceAsStream(url));
 		}
+		
+		public String getNameCard() {
+			return name;
+		}
+		
+		public int getCostoMoneta(){
+			return costoMoneta;
+		}
+		
+		public HashMap<String, Integer> getEffettoimmediato1(){
+			return effettoimmediato1;
+		}
+		
+		public String getPerOgniCarta(){
+			return perognicarta;
+		}
+		
+		public HashMap<String, Integer> getAzioneImmediata(){
+			return azioneimmediata;
+		}
+		
+		public HashMap<String, Integer> getScontoAzioneImmediata1(){
+			return scontoazioneimmediata1;
+		}
+		
+		public HashMap<String, Integer> getScontoAzioneImmediata2(){
+			return scontoazioneimmediata2;
+		}
+		
+		public HashMap<String, Integer> getAzionePermanente(){
+			return azionepermanente;
+		}
+		
+		public HashMap<String, Integer> getScontoAzionepermanente1(){
+			return scontoazionepermanente1;
+		}
+		
+		public HashMap<String, Integer> getScontoAzionepermanente2(){
+			return scontoazionepermanente2;
+		}
+		
+		public Image getImage(){
+			return image;
+		}
+		
+		public void setNameCard(String name){
+			this.name=name;
+		}
+		
+		public void setCostoMoneta(int costoMoneta){
+			this.costoMoneta=costoMoneta;
+		}
+		
+		public void setEffettoImmediato1(HashMap<String, Integer> effettoimmediato1){
+			this.effettoimmediato1=effettoimmediato1;
+		}
+		
+		public void setAzioneImmediata(HashMap<String, Integer> azioneimmediata){
+			this.azioneimmediata=azioneimmediata;
+		}
+		
+		public void setScontoAzioneImmediata1(HashMap<String, Integer> scontoazioneimmediata1){
+			this.scontoazioneimmediata1=scontoazioneimmediata1;
+		}
+		
+		public void setScontoAzioneImmediata2(HashMap<String, Integer> scontoazioneimmediata2){
+			this.scontoazioneimmediata2=scontoazioneimmediata2;
+		}
+		
+		public void setAzionePermanente(HashMap<String, Integer> azionepermanente){
+			this.azionepermanente=azionepermanente;
+		}
+		
+		public void setScontoAzionePermanente1(HashMap<String, Integer> scontoazionepermanente1){
+			this.scontoazionepermanente1=scontoazionepermanente1;
+		}
+		
+		public void setScontoAzionePermanente2(HashMap<String, Integer> scontoazionepermanente2){
+			this.scontoazionepermanente2=scontoazionepermanente2;
+		}
 }
+
+

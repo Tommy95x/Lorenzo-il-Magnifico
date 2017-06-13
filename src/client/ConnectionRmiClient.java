@@ -87,8 +87,11 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 
 
 	public boolean createANewLobby(String lobby,String color) {
+		System.out.println("lobby = "+lobby+" name="+name+" color="+color+" this="+this+"");
 		try {
-			positionGame=serverMethods.createNewLobby(lobby, name, color , this);
+			positionGame=serverMethods.ciao(lobby, name, color , null);
+			System.out.println(positionGame);
+			positionGame=serverMethods.createNewLobby(lobby, name, color , null);
 			System.out.println(positionGame);
 			return true;
 		} catch (SQLException e) {

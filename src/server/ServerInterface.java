@@ -16,6 +16,7 @@ import server.element.TesseraScomunica;
 
 public interface ServerInterface extends Remote {
 	
+	public int ciao(String lobby, String account, String color, RMIClientInterface client) throws RemoteException;
 	public String login(String username, String pw1) throws RemoteException;
 	String register(String username, String pw1, String pw2, String email) throws RemoteException, SQLException;
 	public int createNewLobby(String lobby, String account, String color, RMIClientInterface client) throws RemoteException, SQLException;
