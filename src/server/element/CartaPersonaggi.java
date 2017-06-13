@@ -45,6 +45,7 @@ public class CartaPersonaggi extends CartaSviluppo{
 				scontoazionepermanente2.put(rs.getString("SCONTOAZIONEPERMANENTE2"), rs.getInt("QTASCONTOAZIONEPERMANANTE2"));
 				costoMoneta=rs.getInt("COSTOMONETA");
 				setImage(rs.getString("IMMAGINE"));
+				tooltip.setText(rs.getString("DESCRIZIONE"));
 				}
 				rs.close();
 				stmt.close();
@@ -99,6 +100,10 @@ public class CartaPersonaggi extends CartaSviluppo{
 			return scontoazionepermanente2;
 		}
 		
+		public Tooltip getTooltip(){
+			return tooltip;
+		}
+		
 		public Image getImage(){
 			return image;
 		}
@@ -137,6 +142,10 @@ public class CartaPersonaggi extends CartaSviluppo{
 		
 		public void setScontoAzionePermanente2(HashMap<String, Integer> scontoazionepermanente2){
 			this.scontoazionepermanente2=scontoazionepermanente2;
+		}
+		
+		public void setTooltip(Tooltip tooltip) {
+			this.tooltip = tooltip;
 		}
 }
 
