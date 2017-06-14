@@ -25,5 +25,5 @@ public interface ClientInterface {
 	public void sostegnoChiesa(boolean flag);
 	public void richiestaRegistrazione() throws IOException;
 	public void takeCards(String name);
-	public void enterInALobby(String lobby, String string) throws IOException, ClassNotFoundException;
+	public int enterInALobby(String lobby, String string) throws IOException, ClassNotFoundException;
 }

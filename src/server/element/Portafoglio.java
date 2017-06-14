@@ -34,20 +34,38 @@ public class Portafoglio implements Serializable{
 		puntiFede=0;
 	}
 	
-	public void addServitori(int incr){
+	private boolean addServitori(int incr){
+		if(servitori == 0 && incr<=0){
+			return false;
+		}
 		servitori+=incr;
+		return true;
 	}
 	
-	private void addMonete(int incr){
+	//Rendere public solo per la verifica di test
+	//public boolean addMonete(int incr){
+	private boolean addMonete(int incr){
+		if(monete == 0 && incr<=0){
+			return false;
+		}
 		monete+=incr;
+		return true;
 	}
 	
-	private void addLengo(int incr){
+	private boolean addLengo(int incr){
+		if(legno == 0 && incr<=0){
+			return false;
+		}
 		legno+=incr;
+		return true;
 	}
 	
-	private void addPietra(int incr){
+	private boolean addPietra(int incr){
+		if(pietra == 0 && incr<=0){
+			return false;
+		}
 		pietra+=incr;
+		return true;
 	}
 	
 	public void addCarta(CartaSviluppo c){

@@ -14,30 +14,30 @@ import javafx.scene.image.ImageView;
  */
 public class TesseraScomunica implements Serializable{
 
-	private String oggettoPenalita;
-	private int valorePenalita;
+	private String ID;
+	private String nome;
 	private int periodo;
-	private Image image;
-	private Tooltip tooltip;
+	private Image image = new Image(getClass().getResourceAsStream("Zecca.png"));
+	private String tooltip;
 	
 	//Vengono settati i parametri della tessera scomunica
 	public TesseraScomunica(){
 	}
 
-	public String getOggettoPenalita() {
-		return oggettoPenalita;
+	public String getID() {
+		return ID;
 	}
 
-	public void setOggettoPenalita(String oggettoPenalita) {
-		this.oggettoPenalita = oggettoPenalita;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	public int getValorePenalita() {
-		return valorePenalita;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setValorePenalita(int valorePenalita) {
-		this.valorePenalita = valorePenalita;
+	public void setNome(int nome) {
+		this.nome = nome;
 	}
 
 	public int getTurno() {
@@ -47,6 +47,7 @@ public class TesseraScomunica implements Serializable{
 	public void setTurno(int turno) {
 		this.periodo = turno;
 	}
+
 
 	/**
 	 * Method that with a DB connection sets all parameters
@@ -59,10 +60,12 @@ public class TesseraScomunica implements Serializable{
 	}
 
 	public Tooltip getTooltip() {
+		Tooltip tooltip = new Tooltip();
+		tooltip.setText(this.tooltip);
 		return tooltip;
 	}
 
-	public void setTooltip(Tooltip tooltip) {
+	public void setTooltip(String tooltip) {
 		this.tooltip = tooltip;
 	}
 
@@ -72,6 +75,26 @@ public class TesseraScomunica implements Serializable{
 
 	public void setImage(Image image) {
 		this.image = image;
+	}
+
+	/**
+	 * Method that with a DB connection are set all parameters
+	 * 
+	 * @param connection
+	 */
+	public void setTesseraPrimoPeriodo(Connection connection) {
+		
+		
+	}
+
+	public void setTesseraTerzoPeriodo(Connection connection) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setTessereSecondoPeriodo(Connection connection) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

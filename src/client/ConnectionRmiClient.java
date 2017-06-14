@@ -24,7 +24,7 @@ import server.element.TesseraScomunica;
  * Classe di implementazione 
  */
 
-public class ConnectionRmiClient extends ConnectionClient implements ClientInterface, RMIClientInterface{
+public class ConnectionRmiClient extends ConnectionClient implements ClientInterface{
 
 	private int port;
 	private ServerInterface serverMethods;
@@ -33,6 +33,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	private int numberOfGamers;
 	private ControllerGame guiGame;
 	private StartClientGui start;
+	private ConnectionRmiInterlocutorClient interlocutor;
 	
 	public ConnectionRmiClient() throws RemoteException{
 		System.out.println("New Rmi client create");
@@ -89,9 +90,10 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	public boolean createANewLobby(String lobby,String color) {
 		System.out.println("lobby = "+lobby+" name="+name+" color="+color+" this="+this+"");
 		try {
-			positionGame=serverMethods.ciao(lobby, name, color , null);
+			//positionGame=serverMethods.ciao(lobby, name, color , null);
 			System.out.println(positionGame);
-			positionGame=serverMethods.createNewLobby(lobby, name, color , null);
+			interlocutor = new ConnectionRmiInterlocutorClient(name, positionGame, start);
+			positionGame=serverMethods.createNewLobby(lobby, name, color , interlocutor);
 			System.out.println(positionGame);
 			return true;
 		} catch (SQLException e) {
@@ -116,13 +118,15 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		}
 	}
 	
-	public void enterInALobby(String lobby, String color) throws RemoteException{
+	public int enterInALobby(String lobby, String color) throws RemoteException{
 		try {
-			positionGame=serverMethods.selectLobby(lobby, name, color,  this);
+			interlocutor = new ConnectionRmiInterlocutorClient(name, positionGame,start);
+			positionGame=serverMethods.selectLobby(lobby, name, color, interlocutor );
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return numberOfGamers;
 		
 	}
 
@@ -169,15 +173,6 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	public void setNumberOfGamers(int numberOfGamers) {
 		this.numberOfGamers = numberOfGamers;
 	}
-
-	public void notifyStartGame() throws RemoteException {
-		System.out.println("Notifica inizio partita avvenuta");
-		if(start == null)
-			System.out.println("Stage null");
-		System.out.println("Cambio Stage");
-		start.changeStage(5);
-		System.out.println("Prova");
-	}
 	
 	public String controlloPosizionamento(String color, double x, double y, Integer agg) throws RemoteException {
 		try {
@@ -191,6 +186,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 
 	public void setGuiGame(ControllerGame guiGame){
 		this.guiGame = guiGame;
+		interlocutor.setGuiGame(guiGame);
 	}
 	
 	public void moveDisco(double x, double y, String colorPlayer, String colorDisco) throws RemoteException {
@@ -221,14 +217,6 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		this.start = start;
 	}
 
-	public void notifyTurno() throws RemoteException, SQLException {
-		guiGame.enableGame();
-	}
-	
-	public void notifySpostamento(String color, double x, double y) throws RemoteException {
-		serverMethods.notifySpostamento(color,x,y,name,positionGame);
-	}
-	
 	public String getNamePosition(double x, double y) throws RemoteException, SQLException {
 		return serverMethods.getNamePosition(x,y,positionGame,name);
 	}
@@ -282,11 +270,6 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		return name;
 	}
 	
-	public void notifyAddCard(CartaSviluppo carta, String nameAvv,Portafoglio portafoglio) throws RemoteException {
-		guiGame.notifyAddCardAvv(carta, nameAvv,portafoglio);
-		
-	}
-	
 	public void deleteView() throws RemoteException {
 		serverMethods.deleteView(positionGame);
 		
@@ -300,26 +283,12 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		return serverMethods.getNumberOfPlayer(positionGame);
 	}
 	
-	@Override
-	public void sostegnoChiesa(boolean flag) {
-		// TODO Auto-generated method stub
-		
+	public void notifySpostamento(String color, double x, double y) throws RemoteException {
+		serverMethods.notifySpostamento(color,x,y,name,positionGame);
 	}
 	
 	@Override
-	public void richestaSostegnoChiesa() throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void restTabellone() throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void endGame(Giocatore[] giocatoriPartita) throws RemoteException {
+	public void sostegnoChiesa(boolean flag) {
 		// TODO Auto-generated method stub
 		
 	}

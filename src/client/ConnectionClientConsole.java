@@ -24,6 +24,7 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 	private int numberOfGamers;
 	private Scanner input;
 	private String account;
+	private ConnectionRmiInterlocutorClient interlocutor;
 	
 	public ConnectionClientConsole() throws RemoteException{
 		
@@ -112,7 +113,8 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 				System.out.println("Inserisci il colore che vorrai avere");
 				color = input.nextLine();
 				try {
-					setPositionGame(serverMethods.createNewLobby(lobby, account, color, this));
+					interlocutor = new ConnectionRmiInterlocutorClient(name, positionGame, null);
+					positionGame=serverMethods.createNewLobby(lobby, name, color , interlocutor);
 				} catch (RemoteException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -143,7 +145,8 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 				System.out.println("Inserisci il colore che vorrai avere");
 				color = input.nextLine();
 				try {
-					serverMethods.selectLobby(lobby, account, color, this);
+					interlocutor = new ConnectionRmiInterlocutorClient(name, positionGame, null);
+					positionGame=serverMethods.createNewLobby(lobby, name, color , interlocutor);
 				} catch (RemoteException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

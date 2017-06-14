@@ -1,6 +1,6 @@
 package server.element;
 
-import java.awt.Image;
+
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.HashMap;
 
 import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
 
 /*
 *Classe base delle carte presenti nel gioco. Possiedera' tutti gli attributi e metodi comuni a tutti i tipi di carte sviluppo all'interno del gioco stesso.
@@ -16,7 +17,7 @@ import javafx.scene.control.Tooltip;
 */
 public class CartaSviluppo implements Serializable{
 
-	javafx.scene.image.Image image;
+	private Image image;
 	private String name;
 	private int costoAzione;
 	private HashMap<String, Integer> effettoimmediato1 = new HashMap<String, Integer>();
@@ -51,7 +52,7 @@ public class CartaSviluppo implements Serializable{
 	
 	}
 
-	public javafx.scene.image.Image getImage() {
+	public Image getImage() {
 		return image;
 	}
 
@@ -285,5 +286,9 @@ public class CartaSviluppo implements Serializable{
 	
 	public void setPuntiVittoria(int puntiVittoria){
 		this.puntiVittoria=puntiVittoria;
+	}
+	
+	public void setImage(String url){
+		image =  new Image(getClass().getResourceAsStream(url));
 	}
 }
