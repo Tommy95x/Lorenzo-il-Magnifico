@@ -2,6 +2,9 @@ package server.element;
 
 import java.io.Serializable;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
@@ -36,10 +39,10 @@ public class TesseraScomunica implements Serializable{
 		return nome;
 	}
 
-	public void setNome(int nome) {
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
+	
 	public int getTurno() {
 		return periodo;
 	}
@@ -81,20 +84,46 @@ public class TesseraScomunica implements Serializable{
 	 * Method that with a DB connection are set all parameters
 	 * 
 	 * @param connection
+	 * @throws SQLException 
 	 */
-	public void setTesseraPrimoPeriodo(Connection connection) {
-		
+	public void setTesseraPrimoPeriodo(Connection connection) throws SQLException {
+		Statement stmt = connection.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM TESSERASCOMUNICA WHERE PERIODO=1 ORDER BY RAND() LIMIT 1");
+		while(rs.next()){
+			ID = rs.getString("ID");
+			nome = rs.getString("NOME");
+			periodo=rs.getInt("PERIODO");
+			setTooltip(rs.getString("DESCRIZIONE"));
+		}
+		rs.close();
+		stmt.close();
+	}
+
+	public void setTesseraTerzoPeriodo(Connection connection) throws SQLException {
+		Statement stmt = connection.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM TESSERASCOMUNICA WHERE PERIODO=3 ORDER BY RAND() LIMIT 1");
+		while(rs.next()){
+			ID = rs.getString("ID");
+			nome = rs.getString("NOME");
+			periodo=rs.getInt("PERIODO");
+			setTooltip(rs.getString("DESCRIZIONE"));
+		}
+		rs.close();
+		stmt.close();
 		
 	}
 
-	public void setTesseraTerzoPeriodo(Connection connection) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void setTessereSecondoPeriodo(Connection connection) {
-		// TODO Auto-generated method stub
-		
+	public void setTessereSecondoPeriodo(Connection connection) throws SQLException {
+		Statement stmt = connection.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM TESSERASCOMUNICA WHERE PERIODO=2 ORDER BY RAND() LIMIT 1");
+		while(rs.next()){
+			ID = rs.getString("ID");
+			nome = rs.getString("NOME");
+			periodo=rs.getInt("PERIODO");
+			setTooltip(rs.getString("DESCRIZIONE"));
+		}
+		rs.close();
+		stmt.close();
 	}
 
 }
