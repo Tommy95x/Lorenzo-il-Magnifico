@@ -23,13 +23,13 @@ public class ConnectionClient extends UnicastRemoteObject implements ClientInter
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
+	
 	public String login(String account, String pw) throws ClassNotFoundException, IOException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	
 	public String register(String account, String pw, String pw2, String email) throws IOException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 		return null;

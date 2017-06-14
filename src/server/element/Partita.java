@@ -31,7 +31,7 @@ public class Partita implements Serializable{
 	private CartaTerritori[] carteTerritori = new CartaTerritori[NUMCARTE];
 	private TesseraScomunica[] tessereScomunica = new TesseraScomunica[3];
 	private String[] colors = new String[DIM];
-	private int giocatore = 0;
+	private int NumberOfPlayers = 0;
 	
 	/**
 	 * Questo metodo inizializza la partita creando nuove tabelle contenti le carte del gioco.
@@ -75,6 +75,7 @@ public class Partita implements Serializable{
 		connection.createStatement().executeUpdate(queryimpresa2);
 		connection.createStatement().executeUpdate(querypersonaggio2);
 		connection.createStatement().executeUpdate(queryedificio2);
+		connection.close();
 		for(int i=0;i<DIM;i++){
 			start[i]=false;
 		}
@@ -102,6 +103,7 @@ public class Partita implements Serializable{
 		System.out.println("shuffle giocatori ");
 		beShuffled();
 		System.out.println("Sistemato ordine gioco");
+		this.NumberOfPlayers = 0;
 		//Vedi regole e assegna a seconda della posizione le risorse di posizione
 		/*try {
 	
@@ -111,7 +113,8 @@ public class Partita implements Serializable{
 			e.printStackTrace();
 		}*/
 	}
-	
+	//Mettere a public per verificare con il metodo di test
+	//public boolean checkBoolean(int dim){
 	private boolean checkBoolean(int dim){
 		for(int i=0;i<dim;i++){
 			if(!start[i])
@@ -167,6 +170,7 @@ public class Partita implements Serializable{
 			if(giocatori[i]==null){
 				giocatori[i]=giocatore;
 				System.out.println("Posizione giocatore"+i);
+				this.NumberOfPlayers++;
 				return;
 			}
 		}
@@ -210,6 +214,7 @@ public class Partita implements Serializable{
 
 
 	public String getCreator(){
+		//Metodo sbagliato soprattutto dopo lo shuffle
 		return giocatori[0].getName();
 	}
 
@@ -314,20 +319,19 @@ public class Partita implements Serializable{
 
 
 	public void setCardsScomunica(ConnectionDatabase connectionDatabase, String account) throws SQLException {
-		for(TesseraScomunica mom : tessereScomunica){
-			mom.setTessera(connectionDatabase.getConnection(account));
-		}
-		
+			tessereScomunica[0].setTesseraPrimoPeriodo(connectionDatabase.getConnection(account));
+			tessereScomunica[1].setTessereSecondoPeriodo(connectionDatabase.getConnection(account));
+			tessereScomunica[2].setTesseraTerzoPeriodo(connectionDatabase.getConnection(account));
 	}
 
 
 	public void changeGamer() throws RemoteException, SQLException {
-		giocatore++;
-		if(giocatore>4){
+		this.NumberOfPlayers++;
+		if(NumberOfPlayers>4){
 			addTurno();
 		}else{
 			try {
-				giocatori[giocatore].notifyTurno();
+				giocatori[NumberOfPlayers].notifyTurno();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -408,6 +412,11 @@ public class Partita implements Serializable{
 		connection.createStatement().execute(querydropterritori);
 		connection.createStatement().execute(querydropimprese);
 		connection.close();
+	}
+
+	public int getNumberOfPlayers() {
+		// TODO Auto-generated method stub
+		return this.NumberOfPlayers;
 	}
 	
 }

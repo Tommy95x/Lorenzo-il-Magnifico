@@ -48,15 +48,7 @@ public class TesseraScomunica implements Serializable{
 		this.periodo = turno;
 	}
 
-	/**
-	 * Method that with a DB connection are set all parameters
-	 * 
-	 * @param connection
-	 */
-	public void setTessera(Connection connection) {
-		//Scrivere query e riempire i campi delle tessere scomunica
-		
-	}
+	
 
 	public Tooltip getTooltip() {
 		Tooltip tooltip = new Tooltip();
@@ -74,6 +66,26 @@ public class TesseraScomunica implements Serializable{
 
 	public void setImage(Image image) {
 		this.image = image;
+	}
+
+	/**
+	 * Method that with a DB connection are set all parameters
+	 * 
+	 * @param connection
+	 */
+	public void setTesseraPrimoPeriodo(Connection connection) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setTesseraTerzoPeriodo(Connection connection) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setTessereSecondoPeriodo(Connection connection) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

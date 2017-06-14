@@ -8,13 +8,13 @@ import java.util.concurrent.Executors;
 
 public class SocketServer extends Thread{
 
-	private int port=3000;
-	@SuppressWarnings("unused")
+	private int port;
 	private String ip="127.0.0.1";
 	private StartServer commonServer;
 	
 	public SocketServer(int i, StartServer server) {
 		this.commonServer=server;
+		this.port = i;
 	}
 
 	@SuppressWarnings("resource")
@@ -38,7 +38,6 @@ public class SocketServer extends Thread{
 				System.out.println("Error no space for new connection");
 				e.printStackTrace();
 			}
-			
 		}
 	}
 		
