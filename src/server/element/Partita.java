@@ -380,7 +380,6 @@ public class Partita implements Serializable{
 		}
 	}
 
-
 	public TesseraScomunica[] getCardsScomunica() {
 		return tessereScomunica;
 	}

@@ -49,12 +49,12 @@ public class TesseraScomunica implements Serializable{
 	}
 
 	/**
-	 * Method that with a DB connection are set all parameters
+	 * Method that with a DB connection sets all parameters
 	 * 
 	 * @param connection
 	 */
 	public void setTessera(Connection connection) {
-		//Scrivere query e riempire i campi delle tessere scomunica
+		
 		
 	}
 
