@@ -48,7 +48,8 @@ public class ConnectionClient extends UnicastRemoteObject implements ClientInter
 	}
 
 	@Override
-	public void enterInALobby(String lobby, String color) throws IOException, ClassNotFoundException {
+	public int enterInALobby(String lobby, String color) throws IOException, ClassNotFoundException {
+		return 0;
 		// TODO Auto-generated method stub
 		
 	}

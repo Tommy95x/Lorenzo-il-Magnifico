@@ -24,8 +24,8 @@ public class CartaPersonaggi extends CartaSviluppo{
 	private HashMap<String, Integer> azionepermanente = new HashMap<String, Integer>();
 	private HashMap<String, Integer> scontoazionepermanente1 = new HashMap<String, Integer>();
 	private HashMap<String, Integer> scontoazionepermanente2 = new HashMap<String, Integer>();
-	private javafx.scene.image.Image image;
-	private Tooltip tooltip;
+	private Image image = new Image(getClass().getResourceAsStream("Tenuta.png"));
+	private String tooltip;
 	
 		public void setCarta(Connection connection, String query ) {
 		try {
@@ -42,10 +42,10 @@ public class CartaPersonaggi extends CartaSviluppo{
 				scontoazioneimmediata2.put(rs.getString("SCONTOAZIONEIMMEDIATA2"), rs.getInt("QTASCONTOAZIONEIMMEDIATA2"));
 				azionepermanente.put(rs.getString("AZIONEPERMANENTE"), rs.getInt("VALOREAZIONEPERMANENTE"));
 				scontoazionepermanente1.put(rs.getString("SCONTOAZIONEPERMANENTE1"), rs.getInt("QTASCONTOAZIONEPERMANENTE1"));
-				scontoazionepermanente2.put(rs.getString("SCONTOAZIONEPERMANENTE2"), rs.getInt("QTASCONTOAZIONEPERMANANTE2"));
+				scontoazionepermanente2.put(rs.getString("SCONTOAZIONEPERMANENTE2"), rs.getInt("QTASCONTOAZIONEPERMANENTE2"));
 				costoMoneta=rs.getInt("COSTOMONETA");
 				setImage(rs.getString("IMMAGINE"));
-				tooltip.setText(rs.getString("DESCRIZIONE"));
+				setTooltip(rs.getString("DESCRIZIONE"));
 				}
 				rs.close();
 				stmt.close();
@@ -101,6 +101,8 @@ public class CartaPersonaggi extends CartaSviluppo{
 		}
 		
 		public Tooltip getTooltip(){
+			Tooltip tooltip = new Tooltip();
+			tooltip.setText(this.tooltip);
 			return tooltip;
 		}
 		
@@ -144,8 +146,8 @@ public class CartaPersonaggi extends CartaSviluppo{
 			this.scontoazionepermanente2=scontoazionepermanente2;
 		}
 		
-		public void setTooltip(Tooltip tooltip) {
-			this.tooltip = tooltip;
+		public void setTooltip(String string) {
+			this.tooltip = string;
 		}
 }
 

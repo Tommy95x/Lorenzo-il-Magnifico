@@ -132,7 +132,7 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		return partita;
 	}
 
-	public void enterInALobby(String lobby, String color) throws IOException, ClassNotFoundException {
+	public int enterInALobby(String lobby, String color) throws IOException, ClassNotFoundException {
 		this.lobby = lobby;
 		outputSocket.writeObject("enter in a lobby");
 		outputSocket.flush();
@@ -141,6 +141,7 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		outputSocket.writeObject(color);
 		outputSocket.flush();
 		setPositionGame((int) inputSocket.readObject());
+		return positionGame;
 	}
 
 	public TesseraScomunica[] getCardsScomunica() throws ClassNotFoundException, IOException{

@@ -21,12 +21,8 @@ public class CartaTerritori extends CartaSviluppo{
 	private HashMap<String, Integer> effettopermanente1 = new HashMap<String, Integer>();
 	private HashMap<String, Integer> effettopermanente2 = new HashMap<String, Integer>();
 	private HashMap<String, Integer> effettopermanente3 = new HashMap<String, Integer>();
-	private javafx.scene.image.Image image;
-	private Tooltip tooltip;
-	
-	public CartaTerritori(){
-		
-	}
+	private Image image = new Image(getClass().getResourceAsStream("Tenuta.png"));
+	private String tooltip;
 	
 	public void setCarta(Connection connection, String query ){
 	try{
@@ -51,7 +47,7 @@ public class CartaTerritori extends CartaSviluppo{
 			effettopermanente3.put(nomeffetto, qtaeffetto);
 			costoAzione=rs.getInt("COSTOAZIONE");
 			setImage(rs.getString("IMMAGINE"));
-			tooltip.setText(rs.getString("DESCRIZIONE"));
+			setTooltip(rs.getString("DESCRIZIONE"));
 			}
 			rs.close();
 			stmt.close();
@@ -62,7 +58,8 @@ public class CartaTerritori extends CartaSviluppo{
 	}
 	
 	public void setImage(String url){
-		image = new Image(getClass().getResourceAsStream(url));
+		//image = new Image(getClass().getResourceAsStream(url));
+		image = new Image(getClass().getResourceAsStream("Tenuta.png"));
 	}
 	
 	public String getNameCard() {
@@ -98,6 +95,8 @@ public class CartaTerritori extends CartaSviluppo{
 	}
 	
 	public Tooltip getTooltip(){
+		Tooltip tooltip = new Tooltip();
+		tooltip.setText(this.tooltip);
 		return tooltip;
 	}
 	
@@ -129,7 +128,7 @@ public class CartaTerritori extends CartaSviluppo{
 		this.costoAzione=costoAzione;
 	}
 	
-	public void setTooltip(Tooltip tooltip) {
-		this.tooltip = tooltip;
+	public void setTooltip(String string) {
+		this.tooltip = string;
 	}
 }

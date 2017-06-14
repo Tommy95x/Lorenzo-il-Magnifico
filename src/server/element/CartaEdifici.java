@@ -29,8 +29,8 @@ public class CartaEdifici extends CartaSviluppo{
 	private HashMap<String, Integer> prendirisorsa2 = new HashMap<String, Integer>();
 	private HashMap<String, Integer> acquisiscipunti = new HashMap<String, Integer>();
 	private String perognicarta;
-	private javafx.scene.image.Image image;
-	private Tooltip tooltip;
+	private Image image = new Image(getClass().getResourceAsStream("Tenuta.png"));
+	private String tooltip;
 	
 	public void setCarta(Connection connection, String query ) {
 		try {
@@ -57,7 +57,7 @@ public class CartaEdifici extends CartaSviluppo{
 				acquisiscipunti.put(rs.getString("ACQUISISCIPUNTI"),rs.getInt("QTAACQUISISCIPUNTI"));
 				perognicarta=rs.getString("PEROGNICARTA");
 				setImage(rs.getString("IMMAGINE"));
-				tooltip.setText(rs.getString("DESCRIZIONE"));
+				setTooltip(rs.getString("DESCRIZIONE"));
 				}
 				rs.close();
 				stmt.close();
@@ -133,6 +133,8 @@ public class CartaEdifici extends CartaSviluppo{
 	}
 	
 	public Tooltip getTooltip(){
+		Tooltip tooltip = new Tooltip();
+		tooltip.setText(this.tooltip);
 		return tooltip;
 	}
 	
@@ -200,7 +202,7 @@ public class CartaEdifici extends CartaSviluppo{
 		this.perognicarta=perognicarta;
 	}
 	
-	public void setTooltip(Tooltip tooltip) {
+	public void setTooltip(String tooltip) {
 		this.tooltip = tooltip;
 	}
 }

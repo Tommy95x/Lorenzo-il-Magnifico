@@ -26,8 +26,8 @@ public class CartaImprese extends CartaSviluppo{
 	private HashMap<String, Integer> effettoimmediato3 = new HashMap<String, Integer>();
 	private HashMap<String, Integer> azioneimmediata = new HashMap<String, Integer>();
 	private int puntiVittoria;
-	private javafx.scene.image.Image image;
-	private Tooltip tooltip;
+	private Image image = new Image(getClass().getResourceAsStream("Tenuta.png"));
+	private String tooltip;
 	
 		public void setCarta(Connection connection, String query ) {
 		try {
@@ -53,7 +53,7 @@ public class CartaImprese extends CartaSviluppo{
 				azioneimmediata.put(rs.getString("AZIONEIMMEDIATA"),rs.getInt("VALOREAZIONEIMMEDIATA"));
 				puntiVittoria=rs.getInt("PUNTIVITTORIA");
 				setImage(rs.getString("IMMAGINE"));
-				tooltip.setText(rs.getString("DESCRIZIONE"));
+				setTooltip(rs.getString("DESCRIZIONE"));
 				}
 				rs.close();
 				stmt.close();
@@ -116,6 +116,8 @@ public class CartaImprese extends CartaSviluppo{
 		}
 		
 		public Tooltip getTooltip(){
+			Tooltip tooltip = new Tooltip();
+			tooltip.setText(this.tooltip);
 			return tooltip;
 		}
 		
@@ -171,7 +173,7 @@ public class CartaImprese extends CartaSviluppo{
 			this.puntiVittoria=puntiVittoria;
 		}
 		
-		public void setTooltip(Tooltip tooltip) {
+		public void setTooltip(String tooltip) {
 			this.tooltip = tooltip;
 		}
 }

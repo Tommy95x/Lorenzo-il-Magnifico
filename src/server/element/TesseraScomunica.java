@@ -17,8 +17,8 @@ public class TesseraScomunica implements Serializable{
 	private String oggettoPenalita;
 	private int valorePenalita;
 	private int periodo;
-	private Image image;
-	private Tooltip tooltip;
+	private Image image = new Image(getClass().getResourceAsStream("Zecca.png"));
+	private String tooltip;
 	
 	//Vengono settati i parametri della tessera scomunica
 	public TesseraScomunica(){
@@ -59,10 +59,12 @@ public class TesseraScomunica implements Serializable{
 	}
 
 	public Tooltip getTooltip() {
+		Tooltip tooltip = new Tooltip();
+		tooltip.setText(this.tooltip);
 		return tooltip;
 	}
 
-	public void setTooltip(Tooltip tooltip) {
+	public void setTooltip(String tooltip) {
 		this.tooltip = tooltip;
 	}
 

@@ -8,11 +8,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -65,7 +67,7 @@ public class ControllerMenu {
 	@FXML
 	public void enterInALobby() throws IOException, ClassNotFoundException {
 		ObservableList<String> nameLobbies = FXCollections.observableArrayList();
-		for (Partita mom : start.getClient().lobbiesView()){
+		for (Partita mom : start.getClient().lobbiesView()) {
 			nameLobbies.add(mom.getLobbyName());
 		}
 		lobbies.setItems(nameLobbies);
@@ -87,7 +89,7 @@ public class ControllerMenu {
 	@FXML
 	public void selectLobby(MouseEvent e) {
 		lobby = "";
-		if (e.getClickCount() == 2){
+		if (e.getClickCount() == 2) {
 			lobby = (String) lobbies.getSelectionModel().getSelectedItem();
 			try {
 				colorSelect();
@@ -113,7 +115,7 @@ public class ControllerMenu {
 		confirm.setOnAction(event -> {
 			popup.close();
 			colorSelectFirstTime();
-			if(!textLobby.getText().equals("")){
+			if (!textLobby.getText().equals("")) {
 				lobby = textLobby.getText();
 				start.setCreate(true);
 			}
@@ -124,9 +126,9 @@ public class ControllerMenu {
 		popup.setScene(scene);
 		popup.show();
 	}
-	
+
 	@FXML
-	public void startGame() throws IOException, ClassNotFoundException{
+	public void startGame() throws IOException, ClassNotFoundException {
 		System.out.println("Lanciato metodo utente pronto a giocare");
 		try {
 			start.getClient().startGame();
@@ -141,23 +143,23 @@ public class ControllerMenu {
 	}
 
 	@FXML
-	public void close() throws IOException{
-		if(!exitToGame.isDisable())
+	public void close() throws IOException {
+		if (!exitToGame.isDisable())
 			start.getClient().exitToTheGame(lobby, start.getColor());
 		start.exit(start.getStage());
 	}
-	
+
 	@FXML
-	public void help(){
-		
+	public void help() {
+
 	}
-	
+
 	@FXML
-	public void extiToTheGame() throws IOException{
+	public void extiToTheGame() throws IOException {
 		exitToGame.setDisable(true);
 		start.getClient().exitToTheGame(lobby, start.getColor());
 	}
-	
+
 	private void colorSelectFirstTime() {
 		Stage popup = new Stage();
 		popup.setTitle("Select Colors");
@@ -238,7 +240,7 @@ public class ControllerMenu {
 			event.consume();
 		});
 		boxButton.getChildren().add(b);
-		box.getChildren().addAll(boxColors,boxButton);
+		box.getChildren().addAll(boxColors, boxButton);
 		popup.centerOnScreen();
 		Scene scene = new Scene(box, 400, 150);
 		popup.setScene(scene);
@@ -267,7 +269,19 @@ public class ControllerMenu {
 						b.setOnAction(event -> {
 							start.setColor("blue");
 							try {
-								start.getClient().enterInALobby(lobby, start.getColor());
+								if(start.getClient().enterInALobby(lobby, start.getColor())!=-1){
+									popup.close();
+									viewStartButton();
+									event.consume();
+									}else{
+									popup.close();
+									Alert alert = new Alert(AlertType.WARNING);
+									alert.initOwner(start.getStage());
+									alert.setTitle("Invalid Login");
+									alert.setContentText("The game is full of players");
+									alert.showAndWait();
+									event.consume();
+									}
 							} catch (IOException | ClassNotFoundException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -287,7 +301,19 @@ public class ControllerMenu {
 						b.setOnAction(event -> {
 							start.setColor("orange");
 							try {
-								start.getClient().enterInALobby(lobby, start.getColor());
+								if(start.getClient().enterInALobby(lobby, start.getColor())!=-1){
+									popup.close();
+									viewStartButton();
+									event.consume();
+									}else{
+									popup.close();
+									Alert alert = new Alert(AlertType.WARNING);
+									alert.initOwner(start.getStage());
+									alert.setTitle("Invalid Login");
+									alert.setContentText("The game is full of players");
+									alert.showAndWait();
+									event.consume();
+									}
 							} catch (IOException | ClassNotFoundException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -307,7 +333,19 @@ public class ControllerMenu {
 						b.setOnAction(event -> {
 							start.setColor("white");
 							try {
-								start.getClient().enterInALobby(lobby, start.getColor());
+								if(start.getClient().enterInALobby(lobby, start.getColor())!=-1){
+									popup.close();
+									viewStartButton();
+									event.consume();
+									}else{
+									popup.close();
+									Alert alert = new Alert(AlertType.WARNING);
+									alert.initOwner(start.getStage());
+									alert.setTitle("Invalid Login");
+									alert.setContentText("The game is full of players");
+									alert.showAndWait();
+									event.consume();
+									}
 							} catch (IOException | ClassNotFoundException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -327,14 +365,24 @@ public class ControllerMenu {
 						b.setOnAction(event -> {
 							start.setColor("green");
 							try {
-								start.getClient().enterInALobby(lobby, start.getColor());
-							} catch (IOException | ClassNotFoundException e) {
+								if(start.getClient().enterInALobby(lobby, start.getColor())!=-1){
+									popup.close();
+									viewStartButton();
+									event.consume();
+									}else{
+									popup.close();
+									Alert alert = new Alert(AlertType.WARNING);
+									alert.initOwner(start.getStage());
+									alert.setTitle("Invalid Login");
+									alert.setContentText("The game is full of players");
+									alert.showAndWait();
+									event.consume();
+									}
+								} catch (IOException | ClassNotFoundException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-							popup.close();
-							viewStartButton();
-							event.consume();
+							
 						});
 						boxButton.getChildren().add(b);
 						break;
