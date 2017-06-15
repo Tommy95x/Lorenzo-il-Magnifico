@@ -141,7 +141,13 @@ public class StartClientGui extends Application{
 					root = loader.load();
 					ControllerGame game = loader.getController();
 					try {
-						game.getStartClient(this);
+						game.setGUI(this);
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					try {
+						game.setCards(getClient().getCardsGame());
 					} catch (ClassNotFoundException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

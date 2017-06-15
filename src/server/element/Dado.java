@@ -30,7 +30,7 @@ public class Dado implements Serializable{
 	public void setValue(Connection connection) throws SQLException {
 		 valore = (int) (Math.random()*6);
 		 Statement stmt=connection.createStatement();
-		 ResultSet res = stmt.executeQuery("SELECT IMMAGINE FROM DADO WHERE VALORE="+valore+" and COLORE"+color+"");
+		 ResultSet res = stmt.executeQuery("SELECT IMMAGINE FROM DADO WHERE VALORE="+valore+" and COLORE = '"+color+"'");
 		 res.next();
 		 immagineValore=res.getString("IMMAGINE");
 		 res.close();
