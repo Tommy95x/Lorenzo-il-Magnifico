@@ -259,12 +259,19 @@ public class Partita implements Serializable{
 		System.out.println("CarteEdificio");
 		for(int i=0; i<NUMCARTE;i++)
 			mom[i+8]= carteEdifici[i];
+<<<<<<< HEAD
+		}
+		for(int i=0; i<NUMCARTE;i++){
+			mom[i+12] = cartePersonaggio[i];
+		}
+=======
 		System.out.println("Carte Personaggio");
 		for(int i=0; i<NUMCARTE;i++)
 			mom[i+12] = cartePersonaggio[i];	
 		System.out.println("Stampa\n\n\n\n\n\n");
 		for(int i=0;i<16;i++)
 			System.out.println(mom[i].getNameCard());
+>>>>>>> branch 'develop' of https://github.com/Tommy95x/Lorenzo-il-Magnifico.git
 		return mom;
 	}
 	
