@@ -16,8 +16,8 @@ import shared.RMIClientInterface;
 
 public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implements RMIClientInterface{
 	
-	private StartClientGui start;
-	private ControllerGame guiGame;
+	private StartClientGui start = new StartClientGui();
+	private ControllerGame guiGame = new ControllerGame();
 	private int positionGame;
 	private String name;
 
@@ -32,27 +32,23 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 		System.out.println("Prova");
 	}
 
-	@Override
 	public void moveDisco(double x, double y, String colorPlayer, String colorDisco) throws RemoteException {
-		// TODO Auto-generated method stub
+		guiGame.movePunti(colorDisco, x, y);
 		
 	}
 
-	@Override
+	public void moveFamiliareAvv(double x, double y, String colorPlayer, String colorFamiliare) throws RemoteException {
+		guiGame.moveFamAvv(colorPlayer, colorFamiliare, x, y);
+		
+	}
+
 	public void moveDiscoFede(double x, double y, String colorPlayer, String colorDisco) throws RemoteException {
-		// TODO Auto-generated method stub
+		guiGame.movePuntiFede(colorDisco, x, y);
 		
 	}
 
-	@Override
-	public void moveFamiliareAvv(double x, double y, String colorPlayer, String colorDisco) throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void richestaSostegnoChiesa() throws RemoteException {
-		// TODO Auto-generated method stub
+	public void addScomunica(int nScomuniche, Tooltip tooltip) throws RemoteException {
+		guiGame.addScomunica(nScomuniche, tooltip);
 		
 	}
 
@@ -73,12 +69,6 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 		
 	}
 
-	@Override
-	public void addScomunica(int nScomuniche, Tooltip tooltip) throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
-
 	public void notifyAddCard(CartaSviluppo carta, String nameAvv,Portafoglio portafoglio) throws RemoteException {
 		guiGame.notifyAddCardAvv(carta, nameAvv,portafoglio);
 		
@@ -94,6 +84,12 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 
 	public void setStart(StartClientGui start) {
 		this.start = start;
+		
+	}
+
+	@Override
+	public void richestaSostegnoChiesa() throws RemoteException {
+		// TODO Auto-generated method stub
 		
 	}
 	

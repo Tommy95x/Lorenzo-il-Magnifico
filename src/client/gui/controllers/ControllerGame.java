@@ -1031,6 +1031,7 @@ public class ControllerGame {
 
 	public void setCards(ArrayList<CartaSviluppo> carte) {
 		for (int i = 0; i < 4; i++) {
+			arrayCarteTerritori[i] = new CartaTerritori();
 			arrayCarteTerritori[i] = (CartaTerritori) carte.get(i);
 			ImageView mom = new ImageView();
 			mom.setImage(new Image(getClass().getResourceAsStream(carte.get(i).getImage())));
@@ -1038,6 +1039,7 @@ public class ControllerGame {
 			carteTerritori.getChildren().add(mom);
 		}
 		for (int i = 4; i < 8; i++) {
+			arrayCarteEdifici[i] = new CartaEdifici();
 			arrayCarteEdifici[i] = (CartaEdifici) carte.get(i);
 			ImageView mom = new ImageView();
 			mom.setImage(new Image(getClass().getResourceAsStream(carte.get(i).getImage())));
@@ -1045,6 +1047,7 @@ public class ControllerGame {
 			carteEdifici.getChildren().add(mom);
 		}
 		for (int i = 8; i < 12; i++) {
+			arrayCartePersonaggi[i] = new CartaPersonaggi();
 			arrayCartePersonaggi[i] = (CartaPersonaggi) carte.get(i);
 			ImageView mom = new ImageView();
 			mom.setImage(new Image(getClass().getResourceAsStream(carte.get(i).getImage())));
@@ -1052,6 +1055,7 @@ public class ControllerGame {
 			cartePersonaggi.getChildren().add(mom);
 		}
 		for (int i = 12; i < 16; i++) {
+			arrayCarteImpresa[i] = new CartaImprese();
 			arrayCarteImpresa[i] = (CartaImprese) carte.get(i);
 			ImageView mom = new ImageView();
 			mom.setImage(new Image(getClass().getResourceAsStream(carte.get(i).getImage())));

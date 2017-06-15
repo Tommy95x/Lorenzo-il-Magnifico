@@ -278,6 +278,7 @@ public class Partita implements Serializable{
 		int i;
 		System.out.println("All'interno della partita setto le carte");
 		for(i=0;i<NUMCARTE;i++){
+			System.out.println("CarteTerritori");
 			query="SELECT * FROM "+name.toUpperCase()+"CARTETERRITORIOPARTITA LIMIT 1";//Scrivere la query in modo che cerchi differenti carte in generale
 			carteTerritori[i] = new CartaTerritori();
 			carteTerritori[i].setCarta(connection,query);
@@ -285,6 +286,7 @@ public class Partita implements Serializable{
 			connection.createStatement().executeUpdate(queryelimina);
 		}
 		for(i=0;i<NUMCARTE;i++){
+			System.out.println("CartePersonaggio");
 			query="SELECT * FROM "+name.toUpperCase()+"CARTEPERSONAGGIOPARTITA LIMIT 1";//Scrivere la query in modo che cerchi differenti carte in generale
 			cartePersonaggio[i] = new CartaPersonaggi();
 			cartePersonaggio[i].setCarta(connection,query);
@@ -292,6 +294,7 @@ public class Partita implements Serializable{
 			connection.createStatement().executeUpdate(queryelimina);
 		}
 		for(i=0;i<NUMCARTE;i++){
+			System.out.println("CarteEdificio");
 			query="SELECT * FROM "+name.toUpperCase()+"CARTEEDIFICIOPARTITA LIMIT 1";//Scrivere la query in modo che cerchi differenti carte in generale
 			carteEdifici[i] = new CartaEdifici();
 			carteEdifici[i].setCarta(connection,query);
@@ -299,12 +302,14 @@ public class Partita implements Serializable{
 			connection.createStatement().executeUpdate(queryelimina);
 		}
 		for(i=0;i<NUMCARTE;i++){
+			System.out.println("CarteImpresa");
 			query="SELECT * FROM "+name.toUpperCase()+"CARTEIMPRESAPARTITA LIMIT 1";//Scrivere la query in modo che cerchi differenti carte in generale
 			carteImprese[i] = new CartaImprese();
 			carteImprese[i].setCarta(connection,query);
 			queryelimina="DELETE TOP 1 FROM "+name.toUpperCase()+"CARTEIMPRESAPARTITA";
 			connection.createStatement().executeUpdate(queryelimina);
 		}
+		connection.close();
 	}
 
 	public void changeColors(String color) {
@@ -319,8 +324,14 @@ public class Partita implements Serializable{
 
 
 	public void setCardsScomunica(ConnectionDatabase connectionDatabase, String account) throws SQLException {
+			System.out.println("Carta1");
+			for(int i=0;i<3;i++){
+				tessereScomunica[i] = new TesseraScomunica();
+			}
 			tessereScomunica[0].setTesseraPrimoPeriodo(connectionDatabase.getConnection(account));
+			System.out.println("Carta2");
 			tessereScomunica[1].setTessereSecondoPeriodo(connectionDatabase.getConnection(account));
+			System.out.println("Carta3");
 			tessereScomunica[2].setTesseraTerzoPeriodo(connectionDatabase.getConnection(account));
 	}
 

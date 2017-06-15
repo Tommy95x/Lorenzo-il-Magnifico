@@ -1,11 +1,7 @@
 
 package client.gui;
 
-import java.awt.Panel;
 import java.io.IOException;
-import java.io.Serializable;
-import java.rmi.RemoteException;
-
 import client.ConnectionClient;
 import client.gui.controllers.ControllerConnection;
 import client.gui.controllers.ControllerGame;
@@ -126,7 +122,12 @@ public class StartClientGui extends Application{
 					primaryStage.setResizable(true);
 					waitingRoom.getStartClientGui(this);
 					primaryStage.setScene(new Scene(root));
-					//getClient().waitStartGame(this);
+					try {
+						getClient().waitStartGame(this);
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

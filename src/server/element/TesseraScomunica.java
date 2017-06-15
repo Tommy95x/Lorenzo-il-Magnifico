@@ -87,17 +87,24 @@ public class TesseraScomunica implements Serializable{
 	 * @throws SQLException 
 	 */
 	public void setTesseraPrimoPeriodo(Connection connection) throws SQLException {
+		System.out.println("Tessera 1");
 		Statement stmt = connection.createStatement();
 		ResultSet rs = stmt.executeQuery("SELECT * FROM TESSERASCOMUNICA WHERE PERIODO=1 ORDER BY RAND() LIMIT 1");
 		while(rs.next()){
+			System.out.println("ID");
 			ID = rs.getString("ID");
+			System.out.println("Nome");
 			nome = rs.getString("NOME");
+			System.out.println("Periodo");
 			periodo=rs.getInt("PERIODO");
-			setImage(rs.getString("IMMAGINE"));
+			System.out.println("Image");
+			image = rs.getString("IMMAGINE");
+			System.out.println("tool");
 			setTooltip(rs.getString("DESCRIZIONE"));
 		}
 		rs.close();
 		stmt.close();
+		connection.close();
 	}
 
 	public void setTesseraTerzoPeriodo(Connection connection) throws SQLException {
@@ -112,7 +119,7 @@ public class TesseraScomunica implements Serializable{
 		}
 		rs.close();
 		stmt.close();
-		
+		connection.close();
 	}
 
 	public void setTessereSecondoPeriodo(Connection connection) throws SQLException {
@@ -127,6 +134,7 @@ public class TesseraScomunica implements Serializable{
 		}
 		rs.close();
 		stmt.close();
+		connection.close();
 	}
 
 }

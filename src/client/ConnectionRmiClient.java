@@ -96,11 +96,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 			positionGame=serverMethods.createNewLobby(lobby, name, color , interlocutor);
 			System.out.println(positionGame);
 			return true;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		} catch (RemoteException e) {
+		} catch (RemoteException | SQLException e) {
 			System.out.println("Error rmi");
 			e.printStackTrace();
 			return false;
@@ -125,7 +121,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		try {
 			interlocutor = new ConnectionRmiInterlocutorClient(name, positionGame);
 			positionGame=serverMethods.selectLobby(lobby, name, color, interlocutor );
-		} catch (RemoteException e) {
+		} catch (RemoteException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -195,25 +191,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		interlocutor.setGuiGame(guiGame);
 	}
 	
-	public void moveDisco(double x, double y, String colorPlayer, String colorDisco) throws RemoteException {
-		guiGame.movePunti(colorDisco, x, y);
-		
-	}
-
-	public void moveFamiliareAvv(double x, double y, String colorPlayer, String colorFamiliare) throws RemoteException {
-		guiGame.moveFamAvv(colorPlayer, colorFamiliare, x, y);
-		
-	}
-
-	public void moveDiscoFede(double x, double y, String colorPlayer, String colorDisco) throws RemoteException {
-		guiGame.movePuntiFede(colorDisco, x, y);
-		
-	}
-
-	public void addScomunica(int nScomuniche, Tooltip tooltip) throws RemoteException {
-		guiGame.addScomunica(nScomuniche, tooltip);
-		
-	}
+	
 
 	public void setStage(StartClientGui start) {
 		interlocutor.setStart(start);
