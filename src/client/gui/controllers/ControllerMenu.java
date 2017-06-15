@@ -173,16 +173,16 @@ public class ControllerMenu {
 		
 		b.setOnAction(event -> {
 			start.setColor("blue");
-			try {
-				System.out.println(start.getClient().createANewLobby(lobby, start.getColor()));
+				try {
+					System.out.println(start.getClient().createANewLobby(lobby, start.getColor()));
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				start.getClient().setStage(start);
 				viewStartButton();
 				popup.close();
 				event.consume();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		});
 		boxButton.getChildren().add(b);
 		circle = new Circle();

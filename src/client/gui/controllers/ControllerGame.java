@@ -224,12 +224,7 @@ public class ControllerGame {
 	public void setGUI(StartClientGui startClientGui) throws ClassNotFoundException, IOException {
 		this.setStart(startClientGui);
 		numberOfGamers = start.getClient().getPlayers();
-		setColorsParents(start.getColor());
-		setColorCubiScomunica(start.getColor());
-		setRisorse(start.getClient().getRisorse());
-		//setTabavv(start.getClient().getGiocatori());
 		start.getClient().setGuiGame(this);
-		//setPosizioni();
 		/*mercatoPosMoneteMilitari.setOnDragDropped(event->{
 			if(mercatoPosMoneteMilitari != null){
 				familiareNeutro.getDestinazione(mercatoPosMoneteMilitari);
@@ -435,12 +430,11 @@ public class ControllerGame {
 	}
 
 
-	private void setTabavv(Giocatore[] giocatori) {
+	public void setTabavv(Giocatore[] giocatori) {
 		for(int i = 0;i<4;i++){
 			if(!giocatori[i].getName().equals(start.getClient().getName())){
 				if(name1.getText().equals("")){
 					name1.setText(giocatori[i].getName());
-					
 				}else if(name2.getText().equals("")){
 					name2.setText(giocatori[i].getName());
 				}else if(name3.getText().equals("")){
@@ -452,7 +446,7 @@ public class ControllerGame {
 	}
 
 
-	private void setRisorse(Portafoglio risorse) {
+	public void setRisorse(Portafoglio risorse) {
 		setLegno(risorse.getDimRisorse("legno"));
 		setPietra(risorse.getDimRisorse("pietra"));
 		setServitori(risorse.getDimRisorse("servitori"));
@@ -469,7 +463,7 @@ public class ControllerGame {
 	}
 
 
-	private void setColorCubiScomunica(String color) {
+	public void setColorCubiScomunica(String color) {
 		switch(color){
 			case "blue":
 				cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaBlu.png")));
@@ -495,7 +489,7 @@ public class ControllerGame {
 	}
 
 
-	private void setColorsParents(String color) {
+	public void setColorsParents(String color) {
 		switch(color){
 			case "blue":
 				familiareNeutro.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNeutro.png")));
@@ -711,12 +705,12 @@ public class ControllerGame {
 	/*
 	 * Controllo per verificare se si ha un numero di punti del dado
 	 */
-	public boolean controlloPosizionamento(String color, double x, double y, Integer integer) {
+	public boolean controlloPosizionamento(String color, double x, double y, int integer) {
 		String mom = null;
 		boolean risposta = false;
 		try {
 			mom = start.getClient().controlloPosizionamento(color, x, y, integer);
-		} catch (RemoteException e) {
+		} catch (ClassNotFoundException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -1212,7 +1206,7 @@ public class ControllerGame {
 		start.getClient().waitTurno();
 	}
 	
-	private void setPosizioni() throws IOException, ClassNotFoundException {
+	public void setPosizioni() throws IOException, ClassNotFoundException {
 		int i=0;
 		try {
 			for(Giocatore g: start.getClient().getGiocatori()){
@@ -1273,53 +1267,166 @@ public class ControllerGame {
 		}
 	}
 	
-	@FXML
-	public void setOnDragDetected(Event event) {
-    	System.out.println("setOnDragDetected");
-        if (this.getClass().getImage() == null) {
-            return;
-        }	
+	public void parentsProperties(){
+		familiareNeutro.setOnDragDetected(e -> {
+			System.out.println("DragDetected");
+	        if (familiareNeutro.getImage() == null) {
+	            return;
+	        }	
+	    Dragboard drag = familiareNeutro.startDragAndDrop(TransferMode.MOVE);
+	    ClipboardContent content = new ClipboardContent();
+	    content.putImage(familiareNeutro.getImage());
+	    drag.setDragView(familiareNeutro.getImage());
+	    drag.setContent(content);
+	    e.consume();
+		});
+		
+		familiareNero.setOnDragDetected(e -> {
+			System.out.println("DragDetected");
+	        if (familiareNero.getImage() == null) {
+	            return;
+	        }	
+	    Dragboard drag = familiareNero.startDragAndDrop(TransferMode.MOVE);
+	    ClipboardContent content = new ClipboardContent();
+	    content.putImage(familiareNero.getImage());
+	    drag.setDragView(familiareNero.getImage());
+	    drag.setContent(content);
+	    e.consume();
+		});
+		
+		familiareBianco.setOnDragDetected(e -> {
+			System.out.println("DragDetected");
+	        if (familiareBianco.getImage() == null) {
+	            return;
+	        }	
+	    Dragboard drag = familiareBianco.startDragAndDrop(TransferMode.MOVE);
+	    ClipboardContent content = new ClipboardContent();
+	    content.putImage(familiareBianco.getImage());
+	    drag.setDragView(familiareBianco.getImage());
+	    drag.setContent(content);
+	    e.consume();
+		});
+		
+		familiareArancio.setOnDragDetected(e -> {
+			System.out.println("DragDetected");
+	        if (familiareArancio.getImage() == null) {
+	            return;
+	        }	
+	    Dragboard drag = familiareArancio.startDragAndDrop(TransferMode.MOVE);
+	    ClipboardContent content = new ClipboardContent();
+	    content.putImage(familiareArancio.getImage());
+	    drag.setDragView(familiareArancio.getImage());
+	    drag.setContent(content);
+	    e.consume();
+		});
+		
+		familiareNeutro.setOnDragOver(event ->{
+			System.out.println("setOnDragOver");       
+	    	if (!event.isDropCompleted() &&
+	               event.getDragboard().hasString()) {
+	            event.acceptTransferModes(TransferMode.MOVE);
+	        }
 
-    Dragboard drag = startDragAndDrop(TransferMode.MOVE);
-    ClipboardContent content = new ClipboardContent();
-    content.putImage(getImage());
-    drag.setDragView(getImage());
-    drag.setContent(content);
-    event.consume();
-	});
-	
-	setOnDragOver(event ->{
-		System.out.println("setOnDragOver");       
-    	if (!event.isDropCompleted() &&
-               event.getDragboard().hasString()) {
-            event.acceptTransferModes(TransferMode.MOVE);
-        }
+	        event.consume();
+		});
+		
+		familiareArancio.setOnDragOver(event ->{
+			System.out.println("setOnDragOver");       
+	    	if (!event.isDropCompleted() &&
+	               event.getDragboard().hasString()) {
+	            event.acceptTransferModes(TransferMode.MOVE);
+	        }
 
-        event.consume();
-	});
+	        event.consume();
+		});
+		
+		familiareBianco.setOnDragOver(event ->{
+			System.out.println("setOnDragOver");       
+	    	if (!event.isDropCompleted() &&
+	               event.getDragboard().hasString()) {
+	            event.acceptTransferModes(TransferMode.MOVE);
+	        }
+
+	        event.consume();
+		});
+		
+		familiareNero.setOnDragOver(event ->{
+			System.out.println("setOnDragOver");       
+	    	if (!event.isDropCompleted() &&
+	               event.getDragboard().hasString()) {
+	            event.acceptTransferModes(TransferMode.MOVE);
+	        }
+	        event.consume();
+		});
 	
-    setOnDragEntered(event -> {
+	
+		familiareBianco.setOnDragEntered(event -> {
     	System.out.println("setOnDragEntered");
         if (!event.isDropCompleted() &&
                 event.getDragboard().hasString()) {
-            setOpacity(0.3);
+        	familiareBianco.setOpacity(0.3);
         }
-    });
+		});
 	
-    setOnDragExited(event -> {
+		familiareArancio.setOnDragEntered(event -> {
+	    	System.out.println("setOnDragEntered");
+	        if (!event.isDropCompleted() &&
+	                event.getDragboard().hasString()) {
+	        	familiareArancio.setOpacity(0.3);
+	        }
+	    });
+		familiareNero.setOnDragEntered(event -> {
+	    	System.out.println("setOnDragEntered");
+	        if (!event.isDropCompleted() &&
+	                event.getDragboard().hasString()) {
+	        	familiareNero.setOpacity(0.3);
+	        }
+	    });
+		familiareNeutro.setOnDragEntered(event -> {
+	    	System.out.println("setOnDragEntered");
+	        if (!event.isDropCompleted() &&
+	                event.getDragboard().hasString()) {
+	        	familiareNeutro.setOpacity(0.3);
+	        }
+	    });
+
+		familiareNeutro.setOnDragExited(event -> {
     	System.out.println("setOnDragExited");
         if (!event.isDropCompleted() &&
                 event.getDragboard().hasString()) {
-            setOpacity(1);
+        	familiareNeutro.setOpacity(1);
         }
     });
+		
+		familiareNero.setOnDragExited(event -> {
+	    	System.out.println("setOnDragExited");
+	        if (!event.isDropCompleted() &&
+	                event.getDragboard().hasString()) {
+	        	familiareNero.setOpacity(1);
+	        }
+	    });
+		
+		familiareArancio.setOnDragExited(event -> {
+	    	System.out.println("setOnDragExited");
+	        if (!event.isDropCompleted() &&
+	                event.getDragboard().hasString()) {
+	        	familiareArancio.setOpacity(1);
+	        }
+	    });
+		
+		familiareBianco.setOnDragExited(event -> {
+	    	System.out.println("setOnDragExited");
+	        if (!event.isDropCompleted() &&
+	                event.getDragboard().hasString()) {
+	        	familiareBianco.setOpacity(1);
+	        }
+	    });
     
-    setOnDragDropped(event->{
+		familiareBianco.setOnDragDropped(event->{
     	System.out.println("setOnDragDropped");
-        if (getImage() == null) {
+        if (familiareBianco.getImage() == null) {
             return;
         }
-        
         Dragboard drag = event.getDragboard();
         boolean success = false;
         
@@ -1332,38 +1439,89 @@ public class ControllerGame {
         
     });
     
+		familiareNero.setOnDragDropped(event->{
+	    	System.out.println("setOnDragDropped");
+	        if (familiareNero.getImage() == null) {
+	            return;
+	        }
+	        Dragboard drag = event.getDragboard();
+	        boolean success = false;
+	        
+	        if(drag.hasImage()){
+	        	success = true;
+	        }
+	        
+	        event.setDropCompleted(success);
+	        event.consume();
+	        
+	    });
+		
+		familiareArancio.setOnDragDropped(event->{
+	    	System.out.println("setOnDragDropped");
+	        if (familiareArancio.getImage() == null) {
+	            return;
+	        }
+	        Dragboard drag = event.getDragboard();
+	        boolean success = false;
+	        
+	        if(drag.hasImage()){
+	        	success = true;
+	        }
+	        
+	        event.setDropCompleted(success);
+	        event.consume();
+	        
+	    });
+		
+		familiareNeutro.setOnDragDropped(event->{
+	    	System.out.println("setOnDragDropped");
+	        if (familiareNeutro.getImage() == null) {
+	            return;
+	        }
+	        Dragboard drag = event.getDragboard();
+	        boolean success = false;
+	        
+	        if(drag.hasImage()){
+	        	success = true;
+	        }
+	        
+	        event.setDropCompleted(success);
+	        event.consume();
+	        
+	    });
     
     
-    setOnDragDone(event ->{
-    	if(game.controlloPosizionamento(getColor(), this.getX(), this.getY(),0))
+    /*familiareNeutro.setOnDragDone(event ->{
+    	if(controlloPosizionamento( start.getColor(),familiareNero.getX(), familiareNero.getY(),0))
     		if(flag){
-    			destinazione.setImage(this.getImage());
-    			this.setDisable(true);
+    			destinazione.setImage(familiareNero.getImage());
+    			familiareNero.setDisable(true);
     			try {
-					game.setCardGiocatore(game.getNamePosition(this.getX(),this.getY()));
+					setCardGiocatore(getNamePosition(familiareNero.getX(),familiareNero.getY()));
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
     			try {
-					game.notifySpostamento(this.getColor(),this.getX(), this.getY());
+					notifySpostamento(start.getColor(),familiareNero.getX(), familiareNero.getY());
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
     		}
     		else{
-    			box.getChildren().add(new ImageView(this.getImage()));
-    			this.setDisable(true);
+    			box.getChildren().add(new ImageView(familiareNero.getImage()));
+    			familiareNero.setDisable(true);
     			try {
-					game.notifySpostamento(this.getColor(),this.getX(), this.getY());
+					notifySpostamento(start.getColor(),familiareNero.getX(), familiareNero.getY());
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
     		}
-    	this.setImage(new Image(getClass().getResourceAsStream("")));
-    });
+    	familiareNero.setImage(new Image(getClass().getResourceAsStream("")));
+    });*/
 	
 	
+	}
 }

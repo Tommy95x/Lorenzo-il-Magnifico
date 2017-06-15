@@ -51,8 +51,9 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		commonServer.getLobbyByName(lobby).setCardsScomunica(commonServer.getDBConnection(),
 		 account);
 		System.out.println("Aggiungo il giocatore alla partita creata");
-		commonServer.getLobbyByName(lobby).addGiocatore(new Giocatore(color, commonServer.getLobbyByName(lobby),
-				account, commonServer.getIndicePartita(lobby)));
+		Giocatore g = new Giocatore(color, commonServer.getLobbyByName(lobby),
+				account, commonServer.getIndicePartita(lobby));
+		commonServer.getLobbyByName(lobby).addGiocatore(g);
 		System.out.println("Aggiorno i colori disponibili");
 		commonServer.getLobbyByName(lobby).changeColors(color);
 		System.out.println("Acquisisco la comunicazione del giocatore");

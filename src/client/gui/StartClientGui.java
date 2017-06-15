@@ -139,7 +139,8 @@ public class StartClientGui extends Application{
 					loader = new FXMLLoader();
 					loader.setLocation(this.getClass().getResource("controllers/GameGui.fxml"));
 					root = loader.load();
-					ControllerGame game = loader.getController();
+					ControllerGame game = new ControllerGame();
+					game = loader.getController();
 					try {
 						game.setGUI(this);
 					} catch (ClassNotFoundException e) {
@@ -149,6 +150,11 @@ public class StartClientGui extends Application{
 					try {
 						game.setCards(getClient().getCardsGame());
 						game.setCardsScomunica(getClient().getCardsScomunica());
+						game.setColorsParents(getColor());
+						game.setColorCubiScomunica(getColor());
+						game.setRisorse(getClient().getRisorse());
+						//game.setPosizioni();
+						//game.setTabavv(getClient().getGiocatori());
 					} catch (ClassNotFoundException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

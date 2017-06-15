@@ -112,7 +112,7 @@ public class ConnectionClient implements ClientInterface{
 		return null;
 	}
 
-	public String controlloPosizionamento(String color, double x, double y, Integer integer) throws RemoteException {
+	public String controlloPosizionamento(String color, double x, double y, int integer) throws RemoteException, IOException, ClassNotFoundException {
 		return color;
 	}
 	

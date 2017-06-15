@@ -152,7 +152,8 @@ public class StartServer implements Serializable{
 	}
 
 	public void addGamer(int positionGame, String color, String account) {
-		lobbies.get(positionGame).addGiocatore(new Giocatore(color,lobbies.get(positionGame),account, positionGame));
+		Giocatore g = new Giocatore(color,lobbies.get(positionGame),account, positionGame);
+		lobbies.get(positionGame).addGiocatore(g);
 	}
 
 	public ArrayList<Partita> getLobbies() {

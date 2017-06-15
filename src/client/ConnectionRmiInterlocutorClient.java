@@ -16,7 +16,7 @@ import shared.RMIClientInterface;
 
 public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implements RMIClientInterface{
 	
-	private StartClientGui start;
+	private StartClientGui start = new StartClientGui();
 	private ControllerGame guiGame;
 	private int positionGame;
 	private String name;
@@ -54,12 +54,6 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 
 	@Override
 	public void restTabellone() throws RemoteException {
-		try {
-			guiGame.resetTabellon();
-		} catch (ClassNotFoundException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 	}
 

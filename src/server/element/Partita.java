@@ -101,7 +101,7 @@ public class Partita implements Serializable{
 		System.out.println("Notificato giocatore 1\n\n\n");
 		if(giocatori[0] != null)
 			giocatori[0].notifyStartGame();
-		System.out.println("Notificato giocatore 2\n\n\n");
+		System.out.println("Notificato giocatore 2\n\n\n "+giocatori[1].toString());
 		if(giocatori[1] != null)
 			giocatori[1].notifyStartGame();
 		System.out.println("Notificato giocatore 3\n\n\n");
@@ -180,14 +180,9 @@ public class Partita implements Serializable{
 	}
 
 	public void addGiocatore(Giocatore giocatore) {
-		for(int i=0;i<giocatori.length;i++){
-			if(giocatori[i]==null){
-				giocatori[i]=giocatore;
-				System.out.println("Posizione giocatore"+i);
-				this.NumberOfPlayers++;
-				return;
-			}
-		}
+		giocatori[NumberOfPlayers] = giocatore;
+		System.out.println(giocatore.equals(giocatori[NumberOfPlayers]));
+		NumberOfPlayers++;
 	}
 
 	public Giocatore getGiocatoreByName(String name){
@@ -272,6 +267,8 @@ public class Partita implements Serializable{
 		System.out.println("CarteEdificio");
 		for(int i=0; i<NUMCARTE;i++)
 			mom[i+8]= carteEdifici[i];
+		for(int i=0;i<NUMCARTE;i++)
+			mom[i+12] = carteImprese[i];
 		return mom;
 	}
 	
