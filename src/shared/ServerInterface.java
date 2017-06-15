@@ -18,10 +18,10 @@ public interface ServerInterface extends Remote {
 	
 	public String login(String username, String pw1) throws RemoteException;
 	String register(String username, String pw1, String pw2, String email) throws RemoteException, SQLException;
-	public int createNewLobby(String lobby, String account, String color, RMIClientInterface client) throws RemoteException, SQLException;
+	public int createNewLobby(String lobby, String account, String color) throws RemoteException, SQLException;
 	public void startPartita(String account, int game) throws RemoteException, SQLException;
 	public ArrayList<String> getLobby() throws RemoteException;
-	public int selectLobby(String lobby, String account, String color, RMIClientInterface client) throws RemoteException, SQLException;
+	public int selectLobby(String lobby, String account, String color) throws RemoteException, SQLException;
 	public String[] getColors(int positionGame) throws RemoteException;
 	public CartaSviluppo[] getCards(int positionGame) throws RemoteException;
 	public void showCards(Image card, String nameCard) throws RemoteException;
@@ -43,4 +43,5 @@ public interface ServerInterface extends Remote {
 	public void deleteView(int positionGame)throws RemoteException;
 	public void removeAccount(String name)throws RemoteException;
 	public int getNumberOfPlayer(int positionGame) throws RemoteException;
+	public void setClientInterface(String lobby, String account, RMIClientInterface connectionRmiClient)throws RemoteException;
 }

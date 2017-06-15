@@ -161,7 +161,7 @@ public class ThreadSocketServer implements Runnable{
 					lobby = input.readObject().toString();
 					color = input.readObject().toString();
 					System.out.println("Set partita");
-					output.writeObject(actionsServer.createNewLobby(lobby, account, color, null));
+					output.writeObject(actionsServer.createNewLobby(lobby, account, color));
 					output.flush();
 					commonServer.getLobbyByName(lobby).getGiocatoreByName(account).getSocket(this);
 					break;

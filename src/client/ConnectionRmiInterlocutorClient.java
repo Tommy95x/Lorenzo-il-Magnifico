@@ -16,8 +16,8 @@ import shared.RMIClientInterface;
 
 public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implements RMIClientInterface{
 	
-	private StartClientGui start = new StartClientGui();
-	private ControllerGame guiGame = new ControllerGame();
+	private StartClientGui start;
+	private ControllerGame guiGame;
 	private int positionGame;
 	private String name;
 

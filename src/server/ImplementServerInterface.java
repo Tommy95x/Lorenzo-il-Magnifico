@@ -41,7 +41,7 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		return commonServer.registerNewClient(username, pw1, email);
 	}
 
-	public int createNewLobby(String lobby, String account, String color, RMIClientInterface connectionRmiClient)
+	public int createNewLobby(String lobby, String account, String color)
 			throws RemoteException, SQLException {
 		System.out.println("Creo la partita nell'arraylist partite");
 		commonServer.addGame(lobby, account);
@@ -56,10 +56,13 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		System.out.println("Aggiorno i colori disponibili");
 		commonServer.getLobbyByName(lobby).changeColors(color);
 		System.out.println("Acquisisco la comunicazione del giocatore");
-		commonServer.getLobbyByName(lobby).getGiocatoreByName(account).getClient(connectionRmiClient);
-		/*commonServer.getLobbyByName(lobby).getGiocatoreByName(account).setFlag(new
-		 Flag(color, commonServer, account));*/
+		commonServer.getLobbyByName(lobby).getGiocatoreByName(account).setFlag(new
+		 Flag(color, commonServer, account));
 		return commonServer.getIndicePartita(lobby);
+	}
+	
+	public void setClientInterface(String lobby, String account, RMIClientInterface connectionRmiClient)throws RemoteException{
+		commonServer.getLobbyByName(lobby).getGiocatoreByName(account).getClient(connectionRmiClient);
 	}
 
 	public void startPartita(String account, int game) throws RemoteException, SQLException {
@@ -76,14 +79,13 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		return mom;
 	}
 
-	public int selectLobby(String lobby, String account, String color, RMIClientInterface client)
+	public int selectLobby(String lobby, String account, String color)
 			throws RemoteException, SQLException {
 		int numberGame = commonServer.getIndicePartita(lobby);
 		if (commonServer.getLobbyByNumber(numberGame).getNumberOfPlayers() < 4) {
 			commonServer.addGamer(numberGame, color, account);
 			commonServer.getLobbyByName(lobby).changeColors(color);
 			// Commentare per i test altrimenti lancia un null pointer la riga successiva
-			commonServer.getLobbyByName(lobby).getGiocatoreByName(account).getClient(client);
 			commonServer.getLobbyByName(lobby).getGiocatoreByName(account)
 					.setFlag(new Flag(color, commonServer, account));
 			return numberGame;
@@ -205,5 +207,4 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		// TODO Auto-generated method stub
 
 	}
-
 }
