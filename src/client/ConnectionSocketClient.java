@@ -21,6 +21,7 @@ import server.element.CartaPersonaggi;
 import server.element.CartaSviluppo;
 import server.element.CartaTerritori;
 import server.element.Dado;
+import server.element.Giocatore;
 import server.element.Partita;
 import server.element.Portafoglio;
 import server.element.TesseraScomunica;
@@ -99,7 +100,6 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		outputSocket.writeObject(email);
 		outputSocket.flush();
 		return inputSocket.readObject().toString();
-
 	}
 
 	public boolean createANewLobby(String lobby, String color) throws IOException {
@@ -148,22 +148,16 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 	public TesseraScomunica[] getCardsScomunica() throws ClassNotFoundException, IOException {
 		outputSocket.writeObject("getTessereScomunica");
 		outputSocket.flush();
-		TesseraScomunica[] ts = new TesseraScomunica[3];
-		System.out.println("Ciclo tessere scomunica");
+		TesseraScomunica[] t = new TesseraScomunica[3];
 		for (int i = 0; i < 3; i++) {
-			System.out.println("Ciclo tessere scomunica");
-			ts[i] = new TesseraScomunica(
-					(String) inputSocket.readObject(),
-					(String) inputSocket.readObject(),
-					(String) inputSocket.readObject());
+			t[i] = (TesseraScomunica) inputSocket.readObject();
+			System.out.println(t[i].getNome());
 		}
-		return ts;
+		return t;
 	}
 
 	public void startGame() throws IOException, ClassNotFoundException {
 		outputSocket.writeObject("start");
-		outputSocket.flush();
-		outputSocket.writeObject(positionGame);
 		outputSocket.flush();
 	}
 
@@ -301,74 +295,33 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 	public CartaSviluppo[] getCardsGame() throws ClassNotFoundException, IOException {
 		outputSocket.writeObject("getCardsGame");
 		outputSocket.flush();
-		CartaSviluppo[] carte = new CartaSviluppo[16];
+
+		CartaSviluppo[] c = new CartaSviluppo[16];
 		for (int i = 0; i < 4; i++) {
-			carte[i] = new CartaTerritori(
-					(String) inputSocket.readObject(),
-					(String) inputSocket.readObject(),
-					(String) inputSocket.readObject(), 
-					(HashMap<String, Integer>) inputSocket.readObject(),
-					(HashMap<String, Integer>) inputSocket.readObject(),
-					(HashMap<String, Integer>) inputSocket.readObject(),
-					(HashMap<String, Integer>) inputSocket.readObject(),
-					(HashMap<String, Integer>) inputSocket.readObject());
+			c[i] = (CartaTerritori) inputSocket.readObject();
+			System.out.println(c[i].getNameCard());
 		}
 		for (int i = 4; i < 8; i++) {
-			carte[i] = new CartaPersonaggi((int) inputSocket.readObject(),
-					(String) inputSocket.readObject(),
-					(String) inputSocket.readObject(), 
-					(String) inputSocket.readObject(),
-					(String) inputSocket.readObject(), 
-					(HashMap<String, Integer>) inputSocket.readObject(),
-					(HashMap<String, Integer>) inputSocket.readObject(),
-					(HashMap<String, Integer>) inputSocket.readObject(),
-					(HashMap<String, Integer>) inputSocket.readObject(),
-					(HashMap<String, Integer>) inputSocket.readObject(),
-					(HashMap<String, Integer>) inputSocket.readObject(),
-					(HashMap<String, Integer>) inputSocket.readObject());
+			c[i] = (CartaPersonaggi) inputSocket.readObject();
+			System.out.println(c[i].getNameCard());
 		}
 		for (int i = 8; i < 12; i++) {
-			carte[i] = new CartaEdifici((int) inputSocket.readObject(), 
-					(int) inputSocket.readObject(),
-					(int) inputSocket.readObject(), 
-					(int) inputSocket.readObject(),
-					(int) inputSocket.readObject(),
-					(String) inputSocket.readObject(), 
-					(HashMap<String, Integer>) inputSocket.readObject(),
-					(HashMap<String, Integer>) inputSocket.readObject(),
-					(HashMap<String, Integer>) inputSocket.readObject(),
-					(HashMap<String, Integer>) inputSocket.readObject(),
-					(HashMap<String, Integer>) inputSocket.readObject(),
-					(HashMap<String, Integer>) inputSocket.readObject(),
-					(HashMap<String, Integer>) inputSocket.readObject(),
-					(HashMap<String, Integer>) inputSocket.readObject(),
-					(String) inputSocket.readObject(),
-					(String) inputSocket.readObject(),
-					(String) inputSocket.readObject());
+			c[i] = (CartaEdifici) inputSocket.readObject();
+			System.out.println(c[i].getNameCard());
 		}
 		for (int i = 12; i < 16; i++) {
-			carte[i] = new CartaImprese((int) inputSocket.readObject(), 
-					(int) inputSocket.readObject(),
-					(int) inputSocket.readObject(), 
-					(int) inputSocket.readObject(), 
-					(int) inputSocket.readObject(),
-					(int) inputSocket.readObject(),
-					(String) inputSocket.readObject(), 
-					(HashMap<String, Integer>) inputSocket.readObject(),
-					(HashMap<String, Integer>) inputSocket.readObject(),
-					(HashMap<String, Integer>) inputSocket.readObject(),
-					(HashMap<String, Integer>) inputSocket.readObject(),
-					(int) inputSocket.readObject(),
-					(String) inputSocket.readObject(),
-					(String) inputSocket.readObject());
+			c[i] = (CartaImprese) inputSocket.readObject();
+			System.out.println(c[i].getNameCard());
 		}
-		return carte;
+		return c;
 	}
 
 	public Portafoglio getRisorse() throws ClassNotFoundException, IOException {
 		outputSocket.writeObject("getPortafoglio");
 		outputSocket.flush();
-		return (Portafoglio) inputSocket.readObject();
+		Portafoglio p = (Portafoglio) inputSocket.readObject();
+		System.out.println(p.getDimRisorse("monete"));
+		return p;
 	}
 
 	public int getPositionGame() {
@@ -412,6 +365,19 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		outputSocket.flush();
 		outputSocket.writeObject(name);
 		outputSocket.flush();
+	}
+
+
+	public Giocatore[] getGiocatori() throws IOException, ClassNotFoundException {
+		outputSocket.writeObject("giocatori");
+		outputSocket.flush();
+		int i = (int) inputSocket.readObject();
+		Giocatore[] g = new Giocatore[i];
+		for(int j =0; j<i;j++){
+			g[i] = (Giocatore) inputSocket.readObject();
+			System.out.println(g[i].getName());
+		}
+		return g;
 	}
 
 	public int getPlayers() {

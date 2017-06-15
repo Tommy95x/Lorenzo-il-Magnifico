@@ -88,17 +88,31 @@ public class Partita implements Serializable{
 	
 	private void startPartita() throws RemoteException, SQLException{
 		turno=1;
-		for(int i = 0; i<4; i++){
-			try {
+		/*for(int i = 0; i<4; i++){
+			
 				if(giocatori[i] != null){
 					System.out.println("notifico giocatori per l'inizio partita");
 					System.out.println(giocatori[i]);
 					giocatori[i].notifyStartGame();
 				}
-			} catch (IOException | ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
+		}*/
+		try {
+		System.out.println("Notificato giocatore 1\n\n\n");
+		if(giocatori[0] != null)
+			giocatori[0].notifyStartGame();
+		System.out.println("Notificato giocatore 2\n\n\n");
+		if(giocatori[1] != null)
+			giocatori[1].notifyStartGame();
+		System.out.println("Notificato giocatore 3\n\n\n");
+		if(giocatori[2] != null)
+			giocatori[2].notifyStartGame();
+		System.out.println("Notificato giocatore 4\n\n\n");
+		if(giocatori[3] != null)
+			giocatori[3].notifyStartGame();
+		} catch (IOException | ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		System.out.println("shuffle giocatori ");
 		beShuffled();
@@ -253,9 +267,8 @@ public class Partita implements Serializable{
 		CartaSviluppo[] mom = new  CartaSviluppo[16];
 		for(int i=0; i<NUMCARTE;i++)
 			mom[i] = carteTerritori[i];
-		System.out.println("Carte imprese");
 		for(int i=0; i<NUMCARTE;i++)
-			mom[i+4] = carteImprese[i];
+			mom[i+4]= cartePersonaggio[i];
 		System.out.println("CarteEdificio");
 		for(int i=0; i<NUMCARTE;i++)
 			mom[i+8]= carteEdifici[i];

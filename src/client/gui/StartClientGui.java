@@ -148,6 +148,7 @@ public class StartClientGui extends Application{
 					}
 					try {
 						game.setCards(getClient().getCardsGame());
+						game.setCardsScomunica(getClient().getCardsScomunica());
 					} catch (ClassNotFoundException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -156,11 +157,12 @@ public class StartClientGui extends Application{
 					Scene scene = new Scene(root,1366,768);
 					scene.getStylesheets().addAll(this.getClass().getResource("controllers/gameBackGround.css").toExternalForm());
 					primaryStage.setScene(scene);
+					System.out.println("ProvaProvaProva");
+					//getClient().waitTurno();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				System.out.println("ProvaProvaProva");
 				break;
 		}
 	}

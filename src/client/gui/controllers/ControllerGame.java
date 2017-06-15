@@ -16,6 +16,9 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -223,12 +226,10 @@ public class ControllerGame {
 		numberOfGamers = start.getClient().getPlayers();
 		setColorsParents(start.getColor());
 		setColorCubiScomunica(start.getColor());
-		//setCardsScomunica(start.getClient().getCardsScomunica());
 		setRisorse(start.getClient().getRisorse());
 		//setTabavv(start.getClient().getGiocatori());
 		start.getClient().setGuiGame(this);
-		start.getClient().waitTurno();
-		setPosizioni();
+		//setPosizioni();
 		/*mercatoPosMoneteMilitari.setOnDragDropped(event->{
 			if(mercatoPosMoneteMilitari != null){
 				familiareNeutro.getDestinazione(mercatoPosMoneteMilitari);
@@ -459,8 +460,8 @@ public class ControllerGame {
 	}
 
 
-	private void setCardsScomunica(TesseraScomunica[] cardsScomunica) {
-		System.out.println(cardsScomunica[0].getImage());
+	
+	public void setCardsScomunica(TesseraScomunica[] cardsScomunica) {
 		cartaScomunica1.setImage(new Image(getClass().getResourceAsStream(cardsScomunica[0].getImage())));
 		cartaScomunica2.setImage(new Image(getClass().getResourceAsStream(cardsScomunica[1].getImage())));
 		cartaScomunica3.setImage(new Image(getClass().getResourceAsStream(cardsScomunica[2].getImage())));
@@ -495,10 +496,6 @@ public class ControllerGame {
 
 
 	private void setColorsParents(String color) {
-		/*familiareNeutro.setColor("neutro");
-		familiareNero.setColor("black");
-		familiareArancio.setColor("orange");
-		familiareBianco.setColor("white");*/
 		switch(color){
 			case "blue":
 				familiareNeutro.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNeutro.png")));
@@ -562,9 +559,9 @@ public class ControllerGame {
 				familiareWhite2.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoArancio.png")));
 				familiareWhite3.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoBianco.png")));
 				familiareWhite4.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoNero.png")));
-				/*flag1.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBlu.png")));
+				flag1.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBlu.png")));
 				flag2.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBianca.png")));
-				flag3.setImage(new Image(this.getClass().getResourceAsStream("BandierinaArancio.png")));*/
+				flag3.setImage(new Image(this.getClass().getResourceAsStream("BandierinaArancio.png")));
 				familiareOrange1.setOpacity(1);
 				familiareOrange2.setOpacity(1);
 				familiareOrange3.setOpacity(1);
@@ -607,9 +604,9 @@ public class ControllerGame {
 				familiareGreen2.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeArancio.png")));
 				familiareGreen3.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeBianco.png")));
 				familiareGreen4.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeNero.png")));
-				/*flag1.setImage(new Image(this.getClass().getResourceAsStream("BandierinaVerde.png")));
+				flag1.setImage(new Image(this.getClass().getResourceAsStream("BandierinaVerde.png")));
 				flag2.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBlu.png")));
-				flag3.setImage(new Image(this.getClass().getResourceAsStream("BandierinaArancio.png")));*/
+				flag3.setImage(new Image(this.getClass().getResourceAsStream("BandierinaArancio.png")));
 				familiareOrange1.setOpacity(1);
 				familiareOrange2.setOpacity(1);
 				familiareOrange3.setOpacity(1);
@@ -738,7 +735,7 @@ public class ControllerGame {
 				popup.close();
 			});
 			bCancel.setOnAction(event -> {
-				/*switch (color) {
+				switch (color) {
 				case "neutro":
 					familiareNeutro.setImage(new Image(getClass().getResourceAsStream("")));
 					break;
@@ -751,7 +748,7 @@ public class ControllerGame {
 				case "white":
 					familiareBianco.setImage(new Image(getClass().getResourceAsStream("")));
 					break;
-				}*/
+				}
 				popup.close();
 			});
 		} else if (mom == null) {
@@ -1040,20 +1037,20 @@ public class ControllerGame {
 			carteTerritori.getChildren().add(mom);
 		}
 		for (int i = 0; i < 4; i++) {
-			arrayCarteEdifici[i] = new CartaEdifici();
-			arrayCarteEdifici[i] = (CartaEdifici) carte[i+4];
+			arrayCartePersonaggi[i] = new CartaPersonaggi();
+			arrayCartePersonaggi[i] = (CartaPersonaggi) carte[i+4];
 			ImageView mom = new ImageView();
 			mom.setImage(new Image(getClass().getResourceAsStream(carte[i+4].getImage())));
 			Tooltip.install(mom,carte[i+4].getTooltip() );
-			carteEdifici.getChildren().add(mom);
+			cartePersonaggi.getChildren().add(mom);
 		}
 		for (int i = 0; i < 4; i++) {
-			arrayCartePersonaggi[i] = new CartaPersonaggi();
-			arrayCartePersonaggi[i] = (CartaPersonaggi) carte[i+8];
+			arrayCarteEdifici[i] = new CartaEdifici();
+			arrayCarteEdifici[i] = (CartaEdifici) carte[i+8];
 			ImageView mom = new ImageView();
 			mom.setImage(new Image(getClass().getResourceAsStream(carte[i+8].getImage())));
 			Tooltip.install(mom,carte[i+8].getTooltip() );
-			cartePersonaggi.getChildren().add(mom);
+			carteEdifici.getChildren().add(mom);
 		}
 		for (int i = 0; i < 4; i++) {
 			arrayCarteImpresa[i] = new CartaImprese();
@@ -1215,7 +1212,7 @@ public class ControllerGame {
 		start.getClient().waitTurno();
 	}
 	
-	private void setPosizioni() {
+	private void setPosizioni() throws IOException, ClassNotFoundException {
 		int i=0;
 		try {
 			for(Giocatore g: start.getClient().getGiocatori()){
@@ -1274,7 +1271,99 @@ public class ControllerGame {
 		}else if(nameAvv.equals(name3.getText())){
 			
 		}
-		
 	}
+	
+	@FXML
+	public void setOnDragDetected(Event event) {
+    	System.out.println("setOnDragDetected");
+        if (this.getClass().getImage() == null) {
+            return;
+        }	
+
+    Dragboard drag = startDragAndDrop(TransferMode.MOVE);
+    ClipboardContent content = new ClipboardContent();
+    content.putImage(getImage());
+    drag.setDragView(getImage());
+    drag.setContent(content);
+    event.consume();
+	});
+	
+	setOnDragOver(event ->{
+		System.out.println("setOnDragOver");       
+    	if (!event.isDropCompleted() &&
+               event.getDragboard().hasString()) {
+            event.acceptTransferModes(TransferMode.MOVE);
+        }
+
+        event.consume();
+	});
+	
+    setOnDragEntered(event -> {
+    	System.out.println("setOnDragEntered");
+        if (!event.isDropCompleted() &&
+                event.getDragboard().hasString()) {
+            setOpacity(0.3);
+        }
+    });
+	
+    setOnDragExited(event -> {
+    	System.out.println("setOnDragExited");
+        if (!event.isDropCompleted() &&
+                event.getDragboard().hasString()) {
+            setOpacity(1);
+        }
+    });
+    
+    setOnDragDropped(event->{
+    	System.out.println("setOnDragDropped");
+        if (getImage() == null) {
+            return;
+        }
+        
+        Dragboard drag = event.getDragboard();
+        boolean success = false;
+        
+        if(drag.hasImage()){
+        	success = true;
+        }
+        
+        event.setDropCompleted(success);
+        event.consume();
+        
+    });
+    
+    
+    
+    setOnDragDone(event ->{
+    	if(game.controlloPosizionamento(getColor(), this.getX(), this.getY(),0))
+    		if(flag){
+    			destinazione.setImage(this.getImage());
+    			this.setDisable(true);
+    			try {
+					game.setCardGiocatore(game.getNamePosition(this.getX(),this.getY()));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+    			try {
+					game.notifySpostamento(this.getColor(),this.getX(), this.getY());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+    		}
+    		else{
+    			box.getChildren().add(new ImageView(this.getImage()));
+    			this.setDisable(true);
+    			try {
+					game.notifySpostamento(this.getColor(),this.getX(), this.getY());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+    		}
+    	this.setImage(new Image(getClass().getResourceAsStream("")));
+    });
+	
 	
 }
