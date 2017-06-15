@@ -223,7 +223,7 @@ public class ControllerGame {
 		numberOfGamers = start.getClient().getPlayers();
 		setColorsParents(start.getColor());
 		setColorCubiScomunica(start.getColor());
-		setCardsScomunica(start.getClient().getCardsScomunica());
+		//setCardsScomunica(start.getClient().getCardsScomunica());
 		setRisorse(start.getClient().getRisorse());
 		//setTabavv(start.getClient().getGiocatori());
 		start.getClient().setGuiGame(this);
@@ -460,6 +460,7 @@ public class ControllerGame {
 
 
 	private void setCardsScomunica(TesseraScomunica[] cardsScomunica) {
+		System.out.println(cardsScomunica[0].getImage());
 		cartaScomunica1.setImage(new Image(getClass().getResourceAsStream(cardsScomunica[0].getImage())));
 		cartaScomunica2.setImage(new Image(getClass().getResourceAsStream(cardsScomunica[1].getImage())));
 		cartaScomunica3.setImage(new Image(getClass().getResourceAsStream(cardsScomunica[2].getImage())));

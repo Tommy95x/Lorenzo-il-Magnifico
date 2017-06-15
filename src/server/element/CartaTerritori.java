@@ -24,6 +24,22 @@ public class CartaTerritori extends CartaSviluppo{
 	private String image;
 	private String tooltip;
 	
+	public CartaTerritori(){
+		
+	}
+	
+	public CartaTerritori(String name, String image, String tooltip, HashMap<String, Integer> effettoimmediato1, HashMap<String, Integer> effettoimmediato2, HashMap<String, Integer> effettopermanente1, HashMap<String, Integer> effettopermanente2, HashMap<String, Integer> effettopermanente3){
+		this.image=image;
+		this.name=name;
+		this.tooltip=tooltip;
+		this.effettoimmediato1=effettoimmediato1;
+		this.effettoimmediato2=effettoimmediato2;
+		this.effettopermanente1=effettopermanente1;
+		this.effettopermanente3=effettopermanente3;
+		this.effettopermanente2=effettopermanente2;
+	}
+	
+	
 	public void setCarta(Connection connection, String query ){
 	try{
 		Statement stmt = connection.createStatement();
@@ -129,5 +145,9 @@ public class CartaTerritori extends CartaSviluppo{
 	
 	public void setTooltip(String string) {
 		this.tooltip = string;
+	}
+	
+	public String getTooltipString() {
+		return tooltip;
 	}
 }

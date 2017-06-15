@@ -15,13 +15,14 @@ import server.element.CartaSviluppo;
 import server.element.Giocatore;
 import server.element.Partita;
 import server.element.Portafoglio;
+import server.element.TesseraScomunica;
 
 /*
 *Classe che comunica con un SocketClient che ha istanziato e creato una nuva connessione inprecedenza con il ServerSocket, la classe
 *di conseguenza implementa l'interfaccia Runnable che verra' eseguito da un Executor istanziato in precedenza alla creazione di una 
 *connessione da parte di un client.
 **/
-public class ThreadSocketServer implements Runnable{
+public class ThreadSocketServer implements Runnable {
 
 	private StartServer commonServer;
 	private Socket socket;
@@ -74,8 +75,9 @@ public class ThreadSocketServer implements Runnable{
 	private void play() throws SQLException, IOException, ClassNotFoundException {
 		double x;
 		double y;
-		action = input.readObject().toString();
 		while (true) {
+			action = (String) input.readObject();
+			System.out.println(action);
 			switch (action) {
 			case "dices":
 				output.writeObject(actionsServer.showDiceValues(positionGame, account));
@@ -97,36 +99,158 @@ public class ThreadSocketServer implements Runnable{
 				lobby = input.readObject().toString();
 				account = input.readObject().toString();
 				try {
-					commonServer.getLobbyByName(lobby).getGiocatoreByName(account).addCard((CartaSviluppo) input.readObject());
+					commonServer.getLobbyByName(lobby).getGiocatoreByName(account)
+							.addCard((CartaSviluppo) input.readObject());
 				} catch (ClassNotFoundException | IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				break;
 			case "getNamePosition":
-				output.writeObject(commonServer.getLobbyByNumber(positionGame).getNamePosition(input.readDouble(), input.readDouble(),commonServer.getDBConnection().getConnection(account)));
+				output.writeObject(commonServer.getLobbyByNumber(positionGame).getNamePosition(input.readDouble(),
+						input.readDouble(), commonServer.getDBConnection().getConnection(account)));
 				output.flush();
 				break;
 			case "getPortafoglio":
-				output.writeObject(commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(account).getRisorse());
+				output.writeObject(
+						commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(account).getRisorse());
 				output.flush();
 				break;
 			case "getTessereScomunica":
-				output.writeObject(commonServer.getLobbyByNumber(positionGame).getCardsScomunica());
-				output.flush();
+				for (TesseraScomunica ts : commonServer.getLobbyByNumber(positionGame).getCardsScomunica()) {
+					output.writeObject(ts.getNome());
+					output.flush();
+					output.writeObject(ts.getImage());
+					output.flush();
+					output.writeObject(ts.getTooltip());
+					output.flush();
+					System.out.println(ts.getNome());
+				}
 				break;
 			case "getCardsGame":
 				System.out.println("Prima chiamata");
-				CartaSviluppo[] mom = commonServer.getLobbyByNumber(positionGame).getCards();
 				System.out.println("Provamom");
-				output.writeObject(mom);
-				output.flush();
+				CartaSviluppo[] c = new CartaSviluppo[16];
+				c = commonServer.getLobbyByNumber(positionGame).getCards();
+				System.out.println("CarteTerritorio");
+				for (int i = 0; i < 4; i++) {
+					output.writeObject(c[i].getNameCard());
+					output.flush();
+					output.writeObject(c[i].getImage());
+					output.flush();
+					output.writeObject(c[i].getTooltipString());
+					output.flush();
+					output.writeObject(c[i].getEffettoimmediato1());
+					output.flush();
+					output.writeObject(c[i].getEffettoimmediato2());
+					output.flush();
+					output.writeObject(c[i].getEffettopermanente1());
+					output.flush();
+					output.writeObject(c[i].getEffettopermanente2());
+					output.flush();
+					output.writeObject(c[i].getEffettopermanente3());
+					output.flush();
+				}
+				System.out.println("CarteTerritorio");
+				for (int i = 4; i < 8; i++) {
+					output.writeObject(c[i].getCostoMoneta());
+					output.flush();
+					output.writeObject(c[i].getNameCard());
+					output.flush();
+					output.writeObject(c[i].getPerOgniCarta());
+					output.flush();
+					output.writeObject(c[i].getImage());
+					output.flush();
+					output.writeObject(c[i].getTooltipString());
+					output.flush();
+					output.writeObject(c[i].getEffettoimmediato1());
+					output.flush();
+					output.writeObject(c[i].getAzioneImmediata());
+					output.flush();
+					output.writeObject(c[i].getScontoAzioneImmediata1());
+					output.flush();
+					output.writeObject(c[i].getScontoAzioneImmediata2());
+					output.flush();
+					output.writeObject(c[i].getAzionePermanente());
+					output.flush();
+					output.writeObject(c[i].getScontoAzionepermanente1());
+					output.flush();
+					output.writeObject(c[i].getScontoAzionepermanente2());
+					output.flush();
+				}
+				System.out.println("CarteTerritorio");
+				for (int i = 8; i < 12; i++) {
+					output.writeObject(c[i].getCostoMoneta());
+					output.flush();
+					output.writeObject(c[i].getCostoLegno());
+					output.flush();
+					output.writeObject(c[i].getCostoPietra());
+					output.flush();
+					output.writeObject(c[i].getCostoServitori());
+					output.flush();
+					output.writeObject(c[i].getCostoAzione());
+					output.flush();
+					output.writeObject(c[i].getNameCard());
+					output.flush();
+					output.writeObject(c[i].getEffettoimmediato1());
+					output.flush();
+					output.writeObject(c[i].getEffettoimmediato2());
+					output.flush();
+					output.writeObject(c[i].getSpendiRisorsa1());
+					output.flush();
+					output.writeObject(c[i].getSpendiRisorsa2());
+					output.flush();
+					output.writeObject(c[i].getSpendiRisorsa3());
+					output.flush();
+					output.writeObject(c[i].getPrendiRisorsa1());
+					output.flush();
+					output.writeObject(c[i].getPrendiRisorsa2());
+					output.flush();
+					output.writeObject(c[i].getAcquisisciPunti());
+					output.flush();
+					output.writeObject(c[i].getPerOgniCarta());
+					output.flush();
+					output.writeObject(c[i].getImage());
+					output.flush();
+					output.writeObject(c[i].getTooltipString());
+					output.flush();
+				}
+				System.out.println("CarteTerritorio");
+				for (int i = 12; i < 16; i++) {
+					output.writeObject(c[i].getCostoMoneta());
+					output.flush();
+					output.writeObject(c[i].getCostoLegno());
+					output.flush();
+					output.writeObject(c[i].getCostoPietra());
+					output.flush();
+					output.writeObject(c[i].getCostoServitori());
+					output.flush();
+					output.writeObject(c[i].getCostoPuntiMilitari());
+					output.flush();
+					output.writeObject(c[i].getNameCard());
+					output.flush();
+					output.writeObject(c[i].getEffettoimmediato1());
+					output.flush();
+					output.writeObject(c[i].getEffettoimmediato2());
+					output.flush();
+					output.writeObject(c[i].getEffettoimmediato3());
+					output.flush();
+					output.writeObject(c[i].getAzioneImmediata());
+					output.flush();
+					output.writeObject(c[i].getPuntiVittoria());
+					output.flush();
+					output.writeObject(c[i].getImage());
+					output.flush();
+					output.writeObject(c[i].getTooltipString());
+					output.flush();
+				}
 				break;
 			case "notifySpostamento":
 				String color = input.readObject().toString();
 				x = input.readDouble();
 				y = input.readDouble();
-				commonServer.getLobbyByNumber(positionGame).notifySpostamento(color, commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(account), x, y);
+				commonServer.getLobbyByNumber(positionGame).notifySpostamento(color,
+						commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(account), x, y);
 			case "quit":
 				closeSocket();
 				break;
@@ -168,7 +292,7 @@ public class ThreadSocketServer implements Runnable{
 					commonServer.getLobbyByName(lobby).getGiocatoreByName(account).getSocket(this);
 					break;
 				case "get lobbies":
-					for(Partita mom : commonServer.getLobbies()){
+					for (Partita mom : commonServer.getLobbies()) {
 						output.writeObject(mom.getLobbyName());
 						output.flush();
 					}
@@ -255,7 +379,7 @@ public class ThreadSocketServer implements Runnable{
 		output.writeObject(color);
 		output.flush();
 	}
-	
+
 	public void moveDisco(double x, double y, String colorPlayer, String colorDisco) throws IOException {
 		output.writeObject("disco");
 		output.flush();
@@ -268,7 +392,7 @@ public class ThreadSocketServer implements Runnable{
 		output.writeObject(colorDisco);
 		output.flush();
 	}
-	
+
 	public void moveDiscoFede(double x, double y, String colorPlayer, String colorDisco) throws IOException {
 		output.writeObject("discoFede");
 		output.flush();
@@ -283,12 +407,12 @@ public class ThreadSocketServer implements Runnable{
 	}
 
 	public void addScomunica(int nScomuniche, Tooltip tooltip) {
-				
+
 	}
 
 	public void notifyAddCard(CartaSviluppo carta, String string, Portafoglio portafoglio) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 }

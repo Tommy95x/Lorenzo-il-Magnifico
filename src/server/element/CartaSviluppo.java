@@ -291,4 +291,10 @@ public class CartaSviluppo implements Serializable{
 	public void setImage(String url){
 		image =  url;
 	}
+
+	public String getTooltipString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

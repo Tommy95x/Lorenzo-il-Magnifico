@@ -27,6 +27,12 @@ public class TesseraScomunica implements Serializable{
 	public TesseraScomunica(){
 	}
 
+	public TesseraScomunica(String readObject, String readObject2, String readObject3) {
+		this.nome=readObject;
+		this.image=readObject2;
+		this.tooltip=readObject3;
+	}
+
 	public String getID() {
 		return ID;
 	}
