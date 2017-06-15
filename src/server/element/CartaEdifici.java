@@ -29,8 +29,32 @@ public class CartaEdifici extends CartaSviluppo{
 	private HashMap<String, Integer> prendirisorsa2 = new HashMap<String, Integer>();
 	private HashMap<String, Integer> acquisiscipunti = new HashMap<String, Integer>();
 	private String perognicarta;
-	private String image ;
+	private String image;
 	private String tooltip;
+	
+	public CartaEdifici(int costoMoneta, int costoLegno, int costoPietra, int costoServitori, int costoAzione, String name, HashMap<String, Integer> effettoimmediato1, HashMap<String, Integer> effettoimmediato2, HashMap<String, Integer> spendirisorsa1, HashMap<String, Integer> spendirisorsa2, HashMap<String, Integer> spendirisorsa3, HashMap<String, Integer> prendirisorsa1, HashMap<String, Integer> prendirisorsa2, HashMap<String, Integer> acquisiscipunti, String perognicarta, String image, String tooltip){
+		this.costoMoneta=costoMoneta;
+		this.costoLegno=costoLegno;
+		this.costoPietra=costoPietra;
+		this.costoServitori=costoServitori;
+		this.costoAzione=costoAzione;
+		this.name=name;
+		this.effettoimmediato1=effettoimmediato1;
+		this.effettoimmediato2=effettoimmediato2;
+		this.spendirisorsa1=spendirisorsa1;
+		this.spendirisorsa2=spendirisorsa2;
+		this.spendirisorsa3=spendirisorsa3;
+		this.prendirisorsa1=prendirisorsa1;
+		this.prendirisorsa2=prendirisorsa2;
+		this.acquisiscipunti=acquisiscipunti;
+		this.perognicarta=perognicarta;
+		this.image=image;
+		this.tooltip=tooltip;
+		}
+	
+	public CartaEdifici(){
+		
+	}
 	
 	public void setCarta(Connection connection, String query ) {
 		try {
