@@ -50,7 +50,7 @@ public class Flag implements Serializable{
 	private void setFlagImage(StartServer commonServer, String account) throws SQLException {
 		Connection connection = commonServer.getDBConnection().getConnection(account);
 		Statement stmt = connection.createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT IMMAGINE FROM BANDIERA WHERE COLORE = "+color+"");
+		ResultSet rs = stmt.executeQuery("SELECT IMMAGINE FROM BANDIERA WHERE COLORE = '"+color+"'");
 		rs.next();
 		flagImage=rs.getString("IMMAGINE");
 		rs.close();

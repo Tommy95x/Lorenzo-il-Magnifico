@@ -218,15 +218,14 @@ public class ControllerGame {
 	@FXML
 	public ImageView cuboScomunica3;
 
-	public void getStartClient(StartClientGui startClientGui) throws ClassNotFoundException, IOException {
+	public void setGUI(StartClientGui startClientGui) throws ClassNotFoundException, IOException {
 		this.setStart(startClientGui);
 		numberOfGamers = start.getClient().getPlayers();
 		setColorsParents(start.getColor());
 		setColorCubiScomunica(start.getColor());
-		setCards(start.getClient().getCardsGame());
 		setCardsScomunica(start.getClient().getCardsScomunica());
 		setRisorse(start.getClient().getRisorse());
-		setTabavv(start.getClient().getGiocatori());
+		//setTabavv(start.getClient().getGiocatori());
 		start.getClient().setGuiGame(this);
 		start.getClient().waitTurno();
 		setPosizioni();

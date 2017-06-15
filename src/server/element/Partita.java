@@ -249,19 +249,29 @@ public class Partita implements Serializable{
 	}
 
 	public CartaSviluppo[] getCards() {
-		 CartaSviluppo[] mom = new  CartaSviluppo[16];
-		for(int i=0; i<NUMCARTE;i++){
+		System.out.println("Allinterno del metodo");
+		CartaSviluppo[] mom = new  CartaSviluppo[16];
+		for(int i=0; i<NUMCARTE;i++)
 			mom[i] = carteTerritori[i];
-		}
-		for(int i=0; i<NUMCARTE;i++){
+		System.out.println("Carte imprese");
+		for(int i=0; i<NUMCARTE;i++)
 			mom[i+4] = carteImprese[i];
-		}
-		for(int i=0; i<NUMCARTE;i++){
+		System.out.println("CarteEdificio");
+		for(int i=0; i<NUMCARTE;i++)
 			mom[i+8]= carteEdifici[i];
+<<<<<<< HEAD
 		}
 		for(int i=0; i<NUMCARTE;i++){
 			mom[i+12] = cartePersonaggio[i];
 		}
+=======
+		System.out.println("Carte Personaggio");
+		for(int i=0; i<NUMCARTE;i++)
+			mom[i+12] = cartePersonaggio[i];	
+		System.out.println("Stampa\n\n\n\n\n\n");
+		for(int i=0;i<16;i++)
+			System.out.println(mom[i].getNameCard());
+>>>>>>> branch 'develop' of https://github.com/Tommy95x/Lorenzo-il-Magnifico.git
 		return mom;
 	}
 	
@@ -278,7 +288,7 @@ public class Partita implements Serializable{
 		int i;
 		System.out.println("All'interno della partita setto le carte");
 		for(i=0;i<NUMCARTE;i++){
-			System.out.println("CarteTerritori");
+			System.out.println("CarteTerritori "+i+"");
 			query="SELECT * FROM "+name.toUpperCase()+"CARTETERRITORIOPARTITA LIMIT 1";//Scrivere la query in modo che cerchi differenti carte in generale
 			carteTerritori[i] = new CartaTerritori();
 			carteTerritori[i].setCarta(connection,query);
@@ -286,7 +296,7 @@ public class Partita implements Serializable{
 			connection.createStatement().executeUpdate(queryelimina);
 		}
 		for(i=0;i<NUMCARTE;i++){
-			System.out.println("CartePersonaggio");
+			System.out.println("CartePersonaggio "+i+"");
 			query="SELECT * FROM "+name.toUpperCase()+"CARTEPERSONAGGIOPARTITA LIMIT 1";//Scrivere la query in modo che cerchi differenti carte in generale
 			cartePersonaggio[i] = new CartaPersonaggi();
 			cartePersonaggio[i].setCarta(connection,query);
@@ -294,7 +304,7 @@ public class Partita implements Serializable{
 			connection.createStatement().executeUpdate(queryelimina);
 		}
 		for(i=0;i<NUMCARTE;i++){
-			System.out.println("CarteEdificio");
+			System.out.println("CarteEdificio "+i+"");
 			query="SELECT * FROM "+name.toUpperCase()+"CARTEEDIFICIOPARTITA LIMIT 1";//Scrivere la query in modo che cerchi differenti carte in generale
 			carteEdifici[i] = new CartaEdifici();
 			carteEdifici[i].setCarta(connection,query);
@@ -302,7 +312,7 @@ public class Partita implements Serializable{
 			connection.createStatement().executeUpdate(queryelimina);
 		}
 		for(i=0;i<NUMCARTE;i++){
-			System.out.println("CarteImpresa");
+			System.out.println("CarteImpresa "+i+"");
 			query="SELECT * FROM "+name.toUpperCase()+"CARTEIMPRESAPARTITA LIMIT 1";//Scrivere la query in modo che cerchi differenti carte in generale
 			carteImprese[i] = new CartaImprese();
 			carteImprese[i].setCarta(connection,query);

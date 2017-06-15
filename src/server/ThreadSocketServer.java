@@ -116,7 +116,9 @@ public class ThreadSocketServer implements Runnable{
 				output.flush();
 				break;
 			case "getCardsGame":
+				System.out.println("Prima chiamata");
 				CartaSviluppo[] mom = commonServer.getLobbyByNumber(positionGame).getCards();
+				System.out.println("Provamom");
 				output.writeObject(mom);
 				output.flush();
 				break;

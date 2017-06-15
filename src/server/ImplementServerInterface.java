@@ -56,8 +56,7 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		System.out.println("Aggiorno i colori disponibili");
 		commonServer.getLobbyByName(lobby).changeColors(color);
 		System.out.println("Acquisisco la comunicazione del giocatore");
-		commonServer.getLobbyByName(lobby).getGiocatoreByName(account).setFlag(new
-		 Flag(color, commonServer, account));
+		commonServer.getLobbyByName(lobby).getGiocatoreByName(account).setFlag(new Flag(color, commonServer, account));
 		return commonServer.getIndicePartita(lobby);
 	}
 	
