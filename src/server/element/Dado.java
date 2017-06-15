@@ -1,6 +1,9 @@
 package server.element;
 import java.io.Serializable;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javafx.scene.image.Image;
 
@@ -12,7 +15,7 @@ public class Dado implements Serializable{
 
 	private String color;
 	private int valore;
-	private Image immagineValore;
+	private String immagineValore;
 	
 	public Dado(String color) {
 		this.color=color;
@@ -24,16 +27,22 @@ public class Dado implements Serializable{
 	}
 	
 	//Set del valore dopo il lancio del primo giocatore del turno
-	public void setValue(Connection connection) {
+	public void setValue(Connection connection) throws SQLException {
 		 valore = (int) (Math.random()*6);
-		 //creare una query d'interrogazione per avre l'immagine corrispondente dei dadi
+		 Statement stmt=connection.createStatement();
+		 ResultSet rs = stmt.executeQuery("SELECT IMMAGINE FROM DADO WHERE VALORE="+valore+" and COLORE"+color+"");
+		 rs.next();
+		 immagineValore=rs.getString("IMMAGINE");
+		 rs.close();
+		 stmt.close();
+		 connection.close();
 	}
 	
 	public int getValore() {
 		return valore;
 	}
 
-	public Image getImage() {
+	public String getImage() {
 		return immagineValore;
 	}
 	
