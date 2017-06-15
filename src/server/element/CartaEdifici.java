@@ -29,7 +29,7 @@ public class CartaEdifici extends CartaSviluppo{
 	private HashMap<String, Integer> prendirisorsa2 = new HashMap<String, Integer>();
 	private HashMap<String, Integer> acquisiscipunti = new HashMap<String, Integer>();
 	private String perognicarta;
-	private Image image = new Image(getClass().getResourceAsStream("Tenuta.png"));
+	private String image ;
 	private String tooltip;
 	
 	public void setCarta(Connection connection, String query ) {
@@ -69,7 +69,7 @@ public class CartaEdifici extends CartaSviluppo{
 	}
 	
 	public void setImage(String url){
-		image = new Image(getClass().getResourceAsStream(url));
+		image = url;
 	}
 	
 	public String getNameCard() {
@@ -133,12 +133,12 @@ public class CartaEdifici extends CartaSviluppo{
 	}
 	
 	public Tooltip getTooltip(){
-		Tooltip tooltip = new Tooltip();
+		Tooltip tooltip = new Tooltip("");
 		tooltip.setText(this.tooltip);
 		return tooltip;
 	}
 	
-	public Image getImage(){
+	public String getImage(){
 		return image;
 	}
 	

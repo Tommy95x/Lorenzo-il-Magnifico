@@ -18,11 +18,11 @@ public class ControllerWaitingRoom {
 	private StartClientGui start;
 	
 	@FXML
-	public ImageView background;
+	public ImageView background = new ImageView();
 	@FXML
-	public Label text;
+	public Label text = new Label();
 	@FXML
-	public Button next;
+	public Button next = new Button();
 
 	private BufferedReader fileReader;
 	

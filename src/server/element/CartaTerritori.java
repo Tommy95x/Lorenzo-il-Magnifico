@@ -21,7 +21,7 @@ public class CartaTerritori extends CartaSviluppo{
 	private HashMap<String, Integer> effettopermanente1 = new HashMap<String, Integer>();
 	private HashMap<String, Integer> effettopermanente2 = new HashMap<String, Integer>();
 	private HashMap<String, Integer> effettopermanente3 = new HashMap<String, Integer>();
-	private Image image = new Image(getClass().getResourceAsStream("Tenuta.png"));
+	private String image;
 	private String tooltip;
 	
 	public void setCarta(Connection connection, String query ){
@@ -58,8 +58,7 @@ public class CartaTerritori extends CartaSviluppo{
 	}
 	
 	public void setImage(String url){
-		//image = new Image(getClass().getResourceAsStream(url));
-		image = new Image(getClass().getResourceAsStream("Tenuta.png"));
+		image = url;
 	}
 	
 	public String getNameCard() {
@@ -90,12 +89,12 @@ public class CartaTerritori extends CartaSviluppo{
 		return costoAzione;
 	}
 	
-	public Image getImage(){
+	public String getImage(){
 		return image;
 	}
 	
 	public Tooltip getTooltip(){
-		Tooltip tooltip = new Tooltip();
+		Tooltip tooltip = new Tooltip("");
 		tooltip.setText(this.tooltip);
 		return tooltip;
 	}

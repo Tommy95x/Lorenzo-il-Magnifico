@@ -30,29 +30,28 @@ public class ControllerMenu {
 	private String lobby;
 
 	@FXML
-	public Button create;
+	public Button create = new Button();
 	@FXML
-	public Button enter;
+	public Button enter = new Button();
 	@FXML
-	public ListView<String> lobbies;
+	public ListView<String> lobbies = new ListView<String>();
 	@FXML
-	public Button back;
+	public Button back = new Button();;
 	@FXML
-	public Label title;
+	public Label title = new Label();
 	@FXML
-	public Button startGame;
+	public Button startGame = new Button();
 	@FXML
-	public Label label;
+	public Label label = new Label();
 	@FXML
-	public MenuItem about;
+	public MenuItem about = new MenuItem();
 	@FXML
-	public MenuItem close;
+	public MenuItem close = new MenuItem();
 	@FXML
-	public MenuItem exitToGame;
+	public MenuItem exitToGame = new MenuItem();
 
 	public void getStartClient(StartClientGui start) {
 		this.setClient(start);
-		start.getClient().setStage(start);
 		Font.loadFont(getClass().getResourceAsStream("Sketch Gothic School.ttf"), 0);
 	}
 
@@ -166,24 +165,24 @@ public class ControllerMenu {
 		VBox box = new VBox();
 		HBox boxColors = new HBox();
 		HBox boxButton = new HBox();
-		Circle circle;
-		Button b;
-		circle = new Circle();
+		Circle circle = new Circle();
+		Button b = new Button("Blue");
 		circle.setFill(Color.BLUE);
 		circle.setRadius(50.0);
 		boxColors.getChildren().add(circle);
-		b = new Button("Blue");
+		
 		b.setOnAction(event -> {
 			start.setColor("blue");
 			try {
 				System.out.println(start.getClient().createANewLobby(lobby, start.getColor()));
+				start.getClient().setStage(start);
+				viewStartButton();
+				popup.close();
+				event.consume();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			viewStartButton();
-			popup.close();
-			event.consume();
 		});
 		boxButton.getChildren().add(b);
 		circle = new Circle();
@@ -195,13 +194,14 @@ public class ControllerMenu {
 			start.setColor("orange");
 			try {
 				System.out.println(start.getClient().createANewLobby(lobby, start.getColor()));
+				start.getClient().setStage(start);
+				viewStartButton();
+				popup.close();
+				event.consume();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			viewStartButton();
-			popup.close();
-			event.consume();
 		});
 		boxButton.getChildren().add(b);
 		circle = new Circle();
@@ -213,13 +213,14 @@ public class ControllerMenu {
 			start.setColor("white");
 			try {
 				System.out.println(start.getClient().createANewLobby(lobby, start.getColor()));
+				start.getClient().setStage(start);
+				viewStartButton();
+				popup.close();
+				event.consume();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			viewStartButton();
-			popup.close();
-			event.consume();
 		});
 		boxButton.getChildren().add(b);
 		circle = new Circle();
@@ -231,13 +232,14 @@ public class ControllerMenu {
 			start.setColor("white");
 			try {
 				System.out.println(start.getClient().createANewLobby(lobby, start.getColor()));
+				start.getClient().setStage(start);
+				viewStartButton();
+				popup.close();
+				event.consume();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			viewStartButton();
-			popup.close();
-			event.consume();
 		});
 		boxButton.getChildren().add(b);
 		box.getChildren().addAll(boxColors, boxButton);
@@ -272,6 +274,7 @@ public class ControllerMenu {
 								if(start.getClient().enterInALobby(lobby, start.getColor())!=-1){
 									popup.close();
 									viewStartButton();
+									start.getClient().setStage(start);
 									event.consume();
 									}else{
 									popup.close();
@@ -304,6 +307,7 @@ public class ControllerMenu {
 								if(start.getClient().enterInALobby(lobby, start.getColor())!=-1){
 									popup.close();
 									viewStartButton();
+									start.getClient().setStage(start);
 									event.consume();
 									}else{
 									popup.close();
@@ -336,6 +340,7 @@ public class ControllerMenu {
 								if(start.getClient().enterInALobby(lobby, start.getColor())!=-1){
 									popup.close();
 									viewStartButton();
+									start.getClient().setStage(start);
 									event.consume();
 									}else{
 									popup.close();
@@ -368,6 +373,7 @@ public class ControllerMenu {
 								if(start.getClient().enterInALobby(lobby, start.getColor())!=-1){
 									popup.close();
 									viewStartButton();
+									start.getClient().setStage(start);
 									event.consume();
 									}else{
 									popup.close();

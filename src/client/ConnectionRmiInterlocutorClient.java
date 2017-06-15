@@ -3,36 +3,31 @@ package client;
 import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 
 import client.gui.StartClientGui;
 import client.gui.controllers.ControllerGame;
 import javafx.scene.control.Tooltip;
-import server.RMIClientInterface;
 import server.element.CartaSviluppo;
 import server.element.Giocatore;
 import server.element.Portafoglio;
+import shared.RMIClientInterface;
 
-public class ConnectionRmiInterlocutorClient implements RMIClientInterface, client.RMIClientInterface, Serializable{
+public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implements RMIClientInterface{
 	
-	
-	private ControllerGame guiGame;
 	private StartClientGui start;
+	private ControllerGame guiGame;
 	private int positionGame;
 	private String name;
 
-	public ConnectionRmiInterlocutorClient(String name, int positionGame, StartClientGui start){
+	public ConnectionRmiInterlocutorClient(String name, int positionGame) throws RemoteException{
 		this.name = name;
 		this.positionGame = positionGame;
-		this.start = start;
-		
 	}
 	
 	public void notifyStartGame() throws RemoteException {
 		System.out.println("Notifica inizio partita avvenuta");
-		if(start == null)
-			System.out.println("Stage null");
-		System.out.println("Cambio Stage");
 		start.changeStage(5);
 		System.out.println("Prova");
 	}
@@ -95,6 +90,10 @@ public class ConnectionRmiInterlocutorClient implements RMIClientInterface, clie
 
 	public void setGuiGame(ControllerGame guiGame){
 		this.guiGame = guiGame;
+	}
+
+	public void setStart(StartClientGui start) {
+		this.start = start;
 		
 	}
 	

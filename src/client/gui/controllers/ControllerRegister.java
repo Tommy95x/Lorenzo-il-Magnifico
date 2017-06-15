@@ -16,15 +16,15 @@ public class ControllerRegister {
 	private StartClientGui start;
 
 	@FXML
-	public Button register;
+	public Button register = new Button();
 	@FXML
-	public TextField username;
+	public TextField username = new TextField();
 	@FXML
-	public PasswordField pw1;
+	public PasswordField pw1 = new PasswordField();
 	@FXML
-	public PasswordField pw2;
+	public PasswordField pw2 = new PasswordField();
 	@FXML
-	public TextField email;
+	public TextField email = new TextField();
 
 	public void getStartClientGui(StartClientGui startClientGui) {
 

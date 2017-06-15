@@ -19,6 +19,7 @@ import server.element.Dado;
 import server.element.Partita;
 import server.element.Portafoglio;
 import server.element.TesseraScomunica;
+import shared.RMIClientInterface;
 
 /*
  * Classe che implementa il socket

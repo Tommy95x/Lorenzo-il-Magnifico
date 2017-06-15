@@ -1,7 +1,9 @@
 
 package client.gui;
 
+import java.awt.Panel;
 import java.io.IOException;
+import java.io.Serializable;
 import java.rmi.RemoteException;
 
 import client.ConnectionClient;
@@ -28,8 +30,8 @@ public class StartClientGui extends Application{
 
 	private FXMLLoader loader = new FXMLLoader(); ;
 	private Parent root;
-	private Stage primaryStage;
-	private ConnectionClient client;
+	private Stage primaryStage = new Stage();
+	private ConnectionClient client = new ConnectionClient();
 	private String color;
 	private boolean create = false;
 	

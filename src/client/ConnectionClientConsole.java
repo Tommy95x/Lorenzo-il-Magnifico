@@ -10,9 +10,9 @@ import java.util.Scanner;
 
 import com.sun.glass.events.KeyEvent;
 
-import server.ServerInterface;
 import server.element.Dado;
 import server.element.Partita;
+import shared.ServerInterface;
 
 @SuppressWarnings("restriction")
 public class ConnectionClientConsole extends ConnectionRmiClient{
@@ -121,7 +121,7 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 				}
 				break;
 			case 2:
-				ArrayList<Partita> lobbies = null;
+				ArrayList<String> lobbies = null;
 				try {
 					lobbies = serverMethods.getLobby();
 				} catch (RemoteException e) {
@@ -129,7 +129,7 @@ public class ConnectionClientConsole extends ConnectionRmiClient{
 					e.printStackTrace();
 				}
 				for(int i=0; i<lobbies.size();i++){
-					System.out.println(lobbies.get(i).getLobbyName());
+					System.out.println(lobbies.get(i));
 				}
 				System.out.println("Scrivi il nome della lobby in cui vuoi entrare");
 				lobby = input.nextLine();

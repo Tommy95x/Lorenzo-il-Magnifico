@@ -21,13 +21,13 @@ public class ControllerConnection {
 	private ConnectionClient client;
 	
 	@FXML
-	Button rmi;
+	Button rmi = new Button();
 	@FXML
-	Button socket;
+	Button socket = new Button();
 	@FXML
-	MenuItem close;
+	MenuItem close = new MenuItem();
 	@FXML
-	MenuItem playWithConsole;
+	MenuItem playWithConsole = new MenuItem();
 	
 	public void getStartClientGui(StartClientGui startClientGui) {
 		this.setStart(startClientGui);
@@ -50,7 +50,6 @@ public class ControllerConnection {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		start.getClient().setStage(start);
 		start.changeStage(1);
 	}
 	
@@ -64,7 +63,6 @@ public class ControllerConnection {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		start.getClient().setStage(start);
 	}
 	
 	@FXML

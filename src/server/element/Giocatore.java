@@ -10,8 +10,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import client.ConnectionRmiClient;
-import client.RMIClientInterface;
 import server.ThreadSocketServer;
+import shared.RMIClientInterface;
 
 public class Giocatore implements Serializable {
 
@@ -28,7 +28,7 @@ public class Giocatore implements Serializable {
 	private Partita partita;
 	private int positionGame;
 	private ThreadSocketServer server = null;
-	private RMIClientInterface  client = null;
+	private RMIClientInterface  client;
 	private Flag flag;
 	private int nScomuniche = 0;
 
@@ -97,7 +97,7 @@ public class Giocatore implements Serializable {
 	}
 
 	public void getClient(RMIClientInterface connectionRmiClient) {
-		if (this.client == null && server == null)
+		if (server == null)
 			this.client = connectionRmiClient;
 		System.out.println(client);
 	}

@@ -20,15 +20,15 @@ public class ControllerLogin {
 	private StartClientGui start;
 
 	@FXML
-	Button singIn;
+	Button singIn = new Button();
 	@FXML
-	TextField name;
+	TextField name = new TextField();
 	@FXML
-	PasswordField pw;
+	PasswordField pw = new PasswordField();
 	@FXML
-	Label clickHere;
+	Label clickHere = new Label();
 	@FXML
-	Label login;
+	Label login = new Label();
 
 	public void getStartClientGui(StartClientGui startClientGui) {
 		setStart(startClientGui);

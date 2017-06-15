@@ -6,8 +6,6 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import client.ConnectionRmiClient;
-import client.RMIClientInterface;
 import javafx.scene.image.Image;
 import server.element.CartaSviluppo;
 import server.element.Dado;
@@ -16,6 +14,8 @@ import server.element.Giocatore;
 import server.element.Partita;
 import server.element.Portafoglio;
 import server.element.TesseraScomunica;
+import shared.RMIClientInterface;
+import shared.ServerInterface;
 
 /*
 *Classe per l'implementazione dei metodi utilizzati nelle classi RMIServer e ThreadSocketServer, meodoti richiamati e utilizzati per giocare
@@ -41,18 +41,14 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		return commonServer.registerNewClient(username, pw1, email);
 	}
 
-	public int ciao(String lobby, String account, String color, RMIClientInterface client) {
-		return 12;
-	}
-
 	public int createNewLobby(String lobby, String account, String color, RMIClientInterface connectionRmiClient)
 			throws RemoteException, SQLException {
 		System.out.println("Creo la partita nell'arraylist partite");
 		commonServer.addGame(lobby, account);
 		System.out.println("Recupero dal db le carte");
 		commonServer.setCards(commonServer.getLobbyByName(lobby), account);
-		// commonServer.getLobbyByName(lobby).setCardsScomunica(commonServer.getDBConnection(),
-		// account);
+		 commonServer.getLobbyByName(lobby).setCardsScomunica(commonServer.getDBConnection(),
+		 account);
 		System.out.println("Aggiungo il giocatore alla partita creata");
 		commonServer.getLobbyByName(lobby).addGiocatore(new Giocatore(color, commonServer.getLobbyByName(lobby),
 				account, commonServer.getIndicePartita(lobby)));
@@ -60,8 +56,8 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		commonServer.getLobbyByName(lobby).changeColors(color);
 		System.out.println("Acquisisco la comunicazione del giocatore");
 		commonServer.getLobbyByName(lobby).getGiocatoreByName(account).getClient(connectionRmiClient);
-		// commonServer.getLobbyByName(lobby).getGiocatoreByName(account).setFlag(new
-		// Flag(color, commonServer, account));
+		/*commonServer.getLobbyByName(lobby).getGiocatoreByName(account).setFlag(new
+		 Flag(color, commonServer, account));*/
 		return commonServer.getIndicePartita(lobby);
 	}
 
@@ -71,9 +67,12 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		commonServer.getLobbyByNumber(game).start(account);
 	}
 
-	public ArrayList<Partita> getLobby() throws RemoteException {
+	public ArrayList<String> getLobby() throws RemoteException {
 		System.out.println(commonServer.getLobbies().size());
-		return commonServer.getLobbies();
+		ArrayList<String> mom = new ArrayList<String>();
+		for(Partita p : commonServer.getLobbies())
+			mom.add(p.getLobbyName());
+		return mom;
 	}
 
 	public int selectLobby(String lobby, String account, String color, RMIClientInterface client)

@@ -20,7 +20,7 @@ public class TesseraScomunica implements Serializable{
 	private String ID;
 	private String nome;
 	private int periodo;
-	private Image image = new Image(getClass().getResourceAsStream("Zecca.png"));
+	private String image;
 	private String tooltip;
 	
 	//Vengono settati i parametri della tessera scomunica
@@ -63,7 +63,7 @@ public class TesseraScomunica implements Serializable{
 	}
 
 	public Tooltip getTooltip() {
-		Tooltip tooltip = new Tooltip();
+		Tooltip tooltip = new Tooltip("");
 		tooltip.setText(this.tooltip);
 		return tooltip;
 	}
@@ -72,11 +72,11 @@ public class TesseraScomunica implements Serializable{
 		this.tooltip = tooltip;
 	}
 
-	public Image getImage() {
+	public String getImage() {
 		return image;
 	}
 
-	public void setImage(Image image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 
@@ -93,6 +93,7 @@ public class TesseraScomunica implements Serializable{
 			ID = rs.getString("ID");
 			nome = rs.getString("NOME");
 			periodo=rs.getInt("PERIODO");
+			setImage(rs.getString("IMMAGINE"));
 			setTooltip(rs.getString("DESCRIZIONE"));
 		}
 		rs.close();
@@ -106,6 +107,7 @@ public class TesseraScomunica implements Serializable{
 			ID = rs.getString("ID");
 			nome = rs.getString("NOME");
 			periodo=rs.getInt("PERIODO");
+			setImage(rs.getString("IMMAGINE"));
 			setTooltip(rs.getString("DESCRIZIONE"));
 		}
 		rs.close();
@@ -120,6 +122,7 @@ public class TesseraScomunica implements Serializable{
 			ID = rs.getString("ID");
 			nome = rs.getString("NOME");
 			periodo=rs.getInt("PERIODO");
+			setImage(rs.getString("IMMAGINE"));
 			setTooltip(rs.getString("DESCRIZIONE"));
 		}
 		rs.close();

@@ -461,9 +461,9 @@ public class ControllerGame {
 
 
 	private void setCardsScomunica(TesseraScomunica[] cardsScomunica) {
-		cartaScomunica1.setImage(cardsScomunica[0].getImage());
-		cartaScomunica2.setImage(cardsScomunica[1].getImage());
-		cartaScomunica3.setImage(cardsScomunica[2].getImage());
+		cartaScomunica1.setImage(new Image(getClass().getResourceAsStream(cardsScomunica[0].getImage())));
+		cartaScomunica2.setImage(new Image(getClass().getResourceAsStream(cardsScomunica[1].getImage())));
+		cartaScomunica3.setImage(new Image(getClass().getResourceAsStream(cardsScomunica[2].getImage())));
 		
 	}
 
@@ -1033,28 +1033,28 @@ public class ControllerGame {
 		for (int i = 0; i < 4; i++) {
 			arrayCarteTerritori[i] = (CartaTerritori) carte.get(i);
 			ImageView mom = new ImageView();
-			mom.setImage(carte.get(i).getImage());
+			mom.setImage(new Image(getClass().getResourceAsStream(carte.get(i).getImage())));
 			Tooltip.install(mom,carte.get(i).getTooltip() );
 			carteTerritori.getChildren().add(mom);
 		}
 		for (int i = 4; i < 8; i++) {
 			arrayCarteEdifici[i] = (CartaEdifici) carte.get(i);
 			ImageView mom = new ImageView();
-			mom.setImage(carte.get(i).getImage());
+			mom.setImage(new Image(getClass().getResourceAsStream(carte.get(i).getImage())));
 			Tooltip.install(mom,carte.get(i).getTooltip() );
 			carteEdifici.getChildren().add(mom);
 		}
 		for (int i = 8; i < 12; i++) {
 			arrayCartePersonaggi[i] = (CartaPersonaggi) carte.get(i);
 			ImageView mom = new ImageView();
-			mom.setImage(carte.get(i).getImage());
+			mom.setImage(new Image(getClass().getResourceAsStream(carte.get(i).getImage())));
 			Tooltip.install(mom,carte.get(i).getTooltip() );
 			cartePersonaggi.getChildren().add(mom);
 		}
 		for (int i = 12; i < 16; i++) {
 			arrayCarteImpresa[i] = (CartaImprese) carte.get(i);
 			ImageView mom = new ImageView();
-			mom.setImage(carte.get(i).getImage());
+			mom.setImage(new Image(getClass().getResourceAsStream(carte.get(i).getImage())));
 			Tooltip.install(mom,carte.get(i).getTooltip() );
 			carteImprese.getChildren().add(mom);
 		}
@@ -1249,9 +1249,9 @@ public class ControllerGame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		dadoNero.setImage(dadi[0].getImage());
-		dadoBianco.setImage(dadi[0].getImage());
-		dadoArancio.setImage(dadi[0].getImage());
+		dadoNero.setImage(new Image(getClass().getResourceAsStream(dadi[0].getImage())));
+		dadoBianco.setImage(new Image(getClass().getResourceAsStream(dadi[1].getImage())));
+		dadoArancio.setImage(new Image(getClass().getResourceAsStream(dadi[2].getImage())));
 	}
 
 

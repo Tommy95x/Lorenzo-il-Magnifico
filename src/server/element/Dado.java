@@ -12,7 +12,7 @@ public class Dado implements Serializable{
 
 	private String color;
 	private int valore;
-	private Image immagineValore;
+	private String immagineValore;
 	
 	public Dado(String color) {
 		this.color=color;
@@ -33,7 +33,7 @@ public class Dado implements Serializable{
 		return valore;
 	}
 
-	public Image getImage() {
+	public String getImage() {
 		return immagineValore;
 	}
 	

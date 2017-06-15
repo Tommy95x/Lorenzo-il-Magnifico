@@ -15,10 +15,10 @@ import server.element.Partita;
 import server.element.Portafoglio;
 import server.element.TesseraScomunica;
 
-public class ConnectionClient extends UnicastRemoteObject implements ClientInterface{
+public class ConnectionClient implements ClientInterface{
 
 	
-	protected ConnectionClient() throws RemoteException {
+	public ConnectionClient() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

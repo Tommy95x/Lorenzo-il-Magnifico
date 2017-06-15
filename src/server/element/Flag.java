@@ -12,7 +12,7 @@ import server.StartServer;
 public class Flag implements Serializable{
 
 	private String color;
-	private Image flagImage;
+	private Image flagImage = new Image(getClass().getResourceAsStream("Vescovo.png"));
 	/**
 	 * Constructor Flag Class where set color and image parameter
 	 * 

@@ -11,7 +11,7 @@ import javafx.scene.image.Image;
 
 public class CartaImprese extends CartaSviluppo{
 
-	//Le carte impresa hanno due differenti costi impresa e il giocatore può decidere quale dei due costi scegliere tra risorse o punti militari
+	//Le carte impresa hanno due differenti costi impresa e il giocatore puï¿½ decidere quale dei due costi scegliere tra risorse o punti militari
 	private int costoLegno;
 	private int costoPietra;
 	private int costoMoneta;
@@ -26,7 +26,7 @@ public class CartaImprese extends CartaSviluppo{
 	private HashMap<String, Integer> effettoimmediato3 = new HashMap<String, Integer>();
 	private HashMap<String, Integer> azioneimmediata = new HashMap<String, Integer>();
 	private int puntiVittoria;
-	private Image image = new Image(getClass().getResourceAsStream("Tenuta.png"));
+	private String image;
 	private String tooltip;
 	
 		public void setCarta(Connection connection, String query ) {
@@ -64,7 +64,7 @@ public class CartaImprese extends CartaSviluppo{
 		}
 		
 		public void setImage(String url){
-			image = new Image(getClass().getResourceAsStream(url));
+			image = url;
 		}
 		
 		public String getNameCard() {
@@ -116,12 +116,12 @@ public class CartaImprese extends CartaSviluppo{
 		}
 		
 		public Tooltip getTooltip(){
-			Tooltip tooltip = new Tooltip();
+			Tooltip tooltip = new Tooltip("");
 			tooltip.setText(this.tooltip);
 			return tooltip;
 		}
 		
-		public Image getImage(){
+		public String getImage(){
 			return image;
 		}
 		

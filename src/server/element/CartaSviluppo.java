@@ -17,7 +17,7 @@ import javafx.scene.image.Image;
 */
 public class CartaSviluppo implements Serializable{
 
-	private Image image;
+	private String image;
 	private String name;
 	private int costoAzione;
 	private HashMap<String, Integer> effettoimmediato1 = new HashMap<String, Integer>();
@@ -52,7 +52,7 @@ public class CartaSviluppo implements Serializable{
 	
 	}
 
-	public Image getImage() {
+	public String getImage() {
 		return image;
 	}
 
@@ -289,6 +289,6 @@ public class CartaSviluppo implements Serializable{
 	}
 	
 	public void setImage(String url){
-		image =  new Image(getClass().getResourceAsStream(url));
+		image =  url;
 	}
 }

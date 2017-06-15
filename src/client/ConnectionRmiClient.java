@@ -1,5 +1,6 @@
 package client;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -11,7 +12,6 @@ import java.util.ArrayList;
 import client.gui.StartClientGui;
 import client.gui.controllers.ControllerGame;
 import javafx.scene.control.Tooltip;
-import server.ServerInterface;
 import server.element.CartaSviluppo;
 import server.element.CartaTerritori;
 import server.element.Dado;
@@ -19,6 +19,7 @@ import server.element.Giocatore;
 import server.element.Partita;
 import server.element.Portafoglio;
 import server.element.TesseraScomunica;
+import shared.ServerInterface;
 
 /*
  * Classe di implementazione 
@@ -32,7 +33,6 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	private String name;
 	private int numberOfGamers;
 	private ControllerGame guiGame;
-	private StartClientGui start;
 	private ConnectionRmiInterlocutorClient interlocutor;
 	
 	public ConnectionRmiClient() throws RemoteException{
@@ -90,9 +90,9 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	public boolean createANewLobby(String lobby,String color) {
 		System.out.println("lobby = "+lobby+" name="+name+" color="+color+" this="+this+"");
 		try {
-			//positionGame=serverMethods.ciao(lobby, name, color , null);
 			System.out.println(positionGame);
-			interlocutor = new ConnectionRmiInterlocutorClient(name, positionGame, start);
+			interlocutor = new ConnectionRmiInterlocutorClient(name, positionGame);
+			System.out.println("Momentaneo");
 			positionGame=serverMethods.createNewLobby(lobby, name, color , interlocutor);
 			System.out.println(positionGame);
 			return true;
@@ -110,7 +110,10 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 
 	public ArrayList<Partita> lobbiesView() throws RemoteException{
 		try {
-			return serverMethods.getLobby();
+			ArrayList<Partita> mom = new ArrayList<Partita>();
+			for(String name :serverMethods.getLobby())
+				mom.add(new Partita(name));
+			return mom;
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -120,7 +123,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	
 	public int enterInALobby(String lobby, String color) throws RemoteException{
 		try {
-			interlocutor = new ConnectionRmiInterlocutorClient(name, positionGame,start);
+			interlocutor = new ConnectionRmiInterlocutorClient(name, positionGame);
 			positionGame=serverMethods.selectLobby(lobby, name, color, interlocutor );
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -130,6 +133,9 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		
 	}
 
+	public String[] getColors(String lobby) throws RemoteException, IOException, ClassNotFoundException {
+		return serverMethods.getColors(positionGame);
+	}
 
 	public TesseraScomunica[] getCardsScomunica() throws RemoteException{
 		return serverMethods.getCardsScomunica(positionGame);
@@ -209,12 +215,8 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		
 	}
 
-	public StartClientGui getStart() {
-		return start;
-	}
-
-	public void setStart(StartClientGui start) {
-		this.start = start;
+	public void setStage(StartClientGui start) {
+		interlocutor.setStart(start);
 	}
 
 	public String getNamePosition(double x, double y) throws RemoteException, SQLException {
