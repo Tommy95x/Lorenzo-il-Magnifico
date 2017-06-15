@@ -1,8 +1,10 @@
 package server.element;
 
+import java.io.Serializable;
+
 import javafx.scene.control.Tooltip;
 
-public class CuboScomunica {
+public class CuboScomunica implements Serializable {
 
 	//Possieder� degli attributi che contraddistingueranno il cubo in caso d'istanza di mancato sostegno della chiesa
 	private String color;

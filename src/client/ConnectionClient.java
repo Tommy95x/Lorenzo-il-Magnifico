@@ -159,7 +159,7 @@ public class ConnectionClient implements ClientInterface{
 		return null;
 	}
 
-	public Giocatore[] getGiocatori() throws RemoteException {
+	public Giocatore[] getGiocatori() throws RemoteException, IOException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 		return null;
 	}
