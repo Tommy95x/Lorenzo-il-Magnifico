@@ -116,7 +116,8 @@ public class ThreadSocketServer implements Runnable{
 				output.flush();
 				break;
 			case "getCardsGame":
-				output.writeObject(commonServer.getLobbyByNumber(positionGame).getCards());
+				CartaSviluppo[] mom = commonServer.getLobbyByNumber(positionGame).getCards();
+				output.writeObject(mom);
 				output.flush();
 				break;
 			case "notifySpostamento":
@@ -220,23 +221,6 @@ public class ThreadSocketServer implements Runnable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-
-	private void getCards(PrintWriter output) {
-		ArrayList<CartaSviluppo> mom = null;
-		try {
-			mom = actionsServer.getCards(positionGame);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		for (CartaSviluppo c : mom) {
-			output.println(c.getNameCard());
-			output.flush();
-			output.println(c.getImage());
-			output.flush();
-		}
-		output.println("endCards");
 	}
 
 	public void notifyStartGame() throws IOException, ClassNotFoundException {

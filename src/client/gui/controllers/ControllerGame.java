@@ -32,10 +32,10 @@ import server.element.TesseraScomunica;
 public class ControllerGame {
 
 	private StartClientGui start;
-	private CartaTerritori[] arrayCarteTerritori;
-	private CartaImprese[] arrayCarteImpresa;
-	private CartaPersonaggi[] arrayCartePersonaggi;
-	private CartaEdifici[] arrayCarteEdifici;
+	private CartaTerritori[] arrayCarteTerritori = new CartaTerritori[4];
+	private CartaImprese[] arrayCarteImpresa = new CartaImprese[4];
+	private CartaPersonaggi[] arrayCartePersonaggi = new CartaPersonaggi[4];
+	private CartaEdifici[] arrayCarteEdifici = new CartaEdifici[4];
 	private int numberOfGamers;
 
 	// Componenti tabellone
@@ -430,8 +430,8 @@ public class ControllerGame {
 				familiareArancio.getDestinazione(azioniEdificidaunGiocatore);
 				familiareBianco.getDestinazione(azioniEdificidaunGiocatore);
 			}
-		});*/
-		
+		});
+		*/
 	}
 
 
@@ -1029,37 +1029,38 @@ public class ControllerGame {
 		}
 	}
 
-	public void setCards(ArrayList<CartaSviluppo> carte) {
+	public void setCards(CartaSviluppo[] carte) {
 		for (int i = 0; i < 4; i++) {
 			arrayCarteTerritori[i] = new CartaTerritori();
-			arrayCarteTerritori[i] = (CartaTerritori) carte.get(i);
+			arrayCarteTerritori[i] = (CartaTerritori) carte[i];
 			ImageView mom = new ImageView();
-			mom.setImage(new Image(getClass().getResourceAsStream(carte.get(i).getImage())));
-			Tooltip.install(mom,carte.get(i).getTooltip() );
+			System.out.println(carte[i].getImage());
+			mom.setImage(new Image(getClass().getResourceAsStream(carte[i].getImage())));
+			Tooltip.install(mom,carte[i].getTooltip() );
 			carteTerritori.getChildren().add(mom);
 		}
-		for (int i = 4; i < 8; i++) {
+		for (int i = 0; i < 4; i++) {
 			arrayCarteEdifici[i] = new CartaEdifici();
-			arrayCarteEdifici[i] = (CartaEdifici) carte.get(i);
+			arrayCarteEdifici[i] = (CartaEdifici) carte[i+4];
 			ImageView mom = new ImageView();
-			mom.setImage(new Image(getClass().getResourceAsStream(carte.get(i).getImage())));
-			Tooltip.install(mom,carte.get(i).getTooltip() );
+			mom.setImage(new Image(getClass().getResourceAsStream(carte[i+4].getImage())));
+			Tooltip.install(mom,carte[i+4].getTooltip() );
 			carteEdifici.getChildren().add(mom);
 		}
-		for (int i = 8; i < 12; i++) {
+		for (int i = 0; i < 4; i++) {
 			arrayCartePersonaggi[i] = new CartaPersonaggi();
-			arrayCartePersonaggi[i] = (CartaPersonaggi) carte.get(i);
+			arrayCartePersonaggi[i] = (CartaPersonaggi) carte[i+8];
 			ImageView mom = new ImageView();
-			mom.setImage(new Image(getClass().getResourceAsStream(carte.get(i).getImage())));
-			Tooltip.install(mom,carte.get(i).getTooltip() );
+			mom.setImage(new Image(getClass().getResourceAsStream(carte[i+8].getImage())));
+			Tooltip.install(mom,carte[i+8].getTooltip() );
 			cartePersonaggi.getChildren().add(mom);
 		}
-		for (int i = 12; i < 16; i++) {
+		for (int i = 0; i < 4; i++) {
 			arrayCarteImpresa[i] = new CartaImprese();
-			arrayCarteImpresa[i] = (CartaImprese) carte.get(i);
+			arrayCarteImpresa[i] = (CartaImprese) carte[i+12];
 			ImageView mom = new ImageView();
-			mom.setImage(new Image(getClass().getResourceAsStream(carte.get(i).getImage())));
-			Tooltip.install(mom,carte.get(i).getTooltip() );
+			mom.setImage(new Image(getClass().getResourceAsStream(carte[i+12].getImage())));
+			Tooltip.install(mom,carte[i+12].getTooltip() );
 			carteImprese.getChildren().add(mom);
 		}
 	}

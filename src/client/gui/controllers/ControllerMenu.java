@@ -138,7 +138,7 @@ public class ControllerMenu {
 		System.out.println("Notificato al server e cambio scene");
 		start.changeStage(4);
 		System.out.println("Scena cambiata");
-		start.getClient().waitStartGame(start);
+		//start.getClient().waitStartGame(start);
 	}
 
 	@FXML

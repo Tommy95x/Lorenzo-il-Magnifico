@@ -23,7 +23,7 @@ public interface ServerInterface extends Remote {
 	public ArrayList<String> getLobby() throws RemoteException;
 	public int selectLobby(String lobby, String account, String color, RMIClientInterface client) throws RemoteException, SQLException;
 	public String[] getColors(int positionGame) throws RemoteException;
-	public ArrayList<CartaSviluppo> getCards(int positionGame) throws RemoteException;
+	public CartaSviluppo[] getCards(int positionGame) throws RemoteException;
 	public void showCards(Image card, String nameCard) throws RemoteException;
 	public void getTurno(String name) throws RemoteException;
 	public void giveResources(String resource, int qta) throws RemoteException;

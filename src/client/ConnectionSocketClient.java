@@ -288,10 +288,10 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		outputSocket.flush();
 	}
 	
-	public ArrayList<CartaSviluppo> getCardsGame() throws ClassNotFoundException, IOException {
+	public CartaSviluppo[] getCardsGame() throws ClassNotFoundException, IOException {
 		outputSocket.writeObject("getCardsGame");
 		outputSocket.flush();
-		return (ArrayList<CartaSviluppo>) inputSocket.readObject();
+		return (CartaSviluppo[]) inputSocket.readObject();
 	}
 	
 	public Portafoglio getRisorse() throws ClassNotFoundException, IOException{

@@ -154,7 +154,7 @@ public class ConnectionClient implements ClientInterface{
 		
 	}
 
-	public ArrayList<CartaSviluppo> getCardsGame() throws ClassNotFoundException, IOException{
+	public CartaSviluppo[] getCardsGame() throws ClassNotFoundException, IOException{
 		// TODO Auto-generated method stub
 		return null;
 	}

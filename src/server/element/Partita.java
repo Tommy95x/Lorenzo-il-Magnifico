@@ -248,20 +248,22 @@ public class Partita implements Serializable{
 		return colors;	
 	}
 
-	public ArrayList<CartaSviluppo> getCards() {
-		ArrayList<CartaSviluppo> mom = new ArrayList<CartaSviluppo>();
+	public CartaSviluppo[] getCards() {
+		 CartaSviluppo[] mom = new  CartaSviluppo[16];
 		for(int i=0; i<NUMCARTE;i++){
-			mom.add(carteTerritori[i]);
+			mom[i] = carteTerritori[i];
 		}
 		for(int i=0; i<NUMCARTE;i++){
-			mom.add(carteImprese[i]);
+			mom[i+4] = carteImprese[i];
 		}
 		for(int i=0; i<NUMCARTE;i++){
-			mom.add(carteEdifici[i]);
+			mom[i+8]= carteEdifici[i];
 		}
 		for(int i=0; i<NUMCARTE;i++){
-			mom.add(cartePersonaggio[i]);
-		}
+			mom[i+12] = cartePersonaggio[i];
+		}		
+		for(CartaSviluppo carta : mom)
+			System.out.println(carta.getNameCard());
 		return mom;
 	}
 	

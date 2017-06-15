@@ -95,7 +95,7 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		return commonServer.getLobbyByNumber(positionGame).getColors();
 	}
 
-	public ArrayList<CartaSviluppo> getCards(int positionGame) throws RemoteException {
+	public CartaSviluppo[] getCards(int positionGame) throws RemoteException {
 		return commonServer.getLobbyByNumber(positionGame).getCards();
 	}
 

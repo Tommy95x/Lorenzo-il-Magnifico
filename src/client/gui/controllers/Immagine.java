@@ -108,6 +108,7 @@ public class Immagine extends ImageView{
         		}
         	this.setImage(new Image(getClass().getResourceAsStream("")));
         });
+        
 	}
 	
 	public void getDestinazione(ImageView destinazione){

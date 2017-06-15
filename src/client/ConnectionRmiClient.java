@@ -229,7 +229,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		}
 	}
 	
-	public ArrayList<CartaSviluppo> getCardsGame() {
+	public CartaSviluppo[] getCardsGame() {
 		try {
 			return serverMethods.getCards(positionGame);
 		} catch (RemoteException e) {
