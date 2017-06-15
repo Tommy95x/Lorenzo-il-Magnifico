@@ -51,6 +51,7 @@ public class CartaTerritori extends CartaSviluppo{
 			}
 			rs.close();
 			stmt.close();
+			connection.close();
 	}catch(SQLException e){
 			// TODO Auto-generated catch block
 			e.printStackTrace();

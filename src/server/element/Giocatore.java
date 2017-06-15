@@ -83,7 +83,7 @@ public class Giocatore implements Serializable {
 		return name;
 	}
 
-	public Dado[] setDadi(Connection connection) {
+	public Dado[] setDadi(Connection connection) throws SQLException {
 		for (Dado d : dadi) {
 			d.setValue(connection);
 		}
