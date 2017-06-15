@@ -21,7 +21,9 @@ public class Giocatore implements Serializable {
 	private Portafoglio risorse;
 	private FamiliareNeutro[] familiari;
 	private CuboScomunica[] cubiScomunica;
-	private Dado[] dadi;
+	//Mettere public per il test
+	public Dado[] dadi = new Dado[3];
+	//private Dado[] dadi;
 	private ArrayList<CartaSviluppo> carte;
 	private Partita partita;
 	private int positionGame;

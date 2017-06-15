@@ -12,7 +12,12 @@ import server.element.Giocatore;
 import server.element.Partita;
 
 public class PartitaTest {
-
+	/**
+	 * Test per la verifica del metodo che controlla il non inizio della partita ,se non tutti i giocatori sono pronti per giocare,  
+	 * 
+	 * @throws SQLException
+	 * @throws RemoteException
+	 */
 	@Test
 	public void testCheckGiocatoriNonProntiPerStartGame() throws SQLException, RemoteException {
 		ConnectionDatabase db = new ConnectionDatabase(2,2);
@@ -25,14 +30,22 @@ public class PartitaTest {
 		//assertTrue(partita.checkBoolean(1));
 		partita.deleteView(db.getConnection("Test"));
 	}
-	
+	/**
+	 * Test per il check dell'ugualianza di una nuova partita creata da un utente
+	 * 
+	 * @throws SQLException
+	 */
 	@Test
-	public void testCheckDicesNotNull() throws SQLException{
+	public void testNameLobby() throws SQLException{
 		ConnectionDatabase db = new ConnectionDatabase(2,2);
 		Partita partita = new Partita("prova", "prova", 0, db.getConnection("Test"));
 		assertEquals("prova", partita.getLobbyName());
 	}
-
+	/**
+	 * Test per la verifica di un numero massimo di turni pari a 6
+	 * 
+	 * @throws SQLException
+	 */
 	@Test
 	public void testVerificaMax6Turni() throws SQLException{
 		ConnectionDatabase db = new ConnectionDatabase(2,2);
@@ -41,7 +54,11 @@ public class PartitaTest {
 			partita.addTurno();
 		assertFalse(partita.addTurno());
 	}
-	
+	/**
+	 * Test del corretto settaggio a "" dopo che un giocatore ha scelto in precedenza il medesimo colore
+	 * 
+	 * @throws SQLException
+	 */
 	@Test
 	public void testCheckAvailableColors() throws SQLException{
 		ConnectionDatabase db = new ConnectionDatabase(2,2);
@@ -49,5 +66,4 @@ public class PartitaTest {
 		Giocatore player = new Giocatore("blue",partita, "prova", 0);
 		assertEquals("", partita.getColors()[0]);
 	}
-	
 }
