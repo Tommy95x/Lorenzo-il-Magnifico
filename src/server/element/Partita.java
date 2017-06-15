@@ -261,9 +261,7 @@ public class Partita implements Serializable{
 		}
 		for(int i=0; i<NUMCARTE;i++){
 			mom[i+12] = cartePersonaggio[i];
-		}		
-		for(CartaSviluppo carta : mom)
-			System.out.println(carta.getNameCard());
+		}
 		return mom;
 	}
 	
