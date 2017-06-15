@@ -21,7 +21,7 @@ public interface ServerInterface extends Remote {
 	public int createNewLobby(String lobby, String account, String color, RMIClientInterface client) throws RemoteException, SQLException;
 	public void startPartita(String account, int game) throws RemoteException, SQLException;
 	public ArrayList<String> getLobby() throws RemoteException;
-	public int selectLobby(String lobby, String account, String color, RMIClientInterface client) throws RemoteException;
+	public int selectLobby(String lobby, String account, String color, RMIClientInterface client) throws RemoteException, SQLException;
 	public String[] getColors(int positionGame) throws RemoteException;
 	public ArrayList<CartaSviluppo> getCards(int positionGame) throws RemoteException;
 	public void showCards(Image card, String nameCard) throws RemoteException;

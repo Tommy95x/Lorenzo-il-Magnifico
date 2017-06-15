@@ -76,7 +76,7 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 	}
 
 	public int selectLobby(String lobby, String account, String color, RMIClientInterface client)
-			throws RemoteException {
+			throws RemoteException, SQLException {
 		int numberGame = commonServer.getIndicePartita(lobby);
 		if (commonServer.getLobbyByNumber(numberGame).getNumberOfPlayers() < 4) {
 			commonServer.addGamer(numberGame, color, account);
