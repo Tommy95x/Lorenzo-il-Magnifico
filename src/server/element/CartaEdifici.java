@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javafx.scene.control.Tooltip;
@@ -19,10 +20,12 @@ public class CartaEdifici extends CartaSviluppo {
 	private int costoServitori;
 	private int costoAzione;
 	private String name;
+	private String ID;
 	private String nomeffetto;
 	private int qtaeffetto;
-	private HashMap<String, Integer> effettoimmediato1 = new HashMap<String, Integer>();
-	private HashMap<String, Integer> effettoimmediato2 = new HashMap<String, Integer>();
+	private ArrayList<Effetto> effetti;
+	private ArrayList<Risorsa> spendiRisorse;
+	private ArrayList<Risorsa> prendiRisorse;
 	private HashMap<String, Integer> spendirisorsa1 = new HashMap<String, Integer>();
 	private HashMap<String, Integer> spendirisorsa2 = new HashMap<String, Integer>();
 	private HashMap<String, Integer> spendirisorsa3 = new HashMap<String, Integer>();
@@ -45,8 +48,6 @@ public class CartaEdifici extends CartaSviluppo {
 		this.costoServitori = costoServitori;
 		this.costoAzione = costoAzione;
 		this.name = name;
-		this.effettoimmediato1 = effettoimmediato1;
-		this.effettoimmediato2 = effettoimmediato2;
 		this.spendirisorsa1 = spendirisorsa1;
 		this.spendirisorsa2 = spendirisorsa2;
 		this.spendirisorsa3 = spendirisorsa3;
@@ -72,17 +73,18 @@ public class CartaEdifici extends CartaSviluppo {
 				costoPietra = rs.getInt("COSTOPIETRA");
 				costoServitori = rs.getInt("COSTOSERVITORI");
 				name = rs.getString("NOME");
-				nomeffetto = rs.getString("EFFETTOIMMEDIATO1");
+				ID=rs.getString("ID");
+				nomeffetto = rs.getString("EFFETTOIMMEDIATO1").toLowerCase();
 				qtaeffetto = rs.getInt("QTAEFFETTOIMMEDIATO1");
-				effettoimmediato1.put(nomeffetto, qtaeffetto);
-				nomeffetto = rs.getString("EFFETTOIMMEDIATO2");
+				effetti.add(new Effetto(nomeffetto, qtaeffetto, true));
+				nomeffetto = rs.getString("EFFETTOIMMEDIATO2").toLowerCase();
 				qtaeffetto = rs.getInt("QTAEFFETTOIMMEDIATO2");
-				effettoimmediato2.put(nomeffetto, qtaeffetto);
-				spendirisorsa1.put(rs.getString("SPENDIRISORSA1"), rs.getInt("QTASPENDIRISORSA1"));
-				spendirisorsa2.put(rs.getString("SPENDIRISORSA2"), rs.getInt("QTASPENDIRISORSA2"));
-				spendirisorsa3.put(rs.getString("SPENDIRISORSA3"), rs.getInt("QTASPENDIRISORSA3"));
-				prendirisorsa1.put(rs.getString("PRENDIRISORSA1"), rs.getInt("QTAPRENDIRISORSA1"));
-				prendirisorsa2.put(rs.getString("PRENDIRISORSA2"), rs.getInt("QTAPRENDIRISORSA2"));
+				effetti.add(new Effetto(nomeffetto, qtaeffetto, true));
+				spendiRisorse.add(new Risorsa(rs.getString("SPENDIRISORSA1"), rs.getInt("QTASPENDIRISORSA1")));
+				spendiRisorse.add(new Risorsa(rs.getString("SPENDIRISORSA2"), rs.getInt("QTASPENDIRISORSA2")));
+				spendiRisorse.add(new Risorsa(rs.getString("SPENDIRISORSA2"), rs.getInt("QTASPENDIRISORSA2")));
+				prendiRisorse.add(new Risorsa(rs.getString("PRENDIRISORSA1"), rs.getInt("QTAPRENDIRISORSA1")));
+				prendiRisorse.add(new Risorsa(rs.getString("PRENDIRISORSA2"), rs.getInt("QTAPRENDIRISORSA2")));
 				costoAzione = rs.getInt("COSTOAZIONE");
 				acquisiscipunti.put(rs.getString("ACQUISISCIPUNTI"), rs.getInt("QTAACQUISISCIPUNTI"));
 				perognicarta = rs.getString("PEROGNICARTA");
@@ -124,14 +126,6 @@ public class CartaEdifici extends CartaSviluppo {
 
 	public int getCostoServitori() {
 		return costoServitori;
-	}
-
-	public HashMap<String, Integer> getEffettoimmediato1() {
-		return effettoimmediato1;
-	}
-
-	public HashMap<String, Integer> getEffettoimmediato2() {
-		return effettoimmediato2;
 	}
 
 	public HashMap<String, Integer> getSpendiRisorsa1() {
@@ -196,14 +190,6 @@ public class CartaEdifici extends CartaSviluppo {
 		this.costoServitori = costoServitori;
 	}
 
-	public void setEffettoImmediato1(HashMap<String, Integer> effettoimmediato1) {
-		this.effettoimmediato1 = effettoimmediato1;
-	}
-
-	public void setEffettoImmediato2(HashMap<String, Integer> effettoimmediato2) {
-		this.effettoimmediato2 = effettoimmediato2;
-	}
-
 	public void setSpendiRisorsa1(HashMap<String, Integer> spendirisorsa1) {
 		this.spendirisorsa1 = spendirisorsa1;
 	}
@@ -234,6 +220,14 @@ public class CartaEdifici extends CartaSviluppo {
 
 	public void setTooltip(String tooltip) {
 		this.tooltip = tooltip;
+	}
+	
+	public void setID(String ID){
+		this.ID=ID;
+	}
+	
+	public String getID(){
+		return ID;
 	}
 
 	public String getTooltipString() {

@@ -302,6 +302,16 @@ public class CartaSviluppo implements Serializable{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public ArrayList<Effetto> getScontoAzioni() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public ArrayList<Azione> getAzione() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	public String getId() {
 		// TODO Auto-generated method stub

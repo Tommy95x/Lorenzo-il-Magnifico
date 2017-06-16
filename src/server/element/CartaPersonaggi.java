@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javafx.scene.control.Tooltip;
@@ -14,16 +15,13 @@ public class CartaPersonaggi extends CartaSviluppo {
 	// Le carte personaggio possiedono solo e soltanto costo in moneta
 	private int costoMoneta;
 	private String name;
+	private String ID;
 	private String nomeffetto;
 	private int qtaeffetto;
-	private HashMap<String, Integer> effettoimmediato1 = new HashMap<String, Integer>();
+	private ArrayList<Effetto> effetti;
 	private String perognicarta;
-	private HashMap<String, Integer> azioneimmediata = new HashMap<String, Integer>();
-	private HashMap<String, Integer> scontoazioneimmediata1 = new HashMap<String, Integer>();
-	private HashMap<String, Integer> scontoazioneimmediata2 = new HashMap<String, Integer>();
-	private HashMap<String, Integer> azionepermanente = new HashMap<String, Integer>();
-	private HashMap<String, Integer> scontoazionepermanente1 = new HashMap<String, Integer>();
-	private HashMap<String, Integer> scontoazionepermanente2 = new HashMap<String, Integer>();
+	private ArrayList<Azione> azioni;
+	private ArrayList<Effetto> scontoAzioni;
 	private String image;
 	private String tooltip;
 
@@ -37,12 +35,6 @@ public class CartaPersonaggi extends CartaSviluppo {
 		this.tooltip=tooltip;
 		this.image=image;
 		this.perognicarta=perognicarta;
-		this.scontoazioneimmediata1=scontoazioneimmediata1;
-		this.azionepermanente=azionepermanente;
-		this.scontoazioneimmediata2=scontoazioneimmediata2;
-		this.scontoazionepermanente1=scontoazionepermanente1;
-		this.scontoazionepermanente2=scontoazionepermanente2;
-		this.effettoimmediato1=effettoimmediato1;
 	}
 
 	public CartaPersonaggi() {
@@ -55,20 +47,17 @@ public class CartaPersonaggi extends CartaSviluppo {
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next()) {
 				name = rs.getString("NOME");
-				nomeffetto = rs.getString("EFFETTOIMMEDIATO");
-				qtaeffetto = rs.getInt("QTAEFFETTOIMMEDIATO");
-				effettoimmediato1.put(nomeffetto, qtaeffetto);
+				ID=rs.getString("ID");
+				nomeffetto=rs.getString("EFFETTOIMMEDIATO1").toLowerCase();
+				qtaeffetto=rs.getInt("QTAEFFETTOIMMEDIATO1");
+				effetti.add(new Effetto(nomeffetto, qtaeffetto, true));
 				perognicarta = rs.getString("PEROGNICARTA");
-				azioneimmediata.put(rs.getString("AZIONEIMMEDIATA"), rs.getInt("VALOREAZIONEIMMEDIATA"));
-				scontoazioneimmediata1.put(rs.getString("SCONTOAZIONEIMMEDIATA1"),
-						rs.getInt("QTASCONTOAZIONEIMMEDIATA1"));
-				scontoazioneimmediata2.put(rs.getString("SCONTOAZIONEIMMEDIATA2"),
-						rs.getInt("QTASCONTOAZIONEIMMEDIATA2"));
-				azionepermanente.put(rs.getString("AZIONEPERMANENTE"), rs.getInt("VALOREAZIONEPERMANENTE"));
-				scontoazionepermanente1.put(rs.getString("SCONTOAZIONEPERMANENTE1"),
-						rs.getInt("QTASCONTOAZIONEPERMANENTE1"));
-				scontoazionepermanente2.put(rs.getString("SCONTOAZIONEPERMANENTE2"),
-						rs.getInt("QTASCONTOAZIONEPERMANENTE2"));
+				azioni.add(new Azione(rs.getString("AZIONEIMMEDIATA").toLowerCase(), rs.getInt("VALOREAZIONEIMMEDIATA"), true));
+				azioni.add(new Azione(rs.getString("AZIONEPERMANENTE").toLowerCase(), rs.getInt("VALOREAZIONEPERMANENTE"), false));
+				scontoAzioni.add(new Effetto(rs.getString("SCONTOAZIONEIMMEDIATA1").toLowerCase(), rs.getInt("QTASCONTOAZIONEIMMEDIATA1"), true));
+				scontoAzioni.add(new Effetto(rs.getString("SCONTOAZIONEIMMEDIATA2").toLowerCase(), rs.getInt("QTASCONTOAZIONEIMMEDIATA2"), true));
+				scontoAzioni.add(new Effetto(rs.getString("SCONTOAZIONEPERMANENTE1").toLowerCase(), rs.getInt("QTASCONTOAZIONEPERMANENTE1"), false));
+				scontoAzioni.add(new Effetto(rs.getString("SCONTOAZIONEPERMANENTE2").toLowerCase(), rs.getInt("QTASCONTOAZIONEPERMANENTE2"), false));
 				costoMoneta = rs.getInt("COSTOMONETA");
 				setImage(rs.getString("IMMAGINE"));
 				setTooltip(rs.getString("DESCRIZIONE"));
@@ -93,37 +82,21 @@ public class CartaPersonaggi extends CartaSviluppo {
 	public int getCostoMoneta() {
 		return costoMoneta;
 	}
-
-	public HashMap<String, Integer> getEffettoimmediato1() {
-		return effettoimmediato1;
+	
+	public ArrayList<Effetto> getEffetti() {
+		return effetti;
+	}
+	
+	public ArrayList<Azione> getAzione() {
+		return azioni;
+	}
+	
+	public ArrayList<Effetto> getscontoAzione() {
+		return scontoAzioni;
 	}
 
 	public String getPerOgniCarta() {
 		return perognicarta;
-	}
-
-	public HashMap<String, Integer> getAzioneImmediata() {
-		return azioneimmediata;
-	}
-
-	public HashMap<String, Integer> getScontoAzioneImmediata1() {
-		return scontoazioneimmediata1;
-	}
-
-	public HashMap<String, Integer> getScontoAzioneImmediata2() {
-		return scontoazioneimmediata2;
-	}
-
-	public HashMap<String, Integer> getAzionePermanente() {
-		return azionepermanente;
-	}
-
-	public HashMap<String, Integer> getScontoAzionepermanente1() {
-		return scontoazionepermanente1;
-	}
-
-	public HashMap<String, Integer> getScontoAzionepermanente2() {
-		return scontoazionepermanente2;
 	}
 
 	public Tooltip getTooltip() {
@@ -144,39 +117,19 @@ public class CartaPersonaggi extends CartaSviluppo {
 		this.costoMoneta = costoMoneta;
 	}
 
-	public void setEffettoImmediato1(HashMap<String, Integer> effettoimmediato1) {
-		this.effettoimmediato1 = effettoimmediato1;
-	}
-
-	public void setAzioneImmediata(HashMap<String, Integer> azioneimmediata) {
-		this.azioneimmediata = azioneimmediata;
-	}
-
-	public void setScontoAzioneImmediata1(HashMap<String, Integer> scontoazioneimmediata1) {
-		this.scontoazioneimmediata1 = scontoazioneimmediata1;
-	}
-
-	public void setScontoAzioneImmediata2(HashMap<String, Integer> scontoazioneimmediata2) {
-		this.scontoazioneimmediata2 = scontoazioneimmediata2;
-	}
-
-	public void setAzionePermanente(HashMap<String, Integer> azionepermanente) {
-		this.azionepermanente = azionepermanente;
-	}
-
-	public void setScontoAzionePermanente1(HashMap<String, Integer> scontoazionepermanente1) {
-		this.scontoazionepermanente1 = scontoazionepermanente1;
-	}
-
-	public void setScontoAzionePermanente2(HashMap<String, Integer> scontoazionepermanente2) {
-		this.scontoazionepermanente2 = scontoazionepermanente2;
-	}
-
 	public void setTooltip(String string) {
 		this.tooltip = string;
 	}
 	
 	public String getTooltipString(){
 		return tooltip;
+	}
+	
+	public void setID(String ID){
+		this.ID=ID;
+	}
+	
+	public String getID(){
+		return ID;
 	}
 }

@@ -20,6 +20,7 @@ public class CartaTerritori extends CartaSviluppo{
 	private ArrayList<Effetto> effetti;
 	private String image;
 	private String tooltip;
+	private String ID;
 	
 	public CartaTerritori(){
 		
@@ -38,6 +39,7 @@ public class CartaTerritori extends CartaSviluppo{
 		ResultSet rs = stmt.executeQuery(query);
 		while(rs.next()){
 			name=rs.getString("NOME");
+			ID=rs.getString("ID");
 			nomeffetto=rs.getString("EFFETTOIMMEDIATO1").toLowerCase();
 			qtaeffetto=rs.getInt("QTAEFFETTOIMMEDIATO1");
 			effetti.add(new Effetto(nomeffetto, qtaeffetto, true));
@@ -73,6 +75,10 @@ public class CartaTerritori extends CartaSviluppo{
 		return name;
 	}
 	
+	public String getID(){
+		return ID;
+	}
+	
 	public int getCostoAzione(){
 		return costoAzione;
 	}
@@ -101,6 +107,10 @@ public class CartaTerritori extends CartaSviluppo{
 	
 	public String getTooltipString() {
 		return tooltip;
+	}
+	
+	public void setID(String ID){
+		this.ID=ID;
 	}
 	
 	public ArrayList<Effetto> getEffetti() {
