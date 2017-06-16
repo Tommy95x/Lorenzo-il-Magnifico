@@ -26,12 +26,7 @@ public class CartaEdifici extends CartaSviluppo {
 	private ArrayList<Effetto> effetti;
 	private ArrayList<Risorsa> spendiRisorse;
 	private ArrayList<Risorsa> prendiRisorse;
-	private HashMap<String, Integer> spendirisorsa1 = new HashMap<String, Integer>();
-	private HashMap<String, Integer> spendirisorsa2 = new HashMap<String, Integer>();
-	private HashMap<String, Integer> spendirisorsa3 = new HashMap<String, Integer>();
-	private HashMap<String, Integer> prendirisorsa1 = new HashMap<String, Integer>();
-	private HashMap<String, Integer> prendirisorsa2 = new HashMap<String, Integer>();
-	private HashMap<String, Integer> acquisiscipunti = new HashMap<String, Integer>();
+	private ArrayList<Risorsa> acquisisciPunti;
 	private String perognicarta;
 	private String image;
 	private String tooltip;
@@ -48,12 +43,6 @@ public class CartaEdifici extends CartaSviluppo {
 		this.costoServitori = costoServitori;
 		this.costoAzione = costoAzione;
 		this.name = name;
-		this.spendirisorsa1 = spendirisorsa1;
-		this.spendirisorsa2 = spendirisorsa2;
-		this.spendirisorsa3 = spendirisorsa3;
-		this.prendirisorsa1 = prendirisorsa1;
-		this.prendirisorsa2 = prendirisorsa2;
-		this.acquisiscipunti = acquisiscipunti;
 		this.perognicarta = perognicarta;
 		this.image = image;
 		this.tooltip = tooltip;
@@ -86,7 +75,7 @@ public class CartaEdifici extends CartaSviluppo {
 				prendiRisorse.add(new Risorsa(rs.getString("PRENDIRISORSA1"), rs.getInt("QTAPRENDIRISORSA1")));
 				prendiRisorse.add(new Risorsa(rs.getString("PRENDIRISORSA2"), rs.getInt("QTAPRENDIRISORSA2")));
 				costoAzione = rs.getInt("COSTOAZIONE");
-				acquisiscipunti.put(rs.getString("ACQUISISCIPUNTI"), rs.getInt("QTAACQUISISCIPUNTI"));
+				acquisisciPunti.add(new Risorsa(rs.getString("ACQUISISCIPUNTI"), rs.getInt("QTAACQUISISCIPUNTI")));
 				perognicarta = rs.getString("PEROGNICARTA");
 				setImage(rs.getString("IMMAGINE"));
 				setTooltip(rs.getString("DESCRIZIONE"));
@@ -128,30 +117,6 @@ public class CartaEdifici extends CartaSviluppo {
 		return costoServitori;
 	}
 
-	public HashMap<String, Integer> getSpendiRisorsa1() {
-		return spendirisorsa1;
-	}
-
-	public HashMap<String, Integer> getSpendiRisorsa2() {
-		return spendirisorsa2;
-	}
-
-	public HashMap<String, Integer> getSpendiRisorsa3() {
-		return spendirisorsa3;
-	}
-
-	public HashMap<String, Integer> getPrendiRisorsa1() {
-		return prendirisorsa1;
-	}
-
-	public HashMap<String, Integer> getPrendiRisorsa2() {
-		return prendirisorsa2;
-	}
-
-	public HashMap<String, Integer> getAcquisisciPunti() {
-		return acquisiscipunti;
-	}
-
 	public String getPerOgniCarta() {
 		return perognicarta;
 	}
@@ -190,30 +155,6 @@ public class CartaEdifici extends CartaSviluppo {
 		this.costoServitori = costoServitori;
 	}
 
-	public void setSpendiRisorsa1(HashMap<String, Integer> spendirisorsa1) {
-		this.spendirisorsa1 = spendirisorsa1;
-	}
-
-	public void setSpendiRisorsa2(HashMap<String, Integer> spendirisorsa2) {
-		this.spendirisorsa2 = spendirisorsa2;
-	}
-
-	public void setSpendiRisorsa3(HashMap<String, Integer> spendirisorsa3) {
-		this.spendirisorsa3 = spendirisorsa3;
-	}
-
-	public void setprendiRisorsa1(HashMap<String, Integer> prendirisorsa1) {
-		this.prendirisorsa1 = prendirisorsa1;
-	}
-
-	public void setprendiRisorsa2(HashMap<String, Integer> prendirisorsa2) {
-		this.prendirisorsa2 = prendirisorsa2;
-	}
-
-	public void setAcquisisciPunti(HashMap<String, Integer> acquisiscipunti) {
-		this.acquisiscipunti = acquisiscipunti;
-	}
-
 	public void setPerOgniCarta(String perognicarta) {
 		this.perognicarta = perognicarta;
 	}
@@ -222,14 +163,22 @@ public class CartaEdifici extends CartaSviluppo {
 		this.tooltip = tooltip;
 	}
 	
-	public void setID(String ID){
+	public void setId(String ID){
 		this.ID=ID;
 	}
 	
-	public String getID(){
+	public String getId(){
 		return ID;
 	}
 
+	public ArrayList<Effetto> getEffetti() {
+		return effetti;
+	}
+	
+	public ArrayList<Risorsa> getAcquisisciPunti(){
+		return acquisisciPunti;
+	}
+	
 	public String getTooltipString() {
 		return tooltip;
 	}

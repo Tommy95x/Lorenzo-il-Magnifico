@@ -75,10 +75,6 @@ public class CartaTerritori extends CartaSviluppo{
 		return name;
 	}
 	
-	public String getID(){
-		return ID;
-	}
-	
 	public int getCostoAzione(){
 		return costoAzione;
 	}
@@ -109,8 +105,12 @@ public class CartaTerritori extends CartaSviluppo{
 		return tooltip;
 	}
 	
-	public void setID(String ID){
+	public void setId(String ID){
 		this.ID=ID;
+	}
+	
+	public String getId(){
+		return ID;
 	}
 	
 	public ArrayList<Effetto> getEffetti() {

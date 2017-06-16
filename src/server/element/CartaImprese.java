@@ -179,11 +179,11 @@ public class CartaImprese extends CartaSviluppo {
 		return tooltip;
 	}
 	
-	public void setID(String ID){
+	public void setId(String ID){
 		this.ID=ID;
 	}
 	
-	public String getID(){
+	public String getId(){
 		return ID;
 	}
 }
