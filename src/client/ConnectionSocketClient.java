@@ -224,7 +224,7 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 				y = inputSocket.readDouble();
 				colorPlayer = inputSocket.readObject().toString();
 				color = inputSocket.readObject().toString();
-				guiGame.movePunti(color, x, y);
+				guiGame.notifySpostamentoPuntiFede(x, y, color);
 				break;
 			case "familiareAvv":
 				x = inputSocket.readDouble();
@@ -238,7 +238,7 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 				y = inputSocket.readDouble();
 				colorPlayer = inputSocket.readObject().toString();
 				color = inputSocket.readObject().toString();
-				guiGame.movePuntiFede(color, x, y);
+				guiGame.notifySpostamentoPuntiFede(x, y, color);
 				break;
 			case "startTurno":
 				guiGame.enableGame();

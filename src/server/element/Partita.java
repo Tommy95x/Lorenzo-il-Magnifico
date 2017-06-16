@@ -392,7 +392,7 @@ public class Partita implements Serializable{
 
 	public void notifySpostamento(String color, Giocatore giocatoreByName, double x, double y) {
 		for(Giocatore g : giocatori){
-			if(!g.equals(giocatoreByName)){
+			if(!g.equals(giocatoreByName) && g != null){
 				try {
 					g.notifySpostamento(color,giocatoreByName.getColor(),x,y);
 				} catch (IOException e) {
@@ -467,4 +467,65 @@ public class Partita implements Serializable{
 		return this.NumberOfPlayers;
 	}
 	
+	public void notifySpostamentoPunti(String tipo, int qta, Connection c){
+		switch(tipo){
+			case "militari":
+				for(Giocatore g : giocatori){
+					if(g!=null){
+						double x = 0;
+						double y = 0;
+						String query;
+						if(qta<10)
+							query = "PUNTI MILITARI 0"+qta+"";
+						else
+							query = "PUNTI MILITARI "+qta+"";
+						try {
+							g.notifySpostamentopuntiMilitari(x,y, g.getColor());
+						} catch (RemoteException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				}
+				break;
+			case "vittoria":
+				for(Giocatore g : giocatori){
+					if(g!=null){
+						double x = 0;
+						double y = 0;
+						String query;
+						if(qta<10)
+							query = "PUNTI MILITARI 0"+qta+"";
+						else
+							query = "PUNTI MILITARI "+qta+"";
+						try {
+							g.notifySpostamentopuntiVittoria(x,y, g.getColor());
+						} catch (RemoteException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				}
+				break;
+			case "fede":
+				for(Giocatore g : giocatori){
+					if(g!=null){
+						double x = 0;
+						double y = 0;
+						String query;
+						if(qta<10)
+							query = "PUNTI MILITARI 0"+qta+"";
+						else
+							query = "PUNTI MILITARI "+qta+"";
+						try {
+							g.notifySpostamentopuntiFede(x,y, g.getColor());
+						} catch (RemoteException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				}
+				break;
+		}
+	}
 }

@@ -191,8 +191,7 @@ public class ThreadSocketServer implements Runnable, Serializable {
 				lobby = input.readObject().toString();
 				account = input.readObject().toString();
 				try {
-					commonServer.getLobbyByName(lobby).getGiocatoreByName(account)
-							.addCard((CartaSviluppo) input.readObject(), (int) input.readObject());
+					actionsServer.giveCard((CartaSviluppo) input.readObject(), account, (int) input.readObject(), (int) input.readObject());
 				} catch (ClassNotFoundException | IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -325,5 +324,26 @@ public class ThreadSocketServer implements Runnable, Serializable {
 		// TODO Auto-generated method stub
 
 	}
+
+	public void notifyPergamena() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void notifySpostamentoPuntiMilitari(double x, double y, String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void notifySpostamentoPuntiVittoria(double x, double y, String color2) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void notifySpostamentoPuntiFede(double x, double y, String color2) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

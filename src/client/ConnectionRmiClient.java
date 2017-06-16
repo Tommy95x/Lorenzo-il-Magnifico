@@ -34,6 +34,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	private int numberOfGamers;
 	private ControllerGame guiGame;
 	private ConnectionRmiInterlocutorClient interlocutor;
+	private String color;
 	
 	public ConnectionRmiClient() throws RemoteException{
 		System.out.println("New Rmi client create");
@@ -97,6 +98,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 			serverMethods.setClientInterface(lobby, name, interlocutor);
 			System.out.println("provaprova");
 			System.out.println(positionGame);
+			this.color=color;
 			return true;
 		} catch (RemoteException | SQLException e) {
 			System.out.println("Error rmi");
@@ -225,7 +227,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	public void setCardGiocatore(CartaSviluppo carta, int i) {
 		try {
 			serverMethods.giveCard(carta,name,positionGame,i);
-		} catch (RemoteException e) {
+		} catch (RemoteException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -271,6 +273,19 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	
 	public String controlloPosizionamento(String color, double x, double y, int integer) throws RemoteException, IOException, ClassNotFoundException, SQLException {
 		return serverMethods.controlloPosizionamento(color, positionGame, name, x, y, integer);
+	}
+	
+	public String getColor(){
+		return this.color;
+	}
+	
+	public void notifySpostamentoPunti(String tipo) throws RemoteException {
+		try {
+			serverMethods.notifySpostamentoPunti(positionGame, name, tipo);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@Override

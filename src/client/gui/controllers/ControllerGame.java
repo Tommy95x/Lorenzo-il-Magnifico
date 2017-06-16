@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import client.gui.StartClientGui;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -610,140 +611,72 @@ public class ControllerGame {
 	 * Controllo per verificare se si ha un numero di punti del dado
 	 */
 	public boolean controlloPosizionamento(String color, double x, double y, int addRisorse) {
-		String mom = null;
 		try {
-			mom = start.getClient().controlloPosizionamento(color, x, y, addRisorse);
-		} catch (ClassNotFoundException | IOException | SQLException e) {
+			if (controlCard(x, y)) {
+				String mom = null;
+				try {
+					mom = start.getClient().controlloPosizionamento(color, x, y, addRisorse);
+				} catch (ClassNotFoundException | IOException | SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				if (mom.equals("Pay")) {
+					Stage popup = new Stage();
+					popup.setTitle("Pay or not Pay");
+					VBox box = new VBox();
+					HBox buttonBox = new HBox();
+					Label title = new Label(
+							"Non potresti posizionare qui il tuo familiare, a meno che non paghi qualche servitore\nVuoi pagare?\nQuanto?");
+					TextField text = new TextField();
+					Button bOk = new Button("OK");
+					Button bCancel = new Button("Cancel");
+					buttonBox.getChildren().addAll(bOk,bCancel);
+					box.getChildren().addAll(title,text,buttonBox);
+					bOk.setOnAction(event -> {
+						controlloPosizionamento(color, x, y, Integer.getInteger(text.getText()));
+						popup.close();
+					});
+					bCancel.setOnAction(event -> {
+						/*
+						 * switch (color) { case "neutro":
+						 * familiareNeutro.setImage(new
+						 * Image(getClass().getResourceAsStream(""))); break;
+						 * case "black": familiareNero.setImage(new
+						 * Image(getClass().getResourceAsStream(""))); break;
+						 * case "orange": familiareArancio.setImage(new
+						 * Image(getClass().getResourceAsStream(""))); break;
+						 * case "white": familiareBianco.setImage(new
+						 * Image(getClass().getResourceAsStream(""))); break;
+						 */
+						popup.close();
+					});
+					Scene scene = new Scene(box,600,400);
+					popup.centerOnScreen();
+					popup.setScene(scene);
+					popup.show();
+				} else if (mom == null) {
+					Alert alert = new Alert(AlertType.WARNING);
+					alert.initOwner(start.getStage());
+					alert.setTitle("Lost DB connection");
+					alert.setContentText("Ci dispiace ma il nostro servizio a smesso di funzionare");
+					alert.showAndWait();
+					return false;
+				} else if (mom.equals("OK"))
+					return true;
+				else if (mom.equals("NotEnough")) {
+					Alert alert = new Alert(AlertType.WARNING);
+					alert.initOwner(start.getStage());
+					alert.setTitle("Mossa negata");
+					alert.setContentText("Non fare il furbo!! Non hai abbastanza servitori!");
+					alert.showAndWait();
+					return false;
+				}
+			}
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if (mom.equals("Pay")) {
-			Stage popup = new Stage();
-			popup.setTitle("Pay or not Pay");
-			VBox box = new VBox();
-			HBox buttonBox = new HBox();
-			Label title = new Label(
-					"Non potresti posizionare qui il tuo familiare, a meno che non paghi qualche servitore\nVuoi pagare?\nQuanto?");
-			TextField text = new TextField();
-			Button bOk = new Button("OK");
-			Button bCancel = new Button("Cancel");
-			bOk.setOnAction(event -> {
-				controlloPosizionamento(color, x, y, Integer.getInteger(text.getText()));
-				popup.close();
-			});
-			bCancel.setOnAction(event -> {
-				/*switch (color) {
-				case "neutro":
-					familiareNeutro.setImage(new Image(getClass().getResourceAsStream("")));
-					break;
-				case "black":
-					familiareNero.setImage(new Image(getClass().getResourceAsStream("")));
-					break;
-				case "orange":
-					familiareArancio.setImage(new Image(getClass().getResourceAsStream("")));
-					break;
-				case "white":
-					familiareBianco.setImage(new Image(getClass().getResourceAsStream("")));
-					break;*/
-				popup.close();
-			});
-		} else if (mom == null) {
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.initOwner(start.getStage());
-			alert.setTitle("Lost DB connection");
-			alert.setContentText("Ci dispiace ma il nostro servizio a smesso di funzionare");
-			alert.showAndWait();
-			return false;
-		} else if (mom.equals("OK"))
-			return true;
-		else if (mom.equals("NotEnough")) {
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.initOwner(start.getStage());
-			alert.setTitle("Mossa negata");
-			alert.setContentText("Non fare il furbo!! Non hai abbastanza servitori!");
-			alert.showAndWait();
-			return false;
-		}
 		return false;
-	}
-
-	public void movePuntiFede(String color, double x, double y) {
-		double momX;
-		double momY;
-		switch (color) {
-		case "blue":
-			momX = puntiFedeBlu.getX();
-			momY = puntiFedeBlu.getY();
-			while (momX == x && momY == y) {
-				if (momX == x) {
-					momY++;
-					puntiFedeBlu.setY(momY);
-				} else if (momY == y) {
-					momX++;
-					puntiFedeBlu.setY(momX);
-				} else {
-					momY++;
-					puntiFedeBlu.setY(momY);
-					momX++;
-					puntiFedeBlu.setY(momX);
-				}
-			}
-			break;
-		case "white":
-			momX = puntiFedeBianco.getX();
-			momY = puntiFedeBianco.getY();
-			while (momX == x && momY == y) {
-				if (momX == x) {
-					momY++;
-					puntiFedeBianco.setY(momY);
-				} else if (momY == y) {
-					momX++;
-					puntiFedeBianco.setY(momX);
-				} else {
-					momY++;
-					puntiFedeBianco.setY(momY);
-					momX++;
-					puntiFedeBianco.setY(momX);
-				}
-			}
-			break;
-		case "orange":
-			momX = puntiFedeArancio.getX();
-			momY = puntiFedeArancio.getY();
-			while (momX == x && momY == y) {
-				if (momX == x) {
-					momY++;
-					puntiFedeArancio.setY(momY);
-				} else if (momY == y) {
-					momX++;
-					puntiFedeArancio.setY(momX);
-				} else {
-					momY++;
-					puntiFedeArancio.setY(momY);
-					momX++;
-					puntiFedeArancio.setY(momX);
-				}
-			}
-			break;
-		case "green":
-			momX = puntiFedeVerde.getX();
-			momY = puntiFedeVerde.getY();
-			while (momX == x && momY == y) {
-				if (momX == x) {
-					momY++;
-					puntiFedeVerde.setY(momY);
-				} else if (momY == y) {
-					momX++;
-					puntiFedeVerde.setY(momX);
-				} else {
-					momY++;
-					puntiFedeVerde.setY(momY);
-					momX++;
-					puntiFedeVerde.setY(momX);
-				}
-			}
-			break;
-		}
 	}
 
 	public void moveFamAvv(String colorAvv, String colorFamm, double x, double y) {
@@ -831,85 +764,6 @@ public class ControllerGame {
 		}
 	}
 
-	public void movePunti(String color, double x, double y) {
-		double momX;
-		double momY;
-		switch (color) {
-		case "blue":
-			momX = puntiVittoriaBlu.getX();
-			momY = puntiVittoriaBlu.getY();
-			while (momX == x && momY == y) {
-				if (momX == x) {
-					momY++;
-					puntiVittoriaBlu.setY(momY);
-				} else if (momY == y) {
-					momX++;
-					puntiVittoriaBlu.setY(momX);
-				} else {
-					momY++;
-					puntiVittoriaBlu.setY(momY);
-					momX++;
-					puntiVittoriaBlu.setY(momX);
-				}
-			}
-			break;
-		case "white":
-			momX = puntiVittoriaBianco.getX();
-			momY = puntiVittoriaBianco.getY();
-			while (momX == x && momY == y) {
-				if (momX == x) {
-					momY++;
-					puntiVittoriaBianco.setY(momY);
-				} else if (momY == y) {
-					momX++;
-					puntiVittoriaBianco.setY(momX);
-				} else {
-					momY++;
-					puntiVittoriaBianco.setY(momY);
-					momX++;
-					puntiVittoriaBianco.setY(momX);
-				}
-			}
-			break;
-		case "orange":
-			momX = puntiVittoriaArancio.getX();
-			momY = puntiVittoriaArancio.getY();
-			while (momX == x && momY == y) {
-				if (momX == x) {
-					momY++;
-					puntiVittoriaArancio.setY(momY);
-				} else if (momY == y) {
-					momX++;
-					puntiVittoriaArancio.setY(momX);
-				} else {
-					momY++;
-					puntiVittoriaArancio.setY(momY);
-					momX++;
-					puntiVittoriaArancio.setY(momX);
-				}
-			}
-			break;
-		case "green":
-			momX = puntiVittoriaVerde.getX();
-			momY = puntiVittoriaVerde.getY();
-			while (momX == x && momY == y) {
-				if (momX == x) {
-					momY++;
-					puntiVittoriaVerde.setY(momY);
-				} else if (momY == y) {
-					momX++;
-					puntiVittoriaVerde.setY(momX);
-				} else {
-					momY++;
-					puntiVittoriaVerde.setY(momY);
-					momX++;
-					puntiVittoriaVerde.setY(momX);
-				}
-			}
-			break;
-		}
-	}
-
 	public void addScomunica(int nScomuniche, Tooltip tooltip) {
 		switch (nScomuniche) {
 		case 0:
@@ -925,6 +779,95 @@ public class ControllerGame {
 			Tooltip.install(cuboScomunica2, tooltip);
 			break;
 		}
+	}
+
+	public boolean controlCard(double x, double y) throws IOException {
+		Portafoglio p = null;
+		try {
+			p = start.getClient().getRisorse();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		switch (getNamePosition(x, y)) {
+		case "PIANO 1 CARTE EDIFICI":
+			if (arrayCarteEdifici[0].getCostoLegno() < p.getDimRisorse("legno")
+					&& arrayCarteEdifici[0].getCostoMoneta() < p.getDimRisorse("monete")
+					&& arrayCarteEdifici[0].getCostoPietra() < p.getDimRisorse("pietra")
+					&& arrayCarteEdifici[0].getCostoServitori() < p.getDimRisorse("servitori"))
+				return false;
+			return true;
+		case "PIANO 2 CARTE EDIFICI":
+			if (arrayCarteEdifici[1].getCostoLegno() < p.getDimRisorse("legno")
+					&& arrayCarteEdifici[1].getCostoMoneta() < p.getDimRisorse("monete")
+					&& arrayCarteEdifici[1].getCostoPietra() < p.getDimRisorse("pietra")
+					&& arrayCarteEdifici[1].getCostoServitori() < p.getDimRisorse("servitori"))
+				return false;
+			return true;
+		case "PIANO 3 CARTE EDIFICI":
+			if (arrayCarteEdifici[2].getCostoLegno() < p.getDimRisorse("legno")
+					&& arrayCarteEdifici[2].getCostoMoneta() < p.getDimRisorse("monete")
+					&& arrayCarteEdifici[2].getCostoPietra() < p.getDimRisorse("pietra")
+					&& arrayCarteEdifici[2].getCostoServitori() < p.getDimRisorse("servitori"))
+				return false;
+			return true;
+		case "PIANO 4 CARTE EDIFICI":
+			if (arrayCarteEdifici[3].getCostoLegno() < p.getDimRisorse("legno")
+					&& arrayCarteEdifici[3].getCostoMoneta() < p.getDimRisorse("monete")
+					&& arrayCarteEdifici[3].getCostoPietra() < p.getDimRisorse("pietra")
+					&& arrayCarteEdifici[3].getCostoServitori() < p.getDimRisorse("servitori"))
+				return false;
+			return true;
+		case "PIANO 1 CARTE IMPRESE":
+			if ((arrayCarteImpresa[0].getCostoLegno() < p.getDimRisorse("legno")
+					&& arrayCarteImpresa[0].getCostoMoneta() < p.getDimRisorse("monete")
+					&& arrayCarteImpresa[0].getCostoPietra() < p.getDimRisorse("pietra")
+					&& arrayCarteImpresa[0].getCostoServitori() < p.getDimRisorse("servitori"))
+					|| (arrayCarteImpresa[0].getPuntiMilitariRichiesti() < p.getPunti("militari")))
+				return false;
+			return true;
+		case "PIANO 2 CARTE IMPRESE":
+			if ((arrayCarteImpresa[1].getCostoLegno() < p.getDimRisorse("legno")
+					&& arrayCarteImpresa[1].getCostoMoneta() < p.getDimRisorse("monete")
+					&& arrayCarteImpresa[1].getCostoPietra() < p.getDimRisorse("pietra")
+					&& arrayCarteImpresa[1].getCostoServitori() < p.getDimRisorse("servitori"))
+					|| (arrayCarteImpresa[1].getPuntiMilitariRichiesti() < p.getPunti("militari")))
+				return false;
+			return true;
+		case "PIANO 3 CARTE IMPRESE":
+			if ((arrayCarteImpresa[2].getCostoLegno() < p.getDimRisorse("legno")
+					&& arrayCarteImpresa[2].getCostoMoneta() < p.getDimRisorse("monete")
+					&& arrayCarteImpresa[2].getCostoPietra() < p.getDimRisorse("pietra")
+					&& arrayCarteImpresa[2].getCostoServitori() < p.getDimRisorse("servitori"))
+					|| (arrayCarteImpresa[2].getPuntiMilitariRichiesti() < p.getPunti("militari")))
+				return false;
+			return true;
+		case "PIANO 4 CARTE IMPRESE":
+			if ((arrayCarteImpresa[3].getCostoLegno() < p.getDimRisorse("legno")
+					&& arrayCarteImpresa[3].getCostoMoneta() < p.getDimRisorse("monete")
+					&& arrayCarteImpresa[3].getCostoPietra() < p.getDimRisorse("pietra")
+					&& arrayCarteImpresa[3].getCostoServitori() < p.getDimRisorse("servitori"))
+					|| (arrayCarteImpresa[3].getPuntiMilitariRichiesti() < p.getPunti("militari")))
+				return false;
+			return true;
+		case "PIANO 1 CARTE PERSONAGGI":
+			if (arrayCartePersonaggi[0].getCostoMoneta() < p.getDimRisorse("monete"))
+				return false;
+			return true;
+		case "PIANO 2 CARTE PERSONAGGI":
+			if (arrayCartePersonaggi[1].getCostoMoneta() < p.getDimRisorse("monete"))
+				return false;
+			return true;
+		case "PIANO 3 CARTE PERSONAGGI":
+			if (arrayCartePersonaggi[2].getCostoMoneta() < p.getDimRisorse("monete"))
+				return false;
+			return true;
+		case "PIANO 4 CARTE PERSONAGGI":
+			if (arrayCartePersonaggi[3].getCostoMoneta() < p.getDimRisorse("monete"))
+				return false;
+			return true;
+		}
+		return true;
 	}
 
 	public void setCards(CartaSviluppo[] carte) {
@@ -987,98 +930,98 @@ public class ControllerGame {
 			carteTerritoriGiocatore.getChildren().add(carteTerritori.getChildren().get(0));
 			Tooltip.install(carteTerritoriGiocatore.getChildren().get(0), arrayCarteTerritori[0].getTooltip());
 			carteTerritori.getChildren().get(0).setOpacity(0);
-			start.getClient().setCardGiocatore(arrayCarteTerritori[0],0);
+			start.getClient().setCardGiocatore(arrayCarteTerritori[0], 0);
 			break;
 		case "PIANO 2 CARTE TERRITORI":
 			carteTerritoriGiocatore.getChildren().add(carteTerritori.getChildren().get(1));
 			Tooltip.install(carteTerritoriGiocatore.getChildren().get(1), arrayCarteTerritori[1].getTooltip());
 			carteTerritori.getChildren().set(1, new ImageView(new Image(getClass().getResourceAsStream(""))));
-			start.getClient().setCardGiocatore(arrayCarteTerritori[1],0);
+			start.getClient().setCardGiocatore(arrayCarteTerritori[1], 0);
 			break;
 		case "PIANO 3 CARTE TERRITORI":
 			carteTerritoriGiocatore.getChildren().add(carteTerritori.getChildren().get(2));
 			Tooltip.install(carteTerritoriGiocatore.getChildren().get(2), arrayCarteTerritori[2].getTooltip());
 			carteTerritori.getChildren().set(2, new ImageView(new Image(getClass().getResourceAsStream(""))));
-			start.getClient().setCardGiocatore(arrayCarteTerritori[2],0);
+			start.getClient().setCardGiocatore(arrayCarteTerritori[2], 0);
 			break;
 		case "PIANO 4 CARTE TERRITORI":
 			carteTerritoriGiocatore.getChildren().add(carteTerritori.getChildren().get(3));
 			Tooltip.install(carteTerritoriGiocatore.getChildren().get(3), arrayCarteTerritori[3].getTooltip());
 			carteTerritori.getChildren().set(3, new ImageView(new Image(getClass().getResourceAsStream(""))));
-			start.getClient().setCardGiocatore(arrayCarteTerritori[3],0);
+			start.getClient().setCardGiocatore(arrayCarteTerritori[3], 0);
 			break;
 		case "PIANO 1 CARTE EDIFICI":
 			carteEdificiGiocatore.getChildren().add(carteEdifici.getChildren().get(0));
 			Tooltip.install(carteEdificiGiocatore.getChildren().get(0), arrayCarteEdifici[0].getTooltip());
 			carteEdifici.getChildren().set(0, new ImageView(new Image(getClass().getResourceAsStream(""))));
 
-			start.getClient().setCardGiocatore(arrayCarteEdifici[0],3);
+			start.getClient().setCardGiocatore(arrayCarteEdifici[0], 3);
 			break;
 		case "PIANO 2 CARTE EDIFICI":
 			carteEdificiGiocatore.getChildren().add(carteEdifici.getChildren().get(1));
 			Tooltip.install(carteEdificiGiocatore.getChildren().get(1), arrayCarteEdifici[1].getTooltip());
 			carteEdifici.getChildren().set(1, new ImageView(new Image(getClass().getResourceAsStream(""))));
-			start.getClient().setCardGiocatore(arrayCarteEdifici[1],3);
+			start.getClient().setCardGiocatore(arrayCarteEdifici[1], 3);
 			break;
 		case "PIANO 3 CARTE EDIFICI":
 			carteEdificiGiocatore.getChildren().add(carteEdifici.getChildren().get(2));
 			Tooltip.install(carteEdificiGiocatore.getChildren().get(2), arrayCarteEdifici[2].getTooltip());
 			carteEdifici.getChildren().set(2, new ImageView(new Image(getClass().getResourceAsStream(""))));
-			start.getClient().setCardGiocatore(arrayCarteEdifici[2],3);
+			start.getClient().setCardGiocatore(arrayCarteEdifici[2], 3);
 			break;
 		case "PIANO 4 CARTE EDIFICI":
 			carteEdificiGiocatore.getChildren().add(carteEdifici.getChildren().get(3));
 			Tooltip.install(carteEdificiGiocatore.getChildren().get(3), arrayCarteEdifici[3].getTooltip());
 			carteEdifici.getChildren().set(3, new ImageView(new Image(getClass().getResourceAsStream(""))));
-			start.getClient().setCardGiocatore(arrayCarteEdifici[3],3);
+			start.getClient().setCardGiocatore(arrayCarteEdifici[3], 3);
 			break;
 		case "PIANO 1 CARTE IMPRESE":
 			carteImpresaGiocatore.getChildren().add(carteImprese.getChildren().get(0));
 			Tooltip.install(carteImpresaGiocatore.getChildren().get(0), arrayCarteImpresa[0].getTooltip());
 			carteImprese.getChildren().set(0, new ImageView(new Image(getClass().getResourceAsStream(""))));
-			start.getClient().setCardGiocatore(arrayCarteImpresa[0],4);
+			start.getClient().setCardGiocatore(arrayCarteImpresa[0], 4);
 			break;
 		case "PIANO 2 CARTE IMPRESE":
 			carteImpresaGiocatore.getChildren().add(carteImprese.getChildren().get(1));
 			Tooltip.install(carteImpresaGiocatore.getChildren().get(1), arrayCarteImpresa[1].getTooltip());
 			carteImprese.getChildren().set(1, new ImageView(new Image(getClass().getResourceAsStream(""))));
-			start.getClient().setCardGiocatore(arrayCarteImpresa[1],4);
+			start.getClient().setCardGiocatore(arrayCarteImpresa[1], 4);
 			break;
 		case "PIANO 3 CARTE IMPRESE":
 			carteImpresaGiocatore.getChildren().add(carteImprese.getChildren().get(2));
 			Tooltip.install(carteImpresaGiocatore.getChildren().get(2), arrayCarteImpresa[2].getTooltip());
 			carteImprese.getChildren().set(2, new ImageView(new Image(getClass().getResourceAsStream(""))));
-			start.getClient().setCardGiocatore(arrayCarteImpresa[2],4);
+			start.getClient().setCardGiocatore(arrayCarteImpresa[2], 4);
 			break;
 		case "PIANO 4 CARTE IMPRESE":
 			carteImpresaGiocatore.getChildren().add(carteImprese.getChildren().get(3));
 			Tooltip.install(carteImpresaGiocatore.getChildren().get(3), arrayCarteImpresa[3].getTooltip());
 			carteImprese.getChildren().set(3, new ImageView(new Image(getClass().getResourceAsStream(""))));
-			start.getClient().setCardGiocatore(arrayCarteImpresa[3],4);
+			start.getClient().setCardGiocatore(arrayCarteImpresa[3], 4);
 			break;
 		case "PIANO 1 CARTE PERSONAGGI":
 			cartePersonaggiGiocatore.getChildren().add(cartePersonaggi.getChildren().get(0));
 			Tooltip.install(cartePersonaggiGiocatore.getChildren().get(0), arrayCartePersonaggi[0].getTooltip());
 			cartePersonaggi.getChildren().set(0, new ImageView(new Image(getClass().getResourceAsStream(""))));
-			start.getClient().setCardGiocatore(arrayCartePersonaggi[0],1);
+			start.getClient().setCardGiocatore(arrayCartePersonaggi[0], 1);
 			break;
 		case "PIANO 2 CARTE PERSONAGGI":
 			cartePersonaggiGiocatore.getChildren().add(cartePersonaggi.getChildren().get(1));
 			Tooltip.install(cartePersonaggiGiocatore.getChildren().get(1), arrayCartePersonaggi[1].getTooltip());
 			cartePersonaggi.getChildren().set(1, new ImageView(new Image(getClass().getResourceAsStream(""))));
-			start.getClient().setCardGiocatore(arrayCartePersonaggi[1],1);
+			start.getClient().setCardGiocatore(arrayCartePersonaggi[1], 1);
 			break;
 		case "PIANO 3 CARTE PERSONAGGI":
 			cartePersonaggiGiocatore.getChildren().add(cartePersonaggi.getChildren().get(2));
 			Tooltip.install(cartePersonaggiGiocatore.getChildren().get(2), arrayCartePersonaggi[2].getTooltip());
 			cartePersonaggi.getChildren().set(2, new ImageView(new Image(getClass().getResourceAsStream(""))));
-			start.getClient().setCardGiocatore(arrayCartePersonaggi[2],1);
+			start.getClient().setCardGiocatore(arrayCartePersonaggi[2], 1);
 			break;
 		case "PIANO 4 CARTE PERSONAGGI":
 			cartePersonaggiGiocatore.getChildren().add(cartePersonaggi.getChildren().get(3));
 			Tooltip.install(cartePersonaggiGiocatore.getChildren().get(3), arrayCartePersonaggi[3].getTooltip());
 			cartePersonaggi.getChildren().set(3, new ImageView(new Image(getClass().getResourceAsStream(""))));
-			start.getClient().setCardGiocatore(arrayCartePersonaggi[3],1);
+			start.getClient().setCardGiocatore(arrayCartePersonaggi[3], 1);
 			break;
 		}
 	}
@@ -1385,19 +1328,22 @@ public class ControllerGame {
 
 		familiareNeutro.setOnDragDone(event -> {
 			if (flag) {
-			if (controlloPosizionamento(start.getColor(), destinazione1.getLayoutX(), destinazione1.getLayoutY(), 0)){
+				if (controlloPosizionamento(start.getColor(), destinazione1.getLayoutX(), destinazione1.getLayoutY(),
+						0)) {
 					destinazione1.setImage(familiareNeutro.getImage());
 					familiareNeutro.setDisable(true);
 					familiareNeutro.setOpacity(0);
 					try {
-						setCardGiocatore(start.getClient().getNamePosition(destinazione1.getLayoutX(), destinazione1.getLayoutY()));
+						setCardGiocatore(start.getClient().getNamePosition(destinazione1.getLayoutX(),
+								destinazione1.getLayoutY()));
 					} catch (IOException | SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-			}
-				} else {
-					if (controlloPosizionamento(start.getColor(), destinazione2.getLayoutX(), destinazione2.getLayoutX(), 0)){
+				}
+			} else {
+				if (controlloPosizionamento(start.getColor(), destinazione2.getLayoutX(), destinazione2.getLayoutX(),
+						0)) {
 					ImageView mom = new ImageView(familiareNeutro.getImage());
 					mom.setFitWidth(35);
 					mom.setFitHeight(38);
@@ -1405,106 +1351,119 @@ public class ControllerGame {
 					familiareNeutro.setDisable(true);
 					familiareNeutro.setOpacity(0);
 					try {
-						setCardGiocatore(start.getClient().getNamePosition(destinazione2.getLayoutX(), destinazione2.getLayoutY()));
+						setCardGiocatore(start.getClient().getNamePosition(destinazione2.getLayoutX(),
+								destinazione2.getLayoutY()));
 					} catch (IOException | SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					}
 				}
+			}
 		});
 
 		familiareNero.setOnDragDone(event -> {
 			if (flag) {
-				if (controlloPosizionamento(start.getColor(), destinazione1.getLayoutX(), destinazione1.getLayoutY(), 0)){
-						destinazione1.setImage(familiareNero.getImage());
-						familiareNero.setDisable(true);
-						familiareNero.setOpacity(0);
-						try {
-							setCardGiocatore(start.getClient().getNamePosition(destinazione1.getLayoutX(), destinazione1.getLayoutY()));
-						} catch (IOException | SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-				}
-					} else {
-						if (controlloPosizionamento(start.getColor(), destinazione2.getLayoutX(), destinazione2.getLayoutX(), 0)){
-						ImageView mom = new ImageView(familiareNero.getImage());
-						mom.setFitWidth(35);
-						mom.setFitHeight(38);
-						destinazione2.getChildren().add(mom);
-						familiareNero.setDisable(true);
-						familiareNero.setOpacity(0);
-						try {
-							setCardGiocatore(start.getClient().getNamePosition(destinazione2.getLayoutX(), destinazione2.getLayoutY()));
-						} catch (IOException | SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-						}
+				if (controlloPosizionamento(start.getColor(), destinazione1.getLayoutX(), destinazione1.getLayoutY(),
+						0)) {
+					destinazione1.setImage(familiareNero.getImage());
+					familiareNero.setDisable(true);
+					familiareNero.setOpacity(0);
+					try {
+						setCardGiocatore(start.getClient().getNamePosition(destinazione1.getLayoutX(),
+								destinazione1.getLayoutY()));
+					} catch (IOException | SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
+				}
+			} else {
+				if (controlloPosizionamento(start.getColor(), destinazione2.getLayoutX(), destinazione2.getLayoutX(),
+						0)) {
+					ImageView mom = new ImageView(familiareNero.getImage());
+					mom.setFitWidth(35);
+					mom.setFitHeight(38);
+					destinazione2.getChildren().add(mom);
+					familiareNero.setDisable(true);
+					familiareNero.setOpacity(0);
+					try {
+						setCardGiocatore(start.getClient().getNamePosition(destinazione2.getLayoutX(),
+								destinazione2.getLayoutY()));
+					} catch (IOException | SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			}
 		});
 
 		familiareArancio.setOnDragDone(event -> {
 			if (flag) {
-				if (controlloPosizionamento(start.getColor(), destinazione1.getLayoutX(), destinazione1.getLayoutY(), 0)){
-						destinazione1.setImage(familiareArancio.getImage());
-						familiareArancio.setDisable(true);
-						familiareArancio.setOpacity(0);
-						try {
-							setCardGiocatore(start.getClient().getNamePosition(destinazione1.getLayoutX(), destinazione1.getLayoutY()));
-						} catch (IOException | SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-				}
-					} else {
-						if (controlloPosizionamento(start.getColor(), destinazione2.getLayoutX(), destinazione2.getLayoutX(), 0)){
-						ImageView mom = new ImageView(familiareArancio.getImage());
-						mom.setFitWidth(35);
-						mom.setFitHeight(38);
-						destinazione2.getChildren().add(mom);
-						familiareArancio.setDisable(true);
-						familiareArancio.setOpacity(0);
-						try {
-							setCardGiocatore(start.getClient().getNamePosition(destinazione2.getLayoutX(), destinazione2.getLayoutY()));
-						} catch (IOException | SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-						}
+				if (controlloPosizionamento(start.getColor(), destinazione1.getLayoutX(), destinazione1.getLayoutY(),
+						0)) {
+					destinazione1.setImage(familiareArancio.getImage());
+					familiareArancio.setDisable(true);
+					familiareArancio.setOpacity(0);
+					try {
+						setCardGiocatore(start.getClient().getNamePosition(destinazione1.getLayoutX(),
+								destinazione1.getLayoutY()));
+					} catch (IOException | SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
+				}
+			} else {
+				if (controlloPosizionamento(start.getColor(), destinazione2.getLayoutX(), destinazione2.getLayoutX(),
+						0)) {
+					ImageView mom = new ImageView(familiareArancio.getImage());
+					mom.setFitWidth(35);
+					mom.setFitHeight(38);
+					destinazione2.getChildren().add(mom);
+					familiareArancio.setDisable(true);
+					familiareArancio.setOpacity(0);
+					try {
+						setCardGiocatore(start.getClient().getNamePosition(destinazione2.getLayoutX(),
+								destinazione2.getLayoutY()));
+					} catch (IOException | SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			}
 		});
 
 		familiareBianco.setOnDragDone(event -> {
 			if (flag) {
-				if (controlloPosizionamento(start.getColor(), destinazione1.getLayoutX(), destinazione1.getLayoutY(), 0)){
-						destinazione1.setImage(familiareBianco.getImage());
-						familiareBianco.setDisable(true);
-						familiareBianco.setOpacity(0);
-						try {
-							setCardGiocatore(start.getClient().getNamePosition(destinazione1.getLayoutX(), destinazione1.getLayoutY()));
-						} catch (IOException | SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-				}
-					} else {
-						if (controlloPosizionamento(start.getColor(), destinazione2.getLayoutX(), destinazione2.getLayoutX(), 0)){
-						ImageView mom = new ImageView(familiareBianco.getImage());
-						mom.setFitWidth(35);
-						mom.setFitHeight(38);
-						destinazione2.getChildren().add(mom);
-						familiareBianco.setDisable(true);
-						familiareBianco.setOpacity(0);
-						try {
-							setCardGiocatore(start.getClient().getNamePosition(destinazione2.getLayoutX(), destinazione2.getLayoutY()));
-						} catch (IOException | SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-						}
+				if (controlloPosizionamento(start.getColor(), destinazione1.getLayoutX(), destinazione1.getLayoutY(),
+						0)) {
+					destinazione1.setImage(familiareBianco.getImage());
+					familiareBianco.setDisable(true);
+					familiareBianco.setOpacity(0);
+					try {
+						setCardGiocatore(start.getClient().getNamePosition(destinazione1.getLayoutX(),
+								destinazione1.getLayoutY()));
+					} catch (IOException | SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
+				}
+			} else {
+				if (controlloPosizionamento(start.getColor(), destinazione2.getLayoutX(), destinazione2.getLayoutX(),
+						0)) {
+					ImageView mom = new ImageView(familiareBianco.getImage());
+					mom.setFitWidth(35);
+					mom.setFitHeight(38);
+					destinazione2.getChildren().add(mom);
+					familiareBianco.setDisable(true);
+					familiareBianco.setOpacity(0);
+					try {
+						setCardGiocatore(start.getClient().getNamePosition(destinazione2.getLayoutX(),
+								destinazione2.getLayoutY()));
+					} catch (IOException | SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			}
 		});
 
 		azioniTerritoridaunGiocatore.setOnDragEntered(e -> {
@@ -1514,87 +1473,87 @@ public class ControllerGame {
 		azioniEdificidaunGiocatore.setOnDragEntered(e -> {
 			setDestinazione1(azioniEdificidaunGiocatore);
 		});
-		
-		mercatoPosMoneteMilitari.setOnDragEntered(e->{
+
+		mercatoPosMoneteMilitari.setOnDragEntered(e -> {
 			setDestinazione1(mercatoPosMoneteMilitari);
 		});
 
-		mercatoPosServitori.setOnDragEntered(e->{
+		mercatoPosServitori.setOnDragEntered(e -> {
 			setDestinazione1(mercatoPosServitori);
 		});
-		
-		mercatoPosMonete.setOnDragEntered(e->{
+
+		mercatoPosMonete.setOnDragEntered(e -> {
 			setDestinazione1(mercatoPosMonete);
 		});
-		
-		mercatoPosMunicipio.setOnDragEntered(e->{
+
+		mercatoPosMunicipio.setOnDragEntered(e -> {
 			setDestinazione1(mercatoPosMunicipio);
 		});
-		
-		pianoPrimoPalazzoMilitare.setOnDragEntered(e->{
+
+		pianoPrimoPalazzoMilitare.setOnDragEntered(e -> {
 			setDestinazione1(pianoPrimoPalazzoMilitare);
 		});
-		
-		pianoSecondoPalazzoMilitare.setOnDragEntered(e->{
+
+		pianoSecondoPalazzoMilitare.setOnDragEntered(e -> {
 			setDestinazione1(pianoSecondoPalazzoMilitare);
 		});
-		
-		pianoTerzoPalazzoMilitare.setOnDragEntered(e->{
+
+		pianoTerzoPalazzoMilitare.setOnDragEntered(e -> {
 			setDestinazione1(pianoTerzoPalazzoMilitare);
 		});
-		
-		pianoQuartoPalazzoMilitare.setOnDragEntered(e->{
+
+		pianoQuartoPalazzoMilitare.setOnDragEntered(e -> {
 			setDestinazione1(pianoQuartoPalazzoMilitare);
 		});
-		
-		pianoPrimoPalazzoPersonaggi.setOnDragEntered(e->{
+
+		pianoPrimoPalazzoPersonaggi.setOnDragEntered(e -> {
 			setDestinazione1(pianoPrimoPalazzoPersonaggi);
 		});
-		
-		pianoSecondoPalazzoPersonaggi.setOnDragEntered(e->{
+
+		pianoSecondoPalazzoPersonaggi.setOnDragEntered(e -> {
 			setDestinazione1(pianoSecondoPalazzoPersonaggi);
 		});
-		
-		pianoTerzoPalazzoPersonaggi.setOnDragEntered(e->{
+
+		pianoTerzoPalazzoPersonaggi.setOnDragEntered(e -> {
 			setDestinazione1(pianoTerzoPalazzoPersonaggi);
 		});
-		
-		pianoQuartoPalazzoPersonaggi.setOnDragEntered(e->{
+
+		pianoQuartoPalazzoPersonaggi.setOnDragEntered(e -> {
 			setDestinazione1(pianoQuartoPalazzoPersonaggi);
 		});
-		
-		pianoPrimoPalazzoEdifici.setOnDragEntered(e->{
+
+		pianoPrimoPalazzoEdifici.setOnDragEntered(e -> {
 			setDestinazione1(pianoPrimoPalazzoEdifici);
 		});
-		
-		pianoSecondoPalazzoEdifici.setOnDragEntered(e->{
+
+		pianoSecondoPalazzoEdifici.setOnDragEntered(e -> {
 			setDestinazione1(pianoSecondoPalazzoEdifici);
 		});
-		
-		pianoTerzoPalazzoEdifici.setOnDragEntered(e->{
+
+		pianoTerzoPalazzoEdifici.setOnDragEntered(e -> {
 			setDestinazione1(pianoTerzoPalazzoEdifici);
 		});
-		
-		pianoQuartoPalazzoEdifici.setOnDragEntered(e->{
+
+		pianoQuartoPalazzoEdifici.setOnDragEntered(e -> {
 			setDestinazione1(pianoQuartoPalazzoEdifici);
 		});
-		
-		pianoPrimoPalazzoTerritori.setOnDragEntered(e->{
+
+		pianoPrimoPalazzoTerritori.setOnDragEntered(e -> {
 			setDestinazione1(pianoPrimoPalazzoTerritori);
 		});
-		
-		pianoSecondoPalazzoTerritori.setOnDragEntered(e->{
+
+		pianoSecondoPalazzoTerritori.setOnDragEntered(e -> {
 			setDestinazione1(pianoSecondoPalazzoTerritori);
 		});
-		
-		pianoTerzoPalazzoTerritori.setOnDragEntered(e->{
+
+		pianoTerzoPalazzoTerritori.setOnDragEntered(e -> {
 			setDestinazione1(pianoTerzoPalazzoTerritori);
 		});
-		
-		pianoQuartoPalazzoTerritori.setOnDragEntered(e->{
+
+		pianoQuartoPalazzoTerritori.setOnDragEntered(e -> {
 			setDestinazione1(pianoQuartoPalazzoTerritori);
 		});
-		
+
 		azioniTerritoridapiuGiocatori.setOnDragEntered(e -> {
 			setDestinazione2(azioniTerritoridapiuGiocatori);
 		});
@@ -1606,7 +1565,7 @@ public class ControllerGame {
 		azioniEdificidapiuGiocatori.setOnDragEntered(e -> {
 			setDestinazione2(azioniEdificidapiuGiocatori);
 		});
-		
+
 	}
 
 	private void setDestinazione2(HBox azioniTerritoridaunGiocatore2) {
@@ -1623,5 +1582,226 @@ public class ControllerGame {
 	public void setFlag(String string) {
 		bandiera.setImage(new Image(getClass().getResourceAsStream("BandierinaBlu.png")));
 
+	}
+
+	public void notifySpostamentoPuntiMilitari(double x, double y, String color) {
+		switch (color) {
+		case "blue":
+			for (double i = puntiMilitariBlu.getLayoutY(); i < y; i++) {
+				puntiMilitariBlu.setLayoutY(i);
+			}
+			break;
+		case "white":
+			for (double i = puntiMilitariBianco.getLayoutY(); i < y; i++) {
+				puntiMilitariBlu.setLayoutY(i);
+			}
+			break;
+		case "green":
+			for (double i = puntiMilitariVerde.getLayoutY(); i < y; i++) {
+				puntiMilitariBlu.setLayoutY(i);
+			}
+			break;
+		case "orange":
+			for (double i = puntiMilitariArancio.getLayoutY(); i < y; i++) {
+				puntiMilitariBlu.setLayoutY(i);
+			}
+			break;
+		}
+	}
+
+	public void notifySpostamentoPuntiVittoria(double x, double y, String color) {
+		double startX;
+		double startY;
+		switch (color) {
+		case "blue":
+			startX = puntiVittoriaBlu.getLayoutX();
+			startY = puntiVittoriaBlu.getLayoutY();
+			while (startX != x && startY != y) {
+				if (startX != x)
+					startX++;
+				if (startY != y)
+					startY++;
+				puntiVittoriaBlu.setLayoutX(startX);
+				puntiVittoriaBlu.setLayoutY(startY);
+			}
+			break;
+		case "white":
+			startX = puntiVittoriaBianco.getLayoutX();
+			startY = puntiVittoriaBianco.getLayoutY();
+			while (startX != x && startY != y) {
+				if (startX != x)
+					startX++;
+				if (startY != y)
+					startY++;
+				puntiVittoriaBianco.setLayoutX(startX);
+				puntiVittoriaBianco.setLayoutY(startY);
+			}
+			break;
+		case "green":
+			startX = puntiVittoriaVerde.getLayoutX();
+			startY = puntiVittoriaVerde.getLayoutY();
+			while (startX != x && startY != y) {
+				if (startX != x)
+					startX++;
+				if (startY != y)
+					startY++;
+				puntiVittoriaVerde.setLayoutX(startX);
+				puntiVittoriaVerde.setLayoutY(startY);
+			}
+			break;
+		case "orange":
+			startX = puntiVittoriaArancio.getLayoutX();
+			startY = puntiVittoriaArancio.getLayoutY();
+			while (startX != x && startY != y) {
+				if (startX != x)
+					startX++;
+				if (startY != y)
+					startY++;
+				puntiVittoriaArancio.setLayoutX(startX);
+				puntiVittoriaArancio.setLayoutY(startY);
+			}
+			break;
+		}
+	}
+
+	public void notifySpostamentoPuntiFede(double x, double y, String color) {
+		switch (color) {
+		case "blue":
+			for (double i = puntiFedeBlu.getLayoutX(); i < x; i++) {
+				puntiMilitariBlu.setLayoutX(i);
+			}
+			break;
+		case "white":
+			for (double i = puntiFedeBianco.getLayoutX(); i < x; i++) {
+				puntiMilitariBlu.setLayoutX(i);
+			}
+			break;
+		case "green":
+			for (double i = puntiFedeVerde.getLayoutX(); i < x; i++) {
+				puntiMilitariBlu.setLayoutX(i);
+			}
+			break;
+		case "orange":
+			for (double i = puntiFedeArancio.getLayoutX(); i < x; i++) {
+				puntiMilitariBlu.setLayoutX(i);
+			}
+			break;
+		}
+	}
+
+	public void notifyPergamena() {
+		Stage popup = new Stage();
+		popup.setTitle("Pergamene");
+		VBox box = new VBox();
+		HBox buttonBox = new HBox();
+		ImageView im = new ImageView(new Image(getClass().getResourceAsStream("Pergamena.png")));
+		Button risorse = new Button("Click Me!");
+		risorse.setOnAction(e -> {
+			try {
+				start.getClient().getRisorse().addRis("pietra", 1);
+				start.getClient().getRisorse().addRis("legno", 1);
+				pietra.setText(String.valueOf(start.getClient().getRisorse().getDimRisorse("pietra")));
+				lengo.setText(String.valueOf(start.getClient().getRisorse().getDimRisorse("legno")));
+			} catch (ClassNotFoundException | IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			popup.close();
+			e.consume();
+		});
+
+		Button servitoriB = new Button("Click Me!");
+		servitoriB.setOnAction(e -> {
+			try {
+				start.getClient().getRisorse().addRis("servitori", 2);
+				servitori.setText(String.valueOf(start.getClient().getRisorse().getDimRisorse("servitori")));
+			} catch (ClassNotFoundException | IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			popup.close();
+			e.consume();
+		});
+
+		Button moneteB = new Button("Click Me!");
+		moneteB.setOnAction(e -> {
+			try {
+				start.getClient().getRisorse().addRis("monete", 2);
+				monete.setText(String.valueOf(start.getClient().getRisorse().getDimRisorse("monete")));
+			} catch (ClassNotFoundException | IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			popup.close();
+			e.consume();
+		});
+
+		Button militariB = new Button("Click Me!");
+		moneteB.setOnAction(e -> {
+			try {
+				start.getClient().getRisorse().addPunti("militari", 2);
+				start.getClient().notifySpostamentoPunti("militari");
+			} catch (ClassNotFoundException | IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			popup.close();
+			e.consume();
+		});
+		Button fedeB = new Button("Click Me!");
+		fedeB.setOnAction(e -> {
+			try {
+				start.getClient().getRisorse().addPunti("fede", 1);
+				start.getClient().notifySpostamentoPunti("fede");
+			} catch (ClassNotFoundException | IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			popup.close();
+			e.consume();
+		});
+		buttonBox.getChildren().addAll(risorse, moneteB, militariB, fedeB);
+		box.getChildren().addAll(im,buttonBox);
+		Scene scene = new Scene(box,600,400);
+		popup.centerOnScreen();
+		popup.setScene(scene);
+		popup.show();
+	}
+
+	public void notifyTutteCarte() {
+		Stage popup = new Stage();
+		popup.setTitle("TutteCarte");
+		VBox vBox = new VBox();
+		HBox box = new HBox();
+		HBox labelBox = new HBox();
+		Label[] l = { new Label(" "),
+				new Label("Hei, puoi prendere una carta in più, clicca sulla posizione del piano della carta che vorresti prendere, ricorda che se il palazzo è già abitato in una qualsiasi posizione devi spendere 3 monete"), new Label(" ") };
+		ImageView[] im = new ImageView[16];
+		labelBox.getChildren().addAll(l[0],l[1],l[2]);
+		for (int i = 0; i < 4; i++) {
+			if (arrayCarteTerritori[i] != null)
+				im[i] = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteTerritori[i].getImage())));
+		}
+		for (int i = 0; i < 4; i++) {
+			if (arrayCarteTerritori[i] != null)
+				im[i + 4] = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteTerritori[i].getImage())));
+		}
+		for (int i = 0; i < 4; i++) {
+			if (arrayCarteTerritori[i] != null)
+				im[i + 8] = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteTerritori[i].getImage())));
+		}
+		for (int i = 0; i < 4; i++) {
+			if (arrayCarteTerritori[i] != null)
+				im[i + 12] = new ImageView(
+						new Image(getClass().getResourceAsStream(arrayCarteTerritori[i].getImage())));
+		}
+		for(ImageView i : im ){
+			box.getChildren().add(i);
+		}
+		vBox.getChildren().addAll(labelBox,box);
+		Scene scene = new Scene(vBox,600,400);
+		popup.centerOnScreen();
+		popup.setScene(scene);
+		popup.show();
 	}
 }

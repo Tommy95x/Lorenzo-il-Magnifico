@@ -21,14 +21,14 @@ public class Giocatore implements Serializable {
 	private Portafoglio risorse;
 	private FamiliareNeutro[] familiari;
 	private CuboScomunica[] cubiScomunica;
-	//Mettere public per il test
-	//public Dado[] dadi = new Dado[3];
+	// Mettere public per il test
+	// public Dado[] dadi = new Dado[3];
 	private Dado[] dadi;
 	private ArrayList<CartaSviluppo> carte;
 	private Partita partita;
 	private int positionGame;
 	private ThreadSocketServer server = null;
-	private RMIClientInterface  client;
+	private RMIClientInterface client;
 	private Flag flag;
 	private int nScomuniche = 0;
 
@@ -76,7 +76,7 @@ public class Giocatore implements Serializable {
 	}
 
 	public void setRisorse(String ris) {
-		risorse.addRis(ris,1);
+		risorse.addRis(ris, 1);
 	}
 
 	public String getName() {
@@ -105,7 +105,7 @@ public class Giocatore implements Serializable {
 	public void notifyStartGame() throws IOException, ClassNotFoundException {
 		System.out.println("Enter in a notifica start");
 		if (server != null) {
-			System.out.println("utente socket"+server.toString());
+			System.out.println("utente socket" + server.toString());
 			server.notifyStartGame();
 		} else {
 			System.out.println("utente rmi");
@@ -121,14 +121,15 @@ public class Giocatore implements Serializable {
 		this.flag = flag;
 	}
 
-	public String controlloPosizionamento(String color, double x, double y, Connection connection, int agg) throws SQLException {
+	public String controlloPosizionamento(String color, double x, double y, Connection connection, int agg)
+			throws SQLException {
 		Dado dadoMom = null;
-		for(Dado d : dadi){
-			if(d.getColor().equals(color))
-				dadoMom=d;
-				break;
+		for (Dado d : dadi) {
+			if (d.getColor().equals(color))
+				dadoMom = d;
+			break;
 		}
-		String query="SELECT VALOREAZIONE FROM POSIZIONETABELLONE WHERE "+x+"=POSX AND "+y+"=POSY";
+		String query = "SELECT VALOREAZIONE FROM POSIZIONETABELLONE WHERE " + x + "=POSX AND " + y + "=POSY";
 		Statement stmt = connection.createStatement();
 		ResultSet res = stmt.executeQuery(query);
 		res.next();
@@ -136,16 +137,16 @@ public class Giocatore implements Serializable {
 		res.close();
 		stmt.close();
 		connection.close();
-		if(risorse.getDimRisorse("servitori") < agg){
+		if (risorse.getDimRisorse("servitori") < agg) {
 			return "NotEnough";
-			}else{
-				if(dadoMom.getValore()+agg >= valoreazione){
-					risorse.addRis("servitori", -agg);
-					return "OK";
-				}else{
-					return "Pay";
-				}
+		} else {
+			if (dadoMom.getValore() + agg >= valoreazione) {
+				risorse.addRis("servitori", -agg);
+				return "OK";
+			} else {
+				return "Pay";
 			}
+		}
 	}
 
 	public void getScomunica(TesseraScomunica scomunica) throws RemoteException {
@@ -177,9 +178,9 @@ public class Giocatore implements Serializable {
 
 	}
 
-	public void addCard(CartaSviluppo carta, int tipo) {
+	public void addCard(CartaSviluppo carta, int tipo, Connection c) {
 		carte.add(carta);
-		activateCardEffettiImmediati(carta, tipo);
+		activateCardEffettiImmediati(carta, tipo, c);
 	}
 
 	public void notifyAddCard(CartaSviluppo carta) throws RemoteException {
@@ -190,28 +191,227 @@ public class Giocatore implements Serializable {
 		}
 	}
 
-	private void activateCardEffettiImmediati(CartaSviluppo carta, int tipo) {
-		switch(tipo){
+	private void activateCardEffettiImmediati(CartaSviluppo carta, int tipo, Connection c) {
+		switch (tipo) {
 		case 0:
 			carta = (CartaTerritori) carta;
-			for(Effetto e :  carta.getEffetti()){
-				if(e.isImmediato() && e!=null){
-					switch(e.getRisorsa()){
-						case "punti"
+			for (Effetto e : carta.getEffetti()) {
+				if (e.isImmediato() && e != null) {
+					switch (e.getRisorsa()) {
+					case "militari":
+						risorse.addPunti("militari", e.getQta());
+						partita.notifySpostamentoPunti("militari", e.getQta(),c);
+						break;
+					case "vittoria":
+						risorse.addPunti("vittoria", e.getQta());
+						partita.notifySpostamentoPunti("vittoria", e.getQta(),c);
+						break;
+					case "fede":
+						risorse.addPunti("fede", e.getQta());
+						partita.notifySpostamentoPunti("fede", e.getQta(),c);
+						break;
+					case "pietra":
+						risorse.addRis("pietra", e.getQta());
+						break;
+					case "monete":
+						risorse.addRis("monete", e.getQta());
+						break;
+					case "servitori":
+						risorse.addRis("servitori", e.getQta());
+						break;
+					case "legno":
+						risorse.addRis("legno", e.getQta());
+						break;
+					case "pergamena":
+						try {
+							notifyPergamena();
+						} catch (RemoteException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						break;
 					}
 				}
 			}
 			break;
 		case 1:
+			int sum=0;
+			carta = (CartaPersonaggi) carta;
+			risorse.addRis("monete", -carta.getCostoMoneta());
+			for (Effetto e : carta.getEffetti()) {
+				if (e.isImmediato() && e != null) {
+					switch (e.getRisorsa()) {
+					case "militari":
+						risorse.addPunti("militari", e.getQta());
+						break;
+					case "vittoria":
+						switch(carta.getPerOgniCarta()){
+							case "EDIFICIO":
+								for(CartaSviluppo c1 : carte){
+									if(c1.getId().contains("ED")){
+										sum++;
+									}
+								}
+								risorse.addPunti("vittoria", 2*sum);
+								partita.notifySpostamentoPunti("vittoria", 2*sum, c);
+								sum=0;
+								break;
+							case "PERSONAGGI":
+								for(CartaSviluppo c1 : carte){
+									if(c1.getId().contains("PER")){
+										sum++;
+									}
+								}
+								risorse.addPunti("vittoria", 2*sum);
+								partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), c);
+								sum=0;
+								break;
+							case "IMPRESA":
+								for(CartaSviluppo c1 : carte){
+									if(c1.getId().contains("IMP")){
+										sum++;
+									}
+								}
+								risorse.addPunti("vittoria", 2*sum);
+								partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), c);
+								sum=0;
+								break;
+							case "2MILITARI":
+								risorse.addPunti("vittoria",(int) risorse.getPunti("militari")/2);
+								partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), c);
+								sum=0;
+								break;
+							case "TERRITORI":
+								for(CartaSviluppo c1 : carte){
+									if(c1.getId().contains("TER")){
+										sum++;
+									}
+								}
+								risorse.addPunti("vittoria", 2*sum);
+								partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), c);
+								sum=0;
+								break;
+						}
+						break;
+					case "fede":
+						risorse.addPunti("fede", e.getQta());
+						break;
+					case "tuttecarte":
+						try {
+							this.notifyTutteCarte();
+						} catch (RemoteException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						break;
+					}
+				}
+			}
 			break;
 		case 2:
+			carta = (CartaEdifici) carta;
+			for (Effetto e : carta.getEffetti()) {
+				if (e.isImmediato() && e != null) {
+					switch (e.getRisorsa()) {
+					case "militari":
+						risorse.addPunti("militari", e.getQta());
+						break;
+					case "vittoria":
+						risorse.addPunti("vittoria", e.getQta());
+						break;
+					case "fede":
+						risorse.addPunti("fede", e.getQta());
+						break;
+					case "pietra":
+						risorse.addRis("pietra", e.getQta());
+						break;
+					case "monete":
+						risorse.addRis("monete", e.getQta());
+						break;
+					case "servitori":
+						risorse.addRis("servitori", e.getQta());
+						break;
+					case "legno":
+						risorse.addRis("legno", e.getQta());
+						break;
+					}
+				}
+			}
 			break;
 		case 3:
+			carta = (CartaImprese) carta;
+			for (Effetto e : carta.getEffetti()) {
+				if (e.isImmediato() && e != null) {
+					switch (e.getRisorsa()) {
+					case "militari":
+						risorse.addPunti("militari", e.getQta());
+						break;
+					case "vittoria":
+						risorse.addPunti("vittoria", e.getQta());
+						break;
+					case "fede":
+						risorse.addPunti("fede", e.getQta());
+						break;
+					case "pietra":
+						risorse.addRis("pietra", e.getQta());
+						break;
+					case "monete":
+						risorse.addRis("monete", e.getQta());
+						break;
+					case "servitori":
+						risorse.addRis("servitori", e.getQta());
+						break;
+					case "legno":
+						risorse.addRis("legno", e.getQta());
+						break;
+					}
+				}
+			}
 			break;
+		}
+	}
+
+	private void notifyTutteCarte() throws RemoteException {
+		if (client == null) {
+			server.notifyTutteCarte();
+		} else {
+			client.notifyTutteCarte();
+		}
+	}
+
+	private void notifyPergamena() throws RemoteException {
+		if (client == null) {
+			server.notifyPergamena();
+		} else {
+			client.notifyPergamena();
 		}
 	}
 
 	public ArrayList<CartaSviluppo> getCardsGamer() {
 		return carte;
+	}
+
+	public void notifySpostamentopuntiMilitari(double x, double y, String string) throws RemoteException {
+		if (client == null) {
+			server.notifySpostamentoPuntiMilitari(x,y,string);
+		} else {
+			client.notifySpostamentoPuntiMilitari(x,y,string);
+		}
+	}
+
+	public void notifySpostamentopuntiVittoria(double x, double y, String color2) throws RemoteException {
+		if (client == null) {
+			server.notifySpostamentoPuntiVittoria(x,y,color2);
+		} else {
+			client.notifySpostamentoPuntiVittoria(x,y,color2);
+		}
+	}
+
+	public void notifySpostamentopuntiFede(double x, double y, String color2) throws RemoteException {
+		if (client == null) {
+			server.notifySpostamentoPuntiFede(x,y,color2);
+		} else {
+			client.notifySpostamentoPuntiFede(x,y,color2);
+		}
 	}
 }

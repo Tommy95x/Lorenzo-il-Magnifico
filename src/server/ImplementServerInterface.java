@@ -41,18 +41,16 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		return commonServer.registerNewClient(username, pw1, email);
 	}
 
-	public int createNewLobby(String lobby, String account, String color)
-			throws RemoteException, SQLException {
+	public int createNewLobby(String lobby, String account, String color) throws RemoteException, SQLException {
 		System.out.println("Creo la partita nell'arraylist partite");
 		commonServer.addGame(lobby, account);
 		System.out.println("Recupero dal db le carte");
 		commonServer.setCards(commonServer.getLobbyByName(lobby), account);
 		System.out.println("SetCarteScomunica");
-		commonServer.getLobbyByName(lobby).setCardsScomunica(commonServer.getDBConnection(),
-		 account);
+		commonServer.getLobbyByName(lobby).setCardsScomunica(commonServer.getDBConnection(), account);
 		System.out.println("Aggiungo il giocatore alla partita creata");
-		Giocatore g = new Giocatore(color, commonServer.getLobbyByName(lobby),
-				account, commonServer.getIndicePartita(lobby));
+		Giocatore g = new Giocatore(color, commonServer.getLobbyByName(lobby), account,
+				commonServer.getIndicePartita(lobby));
 		commonServer.getLobbyByName(lobby).addGiocatore(g);
 		System.out.println("Aggiorno i colori disponibili");
 		commonServer.getLobbyByName(lobby).changeColors(color);
@@ -60,8 +58,9 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		commonServer.getLobbyByName(lobby).getGiocatoreByName(account).setFlag(new Flag(color, commonServer, account));
 		return commonServer.getIndicePartita(lobby);
 	}
-	
-	public void setClientInterface(String lobby, String account, RMIClientInterface connectionRmiClient)throws RemoteException{
+
+	public void setClientInterface(String lobby, String account, RMIClientInterface connectionRmiClient)
+			throws RemoteException {
 		commonServer.getLobbyByName(lobby).getGiocatoreByName(account).getClient(connectionRmiClient);
 	}
 
@@ -74,18 +73,18 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 	public ArrayList<String> getLobby() throws RemoteException {
 		System.out.println(commonServer.getLobbies().size());
 		ArrayList<String> mom = new ArrayList<String>();
-		for(Partita p : commonServer.getLobbies())
+		for (Partita p : commonServer.getLobbies())
 			mom.add(p.getLobbyName());
 		return mom;
 	}
 
-	public int selectLobby(String lobby, String account, String color)
-			throws RemoteException, SQLException {
+	public int selectLobby(String lobby, String account, String color) throws RemoteException, SQLException {
 		int numberGame = commonServer.getIndicePartita(lobby);
 		if (commonServer.getLobbyByNumber(numberGame).getNumberOfPlayers() < 4) {
 			commonServer.addGamer(numberGame, color, account);
 			commonServer.getLobbyByName(lobby).changeColors(color);
-			// Commentare per i test altrimenti lancia un null pointer la riga successiva
+			// Commentare per i test altrimenti lancia un null pointer la riga
+			// successiva
 			commonServer.getLobbyByName(lobby).getGiocatoreByName(account)
 					.setFlag(new Flag(color, commonServer, account));
 			return numberGame;
@@ -111,8 +110,8 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		return commonServer.getLobbyByName(lobby).getColors();
 	}
 
-	public String controlloPosizionamento(String color, int posisitionGame, String name, double x, double y,
-			int agg) throws RemoteException, SQLException {
+	public String controlloPosizionamento(String color, int posisitionGame, String name, double x, double y, int agg)
+			throws RemoteException, SQLException {
 		return commonServer.getLobbyByNumber(posisitionGame).getGiocatoreByName(name).controlloPosizionamento(color, x,
 				y, commonServer.getDBConnection().getConnection(name), agg);
 	}
@@ -142,8 +141,10 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		return commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).getCardsGamer();
 	}
 
-	public void giveCard(CartaSviluppo carta, String name, int positionGame, int tipo) throws RemoteException {
-		commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).addCard(carta, tipo);
+	public void giveCard(CartaSviluppo carta, String name, int positionGame, int tipo)
+			throws RemoteException, SQLException {
+		commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).addCard(carta, tipo,
+				commonServer.getDBConnection().getConnection(name));
 		commonServer.getLobbyByNumber(positionGame).notifyAddCardGiocatore(name, carta);
 	}
 
@@ -199,6 +200,12 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 	@Override
 	public void givePunti(String gamer, int qta, String tipoPunti) throws RemoteException {
 		// TODO Auto-generated method stub
+
+	}
+
+	public void notifySpostamentoPunti(int positionGame, String name, String tipo) throws RemoteException, SQLException {
+		commonServer.getLobbyByNumber(positionGame).notifySpostamentoPunti(tipo,
+				commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).getRisorse().getPunti(tipo), commonServer.getDBConnection().getConnection(name));
 
 	}
 }

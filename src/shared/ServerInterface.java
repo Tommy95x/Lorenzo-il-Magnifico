@@ -36,7 +36,7 @@ public interface ServerInterface extends Remote {
 	public String getNamePosition(double x, double y, int positionGame, String name)throws RemoteException, SQLException;
 	public void exitToTheGame(String lobby, String color, String name) throws RemoteException;
 	public ArrayList<CartaSviluppo> getCardsGamer(int positionGame, String name)throws RemoteException;
-	public void giveCard(CartaSviluppo carta, String name, int positionGame, int i)throws RemoteException;
+	public void giveCard(CartaSviluppo carta, String name, int positionGame, int i)throws RemoteException, SQLException;
 	public TesseraScomunica[] getCardsScomunica(int positionGame) throws RemoteException;
 	public Portafoglio getRisorse(int positionGame, String name)throws RemoteException;
 	public Giocatore[] getGiocatori(int positionGame)throws RemoteException;
@@ -44,4 +44,5 @@ public interface ServerInterface extends Remote {
 	public void removeAccount(String name)throws RemoteException;
 	public int getNumberOfPlayer(int positionGame) throws RemoteException;
 	public void setClientInterface(String lobby, String account, RMIClientInterface connectionRmiClient)throws RemoteException;
+	public void notifySpostamentoPunti(int positionGame, String name, String tipo)throws RemoteException, SQLException;
 }

@@ -528,7 +528,12 @@ public class Controller {
 			Button bOk = new Button("OK");
 			Button bCancel = new Button("Cancel");
 			bOk.setOnAction(event -> {
-				controlloPosizionamento(color,x,y,Integer.getInteger(text.getText()));
+				try {
+					controlloPosizionamento(color,x,y,Integer.getInteger(text.getText()));
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				popup.close();
 			});
 			bCancel.setOnAction(event -> {

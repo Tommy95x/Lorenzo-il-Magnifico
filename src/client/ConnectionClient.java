@@ -192,4 +192,14 @@ public class ConnectionClient implements ClientInterface{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	public String getColor(){
+		return "blue";
+	}
+
+
+	public void notifySpostamentoPunti(String string) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
 }

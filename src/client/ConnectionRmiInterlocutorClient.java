@@ -32,20 +32,11 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 		System.out.println("Prova");
 	}
 
-	public void moveDisco(double x, double y, String colorPlayer, String colorDisco) throws RemoteException {
-		guiGame.movePunti(colorDisco, x, y);
-		
-	}
-
 	public void moveFamiliareAvv(double x, double y, String colorPlayer, String colorFamiliare) throws RemoteException {
 		guiGame.moveFamAvv(colorPlayer, colorFamiliare, x, y);
 		
 	}
 
-	public void moveDiscoFede(double x, double y, String colorPlayer, String colorDisco) throws RemoteException {
-		guiGame.movePuntiFede(colorDisco, x, y);
-		
-	}
 
 	public void addScomunica(int nScomuniche, Tooltip tooltip) throws RemoteException {
 		guiGame.addScomunica(nScomuniche, tooltip);
@@ -84,6 +75,34 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 	@Override
 	public void richestaSostegnoChiesa() throws RemoteException {
 		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void notifySpostamentoPuntiMilitari(double x, double y, String color) {
+		this.guiGame.notifySpostamentoPuntiMilitari(x,y,color);
+		
+	}
+
+	public void notifySpostamentoPuntiVittoria(double x, double y, String color) {
+		this.guiGame.notifySpostamentoPuntiVittoria(x, y, color);
+		
+	}
+
+	
+	public void notifySpostamentoPuntiFede(double x, double y, String color) {
+		this.guiGame.notifySpostamentoPuntiFede(x, y, color);
+		
+	}
+
+	public void notifyPergamena() throws RemoteException {
+		this.guiGame.notifyPergamena();
+		
+	}
+
+	@Override
+	public void notifyTutteCarte() throws RemoteException {
+		this.guiGame.notifyTutteCarte();
 		
 	}
 	

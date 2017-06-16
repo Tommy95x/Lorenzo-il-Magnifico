@@ -303,4 +303,9 @@ public class CartaSviluppo implements Serializable{
 		return null;
 	}
 
+	public String getId() {
+		// TODO Auto-generated method stub
+		return "ED";
+	}
+
 }

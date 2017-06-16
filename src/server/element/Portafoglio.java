@@ -6,9 +6,11 @@ import java.util.ArrayList;
 /**
  * @author Tommy
  *
- *Classe che verra' posseduta da ogni giocatore e che conterra' tutti i punti per categoria di risorsa che il giocatore accumulera' durante la partita
+ *         Classe che verra' posseduta da ogni giocatore e che conterra' tutti i
+ *         punti per categoria di risorsa che il giocatore accumulera' durante
+ *         la partita
  */
-public class Portafoglio implements Serializable{
+public class Portafoglio implements Serializable {
 
 	private int legno;
 	private int pietra;
@@ -18,76 +20,76 @@ public class Portafoglio implements Serializable{
 	private int puntiTot;
 	private int puntiMilitari;
 	private int puntiFede;
-	
-	public Portafoglio(){
+
+	public Portafoglio() {
 		int i;
-		for(i=0;i<2;i++){
+		for (i = 0; i < 2; i++) {
 			legno++;
 			pietra++;
 		}
-		for(i=0;i<3;i++)
+		for (i = 0; i < 3; i++)
 			servitori++;
-		for(i=0;i<5;i++)
+		for (i = 0; i < 5; i++)
 			monete++;
-		puntiTot=0;
-		puntiMilitari=0;
-		puntiFede=0;
+		puntiTot = 0;
+		puntiMilitari = 0;
+		puntiFede = 0;
 	}
-	
-	private boolean addServitori(int incr){
-		if(servitori == 0 && incr<=0){
+
+	private boolean addServitori(int incr) {
+		if (servitori == 0 && incr <= 0) {
 			return false;
 		}
-		servitori+=incr;
+		servitori += incr;
 		return true;
 	}
-	
-	//Rendere public solo per la verifica di test
-	//public boolean addMonete(int incr){
-	private boolean addMonete(int incr){
-		if(monete == 0 && incr<=0){
+
+	// Rendere public solo per la verifica di test
+	// public boolean addMonete(int incr){
+	private boolean addMonete(int incr) {
+		if (monete == 0 && incr <= 0) {
 			return false;
 		}
-		monete+=incr;
+		monete += incr;
 		return true;
 	}
-	
-	private boolean addLengo(int incr){
-		if(legno == 0 && incr<=0){
+
+	private boolean addLengo(int incr) {
+		if (legno == 0 && incr <= 0) {
 			return false;
 		}
-		legno+=incr;
+		legno += incr;
 		return true;
 	}
-	
-	private boolean addPietra(int incr){
-		if(pietra == 0 && incr<=0){
+
+	private boolean addPietra(int incr) {
+		if (pietra == 0 && incr <= 0) {
 			return false;
 		}
-		pietra+=incr;
+		pietra += incr;
 		return true;
 	}
-	
-	public void addCarta(CartaSviluppo c){
+
+	public void addCarta(CartaSviluppo c) {
 		carte.add(c);
 	}
-	
-	public int getDimRisorse(String risorsa){
-		switch(risorsa){
-			case "legno":
-				return legno;
-			case "monete":
-				return monete;
-			case "pietra":
-				return pietra;
-			case "servitori":
-				return servitori;
+
+	public int getDimRisorse(String risorsa) {
+		switch (risorsa) {
+		case "legno":
+			return legno;
+		case "monete":
+			return monete;
+		case "pietra":
+			return pietra;
+		case "servitori":
+			return servitori;
 		}
 		return 0;
 	}
-	
+
 	public void addRis(String ris, int incr) {
-		switch(ris){
+		switch (ris) {
 		case "legno":
 			addLengo(incr);
 			break;
@@ -100,9 +102,33 @@ public class Portafoglio implements Serializable{
 		case "servitori":
 			addServitori(incr);
 			break;
-	}
-		
+		}
 	}
 
-	
+	public void addPunti(String tipo, int qta) {
+		switch (tipo) {
+		case "militari":
+			puntiMilitari += qta;
+			break;
+		case "vittoria":
+			puntiTot += qta;
+			break;
+		case "fede":
+			puntiFede += qta;
+			break;
+		}
+	}
+
+	public int getPunti(String tipo) {
+		switch (tipo) {
+		case "militari":
+			return puntiMilitari;
+		case "vittoria":
+			return puntiTot;
+		case "fede":
+			return puntiFede;
+		}
+		return 0;
+	}
+
 }
