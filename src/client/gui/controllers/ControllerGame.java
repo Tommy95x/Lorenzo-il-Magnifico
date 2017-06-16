@@ -611,10 +611,9 @@ public class ControllerGame {
 	 */
 	public boolean controlloPosizionamento(String color, double x, double y, int addRisorse) {
 		String mom = null;
-		boolean risposta = false;
 		try {
 			mom = start.getClient().controlloPosizionamento(color, x, y, addRisorse);
-		} catch (ClassNotFoundException | IOException e) {
+		} catch (ClassNotFoundException | IOException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -658,6 +657,11 @@ public class ControllerGame {
 		} else if (mom.equals("OK"))
 			return true;
 		else if (mom.equals("NotEnough")) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.initOwner(start.getStage());
+			alert.setTitle("Mossa negata");
+			alert.setContentText("Non fare il furbo!! Non hai abbastanza servitori!");
+			alert.showAndWait();
 			return false;
 		}
 		return false;
@@ -982,102 +986,100 @@ public class ControllerGame {
 		case "PIANO 1 CARTE TERRITORI":
 			carteTerritoriGiocatore.getChildren().add(carteTerritori.getChildren().get(0));
 			Tooltip.install(carteTerritoriGiocatore.getChildren().get(0), arrayCarteTerritori[0].getTooltip());
-			carteTerritori.getChildren().set(0, new ImageView(new Image(getClass().getResourceAsStream(""))));
-			start.getClient().setCardGiocatore(arrayCarteTerritori[0]);
+			carteTerritori.getChildren().get(0).setOpacity(0);
+			start.getClient().setCardGiocatore(arrayCarteTerritori[0],0);
 			break;
 		case "PIANO 2 CARTE TERRITORI":
 			carteTerritoriGiocatore.getChildren().add(carteTerritori.getChildren().get(1));
 			Tooltip.install(carteTerritoriGiocatore.getChildren().get(1), arrayCarteTerritori[1].getTooltip());
 			carteTerritori.getChildren().set(1, new ImageView(new Image(getClass().getResourceAsStream(""))));
-			start.getClient().setCardGiocatore(arrayCarteTerritori[1]);
+			start.getClient().setCardGiocatore(arrayCarteTerritori[1],0);
 			break;
 		case "PIANO 3 CARTE TERRITORI":
 			carteTerritoriGiocatore.getChildren().add(carteTerritori.getChildren().get(2));
 			Tooltip.install(carteTerritoriGiocatore.getChildren().get(2), arrayCarteTerritori[2].getTooltip());
 			carteTerritori.getChildren().set(2, new ImageView(new Image(getClass().getResourceAsStream(""))));
-			start.getClient().setCardGiocatore(arrayCarteTerritori[2]);
+			start.getClient().setCardGiocatore(arrayCarteTerritori[2],0);
 			break;
 		case "PIANO 4 CARTE TERRITORI":
 			carteTerritoriGiocatore.getChildren().add(carteTerritori.getChildren().get(3));
 			Tooltip.install(carteTerritoriGiocatore.getChildren().get(3), arrayCarteTerritori[3].getTooltip());
 			carteTerritori.getChildren().set(3, new ImageView(new Image(getClass().getResourceAsStream(""))));
-			start.getClient().setCardGiocatore(arrayCarteTerritori[3]);
+			start.getClient().setCardGiocatore(arrayCarteTerritori[3],0);
 			break;
 		case "PIANO 1 CARTE EDIFICI":
 			carteEdificiGiocatore.getChildren().add(carteEdifici.getChildren().get(0));
 			Tooltip.install(carteEdificiGiocatore.getChildren().get(0), arrayCarteEdifici[0].getTooltip());
 			carteEdifici.getChildren().set(0, new ImageView(new Image(getClass().getResourceAsStream(""))));
 
-			start.getClient().setCardGiocatore(arrayCarteEdifici[0]);
+			start.getClient().setCardGiocatore(arrayCarteEdifici[0],3);
 			break;
 		case "PIANO 2 CARTE EDIFICI":
 			carteEdificiGiocatore.getChildren().add(carteEdifici.getChildren().get(1));
 			Tooltip.install(carteEdificiGiocatore.getChildren().get(1), arrayCarteEdifici[1].getTooltip());
 			carteEdifici.getChildren().set(1, new ImageView(new Image(getClass().getResourceAsStream(""))));
-			start.getClient().setCardGiocatore(arrayCarteEdifici[1]);
+			start.getClient().setCardGiocatore(arrayCarteEdifici[1],3);
 			break;
 		case "PIANO 3 CARTE EDIFICI":
 			carteEdificiGiocatore.getChildren().add(carteEdifici.getChildren().get(2));
 			Tooltip.install(carteEdificiGiocatore.getChildren().get(2), arrayCarteEdifici[2].getTooltip());
 			carteEdifici.getChildren().set(2, new ImageView(new Image(getClass().getResourceAsStream(""))));
-			start.getClient().setCardGiocatore(arrayCarteEdifici[2]);
+			start.getClient().setCardGiocatore(arrayCarteEdifici[2],3);
 			break;
 		case "PIANO 4 CARTE EDIFICI":
 			carteEdificiGiocatore.getChildren().add(carteEdifici.getChildren().get(3));
 			Tooltip.install(carteEdificiGiocatore.getChildren().get(3), arrayCarteEdifici[3].getTooltip());
 			carteEdifici.getChildren().set(3, new ImageView(new Image(getClass().getResourceAsStream(""))));
-			start.getClient().setCardGiocatore(arrayCarteEdifici[3]);
+			start.getClient().setCardGiocatore(arrayCarteEdifici[3],3);
 			break;
 		case "PIANO 1 CARTE IMPRESE":
 			carteImpresaGiocatore.getChildren().add(carteImprese.getChildren().get(0));
 			Tooltip.install(carteImpresaGiocatore.getChildren().get(0), arrayCarteImpresa[0].getTooltip());
 			carteImprese.getChildren().set(0, new ImageView(new Image(getClass().getResourceAsStream(""))));
-			start.getClient().setCardGiocatore(arrayCarteImpresa[0]);
+			start.getClient().setCardGiocatore(arrayCarteImpresa[0],4);
 			break;
 		case "PIANO 2 CARTE IMPRESE":
 			carteImpresaGiocatore.getChildren().add(carteImprese.getChildren().get(1));
 			Tooltip.install(carteImpresaGiocatore.getChildren().get(1), arrayCarteImpresa[1].getTooltip());
 			carteImprese.getChildren().set(1, new ImageView(new Image(getClass().getResourceAsStream(""))));
-			start.getClient().setCardGiocatore(arrayCarteImpresa[1]);
+			start.getClient().setCardGiocatore(arrayCarteImpresa[1],4);
 			break;
 		case "PIANO 3 CARTE IMPRESE":
 			carteImpresaGiocatore.getChildren().add(carteImprese.getChildren().get(2));
 			Tooltip.install(carteImpresaGiocatore.getChildren().get(2), arrayCarteImpresa[2].getTooltip());
 			carteImprese.getChildren().set(2, new ImageView(new Image(getClass().getResourceAsStream(""))));
-			start.getClient().setCardGiocatore(arrayCarteImpresa[2]);
+			start.getClient().setCardGiocatore(arrayCarteImpresa[2],4);
 			break;
 		case "PIANO 4 CARTE IMPRESE":
 			carteImpresaGiocatore.getChildren().add(carteImprese.getChildren().get(3));
 			Tooltip.install(carteImpresaGiocatore.getChildren().get(3), arrayCarteImpresa[3].getTooltip());
 			carteImprese.getChildren().set(3, new ImageView(new Image(getClass().getResourceAsStream(""))));
-			start.getClient().setCardGiocatore(arrayCarteImpresa[3]);
+			start.getClient().setCardGiocatore(arrayCarteImpresa[3],4);
 			break;
 		case "PIANO 1 CARTE PERSONAGGI":
 			cartePersonaggiGiocatore.getChildren().add(cartePersonaggi.getChildren().get(0));
 			Tooltip.install(cartePersonaggiGiocatore.getChildren().get(0), arrayCartePersonaggi[0].getTooltip());
 			cartePersonaggi.getChildren().set(0, new ImageView(new Image(getClass().getResourceAsStream(""))));
-			start.getClient().setCardGiocatore(arrayCartePersonaggi[0]);
+			start.getClient().setCardGiocatore(arrayCartePersonaggi[0],1);
 			break;
-		case "PIANO 2 CARTE PERSONAGG":
+		case "PIANO 2 CARTE PERSONAGGI":
 			cartePersonaggiGiocatore.getChildren().add(cartePersonaggi.getChildren().get(1));
 			Tooltip.install(cartePersonaggiGiocatore.getChildren().get(1), arrayCartePersonaggi[1].getTooltip());
 			cartePersonaggi.getChildren().set(1, new ImageView(new Image(getClass().getResourceAsStream(""))));
-			start.getClient().setCardGiocatore(arrayCartePersonaggi[1]);
+			start.getClient().setCardGiocatore(arrayCartePersonaggi[1],1);
 			break;
 		case "PIANO 3 CARTE PERSONAGGI":
 			cartePersonaggiGiocatore.getChildren().add(cartePersonaggi.getChildren().get(2));
 			Tooltip.install(cartePersonaggiGiocatore.getChildren().get(2), arrayCartePersonaggi[2].getTooltip());
 			cartePersonaggi.getChildren().set(2, new ImageView(new Image(getClass().getResourceAsStream(""))));
-			start.getClient().setCardGiocatore(arrayCartePersonaggi[2]);
+			start.getClient().setCardGiocatore(arrayCartePersonaggi[2],1);
 			break;
 		case "PIANO 4 CARTE PERSONAGGI":
 			cartePersonaggiGiocatore.getChildren().add(cartePersonaggi.getChildren().get(3));
 			Tooltip.install(cartePersonaggiGiocatore.getChildren().get(3), arrayCartePersonaggi[3].getTooltip());
 			cartePersonaggi.getChildren().set(3, new ImageView(new Image(getClass().getResourceAsStream(""))));
-			start.getClient().setCardGiocatore(arrayCartePersonaggi[3]);
+			start.getClient().setCardGiocatore(arrayCartePersonaggi[3],1);
 			break;
-		case "":
-
 		}
 	}
 
@@ -1085,12 +1087,8 @@ public class ControllerGame {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.initOwner(start.getStage());
 		alert.setTitle("Notifica Turno");
-		alert.setContentText("Hei, e' iniziato il tuo turno fai le tue mosse");
+		alert.setContentText("Hei, e' iniziato il tuo turno lancia i dadi e fai le tue mosse");
 		alert.showAndWait();
-		familiareNeutro.setDisable(false);
-		familiareNero.setDisable(false);
-		familiareArancio.setDisable(false);
-		familiareBianco.setDisable(false);
 		lanciaDadi.setDisable(false);
 	}
 
@@ -1153,6 +1151,10 @@ public class ControllerGame {
 		dadoNero.setImage(new Image(getClass().getResourceAsStream(dadi[0].getImage())));
 		dadoBianco.setImage(new Image(getClass().getResourceAsStream(dadi[1].getImage())));
 		dadoArancio.setImage(new Image(getClass().getResourceAsStream(dadi[2].getImage())));
+		familiareNeutro.setDisable(false);
+		familiareNero.setDisable(false);
+		familiareArancio.setDisable(false);
+		familiareBianco.setDisable(false);
 	}
 
 	public void notifyAddCardAvv(CartaSviluppo carta, String nameAvv, Portafoglio portafoglio) {
@@ -1387,6 +1389,12 @@ public class ControllerGame {
 					destinazione1.setImage(familiareNeutro.getImage());
 					familiareNeutro.setDisable(true);
 					familiareNeutro.setOpacity(0);
+					try {
+						setCardGiocatore(start.getClient().getNamePosition(destinazione1.getLayoutX(), destinazione1.getLayoutY()));
+					} catch (IOException | SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 			}
 				} else {
 					if (controlloPosizionamento(start.getColor(), destinazione2.getLayoutX(), destinazione2.getLayoutX(), 0)){
@@ -1396,6 +1404,12 @@ public class ControllerGame {
 					destinazione2.getChildren().add(mom);
 					familiareNeutro.setDisable(true);
 					familiareNeutro.setOpacity(0);
+					try {
+						setCardGiocatore(start.getClient().getNamePosition(destinazione2.getLayoutX(), destinazione2.getLayoutY()));
+					} catch (IOException | SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					}
 				}
 		});
@@ -1406,6 +1420,12 @@ public class ControllerGame {
 						destinazione1.setImage(familiareNero.getImage());
 						familiareNero.setDisable(true);
 						familiareNero.setOpacity(0);
+						try {
+							setCardGiocatore(start.getClient().getNamePosition(destinazione1.getLayoutX(), destinazione1.getLayoutY()));
+						} catch (IOException | SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 				}
 					} else {
 						if (controlloPosizionamento(start.getColor(), destinazione2.getLayoutX(), destinazione2.getLayoutX(), 0)){
@@ -1415,6 +1435,12 @@ public class ControllerGame {
 						destinazione2.getChildren().add(mom);
 						familiareNero.setDisable(true);
 						familiareNero.setOpacity(0);
+						try {
+							setCardGiocatore(start.getClient().getNamePosition(destinazione2.getLayoutX(), destinazione2.getLayoutY()));
+						} catch (IOException | SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						}
 					}
 		});
@@ -1425,6 +1451,12 @@ public class ControllerGame {
 						destinazione1.setImage(familiareArancio.getImage());
 						familiareArancio.setDisable(true);
 						familiareArancio.setOpacity(0);
+						try {
+							setCardGiocatore(start.getClient().getNamePosition(destinazione1.getLayoutX(), destinazione1.getLayoutY()));
+						} catch (IOException | SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 				}
 					} else {
 						if (controlloPosizionamento(start.getColor(), destinazione2.getLayoutX(), destinazione2.getLayoutX(), 0)){
@@ -1434,6 +1466,12 @@ public class ControllerGame {
 						destinazione2.getChildren().add(mom);
 						familiareArancio.setDisable(true);
 						familiareArancio.setOpacity(0);
+						try {
+							setCardGiocatore(start.getClient().getNamePosition(destinazione2.getLayoutX(), destinazione2.getLayoutY()));
+						} catch (IOException | SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						}
 					}
 		});
@@ -1444,6 +1482,12 @@ public class ControllerGame {
 						destinazione1.setImage(familiareBianco.getImage());
 						familiareBianco.setDisable(true);
 						familiareBianco.setOpacity(0);
+						try {
+							setCardGiocatore(start.getClient().getNamePosition(destinazione1.getLayoutX(), destinazione1.getLayoutY()));
+						} catch (IOException | SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 				}
 					} else {
 						if (controlloPosizionamento(start.getColor(), destinazione2.getLayoutX(), destinazione2.getLayoutX(), 0)){
@@ -1453,6 +1497,12 @@ public class ControllerGame {
 						destinazione2.getChildren().add(mom);
 						familiareBianco.setDisable(true);
 						familiareBianco.setOpacity(0);
+						try {
+							setCardGiocatore(start.getClient().getNamePosition(destinazione2.getLayoutX(), destinazione2.getLayoutY()));
+						} catch (IOException | SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						}
 					}
 		});

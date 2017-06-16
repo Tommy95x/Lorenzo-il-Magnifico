@@ -222,9 +222,9 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		return null;
 	}
 	
-	public void setCardGiocatore(CartaSviluppo carta) {
+	public void setCardGiocatore(CartaSviluppo carta, int i) {
 		try {
-			serverMethods.giveCard(carta,name,positionGame);
+			serverMethods.giveCard(carta,name,positionGame,i);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -267,6 +267,10 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	
 	public void notifySpostamento(String color, double x, double y) throws RemoteException {
 		serverMethods.notifySpostamento(color,x,y,name,positionGame);
+	}
+	
+	public String controlloPosizionamento(String color, double x, double y, int integer) throws RemoteException, IOException, ClassNotFoundException, SQLException {
+		return serverMethods.controlloPosizionamento(color, positionGame, name, x, y, integer);
 	}
 	
 	@Override

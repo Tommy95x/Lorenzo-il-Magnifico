@@ -30,13 +30,13 @@ public interface ServerInterface extends Remote {
 	public void givePunti(String gamer, int qta, String tipoPunti) throws RemoteException;
 	public Dado[] showDiceValues(int positionGame, String name) throws RemoteException, SQLException;
 	public String[] getColors(String lobby)throws RemoteException;
-	public String controlloPosizionamento(String color,int posisitionGame, String name, double x, double y, Integer agg)throws RemoteException, SQLException;
+	public String controlloPosizionamento(String color,int posisitionGame, String name, double x, double y, int agg)throws RemoteException, SQLException;
 	public void changeGamer(int positionGame) throws RemoteException, SQLException;
 	public void notifySpostamento(String color, double x, double y, String name, int positionGame)throws RemoteException;
 	public String getNamePosition(double x, double y, int positionGame, String name)throws RemoteException, SQLException;
 	public void exitToTheGame(String lobby, String color, String name) throws RemoteException;
 	public ArrayList<CartaSviluppo> getCardsGamer(int positionGame, String name)throws RemoteException;
-	public void giveCard(CartaSviluppo carta, String name, int positionGame)throws RemoteException;
+	public void giveCard(CartaSviluppo carta, String name, int positionGame, int i)throws RemoteException;
 	public TesseraScomunica[] getCardsScomunica(int positionGame) throws RemoteException;
 	public Portafoglio getRisorse(int positionGame, String name)throws RemoteException;
 	public Giocatore[] getGiocatori(int positionGame)throws RemoteException;

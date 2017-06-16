@@ -112,7 +112,7 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 	}
 
 	public String controlloPosizionamento(String color, int posisitionGame, String name, double x, double y,
-			Integer agg) throws RemoteException, SQLException {
+			int agg) throws RemoteException, SQLException {
 		return commonServer.getLobbyByNumber(posisitionGame).getGiocatoreByName(name).controlloPosizionamento(color, x,
 				y, commonServer.getDBConnection().getConnection(name), agg);
 	}
@@ -134,11 +134,6 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 				commonServer.getDBConnection().getConnection(name));
 	}
 
-	public void getCard(int positionGame, String name, CartaSviluppo carta) throws RemoteException {
-		commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).addCard(carta);
-
-	}
-
 	public void exitToTheGame(String lobby, String color, String name) throws RemoteException {
 		commonServer.getLobbyByName(lobby).exitToGame(name, color);
 	}
@@ -147,10 +142,9 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		return commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).getCardsGamer();
 	}
 
-	public void giveCard(CartaSviluppo carta, String name, int positionGame) throws RemoteException {
-		commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).addCard(carta);
+	public void giveCard(CartaSviluppo carta, String name, int positionGame, int tipo) throws RemoteException {
+		commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).addCard(carta, tipo);
 		commonServer.getLobbyByNumber(positionGame).notifyAddCardGiocatore(name, carta);
-
 	}
 
 	public TesseraScomunica[] getCardsScomunica(int positionGame) throws RemoteException {

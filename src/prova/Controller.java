@@ -508,7 +508,7 @@ public class Controller {
 	/*
 	 * Controllo per verificare se si ha un numero di punti del dado
 	 */
-	public boolean controlloPosizionamento(String color, double x, double y, int integer) {
+	public boolean controlloPosizionamento(String color, double x, double y, int integer) throws SQLException {
 		String mom = null;
 		boolean risposta = false;
 		try {

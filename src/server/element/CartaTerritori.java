@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javafx.scene.control.Tooltip;
@@ -16,11 +17,7 @@ public class CartaTerritori extends CartaSviluppo{
 	private String name; 
 	private String nomeffetto;
 	private int qtaeffetto;
-	private HashMap<String, Integer> effettoimmediato1 = new HashMap<String, Integer>();
-	private HashMap<String, Integer> effettoimmediato2 = new HashMap<String, Integer>();
-	private HashMap<String, Integer> effettopermanente1 = new HashMap<String, Integer>();
-	private HashMap<String, Integer> effettopermanente2 = new HashMap<String, Integer>();
-	private HashMap<String, Integer> effettopermanente3 = new HashMap<String, Integer>();
+	private ArrayList<Effetto> effetti;
 	private String image;
 	private String tooltip;
 	
@@ -32,11 +29,6 @@ public class CartaTerritori extends CartaSviluppo{
 		this.image=image;
 		this.name=name;
 		this.tooltip=tooltip;
-		this.effettoimmediato1=effettoimmediato1;
-		this.effettoimmediato2=effettoimmediato2;
-		this.effettopermanente1=effettopermanente1;
-		this.effettopermanente3=effettopermanente3;
-		this.effettopermanente2=effettopermanente2;
 	}
 	
 	
@@ -48,19 +40,19 @@ public class CartaTerritori extends CartaSviluppo{
 			name=rs.getString("NOME");
 			nomeffetto=rs.getString("EFFETTOIMMEDIATO1");
 			qtaeffetto=rs.getInt("QTAEFFETTOIMMEDIATO1");
-			effettoimmediato1.put(nomeffetto, qtaeffetto);
+			effetti.add(new Effetto(nomeffetto, qtaeffetto, true));
 			nomeffetto=rs.getString("EFFETTOIMMEDIATO2");
 			qtaeffetto=rs.getInt("QTAEFFETTOIMMEDIATO2");
-			effettoimmediato2.put(nomeffetto, qtaeffetto);
+			effetti.add(new Effetto(nomeffetto, qtaeffetto, true));
 			nomeffetto=rs.getString("EFFETTOPERMANENTE1");
 			qtaeffetto=rs.getInt("QTAEFFETTOPERMANENTE1");
-			effettopermanente1.put(nomeffetto, qtaeffetto);
+			effetti.add(new Effetto(nomeffetto, qtaeffetto, false));
 			nomeffetto=rs.getString("EFFETTOPERMANENTE2");
 			qtaeffetto=rs.getInt("QTAEFFETTOPERMANENTE2");
-			effettopermanente2.put(nomeffetto, qtaeffetto);
+			effetti.add(new Effetto(nomeffetto, qtaeffetto, false));
 			nomeffetto=rs.getString("EFFETTOPERMANENTE3");
 			qtaeffetto=rs.getInt("QTAEFFETTOPERMANENTE3");
-			effettopermanente3.put(nomeffetto, qtaeffetto);
+			effetti.add(new Effetto(nomeffetto, qtaeffetto, false));
 			costoAzione=rs.getInt("COSTOAZIONE");
 			setImage(rs.getString("IMMAGINE"));
 			setTooltip(rs.getString("DESCRIZIONE"));
@@ -81,26 +73,6 @@ public class CartaTerritori extends CartaSviluppo{
 		return name;
 	}
 	
-	public HashMap<String, Integer> getEffettoimmediato1(){
-		return effettoimmediato1;
-	}
-	
-	public HashMap<String, Integer> getEffettoimmediato2(){
-		return effettoimmediato2;
-	}
-	
-	public HashMap<String, Integer> getEffettopermanente1(){
-		return effettopermanente1;
-	}
-	
-	public HashMap<String, Integer> getEffettopermanente2(){
-		return effettopermanente2;
-	}
-	
-	public HashMap<String, Integer> getEffettopermanente3(){
-		return effettopermanente3;
-	}
-	
 	public int getCostoAzione(){
 		return costoAzione;
 	}
@@ -119,26 +91,6 @@ public class CartaTerritori extends CartaSviluppo{
 		this.name=name;
 	}
 	
-	public void setEffettoImmediato1(HashMap<String, Integer> effettoimmediato1){
-		this.effettoimmediato1=effettoimmediato1;
-	}
-	
-	public void setEffettoImmediato2(HashMap<String, Integer> effettoimmediato2){
-		this.effettoimmediato2=effettoimmediato2;
-	}
-	
-	public void setEffettoPermanente1(HashMap<String, Integer> effettopermanente1){
-		this.effettopermanente1=effettopermanente1;
-	}
-	
-	public void setEffettoPermanente2(HashMap<String, Integer> effettopermanente2){
-		this.effettopermanente2=effettopermanente2;
-	}
-	
-	public void setEffettoPermanente3(HashMap<String, Integer> effettopermanente3){
-		this.effettopermanente3=effettopermanente3;
-	}
-	
 	public void setCostoAzione(int costoAzione){
 		this.costoAzione=costoAzione;
 	}
@@ -149,5 +101,9 @@ public class CartaTerritori extends CartaSviluppo{
 	
 	public String getTooltipString() {
 		return tooltip;
+	}
+	
+	public ArrayList<Effetto> getEffetti() {
+		return effetti;
 	}
 }

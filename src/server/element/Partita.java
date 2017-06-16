@@ -88,16 +88,48 @@ public class Partita implements Serializable{
 	
 	private void startPartita() throws RemoteException, SQLException{
 		turno=1;
-		/*for(int i = 0; i<4; i++){
-			
+		System.out.println("shuffle giocatori ");
+		beShuffled();
+		System.out.println("Sistemato ordine gioco");
+		this.NumberOfPlayers = 1;
+		for(int i=0;i<4;i++){
+			if(giocatori[i] != null){
+				switch(NumberOfPlayers){
+					case 1:
+						NumberOfPlayers++;
+						break;
+					case 2:
+						NumberOfPlayers++;
+						giocatori[i].setRisorse("monete");
+						break;
+					case 3:
+						NumberOfPlayers++;
+						giocatori[i].setRisorse("monete");
+						giocatori[i].setRisorse("monete");
+						break;
+					case 4:
+						NumberOfPlayers++;
+						giocatori[i].setRisorse("monete");
+						giocatori[i].setRisorse("monete");
+						giocatori[i].setRisorse("monete");
+						break;
+				}
+			}
+		}
+		this.NumberOfPlayers = 0;
+		for(int i = 0; i<4; i++){
 				if(giocatori[i] != null){
 					System.out.println("notifico giocatori per l'inizio partita");
 					System.out.println(giocatori[i]);
-					giocatori[i].notifyStartGame();
+					try {
+						giocatori[i].notifyStartGame();
+					} catch (ClassNotFoundException | IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
-			
-		}*/
-		try {
+		}
+		/*try {
 		System.out.println("Notificato giocatore 1\n\n\n");
 		if(giocatori[0] != null)
 			giocatori[0].notifyStartGame();
@@ -113,19 +145,18 @@ public class Partita implements Serializable{
 		} catch (IOException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		System.out.println("shuffle giocatori ");
-		beShuffled();
-		System.out.println("Sistemato ordine gioco");
-		this.NumberOfPlayers = 0;
+		}*/
 		//Vedi regole e assegna a seconda della posizione le risorse di posizione
-		/*try {
-	
-			giocatori[i].notifyTurno();
+		try {
+			for(Giocatore g : giocatori){
+				if(g!=null){
+					g.notifyTurno();
+				}
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
 	}
 	//Mettere a public per verificare con il metodo di test
 	//public boolean checkBoolean(int dim){

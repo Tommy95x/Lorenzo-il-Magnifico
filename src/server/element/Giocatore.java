@@ -177,9 +177,9 @@ public class Giocatore implements Serializable {
 
 	}
 
-	public void addCard(CartaSviluppo carta) {
+	public void addCard(CartaSviluppo carta, int tipo) {
 		carte.add(carta);
-		activateCardEffettiImmediati(carta);
+		activateCardEffettiImmediati(carta, tipo);
 	}
 
 	public void notifyAddCard(CartaSviluppo carta) throws RemoteException {
@@ -190,10 +190,25 @@ public class Giocatore implements Serializable {
 		}
 	}
 
-	private void activateCardEffettiImmediati(CartaSviluppo carta) {
-			
-		
-		
+	private void activateCardEffettiImmediati(CartaSviluppo carta, int tipo) {
+		switch(tipo){
+		case 0:
+			carta = (CartaTerritori) carta;
+			for(Effetto e :  carta.getEffetti()){
+				if(e.isImmediato() && e!=null){
+					switch(e.getRisorsa()){
+						case "punti"
+					}
+				}
+			}
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		}
 	}
 
 	public ArrayList<CartaSviluppo> getCardsGamer() {

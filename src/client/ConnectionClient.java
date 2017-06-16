@@ -112,7 +112,7 @@ public class ConnectionClient implements ClientInterface{
 		return null;
 	}
 
-	public String controlloPosizionamento(String color, double x, double y, int integer) throws RemoteException, IOException, ClassNotFoundException {
+	public String controlloPosizionamento(String color, double x, double y, int integer) throws RemoteException, IOException, ClassNotFoundException, SQLException {
 		return color;
 	}
 	
@@ -149,7 +149,7 @@ public class ConnectionClient implements ClientInterface{
 		return null;
 	}
 
-	public void setCardGiocatore(CartaSviluppo carta) throws IOException {
+	public void setCardGiocatore(CartaSviluppo carta, int i) throws IOException {
 		// TODO Auto-generated method stub
 		
 	}

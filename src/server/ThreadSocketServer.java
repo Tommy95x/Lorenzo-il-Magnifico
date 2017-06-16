@@ -192,7 +192,7 @@ public class ThreadSocketServer implements Runnable, Serializable {
 				account = input.readObject().toString();
 				try {
 					commonServer.getLobbyByName(lobby).getGiocatoreByName(account)
-							.addCard((CartaSviluppo) input.readObject());
+							.addCard((CartaSviluppo) input.readObject(), (int) input.readObject());
 				} catch (ClassNotFoundException | IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -276,7 +276,6 @@ public class ThreadSocketServer implements Runnable, Serializable {
 	public void notifyTurno() throws IOException {
 		output.writeObject("startTurno");
 		output.flush();
-
 	}
 
 	public void moveFamiliareAvv(double x, double y, String colorPlayer, String color) throws IOException {
