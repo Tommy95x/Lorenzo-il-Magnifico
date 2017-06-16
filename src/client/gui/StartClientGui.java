@@ -26,9 +26,11 @@ public class StartClientGui extends Application{
 
 	private FXMLLoader loader = new FXMLLoader(); ;
 	private Parent root;
-	private Stage primaryStage = new Stage();
+	private Stage primaryStage;
 	private ConnectionClient client = new ConnectionClient();
 	private String color;
+	//Mettere public per i test
+	//public boolean create = false;
 	private boolean create = false;
 	
 	
@@ -58,7 +60,6 @@ public class StartClientGui extends Application{
 
 
 	public void changeStage(int numberOfStage){
-		
 		switch(numberOfStage){
 			case 1:
 				try {

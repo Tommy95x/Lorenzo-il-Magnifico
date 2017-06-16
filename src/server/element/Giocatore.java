@@ -10,6 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import client.ConnectionRmiClient;
+import client.ConnectionRmiInterlocutorClient;
 import server.ThreadSocketServer;
 import shared.RMIClientInterface;
 
@@ -22,9 +23,9 @@ public class Giocatore implements Serializable {
 	private FamiliareNeutro[] familiari;
 	private CuboScomunica[] cubiScomunica;
 	// Mettere public per il test
-	// public Dado[] dadi = new Dado[3];
+	//public Dado[] dadi = new Dado[3];
 	private Dado[] dadi;
-	private ArrayList<CartaSviluppo> carte;
+	private ArrayList<CartaSviluppo> carte = new ArrayList<CartaSviluppo>();
 	private Partita partita;
 	private int positionGame;
 	private ThreadSocketServer server = null;
@@ -84,6 +85,10 @@ public class Giocatore implements Serializable {
 	}
 
 	public Dado[] setDadi(Connection connection) throws SQLException {
+	//Commentare quando non si testa
+		/*dadi[0] = new Dado("black");
+		dadi[1] = new Dado("white");
+		dadi[2] = new Dado("orange");*/
 		for (Dado d : dadi) {
 			d.setValue(connection);
 		}

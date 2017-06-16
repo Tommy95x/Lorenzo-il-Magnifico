@@ -5,12 +5,10 @@ import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import client.ConnectionRmiInterlocutorClient;
 import javafx.scene.image.Image;
 import server.element.CartaSviluppo;
 import server.element.Dado;
 import server.element.Giocatore;
-import server.element.Partita;
 import server.element.Portafoglio;
 import server.element.TesseraScomunica;
 

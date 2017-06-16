@@ -127,6 +127,7 @@ public class Partita implements Serializable{
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+					System.out.println("Giocatori a null");
 				}
 		}
 		/*try {

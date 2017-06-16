@@ -180,8 +180,8 @@ public class ControllerMenu {
 					e.printStackTrace();
 				}
 				start.getClient().setStage(start);
-				viewStartButton();
 				popup.close();
+				viewStartButton();
 				event.consume();
 		});
 		boxButton.getChildren().add(b);

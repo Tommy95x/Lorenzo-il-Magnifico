@@ -16,16 +16,15 @@ import shared.RMIClientInterface;
 
 public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implements RMIClientInterface{
 	
-	private StartClientGui start = new StartClientGui();
+	private StartClientGui start;
 	private ControllerGame guiGame;
 	private int positionGame;
 	private String name;
 
-	public ConnectionRmiInterlocutorClient(String name, int positionGame) throws RemoteException{
+	public ConnectionRmiInterlocutorClient(String name) throws RemoteException{
 		this.name = name;
-		this.positionGame = positionGame;
 	}
-	
+
 	public void notifyStartGame() throws RemoteException {
 		System.out.println("Notifica inizio partita avvenuta");
 		start.changeStage(5);
@@ -103,6 +102,20 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 	@Override
 	public void notifyTutteCarte() throws RemoteException {
 		this.guiGame.notifyTutteCarte();
+		
+	}
+
+	public int getPositionGame() {
+		return positionGame;
+	}
+
+	public void setPositionGame(int positionGame) {
+		this.positionGame = positionGame;
+	}
+
+	@Override
+	public void ciao() throws RemoteException {
+		System.out.println("Ciao");
 		
 	}
 	

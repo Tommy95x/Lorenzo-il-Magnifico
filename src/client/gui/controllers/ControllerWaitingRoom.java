@@ -21,8 +21,6 @@ public class ControllerWaitingRoom {
 	public ImageView background = new ImageView();
 	@FXML
 	public Label text = new Label();
-	@FXML
-	public Button next = new Button();
 
 	private BufferedReader fileReader;
 	
@@ -35,7 +33,6 @@ public class ControllerWaitingRoom {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 		}
-			//Dormo per 5 secondo circa, chiedo al prof se pero' in caso non riceve le notifiche
 	}
 
 	public StartClientGui getStart() {
@@ -74,15 +71,5 @@ public class ControllerWaitingRoom {
 		fadeTransition2.setFromValue(0.0);
 		fadeTransition2.setToValue(1.0);
 		fadeTransition2.play();
-	}
-
-	@FXML
-	public void nextImage(){
-		try {
-			fade();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 }
