@@ -81,6 +81,7 @@
             <ImageView fx:id="puntiMilitariBianco" fitHeight="30.0" fitWidth="31.0" layoutX="480.0" layoutY="711.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="puntiMilitariBlu" fitHeight="30.0" fitWidth="31.0" layoutX="465.0" layoutY="691.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="puntiMilitariVerde" fitHeight="30.0" fitWidth="31.0" layoutX="482.0" layoutY="693.0" pickOnBounds="true" preserveRatio="true" />
+            <HBox fx:id="carteTerritoriGiocatore" layoutX="113.0" layoutY="474.0" prefHeight="131.0" prefWidth="508.0" />
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="768.0" prefWidth="683.0">
          <children>
@@ -115,16 +116,15 @@
                </font>
             </Label>
             <HBox fx:id="carteEdificiGiocatore" layoutX="70.0" layoutY="380.0" prefHeight="131.0" prefWidth="508.0" />
-            <HBox fx:id="carteTerritoriGiocatore" layoutX="70.0" layoutY="540.0" prefHeight="131.0" prefWidth="508.0" />
-            <Button fx:id="lanciaDadi" layoutX="607.0" layoutY="670.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="63.0" text="Lancia Dadi">
+            <Button fx:id="lanciaDadi" layoutX="607.0" layoutY="670.0" mnemonicParsing="false" onAction="#lanciaDadi" prefHeight="90.0" prefWidth="63.0" text="Lancia Dadi">
                <font>
                   <Font size="8.0" />
                </font>
             </Button>
-            <ImageView fx:id="familiareArancio" fitHeight="80.0" fitWidth="46.0" layoutX="428.0" layoutY="679.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareBianco" fitHeight="80.0" fitWidth="46.0" layoutX="474.0" layoutY="679.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareNero" fitHeight="80.0" fitWidth="46.0" layoutX="515.0" layoutY="679.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareNeutro" fitHeight="80.0" fitWidth="46.0" layoutX="554.0" layoutY="679.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareArancio" fitHeight="80.0" fitWidth="31.0" layoutX="670.0" layoutY="673.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareBianco" fitHeight="80.0" fitWidth="31.0" layoutX="701.0" layoutY="673.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareNero" fitHeight="80.0" fitWidth="31.0" layoutX="771.0" layoutY="673.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareNeutro" fitHeight="80.0" fitWidth="31.0" layoutX="736.0" layoutY="675.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="bandiera" fitHeight="80.0" fitWidth="46.0" layoutX="3.0" layoutY="681.0" pickOnBounds="true" preserveRatio="true" />
             <HBox fx:id="carteImpresaGiocatore" layoutX="616.0" layoutY="380.0" prefHeight="143.0" prefWidth="231.0" />
             <HBox fx:id="cartePersonaggiGiocatore" layoutX="619.0" layoutY="525.0" prefHeight="143.0" prefWidth="231.0" />
