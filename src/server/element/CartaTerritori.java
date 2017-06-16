@@ -38,19 +38,19 @@ public class CartaTerritori extends CartaSviluppo{
 		ResultSet rs = stmt.executeQuery(query);
 		while(rs.next()){
 			name=rs.getString("NOME");
-			nomeffetto=rs.getString("EFFETTOIMMEDIATO1");
+			nomeffetto=rs.getString("EFFETTOIMMEDIATO1").toLowerCase();
 			qtaeffetto=rs.getInt("QTAEFFETTOIMMEDIATO1");
 			effetti.add(new Effetto(nomeffetto, qtaeffetto, true));
-			nomeffetto=rs.getString("EFFETTOIMMEDIATO2");
+			nomeffetto=rs.getString("EFFETTOIMMEDIATO2").toLowerCase();
 			qtaeffetto=rs.getInt("QTAEFFETTOIMMEDIATO2");
 			effetti.add(new Effetto(nomeffetto, qtaeffetto, true));
-			nomeffetto=rs.getString("EFFETTOPERMANENTE1");
+			nomeffetto=rs.getString("EFFETTOPERMANENTE1").toLowerCase();
 			qtaeffetto=rs.getInt("QTAEFFETTOPERMANENTE1");
 			effetti.add(new Effetto(nomeffetto, qtaeffetto, false));
-			nomeffetto=rs.getString("EFFETTOPERMANENTE2");
+			nomeffetto=rs.getString("EFFETTOPERMANENTE2").toLowerCase();
 			qtaeffetto=rs.getInt("QTAEFFETTOPERMANENTE2");
 			effetti.add(new Effetto(nomeffetto, qtaeffetto, false));
-			nomeffetto=rs.getString("EFFETTOPERMANENTE3");
+			nomeffetto=rs.getString("EFFETTOPERMANENTE3").toLowerCase();
 			qtaeffetto=rs.getInt("QTAEFFETTOPERMANENTE3");
 			effetti.add(new Effetto(nomeffetto, qtaeffetto, false));
 			costoAzione=rs.getInt("COSTOAZIONE");
