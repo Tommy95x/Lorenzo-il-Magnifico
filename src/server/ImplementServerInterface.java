@@ -45,7 +45,7 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		System.out.println("Creo la partita nell'arraylist partite");
 		commonServer.addGame(lobby, account);
 		System.out.println("Recupero dal db le carte");
-		//commonServer.setCards(commonServer.getLobbyByName(lobby), account);
+		commonServer.setCards(commonServer.getLobbyByName(lobby), account);
 		System.out.println("SetCarteScomunica");
 		commonServer.getLobbyByName(lobby).setCardsScomunica(commonServer.getDBConnection(), account);
 		System.out.println("Aggiungo il giocatore alla partita creata");
@@ -207,5 +207,30 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		commonServer.getLobbyByNumber(positionGame).notifySpostamentoPunti(tipo,
 				commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).getRisorse().getPunti(tipo), commonServer.getDBConnection().getConnection(name));
 
+	}
+
+	public void produzione(int positionGame, String name, int qta) throws RemoteException {
+		commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).produzione(qta);
+	}
+
+	public void raccolto(int positionGame, String name, int qta) throws RemoteException {
+		commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).raccolto(qta);
+		
+	}
+
+	@Override
+	public void addRisorse(int positionGame, String name, String tipo, int qta) throws RemoteException, SQLException {
+		commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).addRis(tipo, qta, commonServer.getDBConnection().getConnection(name));
+		
+	}
+
+	
+	public void addPunti(int positionGame, String name, String tipo, int qta) throws RemoteException, SQLException {
+		commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).addPunti(tipo, qta, commonServer.getDBConnection().getConnection(name));
+	}
+
+	public void pergamene(int posizionGame, String name,int qta) throws RemoteException {
+		commonServer.getLobbyByNumber(posizionGame).getGiocatoreByName(name).notifyPergamena(qta);
+		
 	}
 }

@@ -5,11 +5,13 @@ public class Effetto {
 	private String risorsa;
 	private int qta;
 	private boolean immediato;
+	private int tipo;
 	
-	public Effetto(String risorsa, int qtaeffetto, boolean b) {
+	public Effetto(String risorsa, int qtaeffetto, boolean b, int tipo) {
 		this.risorsa=risorsa;
 		this.qta = qtaeffetto;
 		this.immediato = b;
+		this.setTipo(tipo);
 	}
 	public String getRisorsa() {
 		return risorsa;
@@ -28,6 +30,12 @@ public class Effetto {
 	}
 	private void setImmediato(boolean immediato) {
 		this.immediato = immediato;
+	}
+	public int getTipo() {
+		return tipo;
+	}
+	public void setTipo(int tipo) {
+		this.tipo = tipo;
 	}
 	
 }

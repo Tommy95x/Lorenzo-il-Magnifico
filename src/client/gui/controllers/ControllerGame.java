@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import client.gui.StartClientGui;
+import javafx.animation.PathTransition;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -22,7 +23,11 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.CubicCurveTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import server.element.CartaEdifici;
 import server.element.CartaImprese;
 import server.element.CartaPersonaggi;
@@ -231,21 +236,6 @@ public class ControllerGame {
 		start.getClient().setGuiGame(this);
 	}
 
-	public void setTabavv(Giocatore[] giocatori) {
-		for (int i = 0; i < 4; i++) {
-			if (!giocatori[i].getName().equals(start.getClient().getName())) {
-				if (name1.getText().equals("")) {
-					name1.setText(giocatori[i].getName());
-				} else if (name2.getText().equals("")) {
-					name2.setText(giocatori[i].getName());
-				} else if (name3.getText().equals("")) {
-					name3.setText(giocatori[i].getName());
-				}
-			}
-		}
-
-	}
-
 	public void setRisorse(Portafoglio risorse) {
 		setLegno(risorse.getDimRisorse("legno"));
 		setPietra(risorse.getDimRisorse("pietra"));
@@ -320,7 +310,8 @@ public class ControllerGame {
 						familiareOrange4
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioNero.png")));
 						flag1.setImage(new Image(this.getClass().getResourceAsStream("BandierinaArancio.png")));
-
+						name1.setText(g.getName());
+						
 						break;
 					case "green":
 						familiareGreen1
@@ -332,6 +323,7 @@ public class ControllerGame {
 						familiareGreen4
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeNero.png")));
 						flag2.setImage(new Image(this.getClass().getResourceAsStream("BandierinaVerde.png")));
+						name2.setText(g.getName());
 						break;
 					case "white":
 						familiareWhite1
@@ -343,7 +335,7 @@ public class ControllerGame {
 						familiareWhite4
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoNero.png")));
 						flag3.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBianca.png")));
-
+						name3.setText(g.getName());
 						break;
 					}
 				}
@@ -393,7 +385,7 @@ public class ControllerGame {
 						familiareOrange4
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioNero.png")));
 						flag1.setImage(new Image(this.getClass().getResourceAsStream("BandierinaArancio.png")));
-
+						name1.setText(g.getName());
 						break;
 					case "green":
 						familiareBlue1
@@ -404,6 +396,7 @@ public class ControllerGame {
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluBianco.png")));
 						familiareBlue4.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNero.png")));
 						flag2.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBlue.png")));
+						name2.setText(g.getName());
 						break;
 					case "white":
 						familiareWhite1
@@ -415,7 +408,7 @@ public class ControllerGame {
 						familiareWhite4
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoNero.png")));
 						flag3.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBianca.png")));
-
+						name3.setText(g.getName());
 						break;
 					}
 				}
@@ -463,7 +456,7 @@ public class ControllerGame {
 						familiareOrange4
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioNero.png")));
 						flag1.setImage(new Image(this.getClass().getResourceAsStream("BandierinaArancio.png")));
-
+						name1.setText(g.getName());
 						break;
 					case "green":
 						familiareGreen1
@@ -475,6 +468,7 @@ public class ControllerGame {
 						familiareGreen4
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeNero.png")));
 						flag2.setImage(new Image(this.getClass().getResourceAsStream("BandierinaVerde.png")));
+						name2.setText(g.getName());
 						break;
 					case "white":
 						familiareWhite1
@@ -486,7 +480,7 @@ public class ControllerGame {
 						familiareWhite4
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNero.png")));
 						flag3.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBlue.png")));
-
+						name3.setText(g.getName());
 						break;
 					}
 				}
@@ -535,7 +529,7 @@ public class ControllerGame {
 						familiareOrange4
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeArancio.png")));
 						flag1.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBlue.png")));
-
+						name1.setText(g.getName());
 						break;
 					case "green":
 						familiareGreen1
@@ -547,6 +541,7 @@ public class ControllerGame {
 						familiareGreen4
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeNero.png")));
 						flag2.setImage(new Image(this.getClass().getResourceAsStream("BandierinaVerde.png")));
+						name2.setText(g.getName());
 						break;
 					case "white":
 						familiareWhite1
@@ -558,7 +553,7 @@ public class ControllerGame {
 						familiareWhite4
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoNero.png")));
 						flag3.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBianca.png")));
-
+						name3.setText(g.getName());
 						break;
 					}
 				}
@@ -642,8 +637,8 @@ public class ControllerGame {
 					TextField text = new TextField();
 					Button bOk = new Button("OK");
 					Button bCancel = new Button("Cancel");
-					buttonBox.getChildren().addAll(bOk,bCancel);
-					box.getChildren().addAll(title,text,buttonBox);
+					buttonBox.getChildren().addAll(bOk, bCancel);
+					box.getChildren().addAll(title, text, buttonBox);
 					bOk.setOnAction(event -> {
 						controlloPosizionamento(color, x, y, Integer.getInteger(text.getText()));
 						popup.close();
@@ -662,7 +657,7 @@ public class ControllerGame {
 						 */
 						popup.close();
 					});
-					Scene scene = new Scene(box,600,400);
+					Scene scene = new Scene(box, 600, 400);
 					popup.centerOnScreen();
 					popup.setScene(scene);
 					popup.show();
@@ -1035,6 +1030,49 @@ public class ControllerGame {
 			cartePersonaggi.getChildren().set(3, new ImageView(new Image(getClass().getResourceAsStream(""))));
 			start.getClient().setCardGiocatore(arrayCartePersonaggi[3], 1);
 			break;
+		case "AZIONE PRODUZIONE 4":
+			start.getClient().produzione(-3);
+			break;
+		case "AZIONE PRODUZIONE 1":
+			start.getClient().produzione(0);
+			break;
+		case "AZIONE RACCOLTO 4":
+			start.getClient().raccolto(-3);
+			break;
+		case "AZIONE RACCOLTO 1":
+			start.getClient().raccolto(0);
+			break;
+		case "PRENDI 5 MONETE":
+			try {
+				start.getClient().addRisorse("monete",5);
+			} catch (SQLException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+			break;
+		case "PRENDI 5 SERVITORI":
+			try {
+				start.getClient().addRisorse("servitori",5);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			break;
+		case "PRENDI 2 MONETE E 3 MILITARI":
+			try {
+				start.getClient().addRisorse("monete",2);
+				start.getClient().addPunti("militari",5);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			break;
+		case "PRENDI 2 PERGAMENE":
+			start.getClient().addPergamene(2);
+			break;
+		case "ZONA MERCATO":
+			break;
 		}
 	}
 
@@ -1061,34 +1099,9 @@ public class ControllerGame {
 		start.getClient().waitTurno();
 	}
 
-	public void setPosizioni() throws IOException, ClassNotFoundException {
-		int i = 0;
-		try {
-			for (Giocatore g : start.getClient().getGiocatori()) {
-				switch (g.getColor()) {
-				case "white":
-					posizioni.getChildren().set(i,
-							new ImageView(new Image(getClass().getResourceAsStream("Disco12.png"))));
-					break;
-				case "blue":
-					posizioni.getChildren().set(i,
-							new ImageView(new Image(getClass().getResourceAsStream("Disco1.png"))));
-					break;
-				case "green":
-					posizioni.getChildren().set(i,
-							new ImageView(new Image(getClass().getResourceAsStream("Disco4.png"))));
-					break;
-				case "orange":
-					posizioni.getChildren().set(i,
-							new ImageView(new Image(getClass().getResourceAsStream("Disco3.png"))));
-					break;
-				}
-			}
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+	private void setPosizioni() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@FXML
@@ -1597,111 +1610,169 @@ public class ControllerGame {
 	}
 
 	public void notifySpostamentoPuntiMilitari(double x, double y, String color) {
+		Path path = new Path();
+		PathTransition pathTransition = new PathTransition();
 		switch (color) {
 		case "blue":
-			for (double i = puntiMilitariBlu.getLayoutY(); i < y; i++) {
-				puntiMilitariBlu.setLayoutY(i);
-			}
+			path.getElements().add(new MoveTo(x,y));
+			path.getElements().add(new CubicCurveTo(puntiMilitariBlu.getLayoutX(), puntiMilitariBlu.getLayoutY(), 200, 20, x, y+20.0));
+			pathTransition.setDuration(Duration.millis(3000));
+			pathTransition.setPath(path);
+			pathTransition.setNode(puntiMilitariBlu);
+			pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+			pathTransition.setCycleCount(1);
+			pathTransition.play();
+			System.out.println("Fine Spostamento pedina");
 			break;
 		case "white":
-			for (double i = puntiMilitariBianco.getLayoutY(); i < y; i++) {
-				puntiMilitariBlu.setLayoutY(i);
-			}
+			path.getElements().add(new MoveTo(x,y));
+			path.getElements().add(new CubicCurveTo(puntiMilitariBianco.getLayoutX(), puntiMilitariBianco.getLayoutY(), 200, 20, x, y+20.0));
+			pathTransition.setDuration(Duration.millis(3000));
+			pathTransition.setPath(path);
+			pathTransition.setNode(puntiMilitariBianco);
+			pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+			pathTransition.setCycleCount(1);
+			pathTransition.play();
+			System.out.println("Fine Spostamento pedina");
 			break;
 		case "green":
-			for (double i = puntiMilitariVerde.getLayoutY(); i < y; i++) {
-				puntiMilitariBlu.setLayoutY(i);
-			}
+			path.getElements().add(new MoveTo(x,y));
+			path.getElements().add(new CubicCurveTo(puntiMilitariVerde.getLayoutX(), puntiMilitariVerde.getLayoutY(), 200, 20, x, y+20.0));
+			pathTransition.setDuration(Duration.millis(3000));
+			pathTransition.setPath(path);
+			pathTransition.setNode(puntiMilitariVerde);
+			pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+			pathTransition.setCycleCount(1);
+			pathTransition.play();
+			System.out.println("Fine Spostamento pedina");
 			break;
 		case "orange":
-			for (double i = puntiMilitariArancio.getLayoutY(); i < y; i++) {
-				puntiMilitariBlu.setLayoutY(i);
-			}
-			break;
-		}
-	}
-
-	public void notifySpostamentoPuntiVittoria(double x, double y, String color) {
-		double startX;
-		double startY;
-		switch (color) {
-		case "blue":
-			startX = puntiVittoriaBlu.getLayoutX();
-			startY = puntiVittoriaBlu.getLayoutY();
-			while (startX != x && startY != y) {
-				if (startX != x)
-					startX++;
-				if (startY != y)
-					startY++;
-				puntiVittoriaBlu.setLayoutX(startX);
-				puntiVittoriaBlu.setLayoutY(startY);
-			}
-			break;
-		case "white":
-			startX = puntiVittoriaBianco.getLayoutX();
-			startY = puntiVittoriaBianco.getLayoutY();
-			while (startX != x && startY != y) {
-				if (startX != x)
-					startX++;
-				if (startY != y)
-					startY++;
-				puntiVittoriaBianco.setLayoutX(startX);
-				puntiVittoriaBianco.setLayoutY(startY);
-			}
-			break;
-		case "green":
-			startX = puntiVittoriaVerde.getLayoutX();
-			startY = puntiVittoriaVerde.getLayoutY();
-			while (startX != x && startY != y) {
-				if (startX != x)
-					startX++;
-				if (startY != y)
-					startY++;
-				puntiVittoriaVerde.setLayoutX(startX);
-				puntiVittoriaVerde.setLayoutY(startY);
-			}
-			break;
-		case "orange":
-			startX = puntiVittoriaArancio.getLayoutX();
-			startY = puntiVittoriaArancio.getLayoutY();
-			while (startX != x && startY != y) {
-				if (startX != x)
-					startX++;
-				if (startY != y)
-					startY++;
-				puntiVittoriaArancio.setLayoutX(startX);
-				puntiVittoriaArancio.setLayoutY(startY);
-			}
+			path.getElements().add(new MoveTo(x,y));
+			path.getElements().add(new CubicCurveTo(puntiMilitariArancio.getLayoutX(), puntiMilitariArancio.getLayoutY(), 200, 20, x, y+20.0));
+			pathTransition.setDuration(Duration.millis(3000));
+			pathTransition.setPath(path);
+			pathTransition.setNode(puntiMilitariArancio);
+			pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+			pathTransition.setCycleCount(1);
+			pathTransition.play();
 			break;
 		}
 	}
 
 	public void notifySpostamentoPuntiFede(double x, double y, String color) {
+		Path path = new Path();
+		PathTransition pathTransition = new PathTransition();
 		switch (color) {
 		case "blue":
-			for (double i = puntiFedeBlu.getLayoutX(); i < x; i++) {
-				puntiMilitariBlu.setLayoutX(i);
-			}
+			path.getElements().add(new MoveTo(x,y));
+			path.getElements().add(new CubicCurveTo(puntiFedeBlu.getLayoutX(), puntiFedeBlu.getLayoutY(), 200, 20, x, y+20.0));
+			pathTransition.setDuration(Duration.millis(3000));
+			pathTransition.setPath(path);
+			pathTransition.setNode(puntiFedeBlu);
+			pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+			pathTransition.setCycleCount(1);
+			pathTransition.play();
+			System.out.println("Fine Spostamento pedina");
 			break;
 		case "white":
-			for (double i = puntiFedeBianco.getLayoutX(); i < x; i++) {
-				puntiMilitariBlu.setLayoutX(i);
-			}
+			path.getElements().add(new MoveTo(x,y));
+			path.getElements().add(new CubicCurveTo(puntiFedeBianco.getLayoutX(), puntiFedeBianco.getLayoutY(), 200, 20, x, y+20.0));
+			pathTransition.setDuration(Duration.millis(3000));
+			pathTransition.setPath(path);
+			pathTransition.setNode(puntiFedeBianco);
+			pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+			pathTransition.setCycleCount(1);
+			pathTransition.play();
+			System.out.println("Fine Spostamento pedina");
 			break;
 		case "green":
-			for (double i = puntiFedeVerde.getLayoutX(); i < x; i++) {
-				puntiMilitariBlu.setLayoutX(i);
-			}
+			path.getElements().add(new MoveTo(x,y));
+			path.getElements().add(new CubicCurveTo(puntiFedeVerde.getLayoutX(), puntiFedeVerde.getLayoutY(), 200, 20, x, y+20.0));
+			pathTransition.setDuration(Duration.millis(3000));
+			pathTransition.setPath(path);
+			pathTransition.setNode(puntiFedeVerde);
+			pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+			pathTransition.setCycleCount(1);
+			pathTransition.play();
+			System.out.println("Fine Spostamento pedina");
 			break;
 		case "orange":
-			for (double i = puntiFedeArancio.getLayoutX(); i < x; i++) {
-				puntiMilitariBlu.setLayoutX(i);
-			}
+			path.getElements().add(new MoveTo(x,y));
+			path.getElements().add(new CubicCurveTo(puntiFedeArancio.getLayoutX(), puntiFedeArancio.getLayoutY(), 200, 20, x, y+20.0));
+			pathTransition.setDuration(Duration.millis(3000));
+			pathTransition.setPath(path);
+			pathTransition.setNode(puntiFedeArancio);
+			pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+			pathTransition.setCycleCount(1);
+			pathTransition.play();
+			System.out.println("Fine Spostamento pedina");
+			break;
+		}
+	}
+	
+	public void notifySpostamentoPuntiVittoria(double x, double y, String color) {
+		double startX;
+		double startY;
+		Path path = new Path();
+		PathTransition pathTransition = new PathTransition();
+		switch (color) {
+		case "blue":
+			startX = puntiVittoriaBlu.getLayoutX();
+			startY = puntiVittoriaBlu.getLayoutY();
+			path.getElements().add(new MoveTo(x,y));
+			path.getElements().add(new CubicCurveTo(startX, startY, 200, 20, x, y+20.0));
+			pathTransition.setDuration(Duration.millis(3000));
+			pathTransition.setPath(path);
+			pathTransition.setNode(puntiVittoriaBlu);
+			pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+			pathTransition.setCycleCount(1);
+			pathTransition.play();
+			System.out.println("Fine Spostamento pedina");
+			break;
+		case "white":
+			startX = puntiVittoriaBianco.getLayoutX();
+			startY = puntiVittoriaBianco.getLayoutY();
+			path.getElements().add(new MoveTo(x,y));
+			path.getElements().add(new CubicCurveTo(startX, startY, 200, 20, x, y+20.0));
+			pathTransition.setDuration(Duration.millis(3000));
+			pathTransition.setPath(path);
+			pathTransition.setNode(puntiVittoriaBianco);
+			pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+			pathTransition.setCycleCount(1);
+			pathTransition.play();
+			System.out.println("Fine Spostamento pedina");
+			break;
+		case "green":
+			startX = puntiVittoriaVerde.getLayoutX();
+			startY = puntiVittoriaVerde.getLayoutY();
+			path.getElements().add(new MoveTo(x,y));
+			path.getElements().add(new CubicCurveTo(startX, startY, 200, 20, x, y+20.0));
+			pathTransition.setDuration(Duration.millis(3000));
+			pathTransition.setPath(path);
+			pathTransition.setNode(puntiVittoriaVerde);
+			pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+			pathTransition.setCycleCount(1);
+			pathTransition.play();
+			System.out.println("Fine Spostamento pedina");
+			break;
+		case "orange":
+			startX = puntiVittoriaArancio.getLayoutX();
+			startY = puntiVittoriaArancio.getLayoutY();
+			path.getElements().add(new MoveTo(x,y));
+			path.getElements().add(new CubicCurveTo(startX, startY, 200, 20, x, y+20.0));
+			pathTransition.setDuration(Duration.millis(3000));
+			pathTransition.setPath(path);
+			pathTransition.setNode(puntiVittoriaArancio);
+			pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+			pathTransition.setCycleCount(1);
+			pathTransition.play();
+			System.out.println("Fine Spostamento pedina");
 			break;
 		}
 	}
 
-	public void notifyPergamena() {
+	public void notifyPergamena(int i) {
+		for(int j=0; j<i;j++){
 		Stage popup = new Stage();
 		popup.setTitle("Pergamene");
 		VBox box = new VBox();
@@ -1773,45 +1844,138 @@ public class ControllerGame {
 			e.consume();
 		});
 		buttonBox.getChildren().addAll(risorse, moneteB, militariB, fedeB);
-		box.getChildren().addAll(im,buttonBox);
-		Scene scene = new Scene(box,600,400);
+		box.getChildren().addAll(im, buttonBox);
+		Scene scene = new Scene(box, 600, 400);
 		popup.centerOnScreen();
 		popup.setScene(scene);
 		popup.show();
+		}
 	}
 
-	public void notifyTutteCarte() {
+	public void notifyTutteCarte(int valore) {
 		Stage popup = new Stage();
 		popup.setTitle("TutteCarte");
 		VBox vBox = new VBox();
 		HBox box = new HBox();
 		HBox labelBox = new HBox();
 		Label[] l = { new Label(" "),
-				new Label("Hei, puoi prendere una carta in più, clicca sulla posizione del piano della carta che vorresti prendere, ricorda che se il palazzo è già abitato in una qualsiasi posizione devi spendere 3 monete"), new Label(" ") };
-		ImageView[] im = new ImageView[16];
-		labelBox.getChildren().addAll(l[0],l[1],l[2]);
+				new Label(
+						"Hei, puoi prendere una carta in più, clicca sulla carta che vorresti prendere"),
+				new Label(" ") };
+		Immagine[] im = new Immagine[16];
+		labelBox.getChildren().addAll(l[0], l[1], l[2]);
 		for (int i = 0; i < 4; i++) {
-			if (arrayCarteTerritori[i] != null)
-				im[i] = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteTerritori[i].getImage())));
-		}
-		for (int i = 0; i < 4; i++) {
-			if (arrayCarteTerritori[i] != null)
-				im[i + 4] = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteTerritori[i].getImage())));
-		}
-		for (int i = 0; i < 4; i++) {
-			if (arrayCarteTerritori[i] != null)
-				im[i + 8] = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteTerritori[i].getImage())));
+			if (arrayCarteTerritori[i] != null && i < (valore / 2)) {
+				im[i] = new Immagine(new Image(getClass().getResourceAsStream(arrayCarteTerritori[i].getImage())));
+				im[i].setC(arrayCarteTerritori[i]);
+				im[i].setTipo(0);
+			}
 		}
 		for (int i = 0; i < 4; i++) {
-			if (arrayCarteTerritori[i] != null)
-				im[i + 12] = new ImageView(
-						new Image(getClass().getResourceAsStream(arrayCarteTerritori[i].getImage())));
+			if (arrayCartePersonaggi[i] != null && i < (valore / 2)) {
+				im[i + 4] = new Immagine(new Image(getClass().getResourceAsStream(arrayCartePersonaggi[i].getImage())));
+				im[i + 4].setC(arrayCartePersonaggi[i]);
+				im[i + 4].setTipo(1);
+			}
 		}
-		for(ImageView i : im ){
-			box.getChildren().add(i);
+		for (int i = 0; i < 4; i++) {
+			if (arrayCarteEdifici[i] != null && i < (valore / 2)) {
+				im[i + 8] = new Immagine(new Image(getClass().getResourceAsStream(arrayCarteEdifici[i].getImage())));
+				im[i + 8].setC(arrayCarteEdifici[i]);
+				im[i + 8].setTipo(2);
+			}
 		}
-		vBox.getChildren().addAll(labelBox,box);
-		Scene scene = new Scene(vBox,600,400);
+		for (int i = 0; i < 4; i++) {
+			if (arrayCarteImpresa[i] != null && i < (valore / 2)) {
+				im[i + 12] = new Immagine(new Image(getClass().getResourceAsStream(arrayCarteImpresa[i].getImage())));
+				im[i + 12].setC(arrayCarteImpresa[i]);
+				im[i + 12].setTipo(3);
+			}
+		}
+		for (Immagine i : im) {
+			if (i != null) {
+				box.getChildren().add(i);
+				i.setOnMouseClicked(e -> {
+					try {
+						start.getClient().getRisorse().addRis("monete", -3);
+						start.getClient().setCardGiocatore(i.getC(), i.getTipo());
+					} catch (ClassNotFoundException | IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				});
+			}
+		}
+		vBox.getChildren().addAll(labelBox, box);
+		Scene scene = new Scene(vBox, 600, 400);
+		popup.centerOnScreen();
+		popup.setScene(scene);
+		popup.show();
+	}
+
+	public void notifyUnTipoCarta(int tipo, int valore, int scontoAzioneImmediata1) {
+		Stage popup = new Stage();
+		popup.setTitle("Un tipo di carta");
+		VBox vBox = new VBox();
+		HBox box = new HBox();
+		HBox labelBox = new HBox();
+		Label[] l = { new Label(" "),
+				new Label(
+						"Hei, puoi prendere un tipo di carta in più, clicca sulla carta che vorresti prendere"),
+				new Label(" ") };
+		Immagine[] im = new Immagine[4];
+		labelBox.getChildren().addAll(l[0], l[1], l[2]);
+		switch(tipo){
+			case 0:
+				for(int i = 0; i< 4; i++){
+					if (arrayCarteTerritori[i] != null && i < (valore / 2)) {
+						im[i] = new Immagine(new Image(getClass().getResourceAsStream(arrayCarteTerritori[i].getImage())));
+						im[i].setC(arrayCarteEdifici[i]);
+						im[i].setTipo(0);
+					}
+				}
+				break;
+			case 1:
+				for(int i = 0; i< 4; i++){
+				if (arrayCartePersonaggi[i] != null && i < (valore / 2)) {
+					im[i] = new Immagine(new Image(getClass().getResourceAsStream(arrayCartePersonaggi[i].getImage())));
+					im[i].setC(arrayCartePersonaggi[i]);
+					im[i].setTipo(1);
+				}}
+				break;
+			case 2:
+				for(int i = 0; i< 4; i++){
+				if (arrayCarteEdifici[i] != null && i < (valore / 2)) {
+					im[i] = new Immagine(new Image(getClass().getResourceAsStream(arrayCarteEdifici[i].getImage())));
+					im[i].setC(arrayCarteEdifici[i]);
+					im[i].setTipo(2);
+				}}
+				break;
+			case 3:
+				for(int i = 0; i< 4; i++){
+				if (arrayCarteImpresa[i] != null && i < (valore / 2)) {
+					im[i] = new Immagine(new Image(getClass().getResourceAsStream(arrayCarteImpresa[i].getImage())));
+					im[i].setC(arrayCarteImpresa[i]);
+					im[i].setTipo(3);
+				}}
+				break;
+		}
+		for (Immagine i : im) {
+			if (i != null) {
+				box.getChildren().add(i);
+				i.setOnMouseClicked(e -> {
+					try {
+						start.getClient().getRisorse().addRis("monete", -3+scontoAzioneImmediata1);
+						start.getClient().setCardGiocatore(i.getC(), i.getTipo());
+					} catch (ClassNotFoundException | IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				});
+			}
+		}
+		vBox.getChildren().addAll(labelBox, box);
+		Scene scene = new Scene(vBox, 600, 400);
 		popup.centerOnScreen();
 		popup.setScene(scene);
 		popup.show();

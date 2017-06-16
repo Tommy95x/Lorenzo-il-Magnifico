@@ -47,5 +47,9 @@ public class Dado implements Serializable{
 	public String getImage() {
 		return immagineValore;
 	}
+
+	public void setValue(int i) {
+		this.valore = i;
+	}
 	
 }

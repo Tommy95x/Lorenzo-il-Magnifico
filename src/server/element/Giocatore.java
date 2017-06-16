@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import client.ConnectionRmiClient;
 import client.ConnectionRmiInterlocutorClient;
@@ -23,7 +24,7 @@ public class Giocatore implements Serializable {
 	private FamiliareNeutro[] familiari;
 	private CuboScomunica[] cubiScomunica;
 	// Mettere public per il test
-	//public Dado[] dadi = new Dado[3];
+	// public Dado[] dadi = new Dado[3];
 	private Dado[] dadi;
 	private ArrayList<CartaSviluppo> carte = new ArrayList<CartaSviluppo>();
 	private Partita partita;
@@ -85,10 +86,11 @@ public class Giocatore implements Serializable {
 	}
 
 	public Dado[] setDadi(Connection connection) throws SQLException {
-	//Commentare quando non si testa
-		/*dadi[0] = new Dado("black");
-		dadi[1] = new Dado("white");
-		dadi[2] = new Dado("orange");*/
+		// Commentare quando non si testa
+		/*
+		 * dadi[0] = new Dado("black"); dadi[1] = new Dado("white"); dadi[2] =
+		 * new Dado("orange");
+		 */
 		for (Dado d : dadi) {
 			d.setValue(connection);
 		}
@@ -201,19 +203,19 @@ public class Giocatore implements Serializable {
 		case 0:
 			carta = (CartaTerritori) carta;
 			for (Effetto e : carta.getEffetti()) {
-				if (e.isImmediato() && e != null) {
+				if (e.isImmediato() && e.getQta() != 0) {
 					switch (e.getRisorsa()) {
 					case "militari":
 						risorse.addPunti("militari", e.getQta());
-						partita.notifySpostamentoPunti("militari", e.getQta(),c);
+						partita.notifySpostamentoPunti("militari", e.getQta(), c);
 						break;
 					case "vittoria":
 						risorse.addPunti("vittoria", e.getQta());
-						partita.notifySpostamentoPunti("vittoria", e.getQta(),c);
+						partita.notifySpostamentoPunti("vittoria", e.getQta(), c);
 						break;
 					case "fede":
 						risorse.addPunti("fede", e.getQta());
-						partita.notifySpostamentoPunti("fede", e.getQta(),c);
+						partita.notifySpostamentoPunti("fede", e.getQta(), c);
 						break;
 					case "pietra":
 						risorse.addRis("pietra", e.getQta());
@@ -229,7 +231,7 @@ public class Giocatore implements Serializable {
 						break;
 					case "pergamena":
 						try {
-							notifyPergamena();
+							notifyPergamena(e.getQta());
 						} catch (RemoteException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -240,70 +242,157 @@ public class Giocatore implements Serializable {
 			}
 			break;
 		case 1:
-			int sum=0;
+			int sum = 0;
 			carta = (CartaPersonaggi) carta;
 			risorse.addRis("monete", -carta.getCostoMoneta());
 			for (Effetto e : carta.getEffetti()) {
-				if (e.isImmediato() && e != null) {
+				if (e.isImmediato() && e.getQta() != 0) {
 					switch (e.getRisorsa()) {
 					case "militari":
 						risorse.addPunti("militari", e.getQta());
+						partita.notifySpostamentoPunti("militari", e.getQta(), c);
 						break;
 					case "vittoria":
-						switch(carta.getPerOgniCarta()){
-							case "EDIFICIO":
-								for(CartaSviluppo c1 : carte){
-									if(c1.getId().contains("ED")){
-										sum++;
-									}
+						switch (carta.getPerOgniCarta()) {
+						case "EDIFICIO":
+							for (CartaSviluppo c1 : carte) {
+								if (c1.getId().contains("ED")) {
+									sum++;
 								}
-								risorse.addPunti("vittoria", 2*sum);
-								partita.notifySpostamentoPunti("vittoria", 2*sum, c);
-								sum=0;
-								break;
-							case "PERSONAGGI":
-								for(CartaSviluppo c1 : carte){
-									if(c1.getId().contains("PER")){
-										sum++;
-									}
+							}
+							risorse.addPunti("vittoria", 2 * sum);
+							partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), c);
+							sum = 0;
+							break;
+						case "PERSONAGGI":
+							for (CartaSviluppo c1 : carte) {
+								if (c1.getId().contains("PER")) {
+									sum++;
 								}
-								risorse.addPunti("vittoria", 2*sum);
-								partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), c);
-								sum=0;
-								break;
-							case "IMPRESA":
-								for(CartaSviluppo c1 : carte){
-									if(c1.getId().contains("IMP")){
-										sum++;
-									}
+							}
+							risorse.addPunti("vittoria", 2 * sum);
+							partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), c);
+							sum = 0;
+							break;
+						case "IMPRESA":
+							for (CartaSviluppo c1 : carte) {
+								if (c1.getId().contains("IMP")) {
+									sum++;
 								}
-								risorse.addPunti("vittoria", 2*sum);
-								partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), c);
-								sum=0;
-								break;
-							case "2MILITARI":
-								risorse.addPunti("vittoria",(int) risorse.getPunti("militari")/2);
-								partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), c);
-								sum=0;
-								break;
-							case "TERRITORI":
-								for(CartaSviluppo c1 : carte){
-									if(c1.getId().contains("TER")){
-										sum++;
-									}
+							}
+							risorse.addPunti("vittoria", 2 * sum);
+							partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), c);
+							sum = 0;
+							break;
+						case "2MILITARI":
+							risorse.addPunti("vittoria", (int) risorse.getPunti("militari") / 2);
+							partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), c);
+							sum = 0;
+							break;
+						case "TERRITORI":
+							for (CartaSviluppo c1 : carte) {
+								if (c1.getId().contains("TER")) {
+									sum++;
 								}
-								risorse.addPunti("vittoria", 2*sum);
-								partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), c);
-								sum=0;
-								break;
+							}
+							risorse.addPunti("vittoria", 2 * sum);
+							partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), c);
+							sum = 0;
+							break;
 						}
 						break;
 					case "fede":
 						risorse.addPunti("fede", e.getQta());
+						partita.notifySpostamentoPunti("fede", e.getQta(), c);
+						break;
+					case "pergamena":
+						try {
+							notifyPergamena(e.getQta());
+						} catch (RemoteException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						break;
+					case "raccolto":
+						raccolto(e.getQta());
+						break;
+					case "produzione":
+						produzione(e.getQta());
 						break;
 					case "tuttecarte":
 						try {
-							this.notifyTutteCarte();
+							this.notifyTutteCarte(e.getQta());
+						} catch (RemoteException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						break;
+					case "unTipodicarta":
+						notifyUnTipoCarta(e.getTipo(), e.getQta(), carta.getScontoAzioneImmediata1());
+						break;
+					}
+				}
+			}
+			break;
+		case 2:
+			carta = (CartaEdifici) carta;
+			for (Effetto e : carta.getEffetti()) {
+				if (e.isImmediato() && e.getQta() != 0) {
+					switch (e.getRisorsa()) {
+					case "vittoria":
+						risorse.addPunti("vittoria", e.getQta());
+						partita.notifySpostamentoPunti("vittoria", e.getQta(), c);
+						break;
+					case "fede":
+						risorse.addPunti("fede", e.getQta());
+						partita.notifySpostamentoPunti("fede", e.getQta(), c);
+						break;
+					}
+				}
+			}
+			break;
+		case 3:
+			carta = (CartaImprese) carta;
+			for (Effetto e : carta.getEffetti()) {
+				if (e.isImmediato() && e.getQta() != 0) {
+					switch (e.getRisorsa()) {
+					case "militari":
+						risorse.addPunti("militari", e.getQta());
+						partita.notifySpostamentoPunti("militari", e.getQta(), c);
+						break;
+					case "fede":
+						risorse.addPunti("fede", e.getQta());
+						partita.notifySpostamentoPunti("fede", e.getQta(), c);
+						break;
+					case "pietra":
+						risorse.addRis("pietra", e.getQta());
+						break;
+					case "monete":
+						risorse.addRis("monete", e.getQta());
+						break;
+					case "servitori":
+						risorse.addRis("servitori", e.getQta());
+						break;
+					case "legno":
+						risorse.addRis("legno", e.getQta());
+						break;
+					case "tuttecarte":
+						try {
+							this.notifyTutteCarte(e.getQta());
+						} catch (RemoteException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						break;
+					case "raccolto":
+						raccolto(e.getQta());
+						break;
+					case "produzione":
+						produzione(e.getQta());
+						break;
+					case "pergamena":
+						try {
+							notifyPergamena(e.getQta());
 						} catch (RemoteException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -313,82 +402,51 @@ public class Giocatore implements Serializable {
 				}
 			}
 			break;
-		case 2:
-			carta = (CartaEdifici) carta;
-			for (Effetto e : carta.getEffetti()) {
-				if (e.isImmediato() && e != null) {
-					switch (e.getRisorsa()) {
-					case "militari":
-						risorse.addPunti("militari", e.getQta());
-						break;
-					case "vittoria":
-						risorse.addPunti("vittoria", e.getQta());
-						break;
-					case "fede":
-						risorse.addPunti("fede", e.getQta());
-						break;
-					case "pietra":
-						risorse.addRis("pietra", e.getQta());
-						break;
-					case "monete":
-						risorse.addRis("monete", e.getQta());
-						break;
-					case "servitori":
-						risorse.addRis("servitori", e.getQta());
-						break;
-					case "legno":
-						risorse.addRis("legno", e.getQta());
-						break;
-					}
-				}
-			}
-			break;
-		case 3:
-			carta = (CartaImprese) carta;
-			for (Effetto e : carta.getEffetti()) {
-				if (e.isImmediato() && e != null) {
-					switch (e.getRisorsa()) {
-					case "militari":
-						risorse.addPunti("militari", e.getQta());
-						break;
-					case "vittoria":
-						risorse.addPunti("vittoria", e.getQta());
-						break;
-					case "fede":
-						risorse.addPunti("fede", e.getQta());
-						break;
-					case "pietra":
-						risorse.addRis("pietra", e.getQta());
-						break;
-					case "monete":
-						risorse.addRis("monete", e.getQta());
-						break;
-					case "servitori":
-						risorse.addRis("servitori", e.getQta());
-						break;
-					case "legno":
-						risorse.addRis("legno", e.getQta());
-						break;
-					}
-				}
-			}
-			break;
 		}
 	}
 
-	private void notifyTutteCarte() throws RemoteException {
-		if (client == null) {
-			server.notifyTutteCarte();
-		} else {
-			client.notifyTutteCarte();
+	public void raccolto(int qta) {
+		for (CartaSviluppo c : carte) {
+			if (c.getId().contains("TER") && c.getCostoAzione() <= qta) {
+				activateCardEffettiPermanenti(c);
+			}
 		}
 	}
 
-	private void notifyPergamena() throws RemoteException {
+	public void produzione(int qta) {
+		for (CartaSviluppo c : carte) {
+			if (c.getId().contains("ED") && c.getCostoAzione() <= qta) {
+				activateCardEffettiPermanenti(c);
+			}
+		}
+	}
+
+	public void activateCardEffettiPermanenti(CartaSviluppo c) {
+
+	}
+
+	private void notifyUnTipoCarta(int tipo, int qta, int scontoAzioneImmediata1) {
+
 		if (client == null) {
-			server.notifyPergamena();
+			server.notifyUnTipoCarta(tipo, qta, scontoAzioneImmediata1);
 		} else {
-			client.notifyPergamena();
+			client.notifyUnTipoCarta(tipo, qta, scontoAzioneImmediata1);
+		}
+	}
+
+	private void notifyTutteCarte(int i) throws RemoteException {
+		if (client == null) {
+			server.notifyTutteCarte(i);
+		} else {
+			client.notifyTutteCarte(i);
+		}
+	}
+
+	public void notifyPergamena(int i) throws RemoteException {
+		if (client == null) {
+			server.notifyPergamena(i);
+		} else {
+			client.notifyPergamena(i);
 		}
 	}
 
@@ -398,25 +456,36 @@ public class Giocatore implements Serializable {
 
 	public void notifySpostamentopuntiMilitari(double x, double y, String string) throws RemoteException {
 		if (client == null) {
-			server.notifySpostamentoPuntiMilitari(x,y,string);
+			server.notifySpostamentoPuntiMilitari(x, y, string);
 		} else {
-			client.notifySpostamentoPuntiMilitari(x,y,string);
+			client.notifySpostamentoPuntiMilitari(x, y, string);
 		}
 	}
 
 	public void notifySpostamentopuntiVittoria(double x, double y, String color2) throws RemoteException {
 		if (client == null) {
-			server.notifySpostamentoPuntiVittoria(x,y,color2);
+			server.notifySpostamentoPuntiVittoria(x, y, color2);
 		} else {
-			client.notifySpostamentoPuntiVittoria(x,y,color2);
+			client.notifySpostamentoPuntiVittoria(x, y, color2);
 		}
 	}
 
 	public void notifySpostamentopuntiFede(double x, double y, String color2) throws RemoteException {
 		if (client == null) {
-			server.notifySpostamentoPuntiFede(x,y,color2);
+			server.notifySpostamentoPuntiFede(x, y, color2);
 		} else {
-			client.notifySpostamentoPuntiFede(x,y,color2);
+			client.notifySpostamentoPuntiFede(x, y, color2);
 		}
+	}
+
+	public void addRis(String tipo, int qta, Connection c) {
+		risorse.addRis(tipo, qta);
+		//Creo metodo notify risorse
+		
+	}
+
+	public void addPunti(String tipo, int qta, Connection c) {
+		risorse.addPunti(tipo, qta);
+		partita.notifySpostamentoPunti(tipo,qta, c);
 	}
 }

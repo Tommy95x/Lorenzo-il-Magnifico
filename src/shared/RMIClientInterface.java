@@ -21,7 +21,8 @@ public interface RMIClientInterface extends Remote{
 	public void notifySpostamentoPuntiMilitari(double x, double y, String string)throws RemoteException;
 	public void notifySpostamentoPuntiVittoria(double x, double y, String color2)throws RemoteException;
 	public void notifySpostamentoPuntiFede(double x, double y, String color2)throws RemoteException;
-	public void notifyPergamena()throws RemoteException;
-	public void notifyTutteCarte()throws RemoteException;
+	public void notifyPergamena(int i)throws RemoteException;
+	public void notifyTutteCarte(int i)throws RemoteException;
 	public void ciao()throws RemoteException;
+	public void notifyUnTipoCarta(int tipo, int qta, int scontoAzioneImmediata1)throws RemoteException;
 }

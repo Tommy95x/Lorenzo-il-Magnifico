@@ -333,7 +333,9 @@ public class Controller {
 				flag1.setImage(new Image(this.getClass().getResourceAsStream("BandierinaVerde.png")));
 				flag2.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBianca.png")));
 				flag3.setImage(new Image(this.getClass().getResourceAsStream("BandierinaArancio.png")));
-				
+				name1.setText("Pippo");
+				name2.setText("Paperino");
+				name3.setText("Topolino");
 				familiareOrange1.setOpacity(1);
 				familiareOrange2.setOpacity(1);
 				familiareOrange3.setOpacity(1);

@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
@@ -131,18 +132,20 @@
                </children></HBox>
             <ScrollPane layoutX="4.0" prefHeight="291.0" prefWidth="280.0">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="290.0" prefWidth="285.0" stylesheets="@gameBackGround.css">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="290.0" prefWidth="285.0" style="-fx-background-color: DARKRED;" stylesheets="@gameBackGround.css">
                      <children>
                         <Label layoutY="6.0" prefHeight="25.0" prefWidth="63.0" text="Giocatore:" />
                         <Label fx:id="name1" layoutX="71.0" layoutY="6.0" prefHeight="20.0" prefWidth="180.0" />
                         <ImageView fx:id="flag1" fitHeight="90.0" fitWidth="46.0" layoutX="7.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
+                        <ListView layoutX="-4.0" layoutY="135.0" prefHeight="274.0" prefWidth="280.0" />
+                        <Label layoutX="7.0" layoutY="119.0" prefHeight="16.0" prefWidth="215.0" text="Label" />
                      </children>
                   </AnchorPane>
               </content>
             </ScrollPane>
             <ScrollPane layoutX="285.0" prefHeight="291.0" prefWidth="280.0">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="287.0" prefWidth="285.0" stylesheets="@gameBackGround.css">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="287.0" prefWidth="285.0" style="-fx-background-color: DARKRED;" stylesheets="@gameBackGround.css">
                      <children>
                         <Label layoutY="6.0" prefHeight="25.0" prefWidth="63.0" text="Giocatore:" />
                         <ImageView fx:id="flag2" fitHeight="90.0" fitWidth="46.0" layoutX="8.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" />
@@ -153,7 +156,7 @@
             </ScrollPane>
             <ScrollPane layoutX="565.0" prefHeight="291.0" prefWidth="280.0">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="289.0" prefWidth="285.0" stylesheets="@gameBackGround.css">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="289.0" prefWidth="285.0" style="-fx-background-color: DARKRED;" stylesheets="@gameBackGround.css">
                      <children>
                         <ImageView fx:id="flag3" fitHeight="90.0" fitWidth="46.0" layoutX="3.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" />
                         <Label layoutY="6.0" prefHeight="25.0" prefWidth="63.0" text="Giocatore:" />

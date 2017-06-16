@@ -202,4 +202,34 @@ public class ConnectionClient implements ClientInterface{
 		// TODO Auto-generated method stub
 		
 	}
+
+
+	public void produzione(int qta) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void raccolto(int i) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void addRisorse(String string, int i) throws RemoteException, SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void addPunti(String tipo, int qta) throws RemoteException, SQLException{
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void addPergamene(int i) throws RemoteException{
+		// TODO Auto-generated method stub
+		
+	}
 }

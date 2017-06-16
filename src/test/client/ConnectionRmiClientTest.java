@@ -12,7 +12,7 @@ public class ConnectionRmiClientTest {
 
 	@Test
 	public void testCreateAInterlocutor() throws RemoteException {
-		ConnectionRmiInterlocutorClient in = new ConnectionRmiInterlocutorClient("prova",0);
+		ConnectionRmiInterlocutorClient in = new ConnectionRmiInterlocutorClient("prova");
 		assertNotNull(in);
 	}
 

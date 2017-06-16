@@ -94,14 +94,13 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 		
 	}
 
-	public void notifyPergamena() throws RemoteException {
-		this.guiGame.notifyPergamena();
+	public void notifyPergamena(int i) throws RemoteException {
+		this.guiGame.notifyPergamena(i);
 		
 	}
 
-	@Override
-	public void notifyTutteCarte() throws RemoteException {
-		this.guiGame.notifyTutteCarte();
+	public void notifyTutteCarte(int i) throws RemoteException {
+		this.guiGame.notifyTutteCarte(i);
 		
 	}
 
@@ -116,6 +115,11 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 	@Override
 	public void ciao() throws RemoteException {
 		System.out.println("Ciao");
+		
+	}
+
+	public void notifyUnTipoCarta(int tipo, int qta, int scontoAzioneImmediata1) throws RemoteException {
+		this.guiGame.notifyUnTipoCarta( tipo,  qta,  scontoAzioneImmediata1);
 		
 	}
 	

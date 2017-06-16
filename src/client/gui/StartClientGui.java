@@ -155,8 +155,6 @@ public class StartClientGui extends Application{
 						game.setColorCubiScomunica(getColor());
 						game.setRisorse(getClient().getRisorse());
 						game.parentsProperties();
-						//game.setPosizioni();
-						//game.setTabavv(getClient().getGiocatori());
 					} catch (ClassNotFoundException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

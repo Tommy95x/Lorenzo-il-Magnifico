@@ -126,6 +126,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		try {
 			interlocutor = new ConnectionRmiInterlocutorClient(name);
 			positionGame=serverMethods.selectLobby(lobby, name, color);
+			interlocutor.setPositionGame(positionGame);
 		} catch (RemoteException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -287,6 +288,29 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void produzione(int qta) throws RemoteException {
+		serverMethods.produzione(positionGame, name,qta);
+		
+	}
+	
+	public void raccolto(int qta) throws RemoteException {
+		serverMethods.raccolto(positionGame, name,qta);
+	}
+	
+	public void addRisorse(String tipo, int qta) throws RemoteException, SQLException {
+		serverMethods.addRisorse(positionGame, name, tipo, qta);
+		
+	}
+	
+	public void addPunti(String tipo, int qta) throws RemoteException, SQLException {
+		serverMethods.addPunti(positionGame, name, tipo, qta);
+	}
+	
+	public void addPergamene(int qta) throws RemoteException{
+		serverMethods.pergamene(positionGame, name,qta);
+		
 	}
 	
 	@Override
