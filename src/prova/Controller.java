@@ -231,208 +231,6 @@ public class Controller {
 		this.setStart(startClientGui);
 		numberOfGamers = start.getClient().getPlayers();
 		//start.getClient().setGuiGame(this);
-		/*mercatoPosMoneteMilitari.setOnDragDropped(event->{
-			if(mercatoPosMoneteMilitari != null){
-				familiareNeutro.getDestinazione(mercatoPosMoneteMilitari);
-				familiareNero.getDestinazione(mercatoPosMoneteMilitari);
-				familiareArancio.getDestinazione(mercatoPosMoneteMilitari);
-				familiareBianco.getDestinazione(mercatoPosMoneteMilitari);
-			}
-		});
-		mercatoPosServitori.setOnDragDropped(event->{
-			if(mercatoPosServitori != null){
-				familiareNeutro.getDestinazione(mercatoPosServitori);
-				familiareNero.getDestinazione(mercatoPosServitori);
-				familiareArancio.getDestinazione(mercatoPosServitori);
-				familiareBianco.getDestinazione(mercatoPosServitori);
-			}
-		});
-		mercatoPosMonete.setOnDragDropped(event->{
-			if(mercatoPosMonete != null){
-				familiareNeutro.getDestinazione(mercatoPosMonete);
-				familiareNero.getDestinazione(mercatoPosMonete);
-				familiareArancio.getDestinazione(mercatoPosMonete);
-				familiareBianco.getDestinazione(mercatoPosMonete);
-			}
-		});
-		mercatoPosMunicipio.setOnDragDropped(event->{
-			if(mercatoPosMunicipio != null){
-				familiareNeutro.getDestinazione(mercatoPosMunicipio);
-				familiareNero.getDestinazione(mercatoPosMunicipio);
-				familiareArancio.getDestinazione(mercatoPosMunicipio);
-				familiareBianco.getDestinazione(mercatoPosMunicipio);
-			}
-		});
-		pianoPrimoPalazzoMilitare.setOnDragDropped(event->{
-			if(pianoPrimoPalazzoMilitare != null){
-				familiareNeutro.getDestinazione(pianoPrimoPalazzoMilitare);
-				familiareNero.getDestinazione(pianoPrimoPalazzoMilitare);
-				familiareArancio.getDestinazione(pianoPrimoPalazzoMilitare);
-				familiareBianco.getDestinazione(pianoPrimoPalazzoMilitare);
-			}
-		});
-		pianoSecondoPalazzoMilitare.setOnDragDropped(event->{
-			if(pianoSecondoPalazzoMilitare != null){
-				familiareNeutro.getDestinazione(pianoSecondoPalazzoMilitare);
-				familiareNero.getDestinazione(pianoSecondoPalazzoMilitare);
-				familiareArancio.getDestinazione(pianoSecondoPalazzoMilitare);
-				familiareBianco.getDestinazione(pianoSecondoPalazzoMilitare);
-			}
-		});
-		pianoTerzoPalazzoMilitare.setOnDragDropped(event->{
-			if(mercatoPosMoneteMilitari != null){
-				familiareNeutro.getDestinazione(pianoTerzoPalazzoMilitare);
-				familiareNero.getDestinazione(pianoTerzoPalazzoMilitare);
-				familiareArancio.getDestinazione(pianoTerzoPalazzoMilitare);
-				familiareBianco.getDestinazione(pianoTerzoPalazzoMilitare);
-			}
-		});
-		pianoQuartoPalazzoMilitare.setOnDragDropped(event->{
-			if(pianoQuartoPalazzoMilitare != null){
-				familiareNeutro.getDestinazione(pianoQuartoPalazzoMilitare);
-				familiareNero.getDestinazione(pianoQuartoPalazzoMilitare);
-				familiareArancio.getDestinazione(pianoQuartoPalazzoMilitare);
-				familiareBianco.getDestinazione(pianoQuartoPalazzoMilitare);
-			}
-		});
-		pianoPrimoPalazzoPersonaggi.setOnDragDropped(event->{
-			if(pianoPrimoPalazzoPersonaggi != null){
-				familiareNeutro.getDestinazione(pianoPrimoPalazzoPersonaggi);
-				familiareNero.getDestinazione(pianoPrimoPalazzoPersonaggi);
-				familiareArancio.getDestinazione(pianoPrimoPalazzoPersonaggi);
-				familiareBianco.getDestinazione(pianoPrimoPalazzoPersonaggi);
-			}
-		});
-		pianoSecondoPalazzoPersonaggi.setOnDragDropped(event->{
-			if(pianoSecondoPalazzoPersonaggi != null){
-				familiareNeutro.getDestinazione(pianoSecondoPalazzoPersonaggi);
-				familiareNero.getDestinazione(pianoSecondoPalazzoPersonaggi);
-				familiareArancio.getDestinazione(pianoSecondoPalazzoPersonaggi);
-				familiareBianco.getDestinazione(pianoSecondoPalazzoPersonaggi);
-			}
-		});
-		pianoTerzoPalazzoPersonaggi.setOnDragDropped(event->{
-			if(pianoTerzoPalazzoPersonaggi != null){
-				familiareNeutro.getDestinazione(pianoTerzoPalazzoPersonaggi);
-				familiareNero.getDestinazione(pianoTerzoPalazzoPersonaggi);
-				familiareArancio.getDestinazione(pianoTerzoPalazzoPersonaggi);
-				familiareBianco.getDestinazione(pianoTerzoPalazzoPersonaggi);
-			}
-		});
-		pianoQuartoPalazzoPersonaggi.setOnDragDropped(event->{
-			if(pianoQuartoPalazzoPersonaggi != null){
-				familiareNeutro.getDestinazione(pianoQuartoPalazzoPersonaggi);
-				familiareNero.getDestinazione(pianoQuartoPalazzoPersonaggi);
-				familiareArancio.getDestinazione(pianoQuartoPalazzoPersonaggi);
-				familiareBianco.getDestinazione(pianoQuartoPalazzoPersonaggi);
-			}
-		});
-		pianoPrimoPalazzoEdifici.setOnDragDropped(event->{
-			if(pianoPrimoPalazzoEdifici != null){
-				familiareNeutro.getDestinazione(pianoPrimoPalazzoEdifici);
-				familiareNero.getDestinazione(pianoPrimoPalazzoEdifici);
-				familiareArancio.getDestinazione(pianoPrimoPalazzoEdifici);
-				familiareBianco.getDestinazione(pianoPrimoPalazzoEdifici);
-			}
-		});
-		pianoSecondoPalazzoEdifici.setOnDragDropped(event->{
-			if(pianoSecondoPalazzoEdifici != null){
-				familiareNeutro.getDestinazione(pianoSecondoPalazzoEdifici);
-				familiareNero.getDestinazione(pianoSecondoPalazzoEdifici);
-				familiareArancio.getDestinazione(pianoSecondoPalazzoEdifici);
-				familiareBianco.getDestinazione(pianoSecondoPalazzoEdifici);
-			}
-		});
-		pianoTerzoPalazzoEdifici.setOnDragDropped(event->{
-			if(pianoTerzoPalazzoEdifici != null){
-				familiareNeutro.getDestinazione(pianoTerzoPalazzoEdifici);
-				familiareNero.getDestinazione(pianoTerzoPalazzoEdifici);
-				familiareArancio.getDestinazione(pianoTerzoPalazzoEdifici);
-				familiareBianco.getDestinazione(pianoTerzoPalazzoEdifici);
-			}
-		});
-		pianoQuartoPalazzoEdifici.setOnDragDropped(event->{
-			if(pianoQuartoPalazzoEdifici != null){
-				familiareNeutro.getDestinazione(pianoQuartoPalazzoEdifici);
-				familiareNero.getDestinazione(pianoQuartoPalazzoEdifici);
-				familiareArancio.getDestinazione(pianoQuartoPalazzoEdifici);
-				familiareBianco.getDestinazione(pianoQuartoPalazzoEdifici);
-			}
-		});
-		pianoPrimoPalazzoTerritori.setOnDragDropped(event->{
-			if(pianoPrimoPalazzoTerritori != null){
-				familiareNeutro.getDestinazione(pianoPrimoPalazzoTerritori);
-				familiareNero.getDestinazione(pianoPrimoPalazzoTerritori);
-				familiareArancio.getDestinazione(pianoPrimoPalazzoTerritori);
-				familiareBianco.getDestinazione(pianoPrimoPalazzoTerritori);
-			}
-		});
-		pianoSecondoPalazzoTerritori.setOnDragDropped(event->{
-			if(pianoSecondoPalazzoTerritori != null){
-				familiareNeutro.getDestinazione(pianoSecondoPalazzoTerritori);
-				familiareNero.getDestinazione(pianoSecondoPalazzoTerritori);
-				familiareArancio.getDestinazione(pianoSecondoPalazzoTerritori);
-				familiareBianco.getDestinazione(pianoSecondoPalazzoTerritori);
-			}
-		});
-		pianoTerzoPalazzoTerritori.setOnDragDropped(event->{
-			if(pianoTerzoPalazzoTerritori != null){
-				familiareNeutro.getDestinazione(pianoTerzoPalazzoTerritori);
-				familiareNero.getDestinazione(pianoTerzoPalazzoTerritori);
-				familiareArancio.getDestinazione(pianoTerzoPalazzoTerritori);
-				familiareBianco.getDestinazione(pianoTerzoPalazzoTerritori);
-			}
-		});
-		pianoQuartoPalazzoTerritori.setOnDragDropped(event->{
-			if(pianoQuartoPalazzoTerritori != null){
-				familiareNeutro.getDestinazione(pianoQuartoPalazzoTerritori);
-				familiareNero.getDestinazione(pianoQuartoPalazzoTerritori);
-				familiareArancio.getDestinazione(pianoQuartoPalazzoTerritori);
-				familiareBianco.getDestinazione(pianoQuartoPalazzoTerritori);
-			}
-		});
-		
-		municipio.setOnDragDropped(event->{
-			if(municipio != null){
-				familiareNeutro.getDestinazione(municipio);
-				familiareNero.getDestinazione(municipio);
-				familiareArancio.getDestinazione(municipio);
-				familiareBianco.getDestinazione(municipio);
-			}
-		});
-		azioniTerritoridapiuGiocatori.setOnDragDropped(event->{
-			if(municipio != null){
-				familiareNeutro.getDestinazione(municipio);
-				familiareNero.getDestinazione(municipio);
-				familiareArancio.getDestinazione(municipio);
-				familiareBianco.getDestinazione(municipio);
-			}
-		});
-		azioniEdificidapiuGiocatori.setOnDragDropped(event->{
-			if(azioniEdificidapiuGiocatori != null){
-				familiareNeutro.getDestinazione(azioniEdificidapiuGiocatori);
-				familiareNero.getDestinazione(azioniEdificidapiuGiocatori);
-				familiareArancio.getDestinazione(azioniEdificidapiuGiocatori);
-				familiareBianco.getDestinazione(azioniEdificidapiuGiocatori);
-			}
-		});
-		azioniTerritoridaunGiocatore.setOnDragDropped(event->{
-			if(azioniTerritoridaunGiocatore != null){
-				familiareNeutro.getDestinazione(azioniTerritoridaunGiocatore);
-				familiareNero.getDestinazione(azioniTerritoridaunGiocatore);
-				familiareArancio.getDestinazione(azioniTerritoridaunGiocatore);
-				familiareBianco.getDestinazione(azioniTerritoridaunGiocatore);
-			}
-		});
-		azioniEdificidaunGiocatore.setOnDragDropped(event->{
-			if(azioniEdificidaunGiocatore != null){
-				familiareNeutro.getDestinazione(azioniEdificidaunGiocatore);
-				familiareNero.getDestinazione(azioniEdificidaunGiocatore);
-				familiareArancio.getDestinazione(azioniEdificidaunGiocatore);
-				familiareBianco.getDestinazione(azioniEdificidaunGiocatore);
-			}
-		});
-		*/
 	}
 
 
@@ -1468,12 +1266,104 @@ public class Controller {
 	        
 	    });
     
-		azioniTerritoridaunGiocatore.setOnDragEntered(e->{
+		azioniTerritoridaunGiocatore.setOnDragEntered(e -> {
 			setDestinazione1(azioniTerritoridaunGiocatore);
 		});
-    
-		azioniTerritoridapiuGiocatori.setOnDragEntered(e ->{
+
+		azioniEdificidaunGiocatore.setOnDragEntered(e -> {
+			setDestinazione1(azioniEdificidaunGiocatore);
+		});
+		
+		mercatoPosMoneteMilitari.setOnDragEntered(e->{
+			setDestinazione1(mercatoPosMoneteMilitari);
+		});
+
+		mercatoPosServitori.setOnDragEntered(e->{
+			setDestinazione1(mercatoPosServitori);
+		});
+		
+		mercatoPosMonete.setOnDragEntered(e->{
+			setDestinazione1(mercatoPosMonete);
+		});
+		
+		mercatoPosMunicipio.setOnDragEntered(e->{
+			setDestinazione1(mercatoPosMunicipio);
+		});
+		
+		pianoPrimoPalazzoMilitare.setOnDragEntered(e->{
+			setDestinazione1(pianoPrimoPalazzoMilitare);
+		});
+		
+		pianoSecondoPalazzoMilitare.setOnDragEntered(e->{
+			setDestinazione1(pianoSecondoPalazzoMilitare);
+		});
+		
+		pianoTerzoPalazzoMilitare.setOnDragEntered(e->{
+			setDestinazione1(pianoTerzoPalazzoMilitare);
+		});
+		
+		pianoQuartoPalazzoMilitare.setOnDragEntered(e->{
+			setDestinazione1(pianoQuartoPalazzoMilitare);
+		});
+		
+		pianoPrimoPalazzoPersonaggi.setOnDragEntered(e->{
+			setDestinazione1(pianoPrimoPalazzoPersonaggi);
+		});
+		
+		pianoSecondoPalazzoPersonaggi.setOnDragEntered(e->{
+			setDestinazione1(pianoSecondoPalazzoPersonaggi);
+		});
+		
+		pianoTerzoPalazzoPersonaggi.setOnDragEntered(e->{
+			setDestinazione1(pianoTerzoPalazzoPersonaggi);
+		});
+		
+		pianoQuartoPalazzoPersonaggi.setOnDragEntered(e->{
+			setDestinazione1(pianoQuartoPalazzoPersonaggi);
+		});
+		
+		pianoPrimoPalazzoEdifici.setOnDragEntered(e->{
+			setDestinazione1(pianoPrimoPalazzoEdifici);
+		});
+		
+		pianoSecondoPalazzoEdifici.setOnDragEntered(e->{
+			setDestinazione1(pianoSecondoPalazzoEdifici);
+		});
+		
+		pianoTerzoPalazzoEdifici.setOnDragEntered(e->{
+			setDestinazione1(pianoTerzoPalazzoEdifici);
+		});
+		
+		pianoQuartoPalazzoEdifici.setOnDragEntered(e->{
+			setDestinazione1(pianoQuartoPalazzoEdifici);
+		});
+		
+		pianoPrimoPalazzoTerritori.setOnDragEntered(e->{
+			setDestinazione1(pianoPrimoPalazzoTerritori);
+		});
+		
+		pianoSecondoPalazzoTerritori.setOnDragEntered(e->{
+			setDestinazione1(pianoSecondoPalazzoTerritori);
+		});
+		
+		pianoTerzoPalazzoTerritori.setOnDragEntered(e->{
+			setDestinazione1(pianoTerzoPalazzoTerritori);
+		});
+		
+		pianoQuartoPalazzoTerritori.setOnDragEntered(e->{
+			setDestinazione1(pianoQuartoPalazzoTerritori);
+		});
+		
+		azioniTerritoridapiuGiocatori.setOnDragEntered(e -> {
 			setDestinazione2(azioniTerritoridapiuGiocatori);
+		});
+
+		municipio.setOnDragEntered(e -> {
+			setDestinazione2(municipio);
+		});
+
+		azioniEdificidapiuGiocatori.setOnDragEntered(e -> {
+			setDestinazione2(azioniEdificidapiuGiocatori);
 		});
 		
 		familiareNeutro.setOnDragDone(event -> {
@@ -1481,6 +1371,7 @@ public class Controller {
 				if (flag) {
 					if (flag) {
 						destinazione1.setImage(new Image(getClass().getResourceAsStream("FamiliareBluNeutro.png")));
+						System.out.println(destinazione1.getLayoutX()+" "+destinazione1.getLayoutY());
 						familiareNeutro.setDisable(true);
 					} else {
 						ImageView mom = new ImageView(
@@ -1505,6 +1396,7 @@ public class Controller {
 						mom.setFitWidth(35);
 						mom.setFitHeight(38);
 						destinazione2.getChildren().add(mom);
+						System.out.println(destinazione2.getLayoutX() +" "+ destinazione2.getLayoutY());
 						familiareNero.setDisable(true);
 					}
 					familiareNero.setOpacity(0);

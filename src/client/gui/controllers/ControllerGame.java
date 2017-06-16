@@ -609,11 +609,11 @@ public class ControllerGame {
 	/*
 	 * Controllo per verificare se si ha un numero di punti del dado
 	 */
-	public boolean controlloPosizionamento(String color, double x, double y, int integer) {
+	public boolean controlloPosizionamento(String color, double x, double y, int addRisorse) {
 		String mom = null;
 		boolean risposta = false;
 		try {
-			mom = start.getClient().controlloPosizionamento(color, x, y, integer);
+			mom = start.getClient().controlloPosizionamento(color, x, y, addRisorse);
 		} catch (ClassNotFoundException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -633,7 +633,7 @@ public class ControllerGame {
 				popup.close();
 			});
 			bCancel.setOnAction(event -> {
-				switch (color) {
+				/*switch (color) {
 				case "neutro":
 					familiareNeutro.setImage(new Image(getClass().getResourceAsStream("")));
 					break;
@@ -645,8 +645,7 @@ public class ControllerGame {
 					break;
 				case "white":
 					familiareBianco.setImage(new Image(getClass().getResourceAsStream("")));
-					break;
-				}
+					break;*/
 				popup.close();
 			});
 		} else if (mom == null) {
@@ -1383,74 +1382,181 @@ public class ControllerGame {
 		});
 
 		familiareNeutro.setOnDragDone(event -> {
-			if (controlloPosizionamento(start.getColor(), familiareNero.getX(), familiareNero.getY(), 0))
-					if (flag) {
-						destinazione1.setImage(familiareNeutro.getImage());
-						familiareNeutro.setDisable(true);
-					} else {
-						ImageView mom = new ImageView(
-								familiareNeutro.getImage());
-						mom.setFitWidth(35);
-						mom.setFitHeight(38);
-						destinazione2.getChildren().add(mom);
-						familiareNeutro.setDisable(true);
-					}
+			if (flag) {
+			if (controlloPosizionamento(start.getColor(), destinazione1.getLayoutX(), destinazione1.getLayoutY(), 0)){
+					destinazione1.setImage(familiareNeutro.getImage());
+					familiareNeutro.setDisable(true);
 					familiareNeutro.setOpacity(0);
+			}
+				} else {
+					if (controlloPosizionamento(start.getColor(), destinazione2.getLayoutX(), destinazione2.getLayoutX(), 0)){
+					ImageView mom = new ImageView(familiareNeutro.getImage());
+					mom.setFitWidth(35);
+					mom.setFitHeight(38);
+					destinazione2.getChildren().add(mom);
+					familiareNeutro.setDisable(true);
+					familiareNeutro.setOpacity(0);
+					}
+				}
 		});
-		
+
 		familiareNero.setOnDragDone(event -> {
-			if (controlloPosizionamento(start.getColor(), familiareNero.getX(), familiareNero.getY(), 0))
-					if (flag) {
+			if (flag) {
+				if (controlloPosizionamento(start.getColor(), destinazione1.getLayoutX(), destinazione1.getLayoutY(), 0)){
 						destinazione1.setImage(familiareNero.getImage());
 						familiareNero.setDisable(true);
+						familiareNero.setOpacity(0);
+				}
 					} else {
-						ImageView mom = new ImageView(
-								familiareNero.getImage());
+						if (controlloPosizionamento(start.getColor(), destinazione2.getLayoutX(), destinazione2.getLayoutX(), 0)){
+						ImageView mom = new ImageView(familiareNero.getImage());
 						mom.setFitWidth(35);
 						mom.setFitHeight(38);
 						destinazione2.getChildren().add(mom);
 						familiareNero.setDisable(true);
+						familiareNero.setOpacity(0);
+						}
 					}
-					familiareNero.setOpacity(0);
 		});
-		
+
 		familiareArancio.setOnDragDone(event -> {
-			if (controlloPosizionamento(start.getColor(), familiareArancio.getX(), familiareArancio.getY(), 0))
-					if (flag) {
-						destinazione1.setImage(new Image(getClass().getResourceAsStream("FamiliareBluNeutro.png")));
+			if (flag) {
+				if (controlloPosizionamento(start.getColor(), destinazione1.getLayoutX(), destinazione1.getLayoutY(), 0)){
+						destinazione1.setImage(familiareArancio.getImage());
 						familiareArancio.setDisable(true);
+						familiareArancio.setOpacity(0);
+				}
 					} else {
-						ImageView mom = new ImageView(
-								new Image(getClass().getResourceAsStream("FamiliareBluNeutro.png")));
+						if (controlloPosizionamento(start.getColor(), destinazione2.getLayoutX(), destinazione2.getLayoutX(), 0)){
+						ImageView mom = new ImageView(familiareArancio.getImage());
 						mom.setFitWidth(35);
 						mom.setFitHeight(38);
 						destinazione2.getChildren().add(mom);
 						familiareArancio.setDisable(true);
+						familiareArancio.setOpacity(0);
+						}
 					}
-					familiareNeutro.setOpacity(0);
 		});
-		
+
 		familiareBianco.setOnDragDone(event -> {
-			if (controlloPosizionamento(start.getColor(), familiareBianco.getX(), familiareBianco.getY(), 0))
-					if (flag) {
-						destinazione1.setImage(new Image(getClass().getResourceAsStream("FamiliareBluNeutro.png")));
+			if (flag) {
+				if (controlloPosizionamento(start.getColor(), destinazione1.getLayoutX(), destinazione1.getLayoutY(), 0)){
+						destinazione1.setImage(familiareBianco.getImage());
 						familiareBianco.setDisable(true);
+						familiareBianco.setOpacity(0);
+				}
 					} else {
+						if (controlloPosizionamento(start.getColor(), destinazione2.getLayoutX(), destinazione2.getLayoutX(), 0)){
 						ImageView mom = new ImageView(familiareBianco.getImage());
 						mom.setFitWidth(35);
 						mom.setFitHeight(38);
 						destinazione2.getChildren().add(mom);
 						familiareBianco.setDisable(true);
+						familiareBianco.setOpacity(0);
+						}
 					}
 		});
-		
-		azioniTerritoridaunGiocatore.setOnDragEntered(e->{
+
+		azioniTerritoridaunGiocatore.setOnDragEntered(e -> {
 			setDestinazione1(azioniTerritoridaunGiocatore);
 		});
-    
-		azioniTerritoridapiuGiocatori.setOnDragEntered(e ->{
+
+		azioniEdificidaunGiocatore.setOnDragEntered(e -> {
+			setDestinazione1(azioniEdificidaunGiocatore);
+		});
+		
+		mercatoPosMoneteMilitari.setOnDragEntered(e->{
+			setDestinazione1(mercatoPosMoneteMilitari);
+		});
+
+		mercatoPosServitori.setOnDragEntered(e->{
+			setDestinazione1(mercatoPosServitori);
+		});
+		
+		mercatoPosMonete.setOnDragEntered(e->{
+			setDestinazione1(mercatoPosMonete);
+		});
+		
+		mercatoPosMunicipio.setOnDragEntered(e->{
+			setDestinazione1(mercatoPosMunicipio);
+		});
+		
+		pianoPrimoPalazzoMilitare.setOnDragEntered(e->{
+			setDestinazione1(pianoPrimoPalazzoMilitare);
+		});
+		
+		pianoSecondoPalazzoMilitare.setOnDragEntered(e->{
+			setDestinazione1(pianoSecondoPalazzoMilitare);
+		});
+		
+		pianoTerzoPalazzoMilitare.setOnDragEntered(e->{
+			setDestinazione1(pianoTerzoPalazzoMilitare);
+		});
+		
+		pianoQuartoPalazzoMilitare.setOnDragEntered(e->{
+			setDestinazione1(pianoQuartoPalazzoMilitare);
+		});
+		
+		pianoPrimoPalazzoPersonaggi.setOnDragEntered(e->{
+			setDestinazione1(pianoPrimoPalazzoPersonaggi);
+		});
+		
+		pianoSecondoPalazzoPersonaggi.setOnDragEntered(e->{
+			setDestinazione1(pianoSecondoPalazzoPersonaggi);
+		});
+		
+		pianoTerzoPalazzoPersonaggi.setOnDragEntered(e->{
+			setDestinazione1(pianoTerzoPalazzoPersonaggi);
+		});
+		
+		pianoQuartoPalazzoPersonaggi.setOnDragEntered(e->{
+			setDestinazione1(pianoQuartoPalazzoPersonaggi);
+		});
+		
+		pianoPrimoPalazzoEdifici.setOnDragEntered(e->{
+			setDestinazione1(pianoPrimoPalazzoEdifici);
+		});
+		
+		pianoSecondoPalazzoEdifici.setOnDragEntered(e->{
+			setDestinazione1(pianoSecondoPalazzoEdifici);
+		});
+		
+		pianoTerzoPalazzoEdifici.setOnDragEntered(e->{
+			setDestinazione1(pianoTerzoPalazzoEdifici);
+		});
+		
+		pianoQuartoPalazzoEdifici.setOnDragEntered(e->{
+			setDestinazione1(pianoQuartoPalazzoEdifici);
+		});
+		
+		pianoPrimoPalazzoTerritori.setOnDragEntered(e->{
+			setDestinazione1(pianoPrimoPalazzoTerritori);
+		});
+		
+		pianoSecondoPalazzoTerritori.setOnDragEntered(e->{
+			setDestinazione1(pianoSecondoPalazzoTerritori);
+		});
+		
+		pianoTerzoPalazzoTerritori.setOnDragEntered(e->{
+			setDestinazione1(pianoTerzoPalazzoTerritori);
+		});
+		
+		pianoQuartoPalazzoTerritori.setOnDragEntered(e->{
+			setDestinazione1(pianoQuartoPalazzoTerritori);
+		});
+		
+		azioniTerritoridapiuGiocatori.setOnDragEntered(e -> {
 			setDestinazione2(azioniTerritoridapiuGiocatori);
 		});
+
+		municipio.setOnDragEntered(e -> {
+			setDestinazione2(municipio);
+		});
+
+		azioniEdificidapiuGiocatori.setOnDragEntered(e -> {
+			setDestinazione2(azioniEdificidapiuGiocatori);
+		});
+		
 	}
 
 	private void setDestinazione2(HBox azioniTerritoridaunGiocatore2) {
