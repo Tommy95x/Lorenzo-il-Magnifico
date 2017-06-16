@@ -286,6 +286,18 @@ public class ControllerGame {
 	}
 
 	public void setColorsParents(String color) throws RemoteException, ClassNotFoundException, IOException {
+		puntiVittoriaBlu.setImage(new Image(getClass().getResourceAsStream("Disco1.png")));
+		puntiVittoriaBianco.setImage(new Image(getClass().getResourceAsStream("Disco12.png")));
+		puntiVittoriaVerde.setImage(new Image(getClass().getResourceAsStream("Disco4.png")));
+		puntiVittoriaArancio.setImage(new Image(getClass().getResourceAsStream("Disco3.png")));
+		puntiFedeBlu.setImage(new Image(getClass().getResourceAsStream("Disco1.png")));
+		puntiFedeArancio.setImage(new Image(getClass().getResourceAsStream("Disco3.png")));
+		puntiFedeBianco.setImage(new Image(getClass().getResourceAsStream("Disco12.png")));
+		puntiFedeVerde.setImage(new Image(getClass().getResourceAsStream("Disco4.png")));
+		puntiMilitariBlu.setImage(new Image(getClass().getResourceAsStream("Disco1.png")));
+		puntiMilitariVerde.setImage(new Image(getClass().getResourceAsStream("Disco4.png")));
+		puntiMilitariBianco.setImage(new Image(getClass().getResourceAsStream("Disco12.png")));
+		puntiMilitariArancio.setImage(new Image(getClass().getResourceAsStream("Disco3.png")));
 		Giocatore[] giocatori = null;
 		switch (color) {
 		case "blue":

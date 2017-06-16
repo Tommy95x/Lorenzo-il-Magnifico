@@ -6,6 +6,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import client.gui.StartClientGui;
+import javafx.animation.FadeTransition;
+import javafx.animation.PathTransition;
+import javafx.animation.Timeline;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -21,7 +24,11 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.CubicCurveTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import server.element.CartaEdifici;
 import server.element.CartaImprese;
 import server.element.CartaPersonaggi;
@@ -293,6 +300,18 @@ public class Controller {
 
 
 	public void setColorsParents(String color) {
+		puntiVittoriaBlu.setImage(new Image(getClass().getResourceAsStream("Disco1.png")));
+		puntiVittoriaBianco.setImage(new Image(getClass().getResourceAsStream("Disco12.png")));
+		puntiVittoriaVerde.setImage(new Image(getClass().getResourceAsStream("Disco4.png")));
+		puntiVittoriaArancio.setImage(new Image(getClass().getResourceAsStream("Disco3.png")));
+		puntiFedeBlu.setImage(new Image(getClass().getResourceAsStream("Disco1.png")));
+		puntiFedeArancio.setImage(new Image(getClass().getResourceAsStream("Disco3.png")));
+		puntiFedeBianco.setImage(new Image(getClass().getResourceAsStream("Disco12.png")));
+		puntiFedeVerde.setImage(new Image(getClass().getResourceAsStream("Disco4.png")));
+		puntiMilitariBlu.setImage(new Image(getClass().getResourceAsStream("Disco1.png")));
+		puntiMilitariVerde.setImage(new Image(getClass().getResourceAsStream("Disco4.png")));
+		puntiMilitariBianco.setImage(new Image(getClass().getResourceAsStream("Disco12.png")));
+		puntiMilitariArancio.setImage(new Image(getClass().getResourceAsStream("Disco3.png")));
 		switch(color){
 			case "blue":
 				familiareNeutro.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNeutro.png")));
@@ -314,6 +333,7 @@ public class Controller {
 				flag1.setImage(new Image(this.getClass().getResourceAsStream("BandierinaVerde.png")));
 				flag2.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBianca.png")));
 				flag3.setImage(new Image(this.getClass().getResourceAsStream("BandierinaArancio.png")));
+				
 				familiareOrange1.setOpacity(1);
 				familiareOrange2.setOpacity(1);
 				familiareOrange3.setOpacity(1);
@@ -359,6 +379,10 @@ public class Controller {
 				flag1.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBlu.png")));
 				flag2.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBianca.png")));
 				flag3.setImage(new Image(this.getClass().getResourceAsStream("BandierinaArancio.png")));
+				puntiVittoriaBlu.setImage(new Image(getClass().getResourceAsStream("Disco1.png")));
+				puntiVittoriaBianco.setImage(new Image(getClass().getResourceAsStream("Disco12.png")));
+				puntiVittoriaVerde.setImage(new Image(getClass().getResourceAsStream("Disco4.png")));
+				puntiVittoriaArancio.setImage(new Image(getClass().getResourceAsStream("Disco3.png")));
 				familiareOrange1.setOpacity(1);
 				familiareOrange2.setOpacity(1);
 				familiareOrange3.setOpacity(1);
@@ -404,6 +428,7 @@ public class Controller {
 				flag1.setImage(new Image(this.getClass().getResourceAsStream("BandierinaVerde.png")));
 				flag2.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBlu.png")));
 				flag3.setImage(new Image(this.getClass().getResourceAsStream("BandierinaArancio.png")));
+				
 				familiareOrange1.setOpacity(1);
 				familiareOrange2.setOpacity(1);
 				familiareOrange3.setOpacity(1);
@@ -449,6 +474,10 @@ public class Controller {
 				flag1.setImage(new Image(this.getClass().getResourceAsStream("")));
 				flag2.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBianca.png")));
 				flag3.setImage(new Image(this.getClass().getResourceAsStream("")));
+				puntiVittoriaBlu.setImage(new Image(getClass().getResourceAsStream("Disco1.png")));
+				puntiVittoriaBianco.setImage(new Image(getClass().getResourceAsStream("Disco12.png")));
+				puntiVittoriaVerde.setImage(new Image(getClass().getResourceAsStream("Disco4.png")));
+				puntiVittoriaArancio.setImage(new Image(getClass().getResourceAsStream("Disco3.png")));
 				familiareBlue1.setOpacity(1);
 				familiareBlue2.setOpacity(1);
 				familiareBlue3.setOpacity(1);
@@ -905,7 +934,7 @@ public class Controller {
 			Tooltip.install(carteEdificiGiocatore.getChildren().get(0), arrayCarteEdifici[0].getTooltip());
 			carteEdifici.getChildren().set(0, new ImageView(new Image(getClass().getResourceAsStream(""))));
 
-			start.getClient().setCardGiocatore(arrayCarteEdifici[0]);
+			start.getClient().setCardGiocatore(arrayCarteEdifici[0], 0);
 			break;
 		case "PIANO 2 CARTE EDIFICI":
 			carteEdificiGiocatore.getChildren().add(carteEdifici.getChildren().get(1));
@@ -1029,6 +1058,7 @@ public class Controller {
 		dadoNero.setImage(new Image(getClass().getResourceAsStream("dado1.png")));
 		dadoBianco.setImage(new Image(getClass().getResourceAsStream("dado14.png")));
 		dadoArancio.setImage(new Image(getClass().getResourceAsStream("dado7.png")));
+		notifySpostamentoPuntiVittoria(525.0,0.0,"blue");
 	}
 
 
@@ -1456,6 +1486,72 @@ public class Controller {
 
 	public void setFlag(String string) {
 		bandiera.setImage(new Image(getClass().getResourceAsStream("BandierinaBlu.png")));
-		
+	}
+	public void notifySpostamentoPuntiVittoria(double x, double y, String color) {
+		double startX;
+		double startY;
+		switch (color) {
+		case "blue":
+			System.out.println("Inizio spostamento");
+			startX = puntiVittoriaBlu.getLayoutX();
+			startY = puntiVittoriaBlu.getLayoutY();
+			System.out.println(startX+" "+ startY);
+			/*while (startX <= x && startY <= y) {
+				//if (startX <= x)
+					startX+=5;
+				//if (startY <= y)
+					startY+=5;
+				puntiVittoriaBlu.setTranslateX(startX);;
+				puntiVittoriaBlu.setTranslateY(startY);
+			}*/
+			Path path = new Path();
+			path.getElements().add(new MoveTo(529.0,20.0));
+			path.getElements().add(new CubicCurveTo(529.0, 20.0, 200, 20, 529.0, 735.0+20));
+			PathTransition pathTransition = new PathTransition();
+			pathTransition.setDuration(Duration.millis(4000));
+			pathTransition.setPath(path);
+			pathTransition.setNode(puntiVittoriaBlu);
+			pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+			pathTransition.setCycleCount(1);
+			pathTransition.play();
+			System.out.println("Fine Spostamento pedina");
+			break;
+		case "white":
+			startX = puntiVittoriaBianco.getLayoutX();
+			startY = puntiVittoriaBianco.getLayoutY();
+			while (startX != x && startY != y) {
+				if (startX != x)
+					startX++;
+				if (startY != y)
+					startY++;
+				puntiVittoriaBianco.setLayoutX(startX);
+				puntiVittoriaBianco.setLayoutY(startY);
+			}
+			break;
+		case "green":
+			startX = puntiVittoriaVerde.getLayoutX();
+			startY = puntiVittoriaVerde.getLayoutY();
+			while (startX != x && startY != y) {
+				if (startX != x)
+					startX++;
+				if (startY != y)
+					startY++;
+				puntiVittoriaVerde.setLayoutX(startX);
+				puntiVittoriaVerde.setLayoutY(startY);
+			}
+			break;
+		case "orange":
+			startX = puntiVittoriaArancio.getLayoutX();
+			startY = puntiVittoriaArancio.getLayoutY();
+			while (startX != x && startY != y) {
+				if (startX != x)
+					startX++;
+				if (startY != y)
+					startY++;
+				puntiVittoriaArancio.setLayoutX(startX);
+				puntiVittoriaArancio.setLayoutY(startY);
+			}
+			break;
+		}
 	}
 }

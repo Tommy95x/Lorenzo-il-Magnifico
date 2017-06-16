@@ -23,4 +23,5 @@ public interface RMIClientInterface extends Remote{
 	public void notifySpostamentoPuntiFede(double x, double y, String color2)throws RemoteException;
 	public void notifyPergamena()throws RemoteException;
 	public void notifyTutteCarte()throws RemoteException;
+	public void ciao()throws RemoteException;
 }

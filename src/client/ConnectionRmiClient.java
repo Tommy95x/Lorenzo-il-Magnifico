@@ -66,7 +66,8 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	public String login(String account, String pw) throws RemoteException{
 		name=account;
 		try {
-			return serverMethods.login(account, pw);
+			String mom = serverMethods.login(account, pw);
+			return mom;
 		} catch (RemoteException e) {
 			//Gestire l'eccezione
 			e.printStackTrace();
@@ -92,10 +93,10 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		System.out.println("lobby = "+lobby+" name="+name+" color="+color+" this="+this+"");
 		try {
 			System.out.println(positionGame);
-			interlocutor = new ConnectionRmiInterlocutorClient(name, positionGame);
 			System.out.println("Momentaneo");
-			positionGame=serverMethods.createNewLobby(lobby, name, color);
+			interlocutor = new ConnectionRmiInterlocutorClient(name);
 			serverMethods.setClientInterface(lobby, name, interlocutor);
+			positionGame=serverMethods.createNewLobby(lobby, name, color);
 			System.out.println("provaprova");
 			System.out.println(positionGame);
 			this.color=color;
@@ -123,7 +124,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	
 	public int enterInALobby(String lobby, String color) throws RemoteException{
 		try {
-			interlocutor = new ConnectionRmiInterlocutorClient(name, positionGame);
+			interlocutor = new ConnectionRmiInterlocutorClient(name);
 			positionGame=serverMethods.selectLobby(lobby, name, color);
 		} catch (RemoteException | SQLException e) {
 			// TODO Auto-generated catch block

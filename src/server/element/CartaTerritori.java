@@ -14,12 +14,12 @@ public class CartaTerritori extends CartaSviluppo{
 	
 	//Le carte territorio non hanno alcun costo
 	private int costoAzione;
-	private String name; 
-	private String nomeffetto;
+	private String name = new String(); 
+	private String nomeffetto = new String();
 	private int qtaeffetto;
-	private ArrayList<Effetto> effetti;
-	private String image;
-	private String tooltip;
+	private ArrayList<Effetto> effetti = new ArrayList<Effetto>();
+	private String image = new String();
+	private String tooltip = new String();
 	
 	public CartaTerritori(){
 		
