@@ -32,6 +32,7 @@ public class Mom extends Application {
 		primaryStage.setScene(scene);
 		game.enableGame();
 		game.parentsProperties();
+		game.setFlag("blue");
 		System.out.println("ProvaProvaProva");
 		//getClient().waitTurno();
 		primaryStage.setScene(scene);

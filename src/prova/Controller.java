@@ -40,6 +40,7 @@ public class Controller {
 	private CartaPersonaggi[] arrayCartePersonaggi = new CartaPersonaggi[4];
 	private CartaEdifici[] arrayCarteEdifici = new CartaEdifici[4];
 	private int numberOfGamers;
+	private boolean flag;
 
 	// Componenti tabellone
 	@FXML
@@ -221,6 +222,11 @@ public class Controller {
 	@FXML
 	public ImageView cuboScomunica3;
 
+	
+	private ImageView destinazione1;
+	
+	private HBox destinazione2;
+	
 	public void setGUI(StartClientGui startClientGui) throws ClassNotFoundException, IOException {
 		this.setStart(startClientGui);
 		numberOfGamers = start.getClient().getPlayers();
@@ -1176,7 +1182,7 @@ public class Controller {
 		familiareBianco.setDisable(false);
 		lanciaDadi.setDisable(false);
 	}
-
+	
 	
 	public void resetTabellon() throws ClassNotFoundException, IOException{
 		try {
@@ -1195,12 +1201,20 @@ public class Controller {
 	public void setPosizioni() throws IOException, ClassNotFoundException {
 		int i=0;
 		ImageView mom = new ImageView(new Image(getClass().getResourceAsStream("Disco1.png")));
+		mom.setFitWidth(35);
+		mom.setFitHeight(38);
 		posizioni.getChildren().add(mom);
 		 mom = new ImageView(new Image(getClass().getResourceAsStream("Disco12.png")));
+		 mom.setFitWidth(35);
+			mom.setFitHeight(38);
 		 posizioni.getChildren().add(mom);
 		 mom = new ImageView(new Image(getClass().getResourceAsStream("Disco3.png")));
+		 mom.setFitWidth(35);
+			mom.setFitHeight(38);
 		 posizioni.getChildren().add(mom);
 		 mom = new ImageView(new Image(getClass().getResourceAsStream("Disco4.png")));
+		 mom.setFitWidth(35);
+			mom.setFitHeight(38);
 		posizioni.getChildren().add(mom);
 		
 	}
@@ -1208,19 +1222,10 @@ public class Controller {
 
 	@FXML
 	public void lanciaDadi() throws RemoteException, SQLException {
-		Dado[] dadi = new Dado[3];
-		try {
-			dadi = start.getClient().lanciaDadi();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		dadoNero.setImage(new Image(getClass().getResourceAsStream(dadi[0].getImage())));
-		dadoBianco.setImage(new Image(getClass().getResourceAsStream(dadi[1].getImage())));
-		dadoArancio.setImage(new Image(getClass().getResourceAsStream(dadi[2].getImage())));
+		
+		dadoNero.setImage(new Image(getClass().getResourceAsStream("dado1.png")));
+		dadoBianco.setImage(new Image(getClass().getResourceAsStream("dado14.png")));
+		dadoArancio.setImage(new Image(getClass().getResourceAsStream("dado7.png")));
 	}
 
 
@@ -1463,38 +1468,97 @@ public class Controller {
 	        
 	    });
     
+		azioniTerritoridaunGiocatore.setOnDragEntered(e->{
+			setDestinazione1(azioniTerritoridaunGiocatore);
+		});
     
-    /*familiareNeutro.setOnDragDone(event ->{
-    	if(controlloPosizionamento( start.getColor(),familiareNero.getX(), familiareNero.getY(),0))
-    		if(flag){
-    			destinazione.setImage(familiareNero.getImage());
-    			familiareNero.setDisable(true);
-    			try {
-					setCardGiocatore(getNamePosition(familiareNero.getX(),familiareNero.getY()));
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+		azioniTerritoridapiuGiocatori.setOnDragEntered(e ->{
+			setDestinazione2(azioniTerritoridapiuGiocatori);
+		});
+		
+		familiareNeutro.setOnDragDone(event -> {
+		//if (controlloPosizionamento(start.getColor(), familiareNero.getX(), familiareNero.getY(), 0))
+				if (flag) {
+					if (flag) {
+						destinazione1.setImage(new Image(getClass().getResourceAsStream("FamiliareBluNeutro.png")));
+						familiareNeutro.setDisable(true);
+					} else {
+						ImageView mom = new ImageView(
+								new Image(getClass().getResourceAsStream("FamiliareBluNeutro.png")));
+						mom.setFitWidth(35);
+						mom.setFitHeight(38);
+						destinazione2.getChildren().add(mom);
+						familiareNeutro.setDisable(true);
+					}
+					familiareNeutro.setOpacity(0);
 				}
-    			try {
-					notifySpostamento(start.getColor(),familiareNero.getX(), familiareNero.getY());
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-    		}
-    		else{
-    			box.getChildren().add(new ImageView(familiareNero.getImage()));
-    			familiareNero.setDisable(true);
-    			try {
-					notifySpostamento(start.getColor(),familiareNero.getX(), familiareNero.getY());
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-    		}
-    	familiareNero.setImage(new Image(getClass().getResourceAsStream("")));
-    });*/
+		});
+		
+		familiareNero.setOnDragDone(event -> {
+			//if (controlloPosizionamento(start.getColor(), familiareNero.getX(), familiareNero.getY(), 0))
+					if (flag) {
+						destinazione1.setImage(new Image(getClass().getResourceAsStream("FamiliareBluNeutro.png")));
+						familiareNero.setDisable(true);
+					} else {
+						ImageView mom = new ImageView(
+								new Image(getClass().getResourceAsStream("FamiliareBluNeutro.png")));
+						mom.setFitWidth(35);
+						mom.setFitHeight(38);
+						destinazione2.getChildren().add(mom);
+						familiareNero.setDisable(true);
+					}
+					familiareNero.setOpacity(0);
+		});
+		
+		familiareArancio.setOnDragDone(event -> {
+			//if (controlloPosizionamento(start.getColor(), familiareArancio.getX(), familiareArancio.getY(), 0))
+					if (flag) {
+						destinazione1.setImage(new Image(getClass().getResourceAsStream("FamiliareBluNeutro.png")));
+						familiareArancio.setDisable(true);
+					} else {
+						ImageView mom = new ImageView(
+								new Image(getClass().getResourceAsStream("FamiliareBluNeutro.png")));
+						mom.setFitWidth(35);
+						mom.setFitHeight(38);
+						destinazione2.getChildren().add(mom);
+						familiareArancio.setDisable(true);
+					}
+					familiareNeutro.setOpacity(0);
+		});
+		
+		familiareBianco.setOnDragDone(event -> {
+			//if (controlloPosizionamento(start.getColor(), familiareBianco.getX(), familiareBianco.getY(), 0))
+					if (flag) {
+						destinazione1.setImage(new Image(getClass().getResourceAsStream("FamiliareBluNeutro.png")));
+						familiareBianco.setDisable(true);
+					} else {
+						ImageView mom = new ImageView(
+								new Image(getClass().getResourceAsStream("FamiliareBluNeutro.png")));
+						mom.setFitWidth(35);
+						mom.setFitHeight(38);
+						destinazione2.getChildren().add(mom);
+						familiareBianco.setDisable(true);
+					}
+		});
 	
 	
+	}
+
+
+	private void setDestinazione2(HBox azioniTerritoridaunGiocatore2) {
+		flag = false;
+		destinazione2 = azioniTerritoridaunGiocatore2;
+	}
+
+
+	private void setDestinazione1(ImageView azioniTerritoridaunGiocatore2) {
+		flag = true;
+		this.destinazione1 = azioniTerritoridaunGiocatore2;
+		
+	}
+
+	public void setFlag(String string) {
+		bandiera.setImage(new Image(getClass().getResourceAsStream("BandierinaBlu.png")));
+		
 	}
 }

@@ -40,6 +40,9 @@ public class ControllerGame {
 	private CartaPersonaggi[] arrayCartePersonaggi = new CartaPersonaggi[4];
 	private CartaEdifici[] arrayCarteEdifici = new CartaEdifici[4];
 	private int numberOfGamers;
+	private ImageView destinazione1;
+	private HBox destinazione2;
+	private boolean flag;
 
 	// Componenti tabellone
 	@FXML
@@ -114,8 +117,8 @@ public class ControllerGame {
 	public ImageView cartaScomunica2;
 	@FXML
 	public ImageView cartaScomunica3;
-	
-	//Componenti tabellone avversari
+
+	// Componenti tabellone avversari
 	@FXML
 	public ImageView puntiVittoriaBlu;
 	@FXML
@@ -184,7 +187,7 @@ public class ControllerGame {
 	public ImageView flag2;
 	@FXML
 	public ImageView flag3;
-	
+
 	// Componenti plancia
 	@FXML
 	public HBox carteImpresaGiocatore;
@@ -225,226 +228,22 @@ public class ControllerGame {
 		this.setStart(startClientGui);
 		numberOfGamers = start.getClient().getPlayers();
 		start.getClient().setGuiGame(this);
-		/*mercatoPosMoneteMilitari.setOnDragDropped(event->{
-			if(mercatoPosMoneteMilitari != null){
-				familiareNeutro.getDestinazione(mercatoPosMoneteMilitari);
-				familiareNero.getDestinazione(mercatoPosMoneteMilitari);
-				familiareArancio.getDestinazione(mercatoPosMoneteMilitari);
-				familiareBianco.getDestinazione(mercatoPosMoneteMilitari);
-			}
-		});
-		mercatoPosServitori.setOnDragDropped(event->{
-			if(mercatoPosServitori != null){
-				familiareNeutro.getDestinazione(mercatoPosServitori);
-				familiareNero.getDestinazione(mercatoPosServitori);
-				familiareArancio.getDestinazione(mercatoPosServitori);
-				familiareBianco.getDestinazione(mercatoPosServitori);
-			}
-		});
-		mercatoPosMonete.setOnDragDropped(event->{
-			if(mercatoPosMonete != null){
-				familiareNeutro.getDestinazione(mercatoPosMonete);
-				familiareNero.getDestinazione(mercatoPosMonete);
-				familiareArancio.getDestinazione(mercatoPosMonete);
-				familiareBianco.getDestinazione(mercatoPosMonete);
-			}
-		});
-		mercatoPosMunicipio.setOnDragDropped(event->{
-			if(mercatoPosMunicipio != null){
-				familiareNeutro.getDestinazione(mercatoPosMunicipio);
-				familiareNero.getDestinazione(mercatoPosMunicipio);
-				familiareArancio.getDestinazione(mercatoPosMunicipio);
-				familiareBianco.getDestinazione(mercatoPosMunicipio);
-			}
-		});
-		pianoPrimoPalazzoMilitare.setOnDragDropped(event->{
-			if(pianoPrimoPalazzoMilitare != null){
-				familiareNeutro.getDestinazione(pianoPrimoPalazzoMilitare);
-				familiareNero.getDestinazione(pianoPrimoPalazzoMilitare);
-				familiareArancio.getDestinazione(pianoPrimoPalazzoMilitare);
-				familiareBianco.getDestinazione(pianoPrimoPalazzoMilitare);
-			}
-		});
-		pianoSecondoPalazzoMilitare.setOnDragDropped(event->{
-			if(pianoSecondoPalazzoMilitare != null){
-				familiareNeutro.getDestinazione(pianoSecondoPalazzoMilitare);
-				familiareNero.getDestinazione(pianoSecondoPalazzoMilitare);
-				familiareArancio.getDestinazione(pianoSecondoPalazzoMilitare);
-				familiareBianco.getDestinazione(pianoSecondoPalazzoMilitare);
-			}
-		});
-		pianoTerzoPalazzoMilitare.setOnDragDropped(event->{
-			if(mercatoPosMoneteMilitari != null){
-				familiareNeutro.getDestinazione(pianoTerzoPalazzoMilitare);
-				familiareNero.getDestinazione(pianoTerzoPalazzoMilitare);
-				familiareArancio.getDestinazione(pianoTerzoPalazzoMilitare);
-				familiareBianco.getDestinazione(pianoTerzoPalazzoMilitare);
-			}
-		});
-		pianoQuartoPalazzoMilitare.setOnDragDropped(event->{
-			if(pianoQuartoPalazzoMilitare != null){
-				familiareNeutro.getDestinazione(pianoQuartoPalazzoMilitare);
-				familiareNero.getDestinazione(pianoQuartoPalazzoMilitare);
-				familiareArancio.getDestinazione(pianoQuartoPalazzoMilitare);
-				familiareBianco.getDestinazione(pianoQuartoPalazzoMilitare);
-			}
-		});
-		pianoPrimoPalazzoPersonaggi.setOnDragDropped(event->{
-			if(pianoPrimoPalazzoPersonaggi != null){
-				familiareNeutro.getDestinazione(pianoPrimoPalazzoPersonaggi);
-				familiareNero.getDestinazione(pianoPrimoPalazzoPersonaggi);
-				familiareArancio.getDestinazione(pianoPrimoPalazzoPersonaggi);
-				familiareBianco.getDestinazione(pianoPrimoPalazzoPersonaggi);
-			}
-		});
-		pianoSecondoPalazzoPersonaggi.setOnDragDropped(event->{
-			if(pianoSecondoPalazzoPersonaggi != null){
-				familiareNeutro.getDestinazione(pianoSecondoPalazzoPersonaggi);
-				familiareNero.getDestinazione(pianoSecondoPalazzoPersonaggi);
-				familiareArancio.getDestinazione(pianoSecondoPalazzoPersonaggi);
-				familiareBianco.getDestinazione(pianoSecondoPalazzoPersonaggi);
-			}
-		});
-		pianoTerzoPalazzoPersonaggi.setOnDragDropped(event->{
-			if(pianoTerzoPalazzoPersonaggi != null){
-				familiareNeutro.getDestinazione(pianoTerzoPalazzoPersonaggi);
-				familiareNero.getDestinazione(pianoTerzoPalazzoPersonaggi);
-				familiareArancio.getDestinazione(pianoTerzoPalazzoPersonaggi);
-				familiareBianco.getDestinazione(pianoTerzoPalazzoPersonaggi);
-			}
-		});
-		pianoQuartoPalazzoPersonaggi.setOnDragDropped(event->{
-			if(pianoQuartoPalazzoPersonaggi != null){
-				familiareNeutro.getDestinazione(pianoQuartoPalazzoPersonaggi);
-				familiareNero.getDestinazione(pianoQuartoPalazzoPersonaggi);
-				familiareArancio.getDestinazione(pianoQuartoPalazzoPersonaggi);
-				familiareBianco.getDestinazione(pianoQuartoPalazzoPersonaggi);
-			}
-		});
-		pianoPrimoPalazzoEdifici.setOnDragDropped(event->{
-			if(pianoPrimoPalazzoEdifici != null){
-				familiareNeutro.getDestinazione(pianoPrimoPalazzoEdifici);
-				familiareNero.getDestinazione(pianoPrimoPalazzoEdifici);
-				familiareArancio.getDestinazione(pianoPrimoPalazzoEdifici);
-				familiareBianco.getDestinazione(pianoPrimoPalazzoEdifici);
-			}
-		});
-		pianoSecondoPalazzoEdifici.setOnDragDropped(event->{
-			if(pianoSecondoPalazzoEdifici != null){
-				familiareNeutro.getDestinazione(pianoSecondoPalazzoEdifici);
-				familiareNero.getDestinazione(pianoSecondoPalazzoEdifici);
-				familiareArancio.getDestinazione(pianoSecondoPalazzoEdifici);
-				familiareBianco.getDestinazione(pianoSecondoPalazzoEdifici);
-			}
-		});
-		pianoTerzoPalazzoEdifici.setOnDragDropped(event->{
-			if(pianoTerzoPalazzoEdifici != null){
-				familiareNeutro.getDestinazione(pianoTerzoPalazzoEdifici);
-				familiareNero.getDestinazione(pianoTerzoPalazzoEdifici);
-				familiareArancio.getDestinazione(pianoTerzoPalazzoEdifici);
-				familiareBianco.getDestinazione(pianoTerzoPalazzoEdifici);
-			}
-		});
-		pianoQuartoPalazzoEdifici.setOnDragDropped(event->{
-			if(pianoQuartoPalazzoEdifici != null){
-				familiareNeutro.getDestinazione(pianoQuartoPalazzoEdifici);
-				familiareNero.getDestinazione(pianoQuartoPalazzoEdifici);
-				familiareArancio.getDestinazione(pianoQuartoPalazzoEdifici);
-				familiareBianco.getDestinazione(pianoQuartoPalazzoEdifici);
-			}
-		});
-		pianoPrimoPalazzoTerritori.setOnDragDropped(event->{
-			if(pianoPrimoPalazzoTerritori != null){
-				familiareNeutro.getDestinazione(pianoPrimoPalazzoTerritori);
-				familiareNero.getDestinazione(pianoPrimoPalazzoTerritori);
-				familiareArancio.getDestinazione(pianoPrimoPalazzoTerritori);
-				familiareBianco.getDestinazione(pianoPrimoPalazzoTerritori);
-			}
-		});
-		pianoSecondoPalazzoTerritori.setOnDragDropped(event->{
-			if(pianoSecondoPalazzoTerritori != null){
-				familiareNeutro.getDestinazione(pianoSecondoPalazzoTerritori);
-				familiareNero.getDestinazione(pianoSecondoPalazzoTerritori);
-				familiareArancio.getDestinazione(pianoSecondoPalazzoTerritori);
-				familiareBianco.getDestinazione(pianoSecondoPalazzoTerritori);
-			}
-		});
-		pianoTerzoPalazzoTerritori.setOnDragDropped(event->{
-			if(pianoTerzoPalazzoTerritori != null){
-				familiareNeutro.getDestinazione(pianoTerzoPalazzoTerritori);
-				familiareNero.getDestinazione(pianoTerzoPalazzoTerritori);
-				familiareArancio.getDestinazione(pianoTerzoPalazzoTerritori);
-				familiareBianco.getDestinazione(pianoTerzoPalazzoTerritori);
-			}
-		});
-		pianoQuartoPalazzoTerritori.setOnDragDropped(event->{
-			if(pianoQuartoPalazzoTerritori != null){
-				familiareNeutro.getDestinazione(pianoQuartoPalazzoTerritori);
-				familiareNero.getDestinazione(pianoQuartoPalazzoTerritori);
-				familiareArancio.getDestinazione(pianoQuartoPalazzoTerritori);
-				familiareBianco.getDestinazione(pianoQuartoPalazzoTerritori);
-			}
-		});
-		
-		municipio.setOnDragDropped(event->{
-			if(municipio != null){
-				familiareNeutro.getDestinazione(municipio);
-				familiareNero.getDestinazione(municipio);
-				familiareArancio.getDestinazione(municipio);
-				familiareBianco.getDestinazione(municipio);
-			}
-		});
-		azioniTerritoridapiuGiocatori.setOnDragDropped(event->{
-			if(municipio != null){
-				familiareNeutro.getDestinazione(municipio);
-				familiareNero.getDestinazione(municipio);
-				familiareArancio.getDestinazione(municipio);
-				familiareBianco.getDestinazione(municipio);
-			}
-		});
-		azioniEdificidapiuGiocatori.setOnDragDropped(event->{
-			if(azioniEdificidapiuGiocatori != null){
-				familiareNeutro.getDestinazione(azioniEdificidapiuGiocatori);
-				familiareNero.getDestinazione(azioniEdificidapiuGiocatori);
-				familiareArancio.getDestinazione(azioniEdificidapiuGiocatori);
-				familiareBianco.getDestinazione(azioniEdificidapiuGiocatori);
-			}
-		});
-		azioniTerritoridaunGiocatore.setOnDragDropped(event->{
-			if(azioniTerritoridaunGiocatore != null){
-				familiareNeutro.getDestinazione(azioniTerritoridaunGiocatore);
-				familiareNero.getDestinazione(azioniTerritoridaunGiocatore);
-				familiareArancio.getDestinazione(azioniTerritoridaunGiocatore);
-				familiareBianco.getDestinazione(azioniTerritoridaunGiocatore);
-			}
-		});
-		azioniEdificidaunGiocatore.setOnDragDropped(event->{
-			if(azioniEdificidaunGiocatore != null){
-				familiareNeutro.getDestinazione(azioniEdificidaunGiocatore);
-				familiareNero.getDestinazione(azioniEdificidaunGiocatore);
-				familiareArancio.getDestinazione(azioniEdificidaunGiocatore);
-				familiareBianco.getDestinazione(azioniEdificidaunGiocatore);
-			}
-		});
-		*/
 	}
 
-
 	public void setTabavv(Giocatore[] giocatori) {
-		for(int i = 0;i<4;i++){
-			if(!giocatori[i].getName().equals(start.getClient().getName())){
-				if(name1.getText().equals("")){
+		for (int i = 0; i < 4; i++) {
+			if (!giocatori[i].getName().equals(start.getClient().getName())) {
+				if (name1.getText().equals("")) {
 					name1.setText(giocatori[i].getName());
-				}else if(name2.getText().equals("")){
+				} else if (name2.getText().equals("")) {
 					name2.setText(giocatori[i].getName());
-				}else if(name3.getText().equals("")){
+				} else if (name3.getText().equals("")) {
 					name3.setText(giocatori[i].getName());
 				}
 			}
 		}
-		
-	}
 
+	}
 
 	public void setRisorse(Portafoglio risorse) {
 		setLegno(risorse.getDimRisorse("legno"));
@@ -453,224 +252,329 @@ public class ControllerGame {
 		setMonete(risorse.getDimRisorse("monete"));
 	}
 
-
-	
 	public void setCardsScomunica(TesseraScomunica[] cardsScomunica) {
 		cartaScomunica1.setImage(new Image(getClass().getResourceAsStream(cardsScomunica[0].getImage())));
 		cartaScomunica2.setImage(new Image(getClass().getResourceAsStream(cardsScomunica[1].getImage())));
 		cartaScomunica3.setImage(new Image(getClass().getResourceAsStream(cardsScomunica[2].getImage())));
-		
+
 	}
 
-
 	public void setColorCubiScomunica(String color) {
-		switch(color){
-			case "blue":
-				cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaBlu.png")));
-				cuboScomunica2.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaBlu.png")));
-				cuboScomunica3.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaBlu.png")));
-				break;
-			case "green":
-				cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaVerde.png")));
-				cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaVerde.png")));
-				cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaVerde.png")));
-				break;
-			case "white":
-				cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaBianco.png")));
-				cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaBianco.png")));
-				cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaBianco.png")));
-				break;
-			case "orange":
-				cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaArancio.png")));
-				cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaArancio.png")));
-				cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaArancio.png")));
-				break;
+		switch (color) {
+		case "blue":
+			cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaBlu.png")));
+			cuboScomunica2.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaBlu.png")));
+			cuboScomunica3.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaBlu.png")));
+			break;
+		case "green":
+			cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaVerde.png")));
+			cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaVerde.png")));
+			cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaVerde.png")));
+			break;
+		case "white":
+			cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaBianco.png")));
+			cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaBianco.png")));
+			cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaBianco.png")));
+			break;
+		case "orange":
+			cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaArancio.png")));
+			cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaArancio.png")));
+			cuboScomunica1.setImage(new Image(getClass().getResourceAsStream("CuboScomunicaArancio.png")));
+			break;
 		}
 	}
 
+	public void setColorsParents(String color) throws RemoteException, ClassNotFoundException, IOException {
+		Giocatore[] giocatori = null;
+		switch (color) {
+		case "blue":
+			familiareNeutro.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNeutro.png")));
+			familiareNero.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNero.png")));
+			familiareArancio.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluArancio.png")));
+			familiareBianco.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluBianco.png")));
+			giocatori = new Giocatore[4];
+			giocatori = start.getClient().getGiocatori();
+			for (Giocatore g : giocatori) {
+				if (g != null && g.getName() != start.getClient().getName()) {
+					switch (g.getColor()) {
+					case "orange":
+						familiareOrange1
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioNeutro.png")));
+						familiareOrange2.setImage(
+								new Image(this.getClass().getResourceAsStream("FamiliareArancioArancio.png")));
+						familiareOrange3
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioBianco.png")));
+						familiareOrange4
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioNero.png")));
+						flag1.setImage(new Image(this.getClass().getResourceAsStream("BandierinaArancio.png")));
 
-	public void setColorsParents(String color) {
-		switch(color){
-			case "blue":
-				familiareNeutro.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNeutro.png")));
-				familiareNero.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNero.png")));
-				familiareArancio.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluArancio.png")));
-				familiareBianco.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluBianco.png")));
-				familiareOrange1.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioNeutro.png")));
-				familiareOrange2.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioArancio.png")));
-				familiareOrange3.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioBianco.png")));
-				familiareOrange4.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioNero.png")));
-				familiareGreen1.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeNeutro.png")));
-				familiareGreen2.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeArancio.png")));
-				familiareGreen3.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeBianco.png")));
-				familiareGreen4.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeNero.png")));
-				familiareWhite1.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoNeutro.png")));
-				familiareWhite2.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoArancio.png")));
-				familiareWhite3.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoBianco.png")));
-				familiareWhite4.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoNero.png")));
-				flag1.setImage(new Image(this.getClass().getResourceAsStream("BandierinaVerde.png")));
-				flag2.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBianca.png")));
-				flag3.setImage(new Image(this.getClass().getResourceAsStream("BandierinaArancio.png")));
-				familiareOrange1.setOpacity(1);
-				familiareOrange2.setOpacity(1);
-				familiareOrange3.setOpacity(1);
-				familiareOrange4.setOpacity(1);
-				familiareGreen1.setOpacity(1);
-				familiareGreen2.setOpacity(1);
-				familiareGreen3.setOpacity(1);
-				familiareGreen4.setOpacity(1);
-				familiareWhite1.setOpacity(1);
-				familiareWhite2.setOpacity(1);
-				familiareWhite3.setOpacity(1);
-				familiareWhite4.setOpacity(1);
-				familiareOrange1.setDisable(false);
-				familiareOrange2.setDisable(false);
-				familiareOrange3.setDisable(false);
-				familiareOrange4.setDisable(false);
-				familiareGreen1.setDisable(false);
-				familiareGreen2.setDisable(false);
-				familiareGreen3.setDisable(false);
-				familiareGreen4.setDisable(false);
-				familiareWhite1.setDisable(false);
-				familiareWhite2.setDisable(false);
-				familiareWhite3.setDisable(false);
-				familiareWhite4.setDisable(false);
-				break;
-			case "green":
-				familiareNeutro.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeNeutro.png")));
-				familiareNero.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeNero.png")));
-				familiareArancio.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeArancio.png")));
-				familiareBianco.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeBianco.png")));
-				familiareOrange1.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioNeutro.png")));
-				familiareOrange2.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioArancio.png")));
-				familiareOrange3.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioBianco.png")));
-				familiareOrange4.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioNero.png")));
-				familiareBlue1.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNeutro.png")));
-				familiareBlue2.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluArancio.png")));
-				familiareBlue3.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluBianco.png")));
-				familiareBlue4.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNero.png")));
-				familiareWhite1.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoNeutro.png")));
-				familiareWhite2.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoArancio.png")));
-				familiareWhite3.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoBianco.png")));
-				familiareWhite4.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoNero.png")));
-				flag1.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBlu.png")));
-				flag2.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBianca.png")));
-				flag3.setImage(new Image(this.getClass().getResourceAsStream("BandierinaArancio.png")));
-				familiareOrange1.setOpacity(1);
-				familiareOrange2.setOpacity(1);
-				familiareOrange3.setOpacity(1);
-				familiareOrange4.setOpacity(1);
-				familiareBlue1.setOpacity(1);
-				familiareBlue2.setOpacity(1);
-				familiareBlue3.setOpacity(1);
-				familiareBlue4.setOpacity(1);
-				familiareWhite1.setOpacity(1);
-				familiareWhite2.setOpacity(1);
-				familiareWhite3.setOpacity(1);
-				familiareWhite4.setOpacity(1);
-				familiareOrange1.setDisable(false);
-				familiareOrange2.setDisable(false);
-				familiareOrange3.setDisable(false);
-				familiareOrange4.setDisable(false);
-				familiareBlue1.setDisable(false);
-				familiareBlue2.setDisable(false);
-				familiareBlue3.setDisable(false);
-				familiareBlue4.setDisable(false);
-				familiareWhite1.setDisable(false);
-				familiareWhite2.setDisable(false);
-				familiareWhite3.setDisable(false);
-				familiareWhite4.setDisable(false);
-				break;
-			case "white":
-				familiareNeutro.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoNeutro.png")));
-				familiareNero.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoNero.png")));
-				familiareArancio.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoArancio.png")));
-				familiareBianco.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoBianco.png")));
-				familiareOrange1.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioNeutro.png")));
-				familiareOrange2.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioArancio.png")));
-				familiareOrange3.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioBianco.png")));
-				familiareOrange4.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioNero.png")));
-				familiareBlue1.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNeutro.png")));
-				familiareBlue2.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluArancio.png")));
-				familiareBlue3.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluBianco.png")));
-				familiareBlue4.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNero.png")));
-				familiareGreen1.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeNeutro.png")));
-				familiareGreen2.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeArancio.png")));
-				familiareGreen3.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeBianco.png")));
-				familiareGreen4.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeNero.png")));
-				flag1.setImage(new Image(this.getClass().getResourceAsStream("BandierinaVerde.png")));
-				flag2.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBlu.png")));
-				flag3.setImage(new Image(this.getClass().getResourceAsStream("BandierinaArancio.png")));
-				familiareOrange1.setOpacity(1);
-				familiareOrange2.setOpacity(1);
-				familiareOrange3.setOpacity(1);
-				familiareOrange4.setOpacity(1);
-				familiareGreen1.setOpacity(1);
-				familiareGreen2.setOpacity(1);
-				familiareGreen3.setOpacity(1);
-				familiareGreen4.setOpacity(1);
-				familiareBlue1.setOpacity(1);
-				familiareBlue1.setOpacity(1);
-				familiareBlue1.setOpacity(1);
-				familiareBlue1.setOpacity(1);
-				familiareOrange1.setDisable(false);
-				familiareOrange2.setDisable(false);
-				familiareOrange3.setDisable(false);
-				familiareOrange4.setDisable(false);
-				familiareGreen1.setDisable(false);
-				familiareGreen2.setDisable(false);
-				familiareGreen3.setDisable(false);
-				familiareGreen4.setDisable(false);
-				familiareBlue1.setDisable(false);
-				familiareBlue1.setDisable(false);
-				familiareBlue1.setDisable(false);
-				familiareBlue1.setDisable(false);
-				break;
-			case "orange":
-				familiareNeutro.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioNeutro.png")));
-				familiareNero.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioNero.png")));
-				familiareArancio.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioArancio.png")));
-				familiareBianco.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioBianco.png")));
-				familiareBlue1.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNeutro.png")));
-				familiareBlue2.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluArancio.png")));
-				familiareBlue3.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluBianco.png")));
-				familiareBlue4.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNero.png")));
-				familiareGreen1.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeNeutro.png")));
-				familiareGreen2.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeArancio.png")));
-				familiareGreen3.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeBianco.png")));
-				familiareGreen4.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeNero.png")));
-				familiareWhite1.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoNeutro.png")));
-				familiareWhite2.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoArancio.png")));
-				familiareWhite3.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoBianco.png")));
-				familiareWhite4.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoNero.png")));
-				flag1.setImage(new Image(this.getClass().getResourceAsStream("")));
-				flag2.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBianca.png")));
-				flag3.setImage(new Image(this.getClass().getResourceAsStream("")));
-				familiareBlue1.setOpacity(1);
-				familiareBlue2.setOpacity(1);
-				familiareBlue3.setOpacity(1);
-				familiareBlue4.setOpacity(1);
-				familiareGreen1.setOpacity(1);
-				familiareGreen2.setOpacity(1);
-				familiareGreen3.setOpacity(1);
-				familiareGreen4.setOpacity(1);
-				familiareWhite1.setOpacity(1);
-				familiareWhite2.setOpacity(1);
-				familiareWhite3.setOpacity(1);
-				familiareWhite4.setOpacity(1);
-				familiareBlue1.setDisable(false);
-				familiareBlue2.setDisable(false);
-				familiareBlue3.setDisable(false);
-				familiareBlue4.setDisable(false);
-				familiareGreen1.setDisable(false);
-				familiareGreen2.setDisable(false);
-				familiareGreen3.setDisable(false);
-				familiareGreen4.setDisable(false);
-				familiareWhite1.setDisable(false);
-				familiareWhite2.setDisable(false);
-				familiareWhite3.setDisable(false);
-				familiareWhite4.setDisable(false);
-				break;
+						break;
+					case "green":
+						familiareGreen1
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeNeutro.png")));
+						familiareGreen2
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeArancio.png")));
+						familiareGreen3
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeBianco.png")));
+						familiareGreen4
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeNero.png")));
+						flag2.setImage(new Image(this.getClass().getResourceAsStream("BandierinaVerde.png")));
+						break;
+					case "white":
+						familiareWhite1
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoNeutro.png")));
+						familiareWhite2
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoArancio.png")));
+						familiareWhite3
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoBianco.png")));
+						familiareWhite4
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoNero.png")));
+						flag3.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBianca.png")));
+
+						break;
+					}
+				}
+			}
+			familiareOrange1.setOpacity(1);
+			familiareOrange2.setOpacity(1);
+			familiareOrange3.setOpacity(1);
+			familiareOrange4.setOpacity(1);
+			familiareGreen1.setOpacity(1);
+			familiareGreen2.setOpacity(1);
+			familiareGreen3.setOpacity(1);
+			familiareGreen4.setOpacity(1);
+			familiareWhite1.setOpacity(1);
+			familiareWhite2.setOpacity(1);
+			familiareWhite3.setOpacity(1);
+			familiareWhite4.setOpacity(1);
+			familiareOrange1.setDisable(false);
+			familiareOrange2.setDisable(false);
+			familiareOrange3.setDisable(false);
+			familiareOrange4.setDisable(false);
+			familiareGreen1.setDisable(false);
+			familiareGreen2.setDisable(false);
+			familiareGreen3.setDisable(false);
+			familiareGreen4.setDisable(false);
+			familiareWhite1.setDisable(false);
+			familiareWhite2.setDisable(false);
+			familiareWhite3.setDisable(false);
+			familiareWhite4.setDisable(false);
+			break;
+		case "green":
+			familiareNeutro.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeNeutro.png")));
+			familiareNero.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeNero.png")));
+			familiareArancio.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeArancio.png")));
+			familiareBianco.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeBianco.png")));
+			giocatori = new Giocatore[4];
+			giocatori = start.getClient().getGiocatori();
+			for (Giocatore g : giocatori) {
+				if (g != null && g.getName() != start.getClient().getName()) {
+					switch (g.getColor()) {
+					case "orange":
+						familiareOrange1
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioNeutro.png")));
+						familiareOrange2.setImage(
+								new Image(this.getClass().getResourceAsStream("FamiliareArancioArancio.png")));
+						familiareOrange3
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioBianco.png")));
+						familiareOrange4
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioNero.png")));
+						flag1.setImage(new Image(this.getClass().getResourceAsStream("BandierinaArancio.png")));
+
+						break;
+					case "green":
+						familiareBlue1
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNeutro.png")));
+						familiareBlue2
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluArancio.png")));
+						familiareBlue3
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluBianco.png")));
+						familiareBlue4.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNero.png")));
+						flag2.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBlue.png")));
+						break;
+					case "white":
+						familiareWhite1
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoNeutro.png")));
+						familiareWhite2
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoArancio.png")));
+						familiareWhite3
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoBianco.png")));
+						familiareWhite4
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoNero.png")));
+						flag3.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBianca.png")));
+
+						break;
+					}
+				}
+			}
+			familiareOrange1.setOpacity(1);
+			familiareOrange2.setOpacity(1);
+			familiareOrange3.setOpacity(1);
+			familiareOrange4.setOpacity(1);
+			familiareBlue1.setOpacity(1);
+			familiareBlue2.setOpacity(1);
+			familiareBlue3.setOpacity(1);
+			familiareBlue4.setOpacity(1);
+			familiareWhite1.setOpacity(1);
+			familiareWhite2.setOpacity(1);
+			familiareWhite3.setOpacity(1);
+			familiareWhite4.setOpacity(1);
+			familiareOrange1.setDisable(false);
+			familiareOrange2.setDisable(false);
+			familiareOrange3.setDisable(false);
+			familiareOrange4.setDisable(false);
+			familiareBlue1.setDisable(false);
+			familiareBlue2.setDisable(false);
+			familiareBlue3.setDisable(false);
+			familiareBlue4.setDisable(false);
+			familiareWhite1.setDisable(false);
+			familiareWhite2.setDisable(false);
+			familiareWhite3.setDisable(false);
+			familiareWhite4.setDisable(false);
+			break;
+		case "white":
+			familiareNeutro.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoNeutro.png")));
+			familiareNero.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoNero.png")));
+			familiareArancio.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoArancio.png")));
+			familiareBianco.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoBianco.png")));
+			for (Giocatore g : giocatori) {
+				if (g != null && g.getName() != start.getClient().getName()) {
+					switch (g.getColor()) {
+					case "orange":
+						familiareOrange1
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioNeutro.png")));
+						familiareOrange2.setImage(
+								new Image(this.getClass().getResourceAsStream("FamiliareArancioArancio.png")));
+						familiareOrange3
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioBianco.png")));
+						familiareOrange4
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioNero.png")));
+						flag1.setImage(new Image(this.getClass().getResourceAsStream("BandierinaArancio.png")));
+
+						break;
+					case "green":
+						familiareGreen1
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeNeutro.png")));
+						familiareGreen2
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeArancio.png")));
+						familiareGreen3
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeBianco.png")));
+						familiareGreen4
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeNero.png")));
+						flag2.setImage(new Image(this.getClass().getResourceAsStream("BandierinaVerde.png")));
+						break;
+					case "white":
+						familiareWhite1
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNeutro.png")));
+						familiareWhite2
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluArancio.png")));
+						familiareWhite3
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluBianco.png")));
+						familiareWhite4
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNero.png")));
+						flag3.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBlue.png")));
+
+						break;
+					}
+				}
+			}
+			familiareOrange1.setOpacity(1);
+			familiareOrange2.setOpacity(1);
+			familiareOrange3.setOpacity(1);
+			familiareOrange4.setOpacity(1);
+			familiareGreen1.setOpacity(1);
+			familiareGreen2.setOpacity(1);
+			familiareGreen3.setOpacity(1);
+			familiareGreen4.setOpacity(1);
+			familiareBlue1.setOpacity(1);
+			familiareBlue1.setOpacity(1);
+			familiareBlue1.setOpacity(1);
+			familiareBlue1.setOpacity(1);
+			familiareOrange1.setDisable(false);
+			familiareOrange2.setDisable(false);
+			familiareOrange3.setDisable(false);
+			familiareOrange4.setDisable(false);
+			familiareGreen1.setDisable(false);
+			familiareGreen2.setDisable(false);
+			familiareGreen3.setDisable(false);
+			familiareGreen4.setDisable(false);
+			familiareBlue1.setDisable(false);
+			familiareBlue1.setDisable(false);
+			familiareBlue1.setDisable(false);
+			familiareBlue1.setDisable(false);
+			break;
+		case "orange":
+			familiareNeutro.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioNeutro.png")));
+			familiareNero.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioNero.png")));
+			familiareArancio.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioArancio.png")));
+			familiareBianco.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioBianco.png")));
+			familiareBlue1.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNeutro.png")));
+			for (Giocatore g : giocatori) {
+				if (g != null && g.getName() != start.getClient().getName()) {
+					switch (g.getColor()) {
+					case "orange":
+						familiareOrange1
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNeutro.png")));
+						familiareOrange2
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluArancio.png")));
+						familiareOrange3
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluBianco.png")));
+						familiareOrange4
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeArancio.png")));
+						flag1.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBlue.png")));
+
+						break;
+					case "green":
+						familiareGreen1
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeNeutro.png")));
+						familiareGreen2
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeArancio.png")));
+						familiareGreen3
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeBianco.png")));
+						familiareGreen4
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeNero.png")));
+						flag2.setImage(new Image(this.getClass().getResourceAsStream("BandierinaVerde.png")));
+						break;
+					case "white":
+						familiareWhite1
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoNeutro.png")));
+						familiareWhite2
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoNeutro.png")));
+						familiareWhite3
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoBianco.png")));
+						familiareWhite4
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoNero.png")));
+						flag3.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBianca.png")));
+
+						break;
+					}
+				}
+			}
+			familiareBlue1.setOpacity(1);
+			familiareBlue2.setOpacity(1);
+			familiareBlue3.setOpacity(1);
+			familiareBlue4.setOpacity(1);
+			familiareGreen1.setOpacity(1);
+			familiareGreen2.setOpacity(1);
+			familiareGreen3.setOpacity(1);
+			familiareGreen4.setOpacity(1);
+			familiareWhite1.setOpacity(1);
+			familiareWhite2.setOpacity(1);
+			familiareWhite3.setOpacity(1);
+			familiareWhite4.setOpacity(1);
+			familiareBlue1.setDisable(false);
+			familiareBlue2.setDisable(false);
+			familiareBlue3.setDisable(false);
+			familiareBlue4.setDisable(false);
+			familiareGreen1.setDisable(false);
+			familiareGreen2.setDisable(false);
+			familiareGreen3.setDisable(false);
+			familiareGreen4.setDisable(false);
+			familiareWhite1.setDisable(false);
+			familiareWhite2.setDisable(false);
+			familiareWhite3.setDisable(false);
+			familiareWhite4.setDisable(false);
+			break;
 		}
 	}
 
@@ -681,7 +585,7 @@ public class ControllerGame {
 	public StartClientGui getStart() {
 		return start;
 	}
-	
+
 	public void setBandiera(Image bandiera) {
 		this.bandiera.setImage(bandiera);
 	}
@@ -697,11 +601,11 @@ public class ControllerGame {
 	public void setServitori(int servitori) {
 		this.servitori.setText(Integer.toString(servitori));
 	}
-	
-	public void setLegno(int legno){
+
+	public void setLegno(int legno) {
 		this.lengo.setText(Integer.toString(legno));
 	}
-	
+
 	/*
 	 * Controllo per verificare se si ha un numero di punti del dado
 	 */
@@ -725,7 +629,7 @@ public class ControllerGame {
 			Button bOk = new Button("OK");
 			Button bCancel = new Button("Cancel");
 			bOk.setOnAction(event -> {
-				controlloPosizionamento(color,x,y,Integer.getInteger(text.getText()));
+				controlloPosizionamento(color, x, y, Integer.getInteger(text.getText()));
 				popup.close();
 			});
 			bCancel.setOnAction(event -> {
@@ -752,9 +656,9 @@ public class ControllerGame {
 			alert.setContentText("Ci dispiace ma il nostro servizio a smesso di funzionare");
 			alert.showAndWait();
 			return false;
-		}else if(mom.equals("OK"))
+		} else if (mom.equals("OK"))
 			return true;
-		else if(mom.equals("NotEnough")){
+		else if (mom.equals("NotEnough")) {
 			return false;
 		}
 		return false;
@@ -1002,7 +906,7 @@ public class ControllerGame {
 			break;
 		}
 	}
-	
+
 	public void addScomunica(int nScomuniche, Tooltip tooltip) {
 		switch (nScomuniche) {
 		case 0:
@@ -1027,42 +931,42 @@ public class ControllerGame {
 			ImageView mom = new ImageView();
 			System.out.println(carte[i].getImage());
 			mom.setImage(new Image(getClass().getResourceAsStream(carte[i].getImage())));
-			Tooltip.install(mom,carte[i].getTooltip() );
+			Tooltip.install(mom, carte[i].getTooltip());
 			carteTerritori.getChildren().add(mom);
 		}
 		for (int i = 0; i < 4; i++) {
 			arrayCartePersonaggi[i] = new CartaPersonaggi();
-			arrayCartePersonaggi[i] = (CartaPersonaggi) carte[i+4];
+			arrayCartePersonaggi[i] = (CartaPersonaggi) carte[i + 4];
 			ImageView mom = new ImageView();
-			mom.setImage(new Image(getClass().getResourceAsStream(carte[i+4].getImage())));
-			Tooltip.install(mom,carte[i+4].getTooltip() );
+			mom.setImage(new Image(getClass().getResourceAsStream(carte[i + 4].getImage())));
+			Tooltip.install(mom, carte[i + 4].getTooltip());
 			cartePersonaggi.getChildren().add(mom);
 		}
 		for (int i = 0; i < 4; i++) {
 			arrayCarteEdifici[i] = new CartaEdifici();
-			arrayCarteEdifici[i] = (CartaEdifici) carte[i+8];
+			arrayCarteEdifici[i] = (CartaEdifici) carte[i + 8];
 			ImageView mom = new ImageView();
-			mom.setImage(new Image(getClass().getResourceAsStream(carte[i+8].getImage())));
-			Tooltip.install(mom,carte[i+8].getTooltip() );
+			mom.setImage(new Image(getClass().getResourceAsStream(carte[i + 8].getImage())));
+			Tooltip.install(mom, carte[i + 8].getTooltip());
 			carteEdifici.getChildren().add(mom);
 		}
 		for (int i = 0; i < 4; i++) {
 			arrayCarteImpresa[i] = new CartaImprese();
-			arrayCarteImpresa[i] = (CartaImprese) carte[i+12];
+			arrayCarteImpresa[i] = (CartaImprese) carte[i + 12];
 			ImageView mom = new ImageView();
-			mom.setImage(new Image(getClass().getResourceAsStream(carte[i+12].getImage())));
-			Tooltip.install(mom,carte[i+12].getTooltip() );
+			mom.setImage(new Image(getClass().getResourceAsStream(carte[i + 12].getImage())));
+			Tooltip.install(mom, carte[i + 12].getTooltip());
 			carteImprese.getChildren().add(mom);
 		}
 	}
 
 	public void notifySpostamento(String color, double x, double y) throws IOException {
-		start.getClient().notifySpostamento(color,x,y);
+		start.getClient().notifySpostamento(color, x, y);
 	}
 
 	public String getNamePosition(double x, double y) throws IOException {
 		try {
-			return start.getClient().getNamePosition(x,y);
+			return start.getClient().getNamePosition(x, y);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -1075,7 +979,7 @@ public class ControllerGame {
 	}
 
 	public void setCardGiocatore(String namePosition) throws IOException {
-		switch(namePosition){
+		switch (namePosition) {
 		case "PIANO 1 CARTE TERRITORI":
 			carteTerritoriGiocatore.getChildren().add(carteTerritori.getChildren().get(0));
 			Tooltip.install(carteTerritoriGiocatore.getChildren().get(0), arrayCarteTerritori[0].getTooltip());
@@ -1174,10 +1078,10 @@ public class ControllerGame {
 			start.getClient().setCardGiocatore(arrayCartePersonaggi[3]);
 			break;
 		case "":
-			
+
 		}
 	}
-	
+
 	public void enableGame() {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.initOwner(start.getStage());
@@ -1191,8 +1095,7 @@ public class ControllerGame {
 		lanciaDadi.setDisable(false);
 	}
 
-	
-	public void resetTabellon() throws ClassNotFoundException, IOException{
+	public void resetTabellon() throws ClassNotFoundException, IOException {
 		try {
 			setCards(start.getClient().getCardsGame());
 			azioniTerritoridapiuGiocatori = new HBox();
@@ -1205,33 +1108,36 @@ public class ControllerGame {
 		}
 		start.getClient().waitTurno();
 	}
-	
+
 	public void setPosizioni() throws IOException, ClassNotFoundException {
-		int i=0;
+		int i = 0;
 		try {
-			for(Giocatore g: start.getClient().getGiocatori()){
-				switch(g.getColor()){
-					case "white":
-						posizioni.getChildren().set(i, new ImageView(new Image(getClass().getResourceAsStream("Disco12.png"))));
-						break;
-					case "blue":
-						posizioni.getChildren().set(i, new ImageView(new Image(getClass().getResourceAsStream("Disco1.png"))));
-						break;
-					case "green":
-						posizioni.getChildren().set(i, new ImageView(new Image(getClass().getResourceAsStream("Disco4.png"))));
-						break;
-					case "orange":
-						posizioni.getChildren().set(i, new ImageView(new Image(getClass().getResourceAsStream("Disco3.png"))));
-						break;
+			for (Giocatore g : start.getClient().getGiocatori()) {
+				switch (g.getColor()) {
+				case "white":
+					posizioni.getChildren().set(i,
+							new ImageView(new Image(getClass().getResourceAsStream("Disco12.png"))));
+					break;
+				case "blue":
+					posizioni.getChildren().set(i,
+							new ImageView(new Image(getClass().getResourceAsStream("Disco1.png"))));
+					break;
+				case "green":
+					posizioni.getChildren().set(i,
+							new ImageView(new Image(getClass().getResourceAsStream("Disco4.png"))));
+					break;
+				case "orange":
+					posizioni.getChildren().set(i,
+							new ImageView(new Image(getClass().getResourceAsStream("Disco3.png"))));
+					break;
 				}
 			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-	}
 
+	}
 
 	@FXML
 	public void lanciaDadi() throws RemoteException, SQLException {
@@ -1250,278 +1156,316 @@ public class ControllerGame {
 		dadoArancio.setImage(new Image(getClass().getResourceAsStream(dadi[2].getImage())));
 	}
 
-
 	public void notifyAddCardAvv(CartaSviluppo carta, String nameAvv, Portafoglio portafoglio) {
-		if(nameAvv.equals(name1.getText())){
-			for(int i=0; i<4;i++){
-				if(arrayCarteTerritori[i].equals(carta)){
+		if (nameAvv.equals(name1.getText())) {
+			for (int i = 0; i < 4; i++) {
+				if (arrayCarteTerritori[i].equals(carta)) {
 					carteTerritori.getChildren().get(i).setClip(null);
-					//aggiungere alla lista delle carte dell'avversari
-					//aggiornare le label delle risorse del giocatore
+					// aggiungere alla lista delle carte dell'avversari
+					// aggiornare le label delle risorse del giocatore
 				}
 			}
-		}else if(nameAvv.equals(name2.getText())){
-			
-		}else if(nameAvv.equals(name3.getText())){
-			
+		} else if (nameAvv.equals(name2.getText())) {
+
+		} else if (nameAvv.equals(name3.getText())) {
+
 		}
 	}
-	
-	public void parentsProperties(){
+
+	public void parentsProperties() {
 		familiareNeutro.setOnDragDetected(e -> {
 			System.out.println("DragDetected");
-	        if (familiareNeutro.getImage() == null) {
-	            return;
-	        }	
-	    Dragboard drag = familiareNeutro.startDragAndDrop(TransferMode.MOVE);
-	    ClipboardContent content = new ClipboardContent();
-	    content.putImage(familiareNeutro.getImage());
-	    drag.setDragView(familiareNeutro.getImage());
-	    drag.setContent(content);
-	    e.consume();
+			if (familiareNeutro.getImage() == null) {
+				return;
+			}
+			Dragboard drag = familiareNeutro.startDragAndDrop(TransferMode.MOVE);
+			ClipboardContent content = new ClipboardContent();
+			content.putImage(familiareNeutro.getImage());
+			drag.setDragView(familiareNeutro.getImage());
+			drag.setContent(content);
+			e.consume();
 		});
-		
+
 		familiareNero.setOnDragDetected(e -> {
 			System.out.println("DragDetected");
-	        if (familiareNero.getImage() == null) {
-	            return;
-	        }	
-	    Dragboard drag = familiareNero.startDragAndDrop(TransferMode.MOVE);
-	    ClipboardContent content = new ClipboardContent();
-	    content.putImage(familiareNero.getImage());
-	    drag.setDragView(familiareNero.getImage());
-	    drag.setContent(content);
-	    e.consume();
+			if (familiareNero.getImage() == null) {
+				return;
+			}
+			Dragboard drag = familiareNero.startDragAndDrop(TransferMode.MOVE);
+			ClipboardContent content = new ClipboardContent();
+			content.putImage(familiareNero.getImage());
+			drag.setDragView(familiareNero.getImage());
+			drag.setContent(content);
+			e.consume();
 		});
-		
+
 		familiareBianco.setOnDragDetected(e -> {
 			System.out.println("DragDetected");
-	        if (familiareBianco.getImage() == null) {
-	            return;
-	        }	
-	    Dragboard drag = familiareBianco.startDragAndDrop(TransferMode.MOVE);
-	    ClipboardContent content = new ClipboardContent();
-	    content.putImage(familiareBianco.getImage());
-	    drag.setDragView(familiareBianco.getImage());
-	    drag.setContent(content);
-	    e.consume();
+			if (familiareBianco.getImage() == null) {
+				return;
+			}
+			Dragboard drag = familiareBianco.startDragAndDrop(TransferMode.MOVE);
+			ClipboardContent content = new ClipboardContent();
+			content.putImage(familiareBianco.getImage());
+			drag.setDragView(familiareBianco.getImage());
+			drag.setContent(content);
+			e.consume();
 		});
-		
+
 		familiareArancio.setOnDragDetected(e -> {
 			System.out.println("DragDetected");
-	        if (familiareArancio.getImage() == null) {
-	            return;
-	        }	
-	    Dragboard drag = familiareArancio.startDragAndDrop(TransferMode.MOVE);
-	    ClipboardContent content = new ClipboardContent();
-	    content.putImage(familiareArancio.getImage());
-	    drag.setDragView(familiareArancio.getImage());
-	    drag.setContent(content);
-	    e.consume();
+			if (familiareArancio.getImage() == null) {
+				return;
+			}
+			Dragboard drag = familiareArancio.startDragAndDrop(TransferMode.MOVE);
+			ClipboardContent content = new ClipboardContent();
+			content.putImage(familiareArancio.getImage());
+			drag.setDragView(familiareArancio.getImage());
+			drag.setContent(content);
+			e.consume();
 		});
-		
-		familiareNeutro.setOnDragOver(event ->{
-			System.out.println("setOnDragOver");       
-	    	if (!event.isDropCompleted() &&
-	               event.getDragboard().hasString()) {
-	            event.acceptTransferModes(TransferMode.MOVE);
-	        }
 
-	        event.consume();
-		});
-		
-		familiareArancio.setOnDragOver(event ->{
-			System.out.println("setOnDragOver");       
-	    	if (!event.isDropCompleted() &&
-	               event.getDragboard().hasString()) {
-	            event.acceptTransferModes(TransferMode.MOVE);
-	        }
+		familiareNeutro.setOnDragOver(event -> {
+			System.out.println("setOnDragOver");
+			if (!event.isDropCompleted() && event.getDragboard().hasString()) {
+				event.acceptTransferModes(TransferMode.MOVE);
+			}
 
-	        event.consume();
+			event.consume();
 		});
-		
-		familiareBianco.setOnDragOver(event ->{
-			System.out.println("setOnDragOver");       
-	    	if (!event.isDropCompleted() &&
-	               event.getDragboard().hasString()) {
-	            event.acceptTransferModes(TransferMode.MOVE);
-	        }
 
-	        event.consume();
+		familiareArancio.setOnDragOver(event -> {
+			System.out.println("setOnDragOver");
+			if (!event.isDropCompleted() && event.getDragboard().hasString()) {
+				event.acceptTransferModes(TransferMode.MOVE);
+			}
+
+			event.consume();
 		});
-		
-		familiareNero.setOnDragOver(event ->{
-			System.out.println("setOnDragOver");       
-	    	if (!event.isDropCompleted() &&
-	               event.getDragboard().hasString()) {
-	            event.acceptTransferModes(TransferMode.MOVE);
-	        }
-	        event.consume();
+
+		familiareBianco.setOnDragOver(event -> {
+			System.out.println("setOnDragOver");
+			if (!event.isDropCompleted() && event.getDragboard().hasString()) {
+				event.acceptTransferModes(TransferMode.MOVE);
+			}
+
+			event.consume();
 		});
-	
-	
+
+		familiareNero.setOnDragOver(event -> {
+			System.out.println("setOnDragOver");
+			if (!event.isDropCompleted() && event.getDragboard().hasString()) {
+				event.acceptTransferModes(TransferMode.MOVE);
+			}
+			event.consume();
+		});
+
 		familiareBianco.setOnDragEntered(event -> {
-    	System.out.println("setOnDragEntered");
-        if (!event.isDropCompleted() &&
-                event.getDragboard().hasString()) {
-        	familiareBianco.setOpacity(0.3);
-        }
+			System.out.println("setOnDragEntered");
+			if (!event.isDropCompleted() && event.getDragboard().hasString()) {
+				familiareBianco.setOpacity(0.3);
+			}
 		});
-	
+
 		familiareArancio.setOnDragEntered(event -> {
-	    	System.out.println("setOnDragEntered");
-	        if (!event.isDropCompleted() &&
-	                event.getDragboard().hasString()) {
-	        	familiareArancio.setOpacity(0.3);
-	        }
-	    });
+			System.out.println("setOnDragEntered");
+			if (!event.isDropCompleted() && event.getDragboard().hasString()) {
+				familiareArancio.setOpacity(0.3);
+			}
+		});
 		familiareNero.setOnDragEntered(event -> {
-	    	System.out.println("setOnDragEntered");
-	        if (!event.isDropCompleted() &&
-	                event.getDragboard().hasString()) {
-	        	familiareNero.setOpacity(0.3);
-	        }
-	    });
+			System.out.println("setOnDragEntered");
+			if (!event.isDropCompleted() && event.getDragboard().hasString()) {
+				familiareNero.setOpacity(0.3);
+			}
+		});
 		familiareNeutro.setOnDragEntered(event -> {
-	    	System.out.println("setOnDragEntered");
-	        if (!event.isDropCompleted() &&
-	                event.getDragboard().hasString()) {
-	        	familiareNeutro.setOpacity(0.3);
-	        }
-	    });
+			System.out.println("setOnDragEntered");
+			if (!event.isDropCompleted() && event.getDragboard().hasString()) {
+				familiareNeutro.setOpacity(0.3);
+			}
+		});
 
 		familiareNeutro.setOnDragExited(event -> {
-    	System.out.println("setOnDragExited");
-        if (!event.isDropCompleted() &&
-                event.getDragboard().hasString()) {
-        	familiareNeutro.setOpacity(1);
-        }
-    });
-		
+			System.out.println("setOnDragExited");
+			if (!event.isDropCompleted() && event.getDragboard().hasString()) {
+				familiareNeutro.setOpacity(1);
+			}
+		});
+
 		familiareNero.setOnDragExited(event -> {
-	    	System.out.println("setOnDragExited");
-	        if (!event.isDropCompleted() &&
-	                event.getDragboard().hasString()) {
-	        	familiareNero.setOpacity(1);
-	        }
-	    });
-		
+			System.out.println("setOnDragExited");
+			if (!event.isDropCompleted() && event.getDragboard().hasString()) {
+				familiareNero.setOpacity(1);
+			}
+		});
+
 		familiareArancio.setOnDragExited(event -> {
-	    	System.out.println("setOnDragExited");
-	        if (!event.isDropCompleted() &&
-	                event.getDragboard().hasString()) {
-	        	familiareArancio.setOpacity(1);
-	        }
-	    });
-		
+			System.out.println("setOnDragExited");
+			if (!event.isDropCompleted() && event.getDragboard().hasString()) {
+				familiareArancio.setOpacity(1);
+			}
+		});
+
 		familiareBianco.setOnDragExited(event -> {
-	    	System.out.println("setOnDragExited");
-	        if (!event.isDropCompleted() &&
-	                event.getDragboard().hasString()) {
-	        	familiareBianco.setOpacity(1);
-	        }
-	    });
-    
-		familiareBianco.setOnDragDropped(event->{
-    	System.out.println("setOnDragDropped");
-        if (familiareBianco.getImage() == null) {
-            return;
-        }
-        Dragboard drag = event.getDragboard();
-        boolean success = false;
-        
-        if(drag.hasImage()){
-        	success = true;
-        }
-        
-        event.setDropCompleted(success);
-        event.consume();
-        
-    });
-    
-		familiareNero.setOnDragDropped(event->{
-	    	System.out.println("setOnDragDropped");
-	        if (familiareNero.getImage() == null) {
-	            return;
-	        }
-	        Dragboard drag = event.getDragboard();
-	        boolean success = false;
-	        
-	        if(drag.hasImage()){
-	        	success = true;
-	        }
-	        
-	        event.setDropCompleted(success);
-	        event.consume();
-	        
-	    });
+			System.out.println("setOnDragExited");
+			if (!event.isDropCompleted() && event.getDragboard().hasString()) {
+				familiareBianco.setOpacity(1);
+			}
+		});
+
+		familiareBianco.setOnDragDropped(event -> {
+			System.out.println("setOnDragDropped");
+			if (familiareBianco.getImage() == null) {
+				return;
+			}
+			Dragboard drag = event.getDragboard();
+			boolean success = false;
+
+			if (drag.hasImage()) {
+				success = true;
+			}
+
+			event.setDropCompleted(success);
+			event.consume();
+
+		});
+
+		familiareNero.setOnDragDropped(event -> {
+			System.out.println("setOnDragDropped");
+			if (familiareNero.getImage() == null) {
+				return;
+			}
+			Dragboard drag = event.getDragboard();
+			boolean success = false;
+
+			if (drag.hasImage()) {
+				success = true;
+			}
+
+			event.setDropCompleted(success);
+			event.consume();
+
+		});
+
+		familiareArancio.setOnDragDropped(event -> {
+			System.out.println("setOnDragDropped");
+			if (familiareArancio.getImage() == null) {
+				return;
+			}
+			Dragboard drag = event.getDragboard();
+			boolean success = false;
+
+			if (drag.hasImage()) {
+				success = true;
+			}
+
+			event.setDropCompleted(success);
+			event.consume();
+
+		});
+
+		familiareNeutro.setOnDragDropped(event -> {
+			System.out.println("setOnDragDropped");
+			if (familiareNeutro.getImage() == null) {
+				return;
+			}
+			Dragboard drag = event.getDragboard();
+			boolean success = false;
+
+			if (drag.hasImage()) {
+				success = true;
+			}
+
+			event.setDropCompleted(success);
+			event.consume();
+
+		});
+
+		familiareNeutro.setOnDragDone(event -> {
+			if (controlloPosizionamento(start.getColor(), familiareNero.getX(), familiareNero.getY(), 0))
+					if (flag) {
+						destinazione1.setImage(familiareNeutro.getImage());
+						familiareNeutro.setDisable(true);
+					} else {
+						ImageView mom = new ImageView(
+								familiareNeutro.getImage());
+						mom.setFitWidth(35);
+						mom.setFitHeight(38);
+						destinazione2.getChildren().add(mom);
+						familiareNeutro.setDisable(true);
+					}
+					familiareNeutro.setOpacity(0);
+		});
 		
-		familiareArancio.setOnDragDropped(event->{
-	    	System.out.println("setOnDragDropped");
-	        if (familiareArancio.getImage() == null) {
-	            return;
-	        }
-	        Dragboard drag = event.getDragboard();
-	        boolean success = false;
-	        
-	        if(drag.hasImage()){
-	        	success = true;
-	        }
-	        
-	        event.setDropCompleted(success);
-	        event.consume();
-	        
-	    });
+		familiareNero.setOnDragDone(event -> {
+			if (controlloPosizionamento(start.getColor(), familiareNero.getX(), familiareNero.getY(), 0))
+					if (flag) {
+						destinazione1.setImage(familiareNero.getImage());
+						familiareNero.setDisable(true);
+					} else {
+						ImageView mom = new ImageView(
+								familiareNero.getImage());
+						mom.setFitWidth(35);
+						mom.setFitHeight(38);
+						destinazione2.getChildren().add(mom);
+						familiareNero.setDisable(true);
+					}
+					familiareNero.setOpacity(0);
+		});
 		
-		familiareNeutro.setOnDragDropped(event->{
-	    	System.out.println("setOnDragDropped");
-	        if (familiareNeutro.getImage() == null) {
-	            return;
-	        }
-	        Dragboard drag = event.getDragboard();
-	        boolean success = false;
-	        
-	        if(drag.hasImage()){
-	        	success = true;
-	        }
-	        
-	        event.setDropCompleted(success);
-	        event.consume();
-	        
-	    });
+		familiareArancio.setOnDragDone(event -> {
+			if (controlloPosizionamento(start.getColor(), familiareArancio.getX(), familiareArancio.getY(), 0))
+					if (flag) {
+						destinazione1.setImage(new Image(getClass().getResourceAsStream("FamiliareBluNeutro.png")));
+						familiareArancio.setDisable(true);
+					} else {
+						ImageView mom = new ImageView(
+								new Image(getClass().getResourceAsStream("FamiliareBluNeutro.png")));
+						mom.setFitWidth(35);
+						mom.setFitHeight(38);
+						destinazione2.getChildren().add(mom);
+						familiareArancio.setDisable(true);
+					}
+					familiareNeutro.setOpacity(0);
+		});
+		
+		familiareBianco.setOnDragDone(event -> {
+			if (controlloPosizionamento(start.getColor(), familiareBianco.getX(), familiareBianco.getY(), 0))
+					if (flag) {
+						destinazione1.setImage(new Image(getClass().getResourceAsStream("FamiliareBluNeutro.png")));
+						familiareBianco.setDisable(true);
+					} else {
+						ImageView mom = new ImageView(familiareBianco.getImage());
+						mom.setFitWidth(35);
+						mom.setFitHeight(38);
+						destinazione2.getChildren().add(mom);
+						familiareBianco.setDisable(true);
+					}
+		});
+		
+		azioniTerritoridaunGiocatore.setOnDragEntered(e->{
+			setDestinazione1(azioniTerritoridaunGiocatore);
+		});
     
-    
-    /*familiareNeutro.setOnDragDone(event ->{
-    	if(controlloPosizionamento( start.getColor(),familiareNero.getX(), familiareNero.getY(),0))
-    		if(flag){
-    			destinazione.setImage(familiareNero.getImage());
-    			familiareNero.setDisable(true);
-    			try {
-					setCardGiocatore(getNamePosition(familiareNero.getX(),familiareNero.getY()));
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-    			try {
-					notifySpostamento(start.getColor(),familiareNero.getX(), familiareNero.getY());
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-    		}
-    		else{
-    			box.getChildren().add(new ImageView(familiareNero.getImage()));
-    			familiareNero.setDisable(true);
-    			try {
-					notifySpostamento(start.getColor(),familiareNero.getX(), familiareNero.getY());
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-    		}
-    	familiareNero.setImage(new Image(getClass().getResourceAsStream("")));
-    });*/
-	
-	
+		azioniTerritoridapiuGiocatori.setOnDragEntered(e ->{
+			setDestinazione2(azioniTerritoridapiuGiocatori);
+		});
+	}
+
+	private void setDestinazione2(HBox azioniTerritoridaunGiocatore2) {
+		flag = false;
+		destinazione2 = azioniTerritoridaunGiocatore2;
+	}
+
+	private void setDestinazione1(ImageView azioniTerritoridaunGiocatore2) {
+		flag = true;
+		this.destinazione1 = azioniTerritoridaunGiocatore2;
+
+	}
+
+	public void setFlag(String string) {
+		bandiera.setImage(new Image(getClass().getResourceAsStream("BandierinaBlu.png")));
+
 	}
 }

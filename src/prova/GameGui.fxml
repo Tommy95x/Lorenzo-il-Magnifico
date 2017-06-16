@@ -116,7 +116,7 @@
             </Label>
             <HBox fx:id="carteEdificiGiocatore" layoutX="70.0" layoutY="380.0" prefHeight="131.0" prefWidth="508.0" />
             <HBox fx:id="carteTerritoriGiocatore" layoutX="70.0" layoutY="540.0" prefHeight="131.0" prefWidth="508.0" />
-            <Button fx:id="lanciaDadi" layoutX="607.0" layoutY="670.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="63.0" text="Lancia Dadi">
+            <Button fx:id="lanciaDadi" layoutX="607.0" layoutY="670.0" mnemonicParsing="false" onAction="#lanciaDadi" prefHeight="90.0" prefWidth="63.0" text="Lancia Dadi">
                <font>
                   <Font size="8.0" />
                </font>
@@ -130,7 +130,7 @@
             <HBox fx:id="cartePersonaggiGiocatore" layoutX="619.0" layoutY="525.0" prefHeight="143.0" prefWidth="231.0" />
             <ScrollPane layoutX="4.0" prefHeight="291.0" prefWidth="280.0">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="290.0" prefWidth="285.0" stylesheets="@gameBackGround.css">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="290.0" prefWidth="285.0" style="-fx-background-color: DARKRED;" stylesheets="@gameBackGround.css">
                      <children>
                         <Label layoutY="6.0" prefHeight="25.0" prefWidth="63.0" text="Giocatore:" />
                         <Label fx:id="name1" layoutX="71.0" layoutY="6.0" prefHeight="20.0" prefWidth="180.0" />
@@ -141,7 +141,7 @@
             </ScrollPane>
             <ScrollPane layoutX="285.0" prefHeight="291.0" prefWidth="280.0">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="287.0" prefWidth="285.0" stylesheets="@gameBackGround.css">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="287.0" prefWidth="285.0" style="-fx-background-color: DARKRED;" stylesheets="@gameBackGround.css">
                      <children>
                         <Label layoutY="6.0" prefHeight="25.0" prefWidth="63.0" text="Giocatore:" />
                         <ImageView fx:id="flag2" fitHeight="90.0" fitWidth="46.0" layoutX="8.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" />
@@ -152,7 +152,7 @@
             </ScrollPane>
             <ScrollPane layoutX="565.0" prefHeight="291.0" prefWidth="280.0">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="289.0" prefWidth="285.0" stylesheets="@gameBackGround.css">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="289.0" prefWidth="285.0" style="-fx-background-color: DARKRED;" stylesheets="@gameBackGround.css">
                      <children>
                         <ImageView fx:id="flag3" fitHeight="90.0" fitWidth="46.0" layoutX="3.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" />
                         <Label layoutY="6.0" prefHeight="25.0" prefWidth="63.0" text="Giocatore:" />
