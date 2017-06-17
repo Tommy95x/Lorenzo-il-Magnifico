@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
@@ -115,26 +116,72 @@
                </font>
             </Label>
             <HBox fx:id="carteEdificiGiocatore" layoutX="70.0" layoutY="380.0" prefHeight="131.0" prefWidth="508.0" />
-            <HBox fx:id="carteTerritoriGiocatore" layoutX="70.0" layoutY="540.0" prefHeight="131.0" prefWidth="508.0" />
             <Button fx:id="lanciaDadi" layoutX="607.0" layoutY="670.0" mnemonicParsing="false" onAction="#lanciaDadi" prefHeight="90.0" prefWidth="63.0" text="Lancia Dadi">
                <font>
                   <Font size="8.0" />
                </font>
             </Button>
-            <ImageView fx:id="familiareArancio" fitHeight="80.0" fitWidth="46.0" layoutX="428.0" layoutY="679.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareBianco" fitHeight="80.0" fitWidth="46.0" layoutX="474.0" layoutY="679.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareNero" fitHeight="80.0" fitWidth="46.0" layoutX="515.0" layoutY="679.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareNeutro" fitHeight="80.0" fitWidth="46.0" layoutX="554.0" layoutY="679.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareArancio" fitHeight="90.0" fitWidth="45.0" layoutX="670.0" layoutY="673.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareBianco" fitHeight="90.0" fitWidth="45.0" layoutX="701.0" layoutY="673.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareNero" fitHeight="90.0" fitWidth="45.0" layoutX="736.0" layoutY="673.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareWhite2" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="563.0" layoutY="296.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="bandiera" fitHeight="80.0" fitWidth="46.0" layoutX="3.0" layoutY="681.0" pickOnBounds="true" preserveRatio="true" />
-            <HBox fx:id="carteImpresaGiocatore" layoutX="616.0" layoutY="380.0" prefHeight="143.0" prefWidth="231.0" />
-            <HBox fx:id="cartePersonaggiGiocatore" layoutX="619.0" layoutY="525.0" prefHeight="143.0" prefWidth="231.0" />
+            <HBox fx:id="cartePersonaggiGiocatore" layoutX="619.0" layoutY="525.0" prefHeight="143.0" prefWidth="231.0">
+               <children>
+                  <HBox fx:id="carteImpresaGiocatore" prefHeight="143.0" prefWidth="231.0" />
+               </children></HBox>
             <ScrollPane layoutX="4.0" prefHeight="291.0" prefWidth="280.0">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="290.0" prefWidth="285.0" stylesheets="@gameBackGround.css">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="290.0" prefWidth="285.0" style="-fx-background-color: DARKRED;" stylesheets="@gameBackGround.css">
                      <children>
                         <Label layoutY="6.0" prefHeight="25.0" prefWidth="63.0" text="Giocatore:" />
                         <Label fx:id="name1" layoutX="71.0" layoutY="6.0" prefHeight="20.0" prefWidth="180.0" />
                         <ImageView fx:id="flag1" fitHeight="90.0" fitWidth="46.0" layoutX="7.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
+                        <ListView layoutY="150.0" prefHeight="274.0" prefWidth="280.0" />
+                        <Label layoutX="14.0" layoutY="120.0" prefHeight="28.0" prefWidth="231.0" text="Carte Giocatore Avversario:">
+                           <font>
+                              <Font size="19.0" />
+                           </font></Label>
+                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="60.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Media/Servitore.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="70.0" layoutY="30.0" prefHeight="32.0" prefWidth="21.0" text="0">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="105.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Media/Pietra.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="160.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Media/Legno.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="210.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Media/Senza%20titolo-1.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="120.0" layoutY="30.0" prefHeight="32.0" prefWidth="21.0" text="0">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="175.0" layoutY="30.0" prefHeight="32.0" prefWidth="21.0" text="0">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="225.0" layoutY="30.0" prefHeight="32.0" prefWidth="21.0" text="0">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
               </content>
@@ -145,7 +192,53 @@
                      <children>
                         <Label layoutY="6.0" prefHeight="25.0" prefWidth="63.0" text="Giocatore:" />
                         <ImageView fx:id="flag2" fitHeight="90.0" fitWidth="46.0" layoutX="8.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" />
+                        <ListView layoutY="150.0" prefHeight="274.0" prefWidth="280.0" />
+                        <Label layoutX="14.0" layoutY="120.0" prefHeight="28.0" prefWidth="231.0" text="Carte Giocatore Avversario:">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="60.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Media/Servitore.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="120.0" layoutY="30.0" prefHeight="32.0" prefWidth="21.0" text="0">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="70.0" layoutY="30.0" prefHeight="32.0" prefWidth="21.0" text="0">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="210.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Media/Senza%20titolo-1.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="160.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Media/Legno.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="105.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Media/Pietra.png" />
+                           </image>
+                        </ImageView>
                         <Label fx:id="name2" layoutX="63.0" layoutY="9.0" prefHeight="20.0" prefWidth="180.0" />
+                        <Label layoutX="175.0" layoutY="30.0" prefHeight="32.0" prefWidth="21.0" text="0">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="225.0" layoutY="30.0" prefHeight="32.0" prefWidth="21.0" text="0">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                </content>
@@ -156,28 +249,70 @@
                      <children>
                         <ImageView fx:id="flag3" fitHeight="90.0" fitWidth="46.0" layoutX="3.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" />
                         <Label layoutY="6.0" prefHeight="25.0" prefWidth="63.0" text="Giocatore:" />
+                        <ListView layoutY="150.0" prefHeight="274.0" prefWidth="280.0" />
+                        <Label layoutX="14.0" layoutY="120.0" prefHeight="28.0" prefWidth="231.0" text="Carte Giocatore Avversario:">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="70.0" layoutY="30.0" prefHeight="32.0" prefWidth="21.0" text="0">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="120.0" layoutY="30.0" prefHeight="32.0" prefWidth="21.0" text="0">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="210.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Media/Senza%20titolo-1.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="105.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Media/Pietra.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="160.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Media/Legno.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="60.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Media/Servitore.png" />
+                           </image>
+                        </ImageView>
                         <Label fx:id="name3" layoutX="63.0" layoutY="9.0" prefHeight="20.0" prefWidth="180.0" />
+                        <Label layoutX="225.0" layoutY="30.0" prefHeight="32.0" prefWidth="21.0" text="0">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="175.0" layoutY="30.0" prefHeight="32.0" prefWidth="21.0" text="0">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                </content>
             </ScrollPane>
-            <ImageView fx:id="familiareOrange1" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="3.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareOrange2" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="65.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareOrange3" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="111.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareOrange4" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="174.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareBlue1" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="220.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareBlue2" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="266.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareBlue3" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="312.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareBlue4" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="324.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareGreen1" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="370.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareBlue411" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="471.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareGreen2" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="425.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareGreen3" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="565.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareGreen4" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="517.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareWhite1" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="619.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareWhite2" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="665.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareWhite3" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="705.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareWhite4" disable="true" fitHeight="90.0" fitWidth="46.0" layoutX="751.0" layoutY="292.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareOrange1" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="3.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareOrange2" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="75.0" layoutY="296.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareOrange3" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="151.0" layoutY="296.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareOrange4" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="222.0" layoutY="296.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareGreen1" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="284.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareGreen2" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="357.0" layoutY="296.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareGreen3" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="425.0" layoutY="296.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareGreen4" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="504.0" layoutY="296.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareWhite1" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="616.0" layoutY="296.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareNeutro" fitHeight="90.0" fitWidth="45.0" layoutX="769.0" layoutY="673.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareWhite3" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="682.0" layoutY="296.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareWhite4" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="746.0" layoutY="296.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <HBox fx:id="carteTerritoriGiocatore" layoutX="47.0" layoutY="531.0" prefHeight="131.0" prefWidth="541.0" />
          </children></AnchorPane>
   </items>
 </SplitPane>
