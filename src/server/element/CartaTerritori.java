@@ -58,6 +58,7 @@ public class CartaTerritori extends CartaSviluppo{
 			costoAzione=rs.getInt("COSTOAZIONE");
 			setImage(rs.getString("IMMAGINE"));
 			setTooltip(rs.getString("DESCRIZIONE"));
+			System.out.println(name);
 			}
 			rs.close();
 			stmt.close();

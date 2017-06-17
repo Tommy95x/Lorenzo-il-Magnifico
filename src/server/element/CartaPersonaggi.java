@@ -18,11 +18,13 @@ public class CartaPersonaggi extends CartaSviluppo {
 	private String ID;
 	private String nomeffetto;
 	private int qtaeffetto;
-	private ArrayList<Effetto> effetti;
+	private ArrayList<Effetto> effetti = new ArrayList<Effetto>();
 	private String perognicarta;
 	int scontoAzione=3;
 	private String image;
 	private String tooltip;
+	private int tipo;
+	private int tipopermanente;
 
 	public CartaPersonaggi(int costoMoneta, String name, String perognicarta, String image, String tooltip, 
 			HashMap<String, Integer> effettoimmediato1, HashMap<String, Integer> azioneimmediata,
@@ -46,19 +48,35 @@ public class CartaPersonaggi extends CartaSviluppo {
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next()) {
 				name = rs.getString("NOME");
+				System.out.println("Carta personaggio preso nome");
 				ID=rs.getString("ID");
-				nomeffetto=rs.getString("EFFETTOIMMEDIATO").toLowerCase();
-				qtaeffetto=rs.getInt("QTAEFFETTOIMMEDIATO");
-				effetti.add(new Effetto(nomeffetto, qtaeffetto, true, rs.getInt("TIPO"), rs.getInt("TIPOPERMANENTE")));
-				perognicarta = rs.getString("PEROGNICARTA");
-				effetti.add(new Effetto(rs.getString("AZIONEIMMEDIATA").toLowerCase(), rs.getInt("VALOREAZIONEIMMEDIATA"), true, rs.getInt("TIPO"), rs.getInt("TIPOPERMANENTE")));
-				effetti.add(new Effetto(rs.getString("AZIONEPERMANENTE").toLowerCase(), rs.getInt("VALOREAZIONEPERMANENTE"), false, rs.getInt("TIPO"), rs.getInt("TIPOPERMANENTE")));
+				System.out.println("Carta personaggio preso id");
 				costoMoneta = rs.getInt("COSTOMONETA");
+				System.out.println("Carta personaggio preso costo moneta");
 				setImage(rs.getString("IMMAGINE"));
+				System.out.println("Carta personaggio presa immagine");
 				setTooltip(rs.getString("DESCRIZIONE"));
+				System.out.println("Carta personaggio preso tooltip");
+				nomeffetto=rs.getString("EFFETTOIMMEDIATO").toLowerCase();
+				System.out.println("Nome Effetto: "+nomeffetto);
+				qtaeffetto=rs.getInt("QTAEFFETTOIMMEDIATO");
+				System.out.println("Quantità Effetto: "+qtaeffetto);
+				tipo=rs.getInt("TIPO");
+				System.out.println("Tipo carta azione immediata: "+tipo);
+				tipopermanente=rs.getInt("TIPOPERMANENTE");
+				System.out.println("Tipo carta azione permanente: "+tipopermanente);
+				effetti.add(new Effetto(nomeffetto, qtaeffetto, true, tipo, tipopermanente));
+				System.out.println("Carta personaggio preso effetto 1");
+				perognicarta = rs.getString("PEROGNICARTA");
+				System.out.println("Carta personaggio preso perognicarta");
+				effetti.add(new Effetto(rs.getString("AZIONEIMMEDIATA").toLowerCase(), rs.getInt("VALOREAZIONEIMMEDIATA"), true, rs.getInt("TIPO"), rs.getInt("TIPOPERMANENTE")));
+				System.out.println("Carta personaggio presa azione immediata");
+				effetti.add(new Effetto(rs.getString("AZIONEPERMANENTE").toLowerCase(), rs.getInt("VALOREAZIONEPERMANENTE"), false, rs.getInt("TIPO"), rs.getInt("TIPOPERMANENTE")));
+				System.out.println("Carta personaggio presa azione permanente");
 			}
 			rs.close();
 			stmt.close();
+			System.out.println("chiuso statement");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

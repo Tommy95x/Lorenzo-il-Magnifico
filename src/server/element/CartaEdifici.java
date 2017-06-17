@@ -23,10 +23,10 @@ public class CartaEdifici extends CartaSviluppo {
 	private String ID;
 	private String nomeffetto;
 	private int qtaeffetto;
-	private ArrayList<Effetto> effetti;
-	private ArrayList<Risorsa> spendiRisorse;
-	private ArrayList<Risorsa> prendiRisorse;
-	private ArrayList<Risorsa> acquisisciPunti;
+	private ArrayList<Effetto> effetti = new ArrayList<Effetto>();
+	private ArrayList<Risorsa> spendiRisorse = new ArrayList<Risorsa>();
+	private ArrayList<Risorsa> prendiRisorse = new ArrayList<Risorsa>();
+	private ArrayList<Risorsa> acquisisciPunti = new ArrayList<Risorsa>();
 	private String perognicarta;
 	private String image;
 	private String tooltip;

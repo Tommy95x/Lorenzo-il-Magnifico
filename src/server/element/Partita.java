@@ -326,17 +326,7 @@ public class Partita implements Serializable {
 		System.out.println("All'interno della partita setto le carte");
 		for (i = 0; i < NUMCARTE; i++) {
 			System.out.println("CarteTerritori " + i + "");
-			query = "SELECT * FROM " + name.toUpperCase() + "CARTETERRITORIOPARTITA LIMIT 1";// Scrivere
-																								// la
-																								// query
-																								// in
-																								// modo
-																								// che
-																								// cerchi
-																								// differenti
-																								// carte
-																								// in
-																								// generale
+			query = "SELECT * FROM " + name.toUpperCase() + "CARTETERRITORIOPARTITA LIMIT 1";
 			carteTerritori[i] = new CartaTerritori();
 			carteTerritori[i].setCarta(connection, query);
 			queryelimina = "DELETE TOP 1 FROM " + name.toUpperCase() + "CARTETERRITORIOPARTITA";
@@ -344,21 +334,13 @@ public class Partita implements Serializable {
 		}
 		for (i = 0; i < NUMCARTE; i++) {
 			System.out.println("CartePersonaggio " + i + "");
-			query = "SELECT * FROM " + name.toUpperCase() + "CARTEPERSONAGGIOPARTITA LIMIT 1";// Scrivere
-																								// la
-																								// query
-																								// in
-																								// modo
-																								// che
-																								// cerchi
-																								// differenti
-																								// carte
-																								// in
-																								// generale
+			query = "SELECT * FROM " + name.toUpperCase() + "CARTEPERSONAGGIOPARTITA LIMIT 1";
+			System.out.println("Carta Personaggio " + i +" selezionata");
 			cartePersonaggio[i] = new CartaPersonaggi();
 			cartePersonaggio[i].setCarta(connection, query);
 			queryelimina = "DELETE TOP 1 FROM " + name.toUpperCase() + "CARTEPERSONAGGIOPARTITA";
 			connection.createStatement().executeUpdate(queryelimina);
+			System.out.println("Carta personaggio "+i+" Eliminata");
 		}
 		for (i = 0; i < NUMCARTE; i++) {
 			System.out.println("CarteEdificio " + i + "");

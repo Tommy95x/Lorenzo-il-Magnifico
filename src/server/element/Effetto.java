@@ -1,6 +1,8 @@
 package server.element;
 
-public class Effetto {
+import java.io.Serializable;
+
+public class Effetto implements Serializable{
 
 	private String risorsa;
 	private int qta;
@@ -12,7 +14,7 @@ public class Effetto {
 		this.risorsa=risorsa;
 		this.qta = qtaeffetto;
 		this.immediato = b;
-		this.setTipo(tipo);
+		this.tipo=tipo;
 		this.tipoPermanente=tipoPermanente;
 	}
 	public String getRisorsa() {

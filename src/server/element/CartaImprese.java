@@ -24,7 +24,7 @@ public class CartaImprese extends CartaSviluppo {
 	private String ID;
 	private String nomeffetto;
 	private int qtaeffetto;
-	private ArrayList<Effetto> effetti;
+	private ArrayList<Effetto> effetti = new ArrayList<Effetto>();
 	private int puntiVittoria;
 	private String image;
 	private String tooltip;

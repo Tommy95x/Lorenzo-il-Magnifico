@@ -1,6 +1,8 @@
 package server.element;
 
-public class Risorsa {
+import java.io.Serializable;
+
+public class Risorsa implements Serializable{
 	private String risorsa;
 	private int qta;
 	
