@@ -47,8 +47,8 @@ public class CartaPersonaggi extends CartaSviluppo {
 			while (rs.next()) {
 				name = rs.getString("NOME");
 				ID=rs.getString("ID");
-				nomeffetto=rs.getString("EFFETTOIMMEDIATO1").toLowerCase();
-				qtaeffetto=rs.getInt("QTAEFFETTOIMMEDIATO1");
+				nomeffetto=rs.getString("EFFETTOIMMEDIATO").toLowerCase();
+				qtaeffetto=rs.getInt("QTAEFFETTOIMMEDIATO");
 				effetti.add(new Effetto(nomeffetto, qtaeffetto, true, rs.getInt("TIPO"), rs.getInt("TIPOPERMANENTE")));
 				perognicarta = rs.getString("PEROGNICARTA");
 				effetti.add(new Effetto(rs.getString("AZIONEIMMEDIATA").toLowerCase(), rs.getInt("VALOREAZIONEIMMEDIATA"), true, rs.getInt("TIPO"), rs.getInt("TIPOPERMANENTE")));
