@@ -30,8 +30,7 @@ public class CartaSviluppo implements Serializable{
 	private ArrayList<Risorsa> prendiRisorse;
 	private ArrayList<Risorsa> acquisisciPunti;
 	private String perognicarta;
-	private ArrayList<Azione> azioni;
-	private ArrayList<Effetto> scontoAzioni;
+	int scontoAzione=3;
 	private int costoPuntiMilitari;
 	private int puntiMilitariRichiesti;
 	private int puntiVittoria;
@@ -152,22 +151,16 @@ public class CartaSviluppo implements Serializable{
 		return null;
 	}
 	
-	public ArrayList<Effetto> getScontoAzioni() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	public ArrayList<Azione> getAzione() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 	public void setId(String ID){
 		this.ID=ID;
 	}
 	
 	public String getId(){
 		return ID;
+	}
+	
+	public int getScontoAzione() {
+		return scontoAzione;
 	}
 
 }
