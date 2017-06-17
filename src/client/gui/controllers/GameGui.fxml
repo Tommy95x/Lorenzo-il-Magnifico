@@ -45,12 +45,12 @@
             <ImageView fx:id="cartaScomunica1" fitHeight="70.0" fitWidth="35.0" layoutX="113.0" layoutY="471.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="cartaScomunica2" fitHeight="70.0" fitWidth="35.0" layoutX="154.0" layoutY="476.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="cartaScomunica3" fitHeight="70.0" fitWidth="35.0" layoutX="196.0" layoutY="471.0" pickOnBounds="true" preserveRatio="true" />
-            <Label layoutX="235.0" layoutY="511.0" prefHeight="43.0" prefWidth="89.0" text="Turno :">
+            <Label layoutX="235.0" layoutY="509.0" prefHeight="43.0" prefWidth="89.0" text="Turno :">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label layoutX="314.0" layoutY="511.0" prefHeight="25.0" prefWidth="21.0" text="0" textFill="#282828">
+            <Label fx:id="turno" layoutX="323.0" layoutY="514.0" prefHeight="25.0" prefWidth="21.0" text="0" textFill="#282828">
                <font>
                   <Font size="29.0" />
                </font>

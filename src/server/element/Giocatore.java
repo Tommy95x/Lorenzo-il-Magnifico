@@ -164,11 +164,11 @@ public class Giocatore implements Serializable {
 			client.addScomunica(nScomuniche, scomunica.getTooltip());
 	}
 
-	public void notifyTurno() throws SQLException, IOException {
+	public void notifyTurno(int turno) throws SQLException, IOException {
 		if (client == null)
-			server.notifyTurno();
+			server.notifyTurno(turno);
 		else
-			client.notifyTurno();
+			client.notifyTurno(turno);
 
 	}
 

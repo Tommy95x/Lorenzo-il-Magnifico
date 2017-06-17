@@ -123,6 +123,8 @@ public class ControllerGame {
 	public ImageView cartaScomunica2;
 	@FXML
 	public ImageView cartaScomunica3;
+	@FXML
+	public Label turno;
 
 	// Componenti tabellone avversari
 	@FXML
@@ -1076,7 +1078,8 @@ public class ControllerGame {
 		}
 	}
 
-	public void enableGame() {
+	public void enableGame(int turno) {
+		this.turno.setText(String.valueOf(turno));
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.initOwner(start.getStage());
 		alert.setTitle("Notifica Turno");

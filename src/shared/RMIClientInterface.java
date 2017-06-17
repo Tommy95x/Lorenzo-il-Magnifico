@@ -16,7 +16,7 @@ public interface RMIClientInterface extends Remote{
 	public void restTabellone() throws RemoteException;
 	public void endGame(Giocatore[] giocatoriPartita) throws RemoteException;
 	public void addScomunica(int nScomuniche, Tooltip tooltip) throws RemoteException;
-	public void notifyTurno() throws RemoteException, SQLException;
+	public void notifyTurno(int turno) throws RemoteException, SQLException;
 	public void notifyAddCard(CartaSviluppo carta, String string, Portafoglio portafoglio)throws RemoteException;
 	public void notifySpostamentoPuntiMilitari(double x, double y, String string)throws RemoteException;
 	public void notifySpostamentoPuntiVittoria(double x, double y, String color2)throws RemoteException;

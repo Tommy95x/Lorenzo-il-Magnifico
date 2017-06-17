@@ -151,7 +151,7 @@ public class Partita implements Serializable{
 		try {
 			for(Giocatore g : giocatori){
 				if(g!=null){
-					g.notifyTurno();
+					g.notifyTurno(turno);
 				}
 			}
 		} catch (IOException e) {

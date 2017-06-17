@@ -24,9 +24,6 @@ public class CartaEdifici extends CartaSviluppo {
 	private String nomeffetto;
 	private int qtaeffetto;
 	private ArrayList<Effetto> effetti;
-	private ArrayList<Risorsa> spendiRisorse;
-	private ArrayList<Risorsa> prendiRisorse;
-	private ArrayList<Risorsa> acquisisciPunti;
 	private String perognicarta;
 	private String image;
 	private String tooltip;
@@ -65,17 +62,17 @@ public class CartaEdifici extends CartaSviluppo {
 				ID=rs.getString("ID");
 				nomeffetto = rs.getString("EFFETTOIMMEDIATO1").toLowerCase();
 				qtaeffetto = rs.getInt("QTAEFFETTOIMMEDIATO1");
-				effetti.add(new Effetto(nomeffetto, qtaeffetto, true));
+				effetti.add(new Effetto(nomeffetto, qtaeffetto, true,0));
 				nomeffetto = rs.getString("EFFETTOIMMEDIATO2").toLowerCase();
 				qtaeffetto = rs.getInt("QTAEFFETTOIMMEDIATO2");
-				effetti.add(new Effetto(nomeffetto, qtaeffetto, true));
-				spendiRisorse.add(new Risorsa(rs.getString("SPENDIRISORSA1"), rs.getInt("QTASPENDIRISORSA1")));
-				spendiRisorse.add(new Risorsa(rs.getString("SPENDIRISORSA2"), rs.getInt("QTASPENDIRISORSA2")));
-				spendiRisorse.add(new Risorsa(rs.getString("SPENDIRISORSA2"), rs.getInt("QTASPENDIRISORSA2")));
-				prendiRisorse.add(new Risorsa(rs.getString("PRENDIRISORSA1"), rs.getInt("QTAPRENDIRISORSA1")));
-				prendiRisorse.add(new Risorsa(rs.getString("PRENDIRISORSA2"), rs.getInt("QTAPRENDIRISORSA2")));
+				effetti.add(new Effetto(nomeffetto, qtaeffetto, true,0));
+				effetti.add(new Effetto(rs.getString("SPENDIRISORSA1"), rs.getInt("QTASPENDIRISORSA1"),false,0));
+				effetti.add(new Effetto(rs.getString("SPENDIRISORSA2"), rs.getInt("QTASPENDIRISORSA2"),false,0));
+				effetti.add(new Effetto(rs.getString("SPENDIRISORSA2"), rs.getInt("QTASPENDIRISORSA2"),false,0));
+				effetti.add(new Effetto(rs.getString("PRENDIRISORSA1"), rs.getInt("QTAPRENDIRISORSA1"),false,0));
+				effetti.add(new Effetto(rs.getString("PRENDIRISORSA2"), rs.getInt("QTAPRENDIRISORSA2"),false,0));
 				costoAzione = rs.getInt("COSTOAZIONE");
-				acquisisciPunti.add(new Risorsa(rs.getString("ACQUISISCIPUNTI"), rs.getInt("QTAACQUISISCIPUNTI")));
+				effetti.add(new Effetto(rs.getString("ACQUISISCIPUNTI"), rs.getInt("QTAACQUISISCIPUNTI"), false,0));
 				perognicarta = rs.getString("PEROGNICARTA");
 				setImage(rs.getString("IMMAGINE"));
 				setTooltip(rs.getString("DESCRIZIONE"));
@@ -175,9 +172,6 @@ public class CartaEdifici extends CartaSviluppo {
 		return effetti;
 	}
 	
-	public ArrayList<Risorsa> getAcquisisciPunti(){
-		return acquisisciPunti;
-	}
 	
 	public String getTooltipString() {
 		return tooltip;

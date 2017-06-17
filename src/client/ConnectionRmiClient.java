@@ -95,7 +95,6 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 			System.out.println(positionGame);
 			System.out.println("Momentaneo");
 			interlocutor = new ConnectionRmiInterlocutorClient(name);
-			serverMethods.setClientInterface(lobby, name, interlocutor);
 			positionGame=serverMethods.createNewLobby(lobby, name, color);
 			System.out.println("provaprova");
 			System.out.println(positionGame);
@@ -147,6 +146,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		try {
 			try {
 				System.out.println(name+" "+positionGame+" "+ serverMethods.toString());
+				serverMethods.setClientInterface(positionGame, name, interlocutor);
 				serverMethods.startPartita(name, positionGame);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

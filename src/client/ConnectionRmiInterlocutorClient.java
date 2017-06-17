@@ -58,8 +58,8 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 		
 	}
 	
-	public void notifyTurno() throws RemoteException, SQLException {
-		guiGame.enableGame();
+	public void notifyTurno(int turno) throws RemoteException, SQLException {
+		guiGame.enableGame( turno);
 	}
 
 	public void setGuiGame(ControllerGame guiGame){

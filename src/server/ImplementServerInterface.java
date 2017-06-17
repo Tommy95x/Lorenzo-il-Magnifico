@@ -59,9 +59,9 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		return commonServer.getIndicePartita(lobby);
 	}
 
-	public void setClientInterface(String lobby, String account, RMIClientInterface connectionRmiClient)
+	public void setClientInterface(int positionGame, String account, RMIClientInterface connectionRmiClient)
 			throws RemoteException {
-		commonServer.getLobbyByName(lobby).getGiocatoreByName(account).getClient(connectionRmiClient);
+		commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(account).getClient(connectionRmiClient);
 	}
 
 	public void startPartita(String account, int game) throws RemoteException, SQLException {
