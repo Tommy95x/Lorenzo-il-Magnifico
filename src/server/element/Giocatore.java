@@ -160,9 +160,9 @@ public class Giocatore implements Serializable {
 	public void getScomunica(TesseraScomunica scomunica) throws RemoteException {
 		cubiScomunica[nScomuniche] = new CuboScomunica(color, nScomuniche, scomunica);
 		if (client == null)
-			server.addScomunica(nScomuniche, scomunica.getTooltip());
+			server.addScomunica(nScomuniche, scomunica.getTooltipByString());
 		else
-			client.addScomunica(nScomuniche, scomunica.getTooltip());
+			client.addScomunica(nScomuniche, scomunica.getTooltipByString());
 	}
 
 	public void notifyTurno(int turno) throws SQLException, IOException {

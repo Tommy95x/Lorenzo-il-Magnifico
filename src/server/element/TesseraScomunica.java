@@ -142,5 +142,9 @@ public class TesseraScomunica implements Serializable{
 		stmt.close();
 		connection.close();
 	}
+	
+	public String getTooltipByString(){
+		return tooltip;
+	}
 
 }

@@ -39,8 +39,8 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 	}
 
 
-	public void addScomunica(int nScomuniche, Tooltip tooltip) throws RemoteException {
-		guiGame.addScomunica(nScomuniche, tooltip);
+	public void addScomunica(int nScomuniche, String tooltip) throws RemoteException {
+		guiGame.addScomunica(nScomuniche, new Tooltip(tooltip));
 		
 	}
 

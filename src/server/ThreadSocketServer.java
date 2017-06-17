@@ -286,8 +286,8 @@ public class ThreadSocketServer implements Runnable, Serializable {
 		output.flush();
 	}
 
-	public void addScomunica(int nScomuniche, Tooltip tooltip) {
-
+	public void addScomunica(int nScomuniche, String string) {
+		
 	}
 
 	public void notifyAddCardAvv(CartaSviluppo carta, String name) throws IOException {

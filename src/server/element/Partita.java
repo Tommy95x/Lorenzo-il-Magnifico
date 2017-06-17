@@ -213,7 +213,7 @@ public class Partita implements Serializable {
 
 	public Giocatore getGiocatoreByName(String name) {
 		for (Giocatore g : giocatori) {
-			if (g.getName().equals(name))
+			if (g != null && g.getName().equals(name))
 				return g;
 		}
 		return null;

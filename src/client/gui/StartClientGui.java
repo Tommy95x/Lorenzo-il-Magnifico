@@ -1,7 +1,15 @@
 
 package client.gui;
 
+import java.io.File;
 import java.io.IOException;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 import client.ConnectionClient;
 import client.gui.controllers.ControllerConnection;
 import client.gui.controllers.ControllerGame;
@@ -163,6 +171,18 @@ public class StartClientGui extends Application{
 					Scene scene = new Scene(root,1366,768);
 					scene.getStylesheets().addAll(this.getClass().getResource("controllers/gameBackGround.css").toExternalForm());
 					primaryStage.setScene(scene);
+					File f = new File("src/client/gui/Madrigale XIV secolo.wav");
+					AudioInputStream audioIn;
+					try {
+						audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());
+						Clip clip = AudioSystem.getClip();
+						clip.open(audioIn);
+						clip.start();
+						clip.loop(1);
+					} catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					System.out.println("ProvaProvaProva");
 					//getClient().waitTurno();
 				} catch (IOException e) {
