@@ -65,10 +65,10 @@ public class CartaEdifici extends CartaSviluppo {
 				ID=rs.getString("ID");
 				nomeffetto = rs.getString("EFFETTOIMMEDIATO1").toLowerCase();
 				qtaeffetto = rs.getInt("QTAEFFETTOIMMEDIATO1");
-				effetti.add(new Effetto(nomeffetto, qtaeffetto, true));
+				effetti.add(new Effetto(nomeffetto, qtaeffetto, true, rs.getInt("TIPO"), rs.getInt("TIPOPERMANENTE")));
 				nomeffetto = rs.getString("EFFETTOIMMEDIATO2").toLowerCase();
 				qtaeffetto = rs.getInt("QTAEFFETTOIMMEDIATO2");
-				effetti.add(new Effetto(nomeffetto, qtaeffetto, true));
+				effetti.add(new Effetto(nomeffetto, qtaeffetto, true, rs.getInt("TIPO"), rs.getInt("TIPOPERMANENTE")));
 				spendiRisorse.add(new Risorsa(rs.getString("SPENDIRISORSA1"), rs.getInt("QTASPENDIRISORSA1")));
 				spendiRisorse.add(new Risorsa(rs.getString("SPENDIRISORSA2"), rs.getInt("QTASPENDIRISORSA2")));
 				spendiRisorse.add(new Risorsa(rs.getString("SPENDIRISORSA2"), rs.getInt("QTASPENDIRISORSA2")));

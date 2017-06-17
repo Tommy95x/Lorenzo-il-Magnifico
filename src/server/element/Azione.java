@@ -4,11 +4,15 @@ public class Azione {
 	private String azione;
 	private int valore;
 	private boolean immediato;
+	private int tipo;
+	private int tipoPermanente;
 	
-	public Azione(String azione, int valore, boolean b) {
+	public Azione(String azione, int valore, boolean b,int tipo, int tipoPermanente) {
 		this.azione=azione;
 		this.valore = valore;
 		this.immediato = b;
+		this.tipo=tipo;
+		this.tipoPermanente=tipoPermanente;
 	}
 	public String getAzione() {
 		return azione;
@@ -28,4 +32,19 @@ public class Azione {
 	private void setImmediato(boolean immediato) {
 		this.immediato = immediato;
 	}
+	
+	public int getTipoPermanente() {
+		return tipoPermanente;
+	}
+	public void setTipoPermanente(int tipoPermanente) {
+		this.tipoPermanente = tipoPermanente;
+	}
+	
+	public int getTipo() {
+		return tipo;
+	}
+	public void setTipo(int tipo) {
+		this.tipo = tipo;
+	}
+	
 }

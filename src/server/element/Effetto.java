@@ -6,12 +6,14 @@ public class Effetto {
 	private int qta;
 	private boolean immediato;
 	private int tipo;
+	private int tipoPermanente;
 	
-	public Effetto(String risorsa, int qtaeffetto, boolean b, int tipo) {
+	public Effetto(String risorsa, int qtaeffetto, boolean b, int tipo, int tipoPermanente) {
 		this.risorsa=risorsa;
 		this.qta = qtaeffetto;
 		this.immediato = b;
 		this.setTipo(tipo);
+		this.tipoPermanente=tipoPermanente;
 	}
 	public String getRisorsa() {
 		return risorsa;
@@ -36,6 +38,13 @@ public class Effetto {
 	}
 	public void setTipo(int tipo) {
 		this.tipo = tipo;
+	}
+	
+	public int getTipoPermanente() {
+		return tipoPermanente;
+	}
+	public void setTipoPermanente(int tipoPermanente) {
+		this.tipoPermanente = tipoPermanente;
 	}
 	
 }

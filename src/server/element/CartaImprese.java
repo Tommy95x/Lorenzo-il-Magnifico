@@ -65,15 +65,15 @@ public class CartaImprese extends CartaSviluppo {
 				puntiMilitariRichiesti = rs.getInt("REQUISITOPUNTIMILITARI");
 				nomeffetto = rs.getString("EFFETTOIMMEDIATO1");
 				qtaeffetto = rs.getInt("QTAEFFETTOIMMEDIATO1");
-				effetti.add(new Effetto(nomeffetto, qtaeffetto, true));
+				effetti.add(new Effetto(nomeffetto, qtaeffetto, true, rs.getInt("TIPO"), rs.getInt("TIPOPERMANENTE")));
 				nomeffetto = rs.getString("EFFETTOIMMEDIATO2");
 				qtaeffetto = rs.getInt("QTAEFFETTOIMMEDIATO2");
-				effetti.add(new Effetto(nomeffetto, qtaeffetto, true));
+				effetti.add(new Effetto(nomeffetto, qtaeffetto, true, rs.getInt("TIPO"), rs.getInt("TIPOPERMANENTE")));
 				nomeffetto = rs.getString("EFFETTOIMMEDIATO3");
 				qtaeffetto = rs.getInt("QTAEFFETTOIMMEDIATO3");
-				effetti.add(new Effetto(nomeffetto, qtaeffetto, true));
+				effetti.add(new Effetto(nomeffetto, qtaeffetto, true, rs.getInt("TIPO"), rs.getInt("TIPOPERMANENTE")));
 				puntiVittoria = rs.getInt("PUNTIVITTORIA");
-				azioni.add(new Azione(rs.getString("AZIONEIMMEDIATA").toLowerCase(), rs.getInt("VALOREAZIONEIMMEDIATA"), true));
+				azioni.add(new Azione(rs.getString("AZIONEIMMEDIATA").toLowerCase(), rs.getInt("VALOREAZIONEIMMEDIATA"), true, rs.getInt("TIPO"), rs.getInt("TIPOPERMANENTE")));
 				setImage(rs.getString("IMMAGINE"));
 				setTooltip(rs.getString("DESCRIZIONE"));
 			}
