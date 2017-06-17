@@ -53,8 +53,8 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 		
 	}
 
-	public void notifyAddCard(CartaSviluppo carta, String nameAvv,Portafoglio portafoglio) throws RemoteException {
-		guiGame.notifyAddCardAvv(carta, nameAvv,portafoglio);
+	public void notifyAddCardAvv(CartaSviluppo carta, String string) throws RemoteException {
+		guiGame.notifyAddCardAvv(carta, string);
 		
 	}
 	

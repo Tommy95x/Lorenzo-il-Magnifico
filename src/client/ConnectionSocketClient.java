@@ -212,40 +212,56 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		this.guiGame = guiGame;
 	}
 
-	public void notifyTurno() throws ClassNotFoundException, IOException {
+	public void waitTurno() throws ClassNotFoundException, IOException {
 		double x;
 		double y;
 		String colorPlayer;
 		String color;
-		if (inputSocket.readObject().toString().equals("move")) {
+		while(true){
 			switch (inputSocket.readObject().toString()) {
 			case "disco":
-				x = inputSocket.readDouble();
-				y = inputSocket.readDouble();
-				colorPlayer = inputSocket.readObject().toString();
+				x = (double) inputSocket.readObject();
+				y = (double) inputSocket.readObject();
 				color = inputSocket.readObject().toString();
 				guiGame.notifySpostamentoPuntiFede(x, y, color);
 				break;
 			case "familiareAvv":
-				x = inputSocket.readDouble();
-				y = inputSocket.readDouble();
+				x = (double) inputSocket.readObject();
+				y = (double) inputSocket.readObject();
 				colorPlayer = inputSocket.readObject().toString();
 				color = inputSocket.readObject().toString();
 				guiGame.moveFamAvv(colorPlayer, color, x, y);
 				break;
 			case "discoFede":
-				x = inputSocket.readDouble();
-				y = inputSocket.readDouble();
-				colorPlayer = inputSocket.readObject().toString();
+				x = (double) inputSocket.readObject();
+				y = (double) inputSocket.readObject();
 				color = inputSocket.readObject().toString();
 				guiGame.notifySpostamentoPuntiFede(x, y, color);
 				break;
 			case "startTurno":
-				guiGame.enableGame();
+				guiGame.enableGame((int)inputSocket.readObject());
+				break;
+			case "carteAvv":
+				guiGame.notifyAddCardAvv((CartaSviluppo) inputSocket.readObject(), inputSocket.readObject().toString());
+				break;
+			case "militari":
+				x = (double) inputSocket.readObject();
+				y = (double) inputSocket.readObject();
+				color = (String) inputSocket.readObject();
+				break;
 			}
 		}
 	}
 
+	public void setCardGiocatore(CartaSviluppo carta, int i) throws IOException {
+		outputSocket.writeObject("addCard");
+		outputSocket.flush();
+		outputSocket.writeObject(carta);
+		outputSocket.flush();
+		outputSocket.writeObject(i);
+		outputSocket.flush();
+	}
+	
 	public void notifySpostamento(String color, double x, double y) throws IOException {
 		outputSocket.writeObject("notifySpostamento");
 		outputSocket.flush();
@@ -257,13 +273,14 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		outputSocket.flush();
 	}
 
-	public String getNamePosition(double x, double y) throws IOException {
+	public String getNamePosition(double x, double y) throws IOException, ClassNotFoundException {
 		outputSocket.writeObject("getNamePosition");
 		outputSocket.flush();
 		outputSocket.writeObject(x);
 		outputSocket.flush();
 		outputSocket.writeObject(y);
-		return null;
+		outputSocket.flush();
+		return inputSocket.readObject().toString();
 	}
 
 	public void exitToTheGame(String lobby, String color) throws IOException {
@@ -272,23 +289,6 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		outputSocket.writeObject(lobby);
 		outputSocket.flush();
 		outputSocket.writeObject(color);
-		outputSocket.flush();
-	}
-
-	public ArrayList<CartaSviluppo> getCardsGamer() throws ClassNotFoundException, IOException {
-		outputSocket.writeObject("getCardsGamer");
-		outputSocket.flush();
-		return (ArrayList<CartaSviluppo>) inputSocket.readObject();
-
-	}
-
-	public void setCardGiocatore(CartaSviluppo carta) throws IOException {
-		outputSocket.writeObject("getCardsGamer");
-		outputSocket.flush();
-		outputSocket.writeObject(lobby);
-		outputSocket.flush();
-		outputSocket.writeObject(name);
-		outputSocket.writeObject(carta);
 		outputSocket.flush();
 	}
 
@@ -333,6 +333,7 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		if (inputSocket.readObject().toString().equals("start")) {
 			System.out.println("ok");
 			start.changeStage(5);
+			waitTurno();
 		}
 	}
 
@@ -346,11 +347,6 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 
 	public StartClientGui getStart() {
 		return start;
-	}
-
-	public void waitTurno() throws ClassNotFoundException, IOException {
-		if (inputSocket.readObject().toString().equals("gioca"))
-			guiGame.enableGame();
 	}
 
 	public void deleteView() throws IOException {
@@ -380,19 +376,8 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		return g;
 	}
 
-	public int getPlayers() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 	@Override
 	public void spendereRisorse(String risorsa, int qta) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void takeCards(String name) {
 		// TODO Auto-generated method stub
 
 	}
@@ -403,10 +388,6 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 
 	}
 
-	public void getCard(int positionGame, String name, CartaSviluppo carta) throws RemoteException {
-		// TODO Auto-generated method stub
-
-	}
 
 	public void addScomunica(int nScomuniche, Tooltip tooltip) {
 	}

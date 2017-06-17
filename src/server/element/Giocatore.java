@@ -190,11 +190,16 @@ public class Giocatore implements Serializable {
 		activateCardEffettiImmediati(carta, tipo, c);
 	}
 
-	public void notifyAddCard(CartaSviluppo carta) throws RemoteException {
+	public void notifyAddCardAvv(CartaSviluppo carta) throws RemoteException {
 		if (client == null) {
-			server.notifyAddCard(carta, this.getName(), this.getRisorse());
+			try {
+				server.notifyAddCardAvv(carta, this.getName());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else {
-			client.notifyAddCard(carta, this.getName(), this.getRisorse());
+			client.notifyAddCardAvv(carta, this.getName());
 		}
 	}
 
@@ -425,7 +430,7 @@ public class Giocatore implements Serializable {
 
 	}
 
-	private void notifyUnTipoCarta(int tipo, int qta, int scontoAzioneImmediata1) {
+	private void notifyUnTipoCarta(int tipo, int qta, int scontoAzioneImmediata1) throws RemoteException {
 
 		if (client == null) {
 			server.notifyUnTipoCarta(tipo, qta, scontoAzioneImmediata1);
@@ -454,11 +459,16 @@ public class Giocatore implements Serializable {
 		return carte;
 	}
 
-	public void notifySpostamentopuntiMilitari(double x, double y, String string) throws RemoteException {
+	public void notifySpostamentopuntiMilitari(double x, double y, String color) throws RemoteException {
 		if (client == null) {
-			server.notifySpostamentoPuntiMilitari(x, y, string);
+			try {
+				server.notifySpostamentoPuntiMilitari(x, y, color);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else {
-			client.notifySpostamentoPuntiMilitari(x, y, string);
+			client.notifySpostamentoPuntiMilitari(x, y, color);
 		}
 	}
 

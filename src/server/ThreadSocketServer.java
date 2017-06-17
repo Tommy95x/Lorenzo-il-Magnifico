@@ -73,7 +73,6 @@ public class ThreadSocketServer implements Runnable, Serializable {
 	 * }
 	 */
 
-
 	public void run() {
 		try {
 			input = new ObjectInputStream(socket.getInputStream());
@@ -187,19 +186,14 @@ public class ThreadSocketServer implements Runnable, Serializable {
 								color, x, y, commonServer.getDBConnection().getConnection(account), agg));
 				output.flush();
 				break;
-			case "getCardsGamer":
-				lobby = input.readObject().toString();
-				account = input.readObject().toString();
-				try {
-					actionsServer.giveCard((CartaSviluppo) input.readObject(), account, (int) input.readObject(), (int) input.readObject());
-				} catch (ClassNotFoundException | IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			case "addCard":
+				actionsServer.giveCard((CartaSviluppo) input.readObject(), account, positionGame,
+						(int) input.readObject());
 				break;
 			case "getNamePosition":
-				output.writeObject(commonServer.getLobbyByNumber(positionGame).getNamePosition(input.readDouble(),
-						input.readDouble(), commonServer.getDBConnection().getConnection(account)));
+				output.writeObject(
+						commonServer.getLobbyByNumber(positionGame).getNamePosition((double) input.readObject(),
+								(double) input.readObject(), commonServer.getDBConnection().getConnection(account)));
 				output.flush();
 				break;
 			case "getPortafoglio":
@@ -212,7 +206,7 @@ public class ThreadSocketServer implements Runnable, Serializable {
 				System.out.println("Cartescomunica");
 				TesseraScomunica[] mom2 = new TesseraScomunica[3];
 				mom2 = commonServer.getLobbyByNumber(positionGame).getCardsScomunica();
-				for(int i=0;i<3;i++){
+				for (int i = 0; i < 3; i++) {
 					output.writeObject(mom2[i]);
 					output.flush();
 				}
@@ -220,7 +214,7 @@ public class ThreadSocketServer implements Runnable, Serializable {
 			case "getCardsGame":
 				System.out.println("Prima chiamata");
 				CartaSviluppo[] mom = commonServer.getLobbyByNumber(positionGame).getCards();
-				for(CartaSviluppo c : mom){
+				for (CartaSviluppo c : mom) {
 					System.out.println(c.getNameCard());
 					output.writeObject(c);
 					output.flush();
@@ -238,24 +232,24 @@ public class ThreadSocketServer implements Runnable, Serializable {
 			case "giocatori":
 				Giocatore[] g1 = new Giocatore[4];
 				Giocatore[] g2 = new Giocatore[4];
-				int i=0;
-				g1=commonServer.getLobbyByNumber(positionGame).getGiocatori();
-				for(int j=0;j<4;j++){
-					if(	g1[i] != null){
+				int i = 0;
+				g1 = commonServer.getLobbyByNumber(positionGame).getGiocatori();
+				for (int j = 0; j < 4; j++) {
+					if (g1[i] != null) {
 						g2[j] = g1[1];
 						i++;
 					}
 				}
 				output.writeObject(i);
 				output.flush();
-				for(int j =0; j<i;j++){
+				for (int j = 0; j < i; j++) {
 					System.out.println(g2[j].getName());
 					output.writeObject(g2[j]);
 					output.flush();
-					}
+				}
 				break;
 			}
-		action = input.readObject().toString();
+			action = input.readObject().toString();
 		}
 
 	}
@@ -272,8 +266,10 @@ public class ThreadSocketServer implements Runnable, Serializable {
 		}
 	}
 
-	public void notifyTurno() throws IOException {
+	public void notifyTurno(int turno) throws IOException {
 		output.writeObject("startTurno");
+		output.flush();
+		output.writeObject(turno);
 		output.flush();
 	}
 
@@ -290,60 +286,65 @@ public class ThreadSocketServer implements Runnable, Serializable {
 		output.flush();
 	}
 
-	public void moveDisco(double x, double y, String colorPlayer, String colorDisco) throws IOException {
+	public void addScomunica(int nScomuniche, Tooltip tooltip) {
+
+	}
+
+	public void notifyAddCardAvv(CartaSviluppo carta, String name) throws IOException {
+		output.writeObject("carteAvv");
+		output.flush();
+		output.writeObject(carta);
+		output.flush();
+		output.writeObject(name);
+		output.flush();
+	}
+
+	public void notifySpostamentoPuntiMilitari(double x, double y, String color) throws IOException {
+		output.writeObject("militari");
+		output.flush();
+		output.writeObject(x);
+		output.flush();
+		output.writeObject(y);
+		output.flush();
+		output.writeObject(color);
+		output.flush();
+	}
+
+	public void notifySpostamentoPuntiVittoria(double x, double y, String color2) throws IOException {
 		output.writeObject("disco");
 		output.flush();
 		output.writeObject(x);
 		output.flush();
 		output.writeObject(y);
 		output.flush();
-		output.writeObject(colorPlayer);
-		output.flush();
-		output.writeObject(colorDisco);
+		output.writeObject(color2);
 		output.flush();
 	}
 
-	public void moveDiscoFede(double x, double y, String colorPlayer, String colorDisco) throws IOException {
+	public void notifySpostamentoPuntiFede(double x, double y, String color2) throws IOException {
 		output.writeObject("discoFede");
 		output.flush();
 		output.writeObject(x);
 		output.flush();
 		output.writeObject(y);
 		output.flush();
-		output.writeObject(colorPlayer);
-		output.flush();
-		output.writeObject(colorDisco);
+		output.writeObject(color2);
 		output.flush();
 	}
 
-	public void addScomunica(int nScomuniche, Tooltip tooltip) {
-
-	}
-
-	public void notifyAddCard(CartaSviluppo carta, String string, Portafoglio portafoglio) {
+	public void notifyUnTipoCarta(int tipo, int qta, int scontoAzioneImmediata1) {
 		// TODO Auto-generated method stub
 
 	}
 
-	public void notifyPergamena() {
+	public void notifyTutteCarte(int i) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	public void notifySpostamentoPuntiMilitari(double x, double y, String string) {
+	public void notifyPergamena(int i) {
 		// TODO Auto-generated method stub
-		
-	}
 
-	public void notifySpostamentoPuntiVittoria(double x, double y, String color2) {
-		// TODO Auto-generated method stub
-		
 	}
-
-	public void notifySpostamentoPuntiFede(double x, double y, String color2) {
-		// TODO Auto-generated method stub
-		
-	}
-
 
 }

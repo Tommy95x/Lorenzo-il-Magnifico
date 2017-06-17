@@ -3,6 +3,8 @@ package client.gui.controllers;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+
+import client.ConnectionRmiInterlocutorClient;
 import client.gui.StartClientGui;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -179,7 +181,6 @@ public class ControllerMenu {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				start.getClient().setStage(start);
 				popup.close();
 				viewStartButton();
 				event.consume();
@@ -194,7 +195,6 @@ public class ControllerMenu {
 			start.setColor("orange");
 			try {
 				System.out.println(start.getClient().createANewLobby(lobby, start.getColor()));
-				start.getClient().setStage(start);
 				viewStartButton();
 				popup.close();
 				event.consume();
@@ -213,7 +213,6 @@ public class ControllerMenu {
 			start.setColor("white");
 			try {
 				System.out.println(start.getClient().createANewLobby(lobby, start.getColor()));
-				start.getClient().setStage(start);
 				viewStartButton();
 				popup.close();
 				event.consume();
@@ -232,7 +231,6 @@ public class ControllerMenu {
 			start.setColor("white");
 			try {
 				System.out.println(start.getClient().createANewLobby(lobby, start.getColor()));
-				start.getClient().setStage(start);
 				viewStartButton();
 				popup.close();
 				event.consume();
@@ -274,7 +272,6 @@ public class ControllerMenu {
 								if(start.getClient().enterInALobby(lobby, start.getColor())!=-1){
 									popup.close();
 									viewStartButton();
-									start.getClient().setStage(start);
 									event.consume();
 									}else{
 									popup.close();
@@ -307,13 +304,12 @@ public class ControllerMenu {
 								if(start.getClient().enterInALobby(lobby, start.getColor())!=-1){
 									popup.close();
 									viewStartButton();
-									start.getClient().setStage(start);
 									event.consume();
 									}else{
 									popup.close();
 									Alert alert = new Alert(AlertType.WARNING);
 									alert.initOwner(start.getStage());
-									alert.setTitle("Invalid Login");
+									alert.setTitle("Invalid Enter");
 									alert.setContentText("The game is full of players");
 									alert.showAndWait();
 									event.consume();
@@ -340,7 +336,6 @@ public class ControllerMenu {
 								if(start.getClient().enterInALobby(lobby, start.getColor())!=-1){
 									popup.close();
 									viewStartButton();
-									start.getClient().setStage(start);
 									event.consume();
 									}else{
 									popup.close();
@@ -373,7 +368,6 @@ public class ControllerMenu {
 								if(start.getClient().enterInALobby(lobby, start.getColor())!=-1){
 									popup.close();
 									viewStartButton();
-									start.getClient().setStage(start);
 									event.consume();
 									}else{
 									popup.close();
@@ -406,6 +400,7 @@ public class ControllerMenu {
 	}
 
 	private void viewStartButton() {
+		this.start.getClient().sendClient(start);
 		back.setOpacity(0);
 		back.setDisable(true);
 		exitToGame.setDisable(false);
