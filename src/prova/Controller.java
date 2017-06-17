@@ -330,9 +330,9 @@ public class Controller {
 				familiareWhite2.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoArancio.png")));
 				familiareWhite3.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoBianco.png")));
 				familiareWhite4.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoNero.png")));
-				flag1.setImage(new Image(this.getClass().getResourceAsStream("BandierinaVerde.png")));
-				flag2.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBianca.png")));
-				flag3.setImage(new Image(this.getClass().getResourceAsStream("BandierinaArancio.png")));
+				flag1.setImage(new Image(this.getClass().getResourceAsStream("BandierinaArancio.png")));
+				flag2.setImage(new Image(this.getClass().getResourceAsStream("BandierinaVerde.png")));
+				flag3.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBianca.png")));
 				name1.setText("Pippo");
 				name2.setText("Paperino");
 				name3.setText("Topolino");
