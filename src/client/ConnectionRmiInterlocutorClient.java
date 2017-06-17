@@ -21,10 +21,12 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 	private int positionGame;
 	private String name;
 
-	public ConnectionRmiInterlocutorClient(String name) throws RemoteException{
+	public ConnectionRmiInterlocutorClient() throws RemoteException{}
+
+	public void setName(String name){
 		this.name = name;
 	}
-
+	
 	public void notifyStartGame() throws RemoteException {
 		System.out.println("Notifica inizio partita avvenuta");
 		start.changeStage(5);
@@ -110,12 +112,6 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 
 	public void setPositionGame(int positionGame) {
 		this.positionGame = positionGame;
-	}
-
-	@Override
-	public void ciao() throws RemoteException {
-		System.out.println("Ciao");
-		
 	}
 
 	public void notifyUnTipoCarta(int tipo, int qta, int scontoAzioneImmediata1) throws RemoteException {

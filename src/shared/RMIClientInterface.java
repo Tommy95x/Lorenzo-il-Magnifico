@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import javafx.scene.control.Tooltip;
 import server.element.CartaSviluppo;
 import server.element.Giocatore;
-import server.element.Portafoglio;
 
 public interface RMIClientInterface extends Remote{
 	public void notifyStartGame() throws RemoteException;
@@ -23,6 +22,5 @@ public interface RMIClientInterface extends Remote{
 	public void notifySpostamentoPuntiFede(double x, double y, String color2)throws RemoteException;
 	public void notifyPergamena(int i)throws RemoteException;
 	public void notifyTutteCarte(int i)throws RemoteException;
-	public void ciao()throws RemoteException;
 	public void notifyUnTipoCarta(int tipo, int qta, int scontoAzioneImmediata1)throws RemoteException;
 }

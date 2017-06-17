@@ -43,22 +43,18 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	
 	private void connect() throws RemoteException{
 		try {
-			Registry registry = LocateRegistry.getRegistry(port);
+			Registry registry = LocateRegistry.getRegistry();
 			System.out.println("Get registry from Server");
 			String [] e = registry.list();
 			for(String mom:e)
 				System.out.println(mom);
 			String remoteInterface="ServerInterface";
 			serverMethods = (ServerInterface) registry.lookup(remoteInterface);
-		} catch (RemoteException e) {
+		} catch (RemoteException | NotBoundException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Error connection not create");
 			e.printStackTrace();
-		} catch (NotBoundException e1) {
-			// TODO Auto-generated catch block
-			
-			e1.printStackTrace();
-		}
+			}
 	}
 
 
@@ -305,10 +301,11 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	
 	public void sendClient(StartClientGui start) {
 		try {
-			this.interlocutor = new ConnectionRmiInterlocutorClient(name);
-			serverMethods.setClientInterface(positionGame, name, interlocutor);
+			interlocutor = new ConnectionRmiInterlocutorClient();
+			interlocutor.setName(name);
 			interlocutor.setPositionGame(positionGame);
 			interlocutor.setStart(start);
+			serverMethods.setClientInterface(positionGame, name, interlocutor);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

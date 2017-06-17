@@ -20,14 +20,10 @@ public class RMIServer extends Thread{
 	}
 	
 	private void startConnectionRMI(){
-		Registry registry;
 		try {
-			registry = LocateRegistry.createRegistry(port);
+			Registry registry = LocateRegistry.createRegistry(port);
 			registry.bind("ServerInterface", new ImplementServerInterface(commonServer));
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (AlreadyBoundException e) {
+		} catch (RemoteException | AlreadyBoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -36,7 +32,7 @@ public class RMIServer extends Thread{
 	}
 	
 	public void run(){
-		this.startConnectionRMI();
+		startConnectionRMI();
 	}
 	
 }

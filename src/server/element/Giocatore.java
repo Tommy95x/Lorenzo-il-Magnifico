@@ -114,6 +114,7 @@ public class Giocatore implements Serializable {
 		if (server != null) {
 			System.out.println("utente socket" + server.toString());
 			server.notifyStartGame();
+			return;
 		} else {
 			System.out.println("utente rmi");
 			client.notifyStartGame();
@@ -474,7 +475,12 @@ public class Giocatore implements Serializable {
 
 	public void notifySpostamentopuntiVittoria(double x, double y, String color2) throws RemoteException {
 		if (client == null) {
-			server.notifySpostamentoPuntiVittoria(x, y, color2);
+			try {
+				server.notifySpostamentoPuntiVittoria(x, y, color2);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else {
 			client.notifySpostamentoPuntiVittoria(x, y, color2);
 		}
@@ -482,7 +488,12 @@ public class Giocatore implements Serializable {
 
 	public void notifySpostamentopuntiFede(double x, double y, String color2) throws RemoteException {
 		if (client == null) {
-			server.notifySpostamentoPuntiFede(x, y, color2);
+			try {
+				server.notifySpostamentoPuntiFede(x, y, color2);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else {
 			client.notifySpostamentoPuntiFede(x, y, color2);
 		}
