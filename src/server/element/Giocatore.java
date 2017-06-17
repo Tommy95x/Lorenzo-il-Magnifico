@@ -334,7 +334,12 @@ public class Giocatore implements Serializable {
 						}
 						break;
 					case "unTipodicarta":
-						notifyUnTipoCarta(e.getTipo(), e.getQta(), carta.getScontoAzione());
+						try {
+							notifyUnTipoCarta(e.getTipo(), e.getQta(), carta.scontoAzione);
+						} catch (RemoteException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						break;
 					}
 				}
