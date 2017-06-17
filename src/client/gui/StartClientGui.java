@@ -224,5 +224,6 @@ public class StartClientGui extends Application{
 	public void setCreate(boolean b) {
 		create = b;
 	}
+
 	
 }

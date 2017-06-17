@@ -41,7 +41,7 @@ public interface ServerInterface extends Remote {
 	public void deleteView(int positionGame)throws RemoteException;
 	public void removeAccount(String name)throws RemoteException;
 	public int getNumberOfPlayer(int positionGame) throws RemoteException;
-	public void setClientInterface(String lobby, String account, RMIClientInterface connectionRmiClient)throws RemoteException;
+	public void setClientInterface(int positionGame, String account, RMIClientInterface connectionRmiClient)throws RemoteException;
 	public void notifySpostamentoPunti(int positionGame, String name, String tipo)throws RemoteException, SQLException;
 	public void produzione(int positionGame, String name,int qta)throws RemoteException;
 	public void raccolto(int positionGame, String name, int qta)throws RemoteException;

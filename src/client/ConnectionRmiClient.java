@@ -94,8 +94,6 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		try {
 			System.out.println(positionGame);
 			System.out.println("Momentaneo");
-			interlocutor = new ConnectionRmiInterlocutorClient(name);
-			serverMethods.setClientInterface(lobby, name, interlocutor);
 			positionGame=serverMethods.createNewLobby(lobby, name, color);
 			System.out.println("provaprova");
 			System.out.println(positionGame);
@@ -124,9 +122,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	
 	public int enterInALobby(String lobby, String color) throws RemoteException{
 		try {
-			interlocutor = new ConnectionRmiInterlocutorClient(name);
 			positionGame=serverMethods.selectLobby(lobby, name, color);
-			interlocutor.setPositionGame(positionGame);
 		} catch (RemoteException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -197,12 +193,6 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		interlocutor.setGuiGame(guiGame);
 	}
 	
-	
-
-	public void setStage(StartClientGui start) {
-		interlocutor.setStart(start);
-	}
-
 	public String getNamePosition(double x, double y) throws RemoteException, SQLException {
 		return serverMethods.getNamePosition(x,y,positionGame,name);
 	}
@@ -311,6 +301,18 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	public void addPergamene(int qta) throws RemoteException{
 		serverMethods.pergamene(positionGame, name,qta);
 		
+	}
+	
+	public void sendClient(StartClientGui start) {
+		try {
+			this.interlocutor = new ConnectionRmiInterlocutorClient(name);
+			serverMethods.setClientInterface(positionGame, name, interlocutor);
+			interlocutor.setPositionGame(positionGame);
+			interlocutor.setStart(start);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@Override

@@ -129,7 +129,7 @@ public class ConnectionClient implements ClientInterface{
 		
 	}
 
-	public String getNamePosition(double x, double y) throws RemoteException, SQLException, IOException {
+	public String getNamePosition(double x, double y) throws RemoteException, SQLException, IOException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -231,5 +231,9 @@ public class ConnectionClient implements ClientInterface{
 	public void addPergamene(int i) throws RemoteException{
 		// TODO Auto-generated method stub
 		
+	}
+
+
+	public void sendClient(StartClientGui start) {
 	}
 }
