@@ -25,7 +25,6 @@ public class CartaImprese extends CartaSviluppo {
 	private String nomeffetto;
 	private int qtaeffetto;
 	private ArrayList<Effetto> effetti;
-	private ArrayList<Azione> azioni;
 	private int puntiVittoria;
 	private String image;
 	private String tooltip;
@@ -73,7 +72,7 @@ public class CartaImprese extends CartaSviluppo {
 				qtaeffetto = rs.getInt("QTAEFFETTOIMMEDIATO3");
 				effetti.add(new Effetto(nomeffetto, qtaeffetto, true, rs.getInt("TIPO"), rs.getInt("TIPOPERMANENTE")));
 				puntiVittoria = rs.getInt("PUNTIVITTORIA");
-				azioni.add(new Azione(rs.getString("AZIONEIMMEDIATA").toLowerCase(), rs.getInt("VALOREAZIONEIMMEDIATA"), true, rs.getInt("TIPO"), rs.getInt("TIPOPERMANENTE")));
+				effetti.add(new Effetto(rs.getString("AZIONEIMMEDIATA").toLowerCase(), rs.getInt("VALOREAZIONEIMMEDIATA"), true, rs.getInt("TIPO"), rs.getInt("TIPOPERMANENTE")));
 				setImage(rs.getString("IMMAGINE"));
 				setTooltip(rs.getString("DESCRIZIONE"));
 			}
@@ -133,10 +132,6 @@ public class CartaImprese extends CartaSviluppo {
 	
 	public ArrayList<Effetto> getEffetti() {
 		return effetti;
-	}
-	
-	public ArrayList<Azione> getAzione() {
-		return azioni;
 	}
 
 	public void setNameCard(String name) {

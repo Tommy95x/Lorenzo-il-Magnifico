@@ -20,8 +20,7 @@ public class CartaPersonaggi extends CartaSviluppo {
 	private int qtaeffetto;
 	private ArrayList<Effetto> effetti;
 	private String perognicarta;
-	private ArrayList<Azione> azioni;
-	private ArrayList<Effetto> scontoAzioni;
+	int scontoAzione=3;
 	private String image;
 	private String tooltip;
 
@@ -52,12 +51,8 @@ public class CartaPersonaggi extends CartaSviluppo {
 				qtaeffetto=rs.getInt("QTAEFFETTOIMMEDIATO1");
 				effetti.add(new Effetto(nomeffetto, qtaeffetto, true, rs.getInt("TIPO"), rs.getInt("TIPOPERMANENTE")));
 				perognicarta = rs.getString("PEROGNICARTA");
-				azioni.add(new Azione(rs.getString("AZIONEIMMEDIATA").toLowerCase(), rs.getInt("VALOREAZIONEIMMEDIATA"), true, rs.getInt("TIPO"), rs.getInt("TIPOPERMANENTE")));
-				azioni.add(new Azione(rs.getString("AZIONEPERMANENTE").toLowerCase(), rs.getInt("VALOREAZIONEPERMANENTE"), false, rs.getInt("TIPO"), rs.getInt("TIPOPERMANENTE")));
-				scontoAzioni.add(new Effetto(rs.getString("SCONTOAZIONEIMMEDIATA1").toLowerCase(), rs.getInt("QTASCONTOAZIONEIMMEDIATA1"), true, 5, 5));
-				scontoAzioni.add(new Effetto(rs.getString("SCONTOAZIONEIMMEDIATA2").toLowerCase(), rs.getInt("QTASCONTOAZIONEIMMEDIATA2"), true, 5, 5));
-				scontoAzioni.add(new Effetto(rs.getString("SCONTOAZIONEPERMANENTE1").toLowerCase(), rs.getInt("QTASCONTOAZIONEPERMANENTE1"), false, 5, 5));
-				scontoAzioni.add(new Effetto(rs.getString("SCONTOAZIONEPERMANENTE2").toLowerCase(), rs.getInt("QTASCONTOAZIONEPERMANENTE2"), false, 5, 5));
+				effetti.add(new Effetto(rs.getString("AZIONEIMMEDIATA").toLowerCase(), rs.getInt("VALOREAZIONEIMMEDIATA"), true, rs.getInt("TIPO"), rs.getInt("TIPOPERMANENTE")));
+				effetti.add(new Effetto(rs.getString("AZIONEPERMANENTE").toLowerCase(), rs.getInt("VALOREAZIONEPERMANENTE"), false, rs.getInt("TIPO"), rs.getInt("TIPOPERMANENTE")));
 				costoMoneta = rs.getInt("COSTOMONETA");
 				setImage(rs.getString("IMMAGINE"));
 				setTooltip(rs.getString("DESCRIZIONE"));
@@ -87,12 +82,8 @@ public class CartaPersonaggi extends CartaSviluppo {
 		return effetti;
 	}
 	
-	public ArrayList<Azione> getAzione() {
-		return azioni;
-	}
-	
-	public ArrayList<Effetto> getscontoAzione() {
-		return scontoAzioni;
+	public int getScontoAzione() {
+		return scontoAzione;
 	}
 
 	public String getPerOgniCarta() {
