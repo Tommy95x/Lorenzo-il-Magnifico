@@ -8,7 +8,10 @@ import java.util.ArrayList;
 import client.gui.controllers.ControllerGame;
 import server.element.CartaSviluppo;
 import server.element.Dado;
+import server.element.Giocatore;
 import server.element.Partita;
+import server.element.Portafoglio;
+import server.element.TesseraScomunica;
 
 /**
  * 
@@ -36,5 +39,12 @@ public interface ClientInterface {
 	public void notifySpostamento(String color, double x, double y) throws RemoteException, IOException;
 	public String getNamePosition(double x, double y) throws RemoteException, SQLException, IOException, ClassNotFoundException;
 	public void exitToTheGame(String lobby, String color) throws IOException;
+	public void setCardGiocatore(CartaSviluppo carta, int i) throws IOException ;
+	public CartaSviluppo[] getCardsGame() throws ClassNotFoundException, IOException;
+	public Giocatore[] getGiocatori() throws RemoteException, IOException, ClassNotFoundException;
+	public TesseraScomunica[] getCardsScomunica() throws RemoteException, ClassNotFoundException, IOException;
+	public Portafoglio getRisorse() throws RemoteException, ClassNotFoundException, IOException;
+	public void deleteView() throws RemoteException, IOException;
+	public void removeAccount() throws RemoteException, IOException;
 	
 }

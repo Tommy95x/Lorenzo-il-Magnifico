@@ -242,7 +242,6 @@ public class ConnectionClient implements ClientInterface{
 
 
 	public void setName(String text) {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub	
 	}
 }
