@@ -479,9 +479,9 @@ public class Partita implements Serializable {
 	}
 
 	public void notifyAddCardGiocatoreAvv(String name, CartaSviluppo carta) throws RemoteException {
-		for (Giocatore g : giocatori) {
-			if (!g.getName().equals(name) && g != null) {
-				g.notifyAddCardAvv(carta);
+		for (int i=0; i< 4; i++) {
+			if (!giocatori[i].getName().equals(name) && giocatori[i] != null) {
+				giocatori[i].notifyAddCardAvv(carta);
 			}
 		}
 	}
