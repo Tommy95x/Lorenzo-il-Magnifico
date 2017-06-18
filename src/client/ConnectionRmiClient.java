@@ -60,7 +60,6 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 
 	
 	public String login(String account, String pw) throws RemoteException{
-		name=account;
 		try {
 			String mom = serverMethods.login(account, pw);
 			return mom;
@@ -310,6 +309,11 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void setName(String text) {
+		this.name = text;
+		
 	}
 	
 	@Override

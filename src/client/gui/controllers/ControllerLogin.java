@@ -55,8 +55,10 @@ public class ControllerLogin {
 			alert.showAndWait();
 		} else {
 			String mom = start.getClient().login(name.getText(), pw.getText());
-			if (mom.equals("Welcome to the game"))
+			if (mom.equals("Welcome to the game")){
+				start.getClient().setName(name.getText());
 				start.changeStage(3);
+			}
 			else {
 				Alert alert = new Alert(AlertType.WARNING);
 				alert.initOwner(start.getStage());

@@ -65,7 +65,11 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 	}
 	
 	public void notifyTurno(int turno) throws RemoteException, SQLException {
-		guiGame.enableGame( turno);
+		System.out.println("Notifico il turno al giocatore");
+		Platform.runLater(()->{
+			guiGame.enableGame(turno);
+		});
+		
 	}
 
 	public void setGuiGame(ControllerGame guiGame){
@@ -80,8 +84,9 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 
 
 	public void notifySpostamentoPuntiMilitari(double x, double y, String color) {
+		Platform.runLater(() ->{
 		this.guiGame.notifySpostamentoPuntiMilitari(x,y,color);
-		
+		});
 	}
 
 	public void notifySpostamentoPuntiVittoria(double x, double y, String color) {

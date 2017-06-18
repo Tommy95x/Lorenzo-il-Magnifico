@@ -334,6 +334,7 @@ public class ControllerGame {
 			familiareNero.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNero.png")));
 			familiareArancio.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluArancio.png")));
 			familiareBianco.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluBianco.png")));
+			bandiera.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBlu.png")));
 			for (Giocatore g : giocatori) {
 				if (g != null && g.getName() != start.getClient().getName()) {
 					switch (g.getColor()) {
@@ -421,6 +422,7 @@ public class ControllerGame {
 			familiareNero.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeNero.png")));
 			familiareArancio.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeArancio.png")));
 			familiareBianco.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeBianco.png")));
+			bandiera.setImage(new Image(this.getClass().getResourceAsStream("BandierinaVerde.png")));
 			for (Giocatore g : giocatori) {
 				if (g != null && g.getName() != start.getClient().getName()) {
 					switch (g.getColor()) {
@@ -442,13 +444,13 @@ public class ControllerGame {
 						servitori1.setText(String.valueOf(p.getDimRisorse("servitori")));
 						break;
 					case "green":
-						familiareBlue1
+						familiareGreen1
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNeutro.png")));
-						familiareBlue2
+						familiareGreen2
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluArancio.png")));
-						familiareBlue3
+						familiareGreen3
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluBianco.png")));
-						familiareBlue4.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNero.png")));
+						familiareGreen4.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNero.png")));
 						flag2.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBlu.png")));
 						name2.setText(g.getName());
 						p = g.getRisorse();
@@ -507,6 +509,7 @@ public class ControllerGame {
 			familiareNero.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoNero.png")));
 			familiareArancio.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoArancio.png")));
 			familiareBianco.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoBianco.png")));
+			bandiera.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBianca.png")));
 			for (Giocatore g : giocatori) {
 				if (g != null && g.getName() != start.getClient().getName()) {
 					switch (g.getColor()) {
@@ -594,6 +597,7 @@ public class ControllerGame {
 			familiareNero.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioNero.png")));
 			familiareArancio.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioArancio.png")));
 			familiareBianco.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioBianco.png")));
+			flag1.setImage(new Image(this.getClass().getResourceAsStream("BandierinaArancio.png")));
 			for (Giocatore g : giocatori) {
 				if (g != null && g.getName() != start.getClient().getName()) {
 					switch (g.getColor()) {
@@ -605,7 +609,7 @@ public class ControllerGame {
 						familiareOrange3
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluBianco.png")));
 						familiareOrange4
-								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeArancio.png")));
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBlueNero.png")));
 						flag1.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBlu.png")));
 						name1.setText(g.getName());
 						p = g.getRisorse();
@@ -1165,11 +1169,12 @@ public class ControllerGame {
 	}
 
 	public void enableGame(int turno) {
+		System.out.println("Abilito i bottone dei dadi");
 		this.turno.setText(String.valueOf(turno));
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.initOwner(start.getStage());
 		alert.setTitle("Notifica Turno");
-		alert.setContentText("Hei, e' iniziato il tuo turno lancia i dadi e fai le tue mosse");
+		alert.setContentText("Hei, e' iniziato il tuo turno lancia i dadi e dopo fai le tue mosse");
 		alert.showAndWait();
 		lanciaDadi.setDisable(false);
 	}

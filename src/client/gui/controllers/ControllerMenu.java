@@ -228,7 +228,7 @@ public class ControllerMenu {
 		boxColors.getChildren().add(circle);
 		b = new Button("Green");
 		b.setOnAction(event -> {
-			start.setColor("white");
+			start.setColor("green");
 			try {
 				System.out.println(start.getClient().createANewLobby(lobby, start.getColor()));
 				viewStartButton();
@@ -265,7 +265,7 @@ public class ControllerMenu {
 						circle.setFill(Color.BLUE);
 						circle.setRadius(50.0);
 						boxColors.getChildren().add(circle);
-						b = new Button("blue");
+						b = new Button("Blue");
 						b.setOnAction(event -> {
 							start.setColor("blue");
 							try {

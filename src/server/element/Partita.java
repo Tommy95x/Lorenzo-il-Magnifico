@@ -151,6 +151,12 @@ public class Partita implements Serializable {
 		 * ClassNotFoundException e) { // TODO Auto-generated catch block
 		 * e.printStackTrace(); }
 		 */
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		 changeGamer();
 	}
 
@@ -404,6 +410,7 @@ public class Partita implements Serializable {
 	}
 
 	public void changeGamer() throws RemoteException, SQLException {
+		System.out.println("Inizio i turni");
 		if (NumberOfPlayers > 3) {
 			addTurno();
 		} else {
@@ -416,9 +423,8 @@ public class Partita implements Serializable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			this.NumberOfPlayers++;
+			NumberOfPlayers++;
 		}
-
 	}
 
 	public void notifySpostamento(String color, Giocatore giocatoreByName, double x, double y) {

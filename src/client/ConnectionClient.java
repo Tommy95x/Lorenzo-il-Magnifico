@@ -238,4 +238,16 @@ public class ConnectionClient implements ClientInterface{
 
 	public void sendClient(StartClientGui start) {
 	}
+
+
+	public void resendClient() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void setName(String text) {
+		// TODO Auto-generated method stub
+		
+	}
 }
