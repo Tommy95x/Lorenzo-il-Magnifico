@@ -259,6 +259,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	}
 	
 	public String controlloPosizionamento(String color, double x, double y, int integer) throws RemoteException, IOException, ClassNotFoundException, SQLException {
+		System.out.println(name);
 		return serverMethods.controlloPosizionamento(color, positionGame, name, x, y, integer);
 	}
 	

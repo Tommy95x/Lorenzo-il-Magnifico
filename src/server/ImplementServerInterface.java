@@ -114,6 +114,7 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 
 	public String controlloPosizionamento(String color, int posisitionGame, String name, double x, double y, int agg)
 			throws RemoteException, SQLException {
+		System.out.println(name);
 		return commonServer.getLobbyByNumber(posisitionGame).getGiocatoreByName(name).controlloPosizionamento(color, x,
 				y, commonServer.getDBConnection().getConnection(name), agg);
 	}

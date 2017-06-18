@@ -732,14 +732,15 @@ public class ControllerGame {
 					HBox buttonBox = new HBox();
 					Label title = new Label(
 							"Non potresti posizionare qui il tuo familiare, a meno che non paghi qualche servitore\nVuoi pagare?\nQuanto?");
-					TextField text = new TextField();
+					TextField spesa = new TextField();
 					Button bOk = new Button("OK");
 					Button bCancel = new Button("Cancel");
 					buttonBox.getChildren().addAll(bOk, bCancel);
-					box.getChildren().addAll(title, text, buttonBox);
+					box.getChildren().addAll(title, spesa, buttonBox);
 					bOk.setOnAction(event -> {
-						controlloPosizionamento(color, x, y, Integer.getInteger(text.getText()));
+						controlloPosizionamento(color, x, y, Integer.getInteger(spesa.getText()));
 						popup.close();
+						event.consume();
 					});
 					bCancel.setOnAction(event -> {
 						/*
@@ -1446,7 +1447,7 @@ public class ControllerGame {
 
 		familiareNeutro.setOnDragDone(event -> {
 			if (flag) {
-				if (controlloPosizionamento(start.getColor(), destinazione1.getLayoutX(), destinazione1.getLayoutY(),
+				if (controlloPosizionamento("neutro", destinazione1.getLayoutX(), destinazione1.getLayoutY(),
 						0)) {
 					destinazione1.setImage(familiareNeutro.getImage());
 					familiareNeutro.setDisable(true);
@@ -1460,7 +1461,7 @@ public class ControllerGame {
 					}
 				}
 			} else {
-				if (controlloPosizionamento(start.getColor(), destinazione2.getLayoutX(), destinazione2.getLayoutX(),
+				if (controlloPosizionamento("neutro", destinazione2.getLayoutX(), destinazione2.getLayoutX(),
 						0)) {
 					ImageView mom = new ImageView(familiareNeutro.getImage());
 					mom.setFitWidth(35);
@@ -1481,7 +1482,7 @@ public class ControllerGame {
 
 		familiareNero.setOnDragDone(event -> {
 			if (flag) {
-				if (controlloPosizionamento(start.getColor(), destinazione1.getLayoutX(), destinazione1.getLayoutY(),
+				if (controlloPosizionamento("black", destinazione1.getLayoutX(), destinazione1.getLayoutY(),
 						0)) {
 					destinazione1.setImage(familiareNero.getImage());
 					familiareNero.setDisable(true);
@@ -1495,7 +1496,7 @@ public class ControllerGame {
 					}
 				}
 			} else {
-				if (controlloPosizionamento(start.getColor(), destinazione2.getLayoutX(), destinazione2.getLayoutX(),
+				if (controlloPosizionamento("black", destinazione2.getLayoutX(), destinazione2.getLayoutX(),
 						0)) {
 					ImageView mom = new ImageView(familiareNero.getImage());
 					mom.setFitWidth(35);
@@ -1516,7 +1517,7 @@ public class ControllerGame {
 
 		familiareArancio.setOnDragDone(event -> {
 			if (flag) {
-				if (controlloPosizionamento(start.getColor(), destinazione1.getLayoutX(), destinazione1.getLayoutY(),
+				if (controlloPosizionamento("orange", destinazione1.getLayoutX(), destinazione1.getLayoutY(),
 						0)) {
 					destinazione1.setImage(familiareArancio.getImage());
 					familiareArancio.setDisable(true);
@@ -1530,7 +1531,7 @@ public class ControllerGame {
 					}
 				}
 			} else {
-				if (controlloPosizionamento(start.getColor(), destinazione2.getLayoutX(), destinazione2.getLayoutX(),
+				if (controlloPosizionamento("orange", destinazione2.getLayoutX(), destinazione2.getLayoutX(),
 						0)) {
 					ImageView mom = new ImageView(familiareArancio.getImage());
 					mom.setFitWidth(35);
@@ -1551,7 +1552,7 @@ public class ControllerGame {
 
 		familiareBianco.setOnDragDone(event -> {
 			if (flag) {
-				if (controlloPosizionamento(start.getColor(), destinazione1.getLayoutX(), destinazione1.getLayoutY(),
+				if (controlloPosizionamento("white", destinazione1.getLayoutX(), destinazione1.getLayoutY(),
 						0)) {
 					destinazione1.setImage(familiareBianco.getImage());
 					familiareBianco.setDisable(true);
@@ -1565,7 +1566,7 @@ public class ControllerGame {
 					}
 				}
 			} else {
-				if (controlloPosizionamento(start.getColor(), destinazione2.getLayoutX(), destinazione2.getLayoutX(),
+				if (controlloPosizionamento("white", destinazione2.getLayoutX(), destinazione2.getLayoutX(),
 						0)) {
 					ImageView mom = new ImageView(familiareBianco.getImage());
 					mom.setFitWidth(35);

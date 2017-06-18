@@ -69,16 +69,13 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 	
 	public void notifyTurno(int turno) throws RemoteException, SQLException {
 		System.out.println("Notifico il turno al giocatore");
-		Platform.runLater(()->{
-			guiGame.enableGame(turno);
+		Platform.runLater(() -> {
+		guiGame.enableGame(turno);
 		});
-		
 	}
 
 	public void setGuiGame(ControllerGame guiGame){
-		Platform.runLater(() -> {
 		this.guiGame = guiGame;
-		});
 	}
 
 	@Override

@@ -135,11 +135,12 @@ public class Giocatore implements Serializable {
 
 	public String controlloPosizionamento(String color, double x, double y, Connection connection, int agg)
 			throws SQLException {
-		Dado dadoMom = null;
-		for (Dado d : dadi) {
-			if (d.getColor().equals(color))
-				dadoMom = d;
-			break;
+		int dado = 0;
+		System.out.println(color);
+		for(int i=0;i<3;i++){
+			if(dadi[i].getColor().equals(color)){
+				dado = i;
+			}
 		}
 		String query = "SELECT VALOREAZIONE FROM POSIZIONETABELLONE WHERE " + x + "=POSX AND " + y + "=POSY";
 		Statement stmt = connection.createStatement();
@@ -152,7 +153,7 @@ public class Giocatore implements Serializable {
 		if (risorse.getDimRisorse("servitori") < agg) {
 			return "NotEnough";
 		} else {
-			if (dadoMom.getValore() + agg >= valoreazione) {
+			if (dadi[dado].getValore() + agg >= valoreazione || (color.equals("neutro") && agg >0)) {
 				risorse.addRis("servitori", -agg);
 				return "OK";
 			} else {
