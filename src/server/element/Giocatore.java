@@ -156,9 +156,10 @@ public class Giocatore implements Serializable {
 			if (dadi[dado].getValore() + agg >= valoreazione || (color.equals("neutro") && agg >0)) {
 				risorse.addRis("servitori", -agg);
 				return "OK";
-			} else {
+			} else if(dadi[dado].getValore() + agg < valoreazione || (color.equals("neutro") && agg <0)){
 				return "Pay";
-			}
+			}else
+				return "Cancel"; 
 		}
 	}
 

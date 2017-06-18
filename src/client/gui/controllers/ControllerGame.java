@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 import client.gui.StartClientGui;
 import javafx.animation.PathTransition;
@@ -15,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
@@ -726,7 +728,18 @@ public class ControllerGame {
 					e.printStackTrace();
 				}
 				if (mom.equals("Pay")) {
-					Stage popup = new Stage();
+					System.out.println(x+" "+ y+ " "+color);
+					TextInputDialog dialog = new TextInputDialog("");
+					dialog.setTitle("Pay or not Pay");
+					dialog.setHeaderText("Non potresti posizionare qui il tuo familiare, a meno che non paghi qualche servitore\nVuoi pagare?\nQuanto?");
+					dialog.setContentText("Inserisci il numero di servitori");
+					Optional<String> result = dialog.showAndWait();
+					result.ifPresent(val -> controlloPosizionamento(color, x, y, Integer.getInteger(val)));
+
+					
+					
+					
+					/*Stage popup = new Stage();
 					popup.setTitle("Pay or not Pay");
 					VBox box = new VBox();
 					HBox buttonBox = new HBox();
@@ -737,12 +750,16 @@ public class ControllerGame {
 					Button bCancel = new Button("Cancel");
 					buttonBox.getChildren().addAll(bOk, bCancel);
 					box.getChildren().addAll(title, spesa, buttonBox);
+					Scene scene = new Scene(box, 600, 400);
+					popup.centerOnScreen();
+					popup.setScene(scene);
+					popup.show();
 					bOk.setOnAction(event -> {
 						controlloPosizionamento(color, x, y, Integer.getInteger(spesa.getText()));
 						popup.close();
 						event.consume();
 					});
-					bCancel.setOnAction(event -> {
+					bCancel.setOnAction(event -> {*/
 						/*
 						 * switch (color) { case "neutro":
 						 * familiareNeutro.setImage(new
@@ -754,12 +771,8 @@ public class ControllerGame {
 						 * case "white": familiareBianco.setImage(new
 						 * Image(getClass().getResourceAsStream(""))); break;
 						 */
-						popup.close();
-					});
-					Scene scene = new Scene(box, 600, 400);
-					popup.centerOnScreen();
-					popup.setScene(scene);
-					popup.show();
+						/*popup.close();
+					});*/
 				} else if (mom == null) {
 					Alert alert = new Alert(AlertType.WARNING);
 					alert.initOwner(start.getStage());
@@ -775,6 +788,8 @@ public class ControllerGame {
 					alert.setTitle("Mossa negata");
 					alert.setContentText("Non fare il furbo!! Non hai abbastanza servitori!");
 					alert.showAndWait();
+					return false;
+				}else if(mom.equals("Cancel")){
 					return false;
 				}
 			}
@@ -984,7 +999,7 @@ public class ControllerGame {
 			System.out.println(carte[i].getImage());
 			mom.setImage(new Image(getClass().getResourceAsStream(carte[i].getImage())));
 			Tooltip.install(mom, carte[i].getTooltip());
-			carteTerritori.getChildren().add(mom);
+			carteTerritori.getChildren().add(i, mom);
 		}
 		for (int i = 0; i < 4; i++) {
 			arrayCartePersonaggi[i] = new CartaPersonaggi();
@@ -992,7 +1007,7 @@ public class ControllerGame {
 			ImageView mom = new ImageView();
 			mom.setImage(new Image(getClass().getResourceAsStream(carte[i + 4].getImage())));
 			Tooltip.install(mom, carte[i + 4].getTooltip());
-			cartePersonaggi.getChildren().add(mom);
+			cartePersonaggi.getChildren().add(i, mom);
 		}
 		for (int i = 0; i < 4; i++) {
 			arrayCarteEdifici[i] = new CartaEdifici();
@@ -1000,7 +1015,7 @@ public class ControllerGame {
 			ImageView mom = new ImageView();
 			mom.setImage(new Image(getClass().getResourceAsStream(carte[i + 8].getImage())));
 			Tooltip.install(mom, carte[i + 8].getTooltip());
-			carteEdifici.getChildren().add(mom);
+			carteEdifici.getChildren().add(i, mom);
 		}
 		for (int i = 0; i < 4; i++) {
 			arrayCarteImpresa[i] = new CartaImprese();
@@ -1008,7 +1023,7 @@ public class ControllerGame {
 			ImageView mom = new ImageView();
 			mom.setImage(new Image(getClass().getResourceAsStream(carte[i + 12].getImage())));
 			Tooltip.install(mom, carte[i + 12].getTooltip());
-			carteImprese.getChildren().add(mom);
+			carteImprese.getChildren().add(i, mom);
 		}
 	}
 
@@ -1030,103 +1045,104 @@ public class ControllerGame {
 
 	public void setCardGiocatore(String namePosition) throws IOException {
 		switch (namePosition) {
-		case "PIANO 1 CARTE TERRITORI":
+		case "PIANO 1 FAMILIARE TERRITORI":
 			carteTerritoriGiocatore.getChildren().add(carteTerritori.getChildren().get(0));
 			Tooltip.install(carteTerritoriGiocatore.getChildren().get(0), arrayCarteTerritori[0].getTooltip());
 			carteTerritori.getChildren().get(0).setOpacity(0);
 			start.getClient().setCardGiocatore(arrayCarteTerritori[0], 0);
 			break;
-		case "PIANO 2 CARTE TERRITORI":
+		case "PIANO 2 FAMILIARE TERRITORI":
 			carteTerritoriGiocatore.getChildren().add(carteTerritori.getChildren().get(1));
 			Tooltip.install(carteTerritoriGiocatore.getChildren().get(1), arrayCarteTerritori[1].getTooltip());
 			carteTerritori.getChildren().get(1).setOpacity(0);
 			start.getClient().setCardGiocatore(arrayCarteTerritori[1], 0);
 			break;
-		case "PIANO 3 CARTE TERRITORI":
+		case "PIANO 3 FAMILIARE TERRITORI":
 			carteTerritoriGiocatore.getChildren().add(carteTerritori.getChildren().get(2));
 			Tooltip.install(carteTerritoriGiocatore.getChildren().get(2), arrayCarteTerritori[2].getTooltip());
 			carteTerritori.getChildren().get(2).setOpacity(0);
 			start.getClient().setCardGiocatore(arrayCarteTerritori[2], 0);
 			break;
-		case "PIANO 4 CARTE TERRITORI":
+		case "PIANO 4 FAMILIARE TERRITORI":
 			carteTerritoriGiocatore.getChildren().add(carteTerritori.getChildren().get(3));
 			Tooltip.install(carteTerritoriGiocatore.getChildren().get(3), arrayCarteTerritori[3].getTooltip());
 			carteTerritori.getChildren().get(3).setOpacity(0);
 			start.getClient().setCardGiocatore(arrayCarteTerritori[3], 0);
 			break;
-		case "PIANO 1 CARTE EDIFICI":
+		case "PIANO 1 FAMILIARE EDIFICI":
 			carteEdificiGiocatore.getChildren().add(carteEdifici.getChildren().get(0));
 			Tooltip.install(carteEdificiGiocatore.getChildren().get(0), arrayCarteEdifici[0].getTooltip());
 			carteEdifici.getChildren().get(0).setOpacity(0);
 			start.getClient().setCardGiocatore(arrayCarteEdifici[0], 3);
 			break;
-		case "PIANO 2 CARTE EDIFICI":
+		case "PIANO 2 FAMILIARE EDIFICI":
 			carteEdificiGiocatore.getChildren().add(carteEdifici.getChildren().get(1));
 			Tooltip.install(carteEdificiGiocatore.getChildren().get(1), arrayCarteEdifici[1].getTooltip());
 			carteEdifici.getChildren().get(1).setOpacity(0);
 			start.getClient().setCardGiocatore(arrayCarteEdifici[1], 3);
 			break;
-		case "PIANO 3 CARTE EDIFICI":
+		case "PIANO 3 FAMILIARE EDIFICI":
 			carteEdificiGiocatore.getChildren().add(carteEdifici.getChildren().get(2));
 			Tooltip.install(carteEdificiGiocatore.getChildren().get(2), arrayCarteEdifici[2].getTooltip());
 			carteEdifici.getChildren().get(1).setOpacity(0);
 			start.getClient().setCardGiocatore(arrayCarteEdifici[2], 3);
 			break;
-		case "PIANO 4 CARTE EDIFICI":
+		case "PIANO 4 FAMILIARE EDIFICI":
 			carteEdificiGiocatore.getChildren().add(carteEdifici.getChildren().get(3));
 			Tooltip.install(carteEdificiGiocatore.getChildren().get(3), arrayCarteEdifici[3].getTooltip());
 			carteEdifici.getChildren().get(3).setOpacity(0);
 			start.getClient().setCardGiocatore(arrayCarteEdifici[3], 3);
 			break;
-		case "PIANO 1 CARTE IMPRESE":
+		case "PIANO 1 FAMILIARE IMPRESE":
 			carteImpresaGiocatore.getChildren().add(carteImprese.getChildren().get(0));
 			Tooltip.install(carteImpresaGiocatore.getChildren().get(0), arrayCarteImpresa[0].getTooltip());
 			carteImprese.getChildren().get(0).setOpacity(0);
 			start.getClient().setCardGiocatore(arrayCarteImpresa[0], 4);
 			break;
-		case "PIANO 2 CARTE IMPRESE":
+		case "PIANO 2 FAMILIARE IMPRESE":
 			carteImpresaGiocatore.getChildren().add(carteImprese.getChildren().get(1));
 			Tooltip.install(carteImpresaGiocatore.getChildren().get(1), arrayCarteImpresa[1].getTooltip());
 			carteImprese.getChildren().get(1).setOpacity(0);
 			start.getClient().setCardGiocatore(arrayCarteImpresa[1], 4);
 			break;
-		case "PIANO 3 CARTE IMPRESE":
+		case "PIANO 3 FAMILIARE IMPRESE":
 			carteImpresaGiocatore.getChildren().add(carteImprese.getChildren().get(2));
 			Tooltip.install(carteImpresaGiocatore.getChildren().get(2), arrayCarteImpresa[2].getTooltip());
 			carteImprese.getChildren().get(2).setOpacity(0);
 			start.getClient().setCardGiocatore(arrayCarteImpresa[2], 4);
 			break;
-		case "PIANO 4 CARTE IMPRESE":
+		case "PIANO 4 FAMILIARE IMPRESE":
 			carteImpresaGiocatore.getChildren().add(carteImprese.getChildren().get(3));
 			Tooltip.install(carteImpresaGiocatore.getChildren().get(3), arrayCarteImpresa[3].getTooltip());
 			carteImprese.getChildren().get(3).setOpacity(0);
 			start.getClient().setCardGiocatore(arrayCarteImpresa[3], 4);
 			break;
-		case "PIANO 1 CARTE PERSONAGGI":
+		case "PIANO 1 FAMILIARE PERSONAGGI":
 			cartePersonaggiGiocatore.getChildren().add(cartePersonaggi.getChildren().get(0));
 			Tooltip.install(cartePersonaggiGiocatore.getChildren().get(0), arrayCartePersonaggi[0].getTooltip());
 			cartePersonaggi.getChildren().get(0).setOpacity(0);
 			start.getClient().setCardGiocatore(arrayCartePersonaggi[0], 1);
 			break;
-		case "PIANO 2 CARTE PERSONAGGI":
+		case "PIANO 2 FAMILIARE PERSONAGGI":
 			cartePersonaggiGiocatore.getChildren().add(cartePersonaggi.getChildren().get(1));
 			Tooltip.install(cartePersonaggiGiocatore.getChildren().get(1), arrayCartePersonaggi[1].getTooltip());
 			cartePersonaggi.getChildren().get(1).setOpacity(0);
 			start.getClient().setCardGiocatore(arrayCartePersonaggi[1], 1);
 			break;
-		case "PIANO 3 CARTE PERSONAGGI":
+		case "PIANO 3 FAMILIARE PERSONAGGI":
 			cartePersonaggiGiocatore.getChildren().add(cartePersonaggi.getChildren().get(2));
 			Tooltip.install(cartePersonaggiGiocatore.getChildren().get(2), arrayCartePersonaggi[2].getTooltip());
 			cartePersonaggi.getChildren().get(2).setOpacity(0);
 			start.getClient().setCardGiocatore(arrayCartePersonaggi[2], 1);
 			break;
-		case "PIANO 4 CARTE PERSONAGGI":
+		case "PIANO 4 FAMILIARE PERSONAGGI":
 			cartePersonaggiGiocatore.getChildren().add(cartePersonaggi.getChildren().get(3));
 			Tooltip.install(cartePersonaggiGiocatore.getChildren().get(3), arrayCartePersonaggi[3].getTooltip());
 			cartePersonaggi.getChildren().get(2).setOpacity(0);
 			start.getClient().setCardGiocatore(arrayCartePersonaggi[3], 1);
 			break;
 		case "AZIONE PRODUZIONE 4":
+			//RIcordare di chiedere come funziona a Mattia
 			start.getClient().produzione(-3);
 			break;
 		case "AZIONE PRODUZIONE 1":
@@ -1988,7 +2004,7 @@ public class ControllerGame {
 		HBox box = new HBox();
 		HBox labelBox = new HBox();
 		Label[] l = { new Label(" "),
-				new Label("Hei, puoi prendere una carta in più, clicca sulla carta che vorresti prendere"),
+				new Label("Hei, puoi prendere una carta in piu', clicca sulla carta che vorresti prendere"),
 				new Label(" ") };
 		Immagine[] im = new Immagine[16];
 		labelBox.getChildren().addAll(l[0], l[1], l[2]);

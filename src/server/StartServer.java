@@ -19,7 +19,7 @@ public class StartServer implements Serializable{
 
 	private ArrayList<String> utente= new ArrayList<String>();
 	private ArrayList<Partita> lobbies = new ArrayList <Partita>();
-	private ConnectionDatabase DB = new ConnectionDatabase(20, 10);
+	private ConnectionDatabase DB = new ConnectionDatabase(80, 10);
 	
 	public static void main(String[] args) {
 		StartServer server = new StartServer();

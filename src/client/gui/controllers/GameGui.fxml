@@ -21,10 +21,10 @@
                   <Image url="@../../../../Media/IMG_20170523_155418.png" />
                </image>
             </ImageView>
-            <VBox fx:id="carteTerritori" alignment="BOTTOM_LEFT" layoutX="36.0" layoutY="37.0" prefHeight="390.0" prefWidth="63.0" />
-            <VBox fx:id="cartePersonaggi" alignment="BOTTOM_LEFT" layoutX="145.0" layoutY="40.0" prefHeight="383.0" prefWidth="63.0" />
-            <VBox fx:id="carteEdifici" alignment="BOTTOM_LEFT" layoutX="254.0" layoutY="41.0" prefHeight="383.0" prefWidth="63.0" />
-            <VBox fx:id="carteImprese" alignment="BOTTOM_LEFT" layoutX="360.0" layoutY="42.0" prefHeight="383.0" prefWidth="63.0" />
+            <VBox fx:id="carteTerritori" layoutX="36.0" layoutY="37.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="390.0" prefWidth="63.0" />
+            <VBox fx:id="cartePersonaggi" layoutX="145.0" layoutY="40.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="383.0" prefWidth="63.0" />
+            <VBox fx:id="carteEdifici" layoutX="254.0" layoutY="41.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="383.0" prefWidth="63.0" />
+            <VBox fx:id="carteImprese" layoutX="360.0" layoutY="42.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="383.0" prefWidth="63.0" />
             <HBox fx:id="municipio" layoutX="265.0" layoutY="440.0" prefHeight="38.0" prefWidth="123.0" />
             <ImageView fx:id="pianoQuartoPalazzoEdifici" fitHeight="38.0" fitWidth="46.0" layoutX="312.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="pianoTerzoPalazzoEdifici" fitHeight="38.0" fitWidth="46.0" layoutX="311.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true" />
