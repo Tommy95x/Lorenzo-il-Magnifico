@@ -268,7 +268,7 @@ public class ControllerGame {
 
 	public void setGUI(StartClientGui startClientGui) throws ClassNotFoundException, IOException {
 		this.setStart(startClientGui);
-		//numberOfGamers = start.getClient().getPlayers();
+		// numberOfGamers = start.getClient().getPlayers();
 		start.getClient().setGuiGame(this);
 	}
 
@@ -329,7 +329,8 @@ public class ControllerGame {
 		puntiMilitariBianco.setImage(new Image(getClass().getResourceAsStream("Disco12.png")));
 		puntiMilitariArancio.setImage(new Image(getClass().getResourceAsStream("Disco3.png")));
 		Giocatore[] giocatori = new Giocatore[4];
-		giocatori = start.getClient().getGiocatori();;
+		giocatori = start.getClient().getGiocatori();
+		;
 		Portafoglio p = null;
 		switch (color) {
 		case "blue":
@@ -453,7 +454,8 @@ public class ControllerGame {
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluArancio.png")));
 						familiareGreen3
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluBianco.png")));
-						familiareGreen4.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNero.png")));
+						familiareGreen4
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNero.png")));
 						flag2.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBlu.png")));
 						name2.setText(g.getName());
 						p = g.getRisorse();
@@ -694,10 +696,6 @@ public class ControllerGame {
 		return start;
 	}
 
-	public void setBandiera(Image bandiera) {
-		this.bandiera.setImage(bandiera);
-	}
-
 	public void setPietra(int pietra) {
 		this.pietra.setText(Integer.toString(pietra));
 	}
@@ -728,51 +726,45 @@ public class ControllerGame {
 					e.printStackTrace();
 				}
 				if (mom.equals("Pay")) {
-					System.out.println(x+" "+ y+ " "+color);
+					System.out.println(x + " " + y + " " + color);
 					TextInputDialog dialog = new TextInputDialog("");
 					dialog.setTitle("Pay or not Pay");
-					dialog.setHeaderText("Non potresti posizionare qui il tuo familiare, a meno che non paghi qualche servitore\nVuoi pagare?\nQuanto?");
+					dialog.setHeaderText(
+							"Non potresti posizionare qui il tuo familiare, a meno che non paghi qualche servitore\nVuoi pagare?\nQuanto?");
 					dialog.setContentText("Inserisci il numero di servitori");
 					Optional<String> result = dialog.showAndWait();
 					result.ifPresent(val -> controlloPosizionamento(color, x, y, Integer.getInteger(val)));
 
-					
-					
-					
-					/*Stage popup = new Stage();
-					popup.setTitle("Pay or not Pay");
-					VBox box = new VBox();
-					HBox buttonBox = new HBox();
-					Label title = new Label(
-							"Non potresti posizionare qui il tuo familiare, a meno che non paghi qualche servitore\nVuoi pagare?\nQuanto?");
-					TextField spesa = new TextField();
-					Button bOk = new Button("OK");
-					Button bCancel = new Button("Cancel");
-					buttonBox.getChildren().addAll(bOk, bCancel);
-					box.getChildren().addAll(title, spesa, buttonBox);
-					Scene scene = new Scene(box, 600, 400);
-					popup.centerOnScreen();
-					popup.setScene(scene);
-					popup.show();
-					bOk.setOnAction(event -> {
-						controlloPosizionamento(color, x, y, Integer.getInteger(spesa.getText()));
-						popup.close();
-						event.consume();
-					});
-					bCancel.setOnAction(event -> {*/
-						/*
-						 * switch (color) { case "neutro":
-						 * familiareNeutro.setImage(new
-						 * Image(getClass().getResourceAsStream(""))); break;
-						 * case "black": familiareNero.setImage(new
-						 * Image(getClass().getResourceAsStream(""))); break;
-						 * case "orange": familiareArancio.setImage(new
-						 * Image(getClass().getResourceAsStream(""))); break;
-						 * case "white": familiareBianco.setImage(new
-						 * Image(getClass().getResourceAsStream(""))); break;
-						 */
-						/*popup.close();
-					});*/
+					/*
+					 * Stage popup = new Stage();
+					 * popup.setTitle("Pay or not Pay"); VBox box = new VBox();
+					 * HBox buttonBox = new HBox(); Label title = new Label(
+					 * "Non potresti posizionare qui il tuo familiare, a meno che non paghi qualche servitore\nVuoi pagare?\nQuanto?"
+					 * ); TextField spesa = new TextField(); Button bOk = new
+					 * Button("OK"); Button bCancel = new Button("Cancel");
+					 * buttonBox.getChildren().addAll(bOk, bCancel);
+					 * box.getChildren().addAll(title, spesa, buttonBox); Scene
+					 * scene = new Scene(box, 600, 400); popup.centerOnScreen();
+					 * popup.setScene(scene); popup.show();
+					 * bOk.setOnAction(event -> { controlloPosizionamento(color,
+					 * x, y, Integer.getInteger(spesa.getText()));
+					 * popup.close(); event.consume(); });
+					 * bCancel.setOnAction(event -> {
+					 */
+					/*
+					 * switch (color) { case "neutro":
+					 * familiareNeutro.setImage(new
+					 * Image(getClass().getResourceAsStream(""))); break; case
+					 * "black": familiareNero.setImage(new
+					 * Image(getClass().getResourceAsStream(""))); break; case
+					 * "orange": familiareArancio.setImage(new
+					 * Image(getClass().getResourceAsStream(""))); break; case
+					 * "white": familiareBianco.setImage(new
+					 * Image(getClass().getResourceAsStream(""))); break;
+					 */
+					/*
+					 * popup.close(); });
+					 */
 				} else if (mom == null) {
 					Alert alert = new Alert(AlertType.WARNING);
 					alert.initOwner(start.getStage());
@@ -789,7 +781,7 @@ public class ControllerGame {
 					alert.setContentText("Non fare il furbo!! Non hai abbastanza servitori!");
 					alert.showAndWait();
 					return false;
-				}else if(mom.equals("Cancel")){
+				} else if (mom.equals("Cancel")) {
 					return false;
 				}
 			}
@@ -1032,15 +1024,15 @@ public class ControllerGame {
 	}
 
 	public String getNamePosition(double x, double y) throws IOException {
-			try {
-				String mom =start.getClient().getNamePosition(x, y);
-				System.out.println(mom);
-				return mom;
-			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return null;
-			}
+		try {
+			String mom = start.getClient().getNamePosition(x, y);
+			System.out.println(mom);
+			return mom;
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	public void setCardGiocatore(String namePosition) throws IOException {
@@ -1142,7 +1134,7 @@ public class ControllerGame {
 			start.getClient().setCardGiocatore(arrayCartePersonaggi[3], 1);
 			break;
 		case "AZIONE PRODUZIONE 4":
-			//RIcordare di chiedere come funziona a Mattia
+			// RIcordare di chiedere come funziona a Mattia
 			start.getClient().produzione(-3);
 			break;
 		case "AZIONE PRODUZIONE 1":
@@ -1221,7 +1213,7 @@ public class ControllerGame {
 	@FXML
 	public void lanciaDadi() throws RemoteException, SQLException {
 		try {
-			dadi = start.getClient().lanciaDadi();	
+			dadi = start.getClient().lanciaDadi();
 		} catch (ClassNotFoundException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -1463,8 +1455,7 @@ public class ControllerGame {
 
 		familiareNeutro.setOnDragDone(event -> {
 			if (flag) {
-				if (controlloPosizionamento("neutro", destinazione1.getLayoutX(), destinazione1.getLayoutY(),
-						0)) {
+				if (controlloPosizionamento("neutro", destinazione1.getLayoutX(), destinazione1.getLayoutY(), 0)) {
 					destinazione1.setImage(familiareNeutro.getImage());
 					familiareNeutro.setDisable(true);
 					familiareNeutro.setOpacity(0);
@@ -1477,8 +1468,7 @@ public class ControllerGame {
 					}
 				}
 			} else {
-				if (controlloPosizionamento("neutro", destinazione2.getLayoutX(), destinazione2.getLayoutX(),
-						0)) {
+				if (controlloPosizionamento("neutro", destinazione2.getLayoutX(), destinazione2.getLayoutX(), 0)) {
 					ImageView mom = new ImageView(familiareNeutro.getImage());
 					mom.setFitWidth(35);
 					mom.setFitHeight(38);
@@ -1498,8 +1488,7 @@ public class ControllerGame {
 
 		familiareNero.setOnDragDone(event -> {
 			if (flag) {
-				if (controlloPosizionamento("black", destinazione1.getLayoutX(), destinazione1.getLayoutY(),
-						0)) {
+				if (controlloPosizionamento("black", destinazione1.getLayoutX(), destinazione1.getLayoutY(), 0)) {
 					destinazione1.setImage(familiareNero.getImage());
 					familiareNero.setDisable(true);
 					familiareNero.setOpacity(0);
@@ -1512,8 +1501,7 @@ public class ControllerGame {
 					}
 				}
 			} else {
-				if (controlloPosizionamento("black", destinazione2.getLayoutX(), destinazione2.getLayoutX(),
-						0)) {
+				if (controlloPosizionamento("black", destinazione2.getLayoutX(), destinazione2.getLayoutX(), 0)) {
 					ImageView mom = new ImageView(familiareNero.getImage());
 					mom.setFitWidth(35);
 					mom.setFitHeight(38);
@@ -1533,8 +1521,7 @@ public class ControllerGame {
 
 		familiareArancio.setOnDragDone(event -> {
 			if (flag) {
-				if (controlloPosizionamento("orange", destinazione1.getLayoutX(), destinazione1.getLayoutY(),
-						0)) {
+				if (controlloPosizionamento("orange", destinazione1.getLayoutX(), destinazione1.getLayoutY(), 0)) {
 					destinazione1.setImage(familiareArancio.getImage());
 					familiareArancio.setDisable(true);
 					familiareArancio.setOpacity(0);
@@ -1547,8 +1534,7 @@ public class ControllerGame {
 					}
 				}
 			} else {
-				if (controlloPosizionamento("orange", destinazione2.getLayoutX(), destinazione2.getLayoutX(),
-						0)) {
+				if (controlloPosizionamento("orange", destinazione2.getLayoutX(), destinazione2.getLayoutX(), 0)) {
 					ImageView mom = new ImageView(familiareArancio.getImage());
 					mom.setFitWidth(35);
 					mom.setFitHeight(38);
@@ -1568,8 +1554,7 @@ public class ControllerGame {
 
 		familiareBianco.setOnDragDone(event -> {
 			if (flag) {
-				if (controlloPosizionamento("white", destinazione1.getLayoutX(), destinazione1.getLayoutY(),
-						0)) {
+				if (controlloPosizionamento("white", destinazione1.getLayoutX(), destinazione1.getLayoutY(), 0)) {
 					destinazione1.setImage(familiareBianco.getImage());
 					familiareBianco.setDisable(true);
 					familiareBianco.setOpacity(0);
@@ -1582,8 +1567,7 @@ public class ControllerGame {
 					}
 				}
 			} else {
-				if (controlloPosizionamento("white", destinazione2.getLayoutX(), destinazione2.getLayoutX(),
-						0)) {
+				if (controlloPosizionamento("white", destinazione2.getLayoutX(), destinazione2.getLayoutX(), 0)) {
 					ImageView mom = new ImageView(familiareBianco.getImage());
 					mom.setFitWidth(35);
 					mom.setFitHeight(38);
@@ -1602,27 +1586,27 @@ public class ControllerGame {
 		});
 
 		azioniTerritoridaunGiocatore.setOnDragEntered(e -> {
-			setDestinazione1(azioniTerritoridaunGiocatore);
+				setDestinazione1(azioniTerritoridaunGiocatore);
 		});
 
 		azioniEdificidaunGiocatore.setOnDragEntered(e -> {
-			setDestinazione1(azioniEdificidaunGiocatore);
+				setDestinazione1(azioniEdificidaunGiocatore);
 		});
 
 		mercatoPosMoneteMilitari.setOnDragEntered(e -> {
-			setDestinazione1(mercatoPosMoneteMilitari);
+				setDestinazione1(mercatoPosMoneteMilitari);
 		});
 
 		mercatoPosServitori.setOnDragEntered(e -> {
-			setDestinazione1(mercatoPosServitori);
+				setDestinazione1(mercatoPosServitori);
 		});
 
 		mercatoPosMonete.setOnDragEntered(e -> {
-			setDestinazione1(mercatoPosMonete);
+				setDestinazione1(mercatoPosMonete);
 		});
 
 		mercatoPosMunicipio.setOnDragEntered(e -> {
-			setDestinazione1(mercatoPosMunicipio);
+				setDestinazione1(mercatoPosMunicipio);
 		});
 
 		pianoPrimoPalazzoMilitare.setOnDragEntered(e -> {
@@ -1711,11 +1695,6 @@ public class ControllerGame {
 	private void setDestinazione1(ImageView azioniTerritoridaunGiocatore2) {
 		flag = true;
 		this.destinazione1 = azioniTerritoridaunGiocatore2;
-
-	}
-
-	public void setFlag(String string) {
-		bandiera.setImage(new Image(getClass().getResourceAsStream("BandierinaBlu.png")));
 
 	}
 
