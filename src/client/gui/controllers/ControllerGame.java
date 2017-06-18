@@ -50,6 +50,7 @@ public class ControllerGame {
 	private ImageView destinazione1;
 	private HBox destinazione2;
 	private boolean flag;
+	private Dado[] dadi = new Dado[3];
 
 	// Componenti tabellone
 	@FXML
@@ -279,9 +280,9 @@ public class ControllerGame {
 	public void setCardsScomunica(TesseraScomunica[] cardsScomunica) {
 		Tooltip.install(cartaScomunica1, cardsScomunica[0].getTooltip());
 		cartaScomunica1.setImage(new Image(getClass().getResourceAsStream(cardsScomunica[0].getImage())));
-		Tooltip.install(cartaScomunica1, cardsScomunica[1].getTooltip());
+		Tooltip.install(cartaScomunica2, cardsScomunica[1].getTooltip());
 		cartaScomunica2.setImage(new Image(getClass().getResourceAsStream(cardsScomunica[1].getImage())));
-		Tooltip.install(cartaScomunica1, cardsScomunica[2].getTooltip());
+		Tooltip.install(cartaScomunica3, cardsScomunica[2].getTooltip());
 		cartaScomunica3.setImage(new Image(getClass().getResourceAsStream(cardsScomunica[2].getImage())));
 
 	}
@@ -1200,13 +1201,13 @@ public class ControllerGame {
 
 	@FXML
 	public void lanciaDadi() throws RemoteException, SQLException {
-		Dado[] dadi = new Dado[3];
 		try {
-			dadi = start.getClient().lanciaDadi();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
+			int i = 0;
+			for(Dado d : start.getClient().lanciaDadi()){
+				dadi[i] = d;
+				i++;
+			}		
+		} catch (ClassNotFoundException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

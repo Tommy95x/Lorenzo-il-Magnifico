@@ -19,7 +19,7 @@ public interface ClientInterface {
 	public boolean createANewLobby(String lobby, String color) throws IOException;
 	public ArrayList<Partita> lobbiesView() throws IOException, ClassNotFoundException;
 	public void selectColorGamer(String color) throws IOException;
-	public void posizionareFamiliare(String color, int x, int y);
+	public void posizionareFamiliare(String color, double x, double y);
 	public void spendereRisorse(String risorsa, int qta);
 	public void startGame() throws IOException, ClassNotFoundException;
 	public void sostegnoChiesa(boolean flag);

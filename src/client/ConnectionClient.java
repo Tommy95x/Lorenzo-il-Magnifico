@@ -70,7 +70,7 @@ public class ConnectionClient implements ClientInterface{
 
 
 	@Override
-	public void posizionareFamiliare(String color, int x, int y) {
+	public void posizionareFamiliare(String color, double x, double y) {
 		// TODO Auto-generated method stub
 		
 	}
