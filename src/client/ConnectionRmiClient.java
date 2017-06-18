@@ -201,7 +201,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		}
 	}
 	
-	public ArrayList<CartaSviluppo> getCardsGamer() {
+	/*public ArrayList<CartaSviluppo> getCardsGamer() {
 		try {
 			return serverMethods.getCardsGamer(positionGame,name);
 		} catch (RemoteException e) {
@@ -209,7 +209,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 			e.printStackTrace();
 		}
 		return null;
-	}
+	}*/
 	
 	public void setCardGiocatore(CartaSviluppo carta, int i) {
 		try {
