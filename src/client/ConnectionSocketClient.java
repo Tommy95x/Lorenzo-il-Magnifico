@@ -157,7 +157,8 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 	}
 
 	public void startGame() throws IOException, ClassNotFoundException {
-		outputSocket.writeObject("start");
+		System.out.println("Start");
+		outputSocket.writeObject("Start");
 		outputSocket.flush();
 	}
 
@@ -370,7 +371,7 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		int i = (int) inputSocket.readObject();
 		Giocatore[] g = new Giocatore[i];
 		for(int j =0; j<i;j++){
-			g[i] = (Giocatore) inputSocket.readObject();
+			g[j] = new Giocatore((String) inputSocket.readObject(), (String) inputSocket.readObject());
 			System.out.println(g[i].getName());
 		}
 		return g;

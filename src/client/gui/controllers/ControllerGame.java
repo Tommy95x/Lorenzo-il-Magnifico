@@ -610,7 +610,7 @@ public class ControllerGame {
 						familiareOrange3
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluBianco.png")));
 						familiareOrange4
-								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBlueNero.png")));
+								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNero.png")));
 						flag1.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBlu.png")));
 						name1.setText(g.getName());
 						p = g.getRisorse();
@@ -1017,7 +1017,9 @@ public class ControllerGame {
 
 	public String getNamePosition(double x, double y) throws IOException {
 			try {
-				return start.getClient().getNamePosition(x, y);
+				String mom =start.getClient().getNamePosition(x, y);
+				System.out.println(mom);
+				return mom;
 			} catch (ClassNotFoundException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -1202,11 +1204,7 @@ public class ControllerGame {
 	@FXML
 	public void lanciaDadi() throws RemoteException, SQLException {
 		try {
-			int i = 0;
-			for(Dado d : start.getClient().lanciaDadi()){
-				dadi[i] = d;
-				i++;
-			}		
+			dadi = start.getClient().lanciaDadi();	
 		} catch (ClassNotFoundException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

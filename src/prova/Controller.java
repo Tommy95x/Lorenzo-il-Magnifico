@@ -1417,16 +1417,18 @@ public class Controller {
 					if (flag) {
 						destinazione1.setImage(new Image(getClass().getResourceAsStream("FamiliareBluNeutro.png")));
 						System.out.println(destinazione1.getLayoutX()+" "+destinazione1.getLayoutY());
-						familiareNeutro.setDisable(true);
+						//familiareNeutro.setDisable(true);
 					} else {
 						ImageView mom = new ImageView(
 								new Image(getClass().getResourceAsStream("FamiliareBluNeutro.png")));
+						System.out.println(destinazione2.getLayoutX() +" "+ destinazione2.getLayoutY());
 						mom.setFitWidth(35);
 						mom.setFitHeight(38);
 						destinazione2.getChildren().add(mom);
-						familiareNeutro.setDisable(true);
+						
+						//familiareNeutro.setDisable(true);
 					}
-					familiareNeutro.setOpacity(0);
+					//familiareNeutro.setOpacity(0);
 				}
 		});
 		
@@ -1442,9 +1444,9 @@ public class Controller {
 						mom.setFitHeight(38);
 						destinazione2.getChildren().add(mom);
 						System.out.println(destinazione2.getLayoutX() +" "+ destinazione2.getLayoutY());
-						familiareNero.setDisable(true);
+						//familiareNero.setDisable(true);
 					}
-					familiareNero.setOpacity(0);
+					//familiareNero.setOpacity(0);
 		});
 		
 		familiareArancio.setOnDragDone(event -> {

@@ -316,6 +316,10 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		
 	}
 	
+	public Dado[] lanciaDadi() throws SQLException, RemoteException, ClassNotFoundException, IOException {
+		return serverMethods.showDiceValues(positionGame, name);
+	}
+	
 	@Override
 	public void sostegnoChiesa(boolean flag) {
 		// TODO Auto-generated method stub

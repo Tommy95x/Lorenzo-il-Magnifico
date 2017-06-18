@@ -27,31 +27,32 @@ import javafx.stage.Stage;
 /**
  * @author Tommy
  *
- *Claase che viene avviata direttamente dall'utente all'avvio del gioco, main dell'applicazione lato client inizialmente di pura grafica successivamente diventa anche di logica nel momento in cui l'utente decider�
- *in quale modalit� giocare. Le modalit� disponibili sono mediante una grafica con una connessione RMI o Socket, o da Console con una sola connessione RMI.
+ *         Claase che viene avviata direttamente dall'utente all'avvio del
+ *         gioco, main dell'applicazione lato client inizialmente di pura
+ *         grafica successivamente diventa anche di logica nel momento in cui
+ *         l'utente decider� in quale modalit� giocare. Le modalit� disponibili
+ *         sono mediante una grafica con una connessione RMI o Socket, o da
+ *         Console con una sola connessione RMI.
  */
-public class StartClientGui extends Application{
+public class StartClientGui extends Application {
 
-	private FXMLLoader loader = new FXMLLoader(); ;
+	private FXMLLoader loader = new FXMLLoader();;
 	private Parent root;
 	private Stage primaryStage;
 	private ConnectionClient client = new ConnectionClient();
 	private String color;
-	//Mettere public per i test
-	//public boolean create = false;
+	// Mettere public per i test
+	// public boolean create = false;
 	private boolean create = false;
-	
-	
-	
+
 	public static void main(String[] args) {
 		launch(args);
 	}
-	
-	
+
 	public void start(Stage primaryStage) throws IOException {
-		
+
 		this.primaryStage = primaryStage;
-		
+
 		loader.setLocation(StartClientGui.class.getResource("controllers/ConnectionGui.fxml"));
 		root = loader.load();
 		primaryStage.setResizable(false);
@@ -66,136 +67,136 @@ public class StartClientGui extends Application{
 		primaryStage.show();
 	}
 
+	public void changeStage(int numberOfStage) {
+		switch (numberOfStage) {
+		case 1:
+			try {
+				loader = new FXMLLoader();
+				loader.setLocation(StartClientGui.class.getResource("controllers/LoginGui.fxml"));
+				root = loader.load();
 
-	public void changeStage(int numberOfStage){
-		switch(numberOfStage){
-			case 1:
+				primaryStage.setTitle("Lorenzo il Magnifico Login");
+				ControllerLogin login = loader.getController();
+				login.getStartClientGui(this);
+				root.setId("pane");
+				Scene scene = new Scene(root, 600, 400);
+				scene.getStylesheets().addAll(this.getClass().getResource("controllers/pane.css").toExternalForm());
+				primaryStage.setScene(scene);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		case 2:
+			try {
+				loader = new FXMLLoader();
+				loader.setLocation(this.getClass().getResource("controllers/RegisterGui.fxml"));
+				root = loader.load();
+				primaryStage.setTitle("Lorenzo il Magnifico Register");
+				ControllerRegister register = loader.getController();
+				register.getStartClientGui(this);
+				root.setId("pane");
+				Scene scene = new Scene(root, 600, 400);
+				scene.getStylesheets().addAll(this.getClass().getResource("controllers/pane.css").toExternalForm());
+				primaryStage.setScene(scene);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		case 3:
+			try {
+				loader = new FXMLLoader();
+				loader.setLocation(this.getClass().getResource("controllers/MenuGui.fxml"));
+				root = loader.load();
+				primaryStage.setTitle("Lorenzo il Magnifico");
+				primaryStage.setOnCloseRequest(event -> exit(primaryStage));
+				ControllerMenu menu = loader.getController();
+				menu.getStartClient(this);
+				root.setId("pane");
+				Scene scene = new Scene(root, 600, 400);
+				scene.getStylesheets().addAll(this.getClass().getResource("controllers/pane.css").toExternalForm());
+				primaryStage.setScene(scene);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		case 4:
+			loader = new FXMLLoader();
+			loader.setLocation(this.getClass().getResource("controllers/LoadingGui.fxml"));
+			try {
+				root = loader.load();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			ControllerWaitingRoom waitingRoom = loader.getController();
+			primaryStage.setResizable(true);
+			waitingRoom.getStartClientGui(this);
+			try {
+				getClient().startGame();
+				getClient().waitStartGame(this);
+			} catch (ClassNotFoundException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		case 5:
+			try {
+				System.out.println("ProvaProva");
+				loader = new FXMLLoader();
+				loader.setLocation(this.getClass().getResource("controllers/GameGui.fxml"));
+				root = loader.load();
+				ControllerGame game = new ControllerGame();
+				game = loader.getController();
 				try {
-					loader = new FXMLLoader();
-					loader.setLocation(StartClientGui.class.getResource("controllers/LoginGui.fxml"));
-					root = loader.load();
-					
-					primaryStage.setTitle("Lorenzo il Magnifico Login");
-					ControllerLogin login = loader.getController();
-					login.getStartClientGui(this);
-					root.setId("pane");
-					Scene scene = new Scene(root, 600, 400);
-					scene.getStylesheets().addAll(this.getClass().getResource("controllers/pane.css").toExternalForm());
-					primaryStage.setScene(scene);
-				} catch (IOException e) {
+					game.setGUI(this);
+				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				break;
-			case 2:
 				try {
-					loader = new FXMLLoader();
-					loader.setLocation(this.getClass().getResource("controllers/RegisterGui.fxml"));
-					root = loader.load();
-					primaryStage.setTitle("Lorenzo il Magnifico Register");
-					ControllerRegister register = loader.getController();
-					register.getStartClientGui(this);
-					root.setId("pane");
-					Scene scene = new Scene(root, 600, 400);
-					scene.getStylesheets().addAll(this.getClass().getResource("controllers/pane.css").toExternalForm());
-					primaryStage.setScene(scene);
-				} catch (IOException e) {
+					getClient().setGuiGame(game);
+					game.setCards(getClient().getCardsGame());
+					game.setCardsScomunica(getClient().getCardsScomunica());
+					game.setColorsParents(getColor());
+					game.setColorCubiScomunica(getColor());
+					game.setRisorse(getClient().getRisorse());
+					game.parentsProperties();
+				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				break;
-			case 3:
+				root.setId("back");
+				Scene scene = new Scene(root, 1366, 768);
+				scene.getStylesheets()
+						.addAll(this.getClass().getResource("controllers/gameBackGround.css").toExternalForm());
+				primaryStage.setScene(scene);
+				File f = new File("src/client/gui/Madrigale XIV secolo.wav");
+				AudioInputStream audioIn;
 				try {
-					loader = new FXMLLoader();
-					loader.setLocation(this.getClass().getResource("controllers/MenuGui.fxml"));
-					root = loader.load();
-					primaryStage.setTitle("Lorenzo il Magnifico");
-					primaryStage.setOnCloseRequest(event -> exit(primaryStage));
-					ControllerMenu menu = loader.getController();
-					menu.getStartClient(this);
-					root.setId("pane");
-					Scene scene = new Scene(root, 600, 400);
-					scene.getStylesheets().addAll(this.getClass().getResource("controllers/pane.css").toExternalForm());
-					primaryStage.setScene(scene);
-				} catch (IOException e) {
+					audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());
+					Clip clip = AudioSystem.getClip();
+					clip.open(audioIn);
+					clip.start();
+					clip.loop(1);
+				} catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				break;
-			case 4:
-				try {
-					loader = new FXMLLoader();
-					loader.setLocation(this.getClass().getResource("controllers/LoadingGui.fxml"));
-					root = loader.load();
-					ControllerWaitingRoom waitingRoom = loader.getController();
-					primaryStage.setResizable(true);
-					waitingRoom.getStartClientGui(this);
-					primaryStage.setScene(new Scene(root));
-					try {
-						getClient().waitStartGame(this);
-					} catch (ClassNotFoundException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				break;
-			case 5:
-				try {
-					System.out.println("ProvaProva");
-					loader = new FXMLLoader();
-					loader.setLocation(this.getClass().getResource("controllers/GameGui.fxml"));
-					root = loader.load();
-					ControllerGame game = new ControllerGame();
-					game = loader.getController();
-					try {
-						game.setGUI(this);
-					} catch (ClassNotFoundException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					try {
-						getClient().setGuiGame(game);
-						game.setCards(getClient().getCardsGame());
-						game.setCardsScomunica(getClient().getCardsScomunica());
-						game.setColorsParents(getColor());
-						game.setColorCubiScomunica(getColor());
-						game.setRisorse(getClient().getRisorse());
-						game.parentsProperties();
-					} catch (ClassNotFoundException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					root.setId("back");
-					Scene scene = new Scene(root,1366,768);
-					scene.getStylesheets().addAll(this.getClass().getResource("controllers/gameBackGround.css").toExternalForm());
-					primaryStage.setScene(scene);
-					File f = new File("src/client/gui/Madrigale XIV secolo.wav");
-					AudioInputStream audioIn;
-					try {
-						audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());
-						Clip clip = AudioSystem.getClip();
-						clip.open(audioIn);
-						clip.start();
-						clip.loop(1);
-					} catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					System.out.println("ProvaProvaProva");
-					//getClient().waitTurno();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				break;
+				System.out.println("ProvaProvaProva");
+				// getClient().waitTurno();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
 		}
 	}
-	
-	public void exit(Stage primaryStage){
-		if(create)
+
+	public void exit(Stage primaryStage) {
+		if (create)
 			try {
 				getClient().deleteView();
 			} catch (IOException e) {
@@ -212,7 +213,6 @@ public class StartClientGui extends Application{
 		System.exit(0);
 	}
 
-
 	public ConnectionClient getClient() {
 		return client;
 	}
@@ -221,36 +221,29 @@ public class StartClientGui extends Application{
 		this.client = mom;
 	}
 
-
 	public void closeStageForPlayWithConsole() {
 		primaryStage.close();
 	}
-
 
 	public Stage getStage() {
 		return primaryStage;
 	}
 
-
 	public String getColor() {
 		return color;
 	}
-
 
 	public void setColor(String color) {
 		this.color = color;
 	}
 
-
 	public void setCreate(boolean b) {
 		create = b;
 	}
 
-
 	public void mom() {
 		changeStage(5);
-		
+
 	}
 
-	
 }
