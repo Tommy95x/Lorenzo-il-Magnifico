@@ -404,8 +404,7 @@ public class Partita implements Serializable {
 	}
 
 	public void changeGamer() throws RemoteException, SQLException {
-		this.NumberOfPlayers++;
-		if (NumberOfPlayers > 4) {
+		if (NumberOfPlayers > 3) {
 			addTurno();
 		} else {
 			try {
@@ -417,6 +416,7 @@ public class Partita implements Serializable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			this.NumberOfPlayers++;
 		}
 
 	}

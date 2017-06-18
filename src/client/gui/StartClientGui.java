@@ -157,6 +157,7 @@ public class StartClientGui extends Application{
 						e.printStackTrace();
 					}
 					try {
+						getClient().setGuiGame(game);
 						game.setCards(getClient().getCardsGame());
 						game.setCardsScomunica(getClient().getCardsScomunica());
 						game.setColorsParents(getColor());
@@ -243,6 +244,12 @@ public class StartClientGui extends Application{
 
 	public void setCreate(boolean b) {
 		create = b;
+	}
+
+
+	public void mom() {
+		changeStage(5);
+		
 	}
 
 	

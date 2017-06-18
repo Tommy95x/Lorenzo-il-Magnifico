@@ -3,7 +3,9 @@ package client.gui.controllers;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.rmi.RemoteException;
 
+import client.ConnectionRmiInterlocutorClient;
 import client.gui.StartClientGui;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
@@ -34,7 +36,7 @@ public class ControllerWaitingRoom {
 				e.printStackTrace();
 		}
 	}
-
+	
 	public StartClientGui getStart() {
 		return start;
 	}

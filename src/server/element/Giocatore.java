@@ -12,6 +12,7 @@ import java.util.HashMap;
 
 import client.ConnectionRmiClient;
 import client.ConnectionRmiInterlocutorClient;
+import client.gui.controllers.ControllerGame;
 import server.ThreadSocketServer;
 import shared.RMIClientInterface;
 
@@ -513,5 +514,9 @@ public class Giocatore implements Serializable {
 	public void addPunti(String tipo, int qta, Connection c) {
 		risorse.addPunti(tipo, qta);
 		partita.notifySpostamentoPunti(tipo,qta, c);
+	}
+
+	public void setGuiGame(ControllerGame guiGame) {
+		
 	}
 }

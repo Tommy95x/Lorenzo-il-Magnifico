@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import client.ConnectionRmiInterlocutorClient;
+import client.gui.controllers.ControllerGame;
 import javafx.scene.image.Image;
 import server.element.CartaSviluppo;
 import server.element.Dado;
@@ -234,4 +235,5 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		commonServer.getLobbyByNumber(posizionGame).getGiocatoreByName(name).notifyPergamena(qta);
 		
 	}
+
 }

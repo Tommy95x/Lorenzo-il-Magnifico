@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.Alert.AlertType;
@@ -219,6 +220,12 @@ public class ControllerGame {
 	public Label servitori2;
 	@FXML
 	public Label servitori3;
+	@FXML
+	public ListView listCards1;
+	@FXML
+	public ListView listCards2;
+	@FXML
+	public ListView listCards3;
 
 	// Componenti plancia
 	@FXML
@@ -270,8 +277,11 @@ public class ControllerGame {
 	}
 
 	public void setCardsScomunica(TesseraScomunica[] cardsScomunica) {
+		Tooltip.install(cartaScomunica1, cardsScomunica[0].getTooltip());
 		cartaScomunica1.setImage(new Image(getClass().getResourceAsStream(cardsScomunica[0].getImage())));
+		Tooltip.install(cartaScomunica1, cardsScomunica[1].getTooltip());
 		cartaScomunica2.setImage(new Image(getClass().getResourceAsStream(cardsScomunica[1].getImage())));
+		Tooltip.install(cartaScomunica1, cardsScomunica[2].getTooltip());
 		cartaScomunica3.setImage(new Image(getClass().getResourceAsStream(cardsScomunica[2].getImage())));
 
 	}
@@ -315,7 +325,8 @@ public class ControllerGame {
 		puntiMilitariVerde.setImage(new Image(getClass().getResourceAsStream("Disco4.png")));
 		puntiMilitariBianco.setImage(new Image(getClass().getResourceAsStream("Disco12.png")));
 		puntiMilitariArancio.setImage(new Image(getClass().getResourceAsStream("Disco3.png")));
-		Giocatore[] giocatori = null;
+		Giocatore[] giocatori = new Giocatore[4];
+		giocatori = start.getClient().getGiocatori();;
 		Portafoglio p = null;
 		switch (color) {
 		case "blue":
@@ -323,8 +334,6 @@ public class ControllerGame {
 			familiareNero.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNero.png")));
 			familiareArancio.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluArancio.png")));
 			familiareBianco.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluBianco.png")));
-			giocatori = new Giocatore[4];
-			giocatori = start.getClient().getGiocatori();
 			for (Giocatore g : giocatori) {
 				if (g != null && g.getName() != start.getClient().getName()) {
 					switch (g.getColor()) {
@@ -412,8 +421,6 @@ public class ControllerGame {
 			familiareNero.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeNero.png")));
 			familiareArancio.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeArancio.png")));
 			familiareBianco.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeBianco.png")));
-			giocatori = new Giocatore[4];
-			giocatori = start.getClient().getGiocatori();
 			for (Giocatore g : giocatori) {
 				if (g != null && g.getName() != start.getClient().getName()) {
 					switch (g.getColor()) {
@@ -428,6 +435,7 @@ public class ControllerGame {
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioNero.png")));
 						flag1.setImage(new Image(this.getClass().getResourceAsStream("BandierinaArancio.png")));
 						name1.setText(g.getName());
+						p = g.getRisorse();
 						legno1.setText(String.valueOf(p.getDimRisorse("legno")));
 						monete1.setText(String.valueOf(p.getDimRisorse("monete")));
 						pietre1.setText(String.valueOf(p.getDimRisorse("pietra")));
@@ -441,8 +449,9 @@ public class ControllerGame {
 						familiareBlue3
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluBianco.png")));
 						familiareBlue4.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNero.png")));
-						flag2.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBlue.png")));
+						flag2.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBlu.png")));
 						name2.setText(g.getName());
+						p = g.getRisorse();
 						legno2.setText(String.valueOf(p.getDimRisorse("legno")));
 						monete2.setText(String.valueOf(p.getDimRisorse("monete")));
 						pietre2.setText(String.valueOf(p.getDimRisorse("pietra")));
@@ -459,6 +468,7 @@ public class ControllerGame {
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoNero.png")));
 						flag3.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBianca.png")));
 						name3.setText(g.getName());
+						p = g.getRisorse();
 						legno3.setText(String.valueOf(p.getDimRisorse("legno")));
 						monete3.setText(String.valueOf(p.getDimRisorse("monete")));
 						pietre3.setText(String.valueOf(p.getDimRisorse("pietra")));
@@ -467,14 +477,14 @@ public class ControllerGame {
 					}
 				}
 			}
+			familiareGreen1.setOpacity(1);
+			familiareGreen2.setOpacity(1);
+			familiareGreen3.setOpacity(1);
+			familiareGreen4.setOpacity(1);
 			familiareOrange1.setOpacity(1);
 			familiareOrange2.setOpacity(1);
 			familiareOrange3.setOpacity(1);
 			familiareOrange4.setOpacity(1);
-			familiareBlue1.setOpacity(1);
-			familiareBlue2.setOpacity(1);
-			familiareBlue3.setOpacity(1);
-			familiareBlue4.setOpacity(1);
 			familiareWhite1.setOpacity(1);
 			familiareWhite2.setOpacity(1);
 			familiareWhite3.setOpacity(1);
@@ -483,14 +493,14 @@ public class ControllerGame {
 			familiareOrange2.setDisable(false);
 			familiareOrange3.setDisable(false);
 			familiareOrange4.setDisable(false);
-			familiareBlue1.setDisable(false);
-			familiareBlue2.setDisable(false);
-			familiareBlue3.setDisable(false);
-			familiareBlue4.setDisable(false);
 			familiareWhite1.setDisable(false);
 			familiareWhite2.setDisable(false);
 			familiareWhite3.setDisable(false);
 			familiareWhite4.setDisable(false);
+			familiareGreen1.setDisable(false);
+			familiareGreen2.setDisable(false);
+			familiareGreen3.setDisable(false);
+			familiareGreen4.setDisable(false);
 			break;
 		case "white":
 			familiareNeutro.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoNeutro.png")));
@@ -511,6 +521,7 @@ public class ControllerGame {
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioNero.png")));
 						flag1.setImage(new Image(this.getClass().getResourceAsStream("BandierinaArancio.png")));
 						name1.setText(g.getName());
+						p = g.getRisorse();
 						legno1.setText(String.valueOf(p.getDimRisorse("legno")));
 						monete1.setText(String.valueOf(p.getDimRisorse("monete")));
 						pietre1.setText(String.valueOf(p.getDimRisorse("pietra")));
@@ -527,6 +538,7 @@ public class ControllerGame {
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeNero.png")));
 						flag2.setImage(new Image(this.getClass().getResourceAsStream("BandierinaVerde.png")));
 						name2.setText(g.getName());
+						p = g.getRisorse();
 						legno2.setText(String.valueOf(p.getDimRisorse("legno")));
 						monete2.setText(String.valueOf(p.getDimRisorse("monete")));
 						pietre2.setText(String.valueOf(p.getDimRisorse("pietra")));
@@ -541,8 +553,9 @@ public class ControllerGame {
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluBianco.png")));
 						familiareWhite4
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNero.png")));
-						flag3.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBlue.png")));
+						flag3.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBlu.png")));
 						name3.setText(g.getName());
+						p = g.getRisorse();
 						legno3.setText(String.valueOf(p.getDimRisorse("legno")));
 						monete3.setText(String.valueOf(p.getDimRisorse("monete")));
 						pietre3.setText(String.valueOf(p.getDimRisorse("pietra")));
@@ -551,37 +564,36 @@ public class ControllerGame {
 					}
 				}
 			}
-			familiareOrange1.setOpacity(1);
-			familiareOrange2.setOpacity(1);
-			familiareOrange3.setOpacity(1);
-			familiareOrange4.setOpacity(1);
 			familiareGreen1.setOpacity(1);
 			familiareGreen2.setOpacity(1);
 			familiareGreen3.setOpacity(1);
 			familiareGreen4.setOpacity(1);
-			familiareBlue1.setOpacity(1);
-			familiareBlue1.setOpacity(1);
-			familiareBlue1.setOpacity(1);
-			familiareBlue1.setOpacity(1);
+			familiareOrange1.setOpacity(1);
+			familiareOrange2.setOpacity(1);
+			familiareOrange3.setOpacity(1);
+			familiareOrange4.setOpacity(1);
+			familiareWhite1.setOpacity(1);
+			familiareWhite2.setOpacity(1);
+			familiareWhite3.setOpacity(1);
+			familiareWhite4.setOpacity(1);
 			familiareOrange1.setDisable(false);
 			familiareOrange2.setDisable(false);
 			familiareOrange3.setDisable(false);
 			familiareOrange4.setDisable(false);
+			familiareWhite1.setDisable(false);
+			familiareWhite2.setDisable(false);
+			familiareWhite3.setDisable(false);
+			familiareWhite4.setDisable(false);
 			familiareGreen1.setDisable(false);
 			familiareGreen2.setDisable(false);
 			familiareGreen3.setDisable(false);
 			familiareGreen4.setDisable(false);
-			familiareBlue1.setDisable(false);
-			familiareBlue1.setDisable(false);
-			familiareBlue1.setDisable(false);
-			familiareBlue1.setDisable(false);
 			break;
 		case "orange":
 			familiareNeutro.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioNeutro.png")));
 			familiareNero.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioNero.png")));
 			familiareArancio.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioArancio.png")));
 			familiareBianco.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioBianco.png")));
-			familiareBlue1.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNeutro.png")));
 			for (Giocatore g : giocatori) {
 				if (g != null && g.getName() != start.getClient().getName()) {
 					switch (g.getColor()) {
@@ -594,8 +606,9 @@ public class ControllerGame {
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluBianco.png")));
 						familiareOrange4
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeArancio.png")));
-						flag1.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBlue.png")));
+						flag1.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBlu.png")));
 						name1.setText(g.getName());
+						p = g.getRisorse();
 						legno1.setText(String.valueOf(p.getDimRisorse("legno")));
 						monete1.setText(String.valueOf(p.getDimRisorse("monete")));
 						pietre1.setText(String.valueOf(p.getDimRisorse("pietra")));
@@ -612,6 +625,7 @@ public class ControllerGame {
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeNero.png")));
 						flag2.setImage(new Image(this.getClass().getResourceAsStream("BandierinaVerde.png")));
 						name2.setText(g.getName());
+						p = g.getRisorse();
 						legno2.setText(String.valueOf(p.getDimRisorse("legno")));
 						monete2.setText(String.valueOf(p.getDimRisorse("monete")));
 						pietre2.setText(String.valueOf(p.getDimRisorse("pietra")));
@@ -628,6 +642,7 @@ public class ControllerGame {
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoNero.png")));
 						flag3.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBianca.png")));
 						name3.setText(g.getName());
+						p = g.getRisorse();
 						legno3.setText(String.valueOf(p.getDimRisorse("legno")));
 						monete3.setText(String.valueOf(p.getDimRisorse("monete")));
 						pietre3.setText(String.valueOf(p.getDimRisorse("pietra")));
@@ -636,30 +651,30 @@ public class ControllerGame {
 					}
 				}
 			}
-			familiareBlue1.setOpacity(1);
-			familiareBlue2.setOpacity(1);
-			familiareBlue3.setOpacity(1);
-			familiareBlue4.setOpacity(1);
 			familiareGreen1.setOpacity(1);
 			familiareGreen2.setOpacity(1);
 			familiareGreen3.setOpacity(1);
 			familiareGreen4.setOpacity(1);
+			familiareOrange1.setOpacity(1);
+			familiareOrange2.setOpacity(1);
+			familiareOrange3.setOpacity(1);
+			familiareOrange4.setOpacity(1);
 			familiareWhite1.setOpacity(1);
 			familiareWhite2.setOpacity(1);
 			familiareWhite3.setOpacity(1);
 			familiareWhite4.setOpacity(1);
-			familiareBlue1.setDisable(false);
-			familiareBlue2.setDisable(false);
-			familiareBlue3.setDisable(false);
-			familiareBlue4.setDisable(false);
-			familiareGreen1.setDisable(false);
-			familiareGreen2.setDisable(false);
-			familiareGreen3.setDisable(false);
-			familiareGreen4.setDisable(false);
+			familiareOrange1.setDisable(false);
+			familiareOrange2.setDisable(false);
+			familiareOrange3.setDisable(false);
+			familiareOrange4.setDisable(false);
 			familiareWhite1.setDisable(false);
 			familiareWhite2.setDisable(false);
 			familiareWhite3.setDisable(false);
 			familiareWhite4.setDisable(false);
+			familiareGreen1.setDisable(false);
+			familiareGreen2.setDisable(false);
+			familiareGreen3.setDisable(false);
+			familiareGreen4.setDisable(false);
 			break;
 		}
 	}
@@ -867,7 +882,7 @@ public class ControllerGame {
 	}
 
 	public boolean controlCard(double x, double y) throws IOException {
-		Portafoglio p = null;
+		Portafoglio p = new Portafoglio();
 		try {
 			p = start.getClient().getRisorse();
 		} catch (ClassNotFoundException e) {

@@ -48,7 +48,7 @@ public class Mom extends Application {
 		primaryStage.show();
 		
 		System.out.println("Sono i thread audio");
-		File f = new File("src/prova/Suono-monete-effetto-di-suono.wav");
+		File f = new File("src/prova/Madrigale XIV secolo.wav");
 		AudioInputStream audioIn;
 		try {
 			audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());

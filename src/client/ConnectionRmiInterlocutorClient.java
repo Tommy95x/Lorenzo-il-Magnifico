@@ -8,6 +8,8 @@ import java.sql.SQLException;
 
 import client.gui.StartClientGui;
 import client.gui.controllers.ControllerGame;
+import client.gui.controllers.ControllerWaitingRoom;
+import javafx.application.Platform;
 import javafx.scene.control.Tooltip;
 import server.element.CartaSviluppo;
 import server.element.Giocatore;
@@ -29,7 +31,9 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 	
 	public void notifyStartGame() throws RemoteException {
 		System.out.println("Notifica inizio partita avvenuta");
-		start.changeStage(5);
+		Platform.runLater(() -> {
+			start.changeStage(5);
+		});
 		System.out.println("Prova");
 	}
 
@@ -66,11 +70,6 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 
 	public void setGuiGame(ControllerGame guiGame){
 		this.guiGame = guiGame;
-	}
-
-	public void setStart(StartClientGui start) {
-		this.start = start;
-		
 	}
 
 	@Override
@@ -116,6 +115,11 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 
 	public void notifyUnTipoCarta(int tipo, int qta, int scontoAzioneImmediata1) throws RemoteException {
 		this.guiGame.notifyUnTipoCarta( tipo,  qta,  scontoAzioneImmediata1);
+		
+	}
+
+	public void setStart(StartClientGui start2) {
+		this.start = start2;
 		
 	}
 	

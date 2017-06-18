@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 import client.gui.StartClientGui;
 import client.gui.controllers.ControllerGame;
+import client.gui.controllers.ControllerMenu;
+import client.gui.controllers.ControllerWaitingRoom;
 import server.element.CartaSviluppo;
 import server.element.Dado;
 import server.element.Giocatore;

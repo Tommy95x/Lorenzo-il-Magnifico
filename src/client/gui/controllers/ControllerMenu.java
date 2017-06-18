@@ -131,6 +131,7 @@ public class ControllerMenu {
 	@FXML
 	public void startGame() throws IOException, ClassNotFoundException {
 		System.out.println("Lanciato metodo utente pronto a giocare");
+		start.changeStage(4);
 		try {
 			start.getClient().startGame();
 		} catch (ClassNotFoundException e) {
@@ -138,7 +139,6 @@ public class ControllerMenu {
 			e.printStackTrace();
 		}
 		System.out.println("Notificato al server e cambio scene");
-		start.changeStage(4);
 		System.out.println("Scena cambiata");
 		//start.getClient().waitStartGame(start);
 	}
@@ -400,7 +400,7 @@ public class ControllerMenu {
 	}
 
 	private void viewStartButton() {
-		this.start.getClient().sendClient(start);
+		start.getClient().sendClient(start);
 		back.setOpacity(0);
 		back.setDisable(true);
 		exitToGame.setDisable(false);
