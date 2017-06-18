@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import client.gui.StartClientGui;
 import client.gui.controllers.ControllerGame;
 import server.element.CartaSviluppo;
 import server.element.Dado;
@@ -46,5 +47,15 @@ public interface ClientInterface {
 	public Portafoglio getRisorse() throws RemoteException, ClassNotFoundException, IOException;
 	public void deleteView() throws RemoteException, IOException;
 	public void removeAccount() throws RemoteException, IOException;
-	
+	public int getPlayers() throws RemoteException;
+	public String getColor();
+	public void notifySpostamentoPunti(String string) throws RemoteException;
+	public void produzione(int qta) throws RemoteException;
+	public void raccolto(int i) throws RemoteException;
+	public void addRisorse(String string, int i) throws RemoteException, SQLException;
+	public void addPunti(String tipo, int qta) throws RemoteException, SQLException;
+	public void addPergamene(int i) throws RemoteException;
+	public void sendClient(StartClientGui start);
+	public void resendClient();
+	public void setName(String text);
 }
