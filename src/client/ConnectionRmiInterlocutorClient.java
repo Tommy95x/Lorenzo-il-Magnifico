@@ -38,14 +38,16 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 	}
 
 	public void moveFamiliareAvv(double x, double y, String colorPlayer, String colorFamiliare) throws RemoteException {
+		Platform.runLater(() -> {
 		guiGame.moveFamAvv(colorPlayer, colorFamiliare, x, y);
-		
+		});
 	}
 
 
 	public void addScomunica(int nScomuniche, String tooltip) throws RemoteException {
+		Platform.runLater(() -> {
 		guiGame.addScomunica(nScomuniche, new Tooltip(tooltip));
-		
+		});
 	}
 
 	@Override
@@ -60,8 +62,9 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 	}
 
 	public void notifyAddCardAvv(CartaSviluppo carta, String string) throws RemoteException {
+		Platform.runLater(() -> {
 		guiGame.notifyAddCardAvv(carta, string);
-		
+		});
 	}
 	
 	public void notifyTurno(int turno) throws RemoteException, SQLException {
@@ -73,7 +76,9 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 	}
 
 	public void setGuiGame(ControllerGame guiGame){
+		Platform.runLater(() -> {
 		this.guiGame = guiGame;
+		});
 	}
 
 	@Override
@@ -90,24 +95,28 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 	}
 
 	public void notifySpostamentoPuntiVittoria(double x, double y, String color) {
+		Platform.runLater(() -> {
 		this.guiGame.notifySpostamentoPuntiVittoria(x, y, color);
-		
+		});
 	}
 
 	
 	public void notifySpostamentoPuntiFede(double x, double y, String color) {
+		Platform.runLater(() -> {
 		this.guiGame.notifySpostamentoPuntiFede(x, y, color);
-		
+		});
 	}
 
 	public void notifyPergamena(int i) throws RemoteException {
+		Platform.runLater(() -> {
 		this.guiGame.notifyPergamena(i);
-		
+		});
 	}
 
 	public void notifyTutteCarte(int i) throws RemoteException {
+		Platform.runLater(() -> {
 		this.guiGame.notifyTutteCarte(i);
-		
+		});
 	}
 
 	public int getPositionGame() {
@@ -115,12 +124,15 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 	}
 
 	public void setPositionGame(int positionGame) {
+		Platform.runLater(() -> {
 		this.positionGame = positionGame;
+		});
 	}
 
 	public void notifyUnTipoCarta(int tipo, int qta, int scontoAzioneImmediata1) throws RemoteException {
+		Platform.runLater(() -> {
 		this.guiGame.notifyUnTipoCarta( tipo,  qta,  scontoAzioneImmediata1);
-		
+		});		
 	}
 
 	public void setStart(StartClientGui start2) {

@@ -121,11 +121,6 @@ public class ConnectionClient implements ClientInterface{
 	public void setGuiGame(ControllerGame guiGame){
 	}
 
-	public void setStage(StartClientGui start) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	public void notifySpostamento(String color, double x, double y) throws RemoteException, IOException {
 		// TODO Auto-generated method stub
 		
