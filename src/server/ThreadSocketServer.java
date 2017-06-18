@@ -79,6 +79,7 @@ public class ThreadSocketServer implements Runnable, Serializable {
 			output = new ObjectOutputStream(socket.getOutputStream());
 			output.flush();
 			while (true) {
+				System.out.println("In attesa stringa da client");
 				action = input.readObject().toString();
 				System.out.println(action);
 				switch (action) {
@@ -119,9 +120,9 @@ public class ThreadSocketServer implements Runnable, Serializable {
 					color = input.readObject().toString();
 					commonServer.getLobbyByName(lobby).addGiocatore(new Giocatore(color,
 							commonServer.getLobbyByName(lobby), account, commonServer.getIndicePartita(lobby)));
+					commonServer.getLobbyByName(lobby).getGiocatoreByName(account).getSocket(this);
 					output.writeObject(commonServer.getIndicePartita(lobby));
 					output.flush();
-					commonServer.getLobbyByName(lobby).getGiocatoreByName(account).getSocket(this);
 					break;
 				case "getColors":
 					lobby = (String) input.readObject();
@@ -133,7 +134,8 @@ public class ThreadSocketServer implements Runnable, Serializable {
 					color = input.readObject().toString();
 					commonServer.getLobbyByName(lobby).exitToGame(account, color);
 					break;
-				case "start":
+				case "Start":
+					System.out.println("ThreadSocket notifica start");
 					actionsServer.startPartita(account, positionGame);
 					break;
 				case "deleteView":
@@ -243,8 +245,9 @@ public class ThreadSocketServer implements Runnable, Serializable {
 				output.writeObject(i);
 				output.flush();
 				for (int j = 0; j < i; j++) {
-					System.out.println(g2[j].getName());
-					output.writeObject(g2[j]);
+					output.writeObject(g2[j].getColor());
+					output.flush();
+					output.writeObject(g2[j].getName());
 					output.flush();
 				}
 				break;

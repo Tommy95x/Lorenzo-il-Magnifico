@@ -29,7 +29,7 @@ public class Dado implements Serializable{
 	//Set del valore dopo il lancio del primo giocatore del turno
 	public void setValue(Connection connection) throws SQLException {
 		//Chiedere bene
-		 valore = (int) (Math.random()*6);
+		 valore = (int)((Math.random()*6)+1);
 		 //Commentare quando si testa
 		 Statement stmt=connection.createStatement();
 		 ResultSet res = stmt.executeQuery("SELECT IMMAGINE FROM DADO WHERE VALORE="+valore+" and COLORE = '"+color+"'");
@@ -37,7 +37,6 @@ public class Dado implements Serializable{
 		 immagineValore=res.getString("IMMAGINE");
 		 res.close();
 		 stmt.close();
-		 connection.close();
 	}
 	
 	public int getValore() {

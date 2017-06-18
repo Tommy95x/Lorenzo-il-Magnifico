@@ -66,6 +66,11 @@ public class Giocatore implements Serializable {
 		}
 	}
 
+	public Giocatore(String readObject, String readObject2) {
+		this.color = readObject;
+		this.name = readObject2;
+	}
+
 	public String getColor() {
 		return color;
 	}
@@ -87,14 +92,13 @@ public class Giocatore implements Serializable {
 	}
 
 	public Dado[] setDadi(Connection connection) throws SQLException {
-		// Commentare quando non si testa
-		/*
-		 * dadi[0] = new Dado("black"); dadi[1] = new Dado("white"); dadi[2] =
-		 * new Dado("orange");
-		 */
+		dadi[0] = new Dado("black");
+		dadi[1] = new Dado("white");
+		dadi[2] = new Dado("orange");
 		for (Dado d : dadi) {
 			d.setValue(connection);
 		}
+		connection.close();
 		return dadi;
 	}
 
@@ -115,7 +119,6 @@ public class Giocatore implements Serializable {
 		if (server != null) {
 			System.out.println("utente socket" + server.toString());
 			server.notifyStartGame();
-			return;
 		} else {
 			System.out.println("utente rmi");
 			client.notifyStartGame();
@@ -507,16 +510,16 @@ public class Giocatore implements Serializable {
 
 	public void addRis(String tipo, int qta, Connection c) {
 		risorse.addRis(tipo, qta);
-		//Creo metodo notify risorse
-		
+		// Creo metodo notify risorse
+
 	}
 
 	public void addPunti(String tipo, int qta, Connection c) {
 		risorse.addPunti(tipo, qta);
-		partita.notifySpostamentoPunti(tipo,qta, c);
+		partita.notifySpostamentoPunti(tipo, qta, c);
 	}
 
 	public void setGuiGame(ControllerGame guiGame) {
-		
+
 	}
 }

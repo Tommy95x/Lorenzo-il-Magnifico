@@ -132,12 +132,6 @@ public class ControllerMenu {
 	public void startGame() throws IOException, ClassNotFoundException {
 		System.out.println("Lanciato metodo utente pronto a giocare");
 		start.changeStage(4);
-		try {
-			start.getClient().startGame();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		System.out.println("Notificato al server e cambio scene");
 		System.out.println("Scena cambiata");
 		//start.getClient().waitStartGame(start);
