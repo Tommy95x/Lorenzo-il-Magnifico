@@ -244,4 +244,10 @@ public class ConnectionClient implements ClientInterface{
 	public void setName(String text) {
 		// TODO Auto-generated method stub	
 	}
+
+
+	public boolean getPosPalLibero(String string, int i) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

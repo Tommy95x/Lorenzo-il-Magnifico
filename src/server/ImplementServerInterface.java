@@ -236,4 +236,8 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		
 	}
 
+	public boolean getPosPalLibero(String string, int i, int positionGame, String name) throws RemoteException {
+		return commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).getPosPalLibero(string, i);
+	}
+
 }

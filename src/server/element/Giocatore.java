@@ -34,6 +34,10 @@ public class Giocatore implements Serializable {
 	private RMIClientInterface client;
 	private Flag flag;
 	private int nScomuniche = 0;
+	private boolean palazzoTerritori[] = new boolean[4];
+	private boolean palazzoPersonaggi[] = new boolean[4];
+	private boolean palazzoImprese[] = new boolean[4];
+	private boolean palazzoEdifici[] = new boolean[4];
 
 	public Giocatore(String color, Partita partita, String name, int positionGame) {
 		this.name = name;
@@ -63,6 +67,10 @@ public class Giocatore implements Serializable {
 				discoGiocatore[i] = new DiscoVittoria(color);
 				break;
 			}
+			palazzoImprese[i] = true;
+			palazzoEdifici[i] = true;
+			palazzoTerritori[i] = true;
+			palazzoPersonaggi[i] = true;
 		}
 	}
 
@@ -156,6 +164,7 @@ public class Giocatore implements Serializable {
 		} else {
 			if (dadi[dado].getValore() + agg >= valoreazione || (color.equals("neutro") && agg >0)) {
 				risorse.addRis("servitori", -agg);
+				
 				return "OK";
 			} else if(dadi[dado].getValore() + agg < valoreazione || (color.equals("neutro") && agg <0)){
 				return "Pay";
@@ -530,6 +539,21 @@ public class Giocatore implements Serializable {
 
 	}
 
+	public boolean getPosPalLibero(String pos, int i){
+		switch(pos){
+			case "edifici":
+				return palazzoEdifici[i];
+			case "territori":
+				return palazzoTerritori[i];
+			case "personaggi":
+				return palazzoPersonaggi[i];
+			case "imprese":
+				return palazzoImprese[i];
+		}
+		return false;
+		
+	}
+	
 	public void notifyAddRisorse(String name, String tipo, int qta) {
 		if (client == null) {
 			try {

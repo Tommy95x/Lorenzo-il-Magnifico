@@ -50,4 +50,5 @@ public interface ServerInterface extends Remote {
 	public void addRisorse(int positionGame, String name, String tipo, int qta)throws RemoteException, SQLException;
 	public void addPunti(int positionGame, String name, String tipo, int qta)throws RemoteException, SQLException;
 	public void pergamene(int posizionGame, String name, int qta)throws RemoteException;
+	public boolean getPosPalLibero(String string, int i, int positionGame, String name)throws RemoteException;
 }

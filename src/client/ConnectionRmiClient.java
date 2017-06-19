@@ -321,6 +321,10 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		return serverMethods.showDiceValues(positionGame, name);
 	}
 	
+	public boolean getPosPalLibero(String string, int i) throws RemoteException {
+		return serverMethods.getPosPalLibero(string, i, positionGame,name);
+	}
+	
 	@Override
 	public void sostegnoChiesa(boolean flag) {
 		// TODO Auto-generated method stub
