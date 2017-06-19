@@ -1068,112 +1068,112 @@ public class ControllerGame {
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteTerritori[0].getImage())));
 			Tooltip.install(mom, arrayCarteTerritori[0].getTooltip());
 			carteTerritoriGiocatore.getChildren().add(mom);
-			carteTerritori.getChildren().remove(0);
+			carteTerritori.getChildren().set(0, new ImageView());
 			start.getClient().setCardGiocatore(arrayCarteTerritori[0], 0);
 			break;
 		case "PIANO 2 FAMILIARE TERRITORI":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteTerritori[1].getImage())));
 			Tooltip.install(mom, arrayCarteTerritori[1].getTooltip());
 			carteTerritoriGiocatore.getChildren().add(mom);
-			carteTerritori.getChildren().remove(1);
+			carteTerritori.getChildren().set(1, new ImageView());
 			start.getClient().setCardGiocatore(arrayCarteTerritori[1], 0);
 			break;
 		case "PIANO 3 FAMILIARE TERRITORI":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteTerritori[2].getImage())));
 			Tooltip.install(mom, arrayCarteTerritori[2].getTooltip());
 			carteTerritoriGiocatore.getChildren().add(mom);
-			carteTerritori.getChildren().remove(2);
+			carteTerritori.getChildren().set(2, new ImageView());
 			start.getClient().setCardGiocatore(arrayCarteTerritori[2], 0);
 			break;
 		case "PIANO 4 FAMILIARE TERRITORI":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteTerritori[3].getImage())));
 			Tooltip.install(mom, arrayCarteTerritori[3].getTooltip());
 			carteTerritoriGiocatore.getChildren().add(mom);
-			carteTerritori.getChildren().remove(3);
+			carteTerritori.getChildren().set(3, new ImageView());
 			start.getClient().setCardGiocatore(arrayCarteTerritori[3], 0);
 			break;
 		case "PIANO 1 FAMILIARE EDIFICI":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteEdifici[0].getImage())));
 			Tooltip.install(mom, arrayCarteEdifici[0].getTooltip());
 			carteEdificiGiocatore.getChildren().add(mom);
-			carteEdifici.getChildren().remove(0);
+			carteEdifici.getChildren().set(0, new ImageView());
 			start.getClient().setCardGiocatore(arrayCarteEdifici[0], 2);
 			break;
 		case "PIANO 2 FAMILIARE EDIFICI":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteEdifici[1].getImage())));
 			Tooltip.install(mom, arrayCarteEdifici[1].getTooltip());
 			carteEdificiGiocatore.getChildren().add(mom);
-			carteEdifici.getChildren().remove(1);
+			carteEdifici.getChildren().set(1, new ImageView());
 			start.getClient().setCardGiocatore(arrayCarteEdifici[1], 2);
 			break;
 		case "PIANO 3 FAMILIARE EDIFICI":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteEdifici[2].getImage())));
 			Tooltip.install(mom, arrayCarteEdifici[2].getTooltip());
 			carteEdificiGiocatore.getChildren().add(mom);
-			carteEdifici.getChildren().remove(2);
+			carteEdifici.getChildren().set(2, new ImageView());
 			start.getClient().setCardGiocatore(arrayCarteEdifici[2], 2);
 			break;
 		case "PIANO 4 FAMILIARE EDIFICI":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteEdifici[3].getImage())));
 			Tooltip.install(mom, arrayCarteEdifici[3].getTooltip());
 			carteEdificiGiocatore.getChildren().add(mom);
-			carteEdifici.getChildren().remove(3);
+			carteEdifici.getChildren().set(3, new ImageView());
 			start.getClient().setCardGiocatore(arrayCarteEdifici[3], 2);
 			break;
 		case "PIANO 1 FAMILIARE IMPRESE":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteImpresa[0].getImage())));
 			Tooltip.install(mom, arrayCarteImpresa[0].getTooltip());
 			carteImpresaGiocatore.getChildren().add(mom);
-			carteImprese.getChildren().remove(0);
+			carteImprese.getChildren().set(0, new ImageView());
 			start.getClient().setCardGiocatore(arrayCarteImpresa[0], 3);
 			break;
 		case "PIANO 2 FAMILIARE IMPRESE":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteImpresa[1].getImage())));
 			Tooltip.install(mom, arrayCarteImpresa[1].getTooltip());
 			carteImpresaGiocatore.getChildren().add(mom);
-			carteImprese.getChildren().remove(1);
+			carteImprese.getChildren().set(1, new ImageView());
 			start.getClient().setCardGiocatore(arrayCarteImpresa[1], 3);
 			break;
 		case "PIANO 3 FAMILIARE IMPRESE":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteImpresa[2].getImage())));
 			Tooltip.install(mom, arrayCarteImpresa[2].getTooltip());
 			carteImpresaGiocatore.getChildren().add(mom);
-			carteImprese.getChildren().remove(2);
+			carteImprese.getChildren().set(2, new ImageView());
 			start.getClient().setCardGiocatore(arrayCarteImpresa[2], 3);
 			break;
 		case "PIANO 4 FAMILIARE IMPRESE":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteImpresa[3].getImage())));
 			Tooltip.install(mom, arrayCarteImpresa[3].getTooltip());
 			carteImpresaGiocatore.getChildren().add(mom);
-			carteImprese.getChildren().remove(3);
+			carteImprese.getChildren().set(3, new ImageView());
 			start.getClient().setCardGiocatore(arrayCarteImpresa[3], 3);
 			break;
 		case "PIANO 1 FAMILIARE PERSONAGGI":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCartePersonaggi[0].getImage())));
 			Tooltip.install(mom, arrayCartePersonaggi[0].getTooltip());
 			cartePersonaggiGiocatore.getChildren().add(mom);
-			cartePersonaggi.getChildren().remove(0);
+			cartePersonaggi.getChildren().set(0, new ImageView());
 			start.getClient().setCardGiocatore(arrayCartePersonaggi[0], 1);
 			break;
 		case "PIANO 2 FAMILIARE PERSONAGGI":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCartePersonaggi[1].getImage())));
 			Tooltip.install(mom, arrayCartePersonaggi[1].getTooltip());
 			cartePersonaggiGiocatore.getChildren().add(mom);
-			cartePersonaggi.getChildren().remove(1);
+			cartePersonaggi.getChildren().set(1, new ImageView());
 			start.getClient().setCardGiocatore(arrayCartePersonaggi[1], 1);
 			break;
 		case "PIANO 3 FAMILIARE PERSONAGGI":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCartePersonaggi[2].getImage())));
 			Tooltip.install(mom, arrayCartePersonaggi[2].getTooltip());
 			cartePersonaggiGiocatore.getChildren().add(mom);
-			cartePersonaggi.getChildren().remove(2);
+			cartePersonaggi.getChildren().set(2, new ImageView());
 			start.getClient().setCardGiocatore(arrayCartePersonaggi[2], 1);
 			break;
 		case "PIANO 4 FAMILIARE PERSONAGGI":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCartePersonaggi[3].getImage())));
 			Tooltip.install(mom, arrayCartePersonaggi[3].getTooltip());
 			cartePersonaggiGiocatore.getChildren().add(mom);
-			cartePersonaggi.getChildren().remove(3);
+			cartePersonaggi.getChildren().set(3, new ImageView());
 			start.getClient().setCardGiocatore(arrayCartePersonaggi[3], 1);
 			break;
 		case "AZIONE PRODUZIONE 4":
@@ -1661,7 +1661,7 @@ public class ControllerGame {
 		});
 
 		familiareNero.setOnDragDone(event -> {
-			if (flag) {
+			if (flag && destinazione1 != null) {
 				if (controlloPosizionamento("black", destinazione1.getLayoutX(), destinazione1.getLayoutY(), 0)) {
 					destinazione1.setImage(familiareNero.getImage());
 					familiareNero.setDisable(true);
@@ -1694,7 +1694,7 @@ public class ControllerGame {
 		});
 
 		familiareArancio.setOnDragDone(event -> {
-			if (flag) {
+			if (flag && destinazione1 != null) {
 				if (controlloPosizionamento("orange", destinazione1.getLayoutX(), destinazione1.getLayoutY(), 0)) {
 					destinazione1.setImage(familiareArancio.getImage());
 					familiareArancio.setDisable(true);
@@ -1727,7 +1727,7 @@ public class ControllerGame {
 		});
 
 		familiareBianco.setOnDragDone(event -> {
-			if (flag) {
+			if (flag && destinazione1 != null) {
 				if (controlloPosizionamento("white", destinazione1.getLayoutX(), destinazione1.getLayoutY(), 0)) {
 					destinazione1.setImage(familiareBianco.getImage());
 					familiareBianco.setDisable(true);
@@ -1760,96 +1760,242 @@ public class ControllerGame {
 		});
 
 		azioniTerritoridaunGiocatore.setOnDragEntered(e -> {
-			if (!azioniTerritoridaunGiocatore.getImage().equals(familiareNeutro.getImage()))
+			if (!azioniTerritoridaunGiocatore.getImage().equals(familiareNeutro.getImage()) 
+					&& !azioniTerritoridaunGiocatore.getImage().equals(familiareArancio.getImage()) 
+					&& !azioniTerritoridaunGiocatore.getImage().equals(familiareNero.getImage()) 
+					&& !azioniTerritoridaunGiocatore.getImage().equals(familiareBianco.getImage()) 
+					&& !azioniTerritoridaunGiocatore.getImage().equals(familiareOrange1.getImage()) 
+					&& !azioniTerritoridaunGiocatore.getImage().equals(familiareOrange2.getImage()) 
+					&& !azioniTerritoridaunGiocatore.getImage().equals(familiareOrange3.getImage()) 
+					&& !azioniTerritoridaunGiocatore.getImage().equals(familiareOrange4.getImage())
+					&& !azioniTerritoridaunGiocatore.getImage().equals(familiareGreen1.getImage()) 
+					&& !azioniTerritoridaunGiocatore.getImage().equals(familiareGreen2.getImage()) 
+					&& !azioniTerritoridaunGiocatore.getImage().equals(familiareGreen3.getImage()) 
+					&& !azioniTerritoridaunGiocatore.getImage().equals(familiareGreen4.getImage())
+					&& !azioniTerritoridaunGiocatore.getImage().equals(familiareWhite1.getImage()) 
+					&& !azioniTerritoridaunGiocatore.getImage().equals(familiareWhite2.getImage()) 
+					&& !azioniTerritoridaunGiocatore.getImage().equals(familiareWhite3.getImage()) 
+					&& !azioniTerritoridaunGiocatore.getImage().equals(familiareWhite4.getImage()));
 				setDestinazione1(azioniTerritoridaunGiocatore);
 		});
 
 		azioniEdificidaunGiocatore.setOnDragEntered(e -> {
-			setDestinazione1(azioniEdificidaunGiocatore);
+			if (!azioniEdificidaunGiocatore.getImage().equals(familiareNeutro.getImage()) 
+					&& !azioniEdificidaunGiocatore.getImage().equals(familiareArancio.getImage()) 
+					&& !azioniEdificidaunGiocatore.getImage().equals(familiareNero.getImage()) 
+					&& !azioniEdificidaunGiocatore.getImage().equals(familiareBianco.getImage())
+					&& !azioniEdificidaunGiocatore.getImage().equals(familiareOrange1.getImage()) 
+					&& !azioniEdificidaunGiocatore.getImage().equals(familiareOrange2.getImage()) 
+					&& !azioniEdificidaunGiocatore.getImage().equals(familiareOrange3.getImage()) 
+					&& !azioniEdificidaunGiocatore.getImage().equals(familiareOrange4.getImage())
+					&& !azioniEdificidaunGiocatore.getImage().equals(familiareGreen1.getImage()) 
+					&& !azioniEdificidaunGiocatore.getImage().equals(familiareGreen2.getImage()) 
+					&& !azioniEdificidaunGiocatore.getImage().equals(familiareGreen3.getImage()) 
+					&& !azioniEdificidaunGiocatore.getImage().equals(familiareGreen4.getImage())
+					&& !azioniEdificidaunGiocatore.getImage().equals(familiareWhite1.getImage()) 
+					&& !azioniEdificidaunGiocatore.getImage().equals(familiareWhite2.getImage()) 
+					&& !azioniEdificidaunGiocatore.getImage().equals(familiareWhite3.getImage()) 
+					&& !azioniEdificidaunGiocatore.getImage().equals(familiareWhite4.getImage()));
+			 setDestinazione1(azioniEdificidaunGiocatore);
 		});
 
 		mercatoPosMoneteMilitari.setOnDragEntered(e -> {
-			setDestinazione1(mercatoPosMoneteMilitari);
+			if (!mercatoPosMoneteMilitari.getImage().equals(familiareNeutro.getImage()) 
+					&& !mercatoPosMoneteMilitari.getImage().equals(familiareArancio.getImage()) 
+					&& !mercatoPosMoneteMilitari.getImage().equals(familiareNero.getImage()) 
+					&& !mercatoPosMoneteMilitari.getImage().equals(familiareBianco.getImage())
+					&& !mercatoPosMoneteMilitari.getImage().equals(familiareOrange1.getImage()) 
+					&& !mercatoPosMoneteMilitari.getImage().equals(familiareOrange2.getImage()) 
+					&& !mercatoPosMoneteMilitari.getImage().equals(familiareOrange3.getImage()) 
+					&& !mercatoPosMoneteMilitari.getImage().equals(familiareOrange4.getImage())
+					&& !mercatoPosMoneteMilitari.getImage().equals(familiareGreen1.getImage()) 
+					&& !mercatoPosMoneteMilitari.getImage().equals(familiareGreen2.getImage()) 
+					&& !mercatoPosMoneteMilitari.getImage().equals(familiareGreen3.getImage()) 
+					&& !mercatoPosMoneteMilitari.getImage().equals(familiareGreen4.getImage())
+					&& !mercatoPosMoneteMilitari.getImage().equals(familiareWhite1.getImage()) 
+					&& !mercatoPosMoneteMilitari.getImage().equals(familiareWhite2.getImage()) 
+					&& !mercatoPosMoneteMilitari.getImage().equals(familiareWhite3.getImage()) 
+					&& !mercatoPosMoneteMilitari.getImage().equals(familiareWhite4.getImage()));
+				setDestinazione1(mercatoPosMoneteMilitari);
 		});
 
 		mercatoPosServitori.setOnDragEntered(e -> {
-			setDestinazione1(mercatoPosServitori);
+			if (!mercatoPosServitori.getImage().equals(familiareNeutro.getImage()) 
+					&& !mercatoPosServitori.getImage().equals(familiareArancio.getImage()) 
+					&& !mercatoPosServitori.getImage().equals(familiareNero.getImage()) 
+					&& !mercatoPosServitori.getImage().equals(familiareBianco.getImage())
+					&& !mercatoPosServitori.getImage().equals(familiareOrange1.getImage()) 
+					&& !mercatoPosServitori.getImage().equals(familiareOrange2.getImage()) 
+					&& !mercatoPosServitori.getImage().equals(familiareOrange3.getImage()) 
+					&& !mercatoPosServitori.getImage().equals(familiareOrange4.getImage())
+					&& !mercatoPosServitori.getImage().equals(familiareGreen1.getImage()) 
+					&& !mercatoPosServitori.getImage().equals(familiareGreen2.getImage()) 
+					&& !mercatoPosServitori.getImage().equals(familiareGreen3.getImage()) 
+					&& !mercatoPosServitori.getImage().equals(familiareGreen4.getImage())
+					&& !mercatoPosServitori.getImage().equals(familiareWhite1.getImage()) 
+					&& !mercatoPosServitori.getImage().equals(familiareWhite2.getImage()) 
+					&& !mercatoPosServitori.getImage().equals(familiareWhite3.getImage()) 
+					&& !mercatoPosServitori.getImage().equals(familiareWhite4.getImage()));
+				setDestinazione1(mercatoPosServitori);
 		});
 
 		mercatoPosMonete.setOnDragEntered(e -> {
-			setDestinazione1(mercatoPosMonete);
+			if (!mercatoPosMonete.getImage().equals(familiareNeutro.getImage()) 
+					&& !mercatoPosMonete.getImage().equals(familiareArancio.getImage()) 
+					&& !mercatoPosMonete.getImage().equals(familiareNero.getImage()) 
+					&& !mercatoPosMonete.getImage().equals(familiareBianco.getImage())
+					&& !mercatoPosMonete.getImage().equals(familiareOrange1.getImage()) 
+					&& !mercatoPosMonete.getImage().equals(familiareOrange2.getImage()) 
+					&& !mercatoPosMonete.getImage().equals(familiareOrange3.getImage()) 
+					&& !mercatoPosMonete.getImage().equals(familiareOrange4.getImage())
+					&& !mercatoPosMonete.getImage().equals(familiareGreen1.getImage()) 
+					&& !mercatoPosMonete.getImage().equals(familiareGreen2.getImage()) 
+					&& !mercatoPosMonete.getImage().equals(familiareGreen3.getImage()) 
+					&& !mercatoPosMonete.getImage().equals(familiareGreen4.getImage())
+					&& !mercatoPosMonete.getImage().equals(familiareWhite1.getImage()) 
+					&& !mercatoPosMonete.getImage().equals(familiareWhite2.getImage()) 
+					&& !mercatoPosMonete.getImage().equals(familiareWhite3.getImage()) 
+					&& !mercatoPosMonete.getImage().equals(familiareWhite4.getImage()));
+				setDestinazione1(mercatoPosMonete);
 		});
 
 		mercatoPosMunicipio.setOnDragEntered(e -> {
-			setDestinazione1(mercatoPosMunicipio);
+			if (!mercatoPosMunicipio.getImage().equals(familiareNeutro.getImage()) 
+					&& !mercatoPosMunicipio.getImage().equals(familiareArancio.getImage()) 
+					&& !mercatoPosMunicipio.getImage().equals(familiareNero.getImage()) 
+					&& !mercatoPosMunicipio.getImage().equals(familiareBianco.getImage())
+					&& !mercatoPosMunicipio.getImage().equals(familiareOrange1.getImage()) 
+					&& !mercatoPosMunicipio.getImage().equals(familiareOrange2.getImage()) 
+					&& !mercatoPosMunicipio.getImage().equals(familiareOrange3.getImage()) 
+					&& !mercatoPosMunicipio.getImage().equals(familiareOrange4.getImage())
+					&& !mercatoPosMunicipio.getImage().equals(familiareGreen1.getImage()) 
+					&& !mercatoPosMunicipio.getImage().equals(familiareGreen2.getImage()) 
+					&& !mercatoPosMunicipio.getImage().equals(familiareGreen3.getImage()) 
+					&& !mercatoPosMunicipio.getImage().equals(familiareGreen4.getImage())
+					&& !mercatoPosMunicipio.getImage().equals(familiareWhite1.getImage()) 
+					&& !mercatoPosMunicipio.getImage().equals(familiareWhite2.getImage()) 
+					&& !mercatoPosMunicipio.getImage().equals(familiareWhite3.getImage()) 
+					&& !mercatoPosMunicipio.getImage().equals(familiareWhite4.getImage()));
+				setDestinazione1(mercatoPosMunicipio);
 		});
 
 		pianoPrimoPalazzoMilitare.setOnDragEntered(e -> {
+			if (!pianoPrimoPalazzoMilitare.getImage().equals(familiareArancio.getImage()) 
+					&& !pianoPrimoPalazzoMilitare.getImage().equals(familiareNero.getImage()) 
+					&& !pianoPrimoPalazzoMilitare.getImage().equals(familiareBianco.getImage()));
 			setDestinazione1(pianoPrimoPalazzoMilitare);
 		});
 
 		pianoSecondoPalazzoMilitare.setOnDragEntered(e -> {
+			if (!pianoSecondoPalazzoMilitare.getImage().equals(familiareArancio.getImage()) 
+					&& !pianoSecondoPalazzoMilitare.getImage().equals(familiareNero.getImage()) 
+					&& !pianoSecondoPalazzoMilitare.getImage().equals(familiareBianco.getImage()));
 			setDestinazione1(pianoSecondoPalazzoMilitare);
 		});
 
 		pianoTerzoPalazzoMilitare.setOnDragEntered(e -> {
+			if (!pianoTerzoPalazzoMilitare.getImage().equals(familiareArancio.getImage()) 
+					&& !pianoTerzoPalazzoMilitare.getImage().equals(familiareNero.getImage()) 
+					&& !pianoTerzoPalazzoMilitare.getImage().equals(familiareBianco.getImage()));
 			setDestinazione1(pianoTerzoPalazzoMilitare);
 		});
 
 		pianoQuartoPalazzoMilitare.setOnDragEntered(e -> {
+			if (!pianoQuartoPalazzoMilitare.getImage().equals(familiareArancio.getImage()) 
+					&& !pianoQuartoPalazzoMilitare.getImage().equals(familiareNero.getImage()) 
+					&& !pianoQuartoPalazzoMilitare.getImage().equals(familiareBianco.getImage()));
 			setDestinazione1(pianoQuartoPalazzoMilitare);
 		});
 
 		pianoPrimoPalazzoPersonaggi.setOnDragEntered(e -> {
+			if (!pianoPrimoPalazzoPersonaggi.getImage().equals(familiareArancio.getImage()) 
+					&& !pianoPrimoPalazzoPersonaggi.getImage().equals(familiareNero.getImage()) 
+					&& !pianoPrimoPalazzoPersonaggi.getImage().equals(familiareBianco.getImage()));
 			setDestinazione1(pianoPrimoPalazzoPersonaggi);
 		});
 
 		pianoSecondoPalazzoPersonaggi.setOnDragEntered(e -> {
+			if (!pianoSecondoPalazzoPersonaggi.getImage().equals(familiareArancio.getImage()) 
+					&& !pianoSecondoPalazzoPersonaggi.getImage().equals(familiareNero.getImage()) 
+					&& !pianoSecondoPalazzoPersonaggi.getImage().equals(familiareBianco.getImage()));
 			setDestinazione1(pianoSecondoPalazzoPersonaggi);
 		});
 
 		pianoTerzoPalazzoPersonaggi.setOnDragEntered(e -> {
+			if (!pianoTerzoPalazzoPersonaggi.getImage().equals(familiareArancio.getImage()) 
+					&& !pianoTerzoPalazzoPersonaggi.getImage().equals(familiareNero.getImage()) 
+					&& !pianoTerzoPalazzoPersonaggi.getImage().equals(familiareBianco.getImage()));
 			setDestinazione1(pianoTerzoPalazzoPersonaggi);
 		});
 
 		pianoQuartoPalazzoPersonaggi.setOnDragEntered(e -> {
+			if (!pianoQuartoPalazzoPersonaggi.getImage().equals(familiareArancio.getImage()) 
+					&& !pianoQuartoPalazzoPersonaggi.getImage().equals(familiareNero.getImage()) 
+					&& !pianoQuartoPalazzoPersonaggi.getImage().equals(familiareBianco.getImage()));
 			setDestinazione1(pianoQuartoPalazzoPersonaggi);
 		});
 
 		pianoPrimoPalazzoEdifici.setOnDragEntered(e -> {
+			if (!pianoPrimoPalazzoEdifici.getImage().equals(familiareArancio.getImage()) 
+					&& !pianoPrimoPalazzoEdifici.getImage().equals(familiareNero.getImage()) 
+					&& !pianoPrimoPalazzoEdifici.getImage().equals(familiareBianco.getImage()));
 			setDestinazione1(pianoPrimoPalazzoEdifici);
 		});
 
 		pianoSecondoPalazzoEdifici.setOnDragEntered(e -> {
+			if (!pianoSecondoPalazzoEdifici.getImage().equals(familiareArancio.getImage()) 
+					&& !pianoSecondoPalazzoEdifici.getImage().equals(familiareNero.getImage()) 
+					&& !pianoSecondoPalazzoEdifici.getImage().equals(familiareBianco.getImage()));
 			setDestinazione1(pianoSecondoPalazzoEdifici);
 		});
 
 		pianoTerzoPalazzoEdifici.setOnDragEntered(e -> {
+			if (!pianoTerzoPalazzoEdifici.getImage().equals(familiareArancio.getImage()) 
+					&& !pianoTerzoPalazzoEdifici.getImage().equals(familiareNero.getImage()) 
+					&& !pianoTerzoPalazzoEdifici.getImage().equals(familiareBianco.getImage()));
 			setDestinazione1(pianoTerzoPalazzoEdifici);
 		});
 
 		pianoQuartoPalazzoEdifici.setOnDragEntered(e -> {
+			if (!pianoQuartoPalazzoEdifici.getImage().equals(familiareArancio.getImage()) 
+					&& !pianoQuartoPalazzoEdifici.getImage().equals(familiareNero.getImage()) 
+					&& !pianoQuartoPalazzoEdifici.getImage().equals(familiareBianco.getImage()));
 			setDestinazione1(pianoQuartoPalazzoEdifici);
 		});
 
 		pianoPrimoPalazzoTerritori.setOnDragEntered(e -> {
+			if (!pianoPrimoPalazzoTerritori.getImage().equals(familiareArancio.getImage()) 
+					&& !pianoPrimoPalazzoTerritori.getImage().equals(familiareNero.getImage()) 
+					&& !pianoPrimoPalazzoTerritori.getImage().equals(familiareBianco.getImage()));
 			setDestinazione1(pianoPrimoPalazzoTerritori);
 		});
 
 		pianoSecondoPalazzoTerritori.setOnDragEntered(e -> {
+			if (!pianoSecondoPalazzoTerritori.getImage().equals(familiareArancio.getImage()) 
+					&& !pianoSecondoPalazzoTerritori.getImage().equals(familiareNero.getImage()) 
+					&& !pianoSecondoPalazzoTerritori.getImage().equals(familiareBianco.getImage()));
 			setDestinazione1(pianoSecondoPalazzoTerritori);
 		});
 
 		pianoTerzoPalazzoTerritori.setOnDragEntered(e -> {
+			if (!pianoTerzoPalazzoTerritori.getImage().equals(familiareArancio.getImage()) 
+					&& !pianoTerzoPalazzoTerritori.getImage().equals(familiareNero.getImage()) 
+					&& !pianoTerzoPalazzoTerritori.getImage().equals(familiareBianco.getImage()));
 			setDestinazione1(pianoTerzoPalazzoTerritori);
 		});
 
 		pianoQuartoPalazzoTerritori.setOnDragEntered(e -> {
+			if (!pianoQuartoPalazzoTerritori.getImage().equals(familiareArancio.getImage()) 
+					&& !pianoQuartoPalazzoTerritori.getImage().equals(familiareNero.getImage()) 
+					&& !pianoQuartoPalazzoTerritori.getImage().equals(familiareBianco.getImage()));
 			setDestinazione1(pianoQuartoPalazzoTerritori);
 		});
 
 		azioniTerritoridapiuGiocatori.setOnDragEntered(e -> {
-			setDestinazione2(azioniTerritoridapiuGiocatori);
+			if (!azioniTerritoridaunGiocatore.getImage().equals(familiareArancio.getImage()) 
+					&& !azioniTerritoridaunGiocatore.getImage().equals(familiareNero.getImage()) 
+					&& !azioniTerritoridaunGiocatore.getImage().equals(familiareBianco.getImage()));
+				setDestinazione2(azioniTerritoridapiuGiocatori);
 		});
 
 		municipio.setOnDragEntered(e -> {
@@ -1857,7 +2003,7 @@ public class ControllerGame {
 		});
 
 		azioniEdificidapiuGiocatori.setOnDragEntered(e -> {
-			setDestinazione2(azioniEdificidapiuGiocatori);
+				setDestinazione2(azioniEdificidapiuGiocatori);
 		});
 
 	}
