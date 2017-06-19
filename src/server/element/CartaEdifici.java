@@ -24,8 +24,8 @@ public class CartaEdifici extends CartaSviluppo {
 	private String nomeffetto;
 	private int qtaeffetto;
 	private ArrayList<Effetto> effetti = new ArrayList<Effetto>();
-	private ArrayList<Risorsa> spendiRisorse = new ArrayList<Risorsa>();
-	private ArrayList<Risorsa> prendiRisorse = new ArrayList<Risorsa>();
+	private Risorsa[] spendiRisorse = new Risorsa[3];
+	private Risorsa[] prendiRisorse = new Risorsa[2];
 	private ArrayList<Risorsa> acquisisciPunti = new ArrayList<Risorsa>();
 	private String perognicarta;
 	private String image;
@@ -69,11 +69,11 @@ public class CartaEdifici extends CartaSviluppo {
 				nomeffetto = rs.getString("EFFETTOIMMEDIATO2").toLowerCase();
 				qtaeffetto = rs.getInt("QTAEFFETTOIMMEDIATO2");
 				effetti.add(new Effetto(nomeffetto, qtaeffetto, true, rs.getInt("TIPO"), rs.getInt("TIPOPERMANENTE")));
-				spendiRisorse.add(new Risorsa(rs.getString("SPENDIRISORSA1"), rs.getInt("QTASPENDIRISORSA1")));
-				spendiRisorse.add(new Risorsa(rs.getString("SPENDIRISORSA2"), rs.getInt("QTASPENDIRISORSA2")));
-				spendiRisorse.add(new Risorsa(rs.getString("SPENDIRISORSA2"), rs.getInt("QTASPENDIRISORSA2")));
-				prendiRisorse.add(new Risorsa(rs.getString("PRENDIRISORSA1"), rs.getInt("QTAPRENDIRISORSA1")));
-				prendiRisorse.add(new Risorsa(rs.getString("PRENDIRISORSA2"), rs.getInt("QTAPRENDIRISORSA2")));
+				spendiRisorse[0]=(new Risorsa(rs.getString("SPENDIRISORSA1"), rs.getInt("QTASPENDIRISORSA1")));
+				spendiRisorse[1]=(new Risorsa(rs.getString("SPENDIRISORSA2"), rs.getInt("QTASPENDIRISORSA2")));
+				spendiRisorse[2]=(new Risorsa(rs.getString("SPENDIRISORSA2"), rs.getInt("QTASPENDIRISORSA2")));
+				prendiRisorse[0]=(new Risorsa(rs.getString("PRENDIRISORSA1"), rs.getInt("QTAPRENDIRISORSA1")));
+				prendiRisorse[1]=(new Risorsa(rs.getString("PRENDIRISORSA2"), rs.getInt("QTAPRENDIRISORSA2")));
 				costoAzione = rs.getInt("COSTOAZIONE");
 				acquisisciPunti.add(new Risorsa(rs.getString("ACQUISISCIPUNTI"), rs.getInt("QTAACQUISISCIPUNTI")));
 				perognicarta = rs.getString("PEROGNICARTA");
@@ -181,5 +181,13 @@ public class CartaEdifici extends CartaSviluppo {
 	
 	public String getTooltipString() {
 		return tooltip;
+	}
+	
+	public Risorsa[] getSpendiRisorsa(){
+		return spendiRisorse;
+	}
+	
+	public Risorsa[] getPrendiRisorsa(){
+		return prendiRisorse;
 	}
 }

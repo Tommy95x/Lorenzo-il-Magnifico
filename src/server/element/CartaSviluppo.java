@@ -26,8 +26,8 @@ public class CartaSviluppo implements Serializable{
 	private int costoLegno;
 	private int costoPietra;
 	private int costoServitori;
-	private ArrayList<Risorsa> spendiRisorse;
-	private ArrayList<Risorsa> prendiRisorse;
+	private Risorsa[] spendiRisorse = new Risorsa[3];
+	private Risorsa[] prendiRisorse = new Risorsa[2];
 	private ArrayList<Risorsa> acquisisciPunti;
 	private String perognicarta;
 	int scontoAzione=3;
@@ -163,4 +163,11 @@ public class CartaSviluppo implements Serializable{
 		return scontoAzione;
 	}
 
+	public Risorsa[] getSpendiRisorsa(){
+		return spendiRisorse;
+	}
+	
+	public Risorsa[] getPrendiRisorsa(){
+		return prendiRisorse;
+	}
 }
