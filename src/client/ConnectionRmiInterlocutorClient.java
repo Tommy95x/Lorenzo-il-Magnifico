@@ -1,26 +1,27 @@
 package client;
 
-import java.io.IOException;
-import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 
 import client.gui.StartClientGui;
 import client.gui.controllers.ControllerGame;
-import client.gui.controllers.ControllerWaitingRoom;
 import javafx.application.Platform;
 import javafx.scene.control.Tooltip;
 import server.element.CartaSviluppo;
 import server.element.Giocatore;
-import server.element.Portafoglio;
 import shared.RMIClientInterface;
 
 public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implements RMIClientInterface{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private StartClientGui start;
 	private ControllerGame guiGame;
 	private int positionGame;
+	@SuppressWarnings("unused")
 	private String name;
 
 	public ConnectionRmiInterlocutorClient() throws RemoteException{}

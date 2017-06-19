@@ -17,6 +17,10 @@ import server.element.Partita;
 */
 public class StartServer implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ArrayList<String> utente= new ArrayList<String>();
 	private ArrayList<Partita> lobbies = new ArrayList <Partita>();
 	private ConnectionDatabase DB = new ConnectionDatabase(80, 10);

@@ -8,17 +8,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
-
-import client.ConnectionRmiClient;
-import client.ConnectionRmiInterlocutorClient;
 import client.gui.controllers.ControllerGame;
-import javafx.scene.control.Tooltip;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import server.ThreadSocketServer;
 import shared.RMIClientInterface;
 
+@SuppressWarnings("serial")
 public class Giocatore implements Serializable {
 
 	private String name;
@@ -31,6 +25,7 @@ public class Giocatore implements Serializable {
 	private Dado[] dadi;
 	private ArrayList<CartaSviluppo> carte = new ArrayList<CartaSviluppo>();
 	private Partita partita;
+	@SuppressWarnings("unused")
 	private int positionGame;
 	private ThreadSocketServer server = null;
 	private RMIClientInterface client;

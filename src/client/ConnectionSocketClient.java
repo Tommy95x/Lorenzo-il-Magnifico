@@ -3,15 +3,10 @@ package client;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.rmi.RemoteException;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
-
 import client.gui.StartClientGui;
 import client.gui.controllers.ControllerGame;
 import javafx.scene.control.Tooltip;
@@ -25,7 +20,6 @@ import server.element.Giocatore;
 import server.element.Partita;
 import server.element.Portafoglio;
 import server.element.TesseraScomunica;
-import shared.RMIClientInterface;
 
 /*
  * Classe che implementa il socket
@@ -43,6 +37,7 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 	private String name;
 	private ControllerGame guiGame;
 	private StartClientGui start;
+	@SuppressWarnings("unused")
 	private String lobby;
 
 	public ConnectionSocketClient() throws RemoteException {

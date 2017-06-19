@@ -9,18 +9,12 @@ import java.util.Optional;
 
 import client.gui.StartClientGui;
 import javafx.animation.PathTransition;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
@@ -53,6 +47,7 @@ public class ControllerGame {
 	private CartaImprese[] arrayCarteImpresa = new CartaImprese[4];
 	private CartaPersonaggi[] arrayCartePersonaggi = new CartaPersonaggi[4];
 	private CartaEdifici[] arrayCarteEdifici = new CartaEdifici[4];
+	@SuppressWarnings("unused")
 	private int numberOfGamers;
 	private ImageView destinazione1;
 	private HBox destinazione2;
@@ -288,6 +283,7 @@ public class ControllerGame {
 	}
 
 	public void setColorCubiScomunica(String color) {
+		@SuppressWarnings("unused")
 		Portafoglio p;
 		switch (color) {
 		case "blue":
@@ -721,6 +717,7 @@ public class ControllerGame {
 	/*
 	 * Controllo per verificare se si ha un numero di punti del dado
 	 */
+	@SuppressWarnings("unused")
 	public boolean controlloPosizionamento(String color, double x, double y, int addRisorse, ImageView destinazione) {
 		try {
 			if (controlCard(x, y)) {

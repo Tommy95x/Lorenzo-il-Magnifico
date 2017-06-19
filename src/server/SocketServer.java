@@ -9,6 +9,7 @@ import java.util.concurrent.Executors;
 public class SocketServer extends Thread{
 
 	private int port;
+	@SuppressWarnings("unused")
 	private String ip="127.0.0.1";
 	private StartServer commonServer;
 	

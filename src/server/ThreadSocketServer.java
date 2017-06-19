@@ -8,9 +8,6 @@ import java.io.Serializable;
 import java.net.Socket;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-
-import javafx.scene.control.Tooltip;
 import server.element.CartaSviluppo;
 import server.element.Giocatore;
 import server.element.Partita;
@@ -24,6 +21,10 @@ import server.element.TesseraScomunica;
 **/
 public class ThreadSocketServer implements Runnable, Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private StartServer commonServer;
 	private Socket socket;
 	private ObjectInputStream input;
@@ -57,6 +58,7 @@ public class ThreadSocketServer implements Runnable, Serializable {
 		output.close();
 	}
 
+	@SuppressWarnings("unused")
 	private void outArray(String[] colors, PrintWriter output2) throws IOException {
 		for (String s : colors) {
 			output.writeObject(s);

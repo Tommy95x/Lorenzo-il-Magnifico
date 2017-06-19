@@ -1,7 +1,6 @@
 package client;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -11,9 +10,7 @@ import java.util.ArrayList;
 
 import client.gui.StartClientGui;
 import client.gui.controllers.ControllerGame;
-import javafx.scene.control.Tooltip;
 import server.element.CartaSviluppo;
-import server.element.CartaTerritori;
 import server.element.Dado;
 import server.element.Giocatore;
 import server.element.Partita;
@@ -27,11 +24,13 @@ import shared.ServerInterface;
 
 public class ConnectionRmiClient extends ConnectionClient implements ClientInterface{
 
+	@SuppressWarnings("unused")
 	private int port;
 	private ServerInterface serverMethods;
 	private int positionGame;
 	private String name;
 	private int numberOfGamers;
+	@SuppressWarnings("unused")
 	private ControllerGame guiGame;
 	private ConnectionRmiInterlocutorClient interlocutor;
 	private String color;
