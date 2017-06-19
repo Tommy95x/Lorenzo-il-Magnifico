@@ -157,7 +157,7 @@ public class Partita implements Serializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 changeGamer();
+		changeGamer();
 	}
 
 	// Mettere a public per verificare con il metodo di test
@@ -254,8 +254,7 @@ public class Partita implements Serializable {
 	}
 
 	private void endGame() {
-		
-		
+
 	}
 
 	private void sostegnoChiesa() {
@@ -341,12 +340,12 @@ public class Partita implements Serializable {
 		for (i = 0; i < NUMCARTE; i++) {
 			System.out.println("CartePersonaggio " + i + "");
 			query = "SELECT * FROM " + name.toUpperCase() + "CARTEPERSONAGGIOPARTITA LIMIT 1";
-			System.out.println("Carta Personaggio " + i +" selezionata");
+			System.out.println("Carta Personaggio " + i + " selezionata");
 			cartePersonaggio[i] = new CartaPersonaggi();
 			cartePersonaggio[i].setCarta(connection, query);
 			queryelimina = "DELETE TOP 1 FROM " + name.toUpperCase() + "CARTEPERSONAGGIOPARTITA";
 			connection.createStatement().executeUpdate(queryelimina);
-			System.out.println("Carta personaggio "+i+" Eliminata");
+			System.out.println("Carta personaggio " + i + " Eliminata");
 		}
 		for (i = 0; i < NUMCARTE; i++) {
 			System.out.println("CarteEdificio " + i + "");
@@ -479,9 +478,11 @@ public class Partita implements Serializable {
 	}
 
 	public void notifyAddCardGiocatoreAvv(String name, CartaSviluppo carta) throws RemoteException {
-		for (int i=0; i< 4; i++) {
-			if (!giocatori[i].getName().equals(name) && giocatori[i] != null) {
-				giocatori[i].notifyAddCardAvv(carta);
+		System.out.println("Notifico presa carta");
+		for (int i = 0; i < 4; i++) {
+			if (giocatori[i] != null) {
+				if (!giocatori[i].getName().equals(name))
+					giocatori[i].notifyAddCardAvv(carta);
 			}
 		}
 	}
@@ -562,6 +563,13 @@ public class Partita implements Serializable {
 				}
 			}
 			break;
+		}
+	}
+
+	public void notifyAddRisorse(String name, String tipo, int qta) {
+		for (int i = 0; i < 4; i++) {
+			if (giocatori[i] != null)
+				giocatori[i].notifyAddRisorse(name, tipo, qta);
 		}
 	}
 }

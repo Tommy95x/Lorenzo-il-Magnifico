@@ -136,5 +136,12 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 		this.start = start2;
 		
 	}
+
+	public void notifyAddRisorse(String name, String tipo, int qta) throws RemoteException {
+		Platform.runLater(() -> {
+			this.guiGame.notifyAddRisorse(name, tipo, qta);
+		});
+		
+	}
 	
 }

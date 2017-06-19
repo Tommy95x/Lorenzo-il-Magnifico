@@ -231,15 +231,19 @@ public class Giocatore implements Serializable {
 						break;
 					case "pietra":
 						risorse.addRis("pietra", e.getQta());
+						partita.notifyAddRisorse(name,"pietra", e.getQta());
 						break;
 					case "monete":
 						risorse.addRis("monete", e.getQta());
+						partita.notifyAddRisorse(name,"monete", e.getQta());
 						break;
 					case "servitori":
 						risorse.addRis("servitori", e.getQta());
+						partita.notifyAddRisorse(name,"servitori", e.getQta());
 						break;
 					case "legno":
 						risorse.addRis("legno", e.getQta());
+						partita.notifyAddRisorse(name,"legno", e.getQta());
 						break;
 					case "pergamena":
 						try {
@@ -523,5 +527,19 @@ public class Giocatore implements Serializable {
 
 	public void setGuiGame(ControllerGame guiGame) {
 
+	}
+
+	public void notifyAddRisorse(String name, String tipo, int qta) {
+		if (client == null) {
+			try {
+				server.notifyAddRisorse(name,tipo, qta);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			client.notifyAddRisorse(name, tipo, qta);
+		}
+		
 	}
 }

@@ -224,7 +224,6 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 	@Override
 	public void addRisorse(int positionGame, String name, String tipo, int qta) throws RemoteException, SQLException {
 		commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).addRis(tipo, qta, commonServer.getDBConnection().getConnection(name));
-		
 	}
 
 	

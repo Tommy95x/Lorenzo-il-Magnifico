@@ -23,4 +23,5 @@ public interface RMIClientInterface extends Remote{
 	public void notifyPergamena(int i)throws RemoteException;
 	public void notifyTutteCarte(int i)throws RemoteException;
 	public void notifyUnTipoCarta(int tipo, int qta, int scontoAzioneImmediata1)throws RemoteException;
+	public void notifyAddRisorse(String name, String tipo, int qta)throws RemoteException;
 }
