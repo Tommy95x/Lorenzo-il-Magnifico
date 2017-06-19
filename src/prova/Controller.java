@@ -1517,7 +1517,7 @@ public class Controller {
 				puntiVittoriaBlu.setTranslateY(startY);
 			}*/
 			Path path = new Path();
-			path.getElements().add(new MoveTo(529.0,20.0));
+			path.getElements().add(new MoveTo(529.0,735.0));
 			path.getElements().add(new CubicCurveTo(529.0, 20.0, 200, 20, 529.0, 735.0+20));
 			PathTransition pathTransition = new PathTransition();
 			pathTransition.setDuration(Duration.millis(4000));

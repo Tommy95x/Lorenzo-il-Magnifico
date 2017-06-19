@@ -97,9 +97,9 @@ public class Partita implements Serializable {
 
 	private void startPartita() throws RemoteException, SQLException {
 		turno = 1;
-		System.out.println("shuffle giocatori ");
+		/*System.out.println("shuffle giocatori ");
 		beShuffled();
-		System.out.println("Sistemato ordine gioco");
+		System.out.println("Sistemato ordine gioco");*/
 		this.NumberOfPlayers = 1;
 		for (int i = 0; i < 4; i++) {
 			if (giocatori[i] != null) {
@@ -138,24 +138,6 @@ public class Partita implements Serializable {
 				}
 				System.out.println("Giocatori a null");
 			}
-		}
-		/*
-		 * try { System.out.println("Notificato giocatore 1\n\n\n");
-		 * if(giocatori[0] != null) giocatori[0].notifyStartGame();
-		 * System.out.println("Notificato giocatore 2\n\n\n "+giocatori[1].
-		 * toString()); if(giocatori[1] != null) giocatori[1].notifyStartGame();
-		 * System.out.println("Notificato giocatore 3\n\n\n"); if(giocatori[2]
-		 * != null) giocatori[2].notifyStartGame();
-		 * System.out.println("Notificato giocatore 4\n\n\n"); if(giocatori[3]
-		 * != null) giocatori[3].notifyStartGame(); } catch (IOException |
-		 * ClassNotFoundException e) { // TODO Auto-generated catch block
-		 * e.printStackTrace(); }
-		 */
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		changeGamer();
 	}
@@ -478,11 +460,12 @@ public class Partita implements Serializable {
 	}
 
 	public void notifyAddCardGiocatoreAvv(String name, CartaSviluppo carta) throws RemoteException {
-		System.out.println("Notifico presa carta");
+		System.out.println("Notifico presa carta "+name);
 		for (int i = 0; i < 4; i++) {
 			if (giocatori[i] != null) {
+				System.out.println(giocatori[i].getName());
 				if (!giocatori[i].getName().equals(name))
-					giocatori[i].notifyAddCardAvv(carta);
+					giocatori[i].notifyAddCardAvv(carta, name);
 			}
 		}
 	}

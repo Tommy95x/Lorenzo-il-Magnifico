@@ -148,6 +148,7 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 			throws RemoteException, SQLException {
 		commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).addCard(carta, tipo,
 				commonServer.getDBConnection().getConnection(name));
+		System.out.println("Pronto a notificare i giocatori");
 		commonServer.getLobbyByNumber(positionGame).notifyAddCardGiocatoreAvv(name, carta);
 	}
 
@@ -239,5 +240,4 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 	public boolean getPosPalLibero(String string, int i, int positionGame, String name) throws RemoteException {
 		return commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).getPosPalLibero(string, i);
 	}
-
 }

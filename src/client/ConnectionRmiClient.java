@@ -321,8 +321,14 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		return serverMethods.showDiceValues(positionGame, name);
 	}
 	
-	public boolean getPosPalLibero(String string, int i) throws RemoteException {
-		return serverMethods.getPosPalLibero(string, i, positionGame,name);
+	public boolean getPosPalLibero(String string, int i) {
+		try {
+			return serverMethods.getPosPalLibero(string, i, positionGame,name);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 	
 	@Override
