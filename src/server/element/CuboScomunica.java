@@ -2,10 +2,12 @@ package server.element;
 
 import java.io.Serializable;
 
-import javafx.scene.control.Tooltip;
-
 public class CuboScomunica implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7856069704502477493L;
 	//Possieder� degli attributi che contraddistingueranno il cubo in caso d'istanza di mancato sostegno della chiesa
 	private String color;
 	private int periodo;

@@ -8,10 +8,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javafx.scene.control.Tooltip;
-import javafx.scene.image.Image;
 
 public class CartaImprese extends CartaSviluppo {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// Le carte impresa hanno due differenti costi impresa e il giocatore pu�
 	// decidere quale dei due costi scegliere tra risorse o punti militari
 	private int costoLegno;

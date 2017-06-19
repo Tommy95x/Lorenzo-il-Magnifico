@@ -8,6 +8,10 @@ import java.io.Serializable;
 */
 public class Disco implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/*Attributi e metodi comuni dei differenti dischi oltre che ad essere il disco utilizzato per settare l'ordine di gioco
 	  dei giocatori*/
 	private String color;

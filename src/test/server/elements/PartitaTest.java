@@ -65,6 +65,7 @@ public class PartitaTest {
 	 * 
 	 * @throws SQLException
 	 */
+	@SuppressWarnings("unused")
 	@Test
 	public void testCheckAvailableColors() throws SQLException {
 		ConnectionDatabase db = new ConnectionDatabase(2, 2);

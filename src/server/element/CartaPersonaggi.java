@@ -8,10 +8,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javafx.scene.control.Tooltip;
-import javafx.scene.image.Image;
 
 public class CartaPersonaggi extends CartaSviluppo {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// Le carte personaggio possiedono solo e soltanto costo in moneta
 	private int costoMoneta;
 	private String name;

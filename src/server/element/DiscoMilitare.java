@@ -2,6 +2,10 @@ package server.element;
 
 public class DiscoMilitare extends Disco{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//Disco che servirà per il conto dei punti militari accumulati
 	private int puntiMilitari;
 	

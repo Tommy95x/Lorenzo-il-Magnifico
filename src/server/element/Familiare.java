@@ -3,6 +3,10 @@ package server.element;
 //Classe del familiare che verrà  piazzato dal giocatore sul tabellone per eseguire le azioni possibili 
 public class Familiare extends FamiliareNeutro{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public String diceColor;
 	public int puntiAzione;
 	

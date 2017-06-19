@@ -3,14 +3,8 @@ package server.element;
 
 import java.io.Serializable;
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
-
 import javafx.scene.control.Tooltip;
-import javafx.scene.image.Image;
 
 /*
 *Classe base delle carte presenti nel gioco. Possiedera' tutti gli attributi e metodi comuni a tutti i tipi di carte sviluppo all'interno del gioco stesso.
@@ -18,9 +12,14 @@ import javafx.scene.image.Image;
 */
 public class CartaSviluppo implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String image;
 	private String name;
 	private int costoAzione;
+	@SuppressWarnings("unused")
 	private ArrayList<Effetto> effetti;
 	private int costoMoneta;
 	private int costoLegno;
