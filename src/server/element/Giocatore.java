@@ -66,9 +66,10 @@ public class Giocatore implements Serializable {
 		}
 	}
 
-	public Giocatore(String readObject, String readObject2) {
-		this.color = readObject;
-		this.name = readObject2;
+	public Giocatore(String name, String color, Portafoglio portafoglio) {
+		this.color = color;
+		this.name = name;
+		this.risorse = portafoglio;
 	}
 
 	public String getColor() {

@@ -233,22 +233,22 @@ public class ThreadSocketServer implements Runnable, Serializable {
 				break;
 			case "giocatori":
 				Giocatore[] g1 = new Giocatore[4];
-				Giocatore[] g2 = new Giocatore[4];
-				int i = 0;
 				g1 = commonServer.getLobbyByNumber(positionGame).getGiocatori();
-				for (int j = 0; j < 4; j++) {
+				for (int i = 0; i < 4; i++) {
 					if (g1[i] != null) {
-						g2[j] = g1[1];
-						i++;
+						output.writeObject(g1[i].getName());
+						output.flush();
+						output.writeObject(g1[i].getColor());
+						output.flush();
+						output.writeObject(g1[i].getRisorse());
+					}else{
+						output.writeObject("niente");
+						output.flush();
+						output.writeObject("niente");
+						output.flush();
+						output.writeObject(new Portafoglio());
+						output.flush();
 					}
-				}
-				output.writeObject(i);
-				output.flush();
-				for (int j = 0; j < i; j++) {
-					output.writeObject(g2[j].getColor());
-					output.flush();
-					output.writeObject(g2[j].getName());
-					output.flush();
 				}
 				break;
 			}
@@ -290,7 +290,7 @@ public class ThreadSocketServer implements Runnable, Serializable {
 	}
 
 	public void addScomunica(int nScomuniche, String string) {
-		
+
 	}
 
 	public void notifyAddCardAvv(CartaSviluppo carta, String name) throws IOException {

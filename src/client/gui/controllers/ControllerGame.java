@@ -328,7 +328,6 @@ public class ControllerGame {
 		puntiMilitariArancio.setImage(new Image(getClass().getResourceAsStream("Disco3.png")));
 		Giocatore[] giocatori = new Giocatore[4];
 		giocatori = start.getClient().getGiocatori();
-		;
 		Portafoglio p = null;
 		switch (color) {
 		case "blue":
@@ -338,7 +337,7 @@ public class ControllerGame {
 			familiareBianco.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluBianco.png")));
 			bandiera.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBlu.png")));
 			for (Giocatore g : giocatori) {
-				if (g != null && g.getName() != start.getClient().getName()) {
+				if (g != null && g.getName() != start.getClient().getName() && !g.getName().equals("niente")) {
 					switch (g.getColor()) {
 					case "orange":
 						familiareOrange1
@@ -426,7 +425,7 @@ public class ControllerGame {
 			familiareBianco.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeBianco.png")));
 			bandiera.setImage(new Image(this.getClass().getResourceAsStream("BandierinaVerde.png")));
 			for (Giocatore g : giocatori) {
-				if (g != null && g.getName() != start.getClient().getName()) {
+				if (g != null && g.getName() != start.getClient().getName() && !g.getName().equals("niente")) {
 					switch (g.getColor()) {
 					case "orange":
 						familiareOrange1
@@ -514,7 +513,7 @@ public class ControllerGame {
 			familiareBianco.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoBianco.png")));
 			bandiera.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBianca.png")));
 			for (Giocatore g : giocatori) {
-				if (g != null && g.getName() != start.getClient().getName()) {
+				if (g != null && g.getName() != start.getClient().getName() && !g.getName().equals("niente")) {
 					switch (g.getColor()) {
 					case "orange":
 						familiareOrange1
@@ -602,7 +601,7 @@ public class ControllerGame {
 			familiareBianco.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioBianco.png")));
 			bandiera.setImage(new Image(this.getClass().getResourceAsStream("BandierinaArancio.png")));
 			for (Giocatore g : giocatori) {
-				if (g != null && g.getName() != start.getClient().getName()) {
+				if (g != null && g.getName() != start.getClient().getName() && !g.getName().equals("niente")) {
 					switch (g.getColor()) {
 					case "orange":
 						familiareOrange1
@@ -1629,7 +1628,7 @@ public class ControllerGame {
 		});
 
 		familiareNeutro.setOnDragDone(event -> {
-			if (flag) {
+			if (flag && destinazione1 != null) {
 				if (controlloPosizionamento("neutro", destinazione1.getLayoutX(), destinazione1.getLayoutY(), 0)) {
 					destinazione1.setImage(familiareNeutro.getImage());
 					familiareNeutro.setDisable(true);

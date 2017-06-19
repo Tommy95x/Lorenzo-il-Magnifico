@@ -1,0 +1,37 @@
+Come visto in precedenza dalla sezione (inserisci il numero del punto dei packages) sono presenti diversi packages di test.
+I test, implementati in JUnit (tools di test) permette di eseguire delle prove mirate per verificare il corretto funzionamento dei metodi.
+Come già esposto la disposizione dei packages è dettagliata e implementata come la disposizione del progetto.
+Ogni singolo package infatti testa le funzionalità delle classi del corrispondente package di progetto.
+Entrando nel primo package sono presenti tre classi che servono per eseguire in modo automatico tutti implementa nelle classi sottostanti.
+Entrando ora nelle specifiche cartelle verranno esposti i principali test implementati:
+1- Partendo dal Server i test effettuati sono:
+	1.1-DBTest ossi il test del Database con le verifiche di corretta connesione al DB con la corretta possibilita' di eseguire più 	    connessioni parallele, dando così la possibilità a più utenti di eseguire più azioni su differenti tabelle.
+	    Il test viene fisicamente verificato confrontando le .getClientInfo() della connessioni istanziate da un medesimo utente.
+	    Altro test eseguito sul Database è la verifica della corretta chiusura di una connessione e della possibilita' di possibile 	    riutilizzo della connessione appena liberata.
+	1.2-La class LoginTest si occupa della correttezza di tutte le verifiche che normalmente vengono eseguite. Ogni metodo di test infatti 		    verifica l'impossibilita' di un utente di eseguire piu' connessioni al proprio account, il corretto login in caso di presenze 		    nel DB dei dati dell'utente e di conseguenza la richiesa di una registrazione in caso l'utente non sia registrato.
+	1.3-Dualmente in caso di una richiesta di una registrazione da parta di un utente la classe RegisterTest verifica la corretta 		    esecuzione di tutti i controlli che devono essere soddisfatti per portare a termine con succeso la registrazione.
+	    Dopo un semplice test di corretta registrazione al sistema infatti (primo test della classe) i test successivi  verificano e lavorano sui dati immessi dall'utente. Vine verificato l'inserimento dell'ugualianza corretta delle due password mediante due assert (una che soddisfa la richiesta e una che non la soddisfa) ed infine l'ultimo test verifica il rifiuto della registrazione in caso l'utente sia già registrato al sistema o se un nuovo utente inserisce delle credenziali già di un altro utente.
+	1.4-La classe di test di StartServerTest riferendosi alla classe d'avvio di tutta l'applicazione lato server ha il compito di verificare la corretta istanzia di una partita all'interno dell'ArrayList di partite e il corretto recupero per eseguire qualsiasi azione sulla partita stessa.
+	1.5-Infine l'utlima classe presente in questa cartella è ImplementsServerInterfaceTest, classe di test di un certo spessore verifica il corretto funzionamento di tutti i metodi di gioco dell'implementazione dell'interfaccia (interfaccia utilizzata sia lato connessione RMI che Socket).
+I test eseguiti sono:
+		-La corretta crezione da parte di utente di una partita
+		-Il corretto inserimento nella partita di un nuovo utente che vuole entrare in una specifica lobby precedentemente creata
+		-La verifica di un massimo numero di giocatori pari a 4 e un minimo numero per iniziare la partita di 2 giocatori
+		-Test di verifica dell'eliminazione corretta di un colore disponibile dopo che un utente entrato nella lobby ha selezionato in 			precedenza, i colori infatti una volta scelti vengono aggiornati all'interno della partita e impostati a null per non dar la 			possibilita' ad altri giocatori di scegliere il medesimo colore.
+		-I test poi passando ai metodi di gioco veri e proprio testano per esempio:
+			-Lancio dei dadi in modo casuale con dei valori compresi tra 1 e 6
+			-Verifica della presenza delle carte scomunica o sviluppo istanziate all'inizio della partita e che vengono cambiate ad 			ogni turno
+			-Test di verifica della presenza corretta del numero di giocatori entrati nella lobby
+			-Verifica della presenza reale di un giocatore che è ancora in partita ossia che non è uscito dalla partita durante il 				game.
+Passando ora ai test sui packages più interni, entrando nella cartella elements sono presenti tutti i test relativi alle classi che compongono le partite e un giocatore:
+1- La classe dado testa lato unicamente di classe (non come in precedenza a livello di corretta chiamata da parte di un client di una funzione di gioco) i metodi che servono per settare l'immagine del dado a seconda del valore ottenuta dalla funzione Math.Random e dal colore del dado stesso (campo che viene impostato all'inizio della partita).
+2-La classe CartaTerritoriTest rappresenta i test eseguiti non solo su un tipo di carta (che in questo caso e' Territori, ma per tutti i tipi di carta disponibili). Si verifica infatti la possibilita' di restituire in modo corretto un tooltip generato e la presenza di una carta istanziata in modo corretto da DB.
+3-Dualmente per quanto riguarda le Tessere scomunica vengono eseguiti i test medesimi della classe precedenza
+4-Per verificare tutte le risorse di un giocatore, la presenza di tutte le risorse a dei valori minimi a 0 (e quindi non negativi) all'interno della classe PortafogliTest vengono simulati dei casi limiti (come per esempio il rilascio di un numero di risorse maggiore di quelle possedute o) il corretto aumento delle risorse in caso di acquisizione durante la partita e la presenza reale per ogni giocatore in partita di possedere un Portafoglio contentente tutte le risore se i punti.
+5-Ogni test di gioco dedicato ad un singolo giocatore quali per esempio il controllo della posizione di un famigliare appena paizziato avvine all'interno della classe GiocatoreTest ogni verifica infatti viene verificata a seconda di tutte le possibili posizioni del tabellone e dei valori dei dadi del giocatore.
+6-Infine tutti i test precedentemente citati al punto dei test della classe ImplementsInterfaceServer dei test di gioco chiamati da un client per verificare il corretto funzionamento dei metodi a livello "locale" di classe in PartitaTest si verificano:
+-La presenza di un numero di turni pari a 6 e non di più.
+-La verifica del non inizio di un partita se il numero di giocatori che hanno confermato di essere pronti non sia maggiore di 2.
+
+
+			       

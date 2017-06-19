@@ -334,7 +334,6 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		if (inputSocket.readObject().toString().equals("start")) {
 			System.out.println("ok");
 			start.changeStage(5);
-			waitTurno();
 		}
 	}
 
@@ -368,11 +367,10 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 	public Giocatore[] getGiocatori() throws IOException, ClassNotFoundException {
 		outputSocket.writeObject("giocatori");
 		outputSocket.flush();
-		int i = (int) inputSocket.readObject();
-		Giocatore[] g = new Giocatore[i];
-		for(int j =0; j<i;j++){
-			g[j] = new Giocatore((String) inputSocket.readObject(), (String) inputSocket.readObject());
-			System.out.println(g[i].getName());
+		Giocatore[] g = new Giocatore[4];
+		for(int j =0; j<4;j++){
+			g[j] = new Giocatore( inputSocket.readObject().toString(), inputSocket.readObject().toString(), (Portafoglio) inputSocket.readObject());
+			System.out.println(g[j].getName());
 		}
 		return g;
 	}
