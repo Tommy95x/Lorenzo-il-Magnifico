@@ -13,6 +13,9 @@ import java.util.HashMap;
 import client.ConnectionRmiClient;
 import client.ConnectionRmiInterlocutorClient;
 import client.gui.controllers.ControllerGame;
+import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import server.ThreadSocketServer;
 import shared.RMIClientInterface;
 
@@ -151,11 +154,15 @@ public class Giocatore implements Serializable {
 				dado = i;
 			}
 		}
-		String query = "SELECT VALOREAZIONE FROM POSIZIONETABELLONE WHERE " + x + "=POSX AND " + y + "=POSY";
+		String query = "SELECT VALOREAZIONE, NOME FROM POSIZIONETABELLONE WHERE " + x + "=POSX AND " + y + "=POSY";
 		Statement stmt = connection.createStatement();
 		ResultSet res = stmt.executeQuery(query);
-		res.next();
-		int valoreazione = res.getInt("VALOREAZIONE");
+		int valoreazione=0;
+		String nome="";
+		while(res.next()){
+		nome = res.getString("NOME");
+		valoreazione = res.getInt("VALOREAZIONE");
+		}
 		res.close();
 		stmt.close();
 		connection.close();
@@ -164,7 +171,56 @@ public class Giocatore implements Serializable {
 		} else {
 			if (dadi[dado].getValore() + agg >= valoreazione || (color.equals("neutro") && agg >0)) {
 				risorse.addRis("servitori", -agg);
-				
+				switch (nome) {
+				case "PIANO 1 FAMILIARE TERRITORI":
+					palazzoTerritori[3]=false;
+					break;
+				case "PIANO 2 FAMILIARE TERRITORI":
+					palazzoTerritori[2]=false;
+					break;
+				case "PIANO 3 FAMILIARE TERRITORI":
+					palazzoTerritori[1]=false;
+					break;
+				case "PIANO 4 FAMILIARE TERRITORI":
+					palazzoTerritori[0]=false;
+					break;
+				case "PIANO 1 FAMILIARE EDIFICI":
+					palazzoEdifici[3]=false;
+					break;
+				case "PIANO 2 FAMILIARE EDIFICI":
+					palazzoEdifici[2]=false;
+					break;
+				case "PIANO 3 FAMILIARE EDIFICI":
+					palazzoEdifici[1]=false;
+					break;
+				case "PIANO 4 FAMILIARE EDIFICI":
+					palazzoEdifici[0]=false;
+					break;
+				case "PIANO 1 FAMILIARE IMPRESE":
+					palazzoImprese[3]=false;
+					break;
+				case "PIANO 2 FAMILIARE IMPRESE":
+					palazzoImprese[2]=false;
+					break;
+				case "PIANO 3 FAMILIARE IMPRESE":
+					palazzoImprese[1]=false;
+					break;
+				case "PIANO 4 FAMILIARE IMPRESE":
+					palazzoImprese[0]=false;
+					break;
+				case "PIANO 1 FAMILIARE PERSONAGGI":
+					palazzoPersonaggi[3]=false;
+					break;
+				case "PIANO 2 FAMILIARE PERSONAGGI":
+					palazzoPersonaggi[2]=false;
+					break;
+				case "PIANO 3 FAMILIARE PERSONAGGI":
+					palazzoPersonaggi[1]=false;
+					break;
+				case "PIANO 4 FAMILIARE PERSONAGGI":
+					palazzoPersonaggi[0]=false;
+					break;
+				}
 				return "OK";
 			} else if(dadi[dado].getValore() + agg < valoreazione || (color.equals("neutro") && agg <0)){
 				return "Pay";

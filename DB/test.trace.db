@@ -496,3 +496,12 @@ Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/par
 	at org.h2.mvstore.FileStore.open(FileStore.java:173)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:347)
 	... 13 more
+06-19 14:53:21 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "BOICARTETERRITORIOPARTITA" already exists; SQL statement:
+CREATE TABLE BOICARTETERRITORIOPARTITA AS SELECT * FROM BOICARTETERRITORIOPARTITARANDOM ORDER BY PERIODO [42101-182]
+06-19 15:41:40 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-19 15:41:43 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-19 15:41:47 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
