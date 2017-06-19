@@ -165,11 +165,11 @@ public class ThreadSocketServer implements Runnable, Serializable {
 		}
 	}
 
-	private void play() throws SQLException, IOException, ClassNotFoundException {
+	private synchronized void play() throws SQLException, IOException, ClassNotFoundException {
 		double x;
 		double y;
-		action = input.readObject().toString();
 		while (true) {
+			action = input.readObject().toString();
 			System.out.println(action);
 			switch (action) {
 			case "dices":
@@ -252,7 +252,6 @@ public class ThreadSocketServer implements Runnable, Serializable {
 				}
 				break;
 			}
-			action = input.readObject().toString();
 		}
 
 	}
@@ -348,6 +347,11 @@ public class ThreadSocketServer implements Runnable, Serializable {
 	public void notifyPergamena(int i) {
 		// TODO Auto-generated method stub
 
+	}
+
+	public void notifyAddRisorse(String name, String tipo, int qta) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -24,8 +24,7 @@ public class Giocatore implements Serializable {
 	private Portafoglio risorse;
 	private FamiliareNeutro[] familiari;
 	private CuboScomunica[] cubiScomunica;
-	// Mettere public per il test
-	// public Dado[] dadi = new Dado[3];
+	//Mettere public per il test e istanziare
 	private Dado[] dadi;
 	private ArrayList<CartaSviluppo> carte = new ArrayList<CartaSviluppo>();
 	private Partita partita;
@@ -42,6 +41,7 @@ public class Giocatore implements Serializable {
 	public Giocatore(String color, Partita partita, String name, int positionGame) {
 		this.name = name;
 		this.positionGame = positionGame;
+		this.partita=partita;
 		this.setColor(color);
 		risorse = new Portafoglio();
 		familiari = new FamiliareNeutro[4];
@@ -207,16 +207,17 @@ public class Giocatore implements Serializable {
 		activateCardEffettiImmediati(carta, tipo, c);
 	}
 
-	public void notifyAddCardAvv(CartaSviluppo carta) throws RemoteException {
+	public void notifyAddCardAvv(CartaSviluppo carta, String n) throws RemoteException {
 		if (client == null) {
 			try {
-				server.notifyAddCardAvv(carta, this.getName());
+				server.notifyAddCardAvv(carta, n);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else {
-			client.notifyAddCardAvv(carta, this.getName());
+			System.out.println("Notifico il singolo giocatore per l'aggiunta della carta");
+			client.notifyAddCardAvv(carta, n);
 		}
 	}
 
@@ -229,30 +230,38 @@ public class Giocatore implements Serializable {
 					switch (e.getRisorsa()) {
 					case "militari":
 						risorse.addPunti("militari", e.getQta());
+						System.out.println(partita.toString()+" "+e.getQta());
 						partita.notifySpostamentoPunti("militari", e.getQta(), c);
 						break;
 					case "vittoria":
 						risorse.addPunti("vittoria", e.getQta());
+						System.out.println(partita.toString()+" "+e.getQta());
 						partita.notifySpostamentoPunti("vittoria", e.getQta(), c);
 						break;
 					case "fede":
 						risorse.addPunti("fede", e.getQta());
+						System.out.println(partita.toString()+" "+e.getQta());
 						partita.notifySpostamentoPunti("fede", e.getQta(), c);
 						break;
 					case "pietra":
 						risorse.addRis("pietra", e.getQta());
+						System.out.println(partita.toString()+" "+e.getQta());
 						partita.notifyAddRisorse(name,"pietra", e.getQta());
 						break;
 					case "monete":
 						risorse.addRis("monete", e.getQta());
+						System.out.println(partita.toString());
+						System.out.println(e.getQta());
 						partita.notifyAddRisorse(name,"monete", e.getQta());
 						break;
 					case "servitori":
 						risorse.addRis("servitori", e.getQta());
+						System.out.println(partita.toString()+" "+e.getQta());
 						partita.notifyAddRisorse(name,"servitori", e.getQta());
 						break;
 					case "legno":
 						risorse.addRis("legno", e.getQta());
+						System.out.println(partita.toString()+" "+e.getQta());
 						partita.notifyAddRisorse(name,"legno", e.getQta());
 						break;
 					case "pergamena":
@@ -556,14 +565,14 @@ public class Giocatore implements Serializable {
 	
 	public void notifyAddRisorse(String name, String tipo, int qta) {
 		if (client == null) {
+			server.notifyAddRisorse(name,tipo, qta);
+		} else {
 			try {
-				server.notifyAddRisorse(name,tipo, qta);
-			} catch (IOException e) {
+				client.notifyAddRisorse(name, tipo, qta);
+			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} else {
-			client.notifyAddRisorse(name, tipo, qta);
 		}
 		
 	}

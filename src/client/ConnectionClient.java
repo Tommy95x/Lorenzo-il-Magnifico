@@ -246,8 +246,9 @@ public class ConnectionClient implements ClientInterface{
 	}
 
 
-	public boolean getPosPalLibero(String string, int i) throws RemoteException {
+	public boolean getPosPalLibero(String string, int i) {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 }

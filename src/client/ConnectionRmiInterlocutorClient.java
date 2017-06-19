@@ -62,9 +62,8 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 	}
 
 	public void notifyAddCardAvv(CartaSviluppo carta, String string) throws RemoteException {
-		Platform.runLater(() -> {
+		System.out.println("Notifica carta Avv clientRMI");
 		guiGame.notifyAddCardAvv(carta, string);
-		});
 	}
 	
 	public void notifyTurno(int turno) throws RemoteException, SQLException {
