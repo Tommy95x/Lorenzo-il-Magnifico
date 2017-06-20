@@ -509,6 +509,14 @@ public class Giocatore implements Serializable {
 		setRisorse("legno");
 		setRisorse("pietra");
 		setRisorse("servitori");
+		for (CartaSviluppo c : carte){
+			if (c.getNameCard().equals("Contadino")){
+				qta+=2;
+			}
+			if (c.getNameCard().equals("Fattore")){
+				qta+=2;
+			}
+		}
 		for (CartaSviluppo c : carte) {
 			if (c.getId().contains("TER") && c.getCostoAzione() <= qta) {
 				activateCardEffettiPermanenti(c, 0, conn);
@@ -517,6 +525,16 @@ public class Giocatore implements Serializable {
 	}
 
 	public void produzione(int qta, Connection conn) {
+		risorse.addRis("monete", 2);
+		risorse.addPunti("militari", 1);
+		for (CartaSviluppo c : carte){
+			if (c.getNameCard().equals("Artigiano")){
+				qta+=2;
+			}
+			if (c.getNameCard().equals("Studioso")){
+				qta+=2;
+			}
+		}
 		for (CartaSviluppo c : carte) {
 			if (c.getId().contains("ED") && c.getCostoAzione() <= qta) {
 				activateCardEffettiPermanenti(c, 2, conn);
