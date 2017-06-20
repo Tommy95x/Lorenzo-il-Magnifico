@@ -255,7 +255,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	}
 	
 	public void notifySpostamento(String color, double x, double y) throws RemoteException {
-		serverMethods.notifySpostamento(color,x,y,name,positionGame);
+		serverMethods.notifySpostamento(color,x,y,this.color,positionGame);
 	}
 	
 	public String controlloPosizionamento(String color, double x, double y, int integer) throws RemoteException, IOException, ClassNotFoundException, SQLException {

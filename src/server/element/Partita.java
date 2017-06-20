@@ -455,11 +455,11 @@ public class Partita implements Serializable {
 		}
 	}
 
-	public void notifySpostamento(String color, Giocatore giocatoreByName, double x, double y) {
+	public void notifySpostamento(String color, String colorAvv, double x, double y) {
 		for (Giocatore g : giocatori) {
-			if (!g.equals(giocatoreByName) && g != null) {
+			if (g != null && !g.getColor().equals(colorAvv)) {
 				try {
-					g.notifySpostamento(color, giocatoreByName.getColor(), x, y);
+					g.notifySpostamento(color, colorAvv, x, y);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

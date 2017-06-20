@@ -124,10 +124,10 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		}
 	}
 
-	public void notifySpostamento(String color, double x, double y, String name, int positionGame)
+	public void notifySpostamento(String color, double x, double y, String colorAvv, int positionGame)
 			throws RemoteException {
 		commonServer.getLobbyByNumber(positionGame).notifySpostamento(color,
-				commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name), x, y);
+				colorAvv, x, y);
 	}
 
 	public String getNamePosition(double x, double y, int positionGame, String name)
