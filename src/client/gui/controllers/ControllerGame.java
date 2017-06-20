@@ -13,7 +13,6 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Label;
@@ -57,7 +56,6 @@ public class ControllerGame {
 	private boolean flag;
 	private Dado[] dadi = new Dado[3];
 	boolean pay = false;
-	@SuppressWarnings("unused")
 	private int nFamPos=0;
 
 	// Componenti tabellone
@@ -1000,45 +998,45 @@ public class ControllerGame {
 		}else if(name.equals(name1.getText())){
 			switch (nScomuniche) {
 			case 0:
-				cuboScomunica11.setVisible(true);
+				cuboScomunica11.setOpacity(1);
 				Tooltip.install(cuboScomunica11, tessereScomunica[0].getTooltip());
 				break;
 			case 1:
-				cuboScomunica12.setVisible(true);
+				cuboScomunica12.setOpacity(1);
 				Tooltip.install(cuboScomunica12, tessereScomunica[1].getTooltip());
 				break;
 			case 2:
-				cuboScomunica13.setVisible(true);
+				cuboScomunica13.setOpacity(1);
 				Tooltip.install(cuboScomunica13, tessereScomunica[2].getTooltip());
 				break;
 			}
 		}else if(name.equals(name2.getText())){
 			switch (nScomuniche) {
 			case 0:
-				cuboScomunica21.setVisible(true);
+				cuboScomunica21.setOpacity(1);
 				Tooltip.install(cuboScomunica21, tessereScomunica[0].getTooltip());
 				break;
 			case 1:
-				cuboScomunica22.setVisible(true);
+				cuboScomunica22.setOpacity(1);
 				Tooltip.install(cuboScomunica22, tessereScomunica[1].getTooltip());
 				break;
 			case 2:
-				cuboScomunica23.setVisible(true);
+				cuboScomunica23.setOpacity(1);
 				Tooltip.install(cuboScomunica23, tessereScomunica[2].getTooltip());
 				break;
 			}
 		}else{
 			switch (nScomuniche) {
 			case 0:
-				cuboScomunica31.setVisible(true);
+				cuboScomunica31.setOpacity(1);
 				Tooltip.install(cuboScomunica31, tessereScomunica[0].getTooltip());
 				break;
 			case 1:
-				cuboScomunica32.setVisible(true);
+				cuboScomunica32.setOpacity(1);
 				Tooltip.install(cuboScomunica32, tessereScomunica[1].getTooltip());
 				break;
 			case 2:
-				cuboScomunica33.setVisible(true);
+				cuboScomunica33.setOpacity(1);
 				Tooltip.install(cuboScomunica33, tessereScomunica[2].getTooltip());
 				break;
 			}
@@ -2523,16 +2521,16 @@ public class ControllerGame {
 		if (name.equals(start.getClient().getName())) {
 			switch (tipo) {
 			case "servitori":
-				servitori.setText(Integer.toString(qta + (Integer.getInteger(servitori.getText()))));
+				servitori.setText(String.valueOf(qta + (Integer.getInteger(servitori.getText()))));
 				break;
 			case "monete":
-				monete.setText(Integer.toString(qta + (Integer.getInteger(monete.getText()))));
+				monete.setText(String.valueOf(qta + (Integer.getInteger(monete.getText()))));
 				break;
 			case "pietra":
-				pietra.setText(Integer.toString(qta + (Integer.getInteger(pietra.getText()))));
+				pietra.setText(String.valueOf(qta + (Integer.getInteger(pietra.getText()))));
 				break;
 			case "legno":
-				lengo.setText(Integer.toString(qta + (Integer.getInteger(lengo.getText()))));
+				lengo.setText(String.valueOf(qta + (Integer.getInteger(lengo.getText()))));
 				break;
 			}
 		} else if (name.equals(name1.getText())) {
