@@ -19,6 +19,10 @@ import server.database.ConnectionDatabase;
  */
 public class Partita implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final int DIM = 4;
 	private final int NUMCARTE = 4;
 	private int turno;
@@ -156,6 +160,7 @@ public class Partita implements Serializable {
 	 * 
 	 * @author Mattia
 	 */
+	@SuppressWarnings("unused")
 	private void beShuffled() {
 		Giocatore[] mom = new Giocatore[DIM];
 		Giocatore[] ordine = new Giocatore[DIM];
