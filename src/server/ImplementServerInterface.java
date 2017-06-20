@@ -204,10 +204,10 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		// TODO Auto-generated method stub
 
 	}
-
-	public void notifySpostamentoPunti(int positionGame, String name, String tipo) throws RemoteException, SQLException {
+	
+	public void notifySpostamentoPunti(int positionGame, String name, String tipo, String color) throws RemoteException, SQLException {
 		commonServer.getLobbyByNumber(positionGame).notifySpostamentoPunti(tipo,
-				commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).getRisorse().getPunti(tipo), commonServer.getDBConnection().getConnection(name));
+				commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).getRisorse().getPunti(tipo), commonServer.getDBConnection().getConnection(name), color);
 
 	}
 

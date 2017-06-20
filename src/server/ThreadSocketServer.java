@@ -75,7 +75,7 @@ public class ThreadSocketServer implements Runnable, Serializable {
 	 * }
 	 */
 
-	public void run() {
+	public synchronized void run() {
 		try {
 			input = new ObjectInputStream(socket.getInputStream());
 			output = new ObjectOutputStream(socket.getOutputStream());

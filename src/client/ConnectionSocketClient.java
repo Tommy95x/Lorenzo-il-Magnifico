@@ -208,7 +208,7 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		this.guiGame = guiGame;
 	}
 
-	public void waitServerAction() throws ClassNotFoundException, IOException {
+	/*public void waitServerAction() throws ClassNotFoundException, IOException {
 		switch (inputSocket.readObject().toString()) {
 		case "":
 			break;
@@ -221,7 +221,7 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		case "":
 			break;
 		}
-	}
+	}*/
 
 	public void waitTurno() throws ClassNotFoundException, IOException {
 		double x;
@@ -309,22 +309,8 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		outputSocket.flush();
 
 		CartaSviluppo[] c = new CartaSviluppo[16];
-		for (int i = 0; i < 4; i++) {
-			c[i] = (CartaTerritori) inputSocket.readObject();
-			System.out.println(c[i].getNameCard());
-		}
-		for (int i = 4; i < 8; i++) {
-			c[i] = (CartaPersonaggi) inputSocket.readObject();
-			System.out.println(c[i].getNameCard());
-		}
-		for (int i = 8; i < 12; i++) {
-			c[i] = (CartaEdifici) inputSocket.readObject();
-			System.out.println(c[i].getNameCard());
-		}
-		for (int i = 12; i < 16; i++) {
-			c[i] = (CartaImprese) inputSocket.readObject();
-			System.out.println(c[i].getNameCard());
-		}
+		for(int i=0;i<16;i++)
+			c[i] = (CartaSviluppo) inputSocket.readObject();
 		return c;
 	}
 

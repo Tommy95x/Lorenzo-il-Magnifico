@@ -134,13 +134,14 @@ public class Partita implements Serializable {
 				System.out.println("notifico giocatori per l'inizio partita");
 				System.out.println(giocatori[i]);
 				try {
+					System.out.println("Notifico il giocatore "+giocatori[i].getName());
 					giocatori[i].notifyStartGame();
 				} catch (ClassNotFoundException | IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+			}else
 				System.out.println("Giocatori a null");
-			}
 		}
 		changeGamer();
 	}

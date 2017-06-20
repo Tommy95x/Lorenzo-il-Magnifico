@@ -117,6 +117,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	public int enterInALobby(String lobby, String color) throws RemoteException{
 		try {
 			positionGame=serverMethods.selectLobby(lobby, name, color);
+			this.color=color;
 		} catch (RemoteException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -268,7 +269,7 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	
 	public void notifySpostamentoPunti(String tipo) throws RemoteException {
 		try {
-			serverMethods.notifySpostamentoPunti(positionGame, name, tipo);
+			serverMethods.notifySpostamentoPunti(positionGame, name, tipo, color);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
