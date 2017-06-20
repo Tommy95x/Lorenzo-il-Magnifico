@@ -135,52 +135,56 @@
                      <children>
                         <Label layoutY="6.0" prefHeight="25.0" prefWidth="63.0" text="Giocatore:" textFill="WHITE" />
                         <Label fx:id="name1" layoutX="71.0" layoutY="6.0" prefHeight="20.0" prefWidth="180.0" textFill="WHITE" />
-                        <ImageView fx:id="flag1" fitHeight="90.0" fitWidth="46.0" layoutX="7.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="flag1" fitHeight="90.0" fitWidth="46.0" layoutX="14.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true" />
                         <VBox fx:id="listCards1" layoutY="150.0" prefHeight="274.0" prefWidth="280.0" />
-                        <Label layoutX="14.0" layoutY="120.0" prefHeight="28.0" prefWidth="231.0" text="Carte Giocatore Avversario:" textFill="WHITE">
+                        <Label layoutX="21.0" layoutY="167.0" prefHeight="28.0" prefWidth="231.0" text="Carte Giocatore Avversario:" textFill="WHITE">
                            <font>
                               <Font size="19.0" />
-                           </font></Label>
-                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="60.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="67.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../Media/Servitore.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="servitori1" layoutX="70.0" layoutY="30.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
+                        <Label fx:id="servitori1" layoutX="77.0" layoutY="77.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
                            <font>
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="105.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="112.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../Media/Pietra.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="160.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="167.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../Media/Legno.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="210.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="217.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../Media/Senza%20titolo-1.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="pietre1" layoutX="120.0" layoutY="30.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
+                        <Label fx:id="pietre1" layoutX="127.0" layoutY="77.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
                            <font>
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <Label fx:id="legno1" layoutX="175.0" layoutY="30.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
+                        <Label fx:id="legno1" layoutX="182.0" layoutY="77.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
                            <font>
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <Label fx:id="monete1" layoutX="225.0" layoutY="30.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
+                        <Label fx:id="monete1" layoutX="232.0" layoutY="77.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
                            <font>
                               <Font size="22.0" />
                            </font>
                         </Label>
+                        <ImageView fx:id="cuboScomunica11" fitHeight="43.0" fitWidth="45.0" layoutX="21.0" layoutY="32.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="cuboScomunica12" fitHeight="43.0" fitWidth="45.0" layoutX="105.0" layoutY="32.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="cuboScomunica13" fitHeight="43.0" fitWidth="45.0" layoutX="191.0" layoutY="32.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </AnchorPane>
               </content>
@@ -190,54 +194,57 @@
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="287.0" prefWidth="285.0" style="-fx-background-color: DARKRED;" stylesheets="@gameBackGround.css">
                      <children>
                         <Label layoutY="6.0" prefHeight="25.0" prefWidth="63.0" text="Giocatore:" textFill="WHITE" />
-                        <ImageView fx:id="flag2" fitHeight="90.0" fitWidth="46.0" layoutX="8.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="flag2" fitHeight="90.0" fitWidth="46.0" layoutX="16.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true" />
                         <VBox fx:id="listCards2" layoutY="150.0" prefHeight="274.0" prefWidth="280.0" />
-                        <Label layoutX="14.0" layoutY="120.0" prefHeight="28.0" prefWidth="231.0" text="Carte Giocatore Avversario:" textFill="WHITE">
+                        <Label layoutX="22.0" layoutY="167.0" prefHeight="28.0" prefWidth="231.0" text="Carte Giocatore Avversario:" textFill="WHITE">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="60.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="68.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../Media/Servitore.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="pietre2" layoutX="120.0" layoutY="30.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
+                        <Label fx:id="pietre2" layoutX="128.0" layoutY="77.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
                            <font>
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <Label fx:id="servitori2" layoutX="70.0" layoutY="30.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
+                        <Label fx:id="servitori2" layoutX="78.0" layoutY="77.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
                            <font>
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="210.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="218.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../Media/Senza%20titolo-1.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="160.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="168.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../Media/Legno.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="105.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="113.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../Media/Pietra.png" />
                            </image>
                         </ImageView>
                         <Label fx:id="name2" layoutX="63.0" layoutY="9.0" prefHeight="20.0" prefWidth="180.0" textFill="WHITE" />
-                        <Label fx:id="legno2" layoutX="175.0" layoutY="30.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
+                        <Label fx:id="legno2" layoutX="183.0" layoutY="77.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
                            <font>
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <Label fx:id="monete2" layoutX="225.0" layoutY="30.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
+                        <Label fx:id="monete2" layoutX="233.0" layoutY="77.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
                            <font>
                               <Font size="22.0" />
                            </font>
                         </Label>
+                        <ImageView fx:id="cuboScomunica21" fitHeight="43.0" fitWidth="45.0" layoutX="13.0" layoutY="34.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="cuboScomunica22" fitHeight="43.0" fitWidth="45.0" layoutX="114.0" layoutY="34.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="cuboScomunica23" fitHeight="43.0" fitWidth="45.0" layoutX="196.0" layoutY="34.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </AnchorPane>
                </content>
@@ -246,55 +253,58 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="289.0" prefWidth="285.0" style="-fx-background-color: DARKRED;" stylesheets="@gameBackGround.css">
                      <children>
-                        <ImageView fx:id="flag3" fitHeight="90.0" fitWidth="46.0" layoutX="3.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="flag3" fitHeight="90.0" fitWidth="46.0" layoutX="8.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" />
                         <Label layoutY="6.0" prefHeight="25.0" prefWidth="63.0" text="Giocatore:" textFill="WHITE" />
                         <VBox fx:id="listCards3" layoutY="150.0" prefHeight="274.0" prefWidth="280.0" />
-                        <Label layoutX="14.0" layoutY="120.0" prefHeight="28.0" prefWidth="231.0" text="Carte Giocatore Avversario:" textFill="WHITE">
+                        <Label layoutX="19.0" layoutY="169.0" prefHeight="28.0" prefWidth="231.0" text="Carte Giocatore Avversario:" textFill="WHITE">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <Label fx:id="servitori3" layoutX="70.0" layoutY="30.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
+                        <Label fx:id="servitori3" layoutX="75.0" layoutY="79.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
                            <font>
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <Label fx:id="pietre3" layoutX="120.0" layoutY="30.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
+                        <Label fx:id="pietre3" layoutX="125.0" layoutY="79.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
                            <font>
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="210.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="215.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../Media/Senza%20titolo-1.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="105.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="110.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../Media/Pietra.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="160.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="165.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../Media/Legno.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="60.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="65.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../Media/Servitore.png" />
                            </image>
                         </ImageView>
                         <Label fx:id="name3" layoutX="63.0" layoutY="9.0" prefHeight="20.0" prefWidth="180.0" textFill="WHITE" />
-                        <Label fx:id="monete3" layoutX="225.0" layoutY="30.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
+                        <Label fx:id="monete3" layoutX="230.0" layoutY="79.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
                            <font>
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <Label fx:id="legno3" layoutX="175.0" layoutY="30.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
+                        <Label fx:id="legno3" layoutX="180.0" layoutY="79.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
                            <font>
                               <Font size="22.0" />
                            </font>
                         </Label>
+                        <ImageView fx:id="cuboScomunica31" fitHeight="43.0" fitWidth="45.0" layoutX="19.0" layoutY="31.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="cuboScomunica32" fitHeight="43.0" fitWidth="45.0" layoutX="110.0" layoutY="30.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="cuboScomunica33" fitHeight="43.0" fitWidth="45.0" layoutX="193.0" layoutY="31.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </AnchorPane>
                </content>
