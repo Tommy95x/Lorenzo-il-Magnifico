@@ -36,6 +36,7 @@ public class Partita implements Serializable {
 	private TesseraScomunica[] tessereScomunica = new TesseraScomunica[3];
 	private String[] colors = new String[DIM];
 	private int NumberOfPlayers = 0;
+	private Connection connection;
 
 	/**
 	 * Questo metodo inizializza la partita creando nuove tabelle contenti le
@@ -222,6 +223,12 @@ public class Partita implements Serializable {
 
 	public boolean addTurno() {
 		NumberOfPlayers = 0;
+		try {
+			setCards(connection);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		notifyResetTabellone();
 		if (turno < 6) {
 			if (turno == 2 || turno == 4)
@@ -250,7 +257,12 @@ public class Partita implements Serializable {
 	}
 
 	private void endGame() {
-
+		try {
+			connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private void sostegnoChiesa() {
@@ -403,7 +415,7 @@ public class Partita implements Serializable {
 			queryelimina = "DELETE TOP 1 FROM " + name.toUpperCase() + "CARTEIMPRESAPARTITA";
 			connection.createStatement().executeUpdate(queryelimina);
 		}
-		connection.close();
+		this.connection = connection;
 	}
 
 	public void changeColors(String color) {
@@ -537,13 +549,12 @@ public class Partita implements Serializable {
 		return this.NumberOfPlayers;
 	}
 
-	@SuppressWarnings("unused")
 	public void notifySpostamentoPunti(String tipo, int qta, Connection c, String color2) {
 		System.out.println("Sposto il punti " + tipo + " del giocatore");
 		switch (tipo) {
 		case "militari":
 			for (Giocatore g : giocatori) {
-				if (g != null) {
+				if (g != null){
 					double x = 0;
 					double y = 0;
 					String query;
