@@ -884,66 +884,145 @@ public class ControllerGame {
 	}
 
 	public void moveFamAvv(String colorAvv, String colorFamm, double x, double y) {
+		setFlagFammAvv(x,y);
+		ImageView mom = new ImageView();
+		HBox momB = new HBox();
+		if(flag)
+			 mom = getPosFamAvv(x,y);
+		else
+			momB = getPosFamAvv2(x,y);
 		switch (colorAvv) {
 		case "blue":
 			switch (start.getColor()) {
 			case "green":
 				switch (colorFamm) {
 				case "white":
-					familiareGreen3.setLayoutX(x);
-					familiareGreen3.setLayoutY(y);
+					if(flag){
+						mom.setImage(familiareGreen3.getImage());
+						mom.setDisable(true);
+					}else{
+						mom.setImage(familiareGreen3.getImage());
+						momB.getChildren().add(mom);
+					}
+					familiareGreen3.setOpacity(0);
 					break;
 				case "black":
-					familiareGreen4.setLayoutX(x);
-					familiareGreen4.setLayoutY(y);
+					if(flag){
+						mom.setImage(familiareGreen4.getImage());
+						mom.setDisable(true);
+					}else{
+						mom.setImage(familiareGreen4.getImage());
+						momB.getChildren().add(mom);
+					}
+					familiareGreen4.setOpacity(0);
 					break;
 				case "orange":
-					familiareGreen2.setLayoutX(x);
-					familiareGreen2.setLayoutY(y);
+					if(flag){
+						mom.setImage(familiareGreen2.getImage());
+						mom.setDisable(true);
+					}else{
+						mom.setImage(familiareGreen2.getImage());
+						momB.getChildren().add(mom);
+					}
+					familiareGreen2.setOpacity(0);
 					break;
 				case "neutro":
-					familiareGreen1.setLayoutX(x);
-					familiareGreen1.setLayoutY(y);
+					if(flag){
+						mom.setImage(familiareGreen1.getImage());
+						mom.setDisable(true);
+					}else{
+						mom.setImage(familiareGreen1.getImage());
+						momB.getChildren().add(mom);
+					}
+					familiareGreen1.setOpacity(0);
 					break;
 				}
 				break;
 			case "orange":
 				switch (colorFamm) {
 				case "white":
-					familiareOrange3.setLayoutX(x);
-					familiareOrange3.setLayoutY(y);
+					if(flag){
+						mom.setImage(familiareOrange3.getImage());
+						mom.setDisable(true);
+					}else{
+						mom.setImage(familiareOrange3.getImage());
+						momB.getChildren().add(mom);
+					}
+					familiareOrange3.setOpacity(0);
 					break;
 				case "black":
-					familiareOrange4.setLayoutX(x);
-					familiareOrange4.setLayoutY(y);
+					if(flag){
+						mom.setImage(familiareOrange4.getImage());
+						mom.setDisable(true);
+					}else{
+						mom.setImage(familiareOrange4.getImage());
+						momB.getChildren().add(mom);
+					}
+					familiareOrange4.setOpacity(0);
 					break;
 				case "orange":
-					familiareOrange2.setLayoutX(x);
-					familiareOrange2.setLayoutY(y);
+					if(flag){
+						mom.setImage(familiareOrange2.getImage());
+						mom.setDisable(true);
+					}else{
+						mom.setImage(familiareOrange2.getImage());
+						momB.getChildren().add(mom);
+					}
+					familiareOrange2.setOpacity(0);
 					break;
 				case "neutro":
-					familiareOrange1.setLayoutX(x);
-					familiareOrange1.setLayoutY(y);
+					if(flag){
+						mom.setImage(familiareOrange1.getImage());
+						mom.setDisable(true);
+					}else{
+						mom.setImage(familiareOrange1.getImage());
+						momB.getChildren().add(mom);
+					}
+					familiareOrange1.setOpacity(0);
 					break;
 				}
 				break;
 			case "white":
 				switch (colorFamm) {
 				case "white":
-					familiareWhite3.setLayoutX(x);
-					familiareWhite3.setLayoutY(y);
+					if(flag){
+						mom.setImage(familiareWhite3.getImage());
+						mom.setDisable(true);
+					}else{
+						mom.setImage(familiareWhite3.getImage());
+						momB.getChildren().add(mom);
+					}
+					familiareWhite3.setOpacity(0);
 					break;
 				case "black":
-					familiareWhite4.setLayoutX(x);
-					familiareWhite4.setLayoutY(y);
+					if(flag){
+						mom.setImage(familiareWhite4.getImage());
+						mom.setDisable(true);
+					}else{
+						mom.setImage(familiareWhite4.getImage());
+						momB.getChildren().add(mom);
+					}
+					familiareWhite4.setOpacity(0);
 					break;
 				case "orange":
-					familiareWhite2.setLayoutX(x);
-					familiareWhite2.setLayoutY(y);
+					if(flag){
+						mom.setImage(familiareWhite2.getImage());
+						mom.setDisable(true);
+					}else{
+						mom.setImage(familiareWhite2.getImage());
+						momB.getChildren().add(mom);
+					}
+					familiareWhite2.setOpacity(0);
 					break;
 				case "neutro":
-					familiareWhite1.setLayoutX(x);
-					familiareWhite1.setLayoutY(y);
+					if(flag){
+						mom.setImage(familiareWhite1.getImage());
+						mom.setDisable(true);
+					}else{
+						mom.setImage(familiareWhite1.getImage());
+						momB.getChildren().add(mom);
+					}
+					familiareWhite1.setOpacity(0);
 					break;
 				}
 				break;
@@ -952,64 +1031,282 @@ public class ControllerGame {
 		case "white":
 			switch (colorFamm) {
 			case "white":
-				familiareWhite3.setLayoutX(x);
-				familiareWhite3.setLayoutY(y);
+				if(flag){
+					mom.setImage(familiareWhite3.getImage());
+					mom.setDisable(true);
+				}else{
+					mom.setImage(familiareWhite3.getImage());
+					momB.getChildren().add(mom);
+				}
+				familiareWhite3.setOpacity(0);
 				break;
 			case "black":
-				familiareWhite4.setLayoutX(x);
-				familiareWhite4.setLayoutY(y);
+				if(flag){
+					mom.setImage(familiareWhite4.getImage());
+					mom.setDisable(true);
+				}else{
+					mom.setImage(familiareWhite4.getImage());
+					momB.getChildren().add(mom);
+				}
+				familiareWhite3.setOpacity(0);
 				break;
 			case "orange":
-				familiareWhite2.setLayoutX(x);
-				familiareWhite2.setLayoutY(y);
+				if(flag){
+					mom.setImage(familiareWhite2.getImage());
+					mom.setDisable(true);
+				}else{
+					mom.setImage(familiareWhite2.getImage());
+					momB.getChildren().add(mom);
+				}
+				familiareWhite2.setOpacity(0);
 				break;
 			case "neutro":
-				familiareWhite1.setLayoutX(x);
-				familiareWhite1.setLayoutY(y);
+				if(flag){
+					mom.setImage(familiareWhite1.getImage());
+					mom.setDisable(true);
+				}else{
+					mom.setImage(familiareWhite1.getImage());
+					momB.getChildren().add(mom);
+				}
+				familiareWhite1.setOpacity(0);
 				break;
 			}
 			break;
 		case "orange":
 			switch (colorFamm) {
 			case "white":
-				familiareOrange3.setLayoutX(x);
-				familiareOrange3.setLayoutY(y);
+				if(flag){
+					mom.setImage(familiareOrange3.getImage());
+					mom.setDisable(true);
+				}else{
+					mom.setImage(familiareOrange3.getImage());
+					momB.getChildren().add(mom);
+				}
+				familiareOrange3.setOpacity(0);
 				break;
 			case "black":
-				familiareOrange4.setLayoutX(x);
-				familiareOrange4.setLayoutY(y);
+				if(flag){
+					mom.setImage(familiareOrange4.getImage());
+					mom.setDisable(true);
+				}else{
+					mom.setImage(familiareOrange4.getImage());
+					momB.getChildren().add(mom);
+				}
+				familiareOrange4.setOpacity(0);
 				break;
 			case "orange":
-				familiareOrange2.setLayoutX(x);
-				familiareOrange2.setLayoutY(y);
+				if(flag){
+					mom.setImage(familiareOrange2.getImage());
+					mom.setDisable(true);
+				}else{
+					mom.setImage(familiareOrange2.getImage());
+					momB.getChildren().add(mom);
+				}
+				familiareOrange2.setOpacity(0);
 				break;
 			case "neutro":
-				familiareOrange1.setLayoutX(x);
-				familiareOrange1.setLayoutY(y);
+				if(flag){
+					mom.setImage(familiareOrange1.getImage());
+					mom.setDisable(true);
+				}else{
+					mom.setImage(familiareOrange1.getImage());
+					momB.getChildren().add(mom);
+				}
+				familiareOrange1.setOpacity(0);
 				break;
 			}
 			break;
 		case "green":
 			switch (colorFamm) {
 			case "white":
-				familiareGreen3.setLayoutX(x);
-				familiareGreen3.setLayoutY(y);
+				if(flag){
+					mom.setImage(familiareGreen3.getImage());
+					mom.setDisable(true);
+				}else{
+					mom.setImage(familiareGreen3.getImage());
+					momB.getChildren().add(mom);
+				}
+				familiareGreen3.setOpacity(0);
 				break;
 			case "black":
-				familiareGreen4.setLayoutX(x);
-				familiareGreen4.setLayoutY(y);
+				if(flag){
+					mom.setImage(familiareGreen4.getImage());
+					mom.setDisable(true);
+				}else{
+					mom.setImage(familiareGreen4.getImage());
+					momB.getChildren().add(mom);
+				}
+				familiareGreen4.setOpacity(0);
 				break;
 			case "orange":
-				familiareGreen2.setLayoutX(x);
-				familiareGreen2.setLayoutY(y);
+				if(flag){
+					mom.setImage(familiareGreen2.getImage());
+					mom.setDisable(true);
+				}else{
+					mom.setImage(familiareGreen2.getImage());
+					momB.getChildren().add(mom);
+				}
+				familiareGreen2.setOpacity(0);
 				break;
 			case "neutro":
-				familiareGreen1.setLayoutX(x);
-				familiareGreen1.setLayoutY(y);
+				if(flag){
+					mom.setImage(familiareGreen1.getImage());
+					mom.setDisable(true);
+				}else{
+					mom.setImage(familiareGreen1.getImage());
+					momB.getChildren().add(mom);
+				}
+				familiareGreen1.setOpacity(0);
 				break;
 			}
 			break;
 		}
+
+	}
+
+	private void setFlagFammAvv(double x, double y) {
+		if (x == pianoPrimoPalazzoMilitare.getLayoutX() && y == pianoPrimoPalazzoMilitare.getLayoutY()) {
+			flag = true;
+		} else if (x == pianoSecondoPalazzoMilitare.getLayoutX() && y == pianoSecondoPalazzoMilitare.getLayoutY()) {
+			flag = true;
+		} else if (x == pianoTerzoPalazzoMilitare.getLayoutX() && y == pianoTerzoPalazzoMilitare.getLayoutY()) {
+			flag = true;
+		} else if (x == pianoQuartoPalazzoMilitare.getLayoutX() && y == pianoQuartoPalazzoMilitare.getLayoutY()) {
+			flag = true;
+		} else if (x == pianoPrimoPalazzoPersonaggi.getLayoutX() && y == pianoPrimoPalazzoPersonaggi.getLayoutY()) {
+			flag = true;
+		} else if (x == pianoSecondoPalazzoPersonaggi.getLayoutX() && y == pianoSecondoPalazzoPersonaggi.getLayoutY()) {
+			flag = true;
+		} else if (x == pianoTerzoPalazzoPersonaggi.getLayoutX() && y == pianoTerzoPalazzoPersonaggi.getLayoutY()) {
+			flag = true;
+		} else if (x == pianoQuartoPalazzoPersonaggi.getLayoutX() && y == pianoQuartoPalazzoPersonaggi.getLayoutY()) {
+			flag = true;
+		} else if (x == pianoQuartoPalazzoPersonaggi.getLayoutX() && y == pianoQuartoPalazzoPersonaggi.getLayoutX()) {
+			flag = true;
+		} else if (x == pianoPrimoPalazzoEdifici.getLayoutX() && y == pianoPrimoPalazzoEdifici.getLayoutY()) {
+			flag = true;
+		} else if (x == pianoSecondoPalazzoEdifici.getLayoutX() && y == pianoSecondoPalazzoEdifici.getLayoutY()) {
+			flag = true;
+		} else if (x == pianoTerzoPalazzoEdifici.getLayoutX() && y == pianoTerzoPalazzoEdifici.getLayoutY()) {
+			flag = true;
+		} else if (x == pianoQuartoPalazzoEdifici.getLayoutX() && y == pianoQuartoPalazzoEdifici.getLayoutY()) {
+			flag = true;
+		} else if (x == pianoPrimoPalazzoTerritori.getLayoutX() && y == pianoPrimoPalazzoTerritori.getLayoutY()) {
+			flag = true;
+		} else if (x == pianoSecondoPalazzoTerritori.getLayoutX() && y == pianoSecondoPalazzoTerritori.getLayoutY()) {
+			flag = true;
+		} else if (x == pianoTerzoPalazzoTerritori.getLayoutX() && y == pianoTerzoPalazzoTerritori.getLayoutY()) {
+			flag = true;
+		} else if (x == pianoQuartoPalazzoTerritori.getLayoutX() && y == pianoQuartoPalazzoTerritori.getLayoutY()) {
+			flag = true;
+		} else if (x == azioniEdificidapiuGiocatori.getLayoutX() && y == azioniEdificidapiuGiocatori.getLayoutY()) {
+			flag = true;
+		} else if (x == azioniTerritoridapiuGiocatori.getLayoutX() && y == azioniTerritoridapiuGiocatori.getLayoutY()) {
+			flag = false;
+		} else if (x == azioniTerritoridaunGiocatore.getLayoutX() && y == azioniTerritoridaunGiocatore.getLayoutY()) {
+			flag = false;
+		} else if (x == azioniEdificidaunGiocatore.getLayoutX() && y == azioniEdificidaunGiocatore.getLayoutY()) {
+			flag = true;
+		} else if (x == municipio.getLayoutX() && y == municipio.getLayoutY()) {
+			flag = false;
+		} else if (x == mercatoPosMoneteMilitari.getLayoutX() && y == mercatoPosMoneteMilitari.getLayoutY()) {
+			flag = true;
+		} else if (x == mercatoPosServitori.getLayoutX() && y == mercatoPosServitori.getLayoutY()) {
+			flag = true;
+		} else if (x == mercatoPosMonete.getLayoutX() && y == mercatoPosMonete.getLayoutY()) {
+			flag = true;
+		} else if (x == mercatoPosMunicipio.getLayoutX() && y == mercatoPosMunicipio.getLayoutY()) {
+			flag = true;
+		}
+
+	}
+
+	private HBox getPosFamAvv2(double x, double y) {
+		if (x == azioniEdificidapiuGiocatori.getLayoutX() && y == azioniEdificidapiuGiocatori.getLayoutY()) {
+			flag = true;
+			return azioniEdificidapiuGiocatori;
+		} else if (x == azioniTerritoridapiuGiocatori.getLayoutX() && y == azioniTerritoridapiuGiocatori.getLayoutY()) {
+			flag = false;
+			return azioniTerritoridapiuGiocatori;
+		} else if (x == municipio.getLayoutX() && y == municipio.getLayoutY()) {
+			flag = false;
+			return municipio;
+		}
+		return null;
+	}
+
+	private ImageView getPosFamAvv(double x, double y) {
+		if (x == pianoPrimoPalazzoMilitare.getLayoutX() && y == pianoPrimoPalazzoMilitare.getLayoutY()) {
+			flag = true;
+			return pianoPrimoPalazzoMilitare;
+		} else if (x == pianoSecondoPalazzoMilitare.getLayoutX() && y == pianoSecondoPalazzoMilitare.getLayoutY()) {
+			flag = true;
+			return pianoSecondoPalazzoMilitare;
+		} else if (x == pianoTerzoPalazzoMilitare.getLayoutX() && y == pianoTerzoPalazzoMilitare.getLayoutY()) {
+			flag = true;
+			return pianoTerzoPalazzoMilitare;
+		} else if (x == pianoQuartoPalazzoMilitare.getLayoutX() && y == pianoQuartoPalazzoMilitare.getLayoutY()) {
+			flag = true;
+			return pianoQuartoPalazzoMilitare;
+		} else if (x == pianoPrimoPalazzoPersonaggi.getLayoutX() && y == pianoPrimoPalazzoPersonaggi.getLayoutY()) {
+			flag = true;
+			return pianoPrimoPalazzoPersonaggi;
+		} else if (x == pianoSecondoPalazzoPersonaggi.getLayoutX() && y == pianoSecondoPalazzoPersonaggi.getLayoutY()) {
+			flag = true;
+			return pianoSecondoPalazzoPersonaggi;
+		} else if (x == pianoTerzoPalazzoPersonaggi.getLayoutX() && y == pianoTerzoPalazzoPersonaggi.getLayoutY()) {
+			flag = true;
+			return pianoTerzoPalazzoPersonaggi;
+		} else if (x == pianoQuartoPalazzoPersonaggi.getLayoutX() && y == pianoQuartoPalazzoPersonaggi.getLayoutY()) {
+			flag = true;
+			return pianoQuartoPalazzoPersonaggi;
+		} else if (x == pianoQuartoPalazzoPersonaggi.getLayoutX() && y == pianoQuartoPalazzoPersonaggi.getLayoutX()) {
+			flag = true;
+			return pianoQuartoPalazzoPersonaggi;
+		} else if (x == pianoPrimoPalazzoEdifici.getLayoutX() && y == pianoPrimoPalazzoEdifici.getLayoutY()) {
+			flag = true;
+			return pianoPrimoPalazzoEdifici;
+		} else if (x == pianoSecondoPalazzoEdifici.getLayoutX() && y == pianoSecondoPalazzoEdifici.getLayoutY()) {
+			flag = true;
+			return pianoSecondoPalazzoEdifici;
+		} else if (x == pianoTerzoPalazzoEdifici.getLayoutX() && y == pianoTerzoPalazzoEdifici.getLayoutY()) {
+			flag = true;
+			return pianoTerzoPalazzoEdifici;
+		} else if (x == pianoQuartoPalazzoEdifici.getLayoutX() && y == pianoQuartoPalazzoEdifici.getLayoutY()) {
+			flag = true;
+			return pianoQuartoPalazzoEdifici;
+		} else if (x == pianoPrimoPalazzoTerritori.getLayoutX() && y == pianoPrimoPalazzoTerritori.getLayoutY()) {
+			flag = true;
+			return pianoPrimoPalazzoTerritori;
+		} else if (x == pianoSecondoPalazzoTerritori.getLayoutX() && y == pianoSecondoPalazzoTerritori.getLayoutY()) {
+			flag = true;
+			return pianoSecondoPalazzoTerritori;
+		} else if (x == pianoTerzoPalazzoTerritori.getLayoutX() && y == pianoTerzoPalazzoTerritori.getLayoutY()) {
+			flag = true;
+			return pianoTerzoPalazzoTerritori;
+		} else if (x == pianoQuartoPalazzoTerritori.getLayoutX() && y == pianoQuartoPalazzoTerritori.getLayoutY()) {
+			flag = true;
+			return pianoQuartoPalazzoTerritori;
+		} else if (x == azioniTerritoridaunGiocatore.getLayoutX() && y == azioniTerritoridaunGiocatore.getLayoutY()) {
+			flag = false;
+			return azioniTerritoridaunGiocatore;
+		} else if (x == azioniEdificidaunGiocatore.getLayoutX() && y == azioniEdificidaunGiocatore.getLayoutY()) {
+			flag = true;
+			return azioniEdificidaunGiocatore;
+		} else if (x == mercatoPosMoneteMilitari.getLayoutX() && y == mercatoPosMoneteMilitari.getLayoutY()) {
+			flag = true;
+			return mercatoPosMoneteMilitari;
+		} else if (x == mercatoPosServitori.getLayoutX() && y == mercatoPosServitori.getLayoutY()) {
+			flag = true;
+			return mercatoPosServitori;
+		} else if (x == mercatoPosMonete.getLayoutX() && y == mercatoPosMonete.getLayoutY()) {
+			flag = true;
+			return mercatoPosMonete;
+		} else if (x == mercatoPosMunicipio.getLayoutX() && y == mercatoPosMunicipio.getLayoutY()) {
+			flag = true;
+			return mercatoPosMunicipio;
+		}
+		return null;
 	}
 
 	public void addScomunica(int nScomuniche, String name) {
@@ -1480,9 +1777,11 @@ public class ControllerGame {
 		start.getClient().changeCards();
 		try {
 			setCardsOtherTurn(start.getClient().getCardsGame());
-			azioniTerritoridapiuGiocatori = new HBox();
-			azioniEdificidapiuGiocatori = new HBox();
-			municipio = new HBox();
+			for(int i = 0; i<4;i++){
+			azioniTerritoridapiuGiocatori.getChildren().remove(i);
+			azioniEdificidapiuGiocatori.getChildren().remove(i);
+			municipio.getChildren().remove(i);
+			}
 			setPosizioni();
 		} catch (ClassNotFoundException | IOException e) {
 			// TODO Auto-generated catch block
@@ -1536,33 +1835,31 @@ public class ControllerGame {
 	}
 
 	private void setPosizioni() {
-		familiareArancio.setOpacity(1);
-		familiareArancio.setDisable(false);
-		familiareNero.setOpacity(1);
-		familiareNero.setDisable(false);
-		familiareNeutro.setOpacity(1);
-		familiareNeutro.setDisable(false);
-		familiareBianco.setOpacity(1);
-		familiareBianco.setDisable(false);
-		mercatoPosMoneteMilitari = new ImageView();
-		mercatoPosServitori = new ImageView();
-		mercatoPosMonete = new ImageView();
-		mercatoPosMunicipio = new ImageView();
-		pianoPrimoPalazzoMilitare = new ImageView();
-		pianoSecondoPalazzoMilitare = new ImageView();
-		pianoTerzoPalazzoMilitare = new ImageView();
-		pianoQuartoPalazzoMilitare = new ImageView();
-		pianoPrimoPalazzoPersonaggi = new ImageView();
-		pianoSecondoPalazzoPersonaggi = new ImageView();
-		pianoTerzoPalazzoPersonaggi = new ImageView();
-		pianoQuartoPalazzoPersonaggi = new ImageView();
-		pianoPrimoPalazzoEdifici = new ImageView();
-		pianoSecondoPalazzoEdifici = new ImageView();
-		pianoTerzoPalazzoEdifici = new ImageView();
-		pianoQuartoPalazzoEdifici = new ImageView();
-		pianoPrimoPalazzoTerritori = new ImageView();
-		pianoSecondoPalazzoTerritori = new ImageView();
-		pianoTerzoPalazzoTerritori = new ImageView();
+		try {
+			setColorsParents(start.getClient().getColor());
+		} catch (ClassNotFoundException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		mercatoPosMoneteMilitari = new ImageView(new Image(getClass().getResourceAsStream("Trasparente.png")));
+		mercatoPosServitori = new ImageView(new Image(getClass().getResourceAsStream("Trasparente.png")));
+		mercatoPosMonete = new ImageView(new Image(getClass().getResourceAsStream("Trasparente.png")));
+		mercatoPosMunicipio = new ImageView(new Image(getClass().getResourceAsStream("Trasparente.png")));
+		pianoPrimoPalazzoMilitare = new ImageView(new Image(getClass().getResourceAsStream("Trasparente.png")));
+		pianoSecondoPalazzoMilitare = new ImageView(new Image(getClass().getResourceAsStream("Trasparente.png")));
+		pianoTerzoPalazzoMilitare = new ImageView(new Image(getClass().getResourceAsStream("Trasparente.png")));
+		pianoQuartoPalazzoMilitare = new ImageView(new Image(getClass().getResourceAsStream("Trasparente.png")));
+		pianoPrimoPalazzoPersonaggi = new ImageView(new Image(getClass().getResourceAsStream("Trasparente.png")));
+		pianoSecondoPalazzoPersonaggi = new ImageView(new Image(getClass().getResourceAsStream("Trasparente.png")));
+		pianoTerzoPalazzoPersonaggi = new ImageView(new Image(getClass().getResourceAsStream("Trasparente.png")));
+		pianoQuartoPalazzoPersonaggi = new ImageView(new Image(getClass().getResourceAsStream("Trasparente.png")));
+		pianoPrimoPalazzoEdifici = new ImageView(new Image(getClass().getResourceAsStream("Trasparente.png")));
+		pianoSecondoPalazzoEdifici = new ImageView(new Image(getClass().getResourceAsStream("Trasparente.png")));
+		pianoTerzoPalazzoEdifici = new ImageView(new Image(getClass().getResourceAsStream("Trasparente.png")));
+		pianoQuartoPalazzoEdifici = new ImageView(new Image(getClass().getResourceAsStream("Trasparente.png")));
+		pianoPrimoPalazzoTerritori = new ImageView(new Image(getClass().getResourceAsStream("Trasparente.png")));
+		pianoSecondoPalazzoTerritori = new ImageView(new Image(getClass().getResourceAsStream("Trasparente.png")));
+		pianoTerzoPalazzoTerritori = new ImageView(new Image(getClass().getResourceAsStream("Trasparente.png")));
 
 		mercatoPosMoneteMilitari.setDisable(false);
 		mercatoPosServitori.setDisable(false);
@@ -1926,7 +2223,8 @@ public class ControllerGame {
 					familiareNeutro.setDisable(true);
 					familiareNeutro.setOpacity(0);
 					try {
-						start.getClient().notifySpostamento("neutro", destinazione1.getLayoutX(), destinazione1.getLayoutY());
+						start.getClient().notifySpostamento("neutro", destinazione1.getLayoutX(),
+								destinazione1.getLayoutY());
 					} catch (IOException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
@@ -1950,7 +2248,8 @@ public class ControllerGame {
 					familiareNeutro.setDisable(true);
 					familiareNeutro.setOpacity(0);
 					try {
-						start.getClient().notifySpostamento("neutro", destinazione1.getLayoutX(), destinazione1.getLayoutY());
+						start.getClient().notifySpostamento("neutro", destinazione1.getLayoutX(),
+								destinazione1.getLayoutY());
 					} catch (IOException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
@@ -1975,7 +2274,8 @@ public class ControllerGame {
 					familiareNero.setDisable(true);
 					familiareNero.setOpacity(0);
 					try {
-						start.getClient().notifySpostamento("black", destinazione1.getLayoutX(), destinazione1.getLayoutY());
+						start.getClient().notifySpostamento("black", destinazione1.getLayoutX(),
+								destinazione1.getLayoutY());
 					} catch (IOException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
@@ -1998,7 +2298,8 @@ public class ControllerGame {
 					familiareNero.setDisable(true);
 					familiareNero.setOpacity(0);
 					try {
-						start.getClient().notifySpostamento("black", destinazione2.getLayoutX(), destinazione2.getLayoutY());
+						start.getClient().notifySpostamento("black", destinazione2.getLayoutX(),
+								destinazione2.getLayoutY());
 					} catch (IOException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
@@ -2023,7 +2324,8 @@ public class ControllerGame {
 					familiareArancio.setDisable(true);
 					familiareArancio.setOpacity(0);
 					try {
-						start.getClient().notifySpostamento("orange", destinazione1.getLayoutX(), destinazione1.getLayoutY());
+						start.getClient().notifySpostamento("orange", destinazione1.getLayoutX(),
+								destinazione1.getLayoutY());
 					} catch (IOException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
@@ -2047,7 +2349,8 @@ public class ControllerGame {
 					familiareArancio.setDisable(true);
 					familiareArancio.setOpacity(0);
 					try {
-						start.getClient().notifySpostamento("orange", destinazione2.getLayoutX(), destinazione2.getLayoutY());
+						start.getClient().notifySpostamento("orange", destinazione2.getLayoutX(),
+								destinazione2.getLayoutY());
 					} catch (IOException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
@@ -2072,7 +2375,8 @@ public class ControllerGame {
 					familiareBianco.setDisable(true);
 					familiareBianco.setOpacity(0);
 					try {
-						start.getClient().notifySpostamento("white", destinazione1.getLayoutX(), destinazione1.getLayoutY());
+						start.getClient().notifySpostamento("white", destinazione1.getLayoutX(),
+								destinazione1.getLayoutY());
 					} catch (IOException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
@@ -2095,7 +2399,8 @@ public class ControllerGame {
 					familiareBianco.setDisable(true);
 					familiareBianco.setOpacity(0);
 					try {
-						start.getClient().notifySpostamento("white", destinazione2.getLayoutX(), destinazione2.getLayoutY());
+						start.getClient().notifySpostamento("white", destinazione2.getLayoutX(),
+								destinazione2.getLayoutY());
 					} catch (IOException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
