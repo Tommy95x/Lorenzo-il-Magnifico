@@ -8,10 +8,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javafx.scene.control.Tooltip;
-import javafx.scene.image.Image;
 
 public class CartaTerritori extends CartaSviluppo{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//Le carte territorio non hanno alcun costo
 	private int costoAzione;
 	private String name = new String(); 

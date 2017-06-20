@@ -2,13 +2,11 @@ package test.server;
 
 import static org.junit.Assert.*;
 
-import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 
 import org.junit.Test;
 
-import client.gui.controllers.ControllerRegister;
 import server.ImplementServerInterface;
 import server.StartServer;
 

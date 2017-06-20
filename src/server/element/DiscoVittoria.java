@@ -2,6 +2,10 @@ package server.element;
 
 public class DiscoVittoria extends Disco{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//Disco per il conteggio dei punti totali accumulati durante i turni
 	private int punti;
 	

@@ -12,6 +12,10 @@ import java.util.ArrayList;
  */
 public class Portafoglio implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int legno;
 	private int pietra;
 	private int monete;

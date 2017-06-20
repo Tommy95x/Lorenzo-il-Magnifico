@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import javafx.scene.control.Tooltip;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 /**
  * @author Mattia
@@ -17,6 +15,10 @@ import javafx.scene.image.ImageView;
  */
 public class TesseraScomunica implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String ID;
 	private String nome;
 	private int periodo;

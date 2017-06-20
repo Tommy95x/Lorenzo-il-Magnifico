@@ -2,9 +2,6 @@ package client.gui.controllers;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
-
-import client.ConnectionRmiInterlocutorClient;
 import client.gui.StartClientGui;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

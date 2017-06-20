@@ -6,8 +6,6 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import client.ConnectionRmiInterlocutorClient;
-import client.gui.controllers.ControllerGame;
 import javafx.scene.image.Image;
 import server.element.CartaSviluppo;
 import server.element.Dado;

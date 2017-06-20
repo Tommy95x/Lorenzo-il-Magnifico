@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javafx.scene.image.Image;
 import server.StartServer;
 
 /**
@@ -14,6 +13,11 @@ import server.StartServer;
  *Class that contain in to every Gamer.
  */
 public class Flag implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private String color;
 
