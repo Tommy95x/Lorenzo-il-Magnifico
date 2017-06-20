@@ -508,6 +508,8 @@ public class Giocatore implements Serializable {
 
 	public void produzione(int qta, Connection conn) {
 		for (CartaSviluppo c : carte) {
+			risorse.addRis("monete", 2);
+			risorse.addPunti("militari", 1);
 			if (c.getId().contains("ED") && c.getCostoAzione() <= qta) {
 				activateCardEffettiPermanenti(c, 2, conn);
 			}
