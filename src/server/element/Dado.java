@@ -5,14 +5,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javafx.scene.image.Image;
-
 /*
 *Classe che verra' istanziata ad ogni partita in un array di 3 elementi. Il  dado iteragisce con il giocatore che lo lancia fornendogli
 *il valore casuale tra 1 e 6 che acquistera' dal rispettivo metodo.
 */
 public class Dado implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String color;
 	private int valore;
 	private String immagineValore;

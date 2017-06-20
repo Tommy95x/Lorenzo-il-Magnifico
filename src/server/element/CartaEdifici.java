@@ -8,10 +8,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javafx.scene.control.Tooltip;
-import javafx.scene.image.Image;
 
 public class CartaEdifici extends CartaSviluppo {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// Le carte edifici possiedono un costo che deve essere pagato con le
 	// risorse del giocatore che intende possederle
 	private int costoMoneta;

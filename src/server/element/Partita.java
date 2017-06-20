@@ -490,6 +490,7 @@ public class Partita implements Serializable {
 		return this.NumberOfPlayers;
 	}
 
+	@SuppressWarnings("unused")
 	public void notifySpostamentoPunti(String tipo, int qta, Connection c) {
 		switch (tipo) {
 		case "militari":

@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import org.junit.Test;
 
 import server.database.ConnectionDatabase;
-import server.database.PoolDatabase;
 
 public class DBTest {
 

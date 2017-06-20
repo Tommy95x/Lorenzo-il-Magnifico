@@ -2,6 +2,10 @@ package server.element;
 
 public class DiscoFede extends Disco{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//Disco che sarà piazzato nel tabellone sulla linea della fede
 	private int puntiFede;
 	

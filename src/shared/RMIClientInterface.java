@@ -4,7 +4,6 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 
-import client.gui.controllers.ControllerGame;
 import server.element.CartaSviluppo;
 import server.element.Giocatore;
 
