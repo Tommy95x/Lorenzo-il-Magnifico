@@ -533,12 +533,20 @@ public class Partita implements Serializable {
 					double y = 0;
 					String query;
 					if (qta < 10)
-						query = "PUNTI MILITARI 0" + qta + "";
+						query = "SELECT POSX, POSY FROM POSIZIONETABELLONE WHERE ID=PM0" + qta + "";
 					else
-						query = "PUNTI MILITARI " + qta + "";
+						query = "SELECT POSX, POSY FROM POSIZIONETABELLONE WHERE ID=PM" + qta + "";
 					try {
+						Statement stmt=c.createStatement();
+						ResultSet rs=stmt.executeQuery(query);
+						while(rs.next()){
+							x=rs.getDouble("POSX");
+							y=rs.getDouble("POSY");
+						}
+						rs.close();
+						stmt.close();
 						g.notifySpostamentopuntiMilitari(x, y, g.getColor());
-					} catch (RemoteException e) {
+					} catch (RemoteException | SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
@@ -552,12 +560,20 @@ public class Partita implements Serializable {
 					double y = 0;
 					String query;
 					if (qta < 10)
-						query = "PUNTI MILITARI 0" + qta + "";
+						query = "SELECT POSX, POSY FROM POSIZIONETABELLONE WHERE ID=PV0" + qta + "";
 					else
-						query = "PUNTI MILITARI " + qta + "";
+						query = "SELECT POSX, POSY FROM POSIZIONETABELLONE WHERE ID=PV" + qta + "";
 					try {
+						Statement stmt=c.createStatement();
+						ResultSet rs=stmt.executeQuery(query);
+						while(rs.next()){
+							x=rs.getDouble("POSX");
+							y=rs.getDouble("POSY");
+						}
+						rs.close();
+						stmt.close();
 						g.notifySpostamentopuntiVittoria(x, y, g.getColor());
-					} catch (RemoteException e) {
+					} catch (RemoteException | SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
@@ -571,12 +587,20 @@ public class Partita implements Serializable {
 					double y = 0;
 					String query;
 					if (qta < 10)
-						query = "PUNTI MILITARI 0" + qta + "";
+						query = "SELECT POSX, POSY FROM POSIZIONETABELLONE WHERE ID=PF0" + qta + "";
 					else
-						query = "PUNTI MILITARI " + qta + "";
+						query = "SELECT POSX, POSY FROM POSIZIONETABELLONE WHERE ID=PF" + qta + "";
 					try {
+						Statement stmt=c.createStatement();
+						ResultSet rs=stmt.executeQuery(query);
+						while(rs.next()){
+							x=rs.getDouble("POSX");
+							y=rs.getDouble("POSY");
+						}
+						rs.close();
+						stmt.close();
 						g.notifySpostamentopuntiFede(x, y, g.getColor());
-					} catch (RemoteException e) {
+					} catch (RemoteException | SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
