@@ -221,7 +221,8 @@ public class Partita implements Serializable {
 
 	public boolean addTurno() {
 		NumberOfPlayers = 0;
-		if (turno < 7) {
+		notifyResetTabellone();
+		if (turno < 6) {
 			if (turno == 2 || turno == 4)
 				sostegnoChiesa();
 			turno++;
@@ -236,6 +237,14 @@ public class Partita implements Serializable {
 			sostegnoChiesa();
 			endGame();
 			return false;
+		}
+	}
+
+	private void notifyResetTabellone() {
+		for(int i =0; i<4;i++){
+			if(giocatori[i] != null){
+				giocatori[i].notifyResetTabellone();
+			}
 		}
 	}
 
@@ -419,20 +428,24 @@ public class Partita implements Serializable {
 	}
 
 	public void changeGamer() throws RemoteException, SQLException {
-		System.out.println("Inizio i turni");
-		if (NumberOfPlayers > 3) {
+		System.out.println("Inizio i turni " + NumberOfPlayers);
+		if (NumberOfPlayers == 4) {
+			System.out.println("Aggiungo un turno");
 			addTurno();
 		} else {
 			try {
-				if (giocatori[NumberOfPlayers] != null)
+				if (giocatori[NumberOfPlayers] != null) {
 					giocatori[NumberOfPlayers].notifyTurno(turno);
-				else
+					NumberOfPlayers++;
+				} else {
+					NumberOfPlayers++;
 					changeGamer();
+				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			NumberOfPlayers++;
+			System.out.println(NumberOfPlayers);
 		}
 	}
 
@@ -524,8 +537,8 @@ public class Partita implements Serializable {
 	}
 
 	@SuppressWarnings("unused")
-	public void notifySpostamentoPunti(String tipo, int qta, Connection c) {
-		System.out.println("Sposto il punti "+tipo+" del giocatore");
+	public void notifySpostamentoPunti(String tipo, int qta, Connection c, String color2) {
+		System.out.println("Sposto il punti " + tipo + " del giocatore");
 		switch (tipo) {
 		case "militari":
 			for (Giocatore g : giocatori) {
@@ -538,15 +551,15 @@ public class Partita implements Serializable {
 					else
 						query = "SELECT POSX, POSY FROM POSIZIONETABELLONE WHERE ID='PM" + qta + "'";
 					try {
-						Statement stmt=c.createStatement();
-						ResultSet rs=stmt.executeQuery(query);
-						while(rs.next()){
-							x=rs.getDouble("POSX");
-							y=rs.getDouble("POSY");
+						Statement stmt = c.createStatement();
+						ResultSet rs = stmt.executeQuery(query);
+						while (rs.next()) {
+							x = rs.getDouble("POSX");
+							y = rs.getDouble("POSY");
 						}
 						rs.close();
 						stmt.close();
-						g.notifySpostamentopuntiMilitari(x, y, g.getColor());
+						g.notifySpostamentopuntiMilitari(x, y, color2);
 					} catch (RemoteException | SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -565,11 +578,11 @@ public class Partita implements Serializable {
 					else
 						query = "SELECT POSX, POSY FROM POSIZIONETABELLONE WHERE ID='PV" + qta + "'";
 					try {
-						Statement stmt=c.createStatement();
-						ResultSet rs=stmt.executeQuery(query);
-						while(rs.next()){
-							x=rs.getDouble("POSX");
-							y=rs.getDouble("POSY");
+						Statement stmt = c.createStatement();
+						ResultSet rs = stmt.executeQuery(query);
+						while (rs.next()) {
+							x = rs.getDouble("POSX");
+							y = rs.getDouble("POSY");
 						}
 						rs.close();
 						stmt.close();
@@ -592,11 +605,11 @@ public class Partita implements Serializable {
 					else
 						query = "SELECT POSX, POSY FROM POSIZIONETABELLONE WHERE ID=P'F" + qta + "'";
 					try {
-						Statement stmt=c.createStatement();
-						ResultSet rs=stmt.executeQuery(query);
-						while(rs.next()){
-							x=rs.getDouble("POSX");
-							y=rs.getDouble("POSY");
+						Statement stmt = c.createStatement();
+						ResultSet rs = stmt.executeQuery(query);
+						while (rs.next()) {
+							x = rs.getDouble("POSX");
+							y = rs.getDouble("POSY");
 						}
 						rs.close();
 						stmt.close();

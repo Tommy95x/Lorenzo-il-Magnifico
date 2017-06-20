@@ -272,24 +272,24 @@ public class Giocatore implements Serializable {
 	private void activateCardEffettiImmediati(CartaSviluppo carta, int tipo, Connection c) throws SQLException {
 		switch (tipo) {
 		case 0:
-			carta = (CartaTerritori) carta;
+			//carta = (CartaTerritori) carta;
 			for (Effetto e : carta.getEffetti()) {
 				if (e.isImmediato() && e.getQta() != 0) {
 					switch (e.getRisorsa()) {
 					case "militari":
 						risorse.addPunti("militari", e.getQta());
 						System.out.println(partita.toString() + " " + e.getQta());
-						partita.notifySpostamentoPunti("militari", risorse.getPunti("militari"), c);
+						partita.notifySpostamentoPunti("militari", risorse.getPunti("militari"), c,color);
 						break;
 					case "vittoria":
 						risorse.addPunti("vittoria", e.getQta());
 						System.out.println(partita.toString() + " " + e.getQta());
-						partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), c);
+						partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), c, color);
 						break;
 					case "fede":
 						risorse.addPunti("fede", e.getQta());
 						System.out.println(partita.toString() + " " + e.getQta());
-						partita.notifySpostamentoPunti("fede", risorse.getPunti("fede"), c);
+						partita.notifySpostamentoPunti("fede", risorse.getPunti("fede"), c,color);
 						break;
 					case "pietra":
 						risorse.addRis("pietra", e.getQta());
@@ -326,14 +326,14 @@ public class Giocatore implements Serializable {
 			break;
 		case 1:
 			int sum = 0;
-			carta = (CartaPersonaggi) carta;
+			//carta = (CartaPersonaggi) carta;
 			risorse.addRis("monete", -carta.getCostoMoneta());
 			for (Effetto e : carta.getEffetti()) {
 				if (e.isImmediato() && e.getQta() != 0) {
 					switch (e.getRisorsa()) {
 					case "militari":
 						risorse.addPunti("militari", e.getQta());
-						partita.notifySpostamentoPunti("militari", risorse.getPunti("militari"), c);
+						partita.notifySpostamentoPunti("militari", risorse.getPunti("militari"), c,color);
 						break;
 					case "vittoria":
 						switch (carta.getPerOgniCarta()) {
@@ -344,7 +344,7 @@ public class Giocatore implements Serializable {
 								}
 							}
 							risorse.addPunti("vittoria", 2 * sum);
-							partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), c);
+							partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), c,color);
 							sum = 0;
 							break;
 						case "PERSONAGGI":
@@ -354,7 +354,7 @@ public class Giocatore implements Serializable {
 								}
 							}
 							risorse.addPunti("vittoria", 2 * sum);
-							partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), c);
+							partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), c,color);
 							sum = 0;
 							break;
 						case "IMPRESA":
@@ -364,12 +364,12 @@ public class Giocatore implements Serializable {
 								}
 							}
 							risorse.addPunti("vittoria", 2 * sum);
-							partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), c);
+							partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), c,color);
 							sum = 0;
 							break;
 						case "2MILITARI":
 							risorse.addPunti("vittoria", (int) risorse.getPunti("militari") / 2);
-							partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), c);
+							partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), c,color);
 							sum = 0;
 							break;
 						case "TERRITORI":
@@ -379,14 +379,14 @@ public class Giocatore implements Serializable {
 								}
 							}
 							risorse.addPunti("vittoria", 2 * sum);
-							partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), c);
+							partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), c,color);
 							sum = 0;
 							break;
 						}
 						break;
 					case "fede":
 						risorse.addPunti("fede", e.getQta());
-						partita.notifySpostamentoPunti("fede", risorse.getPunti("fede"), c);
+						partita.notifySpostamentoPunti("fede", risorse.getPunti("fede"), c,color);
 						break;
 					case "pergamena":
 						try {
@@ -423,34 +423,34 @@ public class Giocatore implements Serializable {
 			}
 			break;
 		case 2:
-			carta = (CartaEdifici) carta;
+			//carta = (CartaEdifici) carta;
 			for (Effetto e : carta.getEffetti()) {
 				if (e.isImmediato() && e.getQta() != 0) {
 					switch (e.getRisorsa()) {
 					case "vittoria":
 						risorse.addPunti("vittoria", e.getQta());
-						partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), c);
+						partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), c,color);
 						break;
 					case "fede":
 						risorse.addPunti("fede", e.getQta());
-						partita.notifySpostamentoPunti("fede", risorse.getPunti("fede"), c);
+						partita.notifySpostamentoPunti("fede", risorse.getPunti("fede"), c,color);
 						break;
 					}
 				}
 			}
 			break;
 		case 3:
-			carta = (CartaImprese) carta;
+			//carta = (CartaImprese) carta;
 			for (Effetto e : carta.getEffetti()) {
 				if (e.isImmediato() && e.getQta() != 0) {
 					switch (e.getRisorsa()) {
 					case "militari":
 						risorse.addPunti("militari", e.getQta());
-						partita.notifySpostamentoPunti("militari", risorse.getPunti("militari"), c);
+						partita.notifySpostamentoPunti("militari", risorse.getPunti("militari"), c,color);
 						break;
 					case "fede":
 						risorse.addPunti("fede", e.getQta());
-						partita.notifySpostamentoPunti("fede", risorse.getPunti("fede"), c);
+						partita.notifySpostamentoPunti("fede", risorse.getPunti("fede"), c,color);
 						break;
 					case "pietra":
 						risorse.addRis("pietra", e.getQta());
@@ -541,15 +541,15 @@ public class Giocatore implements Serializable {
 						break;
 					case "militari":
 						risorse.addPunti("militari", e.getQta());
-						partita.notifySpostamentoPunti("militari", risorse.getPunti("militari"), conn);
+						partita.notifySpostamentoPunti("militari", risorse.getPunti("militari"), conn,color);
 						break;
 					case "fede":
 						risorse.addPunti("fede", e.getQta());
-						partita.notifySpostamentoPunti("fede", risorse.getPunti("fede"), conn);
+						partita.notifySpostamentoPunti("fede", risorse.getPunti("fede"), conn,color);
 						break;
 					case "vittoria":
 						risorse.addPunti("vittoria", e.getQta());
-						partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), conn);
+						partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), conn,color);
 						break;
 					}
 				}
@@ -570,7 +570,7 @@ public class Giocatore implements Serializable {
 								}
 							}
 							risorse.addPunti("vittoria", sum);
-							partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), conn);
+							partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), conn,color);
 							sum = 0;
 							break;
 						case "PERSONAGGI":
@@ -580,7 +580,7 @@ public class Giocatore implements Serializable {
 								}
 							}
 							risorse.addPunti("vittoria", sum);
-							partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), conn);
+							partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), conn,color);
 							sum = 0;
 							break;
 						}
@@ -672,11 +672,11 @@ public class Giocatore implements Serializable {
 					switch(r[k].getRisorsa()){
 					case "militari":
 						risorse.addPunti("militari", r[k].getQta());
-						partita.notifySpostamentoPunti("militari",risorse.getPunti("militari"), conn);
+						partita.notifySpostamentoPunti("militari",risorse.getPunti("militari"), conn,color);
 						break;
 					case "vittoria":
 						risorse.addPunti("vittoria", r[k].getQta());
-						partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), conn);
+						partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), conn,color);
 						break;
 					case "monete":
 						risorse.addRis("monete", r[k].getQta());
@@ -710,11 +710,11 @@ public class Giocatore implements Serializable {
 			break;
 		case "fede":
 			risorse.addRis("fede", qta);
-			partita.notifySpostamentoPunti("vittoria", risorse.getPunti("fede"), c);
+			partita.notifySpostamentoPunti("vittoria", risorse.getPunti("fede"), c,color);
 			break;
 		case "vittoria":
 			risorse.addRis("vittoria", qta);
-			partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), c);
+			partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), c,color);
 			break;
 		}
 
@@ -799,7 +799,7 @@ public class Giocatore implements Serializable {
 
 	public void addPunti(String tipo, int qta, Connection c) {
 		risorse.addPunti(tipo, qta);
-		partita.notifySpostamentoPunti(tipo, qta, c);
+		partita.notifySpostamentoPunti(tipo, qta, c,color);
 	}
 
 	public void setGuiGame(ControllerGame guiGame) {
@@ -878,6 +878,19 @@ public class Giocatore implements Serializable {
 		} else {
 			try {
 				client.addScomunica(numSco,name2);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void notifyResetTabellone() {
+		if(client == null){
+			server.resetTabellone();
+		}else{
+			try {
+				client.restTabellone();
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

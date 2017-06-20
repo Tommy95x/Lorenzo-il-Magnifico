@@ -136,7 +136,7 @@
                         <Label layoutY="6.0" prefHeight="25.0" prefWidth="63.0" text="Giocatore:" textFill="WHITE" />
                         <Label fx:id="name1" layoutX="71.0" layoutY="6.0" prefHeight="20.0" prefWidth="180.0" textFill="WHITE" />
                         <ImageView fx:id="flag1" fitHeight="90.0" fitWidth="46.0" layoutX="14.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true" />
-                        <VBox fx:id="listCards1" layoutY="150.0" prefHeight="274.0" prefWidth="280.0" />
+                        <VBox fx:id="listCards1" layoutY="206.0" prefHeight="218.0" prefWidth="280.0" />
                         <Label layoutX="21.0" layoutY="167.0" prefHeight="28.0" prefWidth="231.0" text="Carte Giocatore Avversario:" textFill="WHITE">
                            <font>
                               <Font size="19.0" />
@@ -195,7 +195,7 @@
                      <children>
                         <Label layoutY="6.0" prefHeight="25.0" prefWidth="63.0" text="Giocatore:" textFill="WHITE" />
                         <ImageView fx:id="flag2" fitHeight="90.0" fitWidth="46.0" layoutX="16.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true" />
-                        <VBox fx:id="listCards2" layoutY="150.0" prefHeight="274.0" prefWidth="280.0" />
+                        <VBox fx:id="listCards2" layoutY="204.0" prefHeight="220.0" prefWidth="280.0" />
                         <Label layoutX="22.0" layoutY="167.0" prefHeight="28.0" prefWidth="231.0" text="Carte Giocatore Avversario:" textFill="WHITE">
                            <font>
                               <Font size="19.0" />
@@ -255,7 +255,7 @@
                      <children>
                         <ImageView fx:id="flag3" fitHeight="90.0" fitWidth="46.0" layoutX="8.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" />
                         <Label layoutY="6.0" prefHeight="25.0" prefWidth="63.0" text="Giocatore:" textFill="WHITE" />
-                        <VBox fx:id="listCards3" layoutY="150.0" prefHeight="274.0" prefWidth="280.0" />
+                        <VBox fx:id="listCards3" layoutY="207.0" prefHeight="217.0" prefWidth="280.0" />
                         <Label layoutX="19.0" layoutY="169.0" prefHeight="28.0" prefWidth="231.0" text="Carte Giocatore Avversario:" textFill="WHITE">
                            <font>
                               <Font size="19.0" />

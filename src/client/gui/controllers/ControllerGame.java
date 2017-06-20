@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
@@ -56,7 +57,7 @@ public class ControllerGame {
 	private boolean flag;
 	private Dado[] dadi = new Dado[3];
 	boolean pay = false;
-	private int nFamPos=0;
+	private int nFamPos = 0;
 
 	// Componenti tabellone
 	@FXML
@@ -294,13 +295,13 @@ public class ControllerGame {
 	}
 
 	public void setCardsScomunica(TesseraScomunica[] cardsScomunica) {
-		tessereScomunica[0] =cardsScomunica[0];
+		tessereScomunica[0] = cardsScomunica[0];
 		Tooltip.install(cartaScomunica1, cardsScomunica[0].getTooltip());
 		cartaScomunica1.setImage(new Image(getClass().getResourceAsStream(cardsScomunica[0].getImage())));
-		tessereScomunica[1] =cardsScomunica[1];
+		tessereScomunica[1] = cardsScomunica[1];
 		Tooltip.install(cartaScomunica2, cardsScomunica[1].getTooltip());
 		cartaScomunica2.setImage(new Image(getClass().getResourceAsStream(cardsScomunica[1].getImage())));
-		tessereScomunica[2] =cardsScomunica[2];
+		tessereScomunica[2] = cardsScomunica[2];
 		Tooltip.install(cartaScomunica3, cardsScomunica[2].getTooltip());
 		cartaScomunica3.setImage(new Image(getClass().getResourceAsStream(cardsScomunica[2].getImage())));
 
@@ -334,23 +335,15 @@ public class ControllerGame {
 	}
 
 	public void setColorsParents(String color) throws RemoteException, ClassNotFoundException, IOException {
-		puntiVittoriaBlu.setImage(new Image(getClass().getResourceAsStream("Disco1.png")));
-		puntiVittoriaBianco.setImage(new Image(getClass().getResourceAsStream("Disco12.png")));
-		puntiVittoriaVerde.setImage(new Image(getClass().getResourceAsStream("Disco4.png")));
-		puntiVittoriaArancio.setImage(new Image(getClass().getResourceAsStream("Disco3.png")));
-		puntiFedeBlu.setImage(new Image(getClass().getResourceAsStream("Disco1.png")));
-		puntiFedeArancio.setImage(new Image(getClass().getResourceAsStream("Disco3.png")));
-		puntiFedeBianco.setImage(new Image(getClass().getResourceAsStream("Disco12.png")));
-		puntiFedeVerde.setImage(new Image(getClass().getResourceAsStream("Disco4.png")));
-		puntiMilitariBlu.setImage(new Image(getClass().getResourceAsStream("Disco1.png")));
-		puntiMilitariVerde.setImage(new Image(getClass().getResourceAsStream("Disco4.png")));
-		puntiMilitariBianco.setImage(new Image(getClass().getResourceAsStream("Disco12.png")));
-		puntiMilitariArancio.setImage(new Image(getClass().getResourceAsStream("Disco3.png")));
 		Giocatore[] giocatori = new Giocatore[4];
 		giocatori = start.getClient().getGiocatori();
 		Portafoglio p = null;
 		switch (color) {
 		case "blue":
+			puntiVittoriaBlu.setImage(new Image(getClass().getResourceAsStream("Disco1.png")));
+			puntiFedeBlu.setImage(new Image(getClass().getResourceAsStream("Disco1.png")));
+			puntiMilitariBlu.setImage(new Image(getClass().getResourceAsStream("Disco1.png")));
+			
 			familiareNeutro.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNeutro.png")));
 			familiareNero.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNero.png")));
 			familiareArancio.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluArancio.png")));
@@ -360,6 +353,10 @@ public class ControllerGame {
 				if (g != null && !g.getName().equals(start.getClient().getName()) && !g.getName().equals("niente")) {
 					switch (g.getColor()) {
 					case "orange":
+						puntiVittoriaArancio.setImage(new Image(getClass().getResourceAsStream("Disco3.png")));
+						puntiFedeArancio.setImage(new Image(getClass().getResourceAsStream("Disco3.png")));
+						puntiMilitariArancio.setImage(new Image(getClass().getResourceAsStream("Disco3.png")));
+						
 						familiareOrange1
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioNeutro.png")));
 						familiareOrange2.setImage(
@@ -381,6 +378,10 @@ public class ControllerGame {
 						servitori1.setText(String.valueOf(p.getDimRisorse("servitori")));
 						break;
 					case "green":
+						puntiVittoriaVerde.setImage(new Image(getClass().getResourceAsStream("Disco4.png")));
+						puntiFedeVerde.setImage(new Image(getClass().getResourceAsStream("Disco4.png")));
+						puntiMilitariVerde.setImage(new Image(getClass().getResourceAsStream("Disco4.png")));
+						
 						familiareGreen1
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeNeutro.png")));
 						familiareGreen2
@@ -402,6 +403,10 @@ public class ControllerGame {
 						servitori2.setText(String.valueOf(p.getDimRisorse("servitori")));
 						break;
 					case "white":
+						puntiMilitariBianco.setImage(new Image(getClass().getResourceAsStream("Disco12.png")));
+						puntiFedeBianco.setImage(new Image(getClass().getResourceAsStream("Disco12.png")));
+						puntiVittoriaBianco.setImage(new Image(getClass().getResourceAsStream("Disco12.png")));
+						
 						familiareWhite1
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoNeutro.png")));
 						familiareWhite2
@@ -451,17 +456,24 @@ public class ControllerGame {
 			familiareWhite4.setDisable(false);
 			break;
 		case "green":
+			puntiVittoriaVerde.setImage(new Image(getClass().getResourceAsStream("Disco4.png")));
+			puntiFedeVerde.setImage(new Image(getClass().getResourceAsStream("Disco4.png")));
+			puntiMilitariVerde.setImage(new Image(getClass().getResourceAsStream("Disco4.png")));
 			familiareNeutro.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeNeutro.png")));
 			familiareNero.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeNero.png")));
 			familiareArancio.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeArancio.png")));
 			familiareBianco.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeBianco.png")));
 			bandiera.setImage(new Image(this.getClass().getResourceAsStream("BandierinaVerde.png")));
 			for (Giocatore g : giocatori) {
-				if (g != null )
-					System.out.println(g.getName()+"\n\n\n\n"+start.getClient().getName()+ " "+!g.getName().equals(start.getClient().getName()));
+				if (g != null)
+					System.out.println(g.getName() + "\n\n\n\n" + start.getClient().getName() + " "
+							+ !g.getName().equals(start.getClient().getName()));
 				if (g != null && !g.getName().equals(start.getClient().getName()) && !g.getName().equals("niente")) {
 					switch (g.getColor()) {
 					case "orange":
+						puntiVittoriaArancio.setImage(new Image(getClass().getResourceAsStream("Disco3.png")));
+						puntiFedeArancio.setImage(new Image(getClass().getResourceAsStream("Disco3.png")));
+						puntiMilitariArancio.setImage(new Image(getClass().getResourceAsStream("Disco3.png")));
 						familiareOrange1
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioNeutro.png")));
 						familiareOrange2.setImage(
@@ -482,6 +494,9 @@ public class ControllerGame {
 						servitori1.setText(String.valueOf(p.getDimRisorse("servitori")));
 						break;
 					case "blue":
+						puntiVittoriaBlu.setImage(new Image(getClass().getResourceAsStream("Disco1.png")));
+						puntiFedeBlu.setImage(new Image(getClass().getResourceAsStream("Disco1.png")));
+						puntiMilitariBlu.setImage(new Image(getClass().getResourceAsStream("Disco1.png")));
 						familiareGreen1
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNeutro.png")));
 						familiareGreen2
@@ -502,6 +517,9 @@ public class ControllerGame {
 						servitori2.setText(String.valueOf(p.getDimRisorse("servitori")));
 						break;
 					case "white":
+						puntiMilitariBianco.setImage(new Image(getClass().getResourceAsStream("Disco12.png")));
+						puntiFedeBianco.setImage(new Image(getClass().getResourceAsStream("Disco12.png")));
+						puntiVittoriaBianco.setImage(new Image(getClass().getResourceAsStream("Disco12.png")));
 						familiareWhite1
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoNeutro.png")));
 						familiareWhite2
@@ -550,17 +568,24 @@ public class ControllerGame {
 			familiareGreen4.setDisable(false);
 			break;
 		case "white":
+			puntiMilitariBianco.setImage(new Image(getClass().getResourceAsStream("Disco12.png")));
+			puntiFedeBianco.setImage(new Image(getClass().getResourceAsStream("Disco12.png")));
+			puntiVittoriaBianco.setImage(new Image(getClass().getResourceAsStream("Disco12.png")));
 			familiareNeutro.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoNeutro.png")));
 			familiareNero.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoNero.png")));
 			familiareArancio.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoArancio.png")));
 			familiareBianco.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoBianco.png")));
 			bandiera.setImage(new Image(this.getClass().getResourceAsStream("BandierinaBianca.png")));
 			for (Giocatore g : giocatori) {
-				if (g != null )
-					System.out.println(g.getName()+"\n\n\n\n"+start.getClient().getName()+!g.getName().equals(start.getClient().getName()));
+				if (g != null)
+					System.out.println(g.getName() + "\n\n\n\n" + start.getClient().getName()
+							+ !g.getName().equals(start.getClient().getName()));
 				if (g != null && !g.getName().equals(start.getClient().getName()) && !g.getName().equals("niente")) {
 					switch (g.getColor()) {
 					case "orange":
+						puntiVittoriaArancio.setImage(new Image(getClass().getResourceAsStream("Disco3.png")));
+						puntiFedeArancio.setImage(new Image(getClass().getResourceAsStream("Disco3.png")));
+						puntiMilitariArancio.setImage(new Image(getClass().getResourceAsStream("Disco3.png")));
 						familiareOrange1
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioNeutro.png")));
 						familiareOrange2.setImage(
@@ -581,6 +606,9 @@ public class ControllerGame {
 						servitori1.setText(String.valueOf(p.getDimRisorse("servitori")));
 						break;
 					case "green":
+						puntiVittoriaVerde.setImage(new Image(getClass().getResourceAsStream("Disco4.png")));
+						puntiFedeVerde.setImage(new Image(getClass().getResourceAsStream("Disco4.png")));
+						puntiMilitariVerde.setImage(new Image(getClass().getResourceAsStream("Disco4.png")));
 						familiareGreen1
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeNeutro.png")));
 						familiareGreen2
@@ -601,6 +629,9 @@ public class ControllerGame {
 						servitori2.setText(String.valueOf(p.getDimRisorse("servitori")));
 						break;
 					case "blue":
+						puntiVittoriaBlu.setImage(new Image(getClass().getResourceAsStream("Disco1.png")));
+						puntiFedeBlu.setImage(new Image(getClass().getResourceAsStream("Disco1.png")));
+						puntiMilitariBlu.setImage(new Image(getClass().getResourceAsStream("Disco1.png")));
 						familiareWhite1
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNeutro.png")));
 						familiareWhite2
@@ -646,17 +677,24 @@ public class ControllerGame {
 			familiareGreen4.setDisable(false);
 			break;
 		case "orange":
+			puntiVittoriaArancio.setImage(new Image(getClass().getResourceAsStream("Disco3.png")));
+			puntiFedeArancio.setImage(new Image(getClass().getResourceAsStream("Disco3.png")));
+			puntiMilitariArancio.setImage(new Image(getClass().getResourceAsStream("Disco3.png")));
 			familiareNeutro.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioNeutro.png")));
 			familiareNero.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioNero.png")));
 			familiareArancio.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioArancio.png")));
 			familiareBianco.setImage(new Image(this.getClass().getResourceAsStream("FamiliareArancioBianco.png")));
 			bandiera.setImage(new Image(this.getClass().getResourceAsStream("BandierinaArancio.png")));
 			for (Giocatore g : giocatori) {
-				if (g != null )
-					System.out.println(g.getName()+"\n\n\n\n"+start.getClient().getName()+!g.getName().equals(start.getClient().getName()));
+				if (g != null)
+					System.out.println(g.getName() + "\n\n\n\n" + start.getClient().getName()
+							+ !g.getName().equals(start.getClient().getName()));
 				if (g != null && !g.getName().equals(start.getClient().getName()) && !g.getName().equals("niente")) {
 					switch (g.getColor()) {
 					case "blue":
+						puntiVittoriaBlu.setImage(new Image(getClass().getResourceAsStream("Disco1.png")));
+						puntiFedeBlu.setImage(new Image(getClass().getResourceAsStream("Disco1.png")));
+						puntiMilitariBlu.setImage(new Image(getClass().getResourceAsStream("Disco1.png")));
 						familiareOrange1
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBluNeutro.png")));
 						familiareOrange2
@@ -677,6 +715,9 @@ public class ControllerGame {
 						servitori1.setText(String.valueOf(p.getDimRisorse("servitori")));
 						break;
 					case "green":
+						puntiVittoriaVerde.setImage(new Image(getClass().getResourceAsStream("Disco4.png")));
+						puntiFedeVerde.setImage(new Image(getClass().getResourceAsStream("Disco4.png")));
+						puntiMilitariVerde.setImage(new Image(getClass().getResourceAsStream("Disco4.png")));
 						familiareGreen1
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareVerdeNeutro.png")));
 						familiareGreen2
@@ -697,6 +738,9 @@ public class ControllerGame {
 						servitori2.setText(String.valueOf(p.getDimRisorse("servitori")));
 						break;
 					case "white":
+						puntiMilitariBianco.setImage(new Image(getClass().getResourceAsStream("Disco12.png")));
+						puntiFedeBianco.setImage(new Image(getClass().getResourceAsStream("Disco12.png")));
+						puntiVittoriaBianco.setImage(new Image(getClass().getResourceAsStream("Disco12.png")));
 						familiareWhite1
 								.setImage(new Image(this.getClass().getResourceAsStream("FamiliareBiancoNeutro.png")));
 						familiareWhite2
@@ -811,12 +855,11 @@ public class ControllerGame {
 					alert.setContentText("Ci dispiace ma il nostro servizio a smesso di funzionare");
 					alert.showAndWait();
 					return false;
-				} else if (mom.equals("OK")){
-					if(destinazione != null)
+				} else if (mom.equals("OK")) {
+					if (destinazione != null)
 						destinazione.setDisable(true);
 					return true;
-				}
-				else if (mom.equals("NotEnough")) {
+				} else if (mom.equals("NotEnough")) {
 					Alert alert = new Alert(AlertType.WARNING);
 					alert.initOwner(start.getStage());
 					alert.setTitle("Mossa negata");
@@ -969,7 +1012,7 @@ public class ControllerGame {
 	}
 
 	public void addScomunica(int nScomuniche, String name) {
-		if(name.equals(start.getClient().getName())){
+		if (name.equals(start.getClient().getName())) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Avvenuta Scomunica");
 			alert.setHeaderText("Mannaggia a te che non sostieni la chiesa");
@@ -995,7 +1038,7 @@ public class ControllerGame {
 				Tooltip.uninstall(cartaScomunica3, tessereScomunica[2].getTooltip());
 				break;
 			}
-		}else if(name.equals(name1.getText())){
+		} else if (name.equals(name1.getText())) {
 			switch (nScomuniche) {
 			case 0:
 				cuboScomunica11.setOpacity(1);
@@ -1010,7 +1053,7 @@ public class ControllerGame {
 				Tooltip.install(cuboScomunica13, tessereScomunica[2].getTooltip());
 				break;
 			}
-		}else if(name.equals(name2.getText())){
+		} else if (name.equals(name2.getText())) {
 			switch (nScomuniche) {
 			case 0:
 				cuboScomunica21.setOpacity(1);
@@ -1025,7 +1068,7 @@ public class ControllerGame {
 				Tooltip.install(cuboScomunica23, tessereScomunica[2].getTooltip());
 				break;
 			}
-		}else{
+		} else {
 			switch (nScomuniche) {
 			case 0:
 				cuboScomunica31.setOpacity(1);
@@ -1201,8 +1244,8 @@ public class ControllerGame {
 			mom.setFitWidth(90);
 			Tooltip.install(mom, arrayCarteTerritori[3].getTooltip());
 			carteTerritoriGiocatore.getChildren().add(mom);
-			carteTerritori.getChildren().set(3, new ImageView());
-			start.getClient().setCardGiocatore(arrayCarteTerritori[3], 0,3);
+			sistemaCarte(3,0);
+			start.getClient().setCardGiocatore(arrayCarteTerritori[3], 0, 3);
 			break;
 		case "PIANO 2 FAMILIARE TERRITORI":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteTerritori[2].getImage())));
@@ -1210,8 +1253,8 @@ public class ControllerGame {
 			mom.setFitWidth(90);
 			Tooltip.install(mom, arrayCarteTerritori[2].getTooltip());
 			carteTerritoriGiocatore.getChildren().add(mom);
-			carteTerritori.getChildren().set(2, new ImageView());
-			start.getClient().setCardGiocatore(arrayCarteTerritori[2], 0,2);
+			sistemaCarte(2,0);
+			start.getClient().setCardGiocatore(arrayCarteTerritori[2], 0, 2);
 			break;
 		case "PIANO 3 FAMILIARE TERRITORI":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteTerritori[1].getImage())));
@@ -1219,8 +1262,8 @@ public class ControllerGame {
 			mom.setFitWidth(90);
 			Tooltip.install(mom, arrayCarteTerritori[1].getTooltip());
 			carteTerritoriGiocatore.getChildren().add(mom);
-			carteTerritori.getChildren().set(1, new ImageView());
-			start.getClient().setCardGiocatore(arrayCarteTerritori[1], 0,1);
+			sistemaCarte(1,0);
+			start.getClient().setCardGiocatore(arrayCarteTerritori[1], 0, 1);
 			break;
 		case "PIANO 4 FAMILIARE TERRITORI":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteTerritori[0].getImage())));
@@ -1228,8 +1271,8 @@ public class ControllerGame {
 			mom.setFitWidth(90);
 			Tooltip.install(mom, arrayCarteTerritori[0].getTooltip());
 			carteTerritoriGiocatore.getChildren().add(mom);
-			carteTerritori.getChildren().set(0, new ImageView());
-			start.getClient().setCardGiocatore(arrayCarteTerritori[0], 0,0);
+			sistemaCarte(0,0);
+			start.getClient().setCardGiocatore(arrayCarteTerritori[0], 0, 0);
 			break;
 		case "PIANO 1 FAMILIARE EDIFICI":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteEdifici[3].getImage())));
@@ -1237,8 +1280,8 @@ public class ControllerGame {
 			mom.setFitWidth(90);
 			Tooltip.install(mom, arrayCarteEdifici[3].getTooltip());
 			carteEdificiGiocatore.getChildren().add(mom);
-			carteEdifici.getChildren().set(3, new ImageView());
-			start.getClient().setCardGiocatore(arrayCarteEdifici[3], 2,3);
+			sistemaCarte(3,2);
+			start.getClient().setCardGiocatore(arrayCarteEdifici[3], 2, 3);
 			break;
 		case "PIANO 2 FAMILIARE EDIFICI":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteEdifici[2].getImage())));
@@ -1246,8 +1289,8 @@ public class ControllerGame {
 			mom.setFitWidth(90);
 			Tooltip.install(mom, arrayCarteEdifici[2].getTooltip());
 			carteEdificiGiocatore.getChildren().add(mom);
-			carteEdifici.getChildren().set(2, new ImageView());
-			start.getClient().setCardGiocatore(arrayCarteEdifici[2], 2,3);
+			sistemaCarte(2,2);
+			start.getClient().setCardGiocatore(arrayCarteEdifici[2], 2, 2);
 			break;
 		case "PIANO 3 FAMILIARE EDIFICI":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteEdifici[1].getImage())));
@@ -1255,8 +1298,8 @@ public class ControllerGame {
 			mom.setFitWidth(90);
 			Tooltip.install(mom, arrayCarteEdifici[1].getTooltip());
 			carteEdificiGiocatore.getChildren().add(mom);
-			carteEdifici.getChildren().set(1, new ImageView());
-			start.getClient().setCardGiocatore(arrayCarteEdifici[1], 2,1);
+			sistemaCarte(1,2);
+			start.getClient().setCardGiocatore(arrayCarteEdifici[1], 2, 1);
 			break;
 		case "PIANO 4 FAMILIARE EDIFICI":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteEdifici[0].getImage())));
@@ -1264,8 +1307,8 @@ public class ControllerGame {
 			mom.setFitWidth(90);
 			Tooltip.install(mom, arrayCarteEdifici[0].getTooltip());
 			carteEdificiGiocatore.getChildren().add(mom);
-			carteEdifici.getChildren().set(0, new ImageView());
-			start.getClient().setCardGiocatore(arrayCarteEdifici[0], 2,0);
+			sistemaCarte(0,2);
+			start.getClient().setCardGiocatore(arrayCarteEdifici[0], 2, 0);
 			break;
 		case "PIANO 1 FAMILIARE IMPRESE":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteImpresa[3].getImage())));
@@ -1273,8 +1316,8 @@ public class ControllerGame {
 			mom.setFitWidth(90);
 			Tooltip.install(mom, arrayCarteImpresa[3].getTooltip());
 			carteImpresaGiocatore.getChildren().add(mom);
-			carteImprese.getChildren().set(3, new ImageView());
-			start.getClient().setCardGiocatore(arrayCarteImpresa[3], 3,3);
+			sistemaCarte(3,3);
+			start.getClient().setCardGiocatore(arrayCarteImpresa[3], 3, 3);
 			break;
 		case "PIANO 2 FAMILIARE IMPRESE":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteImpresa[2].getImage())));
@@ -1282,8 +1325,8 @@ public class ControllerGame {
 			mom.setFitWidth(90);
 			Tooltip.install(mom, arrayCarteImpresa[2].getTooltip());
 			carteImpresaGiocatore.getChildren().add(mom);
-			carteImprese.getChildren().set(2, new ImageView());
-			start.getClient().setCardGiocatore(arrayCarteImpresa[2], 2,2);
+			sistemaCarte(2,3);
+			start.getClient().setCardGiocatore(arrayCarteImpresa[2], 2, 2);
 			break;
 		case "PIANO 3 FAMILIARE IMPRESE":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteImpresa[1].getImage())));
@@ -1291,8 +1334,8 @@ public class ControllerGame {
 			mom.setFitWidth(90);
 			Tooltip.install(mom, arrayCarteImpresa[1].getTooltip());
 			carteImpresaGiocatore.getChildren().add(mom);
-			carteImprese.getChildren().set(1, new ImageView());
-			start.getClient().setCardGiocatore(arrayCarteImpresa[1], 1,1);
+			sistemaCarte(1,3);
+			start.getClient().setCardGiocatore(arrayCarteImpresa[1], 1, 1);
 			break;
 		case "PIANO 4 FAMILIARE IMPRESE":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteImpresa[0].getImage())));
@@ -1300,8 +1343,8 @@ public class ControllerGame {
 			mom.setFitWidth(90);
 			Tooltip.install(mom, arrayCarteImpresa[0].getTooltip());
 			carteImpresaGiocatore.getChildren().add(mom);
-			carteImprese.getChildren().set(0, new ImageView());
-			start.getClient().setCardGiocatore(arrayCarteImpresa[0], 0,0);
+			sistemaCarte(0,3);
+			start.getClient().setCardGiocatore(arrayCarteImpresa[0], 0, 0);
 			break;
 		case "PIANO 1 FAMILIARE PERSONAGGI":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCartePersonaggi[3].getImage())));
@@ -1309,8 +1352,8 @@ public class ControllerGame {
 			mom.setFitWidth(90);
 			Tooltip.install(mom, arrayCartePersonaggi[3].getTooltip());
 			cartePersonaggiGiocatore.getChildren().add(mom);
-			cartePersonaggi.getChildren().set(3, new ImageView());
-			start.getClient().setCardGiocatore(arrayCartePersonaggi[3], 1,3);
+			sistemaCarte(3,1);
+			start.getClient().setCardGiocatore(arrayCartePersonaggi[3], 1, 3);
 			break;
 		case "PIANO 2 FAMILIARE PERSONAGGI":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCartePersonaggi[2].getImage())));
@@ -1318,8 +1361,8 @@ public class ControllerGame {
 			mom.setFitWidth(90);
 			Tooltip.install(mom, arrayCartePersonaggi[2].getTooltip());
 			cartePersonaggiGiocatore.getChildren().add(mom);
-			cartePersonaggi.getChildren().set(2, new ImageView());
-			start.getClient().setCardGiocatore(arrayCartePersonaggi[2], 1,2);
+			sistemaCarte(2,1);
+			start.getClient().setCardGiocatore(arrayCartePersonaggi[2], 1, 2);
 			break;
 		case "PIANO 3 FAMILIARE PERSONAGGI":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCartePersonaggi[1].getImage())));
@@ -1327,8 +1370,8 @@ public class ControllerGame {
 			mom.setFitWidth(90);
 			Tooltip.install(mom, arrayCartePersonaggi[1].getTooltip());
 			cartePersonaggiGiocatore.getChildren().add(mom);
-			cartePersonaggi.getChildren().set(1, new ImageView());
-			start.getClient().setCardGiocatore(arrayCartePersonaggi[1], 1,1);
+			sistemaCarte(1,1);
+			start.getClient().setCardGiocatore(arrayCartePersonaggi[1], 1, 1);
 			break;
 		case "PIANO 4 FAMILIARE PERSONAGGI":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCartePersonaggi[0].getImage())));
@@ -1336,11 +1379,11 @@ public class ControllerGame {
 			mom.setFitWidth(90);
 			Tooltip.install(mom, arrayCartePersonaggi[0].getTooltip());
 			cartePersonaggiGiocatore.getChildren().add(mom);
-			cartePersonaggi.getChildren().set(0, new ImageView());
-			start.getClient().setCardGiocatore(arrayCartePersonaggi[0], 1,0);
+			sistemaCarte(0,1);
+			start.getClient().setCardGiocatore(arrayCartePersonaggi[0], 1, 0);
 			break;
 		case "AZIONE PRODUZIONE 4":
-			switch(i){
+			switch (i) {
 			case 0:
 				start.getClient().produzione(0);
 				break;
@@ -1399,6 +1442,27 @@ public class ControllerGame {
 		}
 	}
 
+	private void sistemaCarte(int i, int tipo) {
+		ImageView mom = new ImageView(new Image(getClass().getResourceAsStream("Trasparente.png")));
+		mom.setFitHeight(97.5);
+		mom.setFitWidth(63);
+		switch(tipo){
+		case 0:
+			carteTerritori.getChildren().set(i, mom);
+			break;
+		case 1:
+			cartePersonaggi.getChildren().set(i, mom);
+			break;
+		case 2:
+			carteEdifici.getChildren().set(i, mom);
+			break;
+		case 3:
+			carteImprese.getChildren().set(i, mom);
+			break;
+		}
+		
+	}
+
 	public void enableGame(int turno) {
 		System.out.println("Abilito i bottone dei dadi");
 		this.turno.setText(String.valueOf(turno));
@@ -1425,7 +1489,53 @@ public class ControllerGame {
 	}
 
 	private void setPosizioni() {
-		// TODO Auto-generated method stub
+		familiareArancio.setOpacity(1);
+		familiareArancio.setDisable(false);
+		familiareNero.setOpacity(1);
+		familiareNero.setDisable(false);
+		familiareNeutro.setOpacity(1);
+		familiareNeutro.setDisable(false);
+		familiareBianco.setOpacity(1);
+		familiareBianco.setDisable(false);
+		mercatoPosMoneteMilitari = new ImageView();
+		mercatoPosServitori = new ImageView();
+		mercatoPosMonete = new ImageView();
+		mercatoPosMunicipio = new ImageView();
+		pianoPrimoPalazzoMilitare = new ImageView();
+		pianoSecondoPalazzoMilitare = new ImageView();
+		pianoTerzoPalazzoMilitare = new ImageView();
+		pianoQuartoPalazzoMilitare = new ImageView();
+		pianoPrimoPalazzoPersonaggi = new ImageView();
+		pianoSecondoPalazzoPersonaggi = new ImageView();
+		pianoTerzoPalazzoPersonaggi = new ImageView();
+		pianoQuartoPalazzoPersonaggi = new ImageView();
+		pianoPrimoPalazzoEdifici = new ImageView();
+		pianoSecondoPalazzoEdifici = new ImageView();
+		pianoTerzoPalazzoEdifici = new ImageView();
+		pianoQuartoPalazzoEdifici = new ImageView();
+		pianoPrimoPalazzoTerritori = new ImageView();
+		pianoSecondoPalazzoTerritori = new ImageView();
+		pianoTerzoPalazzoTerritori = new ImageView();
+
+		mercatoPosMoneteMilitari.setDisable(false);
+		mercatoPosServitori.setDisable(false);
+		mercatoPosMonete.setDisable(false);
+		mercatoPosMunicipio.setDisable(false);
+		pianoPrimoPalazzoMilitare.setDisable(false);
+		pianoSecondoPalazzoMilitare.setDisable(false);
+		pianoTerzoPalazzoMilitare.setDisable(false);
+		pianoQuartoPalazzoMilitare.setDisable(false);
+		pianoPrimoPalazzoPersonaggi.setDisable(false);
+		pianoSecondoPalazzoPersonaggi.setDisable(false);
+		pianoTerzoPalazzoPersonaggi.setDisable(false);
+		pianoQuartoPalazzoPersonaggi.setDisable(false);
+		pianoPrimoPalazzoEdifici.setDisable(false);
+		pianoSecondoPalazzoEdifici.setDisable(false);
+		pianoTerzoPalazzoEdifici.setDisable(false);
+		pianoQuartoPalazzoEdifici.setDisable(false);
+		pianoPrimoPalazzoTerritori.setDisable(false);
+		pianoSecondoPalazzoTerritori.setDisable(false);
+		pianoTerzoPalazzoTerritori.setDisable(false);
 
 	}
 
@@ -1451,100 +1561,100 @@ public class ControllerGame {
 		Label mom;
 		System.out.println("Notifica carta Avv, l'avversario e':" + nameAvv);
 		if (nameAvv.equals(name1.getText())) {
-			System.out.println(tipo);
+			System.out.println(tipo + " " + piano);
 			switch (tipo) {
 			case "ED":
-						carteEdifici.getChildren().set(piano, new ImageView());
-						mom = new Label(arrayCarteEdifici[piano].getNameCard());
-						mom.setTextFill(Color.WHITE);
-						mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
-						listCards1.getChildren().add(mom);
-						System.out.println("Aggiunta carta all'avversario");
-						break;
+				sistemaCarte(2,piano);
+				mom = new Label(arrayCarteEdifici[piano].getNameCard());
+				mom.setTextFill(Color.WHITE);
+				mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
+				listCards1.getChildren().add(mom);
+				System.out.println("Aggiunta carta all'avversario");
+				break;
 			case "TER":
-						carteEdifici.getChildren().set(piano, new ImageView());
-						mom = new Label(arrayCarteEdifici[piano].getNameCard());
-						mom.setTextFill(Color.WHITE);
-						mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
-						listCards1.getChildren().add(mom);
+				sistemaCarte(0,piano);
+				mom = new Label(arrayCarteEdifici[piano].getNameCard());
+				mom.setTextFill(Color.WHITE);
+				mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
+				listCards1.getChildren().add(mom);
 				break;
 			case "PER":
-						carteEdifici.getChildren().set(piano, new ImageView());
-						mom = new Label(arrayCarteEdifici[piano].getNameCard());
-						mom.setTextFill(Color.WHITE);
-						mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
-						listCards1.getChildren().add(mom);
+				sistemaCarte(1,piano);
+				mom = new Label(arrayCarteEdifici[piano].getNameCard());
+				mom.setTextFill(Color.WHITE);
+				mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
+				listCards1.getChildren().add(mom);
 				break;
 			case "IMP":
-						carteEdifici.getChildren().set(piano, new ImageView());
-						mom = new Label(arrayCarteEdifici[piano].getNameCard());
-						mom.setTextFill(Color.WHITE);
-						mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
-						listCards1.getChildren().add(mom);
+				sistemaCarte(3,piano);
+				mom = new Label(arrayCarteEdifici[piano].getNameCard());
+				mom.setTextFill(Color.WHITE);
+				mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
+				listCards1.getChildren().add(mom);
 				break;
 			}
 		} else if (nameAvv.equals(name2.getText())) {
 			System.out.println(tipo);
 			switch (tipo) {
 			case "ED":
-						carteEdifici.getChildren().set(piano, new ImageView());
-						mom = new Label(arrayCarteEdifici[piano].getNameCard());
-						mom.setTextFill(Color.WHITE);
-						mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
-						listCards2.getChildren().add(mom);
+				sistemaCarte(2,piano);
+				mom = new Label(arrayCarteEdifici[piano].getNameCard());
+				mom.setTextFill(Color.WHITE);
+				mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
+				listCards2.getChildren().add(mom);
 				break;
 			case "TER":
-						carteEdifici.getChildren().set(piano, new ImageView());
-						mom = new Label(arrayCarteEdifici[piano].getNameCard());
-						mom.setTextFill(Color.WHITE);
-						mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
-						listCards2.getChildren().add(mom);
+				sistemaCarte(0,piano);
+				mom = new Label(arrayCarteEdifici[piano].getNameCard());
+				mom.setTextFill(Color.WHITE);
+				mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
+				listCards2.getChildren().add(mom);
 				break;
 			case "PER":
-						carteEdifici.getChildren().set(piano, new ImageView());
-						mom = new Label(arrayCarteEdifici[piano].getNameCard());
-						mom.setTextFill(Color.WHITE);
-						mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
-						listCards2.getChildren().add(mom);
+				sistemaCarte(1,piano);
+				mom = new Label(arrayCarteEdifici[piano].getNameCard());
+				mom.setTextFill(Color.WHITE);
+				mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
+				listCards2.getChildren().add(mom);
 				break;
 			case "IMP":
-						carteEdifici.getChildren().set(piano, new ImageView());
-						mom = new Label(arrayCarteEdifici[piano].getNameCard());
-						mom.setTextFill(Color.WHITE);
-						mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
-						listCards2.getChildren().add(mom);
+				sistemaCarte(3,piano);
+				mom = new Label(arrayCarteEdifici[piano].getNameCard());
+				mom.setTextFill(Color.WHITE);
+				mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
+				listCards2.getChildren().add(mom);
 				break;
 			}
 		} else if (nameAvv.equals(name3.getText())) {
 			System.out.println(tipo);
 			switch (tipo) {
 			case "ED":
-						carteEdifici.getChildren().set(piano, new ImageView());
-						mom = new Label(arrayCarteEdifici[piano].getNameCard());
-						mom.setTextFill(Color.WHITE);
-						mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
-						listCards3.getChildren().add(mom);
+				sistemaCarte(2,piano);
+				mom = new Label(arrayCarteEdifici[piano].getNameCard());
+				mom.setTextFill(Color.WHITE);
+				mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
+				listCards3.getChildren().add(mom);
 				break;
 			case "TER":
-						carteEdifici.getChildren().set(piano, new ImageView());
-						mom = new Label(arrayCarteEdifici[piano].getNameCard());
-						mom.setTextFill(Color.WHITE);
-						mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
-						listCards3.getChildren().add(mom);
+				sistemaCarte(0,piano);
+				mom = new Label(arrayCarteEdifici[piano].getNameCard());
+				mom.setTextFill(Color.WHITE);
+				mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
+				listCards3.getChildren().add(mom);
 				break;
 			case "PER":
-						carteEdifici.getChildren().set(piano, new ImageView());
-						mom = new Label(arrayCarteEdifici[piano].getNameCard());
-						mom.setTextFill(Color.WHITE);
-						mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
-						listCards3.getChildren().add(mom);
+				sistemaCarte(1,piano);
+				mom = new Label(arrayCarteEdifici[piano].getNameCard());
+				mom.setTextFill(Color.WHITE);
+				mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
+				listCards3.getChildren().add(mom);
 				break;
 			case "IMP":
-						carteEdifici.getChildren().set(piano, new ImageView());
-						mom = new Label(arrayCarteEdifici[piano].getNameCard());
-						mom.setTextFill(Color.WHITE);
-						mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
-						listCards3.getChildren().add(mom);
+				sistemaCarte(3,piano);
+				mom = new Label(arrayCarteEdifici[piano].getNameCard());
+				mom.setTextFill(Color.WHITE);
+				mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
+				listCards3.getChildren().add(mom);
 
 				break;
 			}
@@ -1763,7 +1873,8 @@ public class ControllerGame {
 
 		familiareNeutro.setOnDragDone(event -> {
 			if (flag && destinazione1 != null) {
-				if (controlloPosizionamento("neutro", destinazione1.getLayoutX(), destinazione1.getLayoutY(), 0, destinazione1)) {
+				if (controlloPosizionamento("neutro", destinazione1.getLayoutX(), destinazione1.getLayoutY(), 0,
+						destinazione1)) {
 					destinazione1.setImage(familiareNeutro.getImage());
 					familiareNeutro.setDisable(true);
 					familiareNeutro.setOpacity(0);
@@ -1777,7 +1888,8 @@ public class ControllerGame {
 					}
 				}
 			} else {
-				if (controlloPosizionamento("neutro", destinazione2.getLayoutX(), destinazione2.getLayoutX(), 0,null)) {
+				if (controlloPosizionamento("neutro", destinazione2.getLayoutX(), destinazione2.getLayoutX(), 0,
+						null)) {
 					ImageView mom = new ImageView(familiareNeutro.getImage());
 					mom.setFitWidth(35);
 					mom.setFitHeight(38);
@@ -1787,7 +1899,7 @@ public class ControllerGame {
 					posizionatoFamiliare();
 					try {
 						setCardGiocatore(start.getClient().getNamePosition(destinazione2.getLayoutX(),
-								destinazione2.getLayoutY()),0);
+								destinazione2.getLayoutY()), 0);
 					} catch (IOException | SQLException | ClassNotFoundException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -1798,21 +1910,22 @@ public class ControllerGame {
 
 		familiareNero.setOnDragDone(event -> {
 			if (flag && destinazione1 != null) {
-				if (controlloPosizionamento("black", destinazione1.getLayoutX(), destinazione1.getLayoutY(), 0,destinazione1)) {
+				if (controlloPosizionamento("black", destinazione1.getLayoutX(), destinazione1.getLayoutY(), 0,
+						destinazione1)) {
 					destinazione1.setImage(familiareNero.getImage());
 					familiareNero.setDisable(true);
 					familiareNero.setOpacity(0);
 					posizionatoFamiliare();
 					try {
 						setCardGiocatore(start.getClient().getNamePosition(destinazione1.getLayoutX(),
-								destinazione1.getLayoutY()),1);
+								destinazione1.getLayoutY()), 1);
 					} catch (IOException | SQLException | ClassNotFoundException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
 			} else {
-				if (controlloPosizionamento("black", destinazione2.getLayoutX(), destinazione2.getLayoutX(), 0,null)) {
+				if (controlloPosizionamento("black", destinazione2.getLayoutX(), destinazione2.getLayoutX(), 0, null)) {
 					ImageView mom = new ImageView(familiareNero.getImage());
 					mom.setFitWidth(35);
 					mom.setFitHeight(38);
@@ -1822,7 +1935,7 @@ public class ControllerGame {
 					posizionatoFamiliare();
 					try {
 						setCardGiocatore(start.getClient().getNamePosition(destinazione2.getLayoutX(),
-								destinazione2.getLayoutY()),1);
+								destinazione2.getLayoutY()), 1);
 					} catch (IOException | SQLException | ClassNotFoundException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -1833,21 +1946,23 @@ public class ControllerGame {
 
 		familiareArancio.setOnDragDone(event -> {
 			if (flag && destinazione1 != null) {
-				if (controlloPosizionamento("orange", destinazione1.getLayoutX(), destinazione1.getLayoutY(), 0,destinazione1)) {
+				if (controlloPosizionamento("orange", destinazione1.getLayoutX(), destinazione1.getLayoutY(), 0,
+						destinazione1)) {
 					destinazione1.setImage(familiareArancio.getImage());
 					familiareArancio.setDisable(true);
 					familiareArancio.setOpacity(0);
 					posizionatoFamiliare();
 					try {
 						setCardGiocatore(start.getClient().getNamePosition(destinazione1.getLayoutX(),
-								destinazione1.getLayoutY()),2);
+								destinazione1.getLayoutY()), 2);
 					} catch (IOException | SQLException | ClassNotFoundException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
 			} else {
-				if (controlloPosizionamento("orange", destinazione2.getLayoutX(), destinazione2.getLayoutX(), 0,null)) {
+				if (controlloPosizionamento("orange", destinazione2.getLayoutX(), destinazione2.getLayoutX(), 0,
+						null)) {
 					ImageView mom = new ImageView(familiareArancio.getImage());
 					mom.setFitWidth(35);
 					mom.setFitHeight(38);
@@ -1857,7 +1972,7 @@ public class ControllerGame {
 					posizionatoFamiliare();
 					try {
 						setCardGiocatore(start.getClient().getNamePosition(destinazione2.getLayoutX(),
-								destinazione2.getLayoutY()),2);
+								destinazione2.getLayoutY()), 2);
 					} catch (IOException | SQLException | ClassNotFoundException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -1868,21 +1983,22 @@ public class ControllerGame {
 
 		familiareBianco.setOnDragDone(event -> {
 			if (flag && destinazione1 != null) {
-				if (controlloPosizionamento("white", destinazione1.getLayoutX(), destinazione1.getLayoutY(), 0,destinazione1)) {
+				if (controlloPosizionamento("white", destinazione1.getLayoutX(), destinazione1.getLayoutY(), 0,
+						destinazione1)) {
 					destinazione1.setImage(familiareBianco.getImage());
 					familiareBianco.setDisable(true);
 					familiareBianco.setOpacity(0);
 					posizionatoFamiliare();
 					try {
 						setCardGiocatore(start.getClient().getNamePosition(destinazione1.getLayoutX(),
-								destinazione1.getLayoutY()),3);
+								destinazione1.getLayoutY()), 3);
 					} catch (IOException | SQLException | ClassNotFoundException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
 			} else {
-				if (controlloPosizionamento("white", destinazione2.getLayoutX(), destinazione2.getLayoutX(), 0,null)) {
+				if (controlloPosizionamento("white", destinazione2.getLayoutX(), destinazione2.getLayoutX(), 0, null)) {
 					ImageView mom = new ImageView(familiareBianco.getImage());
 					mom.setFitWidth(35);
 					mom.setFitHeight(38);
@@ -1892,7 +2008,7 @@ public class ControllerGame {
 					posizionatoFamiliare();
 					try {
 						setCardGiocatore(start.getClient().getNamePosition(destinazione2.getLayoutX(),
-								destinazione2.getLayoutY()),3);
+								destinazione2.getLayoutY()), 3);
 					} catch (IOException | SQLException | ClassNotFoundException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -1908,71 +2024,71 @@ public class ControllerGame {
 
 		azioniEdificidaunGiocatore.setOnDragEntered(e -> {
 			if (!azioniEdificidaunGiocatore.isDisable())
-			setDestinazione1(mercatoPosMoneteMilitari);
+				setDestinazione1(mercatoPosMoneteMilitari);
 		});
 
 		mercatoPosServitori.setOnDragEntered(e -> {
 			if (!mercatoPosServitori.isDisable())
-			setDestinazione1(mercatoPosMonete);
+				setDestinazione1(mercatoPosMonete);
 		});
 
 		mercatoPosMunicipio.setOnDragEntered(e -> {
 			if (!mercatoPosMunicipio.isDisable())
-			setDestinazione1(mercatoPosMunicipio);
+				setDestinazione1(mercatoPosMunicipio);
 		});
 
 		pianoPrimoPalazzoMilitare.setOnDragEntered(e -> {
-			if (!pianoPrimoPalazzoMilitare.isDisable() || start.getClient().getPosPalLibero("imprese",0))
+			if (!pianoPrimoPalazzoMilitare.isDisable() || start.getClient().getPosPalLibero("imprese", 0))
 				setDestinazione1(pianoPrimoPalazzoMilitare);
 		});
 
 		pianoSecondoPalazzoMilitare.setOnDragEntered(e -> {
-			if (!pianoSecondoPalazzoMilitare.isDisable() || start.getClient().getPosPalLibero("imprese",1))
-			setDestinazione1(pianoSecondoPalazzoMilitare);
+			if (!pianoSecondoPalazzoMilitare.isDisable() || start.getClient().getPosPalLibero("imprese", 1))
+				setDestinazione1(pianoSecondoPalazzoMilitare);
 		});
 
 		pianoTerzoPalazzoMilitare.setOnDragEntered(e -> {
-			if (!pianoTerzoPalazzoMilitare.isDisable() || start.getClient().getPosPalLibero("imprese",2))
-			setDestinazione1(pianoTerzoPalazzoMilitare);
+			if (!pianoTerzoPalazzoMilitare.isDisable() || start.getClient().getPosPalLibero("imprese", 2))
+				setDestinazione1(pianoTerzoPalazzoMilitare);
 		});
 
 		pianoQuartoPalazzoMilitare.setOnDragEntered(e -> {
-			if (!pianoQuartoPalazzoMilitare.isDisable() || start.getClient().getPosPalLibero("imprese",3))
-			setDestinazione1(pianoQuartoPalazzoMilitare);
+			if (!pianoQuartoPalazzoMilitare.isDisable() || start.getClient().getPosPalLibero("imprese", 3))
+				setDestinazione1(pianoQuartoPalazzoMilitare);
 		});
 
 		pianoPrimoPalazzoPersonaggi.setOnDragEntered(e -> {
-			if (!pianoPrimoPalazzoPersonaggi.isDisable() || start.getClient().getPosPalLibero("personaggi",0))
-			setDestinazione1(pianoPrimoPalazzoPersonaggi);
+			if (!pianoPrimoPalazzoPersonaggi.isDisable() || start.getClient().getPosPalLibero("personaggi", 0))
+				setDestinazione1(pianoPrimoPalazzoPersonaggi);
 		});
 
 		pianoSecondoPalazzoPersonaggi.setOnDragEntered(e -> {
-			if (!pianoSecondoPalazzoPersonaggi.isDisable() || start.getClient().getPosPalLibero("personaggi",1))
-			setDestinazione1(pianoSecondoPalazzoPersonaggi);
+			if (!pianoSecondoPalazzoPersonaggi.isDisable() || start.getClient().getPosPalLibero("personaggi", 1))
+				setDestinazione1(pianoSecondoPalazzoPersonaggi);
 		});
 
 		pianoTerzoPalazzoPersonaggi.setOnDragEntered(e -> {
-			if (!pianoTerzoPalazzoPersonaggi.isDisable() || start.getClient().getPosPalLibero("personaggi",2))
-			setDestinazione1(pianoTerzoPalazzoPersonaggi);
+			if (!pianoTerzoPalazzoPersonaggi.isDisable() || start.getClient().getPosPalLibero("personaggi", 2))
+				setDestinazione1(pianoTerzoPalazzoPersonaggi);
 		});
 
 		pianoQuartoPalazzoPersonaggi.setOnDragEntered(e -> {
-			if (!pianoQuartoPalazzoPersonaggi.isDisable() || start.getClient().getPosPalLibero("personaggi",3))
-			setDestinazione1(pianoQuartoPalazzoPersonaggi);
+			if (!pianoQuartoPalazzoPersonaggi.isDisable() || start.getClient().getPosPalLibero("personaggi", 3))
+				setDestinazione1(pianoQuartoPalazzoPersonaggi);
 		});
 
 		pianoPrimoPalazzoEdifici.setOnDragEntered(e -> {
-			if (!pianoPrimoPalazzoEdifici.isDisable() || start.getClient().getPosPalLibero("edifici",0))
+			if (!pianoPrimoPalazzoEdifici.isDisable() || start.getClient().getPosPalLibero("edifici", 0))
 				setDestinazione1(pianoPrimoPalazzoEdifici);
 		});
 
 		pianoSecondoPalazzoEdifici.setOnDragEntered(e -> {
-			if (!pianoSecondoPalazzoEdifici.isDisable() || start.getClient().getPosPalLibero("edifici",1))
+			if (!pianoSecondoPalazzoEdifici.isDisable() || start.getClient().getPosPalLibero("edifici", 1))
 				setDestinazione1(pianoSecondoPalazzoEdifici);
 		});
 
 		pianoTerzoPalazzoEdifici.setOnDragEntered(e -> {
-			if (!pianoTerzoPalazzoEdifici.isDisable() || start.getClient().getPosPalLibero("edifici",2))
+			if (!pianoTerzoPalazzoEdifici.isDisable() || start.getClient().getPosPalLibero("edifici", 2))
 				setDestinazione1(pianoTerzoPalazzoEdifici);
 		});
 
@@ -1982,27 +2098,27 @@ public class ControllerGame {
 		});
 
 		pianoPrimoPalazzoTerritori.setOnDragEntered(e -> {
-			if (!pianoPrimoPalazzoTerritori.isDisable() || start.getClient().getPosPalLibero("edifici",3))
+			if (!pianoPrimoPalazzoTerritori.isDisable() || start.getClient().getPosPalLibero("edifici", 3))
 				setDestinazione1(pianoPrimoPalazzoTerritori);
 		});
 
 		pianoSecondoPalazzoTerritori.setOnDragEntered(e -> {
-			if (!pianoSecondoPalazzoTerritori.isDisable() || start.getClient().getPosPalLibero("territori",0))
+			if (!pianoSecondoPalazzoTerritori.isDisable() || start.getClient().getPosPalLibero("territori", 0))
 				setDestinazione1(pianoSecondoPalazzoTerritori);
 		});
 
 		pianoTerzoPalazzoTerritori.setOnDragEntered(e -> {
-			if (!pianoTerzoPalazzoTerritori.isDisable() || start.getClient().getPosPalLibero("territori",1))
+			if (!pianoTerzoPalazzoTerritori.isDisable() || start.getClient().getPosPalLibero("territori", 1))
 				setDestinazione1(pianoTerzoPalazzoTerritori);
 		});
 
 		pianoQuartoPalazzoTerritori.setOnDragEntered(e -> {
-			if (!pianoQuartoPalazzoTerritori.isDisable() || start.getClient().getPosPalLibero("territori",2))
+			if (!pianoQuartoPalazzoTerritori.isDisable() || start.getClient().getPosPalLibero("territori", 2))
 				setDestinazione1(pianoQuartoPalazzoTerritori);
 		});
 
 		azioniTerritoridapiuGiocatori.setOnDragEntered(e -> {
-			if (!azioniTerritoridapiuGiocatori.isDisable() || start.getClient().getPosPalLibero("territori",3))
+			if (!azioniTerritoridapiuGiocatori.isDisable() || start.getClient().getPosPalLibero("territori", 3))
 				setDestinazione2(azioniTerritoridapiuGiocatori);
 		});
 
@@ -2018,7 +2134,7 @@ public class ControllerGame {
 
 	private void posizionatoFamiliare() {
 		nFamPos++;
-		if(nFamPos == 4){
+		if (nFamPos == 4) {
 			try {
 				start.getClient().changeGamer();
 				nFamPos = 0;
@@ -2041,18 +2157,18 @@ public class ControllerGame {
 	}
 
 	public void notifySpostamentoPuntiMilitari(double x, double y, String color) {
-		System.out.println("Notifico lo spostamento della pedina punti militari del giocatore con il colore "+color );
+		System.out.println("Notifico lo spostamento della pedina punti militari del giocatore con il colore " + color);
 		Path path = new Path();
 		PathTransition pathTransition = new PathTransition();
 		double startX;
 		double startY;
 		switch (color) {
 		case "blue":
+			System.out.println("Si sposta la pedina blu a: "+x+" "+y);
 			startX = puntiMilitariBlu.getLayoutX();
 			startY = puntiMilitariBlu.getLayoutY();
 			path.getElements().add(new MoveTo(startX, startY));
-			path.getElements().add(new CubicCurveTo(startX, startY, 200,
-					20, x, y + 20.0));
+			path.getElements().add(new CubicCurveTo(startX, startY, 200, 20, x, y + 20.0));
 			pathTransition.setDuration(Duration.millis(3000));
 			pathTransition.setPath(path);
 			pathTransition.setNode(puntiMilitariBlu);
@@ -2062,11 +2178,11 @@ public class ControllerGame {
 			System.out.println("Fine Spostamento pedina");
 			break;
 		case "white":
+			System.out.println("Si sposta la pedina bianca a: "+x+" "+y);
 			startX = puntiMilitariBlu.getLayoutX();
 			startY = puntiMilitariBlu.getLayoutY();
 			path.getElements().add(new MoveTo(startX, startY));
-			path.getElements().add(new CubicCurveTo(startX, startY,
-					200, 20, x, y + 20.0));
+			path.getElements().add(new CubicCurveTo(startX, startY, 200, 20, x, y + 20.0));
 			pathTransition.setDuration(Duration.millis(3000));
 			pathTransition.setPath(path);
 			pathTransition.setNode(puntiMilitariBianco);
@@ -2076,13 +2192,13 @@ public class ControllerGame {
 			System.out.println("Fine Spostamento pedina");
 			break;
 		case "green":
+			System.out.println("Si sposta la pedina verde a: "+x+" "+y);
 			startX = puntiMilitariVerde.getLayoutX();
 			startY = puntiMilitariVerde.getLayoutY();
 			startX = puntiMilitariBlu.getLayoutX();
 			startY = puntiMilitariBlu.getLayoutY();
 			path.getElements().add(new MoveTo(startX, startY));
-			path.getElements().add(new CubicCurveTo(startX, startY,
-					200, 20, x, y + 20.0));
+			path.getElements().add(new CubicCurveTo(startX, startY, 200, 20, x, y + 20.0));
 			pathTransition.setDuration(Duration.millis(3000));
 			pathTransition.setPath(path);
 			pathTransition.setNode(puntiMilitariVerde);
@@ -2092,11 +2208,11 @@ public class ControllerGame {
 			System.out.println("Fine Spostamento pedina");
 			break;
 		case "orange":
+			System.out.println("Si sposta la pedina orange a: "+x+" "+y);
 			startX = puntiMilitariArancio.getLayoutX();
 			startY = puntiMilitariArancio.getLayoutY();
 			path.getElements().add(new MoveTo(startX, startY));
-			path.getElements().add(new CubicCurveTo(startX,
-					startY, 200, 20, x, y + 20.0));
+			path.getElements().add(new CubicCurveTo(startX, startY, 200, 20, x, y + 20.0));
 			pathTransition.setDuration(Duration.millis(3000));
 			pathTransition.setPath(path);
 			pathTransition.setNode(puntiMilitariArancio);
@@ -2108,7 +2224,7 @@ public class ControllerGame {
 	}
 
 	public void notifySpostamentoPuntiFede(double x, double y, String color) {
-		System.out.println("Notifico lo spostamento della pedina punti fede del giocatore con il colore "+color );
+		System.out.println("Notifico lo spostamento della pedina punti fede del giocatore con il colore " + color);
 		Path path = new Path();
 		PathTransition pathTransition = new PathTransition();
 		double startX;
@@ -2118,8 +2234,7 @@ public class ControllerGame {
 			startX = puntiFedeBlu.getLayoutX();
 			startY = puntiFedeBlu.getLayoutY();
 			path.getElements().add(new MoveTo(startX, startY));
-			path.getElements()
-					.add(new CubicCurveTo(startY, startX, 200, 20, x, y + 20.0));
+			path.getElements().add(new CubicCurveTo(startY, startX, 200, 20, x, y + 20.0));
 			pathTransition.setDuration(Duration.millis(3000));
 			pathTransition.setPath(path);
 			pathTransition.setNode(puntiFedeBlu);
@@ -2132,8 +2247,7 @@ public class ControllerGame {
 			startX = puntiFedeBianco.getLayoutX();
 			startY = puntiFedeBianco.getLayoutY();
 			path.getElements().add(new MoveTo(startY, startY));
-			path.getElements().add(
-					new CubicCurveTo(startX,startY, 200, 20, x, y + 20.0));
+			path.getElements().add(new CubicCurveTo(startX, startY, 200, 20, x, y + 20.0));
 			pathTransition.setDuration(Duration.millis(3000));
 			pathTransition.setPath(path);
 			pathTransition.setNode(puntiFedeBianco);
@@ -2146,8 +2260,7 @@ public class ControllerGame {
 			startX = puntiFedeVerde.getLayoutX();
 			startY = puntiFedeVerde.getLayoutY();
 			path.getElements().add(new MoveTo(startX, startY));
-			path.getElements().add(
-					new CubicCurveTo(startX, startY, 200, 20, x, y + 20.0));
+			path.getElements().add(new CubicCurveTo(startX, startY, 200, 20, x, y + 20.0));
 			pathTransition.setDuration(Duration.millis(3000));
 			pathTransition.setPath(path);
 			pathTransition.setNode(puntiFedeVerde);
@@ -2160,8 +2273,7 @@ public class ControllerGame {
 			startX = puntiFedeArancio.getLayoutX();
 			startY = puntiFedeArancio.getLayoutY();
 			path.getElements().add(new MoveTo(startX, startY));
-			path.getElements().add(new CubicCurveTo(startX, startY, 200,
-					20, x, y + 20.0));
+			path.getElements().add(new CubicCurveTo(startX, startY, 200, 20, x, y + 20.0));
 			pathTransition.setDuration(Duration.millis(3000));
 			pathTransition.setPath(path);
 			pathTransition.setNode(puntiFedeArancio);
@@ -2173,13 +2285,13 @@ public class ControllerGame {
 		}
 	}
 
-	public void notifySpostamentoPuntiVittoria(double x, double y, String color) {
-		System.out.println("Notifico lo spostamento della pedina punti vittoria del giocatore con il colore "+color );
+	public void notifySpostamentoPuntiVittoria(double x, double y, String color2) {
+		System.out.println("Notifico lo spostamento della pedina punti vittoria del giocatore con il colore " + color2);
 		double startX;
 		double startY;
 		Path path = new Path();
 		PathTransition pathTransition = new PathTransition();
-		switch (color) {
+		switch (color2) {
 		case "blue":
 			startX = puntiVittoriaBlu.getLayoutX();
 			startY = puntiVittoriaBlu.getLayoutY();
@@ -2253,7 +2365,7 @@ public class ControllerGame {
 				pietre2.setText(String.valueOf(p.getDimRisorse("pietra")));
 				servitori2.setText(String.valueOf(p.getDimRisorse("servitori")));
 				legno2.setText(String.valueOf(p.getDimRisorse("legno")));
-			} else if(g != null){
+			} else if (g != null) {
 				monete3.setText(String.valueOf(p.getDimRisorse("monete")));
 				pietre3.setText(String.valueOf(p.getDimRisorse("pietra")));
 				servitori3.setText(String.valueOf(p.getDimRisorse("servitori")));
@@ -2346,6 +2458,7 @@ public class ControllerGame {
 	public void notifyTutteCarte(int valore) {
 		Stage popup = new Stage();
 		popup.setTitle("TutteCarte");
+		ScrollPane pane = new ScrollPane();
 		VBox vBox = new VBox();
 		HBox box = new HBox();
 		HBox labelBox = new HBox();
@@ -2393,6 +2506,7 @@ public class ControllerGame {
 					try {
 						start.getClient().getRisorse().addRis("monete", -3);
 						start.getClient().setCardGiocatore(i.getC(), i.getTipo(), i.getPiano());
+						popup.close();
 					} catch (ClassNotFoundException | IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -2401,7 +2515,8 @@ public class ControllerGame {
 			}
 		}
 		vBox.getChildren().addAll(labelBox, box);
-		Scene scene = new Scene(vBox, 600, 400);
+		pane.getChildrenUnmodifiable().add(vBox);
+		Scene scene = new Scene(pane, 600, 400);
 		popup.centerOnScreen();
 		popup.setScene(scene);
 		popup.show();
@@ -2463,7 +2578,7 @@ public class ControllerGame {
 				i.setOnMouseClicked(e -> {
 					try {
 						start.getClient().getRisorse().addRis("monete", -3 + scontoAzioneImmediata1);
-						start.getClient().setCardGiocatore(i.getC(), i.getTipo(),i.getPiano());
+						start.getClient().setCardGiocatore(i.getC(), i.getTipo(), i.getPiano());
 					} catch (ClassNotFoundException | IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -2563,8 +2678,8 @@ public class ControllerGame {
 		alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
 
 		Optional<ButtonType> result = alert.showAndWait();
-		if (result.get() == buttonTypeOne){
-		    try {
+		if (result.get() == buttonTypeOne) {
+			try {
 				start.getClient().notifyDecisionChiesa(true);
 				start.getClient().addPunti("fede", -start.getClient().getRisorse().getPunti("fede"));
 				start.getClient().notifySpostamentoPunti("fede");
@@ -2572,9 +2687,9 @@ public class ControllerGame {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		    
+
 		} else if (result.get() == buttonTypeTwo) {
-			 try {
+			try {
 				start.getClient().notifyDecisionChiesa(false);
 				start.getClient().addScomunica();
 			} catch (RemoteException e) {

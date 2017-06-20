@@ -1,5 +1,6 @@
 package client;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
@@ -53,7 +54,14 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 
 	@Override
 	public void restTabellone() throws RemoteException {
-		
+		Platform.runLater(() -> {
+			try {
+				guiGame.resetTabellon();
+			} catch (ClassNotFoundException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
 	}
 
 	@Override
@@ -63,8 +71,10 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 	}
 
 	public void notifyAddCardAvv(String string,String tipo, int piano) throws RemoteException {
+		Platform.runLater(() ->{
 		System.out.println("Notifica carta Avv clientRMI");
 		guiGame.notifyAddCardAvv(string, tipo, piano);
+		});
 	}
 	
 	public void notifyTurno(int turno) throws RemoteException, SQLException {

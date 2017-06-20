@@ -181,7 +181,7 @@ public class StartClientGui extends Application {
 					Clip clip = AudioSystem.getClip();
 					clip.open(audioIn);
 					clip.start();
-					clip.loop(1);
+					clip.loop(Clip.LOOP_CONTINUOUSLY);
 				} catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

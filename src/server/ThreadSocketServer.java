@@ -361,4 +361,9 @@ public class ThreadSocketServer implements Runnable, Serializable {
 		
 	}
 
+	public void resetTabellone() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
