@@ -211,12 +211,12 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 
 	}
 
-	public void produzione(int positionGame, String name, int qta) throws RemoteException {
-		commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).produzione(qta);
+	public void produzione(int positionGame, String name, int qta) throws RemoteException, SQLException {
+		commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).produzione(qta, commonServer.getDBConnection().getConnection(name));
 	}
 
-	public void raccolto(int positionGame, String name, int qta) throws RemoteException {
-		commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).raccolto(qta);
+	public void raccolto(int positionGame, String name, int qta) throws RemoteException, SQLException {
+		commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).raccolto(qta, commonServer.getDBConnection().getConnection(name));
 		
 	}
 
@@ -237,5 +237,20 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 
 	public boolean getPosPalLibero(String string, int i, int positionGame, String name) throws RemoteException {
 		return commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).getPosPalLibero(string, i);
+	}
+
+	public int getDado(String string, int positionGame, String name) throws RemoteException {
+		return commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).getDado(string);
+	}
+
+	@Override
+	public void notifyDecisionChiesa(boolean b) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void addScomunica(int positionGame, String name) throws RemoteException {
+		commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).addScomunica();
+		
 	}
 }

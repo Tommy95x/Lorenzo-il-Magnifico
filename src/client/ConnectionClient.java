@@ -248,4 +248,27 @@ public class ConnectionClient implements ClientInterface{
 		return false;
 	}
 
+
+	public int getDado(String string) throws RemoteException {
+		return 0;
+	}
+
+
+	public void changeGamer() throws RemoteException, SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void notifyDecisionChiesa(boolean b)  throws RemoteException{
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void addScomunica() throws RemoteException{
+		// TODO Auto-generated method stub
+		
+	}
+
 }

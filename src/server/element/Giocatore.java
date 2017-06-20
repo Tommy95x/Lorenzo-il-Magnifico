@@ -20,7 +20,7 @@ public class Giocatore implements Serializable {
 	private Disco[] discoGiocatore;
 	private Portafoglio risorse;
 	private FamiliareNeutro[] familiari;
-	private CuboScomunica[] cubiScomunica;
+	private TesseraScomunica[] cubiScomunica;
 	//Mettere public per il test e istanziare
 	private Dado[] dadi;
 	private ArrayList<CartaSviluppo> carte = new ArrayList<CartaSviluppo>();
@@ -43,7 +43,7 @@ public class Giocatore implements Serializable {
 		this.setColor(color);
 		risorse = new Portafoglio();
 		familiari = new FamiliareNeutro[4];
-		cubiScomunica = new CuboScomunica[3];
+		cubiScomunica = new TesseraScomunica[3];
 		discoGiocatore = new Disco[4];
 		dadi = new Dado[3];
 		for (int i = 0; i < 4; i++) {
@@ -224,14 +224,6 @@ public class Giocatore implements Serializable {
 		}
 	}
 
-	public void getScomunica(TesseraScomunica scomunica) throws RemoteException {
-		cubiScomunica[nScomuniche] = new CuboScomunica(color, nScomuniche, scomunica);
-		if (client == null)
-			server.addScomunica(nScomuniche, scomunica.getTooltipByString());
-		else
-			client.addScomunica(nScomuniche, scomunica.getTooltipByString());
-	}
-
 	public void notifyTurno(int turno) throws SQLException, IOException {
 		if (client == null)
 			server.notifyTurno(turno);
@@ -263,17 +255,17 @@ public class Giocatore implements Serializable {
 		}
 	}
 
-	public void notifyAddCardAvv(CartaSviluppo carta, String n) throws RemoteException {
+	public void notifyAddCardAvv(String tipo, CartaSviluppo carta, String n) throws RemoteException {
 		if (client == null) {
 			try {
-				server.notifyAddCardAvv(carta, n);
+				server.notifyAddCardAvv(carta, n, tipo);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else {
 			System.out.println("Notifico il singolo giocatore per l'aggiunta della carta");
-			client.notifyAddCardAvv(carta, n);
+			client.notifyAddCardAvv(carta, n, tipo);
 		}
 	}
 
@@ -761,8 +753,63 @@ public class Giocatore implements Serializable {
 		if (client == null) {
 			server.notifyAddRisorse(name,tipo, qta);
 		} else {
-			server.notifyAddRisorse(name, tipo, qta);
+			try {
+				client.notifyAddRisorse(name, tipo, qta);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
+	}
+
+	public int getDado(String string) {
+		switch(string){
+		case "black":
+			return dadi[0].getValore();
+		case "orange":
+			return dadi[2].getValore();
+		case "white":
+			return dadi[1].getValore();
+		}
+		return 0;
+	}
+
+	public void notifyAskSostegnoChiesa() throws RemoteException {
+		if (client == null) {
+			server.notifyAskSostegnoChiesa();
+		} else {
+			client.notifyAskSostegnoChiesa();
+		}
+	}
+
+	public void addScomunica() {
+		switch(partita.getTurno()){
+		case 2:
+			cubiScomunica[0] = partita.getCardsScomunica()[0];
+			partita.notfyAvvAddScomunica(name,0);
+			break;
+		case 4:
+			cubiScomunica[1] = partita.getCardsScomunica()[1];
+			partita.notfyAvvAddScomunica(name,1);
+			break;
+		case 6:
+			cubiScomunica[2] = partita.getCardsScomunica()[2];
+			partita.notfyAvvAddScomunica(name,2);
+			break;
+		}
+	}
+
+	public void notfyAvvAddScomunica(String name2, int numSco) {
+		if (client == null) {
+			server.addScomunica(numSco,name2);
+		} else {
+			try {
+				client.addScomunica(numSco,name2);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 }

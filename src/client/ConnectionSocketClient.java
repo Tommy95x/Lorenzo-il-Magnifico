@@ -208,12 +208,27 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		this.guiGame = guiGame;
 	}
 
+	public void waitServerAction() throws ClassNotFoundException, IOException {
+		switch (inputSocket.readObject().toString()) {
+		case "":
+			break;
+		case "":
+			break;
+		case "":
+			break;
+		case "":
+			break;
+		case "":
+			break;
+		}
+	}
+
 	public void waitTurno() throws ClassNotFoundException, IOException {
 		double x;
 		double y;
 		String colorPlayer;
 		String color;
-		while(true){
+		while (true) {
 			switch (inputSocket.readObject().toString()) {
 			case "disco":
 				x = (double) inputSocket.readObject();
@@ -235,10 +250,11 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 				guiGame.notifySpostamentoPuntiFede(x, y, color);
 				break;
 			case "startTurno":
-				guiGame.enableGame((int)inputSocket.readObject());
+				guiGame.enableGame((int) inputSocket.readObject());
 				break;
 			case "carteAvv":
-				guiGame.notifyAddCardAvv((CartaSviluppo) inputSocket.readObject(), inputSocket.readObject().toString());
+				guiGame.notifyAddCardAvv((CartaSviluppo) inputSocket.readObject(), inputSocket.readObject().toString(),
+						inputSocket.readObject().toString());
 				break;
 			case "militari":
 				x = (double) inputSocket.readObject();
@@ -257,7 +273,7 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		outputSocket.writeObject(i);
 		outputSocket.flush();
 	}
-	
+
 	public void notifySpostamento(String color, double x, double y) throws IOException {
 		outputSocket.writeObject("notifySpostamento");
 		outputSocket.flush();
@@ -358,13 +374,13 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		outputSocket.flush();
 	}
 
-
 	public Giocatore[] getGiocatori() throws IOException, ClassNotFoundException {
 		outputSocket.writeObject("giocatori");
 		outputSocket.flush();
 		Giocatore[] g = new Giocatore[4];
-		for(int j =0; j<4;j++){
-			g[j] = new Giocatore( inputSocket.readObject().toString(), inputSocket.readObject().toString(), (Portafoglio) inputSocket.readObject());
+		for (int j = 0; j < 4; j++) {
+			g[j] = new Giocatore(inputSocket.readObject().toString(), inputSocket.readObject().toString(),
+					(Portafoglio) inputSocket.readObject());
 			System.out.println(g[j].getName());
 		}
 		return g;
@@ -381,7 +397,6 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		// TODO Auto-generated method stub
 
 	}
-
 
 	public void addScomunica(int nScomuniche, Tooltip tooltip) {
 	}

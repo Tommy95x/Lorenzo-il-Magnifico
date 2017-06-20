@@ -43,10 +43,13 @@ public interface ServerInterface extends Remote {
 	public int getNumberOfPlayer(int positionGame) throws RemoteException;
 	public void setClientInterface(int positionGame, String account, RMIClientInterface connectionRmiClient)throws RemoteException;
 	public void notifySpostamentoPunti(int positionGame, String name, String tipo)throws RemoteException, SQLException;
-	public void produzione(int positionGame, String name,int qta)throws RemoteException;
-	public void raccolto(int positionGame, String name, int qta)throws RemoteException;
+	public void produzione(int positionGame, String name,int qta)throws RemoteException, SQLException;
+	public void raccolto(int positionGame, String name, int qta)throws RemoteException, SQLException;
 	public void addRisorse(int positionGame, String name, String tipo, int qta)throws RemoteException, SQLException;
 	public void addPunti(int positionGame, String name, String tipo, int qta)throws RemoteException, SQLException;
 	public void pergamene(int posizionGame, String name, int qta)throws RemoteException;
 	public boolean getPosPalLibero(String string, int i, int positionGame, String name)throws RemoteException;
+	public int getDado(String string, int positionGame, String name)throws RemoteException;
+	public void notifyDecisionChiesa(boolean b)throws RemoteException;
+	public void addScomunica(int positionGame, String name)throws RemoteException;
 }

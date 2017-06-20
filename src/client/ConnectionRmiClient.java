@@ -276,12 +276,22 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	}
 	
 	public void produzione(int qta) throws RemoteException {
-		serverMethods.produzione(positionGame, name,qta);
+		try {
+			serverMethods.produzione(positionGame, name,qta);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	
 	public void raccolto(int qta) throws RemoteException {
-		serverMethods.raccolto(positionGame, name,qta);
+		try {
+			serverMethods.raccolto(positionGame, name,qta);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void addRisorse(String tipo, int qta) throws RemoteException, SQLException {
@@ -330,9 +340,21 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		return false;
 	}
 	
-	@Override
-	public void sostegnoChiesa(boolean flag) {
-		// TODO Auto-generated method stub
+	public void addScomunica() throws RemoteException{
+		serverMethods.addScomunica(positionGame, name);
 		
 	}
+	
+	public int getDado(String string) throws RemoteException {
+		return serverMethods.getDado(string, positionGame, name);
+	}
+	
+	public void changeGamer() throws RemoteException, SQLException {
+		serverMethods.changeGamer(positionGame);
+	}
+	
+	public void notifyDecisionChiesa(boolean b) throws RemoteException{
+		serverMethods.notifyDecisionChiesa(b);
+	}
+
 }

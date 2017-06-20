@@ -45,9 +45,9 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 	}
 
 
-	public void addScomunica(int nScomuniche, String tooltip) throws RemoteException {
+	public void addScomunica(int nScomuniche, String name) throws RemoteException {
 		Platform.runLater(() -> {
-		guiGame.addScomunica(nScomuniche, new Tooltip(tooltip));
+		guiGame.addScomunica(nScomuniche, name);
 		});
 	}
 
@@ -62,9 +62,9 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 		
 	}
 
-	public void notifyAddCardAvv(CartaSviluppo carta, String string) throws RemoteException {
+	public void notifyAddCardAvv(CartaSviluppo carta, String string,String tipo) throws RemoteException {
 		System.out.println("Notifica carta Avv clientRMI");
-		guiGame.notifyAddCardAvv(carta, string);
+		guiGame.notifyAddCardAvv(carta, string, tipo);
 	}
 	
 	public void notifyTurno(int turno) throws RemoteException, SQLException {
@@ -142,6 +142,12 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 			this.guiGame.notifyAddRisorse(name, tipo, qta);
 		});
 		
+	}
+
+	public void notifyAskSostegnoChiesa() throws RemoteException {
+		Platform.runLater(() -> {
+			this.guiGame.notifyAskSostegnoChiesa();
+		});
 	}
 	
 }

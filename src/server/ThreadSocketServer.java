@@ -294,7 +294,7 @@ public class ThreadSocketServer implements Runnable, Serializable {
 
 	}
 
-	public void notifyAddCardAvv(CartaSviluppo carta, String name) throws IOException {
+	public void notifyAddCardAvv(CartaSviluppo carta, String name, String tipo) throws IOException {
 		output.writeObject("carteAvv");
 		output.flush();
 		output.writeObject(carta);
@@ -352,6 +352,11 @@ public class ThreadSocketServer implements Runnable, Serializable {
 	}
 
 	public void notifyAddRisorse(String name, String tipo, int qta) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void notifyAskSostegnoChiesa() {
 		// TODO Auto-generated method stub
 		
 	}

@@ -99,9 +99,10 @@ public class Partita implements Serializable {
 
 	private void startPartita() throws RemoteException, SQLException {
 		turno = 1;
-		/*System.out.println("shuffle giocatori ");
-		beShuffled();
-		System.out.println("Sistemato ordine gioco");*/
+		/*
+		 * System.out.println("shuffle giocatori "); beShuffled();
+		 * System.out.println("Sistemato ordine gioco");
+		 */
 		this.NumberOfPlayers = 1;
 		for (int i = 0; i < 4; i++) {
 			if (giocatori[i] != null) {
@@ -243,12 +244,36 @@ public class Partita implements Serializable {
 	}
 
 	private void sostegnoChiesa() {
-		/*
-		 * Deve scorrere i giocatori e vedere quanti punti fede si è accoumulati
-		 * in base al turno di gioco. Se minori da quanto richiesto attribuisco
-		 * scomunica, altrimenti chiedi se sostenere o no
-		 */
+		for (int i = 0; i < 4; i++) {
+			if (giocatori[i] != null) {
+				try {
+					switch (turno) {
+					case 2:
+						if (giocatori[i].getRisorse().getPunti("fede") > 2)
+							giocatori[i].notifyAskSostegnoChiesa();
+						else
+							giocatori[i].addScomunica();
+						break;
+					case 4:
+						if (giocatori[i].getRisorse().getPunti("fede") > 3)
+							giocatori[i].notifyAskSostegnoChiesa();
+						else
+							giocatori[i].addScomunica();
+						break;
+					case 6:
+						if (giocatori[i].getRisorse().getPunti("fede") > 4)
+							giocatori[i].notifyAskSostegnoChiesa();
+						else
+							giocatori[i].addScomunica();
+						break;
+					}
 
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 
 	public String getCreator() {
@@ -463,12 +488,20 @@ public class Partita implements Serializable {
 	}
 
 	public void notifyAddCardGiocatoreAvv(String name, CartaSviluppo carta) throws RemoteException {
-		System.out.println("Notifico presa carta "+name);
+		System.out.println("Notifico presa carta " + name);
 		for (int i = 0; i < 4; i++) {
 			if (giocatori[i] != null) {
 				System.out.println(giocatori[i].getName());
-				if (!giocatori[i].getName().equals(name))
-					giocatori[i].notifyAddCardAvv(carta, name);
+				if (!giocatori[i].getName().equals(name)) {
+					if (carta.getId().contains("ED")) {
+						giocatori[i].notifyAddCardAvv("ED", carta, name);
+					} else if (carta.getId().contains("TER")) {
+						giocatori[i].notifyAddCardAvv("TER", carta, name);
+					} else if (carta.getId().contains("PER")) {
+						giocatori[i].notifyAddCardAvv("PER", carta, name);
+					} else
+						giocatori[i].notifyAddCardAvv("IMP", carta, name);
+				}
 			}
 		}
 	}
@@ -557,6 +590,17 @@ public class Partita implements Serializable {
 		for (int i = 0; i < 4; i++) {
 			if (giocatori[i] != null)
 				giocatori[i].notifyAddRisorse(name, tipo, qta);
+		}
+	}
+
+	public int getTurno() {
+		return turno;
+	}
+
+	public void notfyAvvAddScomunica(String name, int numSco) {
+		for (int i = 0; i < 4; i++) {
+			if (giocatori[i] != null)
+				giocatori[i].notfyAvvAddScomunica(name, numSco);
 		}
 	}
 }
