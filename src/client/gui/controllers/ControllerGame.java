@@ -2521,61 +2521,69 @@ public class ControllerGame {
 		if (name.equals(start.getClient().getName())) {
 			switch (tipo) {
 			case "servitori":
-				servitori.setText(String.valueOf(qta + (Integer.getInteger(servitori.getText()))));
+				System.out.println(qta);
+				System.out.println(Integer.parseInt(servitori.getText()));
+				servitori.setText(String.valueOf(qta + (Integer.parseInt(servitori.getText()))));
 				break;
 			case "monete":
-				monete.setText(String.valueOf(qta + (Integer.getInteger(monete.getText()))));
+				System.out.println(qta);
+				System.out.println(Integer.parseInt(monete.getText()));
+				monete.setText(String.valueOf(qta + (Integer.parseInt(monete.getText()))));
 				break;
 			case "pietra":
-				pietra.setText(String.valueOf(qta + (Integer.getInteger(pietra.getText()))));
+				System.out.println(qta);
+				System.out.println(Integer.parseInt(pietra.getText()));
+				pietra.setText(String.valueOf(qta + (Integer.parseInt(pietra.getText()))));
 				break;
 			case "legno":
-				lengo.setText(String.valueOf(qta + (Integer.getInteger(lengo.getText()))));
+				System.out.println(qta);
+				System.out.println(Integer.parseInt(lengo.getText()));
+				lengo.setText(String.valueOf(qta + (Integer.parseInt(lengo.getText()))));
 				break;
 			}
 		} else if (name.equals(name1.getText())) {
 			switch (tipo) {
 			case "servitori":
-				servitori1.setText(String.valueOf(qta + (Integer.getInteger(servitori1.getText()))));
+				servitori1.setText(String.valueOf(qta + (Integer.parseInt(servitori1.getText()))));
 				break;
 			case "monete":
-				monete1.setText(String.valueOf(qta + (Integer.getInteger(monete1.getText()))));
+				monete1.setText(String.valueOf(qta + (Integer.parseInt(monete1.getText()))));
 				break;
 			case "pietra":
-				pietre1.setText(String.valueOf(qta + (Integer.getInteger(pietre1.getText()))));
+				pietre1.setText(String.valueOf(qta + (Integer.parseInt(pietre1.getText()))));
 				break;
 			case "legno":
-				legno1.setText(String.valueOf(qta + (Integer.getInteger(legno1.getText()))));
+				legno1.setText(String.valueOf(qta + (Integer.parseInt(legno1.getText()))));
 				break;
 			}
 		} else if (name.equals(name2.getText())) {
 			switch (tipo) {
 			case "servitori":
-				servitori2.setText(String.valueOf(qta + (Integer.getInteger(servitori2.getText()))));
+				servitori2.setText(String.valueOf(qta + (Integer.parseInt(servitori2.getText()))));
 				break;
 			case "monete":
-				monete2.setText(String.valueOf(qta + (Integer.getInteger(monete2.getText()))));
+				monete2.setText(String.valueOf(qta + (Integer.parseInt(monete2.getText()))));
 				break;
 			case "pietra":
-				pietre2.setText(String.valueOf(qta + (Integer.getInteger(pietre2.getText()))));
+				pietre2.setText(String.valueOf(qta + (Integer.parseInt(pietre2.getText()))));
 				break;
 			case "legno":
-				legno2.setText(String.valueOf(qta + (Integer.getInteger(legno2.getText()))));
+				legno2.setText(String.valueOf(qta + (Integer.parseInt(legno2.getText()))));
 				break;
 			}
 		} else {
 			switch (tipo) {
 			case "servitori":
-				servitori3.setText(String.valueOf(qta + (Integer.getInteger(servitori3.getText()))));
+				servitori3.setText(String.valueOf(qta + (Integer.parseInt(servitori3.getText()))));
 				break;
 			case "monete":
-				monete3.setText(String.valueOf(qta + (Integer.getInteger(monete3.getText()))));
+				monete3.setText(String.valueOf(qta + (Integer.parseInt(monete3.getText()))));
 				break;
 			case "pietra":
-				pietre3.setText(String.valueOf(qta + (Integer.getInteger(pietre3.getText()))));
+				pietre3.setText(String.valueOf(qta + (Integer.parseInt(pietre3.getText()))));
 				break;
 			case "legno":
-				legno3.setText(String.valueOf(qta + (Integer.getInteger(legno3.getText()))));
+				legno3.setText(String.valueOf(qta + (Integer.parseInt(legno3.getText()))));
 				break;
 			}
 		}

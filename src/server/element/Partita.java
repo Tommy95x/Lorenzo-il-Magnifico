@@ -533,9 +533,9 @@ public class Partita implements Serializable {
 					double y = 0;
 					String query;
 					if (qta < 10)
-						query = "SELECT POSX, POSY FROM POSIZIONETABELLONE WHERE ID=PM0" + qta + "";
+						query = "SELECT POSX, POSY FROM POSIZIONETABELLONE WHERE ID='PM0" + qta + "'";
 					else
-						query = "SELECT POSX, POSY FROM POSIZIONETABELLONE WHERE ID=PM" + qta + "";
+						query = "SELECT POSX, POSY FROM POSIZIONETABELLONE WHERE ID='PM" + qta + "'";
 					try {
 						Statement stmt=c.createStatement();
 						ResultSet rs=stmt.executeQuery(query);
@@ -560,9 +560,9 @@ public class Partita implements Serializable {
 					double y = 0;
 					String query;
 					if (qta < 10)
-						query = "SELECT POSX, POSY FROM POSIZIONETABELLONE WHERE ID=PV0" + qta + "";
+						query = "SELECT POSX, POSY FROM POSIZIONETABELLONE WHERE ID='PV0" + qta + "'";
 					else
-						query = "SELECT POSX, POSY FROM POSIZIONETABELLONE WHERE ID=PV" + qta + "";
+						query = "SELECT POSX, POSY FROM POSIZIONETABELLONE WHERE ID='PV" + qta + "'";
 					try {
 						Statement stmt=c.createStatement();
 						ResultSet rs=stmt.executeQuery(query);
@@ -587,9 +587,9 @@ public class Partita implements Serializable {
 					double y = 0;
 					String query;
 					if (qta < 10)
-						query = "SELECT POSX, POSY FROM POSIZIONETABELLONE WHERE ID=PF0" + qta + "";
+						query = "SELECT POSX, POSY FROM POSIZIONETABELLONE WHERE ID='PF0" + qta + "";
 					else
-						query = "SELECT POSX, POSY FROM POSIZIONETABELLONE WHERE ID=PF" + qta + "";
+						query = "SELECT POSX, POSY FROM POSIZIONETABELLONE WHERE ID=P'F" + qta + "'";
 					try {
 						Statement stmt=c.createStatement();
 						ResultSet rs=stmt.executeQuery(query);
