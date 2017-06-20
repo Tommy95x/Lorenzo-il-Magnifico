@@ -590,7 +590,7 @@ public class Partita implements Serializable {
 					if (qta < 10)
 						query = "SELECT POSX, POSY FROM POSIZIONETABELLONE WHERE ID='PF0" + qta + "'";
 					else
-						query = "SELECT POSX, POSY FROM POSIZIONETABELLONE WHERE ID=P'F" + qta + "'";
+						query = "SELECT POSX, POSY FROM POSIZIONETABELLONE WHERE ID='PF" + qta + "'";
 					try {
 						Statement stmt=c.createStatement();
 						ResultSet rs=stmt.executeQuery(query);
