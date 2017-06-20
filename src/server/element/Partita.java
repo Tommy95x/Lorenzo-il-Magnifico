@@ -36,7 +36,7 @@ public class Partita implements Serializable {
 	private TesseraScomunica[] tessereScomunica = new TesseraScomunica[3];
 	private String[] colors = new String[DIM];
 	private int NumberOfPlayers = 0;
-	private Connection connection;
+	private boolean setCards =true;
 
 	/**
 	 * Questo metodo inizializza la partita creando nuove tabelle contenti le
@@ -223,12 +223,7 @@ public class Partita implements Serializable {
 
 	public boolean addTurno() {
 		NumberOfPlayers = 0;
-		try {
-			setCards(connection);
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		setCards = true;
 		notifyResetTabellone();
 		if (turno < 6) {
 			if (turno == 2 || turno == 4)
@@ -257,12 +252,6 @@ public class Partita implements Serializable {
 	}
 
 	private void endGame() {
-		try {
-			connection.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 	private void sostegnoChiesa() {
@@ -357,6 +346,8 @@ public class Partita implements Serializable {
 	 * @throws SQLException
 	 */
 	public void setCards(Connection connection) throws SQLException {
+		
+		if(setCards){
 		String query;
 		String queryelimina;
 		int i;
@@ -415,7 +406,9 @@ public class Partita implements Serializable {
 			queryelimina = "DELETE TOP 1 FROM " + name.toUpperCase() + "CARTEIMPRESAPARTITA";
 			connection.createStatement().executeUpdate(queryelimina);
 		}
-		this.connection = connection;
+	}
+		setCards= false;
+		connection.close();
 	}
 
 	public void changeColors(String color) {
@@ -462,11 +455,11 @@ public class Partita implements Serializable {
 		}
 	}
 
-	public void notifySpostamento(String color, Giocatore giocatoreByName, double x, double y) {
+	public void notifySpostamento(String color, String colorAvv, double x, double y) {
 		for (Giocatore g : giocatori) {
-			if (!g.equals(giocatoreByName) && g != null) {
+			if (g != null && !g.getColor().equals(colorAvv)) {
 				try {
-					g.notifySpostamento(color, giocatoreByName.getColor(), x, y);
+					g.notifySpostamento(color, colorAvv, x, y);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

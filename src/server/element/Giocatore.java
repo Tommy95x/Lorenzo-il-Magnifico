@@ -164,7 +164,7 @@ public class Giocatore implements Serializable {
 		if (risorse.getDimRisorse("servitori") < agg) {
 			return "NotEnough";
 		} else {
-			if (dadi[dado].getValore() + agg >= valoreazione || (color.equals("neutro") && agg > 0)) {
+			if (dadi[dado].getValore() + agg >= valoreazione || ((color.equals("neutro") && (agg > valoreazione)))) {
 				risorse.addRis("servitori", -agg);
 				switch (nome) {
 				case "PIANO 1 FAMILIARE TERRITORI":
@@ -217,7 +217,7 @@ public class Giocatore implements Serializable {
 					break;
 				}
 				return "OK";
-			} else if (dadi[dado].getValore() + agg < valoreazione || (color.equals("neutro") && agg < 0)) {
+			} else if (dadi[dado].getValore() + agg < valoreazione || (color.equals("neutro") && agg == 0)) {
 				return "Pay";
 			} else
 				return "Cancel";
@@ -446,26 +446,33 @@ public class Giocatore implements Serializable {
 				if (e.isImmediato() && e.getQta() != 0) {
 					switch (e.getRisorsa()) {
 					case "militari":
+						System.out.println("\nAggiungo punti militari\n");
 						risorse.addPunti("militari", e.getQta());
 						partita.notifySpostamentoPunti("militari", risorse.getPunti("militari"), c, color);
 						break;
 					case "fede":
+						System.out.println("\nAggiungo punti fede\n");
 						risorse.addPunti("fede", e.getQta());
 						partita.notifySpostamentoPunti("fede", risorse.getPunti("fede"), c, color);
 						break;
 					case "pietra":
+						System.out.println("\nAggiungo pietre\n");
 						risorse.addRis("pietra", e.getQta());
 						break;
 					case "monete":
+						System.out.println("\nAggiungo monete\n");
 						risorse.addRis("monete", e.getQta());
 						break;
 					case "servitori":
+						System.out.println("\nAggiungo servitori\n");
 						risorse.addRis("servitori", e.getQta());
 						break;
 					case "legno":
+						System.out.println("\nAggiungo legni\n");
 						risorse.addRis("legno", e.getQta());
 						break;
 					case "tuttecarte":
+						System.out.println("\nTutte carte\n");
 						try {
 							this.notifyTutteCarte(e.getQta());
 						} catch (RemoteException e1) {
@@ -474,12 +481,15 @@ public class Giocatore implements Serializable {
 						}
 						break;
 					case "raccolto":
+						System.out.println("\nFaccio un raccolto\n");
 						raccolto(e.getQta(), c);
 						break;
 					case "produzione":
+						System.out.println("\nFaccio una produzione\n");
 						produzione(e.getQta(), c);
 						break;
 					case "pergamena":
+						System.out.println("Aggiungo punti militari");
 						try {
 							notifyPergamena(e.getQta());
 						} catch (RemoteException e1) {
@@ -770,7 +780,7 @@ public class Giocatore implements Serializable {
 		System.out
 				.println("Notifico il singolo utente per spostare le sue pedine il colore del giocatore e' " + color2);
 		if (client == null) {
-			System.out.println("Clausola se "+color2);
+			System.out.println("Clausola se " + color2);
 			try {
 				server.notifySpostamentoPuntiVittoria(x, y, color2);
 			} catch (IOException e) {
@@ -778,7 +788,7 @@ public class Giocatore implements Serializable {
 				e.printStackTrace();
 			}
 		} else {
-			System.out.println("Clausola altrimenti "+color2);
+			System.out.println("Clausola altrimenti " + color2);
 			client.notifySpostamentoPuntiVittoria(x, y, color2);
 		}
 	}
@@ -897,7 +907,7 @@ public class Giocatore implements Serializable {
 			server.resetTabellone();
 		} else {
 			try {
-				client.restTabellone();
+				client.resetTabellone();
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

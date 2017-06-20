@@ -52,4 +52,5 @@ public interface ServerInterface extends Remote {
 	public int getDado(String string, int positionGame, String name)throws RemoteException;
 	public void notifyDecisionChiesa(boolean b)throws RemoteException;
 	public void addScomunica(int positionGame, String name)throws RemoteException;
+	public void changeCards(int positionGame)throws RemoteException, SQLException;
 }

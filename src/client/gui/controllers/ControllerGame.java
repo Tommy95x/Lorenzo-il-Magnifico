@@ -1327,7 +1327,7 @@ public class ControllerGame {
 			Tooltip.install(mom, arrayCarteImpresa[2].getTooltip());
 			carteImpresaGiocatore.getChildren().add(mom);
 			sistemaCarte(2, 3);
-			start.getClient().setCardGiocatore(arrayCarteImpresa[2], 2, 2);
+			start.getClient().setCardGiocatore(arrayCarteImpresa[2], 3, 2);
 			break;
 		case "PIANO 3 FAMILIARE IMPRESE":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteImpresa[1].getImage())));
@@ -1336,7 +1336,7 @@ public class ControllerGame {
 			Tooltip.install(mom, arrayCarteImpresa[1].getTooltip());
 			carteImpresaGiocatore.getChildren().add(mom);
 			sistemaCarte(1, 3);
-			start.getClient().setCardGiocatore(arrayCarteImpresa[1], 1, 1);
+			start.getClient().setCardGiocatore(arrayCarteImpresa[1], 3, 1);
 			break;
 		case "PIANO 4 FAMILIARE IMPRESE":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteImpresa[0].getImage())));
@@ -1345,7 +1345,7 @@ public class ControllerGame {
 			Tooltip.install(mom, arrayCarteImpresa[0].getTooltip());
 			carteImpresaGiocatore.getChildren().add(mom);
 			sistemaCarte(0, 3);
-			start.getClient().setCardGiocatore(arrayCarteImpresa[0], 0, 0);
+			start.getClient().setCardGiocatore(arrayCarteImpresa[0], 3, 0);
 			break;
 		case "PIANO 1 FAMILIARE PERSONAGGI":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCartePersonaggi[3].getImage())));
@@ -1443,22 +1443,22 @@ public class ControllerGame {
 		}
 	}
 
-	private void sistemaCarte(int i, int tipo) {
+	private void sistemaCarte(int tipo, int piano) {
 		ImageView mom = new ImageView(new Image(getClass().getResourceAsStream("Trasparente.png")));
 		mom.setFitHeight(97.5);
 		mom.setFitWidth(63);
 		switch (tipo) {
 		case 0:
-			carteTerritori.getChildren().set(i, mom);
+			carteTerritori.getChildren().set(piano, mom);
 			break;
 		case 1:
-			cartePersonaggi.getChildren().set(i, mom);
+			cartePersonaggi.getChildren().set(piano, mom);
 			break;
 		case 2:
-			carteEdifici.getChildren().set(i, mom);
+			carteEdifici.getChildren().set(piano, mom);
 			break;
 		case 3:
-			carteImprese.getChildren().set(i, mom);
+			carteImprese.getChildren().set(piano, mom);
 			break;
 		}
 
@@ -1477,6 +1477,7 @@ public class ControllerGame {
 	}
 
 	public void resetTabellon() throws ClassNotFoundException, IOException {
+		start.getClient().changeCards();
 		try {
 			setCardsOtherTurn(start.getClient().getCardsGame());
 			azioniTerritoridapiuGiocatori = new HBox();
@@ -1619,23 +1620,23 @@ public class ControllerGame {
 				break;
 			case "TER":
 				sistemaCarte(0, piano);
-				mom = new Label(arrayCarteEdifici[piano].getNameCard());
+				mom = new Label(arrayCarteTerritori[piano].getNameCard());
 				mom.setTextFill(Color.WHITE);
-				mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
+				mom.setTooltip(arrayCarteTerritori[piano].getTooltip());
 				listCards1.getChildren().add(mom);
 				break;
 			case "PER":
 				sistemaCarte(1, piano);
-				mom = new Label(arrayCarteEdifici[piano].getNameCard());
+				mom = new Label(arrayCartePersonaggi[piano].getNameCard());
 				mom.setTextFill(Color.WHITE);
-				mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
+				mom.setTooltip(arrayCartePersonaggi[piano].getTooltip());
 				listCards1.getChildren().add(mom);
 				break;
 			case "IMP":
 				sistemaCarte(3, piano);
-				mom = new Label(arrayCarteEdifici[piano].getNameCard());
+				mom = new Label(arrayCarteImpresa[piano].getNameCard());
 				mom.setTextFill(Color.WHITE);
-				mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
+				mom.setTooltip(arrayCarteImpresa[piano].getTooltip());
 				listCards1.getChildren().add(mom);
 				break;
 			}
@@ -1651,23 +1652,23 @@ public class ControllerGame {
 				break;
 			case "TER":
 				sistemaCarte(0, piano);
-				mom = new Label(arrayCarteEdifici[piano].getNameCard());
+				mom = new Label(arrayCarteTerritori[piano].getNameCard());
 				mom.setTextFill(Color.WHITE);
-				mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
+				mom.setTooltip(arrayCarteTerritori[piano].getTooltip());
 				listCards2.getChildren().add(mom);
 				break;
 			case "PER":
 				sistemaCarte(1, piano);
-				mom = new Label(arrayCarteEdifici[piano].getNameCard());
+				mom = new Label(arrayCartePersonaggi[piano].getNameCard());
 				mom.setTextFill(Color.WHITE);
-				mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
+				mom.setTooltip(arrayCartePersonaggi[piano].getTooltip());
 				listCards2.getChildren().add(mom);
 				break;
 			case "IMP":
 				sistemaCarte(3, piano);
-				mom = new Label(arrayCarteEdifici[piano].getNameCard());
+				mom = new Label(arrayCarteImpresa[piano].getNameCard());
 				mom.setTextFill(Color.WHITE);
-				mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
+				mom.setTooltip(arrayCarteImpresa[piano].getTooltip());
 				listCards2.getChildren().add(mom);
 				break;
 			}
@@ -1683,23 +1684,23 @@ public class ControllerGame {
 				break;
 			case "TER":
 				sistemaCarte(0, piano);
-				mom = new Label(arrayCarteEdifici[piano].getNameCard());
+				mom = new Label(arrayCarteTerritori[piano].getNameCard());
 				mom.setTextFill(Color.WHITE);
-				mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
+				mom.setTooltip(arrayCarteTerritori[piano].getTooltip());
 				listCards3.getChildren().add(mom);
 				break;
 			case "PER":
 				sistemaCarte(1, piano);
-				mom = new Label(arrayCarteEdifici[piano].getNameCard());
+				mom = new Label(arrayCartePersonaggi[piano].getNameCard());
 				mom.setTextFill(Color.WHITE);
-				mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
+				mom.setTooltip(arrayCartePersonaggi[piano].getTooltip());
 				listCards3.getChildren().add(mom);
 				break;
 			case "IMP":
 				sistemaCarte(3, piano);
-				mom = new Label(arrayCarteEdifici[piano].getNameCard());
+				mom = new Label(arrayCarteImpresa[piano].getNameCard());
 				mom.setTextFill(Color.WHITE);
-				mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
+				mom.setTooltip(arrayCarteImpresa[piano].getTooltip());
 				listCards3.getChildren().add(mom);
 
 				break;
@@ -1924,6 +1925,12 @@ public class ControllerGame {
 					destinazione1.setImage(familiareNeutro.getImage());
 					familiareNeutro.setDisable(true);
 					familiareNeutro.setOpacity(0);
+					try {
+						start.getClient().notifySpostamento("neutro", destinazione1.getLayoutX(), destinazione1.getLayoutY());
+					} catch (IOException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
 					posizionatoFamiliare();
 					try {
 						setCardGiocatore(start.getClient().getNamePosition(destinazione1.getLayoutX(),
@@ -1942,6 +1949,12 @@ public class ControllerGame {
 					destinazione2.getChildren().add(mom);
 					familiareNeutro.setDisable(true);
 					familiareNeutro.setOpacity(0);
+					try {
+						start.getClient().notifySpostamento("neutro", destinazione1.getLayoutX(), destinazione1.getLayoutY());
+					} catch (IOException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
 					posizionatoFamiliare();
 					try {
 						setCardGiocatore(start.getClient().getNamePosition(destinazione2.getLayoutX(),
@@ -1961,6 +1974,12 @@ public class ControllerGame {
 					destinazione1.setImage(familiareNero.getImage());
 					familiareNero.setDisable(true);
 					familiareNero.setOpacity(0);
+					try {
+						start.getClient().notifySpostamento("black", destinazione1.getLayoutX(), destinazione1.getLayoutY());
+					} catch (IOException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
 					posizionatoFamiliare();
 					try {
 						setCardGiocatore(start.getClient().getNamePosition(destinazione1.getLayoutX(),
@@ -1978,6 +1997,12 @@ public class ControllerGame {
 					destinazione2.getChildren().add(mom);
 					familiareNero.setDisable(true);
 					familiareNero.setOpacity(0);
+					try {
+						start.getClient().notifySpostamento("black", destinazione2.getLayoutX(), destinazione2.getLayoutY());
+					} catch (IOException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
 					posizionatoFamiliare();
 					try {
 						setCardGiocatore(start.getClient().getNamePosition(destinazione2.getLayoutX(),
@@ -1997,6 +2022,12 @@ public class ControllerGame {
 					destinazione1.setImage(familiareArancio.getImage());
 					familiareArancio.setDisable(true);
 					familiareArancio.setOpacity(0);
+					try {
+						start.getClient().notifySpostamento("orange", destinazione1.getLayoutX(), destinazione1.getLayoutY());
+					} catch (IOException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
 					posizionatoFamiliare();
 					try {
 						setCardGiocatore(start.getClient().getNamePosition(destinazione1.getLayoutX(),
@@ -2015,6 +2046,12 @@ public class ControllerGame {
 					destinazione2.getChildren().add(mom);
 					familiareArancio.setDisable(true);
 					familiareArancio.setOpacity(0);
+					try {
+						start.getClient().notifySpostamento("orange", destinazione2.getLayoutX(), destinazione2.getLayoutY());
+					} catch (IOException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
 					posizionatoFamiliare();
 					try {
 						setCardGiocatore(start.getClient().getNamePosition(destinazione2.getLayoutX(),
@@ -2034,6 +2071,12 @@ public class ControllerGame {
 					destinazione1.setImage(familiareBianco.getImage());
 					familiareBianco.setDisable(true);
 					familiareBianco.setOpacity(0);
+					try {
+						start.getClient().notifySpostamento("white", destinazione1.getLayoutX(), destinazione1.getLayoutY());
+					} catch (IOException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
 					posizionatoFamiliare();
 					try {
 						setCardGiocatore(start.getClient().getNamePosition(destinazione1.getLayoutX(),
@@ -2051,6 +2094,12 @@ public class ControllerGame {
 					destinazione2.getChildren().add(mom);
 					familiareBianco.setDisable(true);
 					familiareBianco.setOpacity(0);
+					try {
+						start.getClient().notifySpostamento("white", destinazione2.getLayoutX(), destinazione2.getLayoutY());
+					} catch (IOException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
 					posizionatoFamiliare();
 					try {
 						setCardGiocatore(start.getClient().getNamePosition(destinazione2.getLayoutX(),
@@ -2204,7 +2253,10 @@ public class ControllerGame {
 	}
 
 	public void notifySpostamentoPuntiMilitari(double x, double y, String color2) {
-		if (((isInTurno() && color2.equals(start.getColor())) || (!color2.equals(start.getColor()) && !isInTurno()))) {
+		System.out.println((isInTurno() && color2.equals(start.getClient().getColor()))
+				|| (!color2.equals(start.getClient().getColor()) && !isInTurno()));
+		if (((isInTurno() && color2.equals(start.getClient().getColor()))
+				|| (!color2.equals(start.getClient().getColor()) && !isInTurno()))) {
 			System.out.println(
 					"Notifico lo spostamento della pedina punti militari del giocatore con il colore " + color2);
 			Path path = new Path();
@@ -2278,7 +2330,10 @@ public class ControllerGame {
 	}
 
 	public void notifySpostamentoPuntiFede(double x, double y, String color2) {
-		if (((isInTurno() && color2.equals(start.getColor())) || (!color2.equals(start.getColor()) && !isInTurno()))) {
+		System.out.println((isInTurno() && color2.equals(start.getClient().getColor()))
+				|| (!color2.equals(start.getClient().getColor()) && !isInTurno()));
+		if (((isInTurno() && color2.equals(start.getClient().getColor()))
+				|| (!color2.equals(start.getClient().getColor()) && !isInTurno()))) {
 			System.out.println("Notifico lo spostamento della pedina punti fede del giocatore con il colore " + color2);
 			Path path = new Path();
 			PathTransition pathTransition = new PathTransition();
@@ -2342,7 +2397,10 @@ public class ControllerGame {
 	}
 
 	public void notifySpostamentoPuntiVittoria(double x, double y, String color2) {
-		if (((isInTurno() && color2.equals(start.getColor())) || (!color2.equals(start.getColor()) && !isInTurno()))) {
+		System.out.println((isInTurno() && color2.equals(start.getClient().getColor()))
+				|| (!color2.equals(start.getClient().getColor()) && !isInTurno()));
+		if (((isInTurno() && color2.equals(start.getClient().getColor()))
+				|| (!color2.equals(start.getClient().getColor()) && !isInTurno()))) {
 			System.out.println(
 					"Notifico lo spostamento della pedina punti vittoria del giocatore con il colore " + color2);
 			double startX;

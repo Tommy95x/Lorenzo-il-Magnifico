@@ -271,4 +271,10 @@ public class ConnectionClient implements ClientInterface{
 		
 	}
 
+
+	public void changeCards() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
