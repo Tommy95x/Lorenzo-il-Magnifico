@@ -119,7 +119,9 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 
 	public void changeGamer(int positionGame) throws RemoteException, SQLException {
 		commonServer.getLobbyByNumber(positionGame).changeGamer();
-
+		if(commonServer.getLobbyByNumber(positionGame).getNumberOfPlayers() == 4){
+			
+		}
 	}
 
 	public void notifySpostamento(String color, double x, double y, String name, int positionGame)
@@ -251,6 +253,12 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 	
 	public void addScomunica(int positionGame, String name) throws RemoteException {
 		commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).addScomunica();
+		
+	}
+
+	@Override
+	public void changeCards(int positionGame) throws RemoteException, SQLException {
+		commonServer.getLobbyByNumber(positionGame).setCards(commonServer.getDBConnection().getConnection("Server"));
 		
 	}
 }

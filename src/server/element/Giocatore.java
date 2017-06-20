@@ -892,7 +892,7 @@ public class Giocatore implements Serializable {
 			server.resetTabellone();
 		} else {
 			try {
-				client.restTabellone();
+				client.resetTabellone();
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

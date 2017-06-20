@@ -53,7 +53,7 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 	}
 
 	@Override
-	public void restTabellone() throws RemoteException {
+	public void resetTabellone() throws RemoteException {
 		Platform.runLater(() -> {
 			try {
 				guiGame.resetTabellon();

@@ -11,7 +11,7 @@ public interface RMIClientInterface extends Remote{
 	public void notifyStartGame() throws RemoteException;
 	public void moveFamiliareAvv(double x, double y, String colorPlayer, String colorDisco) throws RemoteException;
 	public void richestaSostegnoChiesa() throws RemoteException;
-	public void restTabellone() throws RemoteException;
+	public void resetTabellone() throws RemoteException;
 	public void endGame(Giocatore[] giocatoriPartita) throws RemoteException;
 	public void addScomunica(int nScomuniche, String name) throws RemoteException;
 	public void notifyTurno(int turno) throws RemoteException, SQLException;

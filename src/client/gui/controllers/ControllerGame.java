@@ -1443,22 +1443,22 @@ public class ControllerGame {
 		}
 	}
 
-	private void sistemaCarte(int i, int tipo) {
+	private void sistemaCarte(int tipo, int piano) {
 		ImageView mom = new ImageView(new Image(getClass().getResourceAsStream("Trasparente.png")));
 		mom.setFitHeight(97.5);
 		mom.setFitWidth(63);
 		switch (tipo) {
 		case 0:
-			carteTerritori.getChildren().set(i, mom);
+			carteTerritori.getChildren().set(piano, mom);
 			break;
 		case 1:
-			cartePersonaggi.getChildren().set(i, mom);
+			cartePersonaggi.getChildren().set(piano, mom);
 			break;
 		case 2:
-			carteEdifici.getChildren().set(i, mom);
+			carteEdifici.getChildren().set(piano, mom);
 			break;
 		case 3:
-			carteImprese.getChildren().set(i, mom);
+			carteImprese.getChildren().set(piano, mom);
 			break;
 		}
 
@@ -1477,6 +1477,7 @@ public class ControllerGame {
 	}
 
 	public void resetTabellon() throws ClassNotFoundException, IOException {
+		start.getClient().changeCards();
 		try {
 			setCardsOtherTurn(start.getClient().getCardsGame());
 			azioniTerritoridapiuGiocatori = new HBox();
@@ -1619,23 +1620,23 @@ public class ControllerGame {
 				break;
 			case "TER":
 				sistemaCarte(0, piano);
-				mom = new Label(arrayCarteEdifici[piano].getNameCard());
+				mom = new Label(arrayCarteTerritori[piano].getNameCard());
 				mom.setTextFill(Color.WHITE);
-				mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
+				mom.setTooltip(arrayCarteTerritori[piano].getTooltip());
 				listCards1.getChildren().add(mom);
 				break;
 			case "PER":
 				sistemaCarte(1, piano);
-				mom = new Label(arrayCarteEdifici[piano].getNameCard());
+				mom = new Label(arrayCartePersonaggi[piano].getNameCard());
 				mom.setTextFill(Color.WHITE);
-				mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
+				mom.setTooltip(arrayCartePersonaggi[piano].getTooltip());
 				listCards1.getChildren().add(mom);
 				break;
 			case "IMP":
 				sistemaCarte(3, piano);
-				mom = new Label(arrayCarteEdifici[piano].getNameCard());
+				mom = new Label(arrayCarteImpresa[piano].getNameCard());
 				mom.setTextFill(Color.WHITE);
-				mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
+				mom.setTooltip(arrayCarteImpresa[piano].getTooltip());
 				listCards1.getChildren().add(mom);
 				break;
 			}
@@ -1651,23 +1652,23 @@ public class ControllerGame {
 				break;
 			case "TER":
 				sistemaCarte(0, piano);
-				mom = new Label(arrayCarteEdifici[piano].getNameCard());
+				mom = new Label(arrayCarteTerritori[piano].getNameCard());
 				mom.setTextFill(Color.WHITE);
-				mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
+				mom.setTooltip(arrayCarteTerritori[piano].getTooltip());
 				listCards2.getChildren().add(mom);
 				break;
 			case "PER":
 				sistemaCarte(1, piano);
-				mom = new Label(arrayCarteEdifici[piano].getNameCard());
+				mom = new Label(arrayCartePersonaggi[piano].getNameCard());
 				mom.setTextFill(Color.WHITE);
-				mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
+				mom.setTooltip(arrayCartePersonaggi[piano].getTooltip());
 				listCards2.getChildren().add(mom);
 				break;
 			case "IMP":
 				sistemaCarte(3, piano);
-				mom = new Label(arrayCarteEdifici[piano].getNameCard());
+				mom = new Label(arrayCarteImpresa[piano].getNameCard());
 				mom.setTextFill(Color.WHITE);
-				mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
+				mom.setTooltip(arrayCarteImpresa[piano].getTooltip());
 				listCards2.getChildren().add(mom);
 				break;
 			}
@@ -1683,23 +1684,23 @@ public class ControllerGame {
 				break;
 			case "TER":
 				sistemaCarte(0, piano);
-				mom = new Label(arrayCarteEdifici[piano].getNameCard());
+				mom = new Label(arrayCarteTerritori[piano].getNameCard());
 				mom.setTextFill(Color.WHITE);
-				mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
+				mom.setTooltip(arrayCarteTerritori[piano].getTooltip());
 				listCards3.getChildren().add(mom);
 				break;
 			case "PER":
 				sistemaCarte(1, piano);
-				mom = new Label(arrayCarteEdifici[piano].getNameCard());
+				mom = new Label(arrayCartePersonaggi[piano].getNameCard());
 				mom.setTextFill(Color.WHITE);
-				mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
+				mom.setTooltip(arrayCartePersonaggi[piano].getTooltip());
 				listCards3.getChildren().add(mom);
 				break;
 			case "IMP":
 				sistemaCarte(3, piano);
-				mom = new Label(arrayCarteEdifici[piano].getNameCard());
+				mom = new Label(arrayCarteImpresa[piano].getNameCard());
 				mom.setTextFill(Color.WHITE);
-				mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
+				mom.setTooltip(arrayCarteImpresa[piano].getTooltip());
 				listCards3.getChildren().add(mom);
 
 				break;

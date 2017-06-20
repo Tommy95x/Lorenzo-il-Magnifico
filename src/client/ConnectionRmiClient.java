@@ -341,6 +341,15 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		return false;
 	}
 	
+	public void changeCards() {
+		try {
+			serverMethods.changeCards(positionGame);
+		} catch (RemoteException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void addScomunica() throws RemoteException{
 		serverMethods.addScomunica(positionGame, name);
 		
