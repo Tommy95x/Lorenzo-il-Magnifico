@@ -133,6 +133,7 @@ public class StartClientGui extends Application {
 			}
 			ControllerWaitingRoom waitingRoom = loader.getController();
 			primaryStage.setResizable(true);
+			primaryStage.setScene(new Scene(root));
 			waitingRoom.getStartClientGui(this);
 			try {
 				getClient().startGame();

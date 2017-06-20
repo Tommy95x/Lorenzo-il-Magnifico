@@ -253,8 +253,8 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 				guiGame.enableGame((int) inputSocket.readObject());
 				break;
 			case "carteAvv":
-				guiGame.notifyAddCardAvv((CartaSviluppo) inputSocket.readObject(), inputSocket.readObject().toString(),
-						inputSocket.readObject().toString());
+				guiGame.notifyAddCardAvv(inputSocket.readObject().toString(), inputSocket.readObject().toString(),
+						(int) inputSocket.readObject());
 				break;
 			case "militari":
 				x = (double) inputSocket.readObject();

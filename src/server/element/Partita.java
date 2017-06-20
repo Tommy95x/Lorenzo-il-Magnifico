@@ -487,20 +487,20 @@ public class Partita implements Serializable {
 		return giocatori;
 	}
 
-	public void notifyAddCardGiocatoreAvv(String name, CartaSviluppo carta) throws RemoteException {
+	public void notifyAddCardGiocatoreAvv(String name, CartaSviluppo carta, int piano) throws RemoteException {
 		System.out.println("Notifico presa carta " + name);
 		for (int i = 0; i < 4; i++) {
 			if (giocatori[i] != null) {
 				System.out.println(giocatori[i].getName());
 				if (!giocatori[i].getName().equals(name)) {
 					if (carta.getId().contains("ED")) {
-						giocatori[i].notifyAddCardAvv("ED", carta, name);
+						giocatori[i].notifyAddCardAvv("ED", name, piano);
 					} else if (carta.getId().contains("TER")) {
-						giocatori[i].notifyAddCardAvv("TER", carta, name);
+						giocatori[i].notifyAddCardAvv("TER", name, piano);
 					} else if (carta.getId().contains("PER")) {
-						giocatori[i].notifyAddCardAvv("PER", carta, name);
+						giocatori[i].notifyAddCardAvv("PER", name, piano);
 					} else
-						giocatori[i].notifyAddCardAvv("IMP", carta, name);
+						giocatori[i].notifyAddCardAvv("IMP", name, piano);
 				}
 			}
 		}
@@ -525,6 +525,7 @@ public class Partita implements Serializable {
 
 	@SuppressWarnings("unused")
 	public void notifySpostamentoPunti(String tipo, int qta, Connection c) {
+		System.out.println("Sposto il punti "+tipo+" del giocatore");
 		switch (tipo) {
 		case "militari":
 			for (Giocatore g : giocatori) {

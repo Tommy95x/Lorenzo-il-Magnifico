@@ -192,7 +192,7 @@ public class ThreadSocketServer implements Runnable, Serializable {
 				break;
 			case "addCard":
 				actionsServer.giveCard((CartaSviluppo) input.readObject(), account, positionGame,
-						(int) input.readObject());
+						(int) input.readObject(), (int) input.readObject());
 				break;
 			case "getNamePosition":
 				output.writeObject(
@@ -294,10 +294,10 @@ public class ThreadSocketServer implements Runnable, Serializable {
 
 	}
 
-	public void notifyAddCardAvv(CartaSviluppo carta, String name, String tipo) throws IOException {
+	public void notifyAddCardAvv(String n, String name, int piano) throws IOException {
 		output.writeObject("carteAvv");
 		output.flush();
-		output.writeObject(carta);
+		output.writeObject(n);
 		output.flush();
 		output.writeObject(name);
 		output.flush();

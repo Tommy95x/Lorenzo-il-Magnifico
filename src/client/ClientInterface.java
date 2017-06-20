@@ -40,7 +40,7 @@ public interface ClientInterface {
 	public void notifySpostamento(String color, double x, double y) throws RemoteException, IOException;
 	public String getNamePosition(double x, double y) throws RemoteException, SQLException, IOException, ClassNotFoundException;
 	public void exitToTheGame(String lobby, String color) throws IOException;
-	public void setCardGiocatore(CartaSviluppo carta, int i) throws IOException ;
+	public void setCardGiocatore(CartaSviluppo carta, int i, int piano) throws IOException ;
 	public CartaSviluppo[] getCardsGame() throws ClassNotFoundException, IOException;
 	public Giocatore[] getGiocatori() throws RemoteException, IOException, ClassNotFoundException;
 	public TesseraScomunica[] getCardsScomunica() throws RemoteException, ClassNotFoundException, IOException;

@@ -255,17 +255,17 @@ public class Giocatore implements Serializable {
 		}
 	}
 
-	public void notifyAddCardAvv(String tipo, CartaSviluppo carta, String n) throws RemoteException {
+	public void notifyAddCardAvv(String tipo, String n, int piano) throws RemoteException {
 		if (client == null) {
 			try {
-				server.notifyAddCardAvv(carta, n, tipo);
+				server.notifyAddCardAvv(n, tipo, piano);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else {
 			System.out.println("Notifico il singolo giocatore per l'aggiunta della carta");
-			client.notifyAddCardAvv(carta, n, tipo);
+			client.notifyAddCardAvv(n, tipo, piano);
 		}
 	}
 
@@ -749,20 +749,22 @@ public class Giocatore implements Serializable {
 		return carte;
 	}
 
-	public void notifySpostamentopuntiMilitari(double x, double y, String color) throws RemoteException {
+	public void notifySpostamentopuntiMilitari(double x, double y, String color2) throws RemoteException {
+		System.out.println("Notifico il singolo utente per spostare le sue pedine il colore del giocatore e' "+color);
 		if (client == null) {
 			try {
-				server.notifySpostamentoPuntiMilitari(x, y, color);
+				server.notifySpostamentoPuntiMilitari(x, y, color2);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else {
-			client.notifySpostamentoPuntiMilitari(x, y, color);
+			client.notifySpostamentoPuntiMilitari(x, y, color2);
 		}
 	}
 
 	public void notifySpostamentopuntiVittoria(double x, double y, String color2) throws RemoteException {
+		System.out.println("Notifico il singolo utente per spostare le sue pedine il colore del giocatore e' "+color2);
 		if (client == null) {
 			try {
 				server.notifySpostamentoPuntiVittoria(x, y, color2);
@@ -776,6 +778,7 @@ public class Giocatore implements Serializable {
 	}
 
 	public void notifySpostamentopuntiFede(double x, double y, String color2) throws RemoteException {
+		System.out.println("Notifico il singolo utente per spostare le sue pedine il colore del giocatore e' "+color2);
 		if (client == null) {
 			try {
 				server.notifySpostamentoPuntiFede(x, y, color2);

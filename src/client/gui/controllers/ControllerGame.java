@@ -800,7 +800,7 @@ public class ControllerGame {
 					Optional<String> result = dialog.showAndWait();
 					result.ifPresent(val -> {
 						System.out.println(color);
-						if (controlloPosizionamento(color, x, y, Integer.parseInt(val),destinazione))
+						if (controlloPosizionamento(color, x, y, Integer.parseInt(val), destinazione))
 							setFlag();
 					});
 					return pay;
@@ -1202,7 +1202,7 @@ public class ControllerGame {
 			Tooltip.install(mom, arrayCarteTerritori[3].getTooltip());
 			carteTerritoriGiocatore.getChildren().add(mom);
 			carteTerritori.getChildren().set(3, new ImageView());
-			start.getClient().setCardGiocatore(arrayCarteTerritori[3], 0);
+			start.getClient().setCardGiocatore(arrayCarteTerritori[3], 0,3);
 			break;
 		case "PIANO 2 FAMILIARE TERRITORI":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteTerritori[2].getImage())));
@@ -1211,7 +1211,7 @@ public class ControllerGame {
 			Tooltip.install(mom, arrayCarteTerritori[2].getTooltip());
 			carteTerritoriGiocatore.getChildren().add(mom);
 			carteTerritori.getChildren().set(2, new ImageView());
-			start.getClient().setCardGiocatore(arrayCarteTerritori[2], 0);
+			start.getClient().setCardGiocatore(arrayCarteTerritori[2], 0,2);
 			break;
 		case "PIANO 3 FAMILIARE TERRITORI":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteTerritori[1].getImage())));
@@ -1220,7 +1220,7 @@ public class ControllerGame {
 			Tooltip.install(mom, arrayCarteTerritori[1].getTooltip());
 			carteTerritoriGiocatore.getChildren().add(mom);
 			carteTerritori.getChildren().set(1, new ImageView());
-			start.getClient().setCardGiocatore(arrayCarteTerritori[1], 0);
+			start.getClient().setCardGiocatore(arrayCarteTerritori[1], 0,1);
 			break;
 		case "PIANO 4 FAMILIARE TERRITORI":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteTerritori[0].getImage())));
@@ -1229,7 +1229,7 @@ public class ControllerGame {
 			Tooltip.install(mom, arrayCarteTerritori[0].getTooltip());
 			carteTerritoriGiocatore.getChildren().add(mom);
 			carteTerritori.getChildren().set(0, new ImageView());
-			start.getClient().setCardGiocatore(arrayCarteTerritori[0], 0);
+			start.getClient().setCardGiocatore(arrayCarteTerritori[0], 0,0);
 			break;
 		case "PIANO 1 FAMILIARE EDIFICI":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteEdifici[3].getImage())));
@@ -1238,7 +1238,7 @@ public class ControllerGame {
 			Tooltip.install(mom, arrayCarteEdifici[3].getTooltip());
 			carteEdificiGiocatore.getChildren().add(mom);
 			carteEdifici.getChildren().set(3, new ImageView());
-			start.getClient().setCardGiocatore(arrayCarteEdifici[3], 2);
+			start.getClient().setCardGiocatore(arrayCarteEdifici[3], 2,3);
 			break;
 		case "PIANO 2 FAMILIARE EDIFICI":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteEdifici[2].getImage())));
@@ -1247,7 +1247,7 @@ public class ControllerGame {
 			Tooltip.install(mom, arrayCarteEdifici[2].getTooltip());
 			carteEdificiGiocatore.getChildren().add(mom);
 			carteEdifici.getChildren().set(2, new ImageView());
-			start.getClient().setCardGiocatore(arrayCarteEdifici[2], 2);
+			start.getClient().setCardGiocatore(arrayCarteEdifici[2], 2,3);
 			break;
 		case "PIANO 3 FAMILIARE EDIFICI":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteEdifici[1].getImage())));
@@ -1256,7 +1256,7 @@ public class ControllerGame {
 			Tooltip.install(mom, arrayCarteEdifici[1].getTooltip());
 			carteEdificiGiocatore.getChildren().add(mom);
 			carteEdifici.getChildren().set(1, new ImageView());
-			start.getClient().setCardGiocatore(arrayCarteEdifici[1], 2);
+			start.getClient().setCardGiocatore(arrayCarteEdifici[1], 2,1);
 			break;
 		case "PIANO 4 FAMILIARE EDIFICI":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteEdifici[0].getImage())));
@@ -1265,7 +1265,7 @@ public class ControllerGame {
 			Tooltip.install(mom, arrayCarteEdifici[0].getTooltip());
 			carteEdificiGiocatore.getChildren().add(mom);
 			carteEdifici.getChildren().set(0, new ImageView());
-			start.getClient().setCardGiocatore(arrayCarteEdifici[0], 2);
+			start.getClient().setCardGiocatore(arrayCarteEdifici[0], 2,0);
 			break;
 		case "PIANO 1 FAMILIARE IMPRESE":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteImpresa[3].getImage())));
@@ -1274,7 +1274,7 @@ public class ControllerGame {
 			Tooltip.install(mom, arrayCarteImpresa[3].getTooltip());
 			carteImpresaGiocatore.getChildren().add(mom);
 			carteImprese.getChildren().set(3, new ImageView());
-			start.getClient().setCardGiocatore(arrayCarteImpresa[3], 3);
+			start.getClient().setCardGiocatore(arrayCarteImpresa[3], 3,3);
 			break;
 		case "PIANO 2 FAMILIARE IMPRESE":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteImpresa[2].getImage())));
@@ -1283,7 +1283,7 @@ public class ControllerGame {
 			Tooltip.install(mom, arrayCarteImpresa[2].getTooltip());
 			carteImpresaGiocatore.getChildren().add(mom);
 			carteImprese.getChildren().set(2, new ImageView());
-			start.getClient().setCardGiocatore(arrayCarteImpresa[2], 3);
+			start.getClient().setCardGiocatore(arrayCarteImpresa[2], 2,2);
 			break;
 		case "PIANO 3 FAMILIARE IMPRESE":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteImpresa[1].getImage())));
@@ -1292,7 +1292,7 @@ public class ControllerGame {
 			Tooltip.install(mom, arrayCarteImpresa[1].getTooltip());
 			carteImpresaGiocatore.getChildren().add(mom);
 			carteImprese.getChildren().set(1, new ImageView());
-			start.getClient().setCardGiocatore(arrayCarteImpresa[1], 3);
+			start.getClient().setCardGiocatore(arrayCarteImpresa[1], 1,1);
 			break;
 		case "PIANO 4 FAMILIARE IMPRESE":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteImpresa[0].getImage())));
@@ -1301,7 +1301,7 @@ public class ControllerGame {
 			Tooltip.install(mom, arrayCarteImpresa[0].getTooltip());
 			carteImpresaGiocatore.getChildren().add(mom);
 			carteImprese.getChildren().set(0, new ImageView());
-			start.getClient().setCardGiocatore(arrayCarteImpresa[0], 3);
+			start.getClient().setCardGiocatore(arrayCarteImpresa[0], 0,0);
 			break;
 		case "PIANO 1 FAMILIARE PERSONAGGI":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCartePersonaggi[3].getImage())));
@@ -1310,7 +1310,7 @@ public class ControllerGame {
 			Tooltip.install(mom, arrayCartePersonaggi[3].getTooltip());
 			cartePersonaggiGiocatore.getChildren().add(mom);
 			cartePersonaggi.getChildren().set(3, new ImageView());
-			start.getClient().setCardGiocatore(arrayCartePersonaggi[3], 1);
+			start.getClient().setCardGiocatore(arrayCartePersonaggi[3], 1,3);
 			break;
 		case "PIANO 2 FAMILIARE PERSONAGGI":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCartePersonaggi[2].getImage())));
@@ -1319,7 +1319,7 @@ public class ControllerGame {
 			Tooltip.install(mom, arrayCartePersonaggi[2].getTooltip());
 			cartePersonaggiGiocatore.getChildren().add(mom);
 			cartePersonaggi.getChildren().set(2, new ImageView());
-			start.getClient().setCardGiocatore(arrayCartePersonaggi[2], 1);
+			start.getClient().setCardGiocatore(arrayCartePersonaggi[2], 1,2);
 			break;
 		case "PIANO 3 FAMILIARE PERSONAGGI":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCartePersonaggi[1].getImage())));
@@ -1328,7 +1328,7 @@ public class ControllerGame {
 			Tooltip.install(mom, arrayCartePersonaggi[1].getTooltip());
 			cartePersonaggiGiocatore.getChildren().add(mom);
 			cartePersonaggi.getChildren().set(1, new ImageView());
-			start.getClient().setCardGiocatore(arrayCartePersonaggi[1], 1);
+			start.getClient().setCardGiocatore(arrayCartePersonaggi[1], 1,1);
 			break;
 		case "PIANO 4 FAMILIARE PERSONAGGI":
 			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCartePersonaggi[0].getImage())));
@@ -1337,7 +1337,7 @@ public class ControllerGame {
 			Tooltip.install(mom, arrayCartePersonaggi[0].getTooltip());
 			cartePersonaggiGiocatore.getChildren().add(mom);
 			cartePersonaggi.getChildren().set(0, new ImageView());
-			start.getClient().setCardGiocatore(arrayCartePersonaggi[0], 1);
+			start.getClient().setCardGiocatore(arrayCartePersonaggi[0], 1,0);
 			break;
 		case "AZIONE PRODUZIONE 4":
 			switch(i){
@@ -1447,152 +1447,105 @@ public class ControllerGame {
 		familiareBianco.setDisable(false);
 	}
 
-	public void notifyAddCardAvv(CartaSviluppo carta, String nameAvv, String tipo) {
+	public void notifyAddCardAvv(String nameAvv, String tipo, int piano) {
+		Label mom;
 		System.out.println("Notifica carta Avv, l'avversario e':" + nameAvv);
 		if (nameAvv.equals(name1.getText())) {
-			System.out.println(carta.getId());
+			System.out.println(tipo);
 			switch (tipo) {
 			case "ED":
-				for (int i = 0; i < 4; i++) {
-					if (arrayCarteEdifici[i].equals(carta)) {
-						carteEdifici.getChildren().set(i, new ImageView());
-						Label mom = new Label(arrayCarteEdifici[i].getNameCard());
+						carteEdifici.getChildren().set(piano, new ImageView());
+						mom = new Label(arrayCarteEdifici[piano].getNameCard());
 						mom.setTextFill(Color.WHITE);
-						mom.setTooltip(arrayCarteEdifici[i].getTooltip());
+						mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
 						listCards1.getChildren().add(mom);
 						System.out.println("Aggiunta carta all'avversario");
 						break;
-					}
-				}
-				break;
 			case "TER":
-				for (int i = 0; i < 4; i++) {
-					if (arrayCarteTerritori[i].equals(carta)) {
-						carteEdifici.getChildren().set(i, new ImageView());
-						Label mom = new Label(arrayCarteEdifici[i].getNameCard());
+						carteEdifici.getChildren().set(piano, new ImageView());
+						mom = new Label(arrayCarteEdifici[piano].getNameCard());
 						mom.setTextFill(Color.WHITE);
-						mom.setTooltip(arrayCarteEdifici[i].getTooltip());
+						mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
 						listCards1.getChildren().add(mom);
-					}
-				}
 				break;
 			case "PER":
-				for (int i = 0; i < 4; i++) {
-					if (arrayCartePersonaggi[i].equals(carta)) {
-						carteEdifici.getChildren().set(i, new ImageView());
-						Label mom = new Label(arrayCarteEdifici[i].getNameCard());
+						carteEdifici.getChildren().set(piano, new ImageView());
+						mom = new Label(arrayCarteEdifici[piano].getNameCard());
 						mom.setTextFill(Color.WHITE);
-						mom.setTooltip(arrayCarteEdifici[i].getTooltip());
+						mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
 						listCards1.getChildren().add(mom);
-					}
-				}
 				break;
 			case "IMP":
-				for (int i = 0; i < 4; i++) {
-					if (arrayCarteImpresa[i].equals(carta)) {
-						carteEdifici.getChildren().set(i, new ImageView());
-						Label mom = new Label(arrayCarteEdifici[i].getNameCard());
+						carteEdifici.getChildren().set(piano, new ImageView());
+						mom = new Label(arrayCarteEdifici[piano].getNameCard());
 						mom.setTextFill(Color.WHITE);
-						mom.setTooltip(arrayCarteEdifici[i].getTooltip());
+						mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
 						listCards1.getChildren().add(mom);
-					}
-				}
 				break;
 			}
 		} else if (nameAvv.equals(name2.getText())) {
-			System.out.println(carta.getId());
+			System.out.println(tipo);
 			switch (tipo) {
 			case "ED":
-				for (int i = 0; i < 4; i++) {
-					if (arrayCarteEdifici[i].equals(carta)) {
-						carteEdifici.getChildren().set(i, new ImageView());
-						Label mom = new Label(arrayCarteEdifici[i].getNameCard());
+						carteEdifici.getChildren().set(piano, new ImageView());
+						mom = new Label(arrayCarteEdifici[piano].getNameCard());
 						mom.setTextFill(Color.WHITE);
-						mom.setTooltip(arrayCarteEdifici[i].getTooltip());
+						mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
 						listCards2.getChildren().add(mom);
-					}
-				}
 				break;
 			case "TER":
-				for (int i = 0; i < 4; i++) {
-					if (arrayCarteTerritori[i].equals(carta)) {
-						carteEdifici.getChildren().set(i, new ImageView());
-						Label mom = new Label(arrayCarteEdifici[i].getNameCard());
+						carteEdifici.getChildren().set(piano, new ImageView());
+						mom = new Label(arrayCarteEdifici[piano].getNameCard());
 						mom.setTextFill(Color.WHITE);
-						mom.setTooltip(arrayCarteEdifici[i].getTooltip());
+						mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
 						listCards2.getChildren().add(mom);
-					}
-				}
 				break;
 			case "PER":
-				for (int i = 0; i < 4; i++) {
-					if (arrayCartePersonaggi[i].equals(carta)) {
-						carteEdifici.getChildren().set(i, new ImageView());
-						Label mom = new Label(arrayCarteEdifici[i].getNameCard());
+						carteEdifici.getChildren().set(piano, new ImageView());
+						mom = new Label(arrayCarteEdifici[piano].getNameCard());
 						mom.setTextFill(Color.WHITE);
-						mom.setTooltip(arrayCarteEdifici[i].getTooltip());
+						mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
 						listCards2.getChildren().add(mom);
-					}
-				}
 				break;
 			case "IMP":
-				for (int i = 0; i < 4; i++) {
-					if (arrayCarteImpresa[i].equals(carta)) {
-						carteEdifici.getChildren().set(i, new ImageView());
-						Label mom = new Label(arrayCarteEdifici[i].getNameCard());
+						carteEdifici.getChildren().set(piano, new ImageView());
+						mom = new Label(arrayCarteEdifici[piano].getNameCard());
 						mom.setTextFill(Color.WHITE);
-						mom.setTooltip(arrayCarteEdifici[i].getTooltip());
+						mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
 						listCards2.getChildren().add(mom);
-					}
-				}
 				break;
 			}
 		} else if (nameAvv.equals(name3.getText())) {
-			System.out.println(carta.getId());
+			System.out.println(tipo);
 			switch (tipo) {
 			case "ED":
-				for (int i = 0; i < 4; i++) {
-					if (arrayCarteEdifici[i].equals(carta)) {
-						carteEdifici.getChildren().set(i, new ImageView());
-						Label mom = new Label(arrayCarteEdifici[i].getNameCard());
+						carteEdifici.getChildren().set(piano, new ImageView());
+						mom = new Label(arrayCarteEdifici[piano].getNameCard());
 						mom.setTextFill(Color.WHITE);
-						mom.setTooltip(arrayCarteEdifici[i].getTooltip());
+						mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
 						listCards3.getChildren().add(mom);
-					}
-				}
 				break;
 			case "TER":
-				for (int i = 0; i < 4; i++) {
-					if (arrayCarteTerritori[i].equals(carta)) {
-						carteEdifici.getChildren().set(i, new ImageView());
-						Label mom = new Label(arrayCarteEdifici[i].getNameCard());
+						carteEdifici.getChildren().set(piano, new ImageView());
+						mom = new Label(arrayCarteEdifici[piano].getNameCard());
 						mom.setTextFill(Color.WHITE);
-						mom.setTooltip(arrayCarteEdifici[i].getTooltip());
+						mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
 						listCards3.getChildren().add(mom);
-					}
-				}
 				break;
 			case "PER":
-				for (int i = 0; i < 4; i++) {
-					if (arrayCartePersonaggi[i].equals(carta)) {
-						carteEdifici.getChildren().set(i, new ImageView());
-						Label mom = new Label(arrayCarteEdifici[i].getNameCard());
+						carteEdifici.getChildren().set(piano, new ImageView());
+						mom = new Label(arrayCarteEdifici[piano].getNameCard());
 						mom.setTextFill(Color.WHITE);
-						mom.setTooltip(arrayCarteEdifici[i].getTooltip());
+						mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
 						listCards3.getChildren().add(mom);
-					}
-				}
 				break;
 			case "IMP":
-				for (int i = 0; i < 4; i++) {
-					if (arrayCarteImpresa[i].equals(carta)) {
-						carteEdifici.getChildren().set(i, new ImageView());
-						Label mom = new Label(arrayCarteEdifici[i].getNameCard());
+						carteEdifici.getChildren().set(piano, new ImageView());
+						mom = new Label(arrayCarteEdifici[piano].getNameCard());
 						mom.setTextFill(Color.WHITE);
-						mom.setTooltip(arrayCarteEdifici[i].getTooltip());
+						mom.setTooltip(arrayCarteEdifici[piano].getTooltip());
 						listCards3.getChildren().add(mom);
-					}
-				}
+
 				break;
 			}
 		}
@@ -2088,6 +2041,7 @@ public class ControllerGame {
 	}
 
 	public void notifySpostamentoPuntiMilitari(double x, double y, String color) {
+		System.out.println("Notifico lo spostamento della pedina punti militari del giocatore con il colore "+color );
 		Path path = new Path();
 		PathTransition pathTransition = new PathTransition();
 		double startX;
@@ -2154,6 +2108,7 @@ public class ControllerGame {
 	}
 
 	public void notifySpostamentoPuntiFede(double x, double y, String color) {
+		System.out.println("Notifico lo spostamento della pedina punti fede del giocatore con il colore "+color );
 		Path path = new Path();
 		PathTransition pathTransition = new PathTransition();
 		double startX;
@@ -2219,6 +2174,7 @@ public class ControllerGame {
 	}
 
 	public void notifySpostamentoPuntiVittoria(double x, double y, String color) {
+		System.out.println("Notifico lo spostamento della pedina punti vittoria del giocatore con il colore "+color );
 		double startX;
 		double startY;
 		Path path = new Path();
@@ -2403,6 +2359,7 @@ public class ControllerGame {
 				im[i] = new Immagine(new Image(getClass().getResourceAsStream(arrayCarteTerritori[i].getImage())));
 				im[i].setC(arrayCarteTerritori[i]);
 				im[i].setTipo(0);
+				im[i].setPiano(i);
 			}
 		}
 		for (int i = 0; i < 4; i++) {
@@ -2410,6 +2367,7 @@ public class ControllerGame {
 				im[i + 4] = new Immagine(new Image(getClass().getResourceAsStream(arrayCartePersonaggi[i].getImage())));
 				im[i + 4].setC(arrayCartePersonaggi[i]);
 				im[i + 4].setTipo(1);
+				im[i].setPiano(i);
 			}
 		}
 		for (int i = 0; i < 4; i++) {
@@ -2417,6 +2375,7 @@ public class ControllerGame {
 				im[i + 8] = new Immagine(new Image(getClass().getResourceAsStream(arrayCarteEdifici[i].getImage())));
 				im[i + 8].setC(arrayCarteEdifici[i]);
 				im[i + 8].setTipo(2);
+				im[i].setPiano(i);
 			}
 		}
 		for (int i = 0; i < 4; i++) {
@@ -2424,6 +2383,7 @@ public class ControllerGame {
 				im[i + 12] = new Immagine(new Image(getClass().getResourceAsStream(arrayCarteImpresa[i].getImage())));
 				im[i + 12].setC(arrayCarteImpresa[i]);
 				im[i + 12].setTipo(3);
+				im[i].setPiano(i);
 			}
 		}
 		for (Immagine i : im) {
@@ -2432,7 +2392,7 @@ public class ControllerGame {
 				i.setOnMouseClicked(e -> {
 					try {
 						start.getClient().getRisorse().addRis("monete", -3);
-						start.getClient().setCardGiocatore(i.getC(), i.getTipo());
+						start.getClient().setCardGiocatore(i.getC(), i.getTipo(), i.getPiano());
 					} catch (ClassNotFoundException | IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -2448,6 +2408,7 @@ public class ControllerGame {
 	}
 
 	public void notifyUnTipoCarta(int tipo, int valore, int scontoAzioneImmediata1) {
+		System.out.println("Notifica di scegliere un tipo di carta da prendere");
 		Stage popup = new Stage();
 		popup.setTitle("Un tipo di carta");
 		VBox vBox = new VBox();
@@ -2502,7 +2463,7 @@ public class ControllerGame {
 				i.setOnMouseClicked(e -> {
 					try {
 						start.getClient().getRisorse().addRis("monete", -3 + scontoAzioneImmediata1);
-						start.getClient().setCardGiocatore(i.getC(), i.getTipo());
+						start.getClient().setCardGiocatore(i.getC(), i.getTipo(),i.getPiano());
 					} catch (ClassNotFoundException | IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -2518,6 +2479,7 @@ public class ControllerGame {
 	}
 
 	public void notifyAddRisorse(String name, String tipo, int qta) {
+		System.out.println("Notifico per l'aggiunta delle carte");
 		if (name.equals(start.getClient().getName())) {
 			switch (tipo) {
 			case "servitori":

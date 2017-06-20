@@ -62,9 +62,9 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 		
 	}
 
-	public void notifyAddCardAvv(CartaSviluppo carta, String string,String tipo) throws RemoteException {
+	public void notifyAddCardAvv(String string,String tipo, int piano) throws RemoteException {
 		System.out.println("Notifica carta Avv clientRMI");
-		guiGame.notifyAddCardAvv(carta, string, tipo);
+		guiGame.notifyAddCardAvv(string, tipo, piano);
 	}
 	
 	public void notifyTurno(int turno) throws RemoteException, SQLException {
@@ -92,6 +92,7 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 	}
 
 	public void notifySpostamentoPuntiVittoria(double x, double y, String color) {
+		System.out.println("Classe di comunicazione RMI");
 		Platform.runLater(() -> {
 		this.guiGame.notifySpostamentoPuntiVittoria(x, y, color);
 		});
