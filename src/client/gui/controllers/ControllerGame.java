@@ -2523,61 +2523,61 @@ public class ControllerGame {
 		if (name.equals(start.getClient().getName())) {
 			switch (tipo) {
 			case "servitori":
-				servitori.setText(Integer.toString(qta + (Integer.getInteger(servitori.getText()))));
+				servitori.setText(String.valueOf(qta + (Integer.getInteger(servitori.getText()))));
 				break;
 			case "monete":
-				monete.setText(Integer.toString(qta + (Integer.getInteger(monete.getText()))));
+				monete.setText(String.valueOf(qta + (Integer.getInteger(monete.getText()))));
 				break;
 			case "pietra":
-				pietra.setText(Integer.toString(qta + (Integer.getInteger(pietra.getText()))));
+				pietra.setText(String.valueOf(qta + (Integer.getInteger(pietra.getText()))));
 				break;
 			case "legno":
-				lengo.setText(Integer.toString(qta + (Integer.getInteger(lengo.getText()))));
+				lengo.setText(String.valueOf(qta + (Integer.getInteger(lengo.getText()))));
 				break;
 			}
 		} else if (name.equals(name1.getText())) {
 			switch (tipo) {
 			case "servitori":
-				servitori1.setText(Integer.toString(qta + (Integer.getInteger(servitori1.getText()))));
+				servitori1.setText(String.valueOf(qta + (Integer.getInteger(servitori1.getText()))));
 				break;
 			case "monete":
-				monete1.setText(Integer.toString(qta + (Integer.getInteger(monete1.getText()))));
+				monete1.setText(String.valueOf(qta + (Integer.getInteger(monete1.getText()))));
 				break;
 			case "pietra":
-				pietre1.setText(Integer.toString(qta + (Integer.getInteger(pietre1.getText()))));
+				pietre1.setText(String.valueOf(qta + (Integer.getInteger(pietre1.getText()))));
 				break;
 			case "legno":
-				legno1.setText(Integer.toString(qta + (Integer.getInteger(legno1.getText()))));
+				legno1.setText(String.valueOf(qta + (Integer.getInteger(legno1.getText()))));
 				break;
 			}
 		} else if (name.equals(name2.getText())) {
 			switch (tipo) {
 			case "servitori":
-				servitori2.setText(Integer.toString(qta + (Integer.getInteger(servitori2.getText()))));
+				servitori2.setText(String.valueOf(qta + (Integer.getInteger(servitori2.getText()))));
 				break;
 			case "monete":
-				monete2.setText(Integer.toString(qta + (Integer.getInteger(monete2.getText()))));
+				monete2.setText(String.valueOf(qta + (Integer.getInteger(monete2.getText()))));
 				break;
 			case "pietra":
-				pietre2.setText(Integer.toString(qta + (Integer.getInteger(pietre2.getText()))));
+				pietre2.setText(String.valueOf(qta + (Integer.getInteger(pietre2.getText()))));
 				break;
 			case "legno":
-				legno2.setText(Integer.toString(qta + (Integer.getInteger(legno2.getText()))));
+				legno2.setText(String.valueOf(qta + (Integer.getInteger(legno2.getText()))));
 				break;
 			}
 		} else {
 			switch (tipo) {
 			case "servitori":
-				servitori3.setText(Integer.toString(qta + (Integer.getInteger(servitori3.getText()))));
+				servitori3.setText(String.valueOf(qta + (Integer.getInteger(servitori3.getText()))));
 				break;
 			case "monete":
-				monete3.setText(Integer.toString(qta + (Integer.getInteger(monete3.getText()))));
+				monete3.setText(String.valueOf(qta + (Integer.getInteger(monete3.getText()))));
 				break;
 			case "pietra":
-				pietre3.setText(Integer.toString(qta + (Integer.getInteger(pietre3.getText()))));
+				pietre3.setText(String.valueOf(qta + (Integer.getInteger(pietre3.getText()))));
 				break;
 			case "legno":
-				legno3.setText(Integer.toString(qta + (Integer.getInteger(legno3.getText()))));
+				legno3.setText(String.valueOf(qta + (Integer.getInteger(legno3.getText()))));
 				break;
 			}
 		}
