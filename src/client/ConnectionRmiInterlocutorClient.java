@@ -103,6 +103,7 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 
 	public void notifySpostamentoPuntiVittoria(double x, double y, String color) {
 		System.out.println("Classe di comunicazione RMI");
+		System.out.println(" Notify spostamento punti vittoria server " +color);
 		Platform.runLater(() -> {
 		this.guiGame.notifySpostamentoPuntiVittoria(x, y, color);
 		});

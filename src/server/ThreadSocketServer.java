@@ -315,6 +315,7 @@ public class ThreadSocketServer implements Runnable, Serializable {
 	}
 
 	public void notifySpostamentoPuntiVittoria(double x, double y, String color2) throws IOException {
+		System.out.println(" Notify spostamento punti vittoria server " +color2);
 		output.writeObject("disco");
 		output.flush();
 		output.writeObject(x);

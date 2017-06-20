@@ -587,6 +587,7 @@ public class Partita implements Serializable {
 						}
 						rs.close();
 						stmt.close();
+						System.out.println(x+"   "+y);
 						g.notifySpostamentopuntiVittoria(x, y, g.getColor());
 					} catch (RemoteException | SQLException e) {
 						// TODO Auto-generated catch block
