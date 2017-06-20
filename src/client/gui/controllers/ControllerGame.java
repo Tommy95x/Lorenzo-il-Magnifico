@@ -1934,7 +1934,7 @@ public class ControllerGame {
 					posizionatoFamiliare();
 					try {
 						setCardGiocatore(start.getClient().getNamePosition(destinazione1.getLayoutX(),
-								destinazione1.getLayoutY()), 0);
+									destinazione1.getLayoutY()), 0);
 					} catch (IOException | SQLException | ClassNotFoundException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
