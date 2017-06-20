@@ -143,7 +143,7 @@ public class ConnectionClient implements ClientInterface{
 		return null;
 	}
 
-	public void setCardGiocatore(CartaSviluppo carta, int i) throws IOException {
+	public void setCardGiocatore(CartaSviluppo carta, int i, int piano) throws IOException {
 		// TODO Auto-generated method stub
 		
 	}

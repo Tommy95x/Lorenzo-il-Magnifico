@@ -142,12 +142,12 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		return commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).getCardsGamer();
 	}
 
-	public void giveCard(CartaSviluppo carta, String name, int positionGame, int tipo)
+	public void giveCard(CartaSviluppo carta, String name, int positionGame, int tipo, int piano)
 			throws RemoteException, SQLException {
 		commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).addCard(carta, tipo,
 				commonServer.getDBConnection().getConnection(name));
 		System.out.println("Pronto a notificare i giocatori");
-		commonServer.getLobbyByNumber(positionGame).notifyAddCardGiocatoreAvv(name, carta);
+		commonServer.getLobbyByNumber(positionGame).notifyAddCardGiocatoreAvv(name, carta, piano);
 	}
 
 	public TesseraScomunica[] getCardsScomunica(int positionGame) throws RemoteException {
