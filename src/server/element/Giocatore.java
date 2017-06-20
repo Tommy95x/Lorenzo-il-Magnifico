@@ -284,6 +284,7 @@ public class Giocatore implements Serializable {
 					case "vittoria":
 						risorse.addPunti("vittoria", e.getQta());
 						System.out.println(partita.toString() + " " + e.getQta());
+						System.out.println("attiva effetti immediati "+color);
 						partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), c, color);
 						break;
 					case "fede":
@@ -767,6 +768,7 @@ public class Giocatore implements Serializable {
 		System.out
 				.println("Notifico il singolo utente per spostare le sue pedine il colore del giocatore e' " + color2);
 		if (client == null) {
+			System.out.println("Clausola se "+color2);
 			try {
 				server.notifySpostamentoPuntiVittoria(x, y, color2);
 			} catch (IOException e) {
@@ -774,6 +776,7 @@ public class Giocatore implements Serializable {
 				e.printStackTrace();
 			}
 		} else {
+			System.out.println("Clausola altrimenti "+color2);
 			client.notifySpostamentoPuntiVittoria(x, y, color2);
 		}
 	}
