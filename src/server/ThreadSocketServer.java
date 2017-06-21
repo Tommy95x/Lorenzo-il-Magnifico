@@ -8,7 +8,12 @@ import java.io.Serializable;
 import java.net.Socket;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
+
+import server.element.CartaEdifici;
+import server.element.CartaImprese;
+import server.element.CartaPersonaggi;
 import server.element.CartaSviluppo;
+import server.element.CartaTerritori;
 import server.element.Giocatore;
 import server.element.Partita;
 import server.element.Portafoglio;
@@ -196,16 +201,16 @@ public class ThreadSocketServer implements Runnable, Serializable {
 					System.out.println("Prima chiamata");
 					CartaSviluppo[] c = commonServer.getLobbyByNumber(positionGame).getCards();
 					for(int i = 0;i<4;i++){
-						c[i]
+						c[i] = new CartaTerritori();
 					}
 					for(int i = 0;i<4;i++){
-						c[i+4]
+						c[i+4] = new CartaPersonaggi();
 					}
 					for(int i = 0;i<4;i++){
-						c[i+8]
+						c[i+8]=new CartaEdifici();
 					}
 					for(int i = 0;i<4;i++){
-						c[i12]
+						c[i+12] = new CartaImprese();
 					}
 					break;
 				case "notifySpostamento":
@@ -410,6 +415,16 @@ public class ThreadSocketServer implements Runnable, Serializable {
 	public void resetTabellone() {
 		// TODO Auto-generated method stub
 
+	}
+
+	public void notifyVittoria() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void nofySconfitta(int max) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

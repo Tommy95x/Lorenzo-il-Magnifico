@@ -261,4 +261,10 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		commonServer.getLobbyByNumber(positionGame).setCards(commonServer.getDBConnection().getConnection("Server"));
 		
 	}
+
+	@Override
+	public void notifyAddRisorse(int positionGame, String name, String tipo, int qta) throws RemoteException {
+		commonServer.getLobbyByNumber(positionGame).notifyAddRisorse(name, tipo, qta);
+		
+	}
 }

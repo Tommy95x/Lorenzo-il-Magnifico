@@ -35,6 +35,7 @@ public class Giocatore implements Serializable {
 	private boolean palazzoPersonaggi[] = new boolean[4];
 	private boolean palazzoImprese[] = new boolean[4];
 	private boolean palazzoEdifici[] = new boolean[4];
+	private int puntiFinali;
 
 	public Giocatore(String color, Partita partita, String name, int positionGame) {
 		this.name = name;
@@ -260,17 +261,17 @@ public class Giocatore implements Serializable {
 		}
 	}
 
-	public void notifyAddCardAvv(String tipo, String n, int piano) throws RemoteException {
+	public void notifyAddCardAvv(String tipo, String name2, int piano) throws RemoteException {
 		if (client == null) {
 			try {
-				server.notifyAddCardAvv(n, tipo, piano);
+				server.notifyAddCardAvv(name2, tipo, piano);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else {
 			System.out.println("Notifico il singolo giocatore per l'aggiunta della carta");
-			client.notifyAddCardAvv(n, tipo, piano);
+			client.notifyAddCardAvv(name2, tipo, piano);
 		}
 	}
 
@@ -289,7 +290,7 @@ public class Giocatore implements Serializable {
 					case "vittoria":
 						risorse.addPunti("vittoria", e.getQta());
 						System.out.println(partita.toString() + " " + e.getQta());
-						System.out.println("attiva effetti immediati "+color);
+						System.out.println("attiva effetti immediati " + color);
 						partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), c, color);
 						break;
 					case "fede":
@@ -514,12 +515,12 @@ public class Giocatore implements Serializable {
 		setRisorse("legno");
 		setRisorse("pietra");
 		setRisorse("servitori");
-		for (CartaSviluppo c : carte){
-			if (c.getNameCard().equals("Contadino")){
-				qta+=2;
+		for (CartaSviluppo c : carte) {
+			if (c.getNameCard().equals("Contadino")) {
+				qta += 2;
 			}
-			if (c.getNameCard().equals("Fattore")){
-				qta+=2;
+			if (c.getNameCard().equals("Fattore")) {
+				qta += 2;
 			}
 		}
 		for (CartaSviluppo c : carte) {
@@ -532,12 +533,12 @@ public class Giocatore implements Serializable {
 	public void produzione(int qta, Connection conn) {
 		risorse.addRis("monete", 2);
 		risorse.addPunti("militari", 1);
-		for (CartaSviluppo c : carte){
-			if (c.getNameCard().equals("Artigiano")){
-				qta+=2;
+		for (CartaSviluppo c : carte) {
+			if (c.getNameCard().equals("Artigiano")) {
+				qta += 2;
 			}
-			if (c.getNameCard().equals("Studioso")){
-				qta+=2;
+			if (c.getNameCard().equals("Studioso")) {
+				qta += 2;
 			}
 		}
 		for (CartaSviluppo c : carte) {
@@ -924,11 +925,102 @@ public class Giocatore implements Serializable {
 	}
 
 	public void notifyResetTabellone() {
+		for (int i = 0; i < 4; i++) {
+			palazzoTerritori[i] = true;
+			palazzoPersonaggi[i] = true;
+			palazzoImprese[i] = true;
+			palazzoEdifici[i] = true;
+		}
 		if (client == null) {
 			server.resetTabellone();
 		} else {
 			try {
 				client.resetTabellone();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public int notifyEndGame() {
+		int punti = 0;
+		int numeroCarte = 0;
+		punti = punti + risorse.getDimRisorse("monete") / 5;
+		punti = punti + risorse.getDimRisorse("servitori") / 5;
+		punti = punti + risorse.getDimRisorse("pietra") / 5;
+		punti = punti + risorse.getDimRisorse("legno") / 5;
+		for(CartaSviluppo c : carte){
+			if(c.getId().contains("TER"))
+				numeroCarte++;
+		}
+		punti = punti + aggPuntiFinaliTerr(numeroCarte);
+		numeroCarte=0;
+		for(CartaSviluppo c : carte)
+			if(c.getId().contains("PER"))
+				numeroCarte++;
+		punti = punti+aggPuntiFinaliPers(numeroCarte);
+		punti +=risorse.getPunti("vittoria");
+		puntiFinali = punti;
+		return punti;
+	}
+
+	public int getPuntiFinali(){
+		return puntiFinali;
+	}
+	
+	private int aggPuntiFinaliPers(int numeroCarte) {
+		switch(numeroCarte){
+		case 1:
+			return 1;
+		case 2:
+			return 3;
+		case 3:
+			return 6;
+		case 4:
+			return 10;
+		case 5:
+			return 15;
+		case 6:
+			return 21;
+		}
+		return 0;
+	}
+
+	private int aggPuntiFinaliTerr(int numeroCarteTerr) {
+		switch(numeroCarteTerr){
+		case 3:
+			return 1;
+		case 4:
+			return 4;
+		case 5:
+			return 10;
+		case 6:
+			return 20;
+		}
+		return 0;
+	}
+
+	public void notifyVittoria() {
+		if(client == null){
+			server.notifyVittoria();
+		}else{
+			try {
+				client.notifyVittoria();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+	}
+
+	public void nofySconfitta(int max) {
+		if(client == null){
+			server.nofySconfitta(max);
+		}else{
+			try {
+				client.nofySconfitta(max);
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

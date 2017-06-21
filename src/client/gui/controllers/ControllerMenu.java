@@ -2,6 +2,8 @@ package client.gui.controllers;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
+
 import client.gui.StartClientGui;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -189,8 +191,13 @@ public class ControllerMenu {
 				viewStartButton();
 				popup.close();
 				event.consume();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
+			} catch (IOException | SQLException e) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Information Dialog");
+				alert.setHeaderText("Questa partita e' gia' stata creata");
+				alert.setContentText("Sorry, a game whit this name is create yet!");
+
+				alert.showAndWait();
 				e.printStackTrace();
 			}
 		});
@@ -207,8 +214,13 @@ public class ControllerMenu {
 				viewStartButton();
 				popup.close();
 				event.consume();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
+			} catch (IOException | SQLException e) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Information Dialog");
+				alert.setHeaderText("Questa partita e' gia' stata creata");
+				alert.setContentText("Sorry, a game whit this name is create yet!");
+
+				alert.showAndWait();
 				e.printStackTrace();
 			}
 		});
@@ -225,8 +237,13 @@ public class ControllerMenu {
 				viewStartButton();
 				popup.close();
 				event.consume();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
+			} catch (IOException | SQLException e) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Information Dialog");
+				alert.setHeaderText("Questa partita e' gia' stata creata");
+				alert.setContentText("Sorry, a game whit this name is create yet!");
+
+				alert.showAndWait();
 				e.printStackTrace();
 			}
 		});

@@ -35,7 +35,7 @@ public class ConnectionClient implements ClientInterface{
 	}
 
 	@Override
-	public boolean createANewLobby(String lobby, String color) throws IOException {
+	public boolean createANewLobby(String lobby, String color) throws IOException, SQLException {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -273,6 +273,12 @@ public class ConnectionClient implements ClientInterface{
 
 
 	public void changeCards() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void notifyRisorse(String string, int i) {
 		// TODO Auto-generated method stub
 		
 	}

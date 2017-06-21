@@ -252,6 +252,24 @@ public class Partita implements Serializable {
 	}
 
 	private void endGame() {
+		int[] puntiG = new int[4];
+		int max=0;
+		for(int i=0;i<4;i++){
+			if(giocatori[i] != null)
+				puntiG[i] = giocatori[i].notifyEndGame();
+		}
+		for(int i=0;i<4;i++){
+			if(puntiG[i]>max)
+				max=puntiG[i];
+		}
+		for(int i =0;i<4;i++){
+			if(giocatori[i] != null){
+				if(giocatori[i].getPuntiFinali() == max)
+					giocatori[i].notifyVittoria();
+				else
+					giocatori[i].nofySconfitta(max);
+			}
+		}
 	}
 
 	private void sostegnoChiesa() {
@@ -480,6 +498,7 @@ public class Partita implements Serializable {
 		nomeposizione = rs.getString("NOME");
 		rs.close();
 		stmt.close();
+		connection.close();
 		return nomeposizione;
 	}
 
@@ -506,20 +525,20 @@ public class Partita implements Serializable {
 		return giocatori;
 	}
 
-	public void notifyAddCardGiocatoreAvv(String name, CartaSviluppo carta, int piano) throws RemoteException {
-		System.out.println("Notifico presa carta " + name);
+	public void notifyAddCardGiocatoreAvv(String name2, CartaSviluppo carta, int piano) throws RemoteException {
+		System.out.println("Notifico presa carta " + name2);
 		for (int i = 0; i < 4; i++) {
 			if (giocatori[i] != null) {
 				System.out.println(giocatori[i].getName());
 				if (!giocatori[i].getName().equals(name)) {
 					if (carta.getId().contains("ED")) {
-						giocatori[i].notifyAddCardAvv("ED", name, piano);
+						giocatori[i].notifyAddCardAvv("ED", name2, piano);
 					} else if (carta.getId().contains("TER")) {
-						giocatori[i].notifyAddCardAvv("TER", name, piano);
+						giocatori[i].notifyAddCardAvv("TER", name2, piano);
 					} else if (carta.getId().contains("PER")) {
-						giocatori[i].notifyAddCardAvv("PER", name, piano);
+						giocatori[i].notifyAddCardAvv("PER", name2, piano);
 					} else
-						giocatori[i].notifyAddCardAvv("IMP", name, piano);
+						giocatori[i].notifyAddCardAvv("IMP", name2, piano);
 				}
 			}
 		}

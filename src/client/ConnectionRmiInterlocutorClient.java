@@ -70,10 +70,10 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 		
 	}
 
-	public void notifyAddCardAvv(String string,String tipo, int piano) throws RemoteException {
+	public void notifyAddCardAvv(String name2,String tipo, int piano) throws RemoteException {
 		Platform.runLater(() ->{
 		System.out.println("Notifica carta Avv clientRMI");
-		guiGame.notifyAddCardAvv(string, tipo, piano);
+		guiGame.notifyAddCardAvv(name2, tipo, piano);
 		});
 	}
 	
@@ -159,6 +159,20 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 	public void notifyAskSostegnoChiesa() throws RemoteException {
 		Platform.runLater(() -> {
 			this.guiGame.notifyAskSostegnoChiesa();
+		});
+	}
+
+	@Override
+	public void notifyVittoria() throws RemoteException {
+		Platform.runLater(() -> {
+			this.guiGame.notifyVittoria();
+		});
+	}
+
+	@Override
+	public void nofySconfitta(int max) throws RemoteException {
+		Platform.runLater(() -> {
+			this.guiGame.nofySconfitta(max);
 		});
 	}
 	

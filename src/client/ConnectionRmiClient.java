@@ -83,9 +83,8 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 
 
 
-	public boolean createANewLobby(String lobby,String color) {
+	public boolean createANewLobby(String lobby,String color) throws RemoteException, SQLException {
 		System.out.println("lobby = "+lobby+" name="+name+" color="+color+" this="+this+"");
-		try {
 			System.out.println(positionGame);
 			System.out.println("Momentaneo");
 			positionGame=serverMethods.createNewLobby(lobby, name, color);
@@ -93,11 +92,6 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 			System.out.println(positionGame);
 			this.color=color;
 			return true;
-		} catch (RemoteException | SQLException e) {
-			System.out.println("Error rmi");
-			e.printStackTrace();
-			return false;
-		}
 	}
 
 
@@ -367,4 +361,14 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		serverMethods.notifyDecisionChiesa(b);
 	}
 
+	public void notifyRisorse(String tipo, int qta) {
+		try {
+			serverMethods.notifyAddRisorse(positionGame, name, tipo, qta);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 }

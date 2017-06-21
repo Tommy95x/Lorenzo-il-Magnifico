@@ -1068,7 +1068,8 @@ public class Controller {
 		dadoNero.setImage(new Image(getClass().getResourceAsStream("dado1.png")));
 		dadoBianco.setImage(new Image(getClass().getResourceAsStream("dado14.png")));
 		dadoArancio.setImage(new Image(getClass().getResourceAsStream("dado7.png")));
-		notifySpostamentoPuntiVittoria(525.0,0.0,"blue");
+		notifySpostamentoPuntiFede(250.0,558.0,"blue");
+		//notifySpostamentoPuntiFede()
 	}
 
 
@@ -1499,7 +1500,7 @@ public class Controller {
 	public void setFlag(String string) {
 		bandiera.setImage(new Image(getClass().getResourceAsStream("BandierinaBlu.png")));
 	}
-	public void notifySpostamentoPuntiVittoria(double x, double y, String color) {
+	public void notifySpostamentoPuntiMilirari(double x, double y, String color) {
 		double startX;
 		double startY;
 		switch (color) {
@@ -1519,6 +1520,73 @@ public class Controller {
 			Path path = new Path();
 			path.getElements().add(new MoveTo(529.0,735.0));
 			path.getElements().add(new CubicCurveTo(529.0, 20.0, 200, 20, 529.0, 735.0+20));
+			PathTransition pathTransition = new PathTransition();
+			pathTransition.setDuration(Duration.millis(4000));
+			pathTransition.setPath(path);
+			pathTransition.setNode(puntiVittoriaBlu);
+			pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+			pathTransition.setCycleCount(1);
+			pathTransition.play();
+			System.out.println("Fine Spostamento pedina");
+			break;
+		case "white":
+			startX = puntiVittoriaBianco.getLayoutX();
+			startY = puntiVittoriaBianco.getLayoutY();
+			while (startX != x && startY != y) {
+				if (startX != x)
+					startX++;
+				if (startY != y)
+					startY++;
+				puntiVittoriaBianco.setLayoutX(startX);
+				puntiVittoriaBianco.setLayoutY(startY);
+			}
+			break;
+		case "green":
+			startX = puntiVittoriaVerde.getLayoutX();
+			startY = puntiVittoriaVerde.getLayoutY();
+			while (startX != x && startY != y) {
+				if (startX != x)
+					startX++;
+				if (startY != y)
+					startY++;
+				puntiVittoriaVerde.setLayoutX(startX);
+				puntiVittoriaVerde.setLayoutY(startY);
+			}
+			break;
+		case "orange":
+			startX = puntiVittoriaArancio.getLayoutX();
+			startY = puntiVittoriaArancio.getLayoutY();
+			while (startX != x && startY != y) {
+				if (startX != x)
+					startX++;
+				if (startY != y)
+					startY++;
+				puntiVittoriaArancio.setLayoutX(startX);
+				puntiVittoriaArancio.setLayoutY(startY);
+			}
+			break;
+		}
+	}
+	public void notifySpostamentoPuntiFede(double x, double y, String color) {
+		double startX;
+		double startY;
+		switch (color) {
+		case "blue":
+			System.out.println("Inizio spostamento");
+			startX = puntiVittoriaBlu.getLayoutX();
+			startY = puntiVittoriaBlu.getLayoutY();
+			System.out.println(startX+" "+ startY);
+			/*while (startX <= x && startY <= y) {
+				//if (startX <= x)
+					startX+=5;
+				//if (startY <= y)
+					startY+=5;
+				puntiVittoriaBlu.setTranslateX(startX);;
+				puntiVittoriaBlu.setTranslateY(startY);
+			}*/
+			Path path = new Path();
+			path.getElements().add(new MoveTo(35.0,558.0));
+			path.getElements().add(new CubicCurveTo(35.0, 558.0, 0, 0, 224.0, 558.0+10.0));
 			PathTransition pathTransition = new PathTransition();
 			pathTransition.setDuration(Duration.millis(4000));
 			pathTransition.setPath(path);
