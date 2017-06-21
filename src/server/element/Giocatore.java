@@ -318,23 +318,23 @@ public class Giocatore implements Serializable {
 					case "pietra":
 						risorse.addRis("pietra", e.getQta());
 						System.out.println(partita.toString() + " " + e.getQta());
-						partita.notifyAddRisorse(name, "pietra", e.getQta());
+						partita.notifyAddRisorse(name, "pietra", risorse.getDimRisorse("pietra"));
 						break;
 					case "monete":
 						risorse.addRis("monete", e.getQta());
 						System.out.println(partita.toString());
 						System.out.println(e.getQta());
-						partita.notifyAddRisorse(name, "monete", e.getQta());
+						partita.notifyAddRisorse(name, "monete", risorse.getDimRisorse("monete"));
 						break;
 					case "servitori":
 						risorse.addRis("servitori", e.getQta());
 						System.out.println(partita.toString() + " " + e.getQta());
-						partita.notifyAddRisorse(name, "servitori", e.getQta());
+						partita.notifyAddRisorse(name, "servitori", risorse.getDimRisorse("servitori"));
 						break;
 					case "legno":
 						risorse.addRis("legno", e.getQta());
 						System.out.println(partita.toString() + " " + e.getQta());
-						partita.notifyAddRisorse(name, "legno", e.getQta());
+						partita.notifyAddRisorse(name, "legno", risorse.getDimRisorse("legno"));
 						break;
 					case "pergamena":
 						try {
@@ -481,22 +481,22 @@ public class Giocatore implements Serializable {
 					case "pietra":
 						System.out.println("\nAggiungo pietre\n");
 						risorse.addRis("pietra", e.getQta());
-						partita.notifyAddRisorse(name, "pietra", e.getQta());
+						partita.notifyAddRisorse(name, "pietra", risorse.getDimRisorse("pietra"));
 						break;
 					case "monete":
 						System.out.println("\nAggiungo monete\n");
 						risorse.addRis("monete", e.getQta());
-						partita.notifyAddRisorse(name, "monete", e.getQta());
+						partita.notifyAddRisorse(name, "monete", risorse.getDimRisorse("monete"));
 						break;
 					case "servitori":
 						System.out.println("\nAggiungo servitori\n");
 						risorse.addRis("servitori", e.getQta());
-						partita.notifyAddRisorse(name, "servitori", e.getQta());
+						partita.notifyAddRisorse(name, "servitori", risorse.getDimRisorse("servitori"));
 						break;
 					case "legno":
 						System.out.println("\nAggiungo legni\n");
 						risorse.addRis("legno", e.getQta());
-						partita.notifyAddRisorse(name, "legno", e.getQta());
+						partita.notifyAddRisorse(name, "legno", risorse.getDimRisorse("legno"));
 						break;
 					case "tuttecarte":
 						System.out.println("\nTutte carte\n");
@@ -534,9 +534,9 @@ public class Giocatore implements Serializable {
 		setRisorse("legno");
 		setRisorse("pietra");
 		setRisorse("servitori");
-		partita.notifyAddRisorse(name, "pietra", 1);
-		partita.notifyAddRisorse(name, "legno", 1);
-		partita.notifyAddRisorse(name, "servitori", 1);
+		partita.notifyAddRisorse(name, "pietra", risorse.getDimRisorse("pietra"));
+		partita.notifyAddRisorse(name, "legno", risorse.getDimRisorse("legno"));
+		partita.notifyAddRisorse(name, "servitori", risorse.getDimRisorse("servitori"));
 		for (CartaSviluppo c : carte) {
 			if (c.getNameCard().equals("Contadino")) {
 				qta += 2;
@@ -555,7 +555,7 @@ public class Giocatore implements Serializable {
 	public void produzione(int qta, ConnectionDatabase conn) {
 		risorse.addRis("monete", 2);
 		risorse.addPunti("militari", 1);
-		partita.notifyAddRisorse(name, "monete", 2);
+		partita.notifyAddRisorse(name, "monete", risorse.getDimRisorse("monete"));
 		partita.notifySpostamentoPunti("militari", risorse.getPunti("militari"), conn, color);
 		for (CartaSviluppo c : carte) {
 			if (c.getNameCard().equals("Artigiano")) {
@@ -575,17 +575,16 @@ public class Giocatore implements Serializable {
 	public void activateCardEffettiPermanenti(CartaSviluppo c, int tipo, ConnectionDatabase conn) {
 		switch (tipo) {
 		case 0:
-			c = (CartaTerritori) c;
 			for (Effetto e : c.getEffetti()) {
 				if (!e.isImmediato() && e.getQta() != 0) {
 					switch (e.getRisorsa()) {
 					case "legno":
 						risorse.addRis("legno", e.getQta());
-						partita.notifyAddRisorse(name, "legno", e.getQta());
+						partita.notifyAddRisorse(name, "legno", risorse.getDimRisorse("legno"));
 						break;
 					case "pietra":
 						risorse.addRis("pietra", e.getQta());
-						partita.notifyAddRisorse(name, "pietra", e.getQta());
+						partita.notifyAddRisorse(name, "pietra", risorse.getDimRisorse("pietra"));
 					case "pergamena":
 						try {
 							notifyPergamena(e.getQta());
@@ -596,11 +595,11 @@ public class Giocatore implements Serializable {
 						break;
 					case "monete":
 						risorse.addRis("monete", e.getQta());
-						partita.notifyAddRisorse(name, "monete", e.getQta());
+						partita.notifyAddRisorse(name, "monete", risorse.getDimRisorse("monete"));
 						break;
 					case "servitori":
 						risorse.addRis("servitori", e.getQta());
-						partita.notifyAddRisorse(name, "servitori", e.getQta());
+						partita.notifyAddRisorse(name, "servitori", risorse.getDimRisorse("servitori"));
 						break;
 					case "militari":
 						risorse.addPunti("militari", e.getQta());
@@ -619,7 +618,6 @@ public class Giocatore implements Serializable {
 			}
 			break;
 		case 2:
-			c = (CartaEdifici) c;
 			for (Effetto e : c.getEffetti()) {
 				if (!e.isImmediato() && e.getQta() != 0) {
 					int sum = 0;
@@ -656,7 +654,7 @@ public class Giocatore implements Serializable {
 								}
 							}
 							risorse.addRis("monete", sum);
-							partita.notifyAddRisorse(name, "monete", sum);
+							partita.notifyAddRisorse(name, "monete", risorse.getDimRisorse("monete"));
 							sum = 0;
 							break;
 						case "PERSONAGGI":
@@ -666,7 +664,7 @@ public class Giocatore implements Serializable {
 								}
 							}
 							risorse.addRis("monete", sum);
-							partita.notifyAddRisorse(name, "monete", sum);
+							partita.notifyAddRisorse(name, "monete", risorse.getDimRisorse("monete"));
 							sum = 0;
 							break;
 						}
@@ -681,7 +679,7 @@ public class Giocatore implements Serializable {
 					case "monete":
 						if (r[j].getQta() <= risorse.getDimRisorse("monete")) {
 							risorse.addRis("monete", -r[j].getQta());
-							partita.notifyAddRisorse(name, "monete", -r[j].getQta());
+							partita.notifyAddRisorse(name, "monete", risorse.getDimRisorse("monete"));
 							prendiRisorseeffettipermanenti(p[j].getRisorsa(), p[j].getQta(), conn);
 							if (p[j + 1].getQta() != 0 && j < 2) {
 								prendiRisorseeffettipermanenti(p[j].getRisorsa(), p[j].getQta(), conn);
@@ -690,7 +688,7 @@ public class Giocatore implements Serializable {
 					case "pietra":
 						if (r[j].getQta() <= risorse.getDimRisorse("pietra") && j != 2) {
 							risorse.addRis("pietra", -r[j].getQta());
-							partita.notifyAddRisorse(name, "pietra", -r[j].getQta());
+							partita.notifyAddRisorse(name, "pietra", risorse.getDimRisorse("pietra"));
 							prendiRisorseeffettipermanenti(p[j].getRisorsa(), p[j].getQta(), conn);
 							if (p[j + 1].getQta() != 0 && j < 2) {
 								prendiRisorseeffettipermanenti(p[j].getRisorsa(), p[j].getQta(), conn);
@@ -699,7 +697,7 @@ public class Giocatore implements Serializable {
 					case "legno":
 						if (r[j].getQta() <= risorse.getDimRisorse("legno") && j != 1) {
 							risorse.addRis("legno", -r[j].getQta());
-							partita.notifyAddRisorse(name, "legno", -r[j].getQta());
+							partita.notifyAddRisorse(name, "legno", risorse.getDimRisorse("legno"));
 							prendiRisorseeffettipermanenti(p[j].getRisorsa(), p[j].getQta(), conn);
 							if (p[j + 1].getQta() != 0 && j < 2) {
 								prendiRisorseeffettipermanenti(p[j].getRisorsa(), p[j].getQta(), conn);
@@ -718,7 +716,7 @@ public class Giocatore implements Serializable {
 						if (r[j].getQta() <= risorse.getDimRisorse("servitori")) {
 							if (r[j + 1].getRisorsa() == "niente") {
 								risorse.addRis("servitori", -r[j].getQta());
-								partita.notifyAddRisorse(name, "servitori", -r[j].getQta());
+								partita.notifyAddRisorse(name, "servitori", risorse.getDimRisorse("servitori"));
 								prendiRisorseeffettipermanenti(p[j].getRisorsa(), p[j].getQta(), conn);
 								if (p[j + 1].getQta() != 0 && j < 2) {
 									prendiRisorseeffettipermanenti(p[j].getRisorsa(), p[j].getQta(), conn);
@@ -727,9 +725,9 @@ public class Giocatore implements Serializable {
 								risorse.addRis("servitori", -r[j].getQta());
 								risorse.addRis("legno", -r[j + 1].getQta());
 								risorse.addRis("pietra", -r[j + 2].getQta());
-								partita.notifyAddRisorse(name, "servitori", -r[j].getQta());
-								partita.notifyAddRisorse(name, "legno", -r[j].getQta());
-								partita.notifyAddRisorse(name, "pietra", -r[j].getQta());
+								partita.notifyAddRisorse(name, "servitori", risorse.getDimRisorse("servitori"));
+								partita.notifyAddRisorse(name, "legno", risorse.getDimRisorse("legno"));
+								partita.notifyAddRisorse(name, "pietra", risorse.getDimRisorse("pietra"));
 								prendiRisorseeffettipermanenti(p[j].getRisorsa(), p[j].getQta(), conn);
 								if (p[j + 1].getQta() != 0 && j < 2) {
 									prendiRisorseeffettipermanenti(p[j].getRisorsa(), p[j].getQta(), conn);
@@ -749,7 +747,7 @@ public class Giocatore implements Serializable {
 								partita.notifySpostamentoPunti("vittoria", risorse.getPunti("vittoria"), conn, color);
 								break;
 							case "monete":
-								risorse.addRis("monete", r[k].getQta());
+								risorse.addRis("monete", risorse.getDimRisorse("monete"));
 								break;
 							case "pergamena":
 								try {
@@ -771,15 +769,15 @@ public class Giocatore implements Serializable {
 		switch (risorsa) {
 		case "pietra":
 			risorse.addRis("pietra", qta);
-			partita.notifyAddRisorse(name, "pietra", qta);
+			partita.notifyAddRisorse(name, "pietra", risorse.getDimRisorse("pietra"));
 			break;
 		case "legno":
 			risorse.addRis("legno", qta);
-			partita.notifyAddRisorse(name, "legno", qta);
+			partita.notifyAddRisorse(name, "legno", risorse.getDimRisorse("legno"));
 			break;
 		case "servitori":
 			risorse.addRis("servitori", qta);
-			partita.notifyAddRisorse(name, "servitori", qta);
+			partita.notifyAddRisorse(name, "servitori", risorse.getDimRisorse("servitori"));
 			break;
 		case "fede":
 			risorse.addRis("fede", qta);

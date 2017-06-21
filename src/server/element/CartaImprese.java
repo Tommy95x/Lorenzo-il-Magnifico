@@ -49,13 +49,13 @@ public class CartaImprese extends CartaSviluppo {
 				costoServitori = rs.getInt("COSTOSERVITORI");
 				costoPuntiMilitari = rs.getInt("COSTOPUNTIMILITARI");
 				puntiMilitariRichiesti = rs.getInt("REQUISITOPUNTIMILITARI");
-				nomeffetto = rs.getString("EFFETTOIMMEDIATO1");
+				nomeffetto = rs.getString("EFFETTOIMMEDIATO1").toLowerCase();
 				qtaeffetto = rs.getInt("QTAEFFETTOIMMEDIATO1");
 				effetti.add(new Effetto(nomeffetto, qtaeffetto, true, rs.getInt("TIPO"), rs.getInt("TIPOPERMANENTE")));
-				nomeffetto = rs.getString("EFFETTOIMMEDIATO2");
+				nomeffetto = rs.getString("EFFETTOIMMEDIATO2").toLowerCase();
 				qtaeffetto = rs.getInt("QTAEFFETTOIMMEDIATO2");
 				effetti.add(new Effetto(nomeffetto, qtaeffetto, true, rs.getInt("TIPO"), rs.getInt("TIPOPERMANENTE")));
-				nomeffetto = rs.getString("EFFETTOIMMEDIATO3");
+				nomeffetto = rs.getString("EFFETTOIMMEDIATO3").toLowerCase();
 				qtaeffetto = rs.getInt("QTAEFFETTOIMMEDIATO3");
 				effetti.add(new Effetto(nomeffetto, qtaeffetto, true, rs.getInt("TIPO"), rs.getInt("TIPOPERMANENTE")));
 				puntiVittoria = rs.getInt("PUNTIVITTORIA");
