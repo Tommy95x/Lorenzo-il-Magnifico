@@ -150,11 +150,11 @@ public class Giocatore implements Serializable {
 	public String controlloPosizionamento(String color, double x, double y, ConnectionDatabase conn, int agg)
 			throws SQLException {
 		Connection connectionDatabase = conn.getConnection(color);
-		Dado dado = null;
+		int dado = 0;
 		System.out.println(color);
 		for (int i = 0; i < 3; i++) {
 			if (dadi[i].getColor().equals(color)) {
-				dado = dadi[i];
+				dado = i;
 			}
 		}
 		String query = "SELECT VALOREAZIONE, NOME FROM POSIZIONETABELLONE WHERE " + x + "=POSX AND " + y + "=POSY";
@@ -172,8 +172,8 @@ public class Giocatore implements Serializable {
 		if (risorse.getDimRisorse("servitori") < agg) {
 			return "NotEnough";
 		} else {
-			if ((dado != null && dado.getValore() + agg >= valoreazione)
-					|| (dado == null && color.equals("neutro") && (agg+1 > valoreazione))) {
+			if ((dadi[dado] != null && ((dadi[dado].getValore() + agg) >= valoreazione))
+					|| (dadi[dado] == null && color.equals("neutro") && (agg >= valoreazione))) {
 				switch (nome) {
 				case "PIANO 1 FAMILIARE TERRITORI":
 					palazzoTerritori[3] = false;
@@ -225,8 +225,8 @@ public class Giocatore implements Serializable {
 					break;
 				}
 				return "OK";
-			} else if ((dado == null && (color.equals("neutro") && agg+1 < valoreazione))
-					|| (dado != null && dado.getValore() + agg < valoreazione)) {
+			} else if ((dadi[dado] == null && (color.equals("neutro") && agg < valoreazione))
+					|| (dadi[dado] != null && dadi[dado].getValore() + agg < valoreazione)) {
 				return "Pay";
 			} else
 				return "Cancel";
@@ -266,7 +266,7 @@ public class Giocatore implements Serializable {
 			partita.notifyAddRisorse(name, "monete", risorse.getDimRisorse("monete"));
 			partita.notifyAddRisorse(name, "pietra", risorse.getDimRisorse("pietra"));
 			partita.notifyAddRisorse(name, "legno", risorse.getDimRisorse("legno"));
-		} else if (carta.getId().contains("PER")){
+		} else if (carta.getId().contains("PER")) {
 			risorse.addRis("monete", -carta.getCostoMoneta());
 			partita.notifyAddRisorse(name, "monete", risorse.getDimRisorse("monete"));
 		}
