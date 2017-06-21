@@ -260,15 +260,6 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		}
 	}
 
-	public void mandaTurno() {
-		try {
-			waitTurno();
-		} catch (IOException | ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
 	public void setCardGiocatore(CartaSviluppo carta, int i) throws IOException {
 		outputSocket.writeObject("addCard");
 		outputSocket.flush();

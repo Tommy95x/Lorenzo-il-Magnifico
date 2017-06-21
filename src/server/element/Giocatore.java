@@ -232,8 +232,9 @@ public class Giocatore implements Serializable {
 	public void notifyTurno(int turno) throws SQLException, IOException {
 		if (client == null)
 			server.notifyTurno(turno);
-		else
+		else{
 			client.notifyTurno(turno);
+			}
 
 	}
 

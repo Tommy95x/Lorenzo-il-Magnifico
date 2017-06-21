@@ -14,6 +14,7 @@ import server.element.Flag;
 import server.element.Giocatore;
 import server.element.Partita;
 import server.element.Portafoglio;
+import server.element.Posizioni;
 import server.element.TesseraScomunica;
 import shared.RMIClientInterface;
 import shared.ServerInterface;
@@ -268,5 +269,12 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 	public void notifyAddRisorse(int positionGame, String name, String tipo, int qta) throws RemoteException {
 		commonServer.getLobbyByNumber(positionGame).notifyAddRisorse(name, tipo, qta);
 		
+	}
+
+	@Override
+	public ArrayList<Posizioni> getPositions() throws RemoteException {
+		ArrayList<Posizioni> mom = new ArrayList<Posizioni>();
+		String query;
+		return null;
 	}
 }
