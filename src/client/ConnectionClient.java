@@ -288,4 +288,10 @@ public class ConnectionClient implements ClientInterface{
 		// TODO Auto-generated method stub
 		
 	}
+
+
+	public int getNumberOfGamer() throws RemoteException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

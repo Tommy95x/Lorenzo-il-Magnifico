@@ -214,7 +214,11 @@ public class Partita implements Serializable {
 	}
 
 	public int numberOfPlayer() {
-		return giocatori.length;
+		int n=0;
+		for(Giocatore g :giocatori)
+			if(g != null)
+				n++;
+		return n;
 	}
 
 	public void setLobby(String lobby) {
@@ -506,7 +510,7 @@ public class Partita implements Serializable {
 			stmt.close();
 			c.releaseConnection(connection);
 		} catch (SQLException e) {
-			if(x == 265.0 && y == 440.0)
+			if(x == 265.0 && y == 265.0)
 				return "ZONA MERCATO";
 			if(x == 100.0 && y == 691.0)
 				return "AZIONE RACCOLTO 4";

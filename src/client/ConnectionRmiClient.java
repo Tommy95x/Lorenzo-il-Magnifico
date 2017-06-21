@@ -368,7 +368,10 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+	}
+	
+	public int getNumberOfGamer() throws RemoteException {
+		return serverMethods.getNumberOfPlayer(positionGame);
 	}
 	
 }
