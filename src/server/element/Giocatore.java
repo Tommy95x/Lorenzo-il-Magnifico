@@ -169,67 +169,73 @@ public class Giocatore implements Serializable {
 		res.close();
 		stmt.close();
 		conn.releaseConnection(connectionDatabase);
-		if (risorse.getDimRisorse("servitori") < agg) {
+		if(color.equals("neutro") && agg >= valoreazione){
+			piazzaFamiliare(nome);
+			return "OK";
+		}else if(color.equals("neutro") && agg < valoreazione){
+			return "Pay";
+		}
+		if (dadi[dado].getValore() + agg >= valoreazione){
+			piazzaFamiliare(nome);
+			return "OK";
+		} else if ((dadi[dado].getValore() + agg) < valoreazione) {
+			return "Pay";
+		} else if (risorse.getDimRisorse("servitori") < agg)
 			return "NotEnough";
-		} else {
-			if ((dadi[dado] != null && ((dadi[dado].getValore() + agg) >= valoreazione))
-					|| (dadi[dado] == null && color.equals("neutro") && (agg >= valoreazione))) {
-				switch (nome) {
-				case "PIANO 1 FAMILIARE TERRITORI":
-					palazzoTerritori[3] = false;
-					break;
-				case "PIANO 2 FAMILIARE TERRITORI":
-					palazzoTerritori[2] = false;
-					break;
-				case "PIANO 3 FAMILIARE TERRITORI":
-					palazzoTerritori[1] = false;
-					break;
-				case "PIANO 4 FAMILIARE TERRITORI":
-					palazzoTerritori[0] = false;
-					break;
-				case "PIANO 1 FAMILIARE EDIFICI":
-					palazzoEdifici[3] = false;
-					break;
-				case "PIANO 2 FAMILIARE EDIFICI":
-					palazzoEdifici[2] = false;
-					break;
-				case "PIANO 3 FAMILIARE EDIFICI":
-					palazzoEdifici[1] = false;
-					break;
-				case "PIANO 4 FAMILIARE EDIFICI":
-					palazzoEdifici[0] = false;
-					break;
-				case "PIANO 1 FAMILIARE IMPRESE":
-					palazzoImprese[3] = false;
-					break;
-				case "PIANO 2 FAMILIARE IMPRESE":
-					palazzoImprese[2] = false;
-					break;
-				case "PIANO 3 FAMILIARE IMPRESE":
-					palazzoImprese[1] = false;
-					break;
-				case "PIANO 4 FAMILIARE IMPRESE":
-					palazzoImprese[0] = false;
-					break;
-				case "PIANO 1 FAMILIARE PERSONAGGI":
-					palazzoPersonaggi[3] = false;
-					break;
-				case "PIANO 2 FAMILIARE PERSONAGGI":
-					palazzoPersonaggi[2] = false;
-					break;
-				case "PIANO 3 FAMILIARE PERSONAGGI":
-					palazzoPersonaggi[1] = false;
-					break;
-				case "PIANO 4 FAMILIARE PERSONAGGI":
-					palazzoPersonaggi[0] = false;
-					break;
-				}
-				return "OK";
-			} else if ((dadi[dado] == null && (color.equals("neutro") && agg < valoreazione))
-					|| (dadi[dado] != null && dadi[dado].getValore() + agg < valoreazione)) {
-				return "Pay";
-			} else
-				return "Cancel";
+		else
+			return "Cancel";
+	}
+
+	private void piazzaFamiliare(String nome) {
+		switch (nome) {
+		case "PIANO 1 FAMILIARE TERRITORI":
+			palazzoTerritori[3] = false;
+			break;
+		case "PIANO 2 FAMILIARE TERRITORI":
+			palazzoTerritori[2] = false;
+			break;
+		case "PIANO 3 FAMILIARE TERRITORI":
+			palazzoTerritori[1] = false;
+			break;
+		case "PIANO 4 FAMILIARE TERRITORI":
+			palazzoTerritori[0] = false;
+			break;
+		case "PIANO 1 FAMILIARE EDIFICI":
+			palazzoEdifici[3] = false;
+			break;
+		case "PIANO 2 FAMILIARE EDIFICI":
+			palazzoEdifici[2] = false;
+			break;
+		case "PIANO 3 FAMILIARE EDIFICI":
+			palazzoEdifici[1] = false;
+			break;
+		case "PIANO 4 FAMILIARE EDIFICI":
+			palazzoEdifici[0] = false;
+			break;
+		case "PIANO 1 FAMILIARE IMPRESE":
+			palazzoImprese[3] = false;
+			break;
+		case "PIANO 2 FAMILIARE IMPRESE":
+			palazzoImprese[2] = false;
+			break;
+		case "PIANO 3 FAMILIARE IMPRESE":
+			palazzoImprese[1] = false;
+			break;
+		case "PIANO 4 FAMILIARE IMPRESE":
+			palazzoImprese[0] = false;
+			break;
+		case "PIANO 1 FAMILIARE PERSONAGGI":
+			palazzoPersonaggi[3] = false;
+			break;
+		case "PIANO 2 FAMILIARE PERSONAGGI":
+			palazzoPersonaggi[2] = false;
+			break;
+		case "PIANO 3 FAMILIARE PERSONAGGI":
+			palazzoPersonaggi[1] = false;
+			break;
+		case "PIANO 4 FAMILIARE PERSONAGGI":
+			palazzoPersonaggi[0] = false;
+			break;
 		}
 	}
 
