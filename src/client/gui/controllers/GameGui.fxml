@@ -94,17 +94,17 @@
                   <Image url="@../../../../Media/plancia2.png" />
                </image>
             </ImageView>
-            <Label fx:id="lengo" layoutX="153.0" layoutY="719.0" prefHeight="0.0" prefWidth="21.0" text="0" textFill="RED">
+            <Label fx:id="lengo" layoutX="171.0" layoutY="683.0" prefHeight="30.0" prefWidth="35.0" text="0" textFill="RED">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label fx:id="pietra" layoutX="245.0" layoutY="714.0" prefHeight="0.0" prefWidth="21.0" text="0" textFill="RED">
+            <Label fx:id="pietra" layoutX="270.0" layoutY="683.0" prefHeight="30.0" prefWidth="35.0" text="0" textFill="RED">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label fx:id="monete" layoutX="54.0" layoutY="722.0" prefHeight="0.0" prefWidth="21.0" text="0" textFill="RED">
+            <Label fx:id="monete" layoutX="79.0" layoutY="683.0" prefHeight="30.0" prefWidth="35.0" text="0" textFill="RED">
                <font>
                   <Font size="20.0" />
                </font>
@@ -143,7 +143,7 @@
                               <Image url="@../../../../Media/Servitore.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="servitori1" layoutX="77.0" layoutY="77.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
+                        <Label fx:id="servitori1" layoutX="73.0" layoutY="77.0" prefHeight="32.0" prefWidth="35.0" text="0" textFill="WHITE">
                            <font>
                               <Font size="22.0" />
                            </font>
@@ -202,12 +202,12 @@
                               <Image url="@../../../../Media/Servitore.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="pietre2" layoutX="128.0" layoutY="77.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
+                        <Label fx:id="pietre2" layoutX="124.0" layoutY="77.0" prefHeight="32.0" prefWidth="35.0" text="0" textFill="WHITE">
                            <font>
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <Label fx:id="servitori2" layoutX="78.0" layoutY="77.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
+                        <Label fx:id="servitori2" layoutX="74.0" layoutY="77.0" prefHeight="32.0" prefWidth="35.0" text="0" textFill="WHITE">
                            <font>
                               <Font size="22.0" />
                            </font>
@@ -228,12 +228,12 @@
                            </image>
                         </ImageView>
                         <Label fx:id="name2" layoutX="63.0" layoutY="9.0" prefHeight="20.0" prefWidth="180.0" textFill="WHITE" />
-                        <Label fx:id="legno2" layoutX="183.0" layoutY="77.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
+                        <Label fx:id="legno2" layoutX="179.0" layoutY="77.0" prefHeight="32.0" prefWidth="35.0" text="0" textFill="WHITE">
                            <font>
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <Label fx:id="monete2" layoutX="233.0" layoutY="77.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
+                        <Label fx:id="monete2" layoutX="229.0" layoutY="77.0" prefHeight="32.0" prefWidth="35.0" text="0" textFill="WHITE">
                            <font>
                               <Font size="22.0" />
                            </font>
@@ -256,12 +256,12 @@
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <Label fx:id="servitori3" layoutX="75.0" layoutY="79.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
+                        <Label fx:id="servitori3" layoutX="71.0" layoutY="79.0" prefHeight="32.0" prefWidth="35.0" text="0" textFill="WHITE">
                            <font>
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <Label fx:id="pietre3" layoutX="125.0" layoutY="79.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
+                        <Label fx:id="pietre3" layoutX="121.0" layoutY="79.0" prefHeight="32.0" prefWidth="35.0" text="0" textFill="WHITE">
                            <font>
                               <Font size="22.0" />
                            </font>
@@ -287,12 +287,12 @@
                            </image>
                         </ImageView>
                         <Label fx:id="name3" layoutX="63.0" layoutY="9.0" prefHeight="20.0" prefWidth="180.0" textFill="WHITE" />
-                        <Label fx:id="monete3" layoutX="230.0" layoutY="79.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
+                        <Label fx:id="monete3" layoutX="228.0" layoutY="79.0" prefHeight="32.0" prefWidth="31.0" text="0" textFill="WHITE">
                            <font>
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <Label fx:id="legno3" layoutX="180.0" layoutY="79.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
+                        <Label fx:id="legno3" layoutX="176.0" layoutY="79.0" prefHeight="32.0" prefWidth="35.0" text="0" textFill="WHITE">
                            <font>
                               <Font size="22.0" />
                            </font>
@@ -319,6 +319,7 @@
             <ImageView fx:id="familiareOrange3" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="171.0" layoutY="292.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="familiareOrange2" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="67.0" layoutY="290.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="familiareOrange1" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="4.0" layoutY="288.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareOrange4" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="216.0" layoutY="292.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
          </children></AnchorPane>
   </items>
 </SplitPane>
