@@ -562,8 +562,15 @@ public class Partita implements Serializable {
 		return this.NumberOfPlayers;
 	}
 
-	public void notifySpostamentoPunti(String tipo, int qta, Connection c, String color2) {
-		System.out.println("Sposto il punti " + tipo + " del giocatore");
+	public void notifySpostamentoPunti(String tipo, int qta, ConnectionDatabase connectionDatabase, String color2) {
+		Connection c = null;
+		try {
+			c = connectionDatabase.getConnection(color2);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		System.out.println("\n\nSposto il punti " + tipo + " del giocatore\n\n");
 		switch (tipo) {
 		case "militari":
 			for (Giocatore g : giocatori) {
@@ -648,6 +655,7 @@ public class Partita implements Serializable {
 			}
 			break;
 		}
+		connectionDatabase.releaseConnection(c);
 	}
 
 	public void notifyAddRisorse(String name, String tipo, int qta) {

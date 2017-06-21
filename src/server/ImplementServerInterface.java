@@ -116,7 +116,7 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 			throws RemoteException, SQLException {
 		System.out.println(name);
 		return commonServer.getLobbyByNumber(posisitionGame).getGiocatoreByName(name).controlloPosizionamento(color, x,
-				y, commonServer.getDBConnection().getConnection(name), agg);
+				y, commonServer.getDBConnection(), agg);
 	}
 
 	public void changeGamer(int positionGame) throws RemoteException, SQLException {
@@ -150,7 +150,7 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 	public void giveCard(CartaSviluppo carta, String name, int positionGame, int tipo, int piano)
 			throws RemoteException, SQLException {
 		commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).addCard(carta, tipo,
-				commonServer.getDBConnection().getConnection(name));
+				commonServer.getDBConnection(), name);
 		System.out.println("Pronto a notificare i giocatori");
 		commonServer.getLobbyByNumber(positionGame).notifyAddCardGiocatoreAvv(name, carta, piano);
 	}
@@ -212,27 +212,27 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 	
 	public void notifySpostamentoPunti(int positionGame, String name, String tipo, String color) throws RemoteException, SQLException {
 		commonServer.getLobbyByNumber(positionGame).notifySpostamentoPunti(tipo,
-				commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).getRisorse().getPunti(tipo), commonServer.getDBConnection().getConnection(name), color);
+				commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).getRisorse().getPunti(tipo), commonServer.getDBConnection(), color);
 
 	}
 
 	public void produzione(int positionGame, String name, int qta) throws RemoteException, SQLException {
-		commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).produzione(qta, commonServer.getDBConnection().getConnection(name));
+		commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).produzione(qta, commonServer.getDBConnection());
 	}
 
 	public void raccolto(int positionGame, String name, int qta) throws RemoteException, SQLException {
-		commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).raccolto(qta, commonServer.getDBConnection().getConnection(name));
+		commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).raccolto(qta, commonServer.getDBConnection());
 		
 	}
 
 	@Override
 	public void addRisorse(int positionGame, String name, String tipo, int qta) throws RemoteException, SQLException {
-		commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).addRis(tipo, qta, commonServer.getDBConnection().getConnection(name));
+		commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).addRis(tipo, qta, commonServer.getDBConnection());
 	}
 
 	
 	public void addPunti(int positionGame, String name, String tipo, int qta) throws RemoteException, SQLException {
-		commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).addPunti(tipo, qta, commonServer.getDBConnection().getConnection(name));
+		commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).addPunti(tipo, qta, commonServer.getDBConnection());
 	}
 
 	public void pergamene(int posizionGame, String name,int qta) throws RemoteException {

@@ -10,6 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import client.gui.controllers.ControllerGame;
 import server.ThreadSocketServer;
+import server.database.ConnectionDatabase;
 import shared.RMIClientInterface;
 
 @SuppressWarnings("serial")
@@ -146,8 +147,9 @@ public class Giocatore implements Serializable {
 		this.flag = flag;
 	}
 
-	public String controlloPosizionamento(String color, double x, double y, Connection connection, int agg)
+	public String controlloPosizionamento(String color, double x, double y, ConnectionDatabase conn, int agg)
 			throws SQLException {
+		Connection connectionDatabase = conn.getConnection(color);
 		Dado dado = null;
 		System.out.println(color);
 		for (int i = 0; i < 3; i++) {
@@ -156,7 +158,7 @@ public class Giocatore implements Serializable {
 			}
 		}
 		String query = "SELECT VALOREAZIONE, NOME FROM POSIZIONETABELLONE WHERE " + x + "=POSX AND " + y + "=POSY";
-		Statement stmt = connection.createStatement();
+		Statement stmt = connectionDatabase.createStatement();
 		ResultSet res = stmt.executeQuery(query);
 		int valoreazione = 0;
 		String nome = "";
@@ -166,11 +168,11 @@ public class Giocatore implements Serializable {
 		}
 		res.close();
 		stmt.close();
-		connection.close();
+		conn.releaseConnection(connectionDatabase);
 		if (risorse.getDimRisorse("servitori") < agg) {
 			return "NotEnough";
 		} else {
-			if ( (dado != null && dado.getValore() + agg >= valoreazione) || (dado == null && color.equals("neutro") && (agg > valoreazione))) {
+			if ( (dado != null && dado.getValore() + agg >= valoreazione) || (dado == null && color.equals("neutro") && (agg > valoreazione))){
 				switch (nome) {
 				case "PIANO 1 FAMILIARE TERRITORI":
 					palazzoTerritori[3] = false;
@@ -222,7 +224,7 @@ public class Giocatore implements Serializable {
 					break;
 				}
 				return "OK";
-			} else if ( (dado == null && (color.equals("neutro") && agg == 0)) ||(dado != null && dado.getValore() + agg < valoreazione )) {
+			} else if ( (dado == null && (color.equals("neutro") && agg < valoreazione)) ||(dado != null && dado.getValore() + agg < valoreazione )) {
 				return "Pay";
 			} else
 				return "Cancel";
@@ -251,10 +253,10 @@ public class Giocatore implements Serializable {
 
 	}
 
-	public void addCard(CartaSviluppo carta, int tipo, Connection c) {
+	public void addCard(CartaSviluppo carta, int tipo, ConnectionDatabase conn, String name) {
 		carte.add(carta);
 		try {
-			activateCardEffettiImmediati(carta, tipo, c);
+			activateCardEffettiImmediati(carta, tipo, conn);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -275,10 +277,10 @@ public class Giocatore implements Serializable {
 		}
 	}
 
-	private void activateCardEffettiImmediati(CartaSviluppo carta, int tipo, Connection c) throws SQLException {
+	private void activateCardEffettiImmediati(CartaSviluppo carta, int tipo, ConnectionDatabase c) throws SQLException {
 		switch (tipo) {
 		case 0:
-			// carta = (CartaTerritori) carta;
+			carta = (CartaTerritori) carta;
 			for (Effetto e : carta.getEffetti()) {
 				if (e.isImmediato() && e.getQta() != 0) {
 					switch (e.getRisorsa()) {
@@ -333,7 +335,7 @@ public class Giocatore implements Serializable {
 			break;
 		case 1:
 			int sum = 0;
-			// carta = (CartaPersonaggi) carta;
+			 carta = (CartaPersonaggi) carta;
 			risorse.addRis("monete", -carta.getCostoMoneta());
 			for (Effetto e : carta.getEffetti()) {
 				if (e.isImmediato() && e.getQta() != 0) {
@@ -430,7 +432,7 @@ public class Giocatore implements Serializable {
 			}
 			break;
 		case 2:
-			// carta = (CartaEdifici) carta;
+			 carta = (CartaEdifici) carta;
 			for (Effetto e : carta.getEffetti()) {
 				if (e.isImmediato() && e.getQta() != 0) {
 					switch (e.getRisorsa()) {
@@ -447,7 +449,7 @@ public class Giocatore implements Serializable {
 			}
 			break;
 		case 3:
-			// carta = (CartaImprese) carta;
+			 carta = (CartaImprese) carta;
 			for (Effetto e : carta.getEffetti()) {
 				if (e.isImmediato() && e.getQta() != 0) {
 					switch (e.getRisorsa()) {
@@ -511,10 +513,9 @@ public class Giocatore implements Serializable {
 			}
 			break;
 		}
-		c.close();
 	}
 
-	public void raccolto(int qta, Connection conn) {
+	public void raccolto(int qta, ConnectionDatabase conn) {
 		setRisorse("legno");
 		setRisorse("pietra");
 		setRisorse("servitori");
@@ -536,7 +537,7 @@ public class Giocatore implements Serializable {
 		}
 	}
 
-	public void produzione(int qta, Connection conn) {
+	public void produzione(int qta, ConnectionDatabase conn) {
 		risorse.addRis("monete", 2);
 		risorse.addPunti("militari", 1);
 		partita.notifyAddRisorse(name, "monete", 2);
@@ -556,7 +557,7 @@ public class Giocatore implements Serializable {
 		}
 	}
 
-	public void activateCardEffettiPermanenti(CartaSviluppo c, int i, Connection conn) {
+	public void activateCardEffettiPermanenti(CartaSviluppo c, int i, ConnectionDatabase conn) {
 		switch (i) {
 		case 0:
 			c = (CartaTerritori) c;
@@ -748,7 +749,7 @@ public class Giocatore implements Serializable {
 		}
 	}
 
-	private void prendiRisorseeffettipermanenti(String risorsa, int qta, Connection c) {
+	private void prendiRisorseeffettipermanenti(String risorsa, int qta, ConnectionDatabase c) {
 		switch (risorsa) {
 		case "pietra":
 			risorse.addRis("pietra", qta);
@@ -846,11 +847,11 @@ public class Giocatore implements Serializable {
 		}
 	}
 
-	public void addRis(String tipo, int qta, Connection c) {
+	public void addRis(String tipo, int qta, ConnectionDatabase c) {
 		risorse.addRis(tipo, qta);
 	}
 
-	public void addPunti(String tipo, int qta, Connection c) {
+	public void addPunti(String tipo, int qta, ConnectionDatabase c) {
 		risorse.addPunti(tipo, qta);
 		partita.notifySpostamentoPunti(tipo, risorse.getPunti(tipo), c, color);
 	}

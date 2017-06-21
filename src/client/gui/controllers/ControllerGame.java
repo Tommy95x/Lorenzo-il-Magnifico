@@ -2614,8 +2614,8 @@ public class ControllerGame {
 		nFamPos++;
 		if (nFamPos == 4) {
 			try {
-				isInTurno = false;
 				start.getClient().changeGamer();
+				isInTurno = false;
 				nFamPos = 0;
 			} catch (RemoteException | SQLException e) {
 				// TODO Auto-generated catch block
@@ -2819,24 +2819,23 @@ public class ControllerGame {
 					start.getClient().getRisorse().addPunti("militari", 2);
 					start.getClient().notifySpostamentoPunti("militari");
 					popup.close();
+					e.consume();
 				} catch (ClassNotFoundException | IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				popup.close();
-				e.consume();
 			});
 			Button fedeB = new Button("Click Me!");
 			fedeB.setOnAction(e -> {
 				try {
 					start.getClient().getRisorse().addPunti("fede", 1);
 					start.getClient().notifySpostamentoPunti("fede");
+					popup.close();
+					e.consume();
 				} catch (ClassNotFoundException | IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				popup.close();
-				e.consume();
 			});
 			buttonBox.getChildren().addAll(risorse, servitoriB,moneteB, militariB, fedeB);
 			box.getChildren().addAll(im, buttonBox);

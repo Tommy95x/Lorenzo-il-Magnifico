@@ -205,9 +205,9 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		return null;
 	}*/
 	
-	public void setCardGiocatore(CartaSviluppo carta, int i, int piano) {
+	public void setCardGiocatore(CartaSviluppo carta, int tipo, int piano) {
 		try {
-			serverMethods.giveCard(carta,name,positionGame,i, piano);
+			serverMethods.giveCard(carta,name,positionGame,tipo, piano);
 		} catch (RemoteException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
