@@ -507,6 +507,11 @@ public class Partita implements Serializable {
 			c.releaseConnection(connection);
 		} catch (SQLException e) {
 			if(x == 265.0 && y == 440.0)
+				return "ZONA MERCATO";
+			if(x == 100.0 && y == 691.0)
+				return "AZIONE RACCOLTO 4";
+			if(x == 105.0 && y == 628.0)
+				return "AZIONE PRODUZIONE 4";
 		}
 		return nomeposizione;
 	}

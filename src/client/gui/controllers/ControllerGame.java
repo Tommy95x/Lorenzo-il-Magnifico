@@ -1426,7 +1426,9 @@ public class ControllerGame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		switch (getNamePosition(x, y)) {
+		String pos = getNamePosition(x, y);
+		System.out.println(pos);
+		switch (pos) {
 		case "PIANO 1 CARTE EDIFICI":
 			if (arrayCarteEdifici[0].getCostoLegno() < p.getDimRisorse("legno")
 					&& arrayCarteEdifici[0].getCostoMoneta() < p.getDimRisorse("monete")
@@ -1562,9 +1564,14 @@ public class ControllerGame {
 			return mom;
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
+			if(x == 265.0 && y == 440.0)
+				return "ZONA MERCATO";
+			if(x == 100.0 && y == 691.0)
+				return "AZIONE RACCOLTO 4";
+			if(x == 105.0 && y == 628.0)
+				return "AZIONE PRODUZIONE 4";
 		}
+		return "ciao";
 	}
 
 	public void setCardGiocatore(String namePosition, int piano, int tipo) throws IOException {
@@ -2353,6 +2360,7 @@ public class ControllerGame {
 			if (flag && destinazione1 != null) {
 				if (controlloPosizionamento("black", destinazione1.getLayoutX(), destinazione1.getLayoutY(), 0,
 						destinazione1)) {
+					System.out.print("neroooooooooooooo " +destinazione1.getLayoutX()+ "  " +destinazione1.getLayoutY());
 					destinazione1.setImage(familiareNero.getImage());
 					familiareNero.setDisable(true);
 					familiareNero.setOpacity(0);
@@ -2372,6 +2380,7 @@ public class ControllerGame {
 					ImageView mom = new ImageView(familiareNero.getImage());
 					mom.setFitWidth(35);
 					mom.setFitHeight(38);
+					System.out.print("neroooooooooooooo altrimenti " +destinazione2.getLayoutX()+ "  " +destinazione2.getLayoutY());
 					destinazione2.getChildren().add(mom);
 					familiareNero.setDisable(true);
 					familiareNero.setOpacity(0);
