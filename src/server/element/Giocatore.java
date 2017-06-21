@@ -127,12 +127,12 @@ public class Giocatore implements Serializable {
 		System.out.println("Enter in a notifica start");
 		if (client == null) {
 			System.out.println("utente socket" + server.toString());
-				try {
-					server.notifyStartGame();
-				} catch (ClassNotFoundException | IOException | SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			try {
+				server.notifyStartGame();
+			} catch (ClassNotFoundException | IOException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else {
 			System.out.println("utente rmi");
 			client.notifyStartGame();
@@ -172,7 +172,8 @@ public class Giocatore implements Serializable {
 		if (risorse.getDimRisorse("servitori") < agg) {
 			return "NotEnough";
 		} else {
-			if ( (dado != null && dado.getValore() + agg >= valoreazione) || (dado == null && color.equals("neutro") && (agg > valoreazione))){
+			if ((dado != null && dado.getValore() + agg >= valoreazione)
+					|| (dado == null && color.equals("neutro") && (agg+1 > valoreazione))) {
 				switch (nome) {
 				case "PIANO 1 FAMILIARE TERRITORI":
 					palazzoTerritori[3] = false;
@@ -224,7 +225,8 @@ public class Giocatore implements Serializable {
 					break;
 				}
 				return "OK";
-			} else if ( (dado == null && (color.equals("neutro") && agg < valoreazione)) ||(dado != null && dado.getValore() + agg < valoreazione )) {
+			} else if ((dado == null && (color.equals("neutro") && agg+1 < valoreazione))
+					|| (dado != null && dado.getValore() + agg < valoreazione)) {
 				return "Pay";
 			} else
 				return "Cancel";
@@ -234,9 +236,9 @@ public class Giocatore implements Serializable {
 	public void notifyTurno(int turno) throws SQLException, IOException {
 		if (client == null)
 			server.notifyTurno(turno);
-		else{
+		else {
 			client.notifyTurno(turno);
-			}
+		}
 
 	}
 
@@ -255,6 +257,19 @@ public class Giocatore implements Serializable {
 
 	public void addCard(CartaSviluppo carta, int tipo, ConnectionDatabase conn, String name) {
 		carte.add(carta);
+		if (carta.getId().contains("ED") || carta.getId().contains("IMP")) {
+			risorse.addRis("monete", -carta.getCostoMoneta());
+			risorse.addRis("servitori", -carta.getCostoMoneta());
+			risorse.addRis("pietra", -carta.getCostoMoneta());
+			risorse.addRis("legno", -carta.getCostoMoneta());
+			partita.notifyAddRisorse(name, "servitori", risorse.getDimRisorse("servitori"));
+			partita.notifyAddRisorse(name, "monete", risorse.getDimRisorse("monete"));
+			partita.notifyAddRisorse(name, "pietra", risorse.getDimRisorse("pietra"));
+			partita.notifyAddRisorse(name, "legno", risorse.getDimRisorse("legno"));
+		} else if (carta.getId().contains("PER")){
+			risorse.addRis("monete", -carta.getCostoMoneta());
+			partita.notifyAddRisorse(name, "monete", risorse.getDimRisorse("monete"));
+		}
 		try {
 			activateCardEffettiImmediati(carta, tipo, conn);
 		} catch (SQLException e) {
@@ -335,7 +350,7 @@ public class Giocatore implements Serializable {
 			break;
 		case 1:
 			int sum = 0;
-			 carta = (CartaPersonaggi) carta;
+			carta = (CartaPersonaggi) carta;
 			risorse.addRis("monete", -carta.getCostoMoneta());
 			for (Effetto e : carta.getEffetti()) {
 				if (e.isImmediato() && e.getQta() != 0) {
@@ -432,7 +447,7 @@ public class Giocatore implements Serializable {
 			}
 			break;
 		case 2:
-			 carta = (CartaEdifici) carta;
+			carta = (CartaEdifici) carta;
 			for (Effetto e : carta.getEffetti()) {
 				if (e.isImmediato() && e.getQta() != 0) {
 					switch (e.getRisorsa()) {
@@ -449,7 +464,7 @@ public class Giocatore implements Serializable {
 			}
 			break;
 		case 3:
-			 carta = (CartaImprese) carta;
+			carta = (CartaImprese) carta;
 			for (Effetto e : carta.getEffetti()) {
 				if (e.isImmediato() && e.getQta() != 0) {
 					switch (e.getRisorsa()) {
@@ -521,13 +536,13 @@ public class Giocatore implements Serializable {
 		setRisorse("servitori");
 		partita.notifyAddRisorse(name, "pietra", 1);
 		partita.notifyAddRisorse(name, "legno", 1);
-		partita.notifyAddRisorse(name, "servitori",1);
+		partita.notifyAddRisorse(name, "servitori", 1);
 		for (CartaSviluppo c : carte) {
 			if (c.getNameCard().equals("Contadino")) {
 				qta += 2;
 			}
 			if (c.getNameCard().equals("Fattore")) {
-				qta += 2;
+				qta += 3;
 			}
 		}
 		for (CartaSviluppo c : carte) {
@@ -547,7 +562,7 @@ public class Giocatore implements Serializable {
 				qta += 2;
 			}
 			if (c.getNameCard().equals("Studioso")) {
-				qta += 2;
+				qta += 3;
 			}
 		}
 		for (CartaSviluppo c : carte) {
@@ -557,8 +572,8 @@ public class Giocatore implements Serializable {
 		}
 	}
 
-	public void activateCardEffettiPermanenti(CartaSviluppo c, int i, ConnectionDatabase conn) {
-		switch (i) {
+	public void activateCardEffettiPermanenti(CartaSviluppo c, int tipo, ConnectionDatabase conn) {
+		switch (tipo) {
 		case 0:
 			c = (CartaTerritori) c;
 			for (Effetto e : c.getEffetti()) {
@@ -613,7 +628,7 @@ public class Giocatore implements Serializable {
 						switch (c.getPerOgniCarta()) {
 						case "IMPRESA":
 							for (CartaSviluppo c1 : carte) {
-								if (c1.getId().contains("impr")) {
+								if (c1.getId().contains("IMP")) {
 									sum++;
 								}
 							}
@@ -642,7 +657,6 @@ public class Giocatore implements Serializable {
 							}
 							risorse.addRis("monete", sum);
 							partita.notifyAddRisorse(name, "monete", sum);
-							;
 							sum = 0;
 							break;
 						case "PERSONAGGI":
@@ -694,7 +708,7 @@ public class Giocatore implements Serializable {
 					case "fede":
 						if (r[j].getQta() <= risorse.getDimRisorse("fede")) {
 							risorse.addPunti("fede", -p[j].getQta());
-							//Controlla perche non notifichi in sti metodi
+							partita.notifySpostamentoPunti("fede", risorse.getPunti("fede"), conn, color);
 							prendiRisorseeffettipermanenti(p[j].getRisorsa(), p[j].getQta(), conn);
 							if (p[j + 1].getQta() != 0 && j < 2) {
 								prendiRisorseeffettipermanenti(p[j].getRisorsa(), p[j].getQta(), conn);
@@ -704,6 +718,7 @@ public class Giocatore implements Serializable {
 						if (r[j].getQta() <= risorse.getDimRisorse("servitori")) {
 							if (r[j + 1].getRisorsa() == "niente") {
 								risorse.addRis("servitori", -r[j].getQta());
+								partita.notifyAddRisorse(name, "servitori", -r[j].getQta());
 								prendiRisorseeffettipermanenti(p[j].getRisorsa(), p[j].getQta(), conn);
 								if (p[j + 1].getQta() != 0 && j < 2) {
 									prendiRisorseeffettipermanenti(p[j].getRisorsa(), p[j].getQta(), conn);
@@ -712,6 +727,9 @@ public class Giocatore implements Serializable {
 								risorse.addRis("servitori", -r[j].getQta());
 								risorse.addRis("legno", -r[j + 1].getQta());
 								risorse.addRis("pietra", -r[j + 2].getQta());
+								partita.notifyAddRisorse(name, "servitori", -r[j].getQta());
+								partita.notifyAddRisorse(name, "legno", -r[j].getQta());
+								partita.notifyAddRisorse(name, "pietra", -r[j].getQta());
 								prendiRisorseeffettipermanenti(p[j].getRisorsa(), p[j].getQta(), conn);
 								if (p[j + 1].getQta() != 0 && j < 2) {
 									prendiRisorseeffettipermanenti(p[j].getRisorsa(), p[j].getQta(), conn);
@@ -753,12 +771,15 @@ public class Giocatore implements Serializable {
 		switch (risorsa) {
 		case "pietra":
 			risorse.addRis("pietra", qta);
+			partita.notifyAddRisorse(name, "pietra", qta);
 			break;
 		case "legno":
 			risorse.addRis("legno", qta);
+			partita.notifyAddRisorse(name, "legno", qta);
 			break;
 		case "servitori":
 			risorse.addRis("servitori", qta);
+			partita.notifyAddRisorse(name, "servitori", qta);
 			break;
 		case "fede":
 			risorse.addRis("fede", qta);
@@ -965,27 +986,27 @@ public class Giocatore implements Serializable {
 		punti = punti + risorse.getDimRisorse("servitori") / 5;
 		punti = punti + risorse.getDimRisorse("pietra") / 5;
 		punti = punti + risorse.getDimRisorse("legno") / 5;
-		for(CartaSviluppo c : carte){
-			if(c.getId().contains("TER"))
+		for (CartaSviluppo c : carte) {
+			if (c.getId().contains("TER"))
 				numeroCarte++;
 		}
 		punti = punti + aggPuntiFinaliTerr(numeroCarte);
-		numeroCarte=0;
-		for(CartaSviluppo c : carte)
-			if(c.getId().contains("PER"))
+		numeroCarte = 0;
+		for (CartaSviluppo c : carte)
+			if (c.getId().contains("PER"))
 				numeroCarte++;
-		punti = punti+aggPuntiFinaliPers(numeroCarte);
-		punti +=risorse.getPunti("vittoria");
+		punti = punti + aggPuntiFinaliPers(numeroCarte);
+		punti += risorse.getPunti("vittoria");
 		puntiFinali = punti;
 		return punti;
 	}
 
-	public int getPuntiFinali(){
+	public int getPuntiFinali() {
 		return puntiFinali;
 	}
-	
+
 	private int aggPuntiFinaliPers(int numeroCarte) {
-		switch(numeroCarte){
+		switch (numeroCarte) {
 		case 1:
 			return 1;
 		case 2:
@@ -1003,7 +1024,7 @@ public class Giocatore implements Serializable {
 	}
 
 	private int aggPuntiFinaliTerr(int numeroCarteTerr) {
-		switch(numeroCarteTerr){
+		switch (numeroCarteTerr) {
 		case 3:
 			return 1;
 		case 4:
@@ -1017,9 +1038,9 @@ public class Giocatore implements Serializable {
 	}
 
 	public void notifyVittoria() {
-		if(client == null){
+		if (client == null) {
 			server.notifyVittoria();
-		}else{
+		} else {
 			try {
 				client.notifyVittoria();
 			} catch (RemoteException e) {
@@ -1027,13 +1048,13 @@ public class Giocatore implements Serializable {
 				e.printStackTrace();
 			}
 		}
-		
+
 	}
 
 	public void nofySconfitta(int max) {
-		if(client == null){
+		if (client == null) {
 			server.nofySconfitta(max);
-		}else{
+		} else {
 			try {
 				client.nofySconfitta(max);
 			} catch (RemoteException e) {
