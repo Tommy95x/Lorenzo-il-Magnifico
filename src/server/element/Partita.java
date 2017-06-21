@@ -497,6 +497,7 @@ public class Partita implements Serializable {
 												// primo piano palazzo...
 		rs.next();
 		nomeposizione = rs.getString("NOME");
+		System.out.println(nomeposizione);
 		rs.close();
 		stmt.close();
 		c.releaseConnection(connection);

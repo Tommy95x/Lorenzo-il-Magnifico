@@ -24,7 +24,7 @@
             <VBox fx:id="cartePersonaggi" layoutX="145.0" layoutY="40.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="383.0" prefWidth="63.0" />
             <VBox fx:id="carteEdifici" layoutX="254.0" layoutY="41.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="383.0" prefWidth="63.0" />
             <VBox fx:id="carteImprese" layoutX="360.0" layoutY="42.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="383.0" prefWidth="63.0" />
-            <HBox fx:id="municipio" layoutX="265.0" layoutY="440.0" prefHeight="38.0" prefWidth="123.0" />
+            <HBox fx:id="municipio" layoutX="265.0" layoutY="440.0" prefHeight="43.0" prefWidth="122.0" />
             <ImageView fx:id="pianoQuartoPalazzoEdifici" fitHeight="38.0" fitWidth="46.0" layoutX="312.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="pianoTerzoPalazzoEdifici" fitHeight="38.0" fitWidth="46.0" layoutX="311.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="pianoSecondoPalazzoEdifici" fitHeight="38.0" fitWidth="46.0" layoutX="313.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true" />

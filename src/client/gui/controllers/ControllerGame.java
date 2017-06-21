@@ -1942,7 +1942,19 @@ public class ControllerGame {
 		pianoPrimoPalazzoTerritori.setImage(null);
 		pianoSecondoPalazzoTerritori.setImage(null);
 		pianoTerzoPalazzoTerritori.setImage(null);
-
+		mercatoPosServitori.setImage(null);
+		mercatoPosMoneteMilitari.setImage(null);
+		mercatoPosMonete.setImage(null);
+		mercatoPosMunicipio.setImage(null);
+		azioniTerritoridaunGiocatore.setImage(null);
+		azioniEdificidaunGiocatore.setImage(null);
+		
+		azioniTerritoridaunGiocatore.setDisable(false);
+		azioniEdificidaunGiocatore.setDisable(false);
+		mercatoPosServitori.setDisable(false);
+		mercatoPosMoneteMilitari.setDisable(false);
+		mercatoPosMonete.setDisable(false);
+		mercatoPosMunicipio.setDisable(false);
 		mercatoPosMoneteMilitari.setDisable(false);
 		mercatoPosServitori.setDisable(false);
 		mercatoPosMonete.setDisable(false);
@@ -2572,6 +2584,10 @@ public class ControllerGame {
 			setDestinazione2(azioniEdificidapiuGiocatori);
 		});
 
+		azioniTerritoridapiuGiocatori.setOnDragEntered(e -> {
+			setDestinazione2(azioniTerritoridapiuGiocatori);
+		});
+		
 	}
 
 	private void posizionatoFamiliare() {
@@ -2859,6 +2875,8 @@ public class ControllerGame {
 				box.getChildren().add(i);
 				i.setOnMouseClicked(e -> {
 					try {
+						i.setFitWidth(97.5);
+						i.setFitHeight(63);
 						start.getClient().getRisorse().addRis("monete", -3);
 						start.getClient().notifyRisorse("monete", start.getClient().getRisorse().getDimRisorse("monete"));
 						start.getClient().setCardGiocatore(i.getC(), i.getTipo(), i.getPiano());
