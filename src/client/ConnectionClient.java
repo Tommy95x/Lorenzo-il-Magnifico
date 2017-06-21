@@ -284,9 +284,8 @@ public class ConnectionClient implements ClientInterface{
 	}
 
 
-	public void mandaTurno() {
+	public void waitQualcosa() throws ClassNotFoundException, IOException {
 		// TODO Auto-generated method stub
 		
 	}
-
 }
