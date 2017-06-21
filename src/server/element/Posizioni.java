@@ -5,6 +5,9 @@ public class Posizioni {
 	private double x;
 	private double y;
 	private String name;
+	public Posizioni(double double1, double double2, String string) {
+		// TODO Auto-generated constructor stub
+	}
 	public double getX() {
 		return x;
 	}

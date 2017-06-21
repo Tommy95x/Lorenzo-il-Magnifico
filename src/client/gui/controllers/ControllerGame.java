@@ -3131,5 +3131,14 @@ public class ControllerGame {
 		}
 		
 	}
+	
+	public void activateBanCards(){
+		if(Integer.parseInt(turno.getText()) > 2){
+			
+		}
+		if(Integer.parseInt(turno.getText()) > 4){
+			
+		}
+	}
 
 }

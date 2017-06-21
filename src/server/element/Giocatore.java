@@ -529,10 +529,6 @@ public class Giocatore implements Serializable {
 			break;
 		}
 	}
-
-	public void activateBanCards(){
-		
-	}
 	
 	public void raccolto(int qta, ConnectionDatabase conn) {
 		setRisorse("legno");

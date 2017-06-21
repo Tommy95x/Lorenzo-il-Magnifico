@@ -3,7 +3,10 @@ package server;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import javafx.scene.image.Image;
@@ -272,9 +275,19 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 	}
 
 	@Override
-	public ArrayList<Posizioni> getPositions() throws RemoteException {
+	public ArrayList<Posizioni> getPositions(String name) throws RemoteException, SQLException {
+		Connection con;
 		ArrayList<Posizioni> mom = new ArrayList<Posizioni>();
-		String query;
+		String query = "SELECT * FROM POSIZIONETABELLONE";
+		con = commonServer.getDBConnection().getConnection(name);
+		Statement stmt = con.createStatement();
+		ResultSet rs = stmt.executeQuery(query);
+		while(rs.next()){;
+			mom.add(new Posizioni(rs.getDouble("POSX"), rs.getDouble("POSY"), rs.getString("NOME")));
+		}
+		rs.close();
+		stmt.close();
+		commonServer.getDBConnection().releaseConnection(con);
 		return null;
 	}
 }

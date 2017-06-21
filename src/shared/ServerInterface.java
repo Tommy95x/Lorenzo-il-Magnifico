@@ -55,5 +55,5 @@ public interface ServerInterface extends Remote {
 	public void addScomunica(int positionGame, String name)throws RemoteException;
 	public void changeCards(int positionGame)throws RemoteException, SQLException;
 	public void notifyAddRisorse(int positionGame, String name, String tipo, int qta)throws RemoteException;
-	public ArrayList<Posizioni> getPositions()throws RemoteException;
+	public ArrayList<Posizioni> getPositions(String name)throws RemoteException, SQLException;
 }

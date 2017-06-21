@@ -373,7 +373,7 @@ public class ConnectionClientConsole extends ConnectionRmiClient implements RMIC
 				}
 				break;
 			case "mostra le posizioni":
-				ArrayList<Posizioni> pos = serverMethods.getPositions();
+				ArrayList<Posizioni> pos = serverMethods.getPositions(account);
 				for (Posizioni p : pos) {
 					System.out.println("Posizione: " + p.getName() + " con x = " + p.getX() + " e y = " + p.getY());
 				}

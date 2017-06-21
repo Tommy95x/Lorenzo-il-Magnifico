@@ -505,3 +505,369 @@ org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
 org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
 06-19 15:41:47 jdbc[15]: exception
 org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-20 12:18:57 jdbc[20]: exception
+org.h2.jdbc.JdbcSQLException: Column "PM02" not found; SQL statement:
+SELECT POSX, POSY FROM POSIZIONETABELLONE WHERE ID=PM02 [42122-182]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.expression.Comparison.optimize(Comparison.java:180)
+	at org.h2.command.dml.Select.prepare(Select.java:832)
+	at org.h2.command.Parser.prepareCommand(Parser.java:247)
+	at org.h2.engine.Session.prepareLocal(Session.java:446)
+	at org.h2.engine.Session.prepareCommand(Session.java:388)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1190)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:73)
+	at server.element.Partita.notifySpostamentoPunti(Partita.java:541)
+	at server.element.Giocatore.activateCardEffettiImmediati(Giocatore.java:282)
+	at server.element.Giocatore.addCard(Giocatore.java:251)
+	at server.ImplementServerInterface.giveCard(ImplementServerInterface.java:147)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at sun.rmi.server.UnicastServerRef.dispatch(Unknown Source)
+	at sun.rmi.transport.Transport$1.run(Unknown Source)
+	at sun.rmi.transport.Transport$1.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Unknown Source)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(Unknown Source)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(Unknown Source)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+06-20 12:18:57 jdbc[20]: exception
+org.h2.jdbc.JdbcSQLException: Column "PM02" not found; SQL statement:
+SELECT POSX, POSY FROM POSIZIONETABELLONE WHERE ID=PM02 [42122-182]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.expression.Comparison.optimize(Comparison.java:180)
+	at org.h2.command.dml.Select.prepare(Select.java:832)
+	at org.h2.command.Parser.prepareCommand(Parser.java:247)
+	at org.h2.engine.Session.prepareLocal(Session.java:446)
+	at org.h2.engine.Session.prepareCommand(Session.java:388)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1190)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:73)
+	at server.element.Partita.notifySpostamentoPunti(Partita.java:541)
+	at server.element.Giocatore.activateCardEffettiImmediati(Giocatore.java:282)
+	at server.element.Giocatore.addCard(Giocatore.java:251)
+	at server.ImplementServerInterface.giveCard(ImplementServerInterface.java:147)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at sun.rmi.server.UnicastServerRef.dispatch(Unknown Source)
+	at sun.rmi.transport.Transport$1.run(Unknown Source)
+	at sun.rmi.transport.Transport$1.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Unknown Source)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(Unknown Source)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(Unknown Source)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+06-20 12:20:10 jdbc[41]: exception
+org.h2.jdbc.JdbcSQLException: Column "PF01" not found; SQL statement:
+SELECT POSX, POSY FROM POSIZIONETABELLONE WHERE ID=PF01 [42122-182]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.expression.Comparison.optimize(Comparison.java:180)
+	at org.h2.command.dml.Select.prepare(Select.java:832)
+	at org.h2.command.Parser.prepareCommand(Parser.java:247)
+	at org.h2.engine.Session.prepareLocal(Session.java:446)
+	at org.h2.engine.Session.prepareCommand(Session.java:388)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1190)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:73)
+	at server.element.Partita.notifySpostamentoPunti(Partita.java:595)
+	at server.element.Giocatore.activateCardEffettiImmediati(Giocatore.java:436)
+	at server.element.Giocatore.addCard(Giocatore.java:251)
+	at server.ImplementServerInterface.giveCard(ImplementServerInterface.java:147)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at sun.rmi.server.UnicastServerRef.dispatch(Unknown Source)
+	at sun.rmi.transport.Transport$1.run(Unknown Source)
+	at sun.rmi.transport.Transport$1.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Unknown Source)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(Unknown Source)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(Unknown Source)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+06-20 12:20:10 jdbc[41]: exception
+org.h2.jdbc.JdbcSQLException: Column "PF01" not found; SQL statement:
+SELECT POSX, POSY FROM POSIZIONETABELLONE WHERE ID=PF01 [42122-182]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.expression.Comparison.optimize(Comparison.java:180)
+	at org.h2.command.dml.Select.prepare(Select.java:832)
+	at org.h2.command.Parser.prepareCommand(Parser.java:247)
+	at org.h2.engine.Session.prepareLocal(Session.java:446)
+	at org.h2.engine.Session.prepareCommand(Session.java:388)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1190)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:73)
+	at server.element.Partita.notifySpostamentoPunti(Partita.java:595)
+	at server.element.Giocatore.activateCardEffettiImmediati(Giocatore.java:436)
+	at server.element.Giocatore.addCard(Giocatore.java:251)
+	at server.ImplementServerInterface.giveCard(ImplementServerInterface.java:147)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at sun.rmi.server.UnicastServerRef.dispatch(Unknown Source)
+	at sun.rmi.transport.Transport$1.run(Unknown Source)
+	at sun.rmi.transport.Transport$1.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Unknown Source)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(Unknown Source)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(Unknown Source)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+06-20 12:20:38 jdbc[49]: exception
+org.h2.jdbc.JdbcSQLException: Column "PV06" not found; SQL statement:
+SELECT POSX, POSY FROM POSIZIONETABELLONE WHERE ID=PV06 [42122-182]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.expression.Comparison.optimize(Comparison.java:180)
+	at org.h2.command.dml.Select.prepare(Select.java:832)
+	at org.h2.command.Parser.prepareCommand(Parser.java:247)
+	at org.h2.engine.Session.prepareLocal(Session.java:446)
+	at org.h2.engine.Session.prepareCommand(Session.java:388)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1190)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:73)
+	at server.element.Partita.notifySpostamentoPunti(Partita.java:568)
+	at server.element.Giocatore.activateCardEffettiImmediati(Giocatore.java:432)
+	at server.element.Giocatore.addCard(Giocatore.java:251)
+	at server.ImplementServerInterface.giveCard(ImplementServerInterface.java:147)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at sun.rmi.server.UnicastServerRef.dispatch(Unknown Source)
+	at sun.rmi.transport.Transport$1.run(Unknown Source)
+	at sun.rmi.transport.Transport$1.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Unknown Source)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(Unknown Source)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(Unknown Source)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+06-20 12:20:38 jdbc[49]: exception
+org.h2.jdbc.JdbcSQLException: Column "PV06" not found; SQL statement:
+SELECT POSX, POSY FROM POSIZIONETABELLONE WHERE ID=PV06 [42122-182]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.expression.Comparison.optimize(Comparison.java:180)
+	at org.h2.command.dml.Select.prepare(Select.java:832)
+	at org.h2.command.Parser.prepareCommand(Parser.java:247)
+	at org.h2.engine.Session.prepareLocal(Session.java:446)
+	at org.h2.engine.Session.prepareCommand(Session.java:388)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1190)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:73)
+	at server.element.Partita.notifySpostamentoPunti(Partita.java:568)
+	at server.element.Giocatore.activateCardEffettiImmediati(Giocatore.java:432)
+	at server.element.Giocatore.addCard(Giocatore.java:251)
+	at server.ImplementServerInterface.giveCard(ImplementServerInterface.java:147)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at sun.rmi.server.UnicastServerRef.dispatch(Unknown Source)
+	at sun.rmi.transport.Transport$1.run(Unknown Source)
+	at sun.rmi.transport.Transport$1.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Unknown Source)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(Unknown Source)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(Unknown Source)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+06-20 12:22:54 jdbc[61]: exception
+org.h2.jdbc.JdbcSQLException: Column "PM03" not found; SQL statement:
+SELECT POSX, POSY FROM POSIZIONETABELLONE WHERE ID=PM03 [42122-182]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.expression.Comparison.optimize(Comparison.java:180)
+	at org.h2.command.dml.Select.prepare(Select.java:832)
+	at org.h2.command.Parser.prepareCommand(Parser.java:247)
+	at org.h2.engine.Session.prepareLocal(Session.java:446)
+	at org.h2.engine.Session.prepareCommand(Session.java:388)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1190)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:73)
+	at server.element.Partita.notifySpostamentoPunti(Partita.java:541)
+	at server.element.Giocatore.activateCardEffettiImmediati(Giocatore.java:336)
+	at server.element.Giocatore.addCard(Giocatore.java:251)
+	at server.ImplementServerInterface.giveCard(ImplementServerInterface.java:147)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at sun.rmi.server.UnicastServerRef.dispatch(Unknown Source)
+	at sun.rmi.transport.Transport$1.run(Unknown Source)
+	at sun.rmi.transport.Transport$1.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Unknown Source)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(Unknown Source)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(Unknown Source)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+06-20 12:22:54 jdbc[61]: exception
+org.h2.jdbc.JdbcSQLException: Column "PM03" not found; SQL statement:
+SELECT POSX, POSY FROM POSIZIONETABELLONE WHERE ID=PM03 [42122-182]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.expression.Comparison.optimize(Comparison.java:180)
+	at org.h2.command.dml.Select.prepare(Select.java:832)
+	at org.h2.command.Parser.prepareCommand(Parser.java:247)
+	at org.h2.engine.Session.prepareLocal(Session.java:446)
+	at org.h2.engine.Session.prepareCommand(Session.java:388)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1190)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:73)
+	at server.element.Partita.notifySpostamentoPunti(Partita.java:541)
+	at server.element.Giocatore.activateCardEffettiImmediati(Giocatore.java:336)
+	at server.element.Giocatore.addCard(Giocatore.java:251)
+	at server.ImplementServerInterface.giveCard(ImplementServerInterface.java:147)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at sun.rmi.server.UnicastServerRef.dispatch(Unknown Source)
+	at sun.rmi.transport.Transport$1.run(Unknown Source)
+	at sun.rmi.transport.Transport$1.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Unknown Source)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(Unknown Source)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(Unknown Source)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+06-20 15:30:17 jdbc[17]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-20 15:37:55 jdbc[28]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-20 16:02:21 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-20 17:57:52 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-20 21:33:54 jdbc[54]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-20 21:34:05 jdbc[56]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-20 21:34:09 jdbc[57]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-20 21:42:06 jdbc[47]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-20 21:44:32 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Table "CIAOCARTETERRITORIOPARTITA" already exists; SQL statement:
+CREATE TABLE CIAOCARTETERRITORIOPARTITA AS SELECT * FROM CIAOCARTETERRITORIOPARTITARANDOM ORDER BY PERIODO [42101-182]
+06-20 22:52:59 jdbc[53]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-21 21:14:22 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "FCARTETERRITORIOPARTITA" already exists; SQL statement:
+CREATE TABLE FCARTETERRITORIOPARTITA AS SELECT * FROM FCARTETERRITORIOPARTITARANDOM ORDER BY PERIODO [42101-182]
+2017-06-21 22:22:11 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/parke/test.mv.db [1.4.194/7]" [50000-194]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:295)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:378)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:361)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2930)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2474)
+	at org.h2.engine.Database.open(Database.java:697)
+	at org.h2.engine.Database.openDatabase(Database.java:276)
+	at org.h2.engine.Database.<init>(Database.java:270)
+	at org.h2.engine.Engine.openSession(Engine.java:64)
+	at org.h2.engine.Engine.openSession(Engine.java:176)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:154)
+	at org.h2.engine.Engine.createSession(Engine.java:137)
+	at org.h2.server.TcpServerThread.run(TcpServerThread.java:148)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: org.h2.jdbc.JdbcSQLException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/parke/test.mv.db [1.4.194/7]" [50000-194]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 18 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/parke/test.mv.db [1.4.194/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:765)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:347)
+	... 13 more
+06-21 23:04:36 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-21 23:07:39 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-21 23:07:45 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-21 23:55:37 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-21 23:55:44 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-21 23:55:48 jdbc[16]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-21 23:55:52 jdbc[17]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-21 23:56:47 jdbc[21]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-22 00:01:02 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-22 00:10:31 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-22 00:14:10 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-22 00:19:35 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-22 00:25:46 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-22 00:32:26 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-22 00:39:02 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-22 00:39:56 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-22 00:46:12 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
