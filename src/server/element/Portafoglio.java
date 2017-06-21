@@ -59,7 +59,7 @@ public class Portafoglio implements Serializable {
 	}
 
 	private boolean addLengo(int incr) {
-		if (legno == 0 && incr <= 0) {
+		if (legno <= 0 ) {
 			return false;
 		}
 		legno += incr;

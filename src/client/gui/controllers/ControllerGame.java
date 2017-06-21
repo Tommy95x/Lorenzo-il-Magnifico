@@ -868,7 +868,7 @@ public class ControllerGame {
 						if (controlloPosizionamento(color, x, y, Integer.parseInt(val), destinazione)){
 							try {
 								start.getClient().getRisorse().addRis("servitori", -Integer.parseInt(val));
-								start.getClient().notifyRisorse("servitori",-Integer.parseInt(val) );
+								start.getClient().notifyRisorse("servitori", start.getClient().getRisorse().getDimRisorse("servitori") );
 							} catch (NumberFormatException | ClassNotFoundException | IOException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -1597,8 +1597,8 @@ public class ControllerGame {
 			sistemaCarte(0, 1);
 			try {
 				start.getClient().addRisorse("legno", 1);
-				start.getClient().notifyRisorse("legno", 1);
-			} catch (SQLException e3) {
+				start.getClient().notifyRisorse("legno", start.getClient().getRisorse().getDimRisorse("legno"));
+			} catch (SQLException | ClassNotFoundException e3) {
 				// TODO Auto-generated catch block
 				e3.printStackTrace();
 			}
@@ -1613,8 +1613,8 @@ public class ControllerGame {
 			sistemaCarte(0, 0);
 			try {
 				start.getClient().addRisorse("legno", 2);
-				start.getClient().notifyRisorse("legno", 2);
-			} catch (SQLException e3) {
+				start.getClient().notifyRisorse("legno", start.getClient().getRisorse().getDimRisorse("legno"));
+			} catch (SQLException | ClassNotFoundException e3) {
 				// TODO Auto-generated catch block
 				e3.printStackTrace();
 			}
@@ -1645,7 +1645,6 @@ public class ControllerGame {
 			Tooltip.install(mom, arrayCarteEdifici[1].getTooltip());
 			carteEdificiGiocatore.getChildren().add(mom);
 			sistemaCarte(2, 1);
-			
 			start.getClient().setCardGiocatore(arrayCarteEdifici[1], 2, 1);
 			break;
 		case "PIANO 4 FAMILIARE EDIFICI":
@@ -1736,8 +1735,8 @@ public class ControllerGame {
 			sistemaCarte(1, 0);
 			try {
 				start.getClient().addRisorse("pietra", 2);
-				start.getClient().notifyRisorse("pietra", 2);
-			} catch (SQLException e3) {
+				start.getClient().notifyRisorse("pietra", start.getClient().getRisorse().getDimRisorse("pietra"));
+			} catch (SQLException | ClassNotFoundException e3) {
 				// TODO Auto-generated catch block
 				e3.printStackTrace();
 			}
@@ -1749,16 +1748,15 @@ public class ControllerGame {
 				start.getClient().produzione(0);
 				break;
 			case 1:
-				start.getClient().produzione(start.getClient().getDado("black"));
+				start.getClient().produzione(start.getClient().getDado("black")-3);
 				break;
 			case 2:
-				start.getClient().produzione(start.getClient().getDado("orange"));
+				start.getClient().produzione(start.getClient().getDado("orange")-3);
 				break;
 			case 3:
-				start.getClient().produzione(start.getClient().getDado("white"));
+				start.getClient().produzione(start.getClient().getDado("white")-3);
 				break;
 			}
-			start.getClient().produzione(-3);
 			break;
 		case "AZIONE PRODUZIONE 1":
 			start.getClient().produzione(0);
@@ -1772,8 +1770,8 @@ public class ControllerGame {
 		case "PRENDI 5 MONETE":
 			try {
 				start.getClient().addRisorse("monete", 5);
-				start.getClient().notifyRisorse("monete", 5);
-			} catch (SQLException e2) {
+				start.getClient().notifyRisorse("monete", start.getClient().getRisorse().getDimRisorse("monete"));
+			} catch (SQLException | ClassNotFoundException e2) {
 				// TODO Auto-generated catch block
 				e2.printStackTrace();
 			}
@@ -1781,8 +1779,8 @@ public class ControllerGame {
 		case "PRENDI 5 SERVITORI":
 			try {
 				start.getClient().addRisorse("servitori", 5);
-				start.getClient().notifyRisorse("servitori", 5);
-			} catch (SQLException e1) {
+				start.getClient().notifyRisorse("servitori", start.getClient().getRisorse().getDimRisorse("servitori"));
+			} catch (SQLException | ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
@@ -1791,9 +1789,9 @@ public class ControllerGame {
 			try {
 				start.getClient().addRisorse("monete", 2);
 				start.getClient().addPunti("militari", 5);
-				start.getClient().notifyRisorse("monete", 2);
+				start.getClient().notifyRisorse("monete", start.getClient().getRisorse().getDimRisorse("monete"));
 				start.getClient().notifySpostamentoPunti("militari");
-			} catch (SQLException e) {
+			} catch (SQLException | ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -2308,18 +2306,13 @@ public class ControllerGame {
 					try {
 						start.getClient().notifySpostamento("neutro", destinazione1.getLayoutX(),
 								destinazione1.getLayoutY());
-					} catch (IOException e2) {
+						setCardGiocatore(start.getClient().getNamePosition(destinazione1.getLayoutX(),
+								destinazione1.getLayoutY()), 0,0);
+					} catch (IOException | ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
 					}
 					posizionatoFamiliare();
-					try {
-						setCardGiocatore(start.getClient().getNamePosition(destinazione1.getLayoutX(),
-									destinazione1.getLayoutY()), 0,0);
-					} catch (IOException | SQLException | ClassNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
 				}
 			} else {
 				if (controlloPosizionamento("neutro", destinazione2.getLayoutX(), destinazione2.getLayoutX(), 0,
@@ -2333,18 +2326,13 @@ public class ControllerGame {
 					try {
 						start.getClient().notifySpostamento("neutro", destinazione1.getLayoutX(),
 								destinazione1.getLayoutY());
-					} catch (IOException e2) {
+						setCardGiocatore(start.getClient().getNamePosition(destinazione2.getLayoutX(),
+								destinazione2.getLayoutY()), 0,0);
+					} catch (IOException | ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
 					}
 					posizionatoFamiliare();
-					try {
-						setCardGiocatore(start.getClient().getNamePosition(destinazione2.getLayoutX(),
-								destinazione2.getLayoutY()), 0,0);
-					} catch (IOException | SQLException | ClassNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
 				}
 			}
 		});
@@ -2359,18 +2347,13 @@ public class ControllerGame {
 					try {
 						start.getClient().notifySpostamento("black", destinazione1.getLayoutX(),
 								destinazione1.getLayoutY());
-					} catch (IOException e2) {
+						setCardGiocatore(start.getClient().getNamePosition(destinazione1.getLayoutX(),
+								destinazione1.getLayoutY()), 1,0);
+					} catch (IOException | ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
 					}
 					posizionatoFamiliare();
-					try {
-						setCardGiocatore(start.getClient().getNamePosition(destinazione1.getLayoutX(),
-								destinazione1.getLayoutY()), 1,0);
-					} catch (IOException | SQLException | ClassNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
 				}
 			} else {
 				if (controlloPosizionamento("black", destinazione2.getLayoutX(), destinazione2.getLayoutX(), 0, null)) {
@@ -2383,18 +2366,13 @@ public class ControllerGame {
 					try {
 						start.getClient().notifySpostamento("black", destinazione2.getLayoutX(),
 								destinazione2.getLayoutY());
-					} catch (IOException e2) {
+						setCardGiocatore(start.getClient().getNamePosition(destinazione2.getLayoutX(),
+								destinazione2.getLayoutY()), 1,0);
+					} catch (IOException | ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
 					}
 					posizionatoFamiliare();
-					try {
-						setCardGiocatore(start.getClient().getNamePosition(destinazione2.getLayoutX(),
-								destinazione2.getLayoutY()), 1,0);
-					} catch (IOException | SQLException | ClassNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
 				}
 			}
 		});
@@ -2409,18 +2387,13 @@ public class ControllerGame {
 					try {
 						start.getClient().notifySpostamento("orange", destinazione1.getLayoutX(),
 								destinazione1.getLayoutY());
-					} catch (IOException e2) {
+						setCardGiocatore(start.getClient().getNamePosition(destinazione1.getLayoutX(),
+								destinazione1.getLayoutY()), 2,0);
+					} catch (IOException | ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
 					}
 					posizionatoFamiliare();
-					try {
-						setCardGiocatore(start.getClient().getNamePosition(destinazione1.getLayoutX(),
-								destinazione1.getLayoutY()), 2,0);
-					} catch (IOException | SQLException | ClassNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
 				}
 			} else {
 				if (controlloPosizionamento("orange", destinazione2.getLayoutX(), destinazione2.getLayoutX(), 0,
@@ -2434,18 +2407,13 @@ public class ControllerGame {
 					try {
 						start.getClient().notifySpostamento("orange", destinazione2.getLayoutX(),
 								destinazione2.getLayoutY());
-					} catch (IOException e2) {
+						setCardGiocatore(start.getClient().getNamePosition(destinazione2.getLayoutX(),
+								destinazione2.getLayoutY()), 2,0);
+					} catch (IOException | ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
 					}
 					posizionatoFamiliare();
-					try {
-						setCardGiocatore(start.getClient().getNamePosition(destinazione2.getLayoutX(),
-								destinazione2.getLayoutY()), 2,0);
-					} catch (IOException | SQLException | ClassNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
 				}
 			}
 		});
@@ -2460,18 +2428,13 @@ public class ControllerGame {
 					try {
 						start.getClient().notifySpostamento("white", destinazione1.getLayoutX(),
 								destinazione1.getLayoutY());
-					} catch (IOException e2) {
+						setCardGiocatore(start.getClient().getNamePosition(destinazione1.getLayoutX(),
+								destinazione1.getLayoutY()), 3,0);
+					} catch (IOException | ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
 					}
 					posizionatoFamiliare();
-					try {
-						setCardGiocatore(start.getClient().getNamePosition(destinazione1.getLayoutX(),
-								destinazione1.getLayoutY()), 3,0);
-					} catch (IOException | SQLException | ClassNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
 				}
 			} else {
 				if (controlloPosizionamento("white", destinazione2.getLayoutX(), destinazione2.getLayoutX(), 0, null)) {
@@ -2484,18 +2447,13 @@ public class ControllerGame {
 					try {
 						start.getClient().notifySpostamento("white", destinazione2.getLayoutX(),
 								destinazione2.getLayoutY());
-					} catch (IOException e2) {
+						setCardGiocatore(start.getClient().getNamePosition(destinazione2.getLayoutX(),
+								destinazione2.getLayoutY()), 3,0);
+					} catch (IOException | ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
 					}
 					posizionatoFamiliare();
-					try {
-						setCardGiocatore(start.getClient().getNamePosition(destinazione2.getLayoutX(),
-								destinazione2.getLayoutY()), 3,0);
-					} catch (IOException | SQLException | ClassNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
 				}
 			}
 		});
@@ -2781,8 +2739,8 @@ public class ControllerGame {
 				try {
 					start.getClient().getRisorse().addRis("pietra", 1);
 					start.getClient().getRisorse().addRis("legno", 1);
-					start.getClient().notifyRisorse("pietra", 1);
-					start.getClient().notifyRisorse("legno", 1);
+					start.getClient().notifyRisorse("pietra", start.getClient().getRisorse().getDimRisorse("pietra"));
+					start.getClient().notifyRisorse("legno", start.getClient().getRisorse().getDimRisorse("legno"));
 				} catch (ClassNotFoundException | IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -2795,7 +2753,7 @@ public class ControllerGame {
 			servitoriB.setOnAction(e -> {
 				try {
 					start.getClient().getRisorse().addRis("servitori", 2);
-					start.getClient().notifyRisorse("servitori", 1);
+					start.getClient().notifyRisorse("servitori", start.getClient().getRisorse().getDimRisorse("servitori"));
 					popup.close();
 				} catch (ClassNotFoundException | IOException e1) {
 					// TODO Auto-generated catch block
@@ -2809,7 +2767,7 @@ public class ControllerGame {
 			moneteB.setOnAction(e -> {
 				try {
 					start.getClient().getRisorse().addRis("monete", 2);
-					start.getClient().notifyRisorse("monete", 2);
+					start.getClient().notifyRisorse("monete", start.getClient().getRisorse().getDimRisorse("monete"));
 					popup.close();
 				} catch (ClassNotFoundException | IOException e1) {
 					// TODO Auto-generated catch block
@@ -2820,7 +2778,7 @@ public class ControllerGame {
 			});
 
 			Button militariB = new Button("Click Me!");
-			moneteB.setOnAction(e -> {
+			militariB.setOnAction( e ->{
 				try {
 					start.getClient().getRisorse().addPunti("militari", 2);
 					start.getClient().notifySpostamentoPunti("militari");
@@ -2902,6 +2860,7 @@ public class ControllerGame {
 				i.setOnMouseClicked(e -> {
 					try {
 						start.getClient().getRisorse().addRis("monete", -3);
+						start.getClient().notifyRisorse("monete", start.getClient().getRisorse().getDimRisorse("monete"));
 						start.getClient().setCardGiocatore(i.getC(), i.getTipo(), i.getPiano());
 						setCardGiocatore("tutteCarte", i.getPiano(), i.getTipo());
 						sistemaCarte(i.getTipo(),i.getPiano());
@@ -2977,6 +2936,7 @@ public class ControllerGame {
 				i.setOnMouseClicked(e -> {
 					try {
 						start.getClient().getRisorse().addRis("monete", -3 + scontoAzioneImmediata1);
+						start.getClient().notifyRisorse("monete", start.getClient().getRisorse().getDimRisorse("monete"));
 						start.getClient().setCardGiocatore(i.getC(), i.getTipo(), i.getPiano());
 						setCardGiocatore("tutteCarte", i.getPiano(), i.getTipo());
 						sistemaCarte(i.getTipo(),i.getPiano());
@@ -3002,67 +2962,67 @@ public class ControllerGame {
 			case "servitori":
 				System.out.println(qta);
 				System.out.println(Integer.parseInt(servitori.getText()));
-				servitori.setText(String.valueOf(qta + (Integer.parseInt(servitori.getText()))));
+				servitori.setText(String.valueOf(qta));
 				break;
 			case "monete":
 				System.out.println(qta);
 				System.out.println(Integer.parseInt(monete.getText()));
-				monete.setText(String.valueOf(qta + (Integer.parseInt(monete.getText()))));
+				monete.setText(String.valueOf(qta));
 				break;
 			case "pietra":
 				System.out.println(qta);
 				System.out.println(Integer.parseInt(pietra.getText()));
-				pietra.setText(String.valueOf(qta + (Integer.parseInt(pietra.getText()))));
+				pietra.setText(String.valueOf(qta));
 				break;
 			case "legno":
 				System.out.println(qta);
 				System.out.println(Integer.parseInt(lengo.getText()));
-				lengo.setText(String.valueOf(qta + (Integer.parseInt(lengo.getText()))));
+				lengo.setText(String.valueOf(qta));
 				break;
 			}
 		} else if (name.equals(name1.getText())) {
 			switch (tipo) {
 			case "servitori":
-				servitori1.setText(String.valueOf(qta + (Integer.parseInt(servitori1.getText()))));
+				servitori1.setText(String.valueOf(qta));
 				break;
 			case "monete":
-				monete1.setText(String.valueOf(qta + (Integer.parseInt(monete1.getText()))));
+				monete1.setText(String.valueOf(qta));
 				break;
 			case "pietra":
-				pietre1.setText(String.valueOf(qta + (Integer.parseInt(pietre1.getText()))));
+				pietre1.setText(String.valueOf(qta));
 				break;
 			case "legno":
-				legno1.setText(String.valueOf(qta + (Integer.parseInt(legno1.getText()))));
+				legno1.setText(String.valueOf(qta));
 				break;
 			}
 		} else if (name.equals(name2.getText())) {
 			switch (tipo) {
 			case "servitori":
-				servitori2.setText(String.valueOf(qta + (Integer.parseInt(servitori2.getText()))));
+				servitori2.setText(String.valueOf(qta));
 				break;
 			case "monete":
-				monete2.setText(String.valueOf(qta + (Integer.parseInt(monete2.getText()))));
+				monete2.setText(String.valueOf(qta));
 				break;
 			case "pietra":
-				pietre2.setText(String.valueOf(qta + (Integer.parseInt(pietre2.getText()))));
+				pietre2.setText(String.valueOf(qta));
 				break;
 			case "legno":
-				legno2.setText(String.valueOf(qta + (Integer.parseInt(legno2.getText()))));
+				legno2.setText(String.valueOf(qta));
 				break;
 			}
 		} else {
 			switch (tipo) {
 			case "servitori":
-				servitori3.setText(String.valueOf(qta + (Integer.parseInt(servitori3.getText()))));
+				servitori3.setText(String.valueOf(qta));
 				break;
 			case "monete":
-				monete3.setText(String.valueOf(qta + (Integer.parseInt(monete3.getText()))));
+				monete3.setText(String.valueOf(qta));
 				break;
 			case "pietra":
-				pietre3.setText(String.valueOf(qta + (Integer.parseInt(pietre3.getText()))));
+				pietre3.setText(String.valueOf(qta));
 				break;
 			case "legno":
-				legno3.setText(String.valueOf(qta + (Integer.parseInt(legno3.getText()))));
+				legno3.setText(String.valueOf(qta));
 				break;
 			}
 		}
