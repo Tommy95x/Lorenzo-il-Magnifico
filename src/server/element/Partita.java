@@ -340,7 +340,7 @@ public class Partita implements Serializable {
 		return colors;
 	}
 
-	public synchronized  CartaSviluppo[] getCards() {
+	public CartaSviluppo[] getCards() {
 		System.out.println("Allinterno del metodo");
 		CartaSviluppo[] mom = new CartaSviluppo[16];
 		for (int i = 0; i < NUMCARTE; i++)
@@ -487,7 +487,8 @@ public class Partita implements Serializable {
 
 	}
 
-	public String getNamePosition(double x, double y, Connection connection) throws SQLException {
+	public String getNamePosition(double x, double y,ConnectionDatabase c, String name) throws SQLException {
+		Connection connection = c.getConnection(name);
 		String nomeposizione;
 		String query = "SELECT NOME FROM POSIZIONETABELLONE WHERE POSX=" + x + " AND POSY=" + y + "";
 		Statement stmt = connection.createStatement();
@@ -498,7 +499,7 @@ public class Partita implements Serializable {
 		nomeposizione = rs.getString("NOME");
 		rs.close();
 		stmt.close();
-		connection.close();
+		c.releaseConnection(connection);
 		return nomeposizione;
 	}
 

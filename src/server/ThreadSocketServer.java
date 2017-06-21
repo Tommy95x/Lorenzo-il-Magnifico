@@ -200,17 +200,9 @@ public class ThreadSocketServer implements Runnable, Serializable {
 				case "getCardsGame":
 					System.out.println("Prima chiamata");
 					CartaSviluppo[] c = commonServer.getLobbyByNumber(positionGame).getCards();
-					for(int i = 0;i<4;i++){
-						c[i] = new CartaTerritori();
-					}
-					for(int i = 0;i<4;i++){
-						c[i+4] = new CartaPersonaggi();
-					}
-					for(int i = 0;i<4;i++){
-						c[i+8]=new CartaEdifici();
-					}
-					for(int i = 0;i<4;i++){
-						c[i+12] = new CartaImprese();
+					for(CartaSviluppo carta : c){
+						output.writeObject(carta);
+						output.flush();
 					}
 					break;
 				case "notifySpostamento":

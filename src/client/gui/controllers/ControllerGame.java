@@ -1853,10 +1853,12 @@ public class ControllerGame {
 
 	public void resetTabellon() throws ClassNotFoundException, IOException {
 		start.getClient().changeCards();
+		setPosizioni();
 		familiareNeutro.setOpacity(1);
 		familiareNero.setOpacity(1);
 		familiareArancio.setOpacity(1);
 		familiareBianco.setOpacity(1);
+		setColorsParents(start.getClient().getColor());
 		try {
 			setCardsOtherTurn(start.getClient().getCardsGame());
 			for(int i = 0; i<4;i++){
@@ -1864,7 +1866,6 @@ public class ControllerGame {
 			azioniEdificidapiuGiocatori.getChildren().remove(i);
 			municipio.getChildren().remove(i);
 			}
-			setPosizioni();
 		} catch (ClassNotFoundException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -1917,12 +1918,7 @@ public class ControllerGame {
 	}
 
 	private void setPosizioni() {
-		try {
-			setColorsParents(start.getClient().getColor());
-		} catch (ClassNotFoundException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		System.out.println("\nesetto le posizioni del tabellone\n");
 		mercatoPosMoneteMilitari.setImage(null);
 		mercatoPosServitori.setImage(null);
 		mercatoPosMonete.setImage(null);
@@ -1962,7 +1958,6 @@ public class ControllerGame {
 		pianoPrimoPalazzoTerritori.setDisable(false);
 		pianoSecondoPalazzoTerritori.setDisable(false);
 		pianoTerzoPalazzoTerritori.setDisable(false);
-
 	}
 
 	@FXML
@@ -2712,65 +2707,29 @@ public class ControllerGame {
 	public void notifySpostamentoPuntiVittoria(double x, double y, String color2) {
 		System.out.println((isInTurno() && color2.equals(start.getClient().getColor()))
 				|| (!color2.equals(start.getClient().getColor()) && !isInTurno()));
-		if (((isInTurno() && color2.equals(start.getClient().getColor()))
-				|| (!color2.equals(start.getClient().getColor()) && !isInTurno()))) {
+		if ((isInTurno() && color2.equals(start.getClient().getColor()))
+				|| (!isInTurno() && !color2.equals(start.getClient().getColor()))) {
 			System.out.println(
 					"Notifico lo spostamento della pedina punti vittoria del giocatore con il colore " + color2);
-			double startX;
-			double startY;
-			Path path = new Path();
-			PathTransition pathTransition = new PathTransition();
 			switch (color2) {
 			case "blue":
-				startX = puntiVittoriaBlu.getLayoutX();
-				startY = puntiVittoriaBlu.getLayoutY();
-				path.getElements().add(new MoveTo(startX, startY));
-				path.getElements().add(new CubicCurveTo(startX, startY, 200, 20, x, y + 10.0));
-				pathTransition.setDuration(Duration.millis(3000));
-				pathTransition.setPath(path);
-				pathTransition.setNode(puntiVittoriaBlu);
-				pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
-				pathTransition.setCycleCount(1);
-				pathTransition.play();
+				puntiVittoriaBlu.setLayoutX(x);
+				puntiVittoriaBlu.setLayoutX(y);
 				System.out.println("Fine Spostamento pedina");
 				break;
 			case "white":
-				startX = puntiVittoriaBianco.getLayoutX();
-				startY = puntiVittoriaBianco.getLayoutY();
-				path.getElements().add(new MoveTo(startX, startY));
-				path.getElements().add(new CubicCurveTo(startX, startY, 200, 20, x, y + 10.0));
-				pathTransition.setDuration(Duration.millis(3000));
-				pathTransition.setPath(path);
-				pathTransition.setNode(puntiVittoriaBianco);
-				pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
-				pathTransition.setCycleCount(1);
-				pathTransition.play();
+				puntiVittoriaBianco.setLayoutX(x);
+				puntiVittoriaBianco.setLayoutX(y);
 				System.out.println("Fine Spostamento pedina");
 				break;
 			case "green":
-				startX = puntiVittoriaVerde.getLayoutX();
-				startY = puntiVittoriaVerde.getLayoutY();
-				path.getElements().add(new MoveTo(startX, startY));
-				path.getElements().add(new CubicCurveTo(startX, startY, 200, 20, x, y + 10.0));
-				pathTransition.setDuration(Duration.millis(3000));
-				pathTransition.setPath(path);
-				pathTransition.setNode(puntiVittoriaVerde);
-				pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
-				pathTransition.setCycleCount(1);
-				pathTransition.play();
+				puntiVittoriaVerde.setLayoutX(x);
+				puntiVittoriaVerde.setLayoutX(y);
 				System.out.println("Fine Spostamento pedina");
 				break;
 			case "orange":
-				startX = puntiVittoriaArancio.getLayoutX();
-				startY = puntiVittoriaArancio.getLayoutY();
-				path.getElements().add(new MoveTo(startX, startY));
-				path.getElements().add(new CubicCurveTo(startX, startY, 200, 20, x, y + 10.0));
-				pathTransition.setDuration(Duration.millis(3000));
-				pathTransition.setPath(path);
-				pathTransition.setNode(puntiVittoriaArancio);
-				pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
-				pathTransition.setCycleCount(1);
-				pathTransition.play();
+				puntiVittoriaArancio.setLayoutX(x);
+				puntiVittoriaArancio.setLayoutX(y);
 				System.out.println("Fine Spostamento pedina");
 				break;
 			}

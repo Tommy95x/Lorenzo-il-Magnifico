@@ -1,5 +1,7 @@
 package client;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -299,14 +301,8 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		CartaSviluppo[] c = new CartaSviluppo[16];
 		outputSocket.writeObject("getCardsGame");
 		outputSocket.flush();
-		for(int i=0;i<4;i++)
-			c[i] = new CartaTerritori();
-		for(int i =0;i<4;i++)
-			c[i+4] = new CartaPersonaggi();
-		for(int i =0;i<4;i++)
-			c[i+8] = new CartaEdifici();	
-		for(int i =0;i<4;i++)
-			c[i+12] = new CartaImprese();
+		for(int i =0;i<16;i++)
+			c[i] = (CartaSviluppo) inputSocket.readObject();
 		return c;
 	}
 

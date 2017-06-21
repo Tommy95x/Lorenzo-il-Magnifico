@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javafx.scene.image.Image;
+import server.database.ConnectionDatabase;
 import server.element.CartaSviluppo;
 import server.element.Dado;
 import server.element.Flag;
@@ -133,7 +134,8 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 	public String getNamePosition(double x, double y, int positionGame, String name)
 			throws RemoteException, SQLException {
 		return commonServer.getLobbyByNumber(positionGame).getNamePosition(x, y,
-				commonServer.getDBConnection().getConnection(name));
+				commonServer.getDBConnection(), name);
+		
 	}
 
 	public void exitToTheGame(String lobby, String color, String name) throws RemoteException {

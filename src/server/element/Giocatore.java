@@ -148,11 +148,11 @@ public class Giocatore implements Serializable {
 
 	public String controlloPosizionamento(String color, double x, double y, Connection connection, int agg)
 			throws SQLException {
-		int dado = 0;
+		Dado dado = null;
 		System.out.println(color);
 		for (int i = 0; i < 3; i++) {
 			if (dadi[i].getColor().equals(color)) {
-				dado = i;
+				dado = dadi[i];
 			}
 		}
 		String query = "SELECT VALOREAZIONE, NOME FROM POSIZIONETABELLONE WHERE " + x + "=POSX AND " + y + "=POSY";
@@ -170,8 +170,7 @@ public class Giocatore implements Serializable {
 		if (risorse.getDimRisorse("servitori") < agg) {
 			return "NotEnough";
 		} else {
-			if (dadi[dado].getValore() + agg >= valoreazione || ((color.equals("neutro") && (agg > valoreazione)))) {
-				risorse.addRis("servitori", -agg);
+			if ( (dado != null && dado.getValore() + agg >= valoreazione) || (dado == null && color.equals("neutro") && (agg > valoreazione))) {
 				switch (nome) {
 				case "PIANO 1 FAMILIARE TERRITORI":
 					palazzoTerritori[3] = false;
@@ -223,7 +222,7 @@ public class Giocatore implements Serializable {
 					break;
 				}
 				return "OK";
-			} else if (dadi[dado].getValore() + agg < valoreazione || (color.equals("neutro") && agg == 0)) {
+			} else if ( (dado == null && (color.equals("neutro") && agg == 0)) ||(dado != null && dado.getValore() + agg < valoreazione )) {
 				return "Pay";
 			} else
 				return "Cancel";
@@ -464,18 +463,22 @@ public class Giocatore implements Serializable {
 					case "pietra":
 						System.out.println("\nAggiungo pietre\n");
 						risorse.addRis("pietra", e.getQta());
+						partita.notifyAddRisorse(name, "pietra", e.getQta());
 						break;
 					case "monete":
 						System.out.println("\nAggiungo monete\n");
 						risorse.addRis("monete", e.getQta());
+						partita.notifyAddRisorse(name, "monete", e.getQta());
 						break;
 					case "servitori":
 						System.out.println("\nAggiungo servitori\n");
 						risorse.addRis("servitori", e.getQta());
+						partita.notifyAddRisorse(name, "servitori", e.getQta());
 						break;
 					case "legno":
 						System.out.println("\nAggiungo legni\n");
 						risorse.addRis("legno", e.getQta());
+						partita.notifyAddRisorse(name, "legno", e.getQta());
 						break;
 					case "tuttecarte":
 						System.out.println("\nTutte carte\n");
@@ -495,7 +498,6 @@ public class Giocatore implements Serializable {
 						produzione(e.getQta(), c);
 						break;
 					case "pergamena":
-						System.out.println("Aggiungo punti militari");
 						try {
 							notifyPergamena(e.getQta());
 						} catch (RemoteException e1) {
@@ -515,6 +517,9 @@ public class Giocatore implements Serializable {
 		setRisorse("legno");
 		setRisorse("pietra");
 		setRisorse("servitori");
+		partita.notifyAddRisorse(name, "pietra", 1);
+		partita.notifyAddRisorse(name, "legno", 1);
+		partita.notifyAddRisorse(name, "servitori",1);
 		for (CartaSviluppo c : carte) {
 			if (c.getNameCard().equals("Contadino")) {
 				qta += 2;
@@ -533,6 +538,8 @@ public class Giocatore implements Serializable {
 	public void produzione(int qta, Connection conn) {
 		risorse.addRis("monete", 2);
 		risorse.addPunti("militari", 1);
+		partita.notifyAddRisorse(name, "monete", 2);
+		partita.notifySpostamentoPunti("militari", risorse.getPunti("militari"), conn, color);
 		for (CartaSviluppo c : carte) {
 			if (c.getNameCard().equals("Artigiano")) {
 				qta += 2;
@@ -557,9 +564,11 @@ public class Giocatore implements Serializable {
 					switch (e.getRisorsa()) {
 					case "legno":
 						risorse.addRis("legno", e.getQta());
+						partita.notifyAddRisorse(name, "legno", e.getQta());
 						break;
 					case "pietra":
 						risorse.addRis("pietra", e.getQta());
+						partita.notifyAddRisorse(name, "pietra", e.getQta());
 					case "pergamena":
 						try {
 							notifyPergamena(e.getQta());
@@ -570,9 +579,11 @@ public class Giocatore implements Serializable {
 						break;
 					case "monete":
 						risorse.addRis("monete", e.getQta());
+						partita.notifyAddRisorse(name, "monete", e.getQta());
 						break;
 					case "servitori":
 						risorse.addRis("servitori", e.getQta());
+						partita.notifyAddRisorse(name, "servitori", e.getQta());
 						break;
 					case "militari":
 						risorse.addPunti("militari", e.getQta());
@@ -654,6 +665,7 @@ public class Giocatore implements Serializable {
 					case "monete":
 						if (r[j].getQta() <= risorse.getDimRisorse("monete")) {
 							risorse.addRis("monete", -r[j].getQta());
+							partita.notifyAddRisorse(name, "monete", -r[j].getQta());
 							prendiRisorseeffettipermanenti(p[j].getRisorsa(), p[j].getQta(), conn);
 							if (p[j + 1].getQta() != 0 && j < 2) {
 								prendiRisorseeffettipermanenti(p[j].getRisorsa(), p[j].getQta(), conn);
@@ -662,6 +674,7 @@ public class Giocatore implements Serializable {
 					case "pietra":
 						if (r[j].getQta() <= risorse.getDimRisorse("pietra") && j != 2) {
 							risorse.addRis("pietra", -r[j].getQta());
+							partita.notifyAddRisorse(name, "pietra", -r[j].getQta());
 							prendiRisorseeffettipermanenti(p[j].getRisorsa(), p[j].getQta(), conn);
 							if (p[j + 1].getQta() != 0 && j < 2) {
 								prendiRisorseeffettipermanenti(p[j].getRisorsa(), p[j].getQta(), conn);
@@ -670,6 +683,7 @@ public class Giocatore implements Serializable {
 					case "legno":
 						if (r[j].getQta() <= risorse.getDimRisorse("legno") && j != 1) {
 							risorse.addRis("legno", -r[j].getQta());
+							partita.notifyAddRisorse(name, "legno", -r[j].getQta());
 							prendiRisorseeffettipermanenti(p[j].getRisorsa(), p[j].getQta(), conn);
 							if (p[j + 1].getQta() != 0 && j < 2) {
 								prendiRisorseeffettipermanenti(p[j].getRisorsa(), p[j].getQta(), conn);
@@ -677,7 +691,8 @@ public class Giocatore implements Serializable {
 						}
 					case "fede":
 						if (r[j].getQta() <= risorse.getDimRisorse("fede")) {
-							risorse.addRis("fede", -r[j].getQta());
+							risorse.addPunti("fede", -p[j].getQta());
+							//Controlla perche non notifichi in sti metodi
 							prendiRisorseeffettipermanenti(p[j].getRisorsa(), p[j].getQta(), conn);
 							if (p[j + 1].getQta() != 0 && j < 2) {
 								prendiRisorseeffettipermanenti(p[j].getRisorsa(), p[j].getQta(), conn);
@@ -832,13 +847,11 @@ public class Giocatore implements Serializable {
 
 	public void addRis(String tipo, int qta, Connection c) {
 		risorse.addRis(tipo, qta);
-		// Creo metodo notify risorse
-
 	}
 
 	public void addPunti(String tipo, int qta, Connection c) {
 		risorse.addPunti(tipo, qta);
-		partita.notifySpostamentoPunti(tipo, qta, c, color);
+		partita.notifySpostamentoPunti(tipo, risorse.getPunti(tipo), c, color);
 	}
 
 	public void setGuiGame(ControllerGame guiGame) {

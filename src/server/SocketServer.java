@@ -30,9 +30,8 @@ public class SocketServer extends Thread{
 			e.printStackTrace();
 		}
 		while(true){
-			Socket executorSocket;
 			try {
-				executorSocket=socket.accept();
+				Socket executorSocket=socket.accept();
 				ex.submit(new ThreadSocketServer(executorSocket,commonServer));
 				System.out.println("Un nuovo utente ha richiesto una connessione");
 			} catch (IOException e) {
