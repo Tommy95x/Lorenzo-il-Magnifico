@@ -283,4 +283,10 @@ public class ConnectionClient implements ClientInterface{
 		
 	}
 
+
+	public void mandaTurno() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

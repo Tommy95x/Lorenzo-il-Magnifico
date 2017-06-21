@@ -216,12 +216,12 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 	 * break; case "": break; case "": break; case "": break; } }
 	 */
 
-	public void waitTurno() throws ClassNotFoundException, IOException {
+	public void waitQualcosa() throws ClassNotFoundException, IOException {
 		double x;
 		double y;
 		String colorPlayer;
 		String color;
-		while (true) {
+		try {
 			switch (inputSocket.readObject().toString()) {
 			case "disco":
 				x = (double) inputSocket.readObject();
@@ -242,9 +242,6 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 				color = inputSocket.readObject().toString();
 				guiGame.notifySpostamentoPuntiFede(x, y, color);
 				break;
-			case "startTurno":
-				guiGame.enableGame((int) inputSocket.readObject());
-				break;
 			case "carteAvv":
 				guiGame.notifyAddCardAvv(inputSocket.readObject().toString(), inputSocket.readObject().toString(),
 						(int) inputSocket.readObject());
@@ -254,7 +251,21 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 				y = (double) inputSocket.readObject();
 				color = (String) inputSocket.readObject();
 				break;
+			case "startTurno":
+				guiGame.enableGame((int) inputSocket.readObject());
+				break;
 			}
+		} catch (Exception e) {
+			System.out.println("Errore!!\n\n");
+		}
+	}
+
+	public void mandaTurno() {
+		try {
+			waitTurno();
+		} catch (IOException | ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
@@ -301,13 +312,12 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		CartaSviluppo[] c = new CartaSviluppo[16];
 		outputSocket.writeObject("getCardsGame");
 		outputSocket.flush();
-		for(int i =0;i<16;i++)
-			c[i] = (CartaSviluppo) inputSocket.readObject();
+		c = (CartaSviluppo[]) inputSocket.readObject();
 		return c;
 	}
 
 	public Portafoglio getRisorse() throws ClassNotFoundException, IOException {
-		outputSocket.writeObject("getPortafglio");
+		outputSocket.writeObject("getPortafoglio");
 		outputSocket.flush();
 		Portafoglio p = (Portafoglio) inputSocket.readObject();
 		System.out.println(p.getDimRisorse("monete"));

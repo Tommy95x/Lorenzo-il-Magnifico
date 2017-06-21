@@ -126,12 +126,12 @@ public class Giocatore implements Serializable {
 		System.out.println("Enter in a notifica start");
 		if (client == null) {
 			System.out.println("utente socket" + server.toString());
-			try {
-				server.notifyStartGame();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+				try {
+					server.notifyStartGame();
+				} catch (ClassNotFoundException | IOException | SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		} else {
 			System.out.println("utente rmi");
 			client.notifyStartGame();
