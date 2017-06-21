@@ -2479,28 +2479,7 @@ public class ControllerGame {
 			}
 		});
 
-		azioniTerritoridaunGiocatore.setOnDragEntered(e -> {
-			if (!azioniTerritoridaunGiocatore.isDisabled())
-				setDestinazione1(azioniTerritoridaunGiocatore);
-		});
-
-		azioniEdificidaunGiocatore.setOnDragEntered(e -> {
-			if (!azioniEdificidaunGiocatore.isDisabled())
-				setDestinazione1(mercatoPosMoneteMilitari);
-		});
-
-		mercatoPosServitori.setOnDragEntered(e -> {
-			if (!mercatoPosServitori.isDisabled())
-				setDestinazione1(mercatoPosMonete);
-		});
-
-		mercatoPosMunicipio.setOnDragEntered(e -> {
-			if (!mercatoPosMunicipio.isDisabled())
-				setDestinazione1(mercatoPosMunicipio);
-		});
-
 		pianoPrimoPalazzoMilitare.setOnDragEntered(e -> {
-			//Controllare il controllo logico
 			if (!pianoPrimoPalazzoMilitare.isDisabled() && ((start.getClient().getPosPalLibero("imprese", 1)) || (start.getClient().getPosPalLibero("imprese", 2)) || (start.getClient().getPosPalLibero("imprese", 3))))
 				setDestinazione1(pianoPrimoPalazzoMilitare);
 		});
@@ -2585,6 +2564,31 @@ public class ControllerGame {
 				setDestinazione2(azioniTerritoridapiuGiocatori);
 		});
 
+		azioniTerritoridaunGiocatore.setOnDragEntered(e -> {
+			if (!azioniTerritoridaunGiocatore.isDisabled())
+				setDestinazione1(azioniTerritoridaunGiocatore);
+		});
+
+		azioniEdificidaunGiocatore.setOnDragEntered(e -> {
+			if (!azioniEdificidaunGiocatore.isDisabled())
+				setDestinazione1(mercatoPosMoneteMilitari);
+		});
+
+		mercatoPosServitori.setOnMouseDragEntered(e -> {
+			if (!mercatoPosServitori.isDisabled())
+				setDestinazione1(mercatoPosMonete);
+		});
+		
+		/*mercatoPosServitori.setOnDragEntered(e -> {
+			if (!mercatoPosServitori.isDisabled())
+				setDestinazione1(mercatoPosMonete);
+		});*/
+
+		mercatoPosMunicipio.setOnMouseDragEntered(e -> {
+			if (!mercatoPosMunicipio.isDisabled())
+				setDestinazione1(mercatoPosMunicipio);
+		});
+		
 		municipio.setOnDragEntered(e -> {
 			setDestinazione2(municipio);
 		});
