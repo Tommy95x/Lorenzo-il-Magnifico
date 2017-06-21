@@ -36,7 +36,7 @@ public class Partita implements Serializable {
 	private TesseraScomunica[] tessereScomunica = new TesseraScomunica[3];
 	private String[] colors = new String[DIM];
 	private int NumberOfPlayers = 0;
-	private boolean setCards =true;
+	private boolean setCards = true;
 
 	/**
 	 * Questo metodo inizializza la partita creando nuove tabelle contenti le
@@ -135,13 +135,13 @@ public class Partita implements Serializable {
 				System.out.println("notifico giocatori per l'inizio partita");
 				System.out.println(giocatori[i]);
 				try {
-					System.out.println("Notifico il giocatore "+giocatori[i].getName());
+					System.out.println("Notifico il giocatore " + giocatori[i].getName());
 					giocatori[i].notifyStartGame();
 				} catch (ClassNotFoundException | IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			}else
+			} else
 				System.out.println("Giocatori a null");
 		}
 		changeGamer();
@@ -244,8 +244,8 @@ public class Partita implements Serializable {
 	}
 
 	private void notifyResetTabellone() {
-		for(int i =0; i<4;i++){
-			if(giocatori[i] != null){
+		for (int i = 0; i < 4; i++) {
+			if (giocatori[i] != null) {
 				giocatori[i].notifyResetTabellone();
 			}
 		}
@@ -253,18 +253,18 @@ public class Partita implements Serializable {
 
 	private void endGame() {
 		int[] puntiG = new int[4];
-		int max=0;
-		for(int i=0;i<4;i++){
-			if(giocatori[i] != null)
+		int max = 0;
+		for (int i = 0; i < 4; i++) {
+			if (giocatori[i] != null)
 				puntiG[i] = giocatori[i].notifyEndGame();
 		}
-		for(int i=0;i<4;i++){
-			if(puntiG[i]>max)
-				max=puntiG[i];
+		for (int i = 0; i < 4; i++) {
+			if (puntiG[i] > max)
+				max = puntiG[i];
 		}
-		for(int i =0;i<4;i++){
-			if(giocatori[i] != null){
-				if(giocatori[i].getPuntiFinali() == max)
+		for (int i = 0; i < 4; i++) {
+			if (giocatori[i] != null) {
+				if (giocatori[i].getPuntiFinali() == max)
 					giocatori[i].notifyVittoria();
 				else
 					giocatori[i].nofySconfitta(max);
@@ -364,68 +364,68 @@ public class Partita implements Serializable {
 	 * @throws SQLException
 	 */
 	public void setCards(Connection connection) throws SQLException {
-		
-		if(setCards){
-		String query;
-		String queryelimina;
-		int i;
-		System.out.println("All'interno della partita setto le carte");
-		for (i = 0; i < NUMCARTE; i++) {
-			System.out.println("CarteTerritori " + i + "");
-			query = "SELECT * FROM " + name.toUpperCase() + "CARTETERRITORIOPARTITA LIMIT 1";
-			carteTerritori[i] = new CartaTerritori();
-			carteTerritori[i].setCarta(connection, query);
-			queryelimina = "DELETE TOP 1 FROM " + name.toUpperCase() + "CARTETERRITORIOPARTITA";
-			connection.createStatement().executeUpdate(queryelimina);
+
+		if (setCards) {
+			String query;
+			String queryelimina;
+			int i;
+			System.out.println("All'interno della partita setto le carte");
+			for (i = 0; i < NUMCARTE; i++) {
+				System.out.println("CarteTerritori " + i + "");
+				query = "SELECT * FROM " + name.toUpperCase() + "CARTETERRITORIOPARTITA LIMIT 1";
+				carteTerritori[i] = new CartaTerritori();
+				carteTerritori[i].setCarta(connection, query);
+				queryelimina = "DELETE TOP 1 FROM " + name.toUpperCase() + "CARTETERRITORIOPARTITA";
+				connection.createStatement().executeUpdate(queryelimina);
+			}
+			for (i = 0; i < NUMCARTE; i++) {
+				System.out.println("CartePersonaggio " + i + "");
+				query = "SELECT * FROM " + name.toUpperCase() + "CARTEPERSONAGGIOPARTITA LIMIT 1";
+				System.out.println("Carta Personaggio " + i + " selezionata");
+				cartePersonaggio[i] = new CartaPersonaggi();
+				cartePersonaggio[i].setCarta(connection, query);
+				queryelimina = "DELETE TOP 1 FROM " + name.toUpperCase() + "CARTEPERSONAGGIOPARTITA";
+				connection.createStatement().executeUpdate(queryelimina);
+				System.out.println("Carta personaggio " + i + " Eliminata");
+			}
+			for (i = 0; i < NUMCARTE; i++) {
+				System.out.println("CarteEdificio " + i + "");
+				query = "SELECT * FROM " + name.toUpperCase() + "CARTEEDIFICIOPARTITA LIMIT 1";// Scrivere
+																								// la
+																								// query
+																								// in
+																								// modo
+																								// che
+																								// cerchi
+																								// differenti
+																								// carte
+																								// in
+																								// generale
+				carteEdifici[i] = new CartaEdifici();
+				carteEdifici[i].setCarta(connection, query);
+				queryelimina = "DELETE TOP 1 FROM " + name.toUpperCase() + "CARTEEDIFICIOPARTITA";
+				connection.createStatement().executeUpdate(queryelimina);
+			}
+			for (i = 0; i < NUMCARTE; i++) {
+				System.out.println("CarteImpresa " + i + "");
+				query = "SELECT * FROM " + name.toUpperCase() + "CARTEIMPRESAPARTITA LIMIT 1";// Scrivere
+																								// la
+																								// query
+																								// in
+																								// modo
+																								// che
+																								// cerchi
+																								// differenti
+																								// carte
+																								// in
+																								// generale
+				carteImprese[i] = new CartaImprese();
+				carteImprese[i].setCarta(connection, query);
+				queryelimina = "DELETE TOP 1 FROM " + name.toUpperCase() + "CARTEIMPRESAPARTITA";
+				connection.createStatement().executeUpdate(queryelimina);
+			}
 		}
-		for (i = 0; i < NUMCARTE; i++) {
-			System.out.println("CartePersonaggio " + i + "");
-			query = "SELECT * FROM " + name.toUpperCase() + "CARTEPERSONAGGIOPARTITA LIMIT 1";
-			System.out.println("Carta Personaggio " + i + " selezionata");
-			cartePersonaggio[i] = new CartaPersonaggi();
-			cartePersonaggio[i].setCarta(connection, query);
-			queryelimina = "DELETE TOP 1 FROM " + name.toUpperCase() + "CARTEPERSONAGGIOPARTITA";
-			connection.createStatement().executeUpdate(queryelimina);
-			System.out.println("Carta personaggio " + i + " Eliminata");
-		}
-		for (i = 0; i < NUMCARTE; i++) {
-			System.out.println("CarteEdificio " + i + "");
-			query = "SELECT * FROM " + name.toUpperCase() + "CARTEEDIFICIOPARTITA LIMIT 1";// Scrivere
-																							// la
-																							// query
-																							// in
-																							// modo
-																							// che
-																							// cerchi
-																							// differenti
-																							// carte
-																							// in
-																							// generale
-			carteEdifici[i] = new CartaEdifici();
-			carteEdifici[i].setCarta(connection, query);
-			queryelimina = "DELETE TOP 1 FROM " + name.toUpperCase() + "CARTEEDIFICIOPARTITA";
-			connection.createStatement().executeUpdate(queryelimina);
-		}
-		for (i = 0; i < NUMCARTE; i++) {
-			System.out.println("CarteImpresa " + i + "");
-			query = "SELECT * FROM " + name.toUpperCase() + "CARTEIMPRESAPARTITA LIMIT 1";// Scrivere
-																							// la
-																							// query
-																							// in
-																							// modo
-																							// che
-																							// cerchi
-																							// differenti
-																							// carte
-																							// in
-																							// generale
-			carteImprese[i] = new CartaImprese();
-			carteImprese[i].setCarta(connection, query);
-			queryelimina = "DELETE TOP 1 FROM " + name.toUpperCase() + "CARTEIMPRESAPARTITA";
-			connection.createStatement().executeUpdate(queryelimina);
-		}
-	}
-		setCards= false;
+		setCards = false;
 		connection.close();
 	}
 
@@ -487,20 +487,27 @@ public class Partita implements Serializable {
 
 	}
 
-	public String getNamePosition(double x, double y,ConnectionDatabase c, String name) throws SQLException {
-		Connection connection = c.getConnection(name);
-		String nomeposizione;
-		String query = "SELECT NOME FROM POSIZIONETABELLONE WHERE POSX=" + x + " AND POSY=" + y + "";
-		Statement stmt = connection.createStatement();
-		ResultSet rs = stmt.executeQuery(query);// Scrivere query che fornisce
-												// il nome della posizione tipo
-												// primo piano palazzo...
-		rs.next();
-		nomeposizione = rs.getString("NOME");
-		System.out.println(nomeposizione);
-		rs.close();
-		stmt.close();
-		c.releaseConnection(connection);
+	public String getNamePosition(double x, double y, ConnectionDatabase c, String name) {
+		String nomeposizione = null;
+		Connection connection;
+		try {
+			connection = c.getConnection(name);
+			String query = "SELECT NOME FROM POSIZIONETABELLONE WHERE POSX=" + x + " AND POSY=" + y + "";
+			Statement stmt = connection.createStatement();
+			ResultSet rs = stmt.executeQuery(query);// Scrivere query che
+													// fornisce
+													// il nome della posizione
+													// tipo
+													// primo piano palazzo...
+			rs.next();
+			nomeposizione = rs.getString("NOME");
+			System.out.println(nomeposizione);
+			rs.close();
+			stmt.close();
+			c.releaseConnection(connection);
+		} catch (SQLException e) {
+			if(x == 265.0 && y == 440.0)
+		}
 		return nomeposizione;
 	}
 
@@ -519,7 +526,7 @@ public class Partita implements Serializable {
 		}
 	}
 
-	public  TesseraScomunica[] getCardsScomunica() {
+	public TesseraScomunica[] getCardsScomunica() {
 		return tessereScomunica;
 	}
 
@@ -575,7 +582,7 @@ public class Partita implements Serializable {
 		switch (tipo) {
 		case "militari":
 			for (Giocatore g : giocatori) {
-				if (g != null){
+				if (g != null) {
 					double x = 0;
 					double y = 0;
 					String query;
@@ -619,7 +626,7 @@ public class Partita implements Serializable {
 						}
 						rs.close();
 						stmt.close();
-						System.out.println(x+"   "+y);
+						System.out.println(x + "   " + y);
 						g.notifySpostamentopuntiVittoria(x, y, g.getColor());
 					} catch (RemoteException | SQLException e) {
 						// TODO Auto-generated catch block
