@@ -178,7 +178,7 @@ public class ThreadSocketServer implements Runnable, Serializable {
 				case "getNamePosition":
 					output.writeObject(commonServer.getLobbyByNumber(positionGame).getNamePosition(
 							(double) input.readObject(), (double) input.readObject(),
-							commonServer.getDBConnection().getConnection(account)));
+							commonServer.getDBConnection(), account));
 					output.flush();
 					break;
 				case "getPortafoglio":
