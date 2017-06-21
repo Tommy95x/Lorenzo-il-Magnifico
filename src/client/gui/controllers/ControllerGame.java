@@ -2516,82 +2516,82 @@ public class ControllerGame {
 
 		pianoPrimoPalazzoMilitare.setOnDragEntered(e -> {
 			//Controllare il controllo logico
-			if (!pianoPrimoPalazzoMilitare.isDisable() || (start.getClient().getPosPalLibero("imprese", 0)))
+			if (!pianoPrimoPalazzoMilitare.isDisable() || (start.getClient().getPosPalLibero("imprese", 1)) || (start.getClient().getPosPalLibero("imprese", 2)) || (start.getClient().getPosPalLibero("imprese", 3)))
 				setDestinazione1(pianoPrimoPalazzoMilitare);
 		});
 
 		pianoSecondoPalazzoMilitare.setOnDragEntered(e -> {
-			if (!pianoSecondoPalazzoMilitare.isDisable() || start.getClient().getPosPalLibero("imprese", 1))
+			if (!pianoSecondoPalazzoMilitare.isDisable() || start.getClient().getPosPalLibero("imprese", 0) || start.getClient().getPosPalLibero("imprese", 2) || start.getClient().getPosPalLibero("imprese", 3))
 				setDestinazione1(pianoSecondoPalazzoMilitare);
 		});
 
 		pianoTerzoPalazzoMilitare.setOnDragEntered(e -> {
-			if (!pianoTerzoPalazzoMilitare.isDisable() || start.getClient().getPosPalLibero("imprese", 2))
+			if (!pianoTerzoPalazzoMilitare.isDisable() || start.getClient().getPosPalLibero("imprese", 0) || start.getClient().getPosPalLibero("imprese", 1) || start.getClient().getPosPalLibero("imprese", 3))
 				setDestinazione1(pianoTerzoPalazzoMilitare);
 		});
 
 		pianoQuartoPalazzoMilitare.setOnDragEntered(e -> {
-			if (!pianoQuartoPalazzoMilitare.isDisable() || start.getClient().getPosPalLibero("imprese", 3))
+			if (!pianoQuartoPalazzoMilitare.isDisable() || start.getClient().getPosPalLibero("imprese", 0) || start.getClient().getPosPalLibero("imprese", 1) || start.getClient().getPosPalLibero("imprese", 2))
 				setDestinazione1(pianoQuartoPalazzoMilitare);
 		});
-
+		
 		pianoPrimoPalazzoPersonaggi.setOnDragEntered(e -> {
-			if (!pianoPrimoPalazzoPersonaggi.isDisable() || start.getClient().getPosPalLibero("personaggi", 0))
+			if (!pianoPrimoPalazzoPersonaggi.isDisable() || start.getClient().getPosPalLibero("personaggi", 1) || start.getClient().getPosPalLibero("personaggi", 2) || start.getClient().getPosPalLibero("personaggi", 3))
 				setDestinazione1(pianoPrimoPalazzoPersonaggi);
 		});
 
 		pianoSecondoPalazzoPersonaggi.setOnDragEntered(e -> {
-			if (!pianoSecondoPalazzoPersonaggi.isDisable() || start.getClient().getPosPalLibero("personaggi", 1))
+			if (!pianoSecondoPalazzoPersonaggi.isDisable() || start.getClient().getPosPalLibero("personaggi", 0) || start.getClient().getPosPalLibero("personaggi", 2) || start.getClient().getPosPalLibero("personaggi", 3))
 				setDestinazione1(pianoSecondoPalazzoPersonaggi);
 		});
 
 		pianoTerzoPalazzoPersonaggi.setOnDragEntered(e -> {
-			if (!pianoTerzoPalazzoPersonaggi.isDisable() || start.getClient().getPosPalLibero("personaggi", 2))
+			if (!pianoTerzoPalazzoPersonaggi.isDisable() || start.getClient().getPosPalLibero("personaggi", 0) || start.getClient().getPosPalLibero("personaggi", 1) || start.getClient().getPosPalLibero("personaggi", 3))
 				setDestinazione1(pianoTerzoPalazzoPersonaggi);
 		});
 
 		pianoQuartoPalazzoPersonaggi.setOnDragEntered(e -> {
-			if (!pianoQuartoPalazzoPersonaggi.isDisable() || start.getClient().getPosPalLibero("personaggi", 3))
+			if (!pianoQuartoPalazzoPersonaggi.isDisable() || start.getClient().getPosPalLibero("personaggi", 0) || start.getClient().getPosPalLibero("personaggi", 1) || start.getClient().getPosPalLibero("personaggi", 2))
 				setDestinazione1(pianoQuartoPalazzoPersonaggi);
 		});
 
 		pianoPrimoPalazzoEdifici.setOnDragEntered(e -> {
-			if (!pianoPrimoPalazzoEdifici.isDisable() || start.getClient().getPosPalLibero("edifici", 0))
+			if (!pianoPrimoPalazzoEdifici.isDisable() || start.getClient().getPosPalLibero("edifici", 1) || start.getClient().getPosPalLibero("edifici", 2) || start.getClient().getPosPalLibero("edifici", 3))
 				setDestinazione1(pianoPrimoPalazzoEdifici);
 		});
 
 		pianoSecondoPalazzoEdifici.setOnDragEntered(e -> {
-			if (!pianoSecondoPalazzoEdifici.isDisable() || start.getClient().getPosPalLibero("edifici", 1))
+			if (!pianoSecondoPalazzoEdifici.isDisable() || start.getClient().getPosPalLibero("edifici", 0) || start.getClient().getPosPalLibero("edifici", 2) || start.getClient().getPosPalLibero("edifici", 3))
 				setDestinazione1(pianoSecondoPalazzoEdifici);
 		});
 
 		pianoTerzoPalazzoEdifici.setOnDragEntered(e -> {
-			if (!pianoTerzoPalazzoEdifici.isDisable() || start.getClient().getPosPalLibero("edifici", 2))
+			if (!pianoTerzoPalazzoEdifici.isDisable() || start.getClient().getPosPalLibero("edifici", 0) || start.getClient().getPosPalLibero("edifici", 1) || start.getClient().getPosPalLibero("edifici", 3))
 				setDestinazione1(pianoTerzoPalazzoEdifici);
 		});
 
 		pianoQuartoPalazzoEdifici.setOnDragEntered(e -> {
-			if (!pianoQuartoPalazzoEdifici.isDisable())
+			if (!pianoQuartoPalazzoEdifici.isDisable() || start.getClient().getPosPalLibero("edifici", 0) || start.getClient().getPosPalLibero("edifici", 1) || start.getClient().getPosPalLibero("edifici", 2))
 				setDestinazione1(pianoQuartoPalazzoEdifici);
 		});
 
 		pianoPrimoPalazzoTerritori.setOnDragEntered(e -> {
-			if (!pianoPrimoPalazzoTerritori.isDisable() || start.getClient().getPosPalLibero("edifici", 3))
+			if (!pianoPrimoPalazzoTerritori.isDisable() || start.getClient().getPosPalLibero("territori", 1) || start.getClient().getPosPalLibero("territori", 2) || start.getClient().getPosPalLibero("territori", 3))
 				setDestinazione1(pianoPrimoPalazzoTerritori);
 		});
 
 		pianoSecondoPalazzoTerritori.setOnDragEntered(e -> {
-			if (!pianoSecondoPalazzoTerritori.isDisable() || start.getClient().getPosPalLibero("territori", 0))
+			if (!pianoSecondoPalazzoTerritori.isDisable() || start.getClient().getPosPalLibero("territori", 0) || start.getClient().getPosPalLibero("territori", 2) || start.getClient().getPosPalLibero("territori", 3))
 				setDestinazione1(pianoSecondoPalazzoTerritori);
 		});
 
 		pianoTerzoPalazzoTerritori.setOnDragEntered(e -> {
-			if (!pianoTerzoPalazzoTerritori.isDisable() || start.getClient().getPosPalLibero("territori", 1))
+			if (!pianoTerzoPalazzoTerritori.isDisable() || start.getClient().getPosPalLibero("territori", 0) || start.getClient().getPosPalLibero("territori", 1) || start.getClient().getPosPalLibero("territori", 3))
 				setDestinazione1(pianoTerzoPalazzoTerritori);
 		});
 
 		pianoQuartoPalazzoTerritori.setOnDragEntered(e -> {
-			if (!pianoQuartoPalazzoTerritori.isDisable() || start.getClient().getPosPalLibero("territori", 2))
+			if (!pianoQuartoPalazzoTerritori.isDisable() || start.getClient().getPosPalLibero("territori", 0) || start.getClient().getPosPalLibero("territori", 1) || start.getClient().getPosPalLibero("territori", 2))
 				setDestinazione1(pianoQuartoPalazzoTerritori);
 		});
 

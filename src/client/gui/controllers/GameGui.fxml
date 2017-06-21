@@ -81,18 +81,6 @@
             <ImageView fx:id="puntiMilitariBianco" fitHeight="30.0" fitWidth="31.0" layoutX="480.0" layoutY="711.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="puntiMilitariBlu" fitHeight="30.0" fitWidth="31.0" layoutX="465.0" layoutY="691.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="puntiMilitariVerde" fitHeight="30.0" fitWidth="31.0" layoutX="482.0" layoutY="693.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareOrange1" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="42.0" layoutY="419.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareOrange2" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="59.0" layoutY="426.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareOrange3" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="32.0" layoutY="426.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareOrange4" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="51.0" layoutY="409.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareGreen1" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="59.0" layoutY="431.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareGreen2" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="29.0" layoutY="440.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareGreen3" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="54.0" layoutY="433.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareGreen4" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="56.0" layoutY="444.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareWhite2" disable="true" fitHeight="80.0" fitWidth="31.0" layoutX="37.0" layoutY="452.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareWhite1" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="39.0" layoutY="442.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareWhite3" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="64.0" layoutY="424.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="familiareWhite4" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="34.0" layoutY="444.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="768.0" prefWidth="683.0">
          <children>
@@ -144,7 +132,7 @@
                         <Label layoutY="6.0" prefHeight="25.0" prefWidth="63.0" text="Giocatore:" textFill="WHITE" />
                         <Label fx:id="name1" layoutX="71.0" layoutY="6.0" prefHeight="20.0" prefWidth="180.0" textFill="WHITE" />
                         <ImageView fx:id="flag1" fitHeight="90.0" fitWidth="46.0" layoutX="14.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true" />
-                        <VBox fx:id="listCards1" layoutY="206.0" prefHeight="218.0" prefWidth="280.0" />
+                        <VBox fx:id="listCards1" layoutX="10.0" layoutY="195.0" prefHeight="218.0" prefWidth="280.0" />
                         <Label layoutX="21.0" layoutY="167.0" prefHeight="28.0" prefWidth="231.0" text="Carte Giocatore Avversario:" textFill="WHITE">
                            <font>
                               <Font size="19.0" />
@@ -175,17 +163,17 @@
                               <Image url="@../../../../Media/Senza%20titolo-1.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="pietre1" layoutX="127.0" layoutY="77.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
+                        <Label fx:id="pietre1" layoutX="123.0" layoutY="77.0" prefHeight="32.0" prefWidth="35.0" text="0" textFill="WHITE">
                            <font>
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <Label fx:id="legno1" layoutX="182.0" layoutY="77.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
+                        <Label fx:id="legno1" layoutX="178.0" layoutY="77.0" prefHeight="32.0" prefWidth="35.0" text="0" textFill="WHITE">
                            <font>
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <Label fx:id="monete1" layoutX="232.0" layoutY="77.0" prefHeight="32.0" prefWidth="21.0" text="0" textFill="WHITE">
+                        <Label fx:id="monete1" layoutX="228.0" layoutY="77.0" prefHeight="32.0" prefWidth="35.0" text="0" textFill="WHITE">
                            <font>
                               <Font size="22.0" />
                            </font>
@@ -203,7 +191,7 @@
                      <children>
                         <Label layoutY="6.0" prefHeight="25.0" prefWidth="63.0" text="Giocatore:" textFill="WHITE" />
                         <ImageView fx:id="flag2" fitHeight="90.0" fitWidth="46.0" layoutX="16.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true" />
-                        <VBox fx:id="listCards2" layoutY="204.0" prefHeight="220.0" prefWidth="280.0" />
+                        <VBox fx:id="listCards2" layoutX="19.0" layoutY="195.0" prefHeight="220.0" prefWidth="280.0" />
                         <Label layoutX="22.0" layoutY="167.0" prefHeight="28.0" prefWidth="231.0" text="Carte Giocatore Avversario:" textFill="WHITE">
                            <font>
                               <Font size="19.0" />
@@ -278,7 +266,6 @@
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <VBox fx:id="listCards3" layoutY="204.0" prefHeight="220.0" prefWidth="280.0" />
                         <ImageView fitHeight="59.0" fitWidth="46.0" layoutX="215.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../Media/Senza%20titolo-1.png" />
@@ -313,6 +300,7 @@
                         <ImageView fx:id="cuboScomunica31" fitHeight="43.0" fitWidth="45.0" layoutX="19.0" layoutY="31.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="cuboScomunica32" fitHeight="43.0" fitWidth="45.0" layoutX="110.0" layoutY="30.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="cuboScomunica33" fitHeight="43.0" fitWidth="45.0" layoutX="193.0" layoutY="31.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+                        <VBox fx:id="listCards3" layoutX="16.0" layoutY="197.0" prefHeight="220.0" prefWidth="280.0" />
                      </children>
                   </AnchorPane>
                </content>
@@ -320,6 +308,17 @@
             <ImageView fx:id="familiareNeutro" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="769.0" layoutY="673.0" pickOnBounds="true" preserveRatio="true" />
             <HBox fx:id="carteTerritoriGiocatore" layoutX="47.0" layoutY="531.0" prefHeight="130.0" prefWidth="540.0" />
             <HBox fx:id="carteImpresaGiocatore" layoutX="608.0" layoutY="381.0" prefHeight="143.0" prefWidth="231.0" />
+            <ImageView fx:id="familiareWhite4" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="759.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareWhite3" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="683.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareWhite1" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="632.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareGreen4" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="506.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareWhite2" disable="true" fitHeight="80.0" fitWidth="31.0" layoutX="572.0" layoutY="296.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareGreen3" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="455.0" layoutY="288.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareGreen2" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="347.0" layoutY="288.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareGreen1" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="285.0" layoutY="291.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareOrange3" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="171.0" layoutY="292.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareOrange2" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="67.0" layoutY="290.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="familiareOrange1" disable="true" fitHeight="90.0" fitWidth="45.0" layoutX="4.0" layoutY="288.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
          </children></AnchorPane>
   </items>
 </SplitPane>
