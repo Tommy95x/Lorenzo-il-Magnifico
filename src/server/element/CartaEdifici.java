@@ -34,25 +34,8 @@ public class CartaEdifici extends CartaSviluppo {
 	private String image;
 	private String tooltip;
 
-	public CartaEdifici(int costoMoneta, int costoLegno, int costoPietra, int costoServitori, int costoAzione,
-			String name, HashMap<String, Integer> effettoimmediato1, HashMap<String, Integer> effettoimmediato2,
-			HashMap<String, Integer> spendirisorsa1, HashMap<String, Integer> spendirisorsa2,
-			HashMap<String, Integer> spendirisorsa3, HashMap<String, Integer> prendirisorsa1,
-			HashMap<String, Integer> prendirisorsa2, HashMap<String, Integer> acquisiscipunti, String perognicarta,
-			String image, String tooltip) {
-		this.costoMoneta = costoMoneta;
-		this.costoLegno = costoLegno;
-		this.costoPietra = costoPietra;
-		this.costoServitori = costoServitori;
-		this.costoAzione = costoAzione;
-		this.name = name;
-		this.perognicarta = perognicarta;
-		this.image = image;
-		this.tooltip = tooltip;
-	}
-
 	public CartaEdifici() {
-
+		super();
 	}
 
 	public void setCarta(Connection connection, String query) {

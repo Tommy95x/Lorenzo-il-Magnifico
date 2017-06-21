@@ -33,9 +33,18 @@ public class CartaSviluppo implements Serializable{
 	private int costoPuntiMilitari;
 	private int puntiMilitariRichiesti;
 	private int puntiVittoria;
-	private Tooltip tooltip;
+	private String tooltip;
 	private String ID;
 	
+	public CartaSviluppo(String string, String string2) {
+		this.tooltip=string;
+		this.image=string2;
+	}
+
+	public CartaSviluppo() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void setCarta(Connection connection, String query) {
 	
 	}
@@ -89,10 +98,10 @@ public class CartaSviluppo implements Serializable{
 	}
 
 	public Tooltip getTooltip() {
-		return tooltip;
+		return new Tooltip(tooltip);
 	}
 
-	public void setTooltip(Tooltip tooltip) {
+	public void setTooltip(String tooltip) {
 		this.tooltip = tooltip;
 	}
 
@@ -141,8 +150,7 @@ public class CartaSviluppo implements Serializable{
 	}
 
 	public String getTooltipString() {
-		// TODO Auto-generated method stub
-		return null;
+		return tooltip;
 	}
 
 	public ArrayList<Effetto> getEffetti() {

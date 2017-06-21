@@ -208,20 +208,11 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		this.guiGame = guiGame;
 	}
 
-	/*public void waitServerAction() throws ClassNotFoundException, IOException {
-		switch (inputSocket.readObject().toString()) {
-		case "":
-			break;
-		case "":
-			break;
-		case "":
-			break;
-		case "":
-			break;
-		case "":
-			break;
-		}
-	}*/
+	/*
+	 * public void waitServerAction() throws ClassNotFoundException, IOException
+	 * { switch (inputSocket.readObject().toString()) { case "": break; case "":
+	 * break; case "": break; case "": break; case "": break; } }
+	 */
 
 	public void waitTurno() throws ClassNotFoundException, IOException {
 		double x;
@@ -305,17 +296,22 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 	}
 
 	public CartaSviluppo[] getCardsGame() throws ClassNotFoundException, IOException {
+		CartaSviluppo[] c = new CartaSviluppo[16];
 		outputSocket.writeObject("getCardsGame");
 		outputSocket.flush();
-
-		CartaSviluppo[] c = new CartaSviluppo[16];
-		for(int i=0;i<16;i++)
-			c[i] = (CartaSviluppo) inputSocket.readObject();
+		for(int i=0;i<4;i++)
+			c[i] = new CartaTerritori();
+		for(int i =0;i<4;i++)
+			c[i+4] = new CartaPersonaggi();
+		for(int i =0;i<4;i++)
+			c[i+8] = new CartaEdifici();	
+		for(int i =0;i<4;i++)
+			c[i+12] = new CartaImprese();
 		return c;
 	}
 
 	public Portafoglio getRisorse() throws ClassNotFoundException, IOException {
-		outputSocket.writeObject("getPortafoglio");
+		outputSocket.writeObject("getPortafglio");
 		outputSocket.flush();
 		Portafoglio p = (Portafoglio) inputSocket.readObject();
 		System.out.println(p.getDimRisorse("monete"));

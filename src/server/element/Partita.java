@@ -322,7 +322,7 @@ public class Partita implements Serializable {
 		return colors;
 	}
 
-	public CartaSviluppo[] getCards() {
+	public synchronized  CartaSviluppo[] getCards() {
 		System.out.println("Allinterno del metodo");
 		CartaSviluppo[] mom = new CartaSviluppo[16];
 		for (int i = 0; i < NUMCARTE; i++)
@@ -498,7 +498,7 @@ public class Partita implements Serializable {
 		}
 	}
 
-	public TesseraScomunica[] getCardsScomunica() {
+	public  TesseraScomunica[] getCardsScomunica() {
 		return tessereScomunica;
 	}
 

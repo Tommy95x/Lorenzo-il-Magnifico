@@ -86,7 +86,7 @@ public class Giocatore implements Serializable {
 		this.color = color;
 	}
 
-	public Portafoglio getRisorse() {
+	public synchronized Portafoglio getRisorse() {
 		return risorse;
 	}
 
@@ -125,7 +125,12 @@ public class Giocatore implements Serializable {
 		System.out.println("Enter in a notifica start");
 		if (client == null) {
 			System.out.println("utente socket" + server.toString());
-			server.notifyStartGame();
+			try {
+				server.notifyStartGame();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else {
 			System.out.println("utente rmi");
 			client.notifyStartGame();

@@ -32,22 +32,6 @@ public class CartaImprese extends CartaSviluppo {
 	private String image;
 	private String tooltip;
 
-	public CartaImprese(int costoMoneta, int costoLegno, int costoPietra, int costoServitori, int costoPuntiMilitari,
-			int puntiMilitariRichiesti, String name, HashMap<String, Integer> effettoimmediato1,
-			HashMap<String, Integer> effettoimmediato2, HashMap<String, Integer> effettoimmediato3,
-			HashMap<String, Integer> azioneimmediata, int puntiVittoria, String image, String tooltip) {
-		this.costoMoneta = costoMoneta;
-		this.costoLegno = costoLegno;
-		this.costoPietra = costoPietra;
-		this.costoServitori = costoServitori;
-		this.costoPuntiMilitari = costoPuntiMilitari;
-		this.puntiMilitariRichiesti = puntiMilitariRichiesti;
-		this.name = name;
-		this.puntiVittoria = puntiVittoria;
-		this.image = image;
-		this.tooltip = tooltip;
-	}
-
 	public CartaImprese() {
 
 	}

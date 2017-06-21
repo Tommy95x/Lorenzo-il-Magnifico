@@ -29,18 +29,6 @@ public class CartaPersonaggi extends CartaSviluppo {
 	private int tipo;
 	private int tipopermanente;
 
-	public CartaPersonaggi(int costoMoneta, String name, String perognicarta, String image, String tooltip, 
-			HashMap<String, Integer> effettoimmediato1, HashMap<String, Integer> azioneimmediata,
-			HashMap<String, Integer> scontoazioneimmediata1, HashMap<String, Integer> scontoazioneimmediata2,
-			HashMap<String, Integer> azionepermanente, HashMap<String, Integer> scontoazionepermanente1,
-			HashMap<String, Integer> scontoazionepermanente2) {
-		this.costoMoneta = costoMoneta;
-		this.name=name;
-		this.tooltip=tooltip;
-		this.image=image;
-		this.perognicarta=perognicarta;
-	}
-
 	public CartaPersonaggi() {
 
 	}
