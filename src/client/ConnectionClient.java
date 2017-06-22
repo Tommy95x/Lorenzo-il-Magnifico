@@ -296,7 +296,7 @@ public class ConnectionClient implements ClientInterface{
 	}
 
 
-	public int scomunicato(int i) {
+	public int scomunicato(int i) throws RemoteException {
 		
 		return 0;
 	}

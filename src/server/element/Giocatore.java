@@ -1000,9 +1000,23 @@ public class Giocatore implements Serializable {
 			if (c.getId().contains("PER"))
 				numeroCarte++;
 		punti = punti + aggPuntiFinaliPers(numeroCarte);
+		punti += aggPuntiFinaliImprese();
 		punti += risorse.getPunti("vittoria");
 		puntiFinali = punti;
 		return punti;
+	}
+
+	private int aggPuntiFinaliImprese() {
+		int sum = 0;
+		if (activateBanCards() != 32) {
+			for (CartaSviluppo c : carte) {
+				if (c.getId().contains("IMP")) {
+					sum += c.getPuntiVittoria();
+				}
+			}
+			return sum;
+		}
+		return 0;
 	}
 
 	public int getPuntiFinali() {
@@ -1010,33 +1024,37 @@ public class Giocatore implements Serializable {
 	}
 
 	private int aggPuntiFinaliPers(int numeroCarte) {
-		switch (numeroCarte) {
-		case 1:
-			return 1;
-		case 2:
-			return 3;
-		case 3:
-			return 6;
-		case 4:
-			return 10;
-		case 5:
-			return 15;
-		case 6:
-			return 21;
+		if (activateBanCards() != 31) {
+			switch (numeroCarte) {
+			case 1:
+				return 1;
+			case 2:
+				return 3;
+			case 3:
+				return 6;
+			case 4:
+				return 10;
+			case 5:
+				return 15;
+			case 6:
+				return 21;
+			}
 		}
 		return 0;
 	}
 
 	private int aggPuntiFinaliTerr(int numeroCarteTerr) {
-		switch (numeroCarteTerr) {
-		case 3:
-			return 1;
-		case 4:
-			return 4;
-		case 5:
-			return 10;
-		case 6:
-			return 20;
+		if (activateBanCards() != 33) {
+			switch (numeroCarteTerr) {
+			case 3:
+				return 1;
+			case 4:
+				return 4;
+			case 5:
+				return 10;
+			case 6:
+				return 20;
+			}
 		}
 		return 0;
 	}
@@ -1079,6 +1097,26 @@ public class Giocatore implements Serializable {
 					return 25;
 				case "TS26":
 					return 26;
+				}
+			}
+		}
+		if (partita.getTurno() >= 6) {
+			if (cubiScomunica[2] != null) {
+				switch (cubiScomunica[2].getID()) {
+				case "TS31":
+					return 31;
+				case "TS32":
+					return 32;
+				case "TS33":
+					return 33;
+				case "TS34":
+					return 34;
+				case "TS35":
+					return 35;
+				case "TS36":
+					return 36;
+				case "TS37":
+					return 37;
 				}
 			}
 		}

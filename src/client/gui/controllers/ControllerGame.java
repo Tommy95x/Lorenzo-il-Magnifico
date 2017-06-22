@@ -865,16 +865,24 @@ public class ControllerGame {
 					Optional<String> result = dialog.showAndWait();
 					result.ifPresent(val -> {
 						System.out.println(color);
-						if (controlloPosizionamento(color, x, y, Integer.parseInt(val), destinazione)) {
-							try {
-								start.getClient().getRisorse().addRis("servitori", -Integer.parseInt(val));
-								start.getClient().notifyRisorse("servitori",
-										start.getClient().getRisorse().getDimRisorse("servitori"));
-							} catch (NumberFormatException | ClassNotFoundException | IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
+						int valore = Integer.parseInt(val);
+						try {
+							if(start.getClient().scomunicato(2) == 25)
+								valore -= 2;
+							if (controlloPosizionamento(color, x, y, valore, destinazione)) {
+								try {
+									start.getClient().getRisorse().addRis("servitori", -Integer.parseInt(val));
+									start.getClient().notifyRisorse("servitori",
+											start.getClient().getRisorse().getDimRisorse("servitori"));
+								} catch (NumberFormatException | ClassNotFoundException | IOException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								setFlag();
 							}
-							setFlag();
+						} catch (NumberFormatException | RemoteException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
 						}
 					});
 					return pay;
@@ -2623,13 +2631,18 @@ public class ControllerGame {
 		});
 
 		mercatoPosServitori.setOnDragEntered(e -> {
-			if (!mercatoPosServitori.isDisabled())
-				setDestinazione1(mercatoPosServitori);
+			try {
+				if (!mercatoPosServitori.isDisabled() && start.getClient().scomunicato(2) != 26)
+					setDestinazione1(mercatoPosServitori);
+			} catch (RemoteException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		});
 
 		mercatoPosMunicipio.setOnDragEntered(e -> {
 			try {
-				if (!mercatoPosMunicipio.isDisabled() && start.getClient().getNumberOfGamer() >3)
+				if (!mercatoPosMunicipio.isDisabled() && start.getClient().getNumberOfGamer() >3 && start.getClient().scomunicato(2) != 26)
 					setDestinazione1(mercatoPosMunicipio);
 			} catch (RemoteException e1) {
 				// TODO Auto-generated catch block
@@ -2638,8 +2651,13 @@ public class ControllerGame {
 		});
 
 		mercatoPosMonete.setOnDragEntered(e -> {
-			if (!mercatoPosMonete.isDisabled())
-				setDestinazione1(mercatoPosMonete);
+			try {
+				if (!mercatoPosMonete.isDisabled() && start.getClient().scomunicato(2) != 26)
+					setDestinazione1(mercatoPosMonete);
+			} catch (RemoteException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		});
 
 		mercatoPosMoneteMilitari.setOnDragEntered(e -> {

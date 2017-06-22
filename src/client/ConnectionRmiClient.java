@@ -376,6 +376,6 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 	
 	public int scomunicato(int i) throws RemoteException{
 		
-		return serverMethods.scomunicato();
+		return serverMethods.scomunicato(i, positionGame, name);
 	}
 }

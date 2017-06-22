@@ -290,4 +290,8 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		commonServer.getDBConnection().releaseConnection(con);
 		return null;
 	}
+
+	public int scomunicato(int i, int positionGame, String name) throws RemoteException {
+		return commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).activateBanCards();
+	}
 }
