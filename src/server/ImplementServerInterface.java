@@ -285,7 +285,7 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		con = commonServer.getDBConnection().getConnection(name);
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery(query);
-		while(rs.next()){;
+		while(rs.next()){
 			mom.add(new Posizioni(rs.getDouble("POSX"), rs.getDouble("POSY"), rs.getString("NOME")));
 		}
 		rs.close();

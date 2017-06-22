@@ -11,6 +11,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 import client.ConnectionClient;
+import client.ConnectionClientConsole;
 import client.gui.controllers.ControllerConnection;
 import client.gui.controllers.ControllerGame;
 import client.gui.controllers.ControllerLogin;
@@ -44,6 +45,7 @@ public class StartClientGui extends Application {
 	// Mettere public per i test
 	// public boolean create = false;
 	private boolean create = false;
+	private ConnectionClientConsole CLIClient;
 
 	public static void main(String[] args) {
 		launch(args);
@@ -245,6 +247,11 @@ public class StartClientGui extends Application {
 	public void mom() {
 		changeStage(5);
 
+	}
+
+	public void setClient(ConnectionClientConsole connectionClientConsole) {
+		this.CLIClient = connectionClientConsole;
+		
 	}
 
 }
