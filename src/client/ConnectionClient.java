@@ -294,4 +294,10 @@ public class ConnectionClient implements ClientInterface{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+
+	public int scomunicato(int i) {
+		
+		return 0;
+	}
 }

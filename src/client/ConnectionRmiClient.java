@@ -374,4 +374,8 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		return serverMethods.getNumberOfPlayer(positionGame);
 	}
 	
+	public int scomunicato(int i) throws RemoteException{
+		
+		return serverMethods.scomunicato();
+	}
 }

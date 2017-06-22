@@ -169,13 +169,13 @@ public class Giocatore implements Serializable {
 		res.close();
 		stmt.close();
 		conn.releaseConnection(connectionDatabase);
-		if(color.equals("neutro") && agg >= valoreazione){
+		if (color.equals("neutro") && agg >= valoreazione) {
 			piazzaFamiliare(nome);
 			return "OK";
-		}else if(color.equals("neutro") && agg < valoreazione){
+		} else if (color.equals("neutro") && agg < valoreazione) {
 			return "Pay";
 		}
-		if (dadi[dado].getValore() + agg >= valoreazione){
+		if (dadi[dado].getValore() + agg >= valoreazione) {
 			piazzaFamiliare(nome);
 			return "OK";
 		} else if ((dadi[dado].getValore() + agg) < valoreazione) {
@@ -535,7 +535,7 @@ public class Giocatore implements Serializable {
 			break;
 		}
 	}
-	
+
 	public void raccolto(int qta, ConnectionDatabase conn) {
 		setRisorse("legno");
 		setRisorse("pietra");
@@ -1066,5 +1066,22 @@ public class Giocatore implements Serializable {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public int activateBanCards() {
+		if (partita.getTurno() > 2) {
+
+		}
+		if (partita.getTurno() > 4) {
+			if (cubiScomunica[1] != null) {
+				switch (cubiScomunica[1].getID()) {
+				case "TS25":
+					return 25;
+				case "TS26":
+					return 26;
+				}
+			}
+		}
+		return 0;
 	}
 }

@@ -2644,7 +2644,7 @@ public class ControllerGame {
 
 		mercatoPosMoneteMilitari.setOnDragEntered(e -> {
 			try {
-				if (!mercatoPosMoneteMilitari.isDisabled() && start.getClient().getNumberOfGamer() >=3)
+				if ((!mercatoPosMoneteMilitari.isDisabled() && start.getClient().getNumberOfGamer() >=3) && start.getClient().scomunicato(2) != 26)
 					setDestinazione1(mercatoPosMoneteMilitari);
 			} catch (RemoteException e1) {
 				// TODO Auto-generated catch block
@@ -3211,13 +3211,5 @@ public class ControllerGame {
 
 	}
 	
-	public void activateBanCards(){
-		if(Integer.parseInt(turno.getText()) > 2){
-			
-		}
-		if(Integer.parseInt(turno.getText()) > 4){
-			
-		}
-	}
 
 }
