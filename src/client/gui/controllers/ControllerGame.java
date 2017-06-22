@@ -2641,6 +2641,8 @@ public class ControllerGame {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
 					}
+					if(destinazione2.equals(municipio))
+						start.getClient().sistemaPosizioni();
 					posizionatoFamiliare();
 				}
 			}

@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Comparator;
+
 import client.gui.controllers.ControllerGame;
 import server.ThreadSocketServer;
 import server.database.ConnectionDatabase;
@@ -37,6 +39,7 @@ public class Giocatore implements Serializable {
 	private boolean palazzoImprese[] = new boolean[4];
 	private boolean palazzoEdifici[] = new boolean[4];
 	private int puntiFinali;
+	private int posizione;
 
 	public Giocatore(String color, Partita partita, String name, int positionGame) {
 		this.name = name;
@@ -1150,5 +1153,15 @@ public class Giocatore implements Serializable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+	}
+
+	public void setPosizione(int i) {
+		this.posizione = i;
+		
+	}
+
+	public int getPos() {
+		// TODO Auto-generated method stub
+		return posizione;
 	}
 }

@@ -15,7 +15,7 @@ import server.element.Partita;
 *Classe utilizzata per l'avvio del server. Si istanziano due differenti Threads che avviano in corrispondenza un RMIServer per la
 *connessione dei Clients che utilizzeranno RMI e un SocketServer per tutti quei Clients che si collegheranno mediante Socket.
 */
-public class StartServer implements Serializable{
+public class StartServer {
 
 	/**
 	 * 

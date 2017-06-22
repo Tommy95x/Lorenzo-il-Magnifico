@@ -7,6 +7,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
 import server.database.ConnectionDatabase;
 
 /**
@@ -37,9 +41,10 @@ public class Partita implements Serializable {
 	private String[] colors = new String[DIM];
 	private int NumberOfPlayers = 0;
 	private boolean setCards = true;
-	private boolean ok = false;
+	private int ok = 0;
 	private int rimbalzo = 0;
 	private int totaleMosse = 0;
+	private String[] posizionamento = new String[4];
 
 	/**
 	 * Questo metodo inizializza la partita creando nuove tabelle contenti le
@@ -233,6 +238,24 @@ public class Partita implements Serializable {
 		totaleMosse = 0;
 		rimbalzo = 0;
 		setCards = true;
+		for(int i=0;i<4;i++){
+			if(giocatori[i] != null && giocatori[i].getPos() == 0){
+				giocatori[i].setPosizione(primaPosLibera());
+			}
+		}
+		for(int i=0;i<3;i++){
+			for(int j=i+1;j<4;j++){
+				if(giocatori[i] != null && giocatori[j] != null && giocatori[i].getPos() > giocatori[j].getPos()){
+					Giocatore mom = giocatori[i];
+					giocatori[i] = giocatori[j];
+					giocatori[j] = mom;
+				}
+			}
+		}
+		for(int i=0;i<4;i++){
+			giocatori[i].setPosizione(0);
+			posizionamento[i] = null;
+		}
 		notifyResetTabellone();
 		if (turno < 6) {
 			if (turno == 2 || turno == 4)
@@ -250,6 +273,17 @@ public class Partita implements Serializable {
 			endGame();
 			return false;
 		}
+	}
+
+	private int primaPosLibera() {
+		int re = 0;
+		for(int i=0;i<4;i++){
+			if(posizionamento[i] == null){
+				re = i;
+				break;
+			}
+		}
+		return re;
 	}
 
 	private void notifyResetTabellone() {
@@ -721,18 +755,27 @@ public class Partita implements Serializable {
 		}
 	}
 
-	public boolean getOk() {
+	public int getOk() {
 		// TODO Auto-generated method stub
 		return ok;
 	}
 
 	public void setOk() {
-		ok = true;
+		ok++;
 
 	}
 
 	public void setResetNumberOfGamer() {
 		NumberOfPlayers = 0;
 
+	}
+
+	public void sistemaPosizioni(String name2) {
+		for(int i = 0;i<4;i++){
+			if(posizionamento[i] == null){
+				posizionamento[i] = name;
+			}
+		}
+		
 	}
 }

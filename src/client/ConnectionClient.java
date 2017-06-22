@@ -312,4 +312,10 @@ public class ConnectionClient implements ClientInterface{
 		// TODO Auto-generated method stub
 		
 	}
+
+
+	public void sistemaPosizioni() {
+		// TODO Auto-generated method stub
+		
+	}
 }

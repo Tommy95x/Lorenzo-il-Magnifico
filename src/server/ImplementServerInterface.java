@@ -300,4 +300,10 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		commonServer.getLobbyByNumber(positionGame).scambio();
 		
 	}
+
+	@Override
+	public void sistemaPosizioni(int positionGame, String name) throws RemoteException {
+		commonServer.getLobbyByNumber(positionGame).sistemaPosizioni(name);
+		
+	}
 }

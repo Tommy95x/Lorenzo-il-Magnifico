@@ -384,4 +384,14 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		
 	}
 	
+	public void sistemaPosizioni() {
+		try {
+			serverMethods.sistemaPosizioni(positionGame, name);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 }
