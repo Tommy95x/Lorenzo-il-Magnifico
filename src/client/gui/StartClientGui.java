@@ -187,8 +187,8 @@ public class StartClientGui extends Application {
 					e.printStackTrace();
 				}
 				System.out.println("ProvaProvaProva");
-				getClient().waitQualcosa();
-			} catch (IOException | ClassNotFoundException e) {
+				getClient().sendGraficaReady();
+			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

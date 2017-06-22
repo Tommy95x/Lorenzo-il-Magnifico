@@ -378,4 +378,10 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		
 		return serverMethods.scomunicato(i, positionGame, name);
 	}
+	
+	public void scambio() throws RemoteException {
+		serverMethods.scambio( positionGame);
+		
+	}
+	
 }

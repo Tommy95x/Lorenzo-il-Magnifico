@@ -294,4 +294,10 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 	public int scomunicato(int i, int positionGame, String name) throws RemoteException {
 		return commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(name).activateBanCards();
 	}
+
+	@Override
+	public void scambio(int positionGame) throws RemoteException {
+		commonServer.getLobbyByNumber(positionGame).scambio();
+		
+	}
 }

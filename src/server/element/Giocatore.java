@@ -1139,4 +1139,16 @@ public class Giocatore implements Serializable {
 		}
 		return 0;
 	}
+
+	public void rimbalzo() {
+		if(client == null)
+			server.rimbalzo();
+		else
+			try {
+				client.rimbalzo();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	}
 }

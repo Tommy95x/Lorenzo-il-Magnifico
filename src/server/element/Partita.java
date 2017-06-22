@@ -37,6 +37,9 @@ public class Partita implements Serializable {
 	private String[] colors = new String[DIM];
 	private int NumberOfPlayers = 0;
 	private boolean setCards = true;
+	private boolean ok = false;
+	private int rimbalzo = 0;
+	private int totaleMosse = 0;
 
 	/**
 	 * Questo metodo inizializza la partita creando nuove tabelle contenti le
@@ -214,9 +217,9 @@ public class Partita implements Serializable {
 	}
 
 	public int numberOfPlayer() {
-		int n=0;
-		for(Giocatore g :giocatori)
-			if(g != null)
+		int n = 0;
+		for (Giocatore g : giocatori)
+			if (g != null)
 				n++;
 		return n;
 	}
@@ -227,6 +230,8 @@ public class Partita implements Serializable {
 
 	public boolean addTurno() {
 		NumberOfPlayers = 0;
+		totaleMosse = 0;
+		rimbalzo = 0;
 		setCards = true;
 		notifyResetTabellone();
 		if (turno < 6) {
@@ -457,7 +462,7 @@ public class Partita implements Serializable {
 
 	public void changeGamer() throws RemoteException, SQLException {
 		System.out.println("Inizio i turni " + NumberOfPlayers);
-		if (NumberOfPlayers == 4) {
+		if (totaleMosse == 16) {
 			System.out.println("Aggiungo un turno");
 			addTurno();
 		} else {
@@ -465,8 +470,10 @@ public class Partita implements Serializable {
 				if (giocatori[NumberOfPlayers] != null) {
 					giocatori[NumberOfPlayers].notifyTurno(turno);
 					NumberOfPlayers++;
+					rimbalzo++;
 				} else {
 					NumberOfPlayers++;
+					rimbalzo++;
 					changeGamer();
 				}
 			} catch (IOException e) {
@@ -474,6 +481,27 @@ public class Partita implements Serializable {
 				e.printStackTrace();
 			}
 			System.out.println(NumberOfPlayers);
+		}
+	}
+
+	public void scambio() {
+		if (totaleMosse <= 16) {
+			if (rimbalzo >= 4) {
+				rimbalzo = 0;
+				totaleMosse += 4;
+			} else {
+				if (giocatori[rimbalzo] != null) {
+					giocatori[rimbalzo].rimbalzo();
+				}
+				rimbalzo++;
+			}
+		}else{
+			try {
+				changeGamer();
+			} catch (RemoteException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -510,11 +538,11 @@ public class Partita implements Serializable {
 			stmt.close();
 			c.releaseConnection(connection);
 		} catch (SQLException e) {
-			if(x == 265.0 && y == 265.0)
+			if (x == 265.0 && y == 265.0)
 				return "ZONA MERCATO";
-			if(x == 100.0 && y == 691.0)
+			if (x == 100.0 && y == 691.0)
 				return "AZIONE RACCOLTO 4";
-			if(x == 105.0 && y == 628.0)
+			if (x == 105.0 && y == 628.0)
 				return "AZIONE PRODUZIONE 4";
 		}
 		return nomeposizione;
@@ -608,7 +636,7 @@ public class Partita implements Serializable {
 						}
 						rs.close();
 						stmt.close();
-						g.notifySpostamentopuntiMilitari(x, y, color2);
+						g.notifySpostamentopuntiMilitari(x, y, g.getColor());
 					} catch (RemoteException | SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -645,8 +673,8 @@ public class Partita implements Serializable {
 			}
 			break;
 		case "fede":
-			for (Giocatore g : giocatori) {
-				if (g != null) {
+			for (int i = 0; i < 4; i++) {
+				if (giocatori[i] != null) {
 					double x = 0;
 					double y = 0;
 					String query;
@@ -663,7 +691,7 @@ public class Partita implements Serializable {
 						}
 						rs.close();
 						stmt.close();
-						g.notifySpostamentopuntiFede(x, y, g.getColor());
+						giocatori[i].notifySpostamentopuntiFede(x, y, giocatori[i].getColor());
 					} catch (RemoteException | SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -691,5 +719,20 @@ public class Partita implements Serializable {
 			if (giocatori[i] != null)
 				giocatori[i].notfyAvvAddScomunica(name, numSco);
 		}
+	}
+
+	public boolean getOk() {
+		// TODO Auto-generated method stub
+		return ok;
+	}
+
+	public void setOk() {
+		ok = true;
+
+	}
+
+	public void setResetNumberOfGamer() {
+		NumberOfPlayers = 0;
+
 	}
 }

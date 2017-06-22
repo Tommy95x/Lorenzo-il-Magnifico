@@ -26,4 +26,5 @@ public interface RMIClientInterface extends Remote{
 	public void notifyAskSostegnoChiesa()throws RemoteException;
 	public void notifyVittoria()throws RemoteException;
 	public void nofySconfitta(int max)throws RemoteException;
+	public void rimbalzo()throws RemoteException;
 }

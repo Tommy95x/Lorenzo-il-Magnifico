@@ -300,4 +300,16 @@ public class ConnectionClient implements ClientInterface{
 		
 		return 0;
 	}
+
+
+	public void sendGraficaReady() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void scambio() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
 }

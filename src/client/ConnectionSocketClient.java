@@ -269,6 +269,17 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		outputSocket.flush();
 	}
 
+	public void sendGraficaReady() {
+		try {
+			outputSocket.writeObject("pronto la grafica");
+			outputSocket.flush();
+			waitQualcosa();
+		} catch (IOException | ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void notifySpostamento(String color, double x, double y) throws IOException {
 		outputSocket.writeObject("notifySpostamento");
 		outputSocket.flush();

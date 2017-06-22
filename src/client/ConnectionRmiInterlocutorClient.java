@@ -175,5 +175,13 @@ public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implem
 			this.guiGame.nofySconfitta(max);
 		});
 	}
+
+	@Override
+	public void rimbalzo() throws RemoteException {
+		Platform.runLater(() -> {
+			this.guiGame.scambio();
+		});
+		
+	}
 	
 }

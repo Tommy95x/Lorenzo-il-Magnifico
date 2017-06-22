@@ -867,7 +867,7 @@ public class ControllerGame {
 						System.out.println(color);
 						int valore = Integer.parseInt(val);
 						try {
-							if(start.getClient().scomunicato(2) == 25)
+							if (start.getClient().scomunicato(2) == 25)
 								valore -= 2;
 							if (controlloPosizionamento(color, x, y, valore, destinazione)) {
 								try {
@@ -945,6 +945,8 @@ public class ControllerGame {
 						mom.setDisable(true);
 					} else {
 						mom.setImage(familiareGreen3.getImage());
+						mom.setFitWidth(35);
+						mom.setFitHeight(38);
 						momB.getChildren().add(mom);
 					}
 					familiareGreen3.setOpacity(0);
@@ -955,6 +957,8 @@ public class ControllerGame {
 						mom.setDisable(true);
 					} else {
 						mom.setImage(familiareGreen4.getImage());
+						mom.setFitWidth(35);
+						mom.setFitHeight(38);
 						momB.getChildren().add(mom);
 					}
 					familiareGreen4.setOpacity(0);
@@ -965,6 +969,8 @@ public class ControllerGame {
 						mom.setDisable(true);
 					} else {
 						mom.setImage(familiareGreen2.getImage());
+						mom.setFitWidth(35);
+						mom.setFitHeight(38);
 						momB.getChildren().add(mom);
 					}
 					familiareGreen2.setOpacity(0);
@@ -975,6 +981,8 @@ public class ControllerGame {
 						mom.setDisable(true);
 					} else {
 						mom.setImage(familiareGreen1.getImage());
+						mom.setFitWidth(35);
+						mom.setFitHeight(38);
 						momB.getChildren().add(mom);
 					}
 					familiareGreen1.setOpacity(0);
@@ -989,6 +997,8 @@ public class ControllerGame {
 						mom.setDisable(true);
 					} else {
 						mom.setImage(familiareOrange3.getImage());
+						mom.setFitWidth(35);
+						mom.setFitHeight(38);
 						momB.getChildren().add(mom);
 					}
 					familiareOrange3.setOpacity(0);
@@ -999,6 +1009,8 @@ public class ControllerGame {
 						mom.setDisable(true);
 					} else {
 						mom.setImage(familiareOrange4.getImage());
+						mom.setFitWidth(35);
+						mom.setFitHeight(38);
 						momB.getChildren().add(mom);
 					}
 					familiareOrange4.setOpacity(0);
@@ -1009,6 +1021,8 @@ public class ControllerGame {
 						mom.setDisable(true);
 					} else {
 						mom.setImage(familiareOrange2.getImage());
+						mom.setFitWidth(35);
+						mom.setFitHeight(38);
 						momB.getChildren().add(mom);
 					}
 					familiareOrange2.setOpacity(0);
@@ -1019,6 +1033,8 @@ public class ControllerGame {
 						mom.setDisable(true);
 					} else {
 						mom.setImage(familiareOrange1.getImage());
+						mom.setFitWidth(35);
+						mom.setFitHeight(38);
 						momB.getChildren().add(mom);
 					}
 					familiareOrange1.setOpacity(0);
@@ -1033,6 +1049,8 @@ public class ControllerGame {
 						mom.setDisable(true);
 					} else {
 						mom.setImage(familiareWhite3.getImage());
+						mom.setFitWidth(35);
+						mom.setFitHeight(38);
 						momB.getChildren().add(mom);
 					}
 					familiareWhite3.setOpacity(0);
@@ -1043,6 +1061,8 @@ public class ControllerGame {
 						mom.setDisable(true);
 					} else {
 						mom.setImage(familiareWhite4.getImage());
+						mom.setFitWidth(35);
+						mom.setFitHeight(38);
 						momB.getChildren().add(mom);
 					}
 					familiareWhite4.setOpacity(0);
@@ -1053,6 +1073,8 @@ public class ControllerGame {
 						mom.setDisable(true);
 					} else {
 						mom.setImage(familiareWhite2.getImage());
+						mom.setFitWidth(35);
+						mom.setFitHeight(38);
 						momB.getChildren().add(mom);
 					}
 					familiareWhite2.setOpacity(0);
@@ -1063,6 +1085,8 @@ public class ControllerGame {
 						mom.setDisable(true);
 					} else {
 						mom.setImage(familiareWhite1.getImage());
+						mom.setFitWidth(35);
+						mom.setFitHeight(38);
 						momB.getChildren().add(mom);
 					}
 					familiareWhite1.setOpacity(0);
@@ -1079,6 +1103,8 @@ public class ControllerGame {
 					mom.setDisable(true);
 				} else {
 					mom.setImage(familiareWhite3.getImage());
+					mom.setFitWidth(35);
+					mom.setFitHeight(38);
 					momB.getChildren().add(mom);
 				}
 				familiareWhite3.setOpacity(0);
@@ -1089,6 +1115,8 @@ public class ControllerGame {
 					mom.setDisable(true);
 				} else {
 					mom.setImage(familiareWhite4.getImage());
+					mom.setFitWidth(35);
+					mom.setFitHeight(38);
 					momB.getChildren().add(mom);
 				}
 				familiareWhite3.setOpacity(0);
@@ -1099,6 +1127,8 @@ public class ControllerGame {
 					mom.setDisable(true);
 				} else {
 					mom.setImage(familiareWhite2.getImage());
+					mom.setFitWidth(35);
+					mom.setFitHeight(38);
 					momB.getChildren().add(mom);
 				}
 				familiareWhite2.setOpacity(0);
@@ -1109,6 +1139,8 @@ public class ControllerGame {
 					mom.setDisable(true);
 				} else {
 					mom.setImage(familiareWhite1.getImage());
+					mom.setFitWidth(35);
+					mom.setFitHeight(38);
 					momB.getChildren().add(mom);
 				}
 				familiareWhite1.setOpacity(0);
@@ -1123,6 +1155,8 @@ public class ControllerGame {
 					mom.setDisable(true);
 				} else {
 					mom.setImage(familiareOrange3.getImage());
+					mom.setFitWidth(35);
+					mom.setFitHeight(38);
 					momB.getChildren().add(mom);
 				}
 				familiareOrange3.setOpacity(0);
@@ -1133,6 +1167,8 @@ public class ControllerGame {
 					mom.setDisable(true);
 				} else {
 					mom.setImage(familiareOrange4.getImage());
+					mom.setFitWidth(35);
+					mom.setFitHeight(38);
 					momB.getChildren().add(mom);
 				}
 				familiareOrange4.setOpacity(0);
@@ -1143,6 +1179,8 @@ public class ControllerGame {
 					mom.setDisable(true);
 				} else {
 					mom.setImage(familiareOrange2.getImage());
+					mom.setFitWidth(35);
+					mom.setFitHeight(38);
 					momB.getChildren().add(mom);
 				}
 				familiareOrange2.setOpacity(0);
@@ -1153,6 +1191,8 @@ public class ControllerGame {
 					mom.setDisable(true);
 				} else {
 					mom.setImage(familiareOrange1.getImage());
+					mom.setFitWidth(35);
+					mom.setFitHeight(38);
 					momB.getChildren().add(mom);
 				}
 				familiareOrange1.setOpacity(0);
@@ -1167,6 +1207,8 @@ public class ControllerGame {
 					mom.setDisable(true);
 				} else {
 					mom.setImage(familiareGreen3.getImage());
+					mom.setFitWidth(35);
+					mom.setFitHeight(38);
 					momB.getChildren().add(mom);
 				}
 				familiareGreen3.setOpacity(0);
@@ -1177,6 +1219,8 @@ public class ControllerGame {
 					mom.setDisable(true);
 				} else {
 					mom.setImage(familiareGreen4.getImage());
+					mom.setFitWidth(35);
+					mom.setFitHeight(38);
 					momB.getChildren().add(mom);
 				}
 				familiareGreen4.setOpacity(0);
@@ -1187,6 +1231,8 @@ public class ControllerGame {
 					mom.setDisable(true);
 				} else {
 					mom.setImage(familiareGreen2.getImage());
+					mom.setFitWidth(35);
+					mom.setFitHeight(38);
 					momB.getChildren().add(mom);
 				}
 				familiareGreen2.setOpacity(0);
@@ -1197,6 +1243,8 @@ public class ControllerGame {
 					mom.setDisable(true);
 				} else {
 					mom.setImage(familiareGreen1.getImage());
+					mom.setFitWidth(35);
+					mom.setFitHeight(38);
 					momB.getChildren().add(mom);
 				}
 				familiareGreen1.setOpacity(0);
@@ -1661,6 +1709,13 @@ public class ControllerGame {
 			mom.setFitWidth(90);
 			Tooltip.install(mom, arrayCarteEdifici[1].getTooltip());
 			carteEdificiGiocatore.getChildren().add(mom);
+			try {
+				start.getClient().addPunti("militari", 1);
+				start.getClient().notifySpostamentoPunti("militari");
+			} catch (SQLException e4) {
+				// TODO Auto-generated catch block
+				e4.printStackTrace();
+			}
 			sistemaCarte(2, 1);
 			start.getClient().setCardGiocatore(arrayCarteEdifici[1], 2, 1);
 			break;
@@ -1670,6 +1725,13 @@ public class ControllerGame {
 			mom.setFitWidth(90);
 			Tooltip.install(mom, arrayCarteEdifici[0].getTooltip());
 			carteEdificiGiocatore.getChildren().add(mom);
+			try {
+				start.getClient().addPunti("militari", 2);
+				start.getClient().notifySpostamentoPunti("militari");
+			} catch (SQLException e4) {
+				// TODO Auto-generated catch block
+				e4.printStackTrace();
+			}
 			sistemaCarte(2, 0);
 			start.getClient().setCardGiocatore(arrayCarteEdifici[0], 2, 0);
 			break;
@@ -1697,6 +1759,13 @@ public class ControllerGame {
 			mom.setFitWidth(90);
 			Tooltip.install(mom, arrayCarteImpresa[1].getTooltip());
 			carteImpresaGiocatore.getChildren().add(mom);
+			try {
+				start.getClient().addRisorse("monete", 1);
+				start.getClient().notifyRisorse("monete", start.getClient().getRisorse().getDimRisorse("monete"));
+			} catch (SQLException | ClassNotFoundException e4) {
+				// TODO Auto-generated catch block
+				e4.printStackTrace();
+			}
 			sistemaCarte(3, 1);
 			start.getClient().setCardGiocatore(arrayCarteImpresa[1], 3, 1);
 			break;
@@ -1706,6 +1775,13 @@ public class ControllerGame {
 			mom.setFitWidth(90);
 			Tooltip.install(mom, arrayCarteImpresa[0].getTooltip());
 			carteImpresaGiocatore.getChildren().add(mom);
+			try {
+				start.getClient().addRisorse("monete", 2);
+				start.getClient().notifyRisorse("monete", start.getClient().getRisorse().getDimRisorse("monete"));
+			} catch (SQLException | ClassNotFoundException e4) {
+				// TODO Auto-generated catch block
+				e4.printStackTrace();
+			}
 			sistemaCarte(3, 0);
 			start.getClient().setCardGiocatore(arrayCarteImpresa[0], 3, 0);
 			break;
@@ -1830,20 +1906,28 @@ public class ControllerGame {
 		case "tutteCarte":
 			switch (tipo) {
 			case 0:
-				carteTerritoriGiocatore.getChildren().add(new ImageView(
-						new Image(getClass().getResourceAsStream(arrayCarteTerritori[piano].getImage()))));
+				mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteTerritori[piano].getImage())));
+				mom.setFitWidth(90);
+				mom.setFitHeight(130);
+				carteTerritoriGiocatore.getChildren().add(mom);
 				break;
 			case 1:
-				cartePersonaggiGiocatore.getChildren().add(new ImageView(
-						new Image(getClass().getResourceAsStream(arrayCartePersonaggi[piano].getImage()))));
+				mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCartePersonaggi[piano].getImage())));
+				mom.setFitWidth(90);
+				mom.setFitHeight(130);
+				cartePersonaggiGiocatore.getChildren().add(mom);
 				break;
 			case 2:
-				carteEdificiGiocatore.getChildren().add(
-						new ImageView(new Image(getClass().getResourceAsStream(arrayCarteEdifici[piano].getImage()))));
+				mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteEdifici[piano].getImage())));
+				mom.setFitWidth(90);
+				mom.setFitHeight(130);
+				carteEdificiGiocatore.getChildren().add(mom);
 				break;
 			case 3:
-				carteImpresaGiocatore.getChildren().add(
-						new ImageView(new Image(getClass().getResourceAsStream(arrayCarteImpresa[piano].getImage()))));
+				mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteImpresa[piano].getImage())));
+				mom.setFitWidth(90);
+				mom.setFitHeight(130);
+				carteImpresaGiocatore.getChildren().add(mom);
 				break;
 
 			}
@@ -1874,6 +1958,7 @@ public class ControllerGame {
 
 	public void enableGame(int turno) {
 		isInTurno = true;
+		nFamPos = 0;
 		System.out.println("Abilito i bottone dei dadi");
 		this.turno.setText(String.valueOf(turno));
 		Alert alert = new Alert(AlertType.INFORMATION);
@@ -1887,10 +1972,10 @@ public class ControllerGame {
 	public void resetTabellon() throws ClassNotFoundException, IOException {
 		start.getClient().changeCards();
 		setPosizioni();
-		familiareNeutro.setOpacity(1);
-		familiareNero.setOpacity(1);
-		familiareArancio.setOpacity(1);
-		familiareBianco.setOpacity(1);
+		familiareNeutro.setVisible(true);
+		familiareNero.setVisible(true);
+		familiareArancio.setVisible(true);
+		familiareBianco.setVisible(true);
 		setColorsParents(start.getClient().getColor());
 		try {
 			setCardsOtherTurn(start.getClient().getCardsGame());
@@ -2338,12 +2423,12 @@ public class ControllerGame {
 		});
 
 		familiareNeutro.setOnDragDone(event -> {
-			if (flag && destinazione1 != null) {
+			if (destinazione1 != null && flag) {
 				if (controlloPosizionamento("neutro", destinazione1.getLayoutX(), destinazione1.getLayoutY(), 0,
 						destinazione1)) {
 					destinazione1.setImage(familiareNeutro.getImage());
 					familiareNeutro.setDisable(true);
-					familiareNeutro.setOpacity(0);
+					familiareNeutro.setVisible(false);
 					try {
 						start.getClient().notifySpostamento("neutro", destinazione1.getLayoutX(),
 								destinazione1.getLayoutY());
@@ -2354,6 +2439,7 @@ public class ControllerGame {
 						e2.printStackTrace();
 					}
 					posizionatoFamiliare();
+					setDestinazione1(null);
 				}
 			} else {
 				if (controlloPosizionamento("neutro", destinazione2.getLayoutX(), destinazione2.getLayoutX(), 0,
@@ -2363,7 +2449,7 @@ public class ControllerGame {
 					mom.setFitHeight(38);
 					destinazione2.getChildren().add(mom);
 					familiareNeutro.setDisable(true);
-					familiareNeutro.setOpacity(0);
+					familiareNeutro.setVisible(false);
 					try {
 						start.getClient().notifySpostamento("neutro", destinazione1.getLayoutX(),
 								destinazione1.getLayoutY());
@@ -2381,8 +2467,13 @@ public class ControllerGame {
 		familiareNero.setOnDragDone(event -> {
 			if (flag && destinazione1 != null) {
 				int i = 0;
-				if(start.getClient().scomunicato(1)==17){
-					i=-1;
+				try {
+					if (start.getClient().scomunicato(1) == 17) {
+						i = -1;
+					}
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 				if (controlloPosizionamento("black", destinazione1.getLayoutX(), destinazione1.getLayoutY(), i,
 						destinazione1)) {
@@ -2390,7 +2481,7 @@ public class ControllerGame {
 							"neroooooooooooooo " + destinazione1.getLayoutX() + "  " + destinazione1.getLayoutY());
 					destinazione1.setImage(familiareNero.getImage());
 					familiareNero.setDisable(true);
-					familiareNero.setOpacity(0);
+					familiareNero.setVisible(false);
 					try {
 						start.getClient().notifySpostamento("black", destinazione1.getLayoutX(),
 								destinazione1.getLayoutY());
@@ -2401,11 +2492,17 @@ public class ControllerGame {
 						e2.printStackTrace();
 					}
 					posizionatoFamiliare();
+					setDestinazione1(null);
 				}
 			} else {
 				int i = 0;
-				if(start.getClient().scomunicato(1)==17){
-					i=-1;
+				try {
+					if (start.getClient().scomunicato(1) == 17) {
+						i = -1;
+					}
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 				if (controlloPosizionamento("black", destinazione2.getLayoutX(), destinazione2.getLayoutX(), i, null)) {
 					ImageView mom = new ImageView(familiareNero.getImage());
@@ -2415,7 +2512,7 @@ public class ControllerGame {
 							+ destinazione2.getLayoutY());
 					destinazione2.getChildren().add(mom);
 					familiareNero.setDisable(true);
-					familiareNero.setOpacity(0);
+					familiareNero.setVisible(false);
 					try {
 						start.getClient().notifySpostamento("black", destinazione2.getLayoutX(),
 								destinazione2.getLayoutY());
@@ -2433,14 +2530,19 @@ public class ControllerGame {
 		familiareArancio.setOnDragDone(event -> {
 			if (flag && destinazione1 != null) {
 				int i = 0;
-				if(start.getClient().scomunicato(1)==17){
-					i=-1;
+				try {
+					if (start.getClient().scomunicato(1) == 17) {
+						i = -1;
+					}
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 				if (controlloPosizionamento("orange", destinazione1.getLayoutX(), destinazione1.getLayoutY(), i,
 						destinazione1)) {
 					destinazione1.setImage(familiareArancio.getImage());
 					familiareArancio.setDisable(true);
-					familiareArancio.setOpacity(0);
+					familiareArancio.setVisible(false);
 					try {
 						start.getClient().notifySpostamento("orange", destinazione1.getLayoutX(),
 								destinazione1.getLayoutY());
@@ -2451,11 +2553,17 @@ public class ControllerGame {
 						e2.printStackTrace();
 					}
 					posizionatoFamiliare();
+					setDestinazione1(null);
 				}
 			} else {
 				int i = 0;
-				if(start.getClient().scomunicato(1)==17){
-					i=-1;
+				try {
+					if (start.getClient().scomunicato(1) == 17) {
+						i = -1;
+					}
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 				if (controlloPosizionamento("orange", destinazione2.getLayoutX(), destinazione2.getLayoutX(), i,
 						null)) {
@@ -2464,7 +2572,7 @@ public class ControllerGame {
 					mom.setFitHeight(38);
 					destinazione2.getChildren().add(mom);
 					familiareArancio.setDisable(true);
-					familiareArancio.setOpacity(0);
+					familiareArancio.setVisible(false);
 					try {
 						start.getClient().notifySpostamento("orange", destinazione2.getLayoutX(),
 								destinazione2.getLayoutY());
@@ -2482,14 +2590,19 @@ public class ControllerGame {
 		familiareBianco.setOnDragDone(event -> {
 			if (flag && destinazione1 != null) {
 				int i = 0;
-				if(start.getClient().scomunicato(1)==17){
-					i=-1;
+				try {
+					if (start.getClient().scomunicato(1) == 17) {
+						i = -1;
+					}
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 				if (controlloPosizionamento("white", destinazione1.getLayoutX(), destinazione1.getLayoutY(), i,
 						destinazione1)) {
 					destinazione1.setImage(familiareBianco.getImage());
 					familiareBianco.setDisable(true);
-					familiareBianco.setOpacity(0);
+					familiareBianco.setVisible(false);
 					try {
 						start.getClient().notifySpostamento("white", destinazione1.getLayoutX(),
 								destinazione1.getLayoutY());
@@ -2500,11 +2613,17 @@ public class ControllerGame {
 						e2.printStackTrace();
 					}
 					posizionatoFamiliare();
+					setDestinazione1(null);
 				}
 			} else {
 				int i = 0;
-				if(start.getClient().scomunicato(1)==17){
-					i=-1;
+				try {
+					if (start.getClient().scomunicato(1) == 17) {
+						i = -1;
+					}
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 				if (controlloPosizionamento("white", destinazione2.getLayoutX(), destinazione2.getLayoutX(), i, null)) {
 					ImageView mom = new ImageView(familiareBianco.getImage());
@@ -2512,7 +2631,7 @@ public class ControllerGame {
 					mom.setFitHeight(38);
 					destinazione2.getChildren().add(mom);
 					familiareBianco.setDisable(true);
-					familiareBianco.setOpacity(0);
+					familiareBianco.setVisible(false);
 					try {
 						start.getClient().notifySpostamento("white", destinazione2.getLayoutX(),
 								destinazione2.getLayoutY());
@@ -2666,7 +2785,8 @@ public class ControllerGame {
 
 		mercatoPosMunicipio.setOnDragEntered(e -> {
 			try {
-				if (!mercatoPosMunicipio.isDisabled() && start.getClient().getNumberOfGamer() >3 && start.getClient().scomunicato(2) != 26)
+				if (!mercatoPosMunicipio.isDisabled() && start.getClient().getNumberOfGamer() > 3
+						&& start.getClient().scomunicato(2) != 26)
 					setDestinazione1(mercatoPosMunicipio);
 			} catch (RemoteException e1) {
 				// TODO Auto-generated catch block
@@ -2686,7 +2806,8 @@ public class ControllerGame {
 
 		mercatoPosMoneteMilitari.setOnDragEntered(e -> {
 			try {
-				if ((!mercatoPosMoneteMilitari.isDisabled() && start.getClient().getNumberOfGamer() >=3) && start.getClient().scomunicato(2) != 26)
+				if ((!mercatoPosMoneteMilitari.isDisabled() && start.getClient().getNumberOfGamer() >= 3)
+						&& start.getClient().scomunicato(2) != 26)
 					setDestinazione1(mercatoPosMoneteMilitari);
 			} catch (RemoteException e1) {
 				// TODO Auto-generated catch block
@@ -2722,15 +2843,76 @@ public class ControllerGame {
 
 	private void posizionatoFamiliare() {
 		nFamPos++;
-		if (nFamPos == 4) {
+		if (nFamPos == 1) {
 			try {
 				start.getClient().changeGamer();
 				isInTurno = false;
-				nFamPos = 0;
+				if (!familiareBianco.isVisible()) {
+					familiareNero.setDisable(true);
+					familiareArancio.setDisable(true);
+					familiareNeutro.setDisable(true);
+				} else if (!familiareNero.isVisible()) {
+					familiareBianco.setDisable(true);
+					familiareArancio.setDisable(true);
+					familiareNeutro.setDisable(true);
+				} else if (!familiareArancio.isVisible()) {
+					familiareNero.setDisable(true);
+					familiareBianco.setDisable(true);
+					familiareNeutro.setDisable(true);
+				} else if (!familiareNeutro.isVisible()) {
+					familiareNero.setDisable(true);
+					familiareArancio.setDisable(true);
+					familiareBianco.setDisable(true);
+				}
 			} catch (RemoteException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		} else {
+			try {
+				start.getClient().scambio();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if (!familiareBianco.isVisible()) {
+				familiareNero.setDisable(true);
+				familiareArancio.setDisable(true);
+				familiareNeutro.setDisable(true);
+			} else if (!familiareNero.isVisible()) {
+				familiareBianco.setDisable(true);
+				familiareArancio.setDisable(true);
+				familiareNeutro.setDisable(true);
+			} else if (!familiareArancio.isVisible()) {
+				familiareNero.setDisable(true);
+				familiareBianco.setDisable(true);
+				familiareNeutro.setDisable(true);
+			} else if (!familiareNeutro.isVisible()) {
+				familiareNero.setDisable(true);
+				familiareArancio.setDisable(true);
+				familiareBianco.setDisable(true);
+			}
+		}
+	}
+
+	public void scambio() {
+		isInTurno = true;
+		if (!familiareBianco.isVisible()) {
+			familiareNero.setDisable(false);
+			familiareArancio.setDisable(false);
+			familiareNeutro.setDisable(false);
+		} else if (!familiareNero.isVisible()) {
+			familiareBianco.setDisable(false);
+			familiareArancio.setDisable(false);
+			familiareNeutro.setDisable(false);
+		} else if (!familiareArancio.isVisible()) {
+			familiareNero.setDisable(false);
+			familiareBianco.setDisable(false);
+			familiareNeutro.setDisable(false);
+		} else if (!familiareNeutro.isVisible()) {
+			familiareNero.setDisable(false);
+			familiareArancio.setDisable(false);
+			familiareBianco.setDisable(false);
 		}
 	}
 
@@ -2750,8 +2932,8 @@ public class ControllerGame {
 				|| (!color2.equals(start.getClient().getColor()) && !isInTurno()));
 		if (((isInTurno() && color2.equals(start.getClient().getColor()))
 				|| (!color2.equals(start.getClient().getColor()) && !isInTurno()))) {
-			System.out.println(
-					"Notifico lo spostamento della pedina punti militari del giocatore con il colore " + color2);
+			System.out.println("Notifico lo spostamento della pedina punti militari del giocatore con il colore "
+					+ color2 + " " + x + " " + y);
 			switch (color2) {
 			case "blue":
 				System.out.println("Si sposta la pedina blu a: " + x + " " + y);
@@ -2820,27 +3002,27 @@ public class ControllerGame {
 				|| (!color2.equals(start.getClient().getColor()) && !isInTurno()));
 		if ((isInTurno() && color2.equals(start.getClient().getColor()))
 				|| (!isInTurno() && !color2.equals(start.getClient().getColor()))) {
-			System.out.println(
-					"Notifico lo spostamento della pedina punti vittoria del giocatore con il colore " + color2);
+			System.out.println("Notifico lo spostamento della pedina punti vittoria del giocatore con il colore "
+					+ color2 + " " + x + " " + y);
 			switch (color2) {
 			case "blue":
 				puntiVittoriaBlu.setLayoutX(x);
-				puntiVittoriaBlu.setLayoutX(y);
+				puntiVittoriaBlu.setLayoutY(y);
 				System.out.println("Fine Spostamento pedina");
 				break;
 			case "white":
 				puntiVittoriaBianco.setLayoutX(x);
-				puntiVittoriaBianco.setLayoutX(y);
+				puntiVittoriaBianco.setLayoutY(y);
 				System.out.println("Fine Spostamento pedina");
 				break;
 			case "green":
 				puntiVittoriaVerde.setLayoutX(x);
-				puntiVittoriaVerde.setLayoutX(y);
+				puntiVittoriaVerde.setLayoutY(y);
 				System.out.println("Fine Spostamento pedina");
 				break;
 			case "orange":
 				puntiVittoriaArancio.setLayoutX(x);
-				puntiVittoriaArancio.setLayoutX(y);
+				puntiVittoriaArancio.setLayoutY(y);
 				System.out.println("Fine Spostamento pedina");
 				break;
 			}
@@ -3007,8 +3189,6 @@ public class ControllerGame {
 				box.getChildren().add(i);
 				i.setOnMouseClicked(e -> {
 					try {
-						i.setFitWidth(97.5);
-						i.setFitHeight(63);
 						start.getClient().getRisorse().addRis("monete", -3);
 						start.getClient().notifyRisorse("monete",
 								start.getClient().getRisorse().getDimRisorse("monete"));
@@ -3252,6 +3432,5 @@ public class ControllerGame {
 		}
 
 	}
-	
 
 }
