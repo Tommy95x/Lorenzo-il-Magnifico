@@ -1,11 +1,13 @@
 package client;
 
+import java.io.Serializable;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.sun.glass.events.KeyEvent;
@@ -13,7 +15,6 @@ import com.sun.glass.events.KeyEvent;
 import server.element.CartaSviluppo;
 import server.element.Dado;
 import server.element.Giocatore;
-import server.element.Partita;
 import server.element.Portafoglio;
 import server.element.Posizioni;
 import server.element.TesseraScomunica;
@@ -34,6 +35,7 @@ public class ConnectionClientConsole extends ConnectionRmiClient implements RMIC
 	private TesseraScomunica[] scomuniche = new TesseraScomunica[3];
 	private ArrayList<CartaSviluppo> cartePersonali = new ArrayList<CartaSviluppo>();
 	private int turnodiGioco = 0;
+	private int mosseDisponibili = 4;
 
 	public ConnectionClientConsole() throws RemoteException {
 
@@ -74,14 +76,15 @@ public class ConnectionClientConsole extends ConnectionRmiClient implements RMIC
 		System.out.println("Inserisci la password");
 		String pw = input.nextLine();
 		try {
-			System.out.println(serverMethods.login(account, pw));
-			try {
+			String mom = serverMethods.login(account, pw);
+			System.out.println(mom);
+			if(mom.equals("Welcome to the game")){
+				this.account = account;
 				startMenu();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
-		} catch (RemoteException e) {
+			else
+				login();
+		} catch (RemoteException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -113,7 +116,12 @@ public class ConnectionClientConsole extends ConnectionRmiClient implements RMIC
 		String color;
 		System.out.println(
 				"Premi 1 se vuoi creare una nuova lobby di gioco o 2 se vuoi entrare in una lobby gia' esistente");
-		int menu = input.nextInt();
+		int menu = 0 ;
+		try{
+			menu = input.nextInt();
+		}catch(InputMismatchException e){
+			System.out.println("La decisione devi inserirla premendo 1 o 2, son dei numeri");
+		}
 		input.nextLine();
 		switch (menu) {
 		case 1:
@@ -124,6 +132,7 @@ public class ConnectionClientConsole extends ConnectionRmiClient implements RMIC
 			color = input.nextLine();
 			try {
 				positionGame = serverMethods.createNewLobby(lobby, account, color);
+				serverMethods.setClientInterface(positionGame, account, this);
 				this.color = color;
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
@@ -141,8 +150,24 @@ public class ConnectionClientConsole extends ConnectionRmiClient implements RMIC
 			for (int i = 0; i < lobbies.size(); i++) {
 				System.out.println(lobbies.get(i));
 			}
-			System.out.println("Scrivi il nome della lobby in cui vuoi entrare");
+			System.out.println("Scrivi il nome della lobby in cui vuoi entrare o scrivi back per tornare indietro");
+			ArrayList<String> s = null;
+			try {
+				s = serverMethods.getLobby();
+			} catch (RemoteException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			if(s == null){
+				System.out.println("Spiacenti non ci sono partite disponibili");
+			}else{
+				for(String p : s)
+					System.out.println(p);
+			}
 			lobby = input.nextLine();
+			if(lobby.equals("back"))
+				startMenu();
+			System.out.println("Questi sono i colori disponibili");
 			try {
 				colors = serverMethods.getColors(lobby);
 			} catch (RemoteException e) {
@@ -201,7 +226,6 @@ public class ConnectionClientConsole extends ConnectionRmiClient implements RMIC
 	}
 
 	public void play() throws RemoteException, SQLException {
-		int mosseDisponibili = 4;
 		System.out.println("Il turno di gioco e': " + turnodiGioco);
 		System.out.println(
 				"Fai le tue mosse nel seguente ordine:\n1)Lancia i dadi(verranno lanciati all'inizio del tuo turno mostrando i loro valori)\n2)Scrivi il colore del familiare che vuoi spostare (ricorda i familiari sono di colore Arancio, Nero, Bianco, Neutro)\n3)Scrivi la posizione numerica nel tabellone in cui vuoi inserire il familiare (scrivendo back de-selezioni il familiare selezionato)\n4)Acquisisci carte e vedi i relativi effetti\n5)Verifichi il tuo punteggio, scrivendo punteggio o personal score\n");
@@ -209,7 +233,6 @@ public class ConnectionClientConsole extends ConnectionRmiClient implements RMIC
 		for (int i = 0; i < 3; i++) {
 			System.out.println("Il dado " + dadi[i].getColor() + " vale " + dadi[i].getValore());
 		}
-		do {
 			String action = input.nextLine();
 			switch (action.toLowerCase()) {
 			case "nero":
@@ -364,6 +387,7 @@ public class ConnectionClientConsole extends ConnectionRmiClient implements RMIC
 							Double.valueOf(action), y, 0);
 					if (mom.equals("OK")) {
 						System.out.println("Familiare posizionato");
+						incrPosizionamento();
 					} else {
 						System.out.println(mom);
 						mosseDisponibili++;
@@ -393,9 +417,20 @@ public class ConnectionClientConsole extends ConnectionRmiClient implements RMIC
 				System.out.println("I putni fede che hai sono: " + po.getPunti("fede"));
 				break;
 			}
-		} while (mosseDisponibili > 0);
 		serverMethods.changeGamer(positionGame);
 		System.out.println("Il tuo turno e' finito aspetta le notifiche degli altri giocatori e ossevali bene!!!");
+	}
+
+	private void incrPosizionamento() {
+		mosseDisponibili++;
+		if(mosseDisponibili == 4)
+			try {
+				serverMethods.changeGamer(positionGame);
+			} catch (RemoteException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
 	}
 
 	public void moveFamiliareAvv(double x, double y, String colorPlayer, String colorFam) throws RemoteException {
@@ -417,8 +452,19 @@ public class ConnectionClientConsole extends ConnectionRmiClient implements RMIC
 
 	@Override
 	public void resetTabellone() throws RemoteException {
-		// TODO Auto-generated method stub
-
+		System.out.println("Il tabellone è stato resettato ora le nuove carte presenti sono: ");
+		int i = 0, j = 4, k = 8, l = 12;
+		for (int p = 0; p < 4; p++) {
+			System.out.println(carte[i].getNameCard() + " \t" + carte[j].getNameCard() + " \t" + carte[k].getNameCard()
+					+ " \t" + carte[l].getNameCard());
+			System.out.println(carte[i].getTooltipString() + " \t" + carte[j].getTooltipString() + " \t"
+					+ carte[k].getTooltipString() + " \t" + carte[l].getTooltipString());
+			System.out.println();
+			i++;
+			j++;
+			k++;
+			l++;
+		}
 	}
 
 	@Override
@@ -447,8 +493,20 @@ public class ConnectionClientConsole extends ConnectionRmiClient implements RMIC
 
 	@Override
 	public void notifyAddCardAvv(String name, String tipo, int piano) throws RemoteException {
-		// TODO Auto-generated method stub
-
+		switch(tipo){
+		case "TER":
+			System.out.println("Il giocatore "+name+" ha acquisito la carta Territorio del piano "+(piano+1)+"del palazzo");
+			break;
+		case "PER":
+			System.out.println("Il giocatore "+name+" ha acquisito la carta Personaggi del piano "+(piano+1)+"del palazzo");
+			break;
+		case "ED":
+			System.out.println("Il giocatore "+name+" ha acquisito la carta Edifici del piano "+(piano+1)+"del palazzo");
+			break;
+		case "IMP":
+			System.out.println("Il giocatore "+name+" ha acquisito la carta Imprese del piano "+(piano+1)+"del palazzo");
+			break;
+		}
 	}
 
 	@Override
@@ -574,6 +632,12 @@ public class ConnectionClientConsole extends ConnectionRmiClient implements RMIC
 	public void nofySconfitta(int max) throws RemoteException {
 		System.out.println("Nooooo, hai perso\nLa vittoria sara' tua alla prossiam partita");
 
+	}
+
+	@Override
+	public void rimbalzo() throws RemoteException {
+		System.out.println("Ehi l'altro giocatore ha fatto una mossa posiziona un altro familiare");
+		
 	}
 
 }
