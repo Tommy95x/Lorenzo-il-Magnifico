@@ -551,6 +551,10 @@ public class Giocatore implements Serializable {
 				qta += 3;
 			}
 		}
+		if (activateBanCards() == 15)
+			qta -= 3;
+		if (qta < 0)
+			qta = 0;
 		for (CartaSviluppo c : carte) {
 			if (c.getId().contains("TER") && c.getCostoAzione() <= qta) {
 				activateCardEffettiPermanenti(c, 0, conn);
@@ -571,6 +575,10 @@ public class Giocatore implements Serializable {
 				qta += 3;
 			}
 		}
+		if (activateBanCards() == 16)
+			qta -= 3;
+		if (qta < 0)
+			qta = 0;
 		for (CartaSviluppo c : carte) {
 			if (c.getId().contains("ED") && c.getCostoAzione() <= qta) {
 				activateCardEffettiPermanenti(c, 2, conn);
@@ -1070,15 +1078,24 @@ public class Giocatore implements Serializable {
 
 	public int activateBanCards() {
 		if (partita.getTurno() > 2) {
-
-		}
-		if (partita.getTurno() > 4) {
-			if (cubiScomunica[1] != null) {
-				switch (cubiScomunica[1].getID()) {
-				case "TS25":
-					return 25;
-				case "TS26":
-					return 26;
+			if (cubiScomunica[0] != null) {
+				switch (cubiScomunica[0].getID()) {
+				case "TS15":
+					return 15;
+				case "TS16":
+					return 16;
+				case "TS17":
+					return 17;
+				}
+			}
+			if (partita.getTurno() > 4) {
+				if (cubiScomunica[1] != null) {
+					switch (cubiScomunica[1].getID()) {
+					case "TS25":
+						return 25;
+					case "TS26":
+						return 26;
+					}
 				}
 			}
 		}

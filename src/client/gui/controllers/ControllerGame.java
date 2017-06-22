@@ -2372,7 +2372,11 @@ public class ControllerGame {
 
 		familiareNero.setOnDragDone(event -> {
 			if (flag && destinazione1 != null) {
-				if (controlloPosizionamento("black", destinazione1.getLayoutX(), destinazione1.getLayoutY(), 0,
+				int i = 0;
+				if(start.getClient().scomunicato(1)==17){
+					i=-1;
+				}
+				if (controlloPosizionamento("black", destinazione1.getLayoutX(), destinazione1.getLayoutY(), i,
 						destinazione1)) {
 					System.out.print(
 							"neroooooooooooooo " + destinazione1.getLayoutX() + "  " + destinazione1.getLayoutY());
@@ -2391,7 +2395,11 @@ public class ControllerGame {
 					posizionatoFamiliare();
 				}
 			} else {
-				if (controlloPosizionamento("black", destinazione2.getLayoutX(), destinazione2.getLayoutX(), 0, null)) {
+				int i = 0;
+				if(start.getClient().scomunicato(1)==17){
+					i=-1;
+				}
+				if (controlloPosizionamento("black", destinazione2.getLayoutX(), destinazione2.getLayoutX(), i, null)) {
 					ImageView mom = new ImageView(familiareNero.getImage());
 					mom.setFitWidth(35);
 					mom.setFitHeight(38);
@@ -2416,7 +2424,11 @@ public class ControllerGame {
 
 		familiareArancio.setOnDragDone(event -> {
 			if (flag && destinazione1 != null) {
-				if (controlloPosizionamento("orange", destinazione1.getLayoutX(), destinazione1.getLayoutY(), 0,
+				int i = 0;
+				if(start.getClient().scomunicato(1)==17){
+					i=-1;
+				}
+				if (controlloPosizionamento("orange", destinazione1.getLayoutX(), destinazione1.getLayoutY(), i,
 						destinazione1)) {
 					destinazione1.setImage(familiareArancio.getImage());
 					familiareArancio.setDisable(true);
@@ -2433,7 +2445,11 @@ public class ControllerGame {
 					posizionatoFamiliare();
 				}
 			} else {
-				if (controlloPosizionamento("orange", destinazione2.getLayoutX(), destinazione2.getLayoutX(), 0,
+				int i = 0;
+				if(start.getClient().scomunicato(1)==17){
+					i=-1;
+				}
+				if (controlloPosizionamento("orange", destinazione2.getLayoutX(), destinazione2.getLayoutX(), i,
 						null)) {
 					ImageView mom = new ImageView(familiareArancio.getImage());
 					mom.setFitWidth(35);
@@ -2457,7 +2473,11 @@ public class ControllerGame {
 
 		familiareBianco.setOnDragDone(event -> {
 			if (flag && destinazione1 != null) {
-				if (controlloPosizionamento("white", destinazione1.getLayoutX(), destinazione1.getLayoutY(), 0,
+				int i = 0;
+				if(start.getClient().scomunicato(1)==17){
+					i=-1;
+				}
+				if (controlloPosizionamento("white", destinazione1.getLayoutX(), destinazione1.getLayoutY(), i,
 						destinazione1)) {
 					destinazione1.setImage(familiareBianco.getImage());
 					familiareBianco.setDisable(true);
@@ -2474,7 +2494,11 @@ public class ControllerGame {
 					posizionatoFamiliare();
 				}
 			} else {
-				if (controlloPosizionamento("white", destinazione2.getLayoutX(), destinazione2.getLayoutX(), 0, null)) {
+				int i = 0;
+				if(start.getClient().scomunicato(1)==17){
+					i=-1;
+				}
+				if (controlloPosizionamento("white", destinazione2.getLayoutX(), destinazione2.getLayoutX(), i, null)) {
 					ImageView mom = new ImageView(familiareBianco.getImage());
 					mom.setFitWidth(35);
 					mom.setFitHeight(38);
