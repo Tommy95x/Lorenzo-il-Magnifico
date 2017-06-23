@@ -2898,22 +2898,14 @@ public class ControllerGame {
 			try {
 				start.getClient().changeGamer();
 				isInTurno = false;
-				if (!familiareBianco.isVisible()) {
-					familiareNero.setDisable(true);
-					familiareArancio.setDisable(true);
-					familiareNeutro.setDisable(true);
-				} else if (!familiareNero.isVisible()) {
+				if (familiareBianco.isVisible()) {
 					familiareBianco.setDisable(true);
-					familiareArancio.setDisable(true);
-					familiareNeutro.setDisable(true);
-				} else if (!familiareArancio.isVisible()) {
+				} else if (familiareNero.isVisible()) {
 					familiareNero.setDisable(true);
-					familiareBianco.setDisable(true);
-					familiareNeutro.setDisable(true);
-				} else if (!familiareNeutro.isVisible()) {
-					familiareNero.setDisable(true);
+				} else if (familiareArancio.isVisible()) {
 					familiareArancio.setDisable(true);
-					familiareBianco.setDisable(true);
+				} else if (familiareNeutro.isVisible()) {
+					familiareNeutro.setDisable(true);
 				}
 			} catch (RemoteException | SQLException e) {
 				// TODO Auto-generated catch block
@@ -2926,44 +2918,28 @@ public class ControllerGame {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			if (!familiareBianco.isVisible()) {
-				familiareNero.setDisable(true);
-				familiareArancio.setDisable(true);
-				familiareNeutro.setDisable(true);
-			} else if (!familiareNero.isVisible()) {
+			if (familiareBianco.isVisible()) {
 				familiareBianco.setDisable(true);
-				familiareArancio.setDisable(true);
-				familiareNeutro.setDisable(true);
-			} else if (!familiareArancio.isVisible()) {
+			} else if (familiareNero.isVisible()) {
 				familiareNero.setDisable(true);
-				familiareBianco.setDisable(true);
-				familiareNeutro.setDisable(true);
-			} else if (!familiareNeutro.isVisible()) {
-				familiareNero.setDisable(true);
+			} else if (familiareArancio.isVisible()) {
 				familiareArancio.setDisable(true);
-				familiareBianco.setDisable(true);
+			} else if (familiareNeutro.isVisible()) {
+				familiareNeutro.setDisable(true);
 			}
 		}
 	}
 
 	public void scambio() {
 		isInTurno = true;
-		if (!familiareBianco.isVisible()) {
-			familiareNero.setDisable(false);
-			familiareArancio.setDisable(false);
-			familiareNeutro.setDisable(false);
-		} else if (!familiareNero.isVisible()) {
+		if (familiareBianco.isVisible()) {
 			familiareBianco.setDisable(false);
-			familiareArancio.setDisable(false);
-			familiareNeutro.setDisable(false);
-		} else if (!familiareArancio.isVisible()) {
+		} else if (familiareNero.isVisible()) {
 			familiareNero.setDisable(false);
-			familiareBianco.setDisable(false);
-			familiareNeutro.setDisable(false);
-		} else if (!familiareNeutro.isVisible()) {
-			familiareNero.setDisable(false);
+		} else if (familiareArancio.isVisible()) {
 			familiareArancio.setDisable(false);
-			familiareBianco.setDisable(false);
+		} else if (familiareNeutro.isVisible()) {
+			familiareNeutro.setDisable(false);
 		}
 	}
 

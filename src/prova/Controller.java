@@ -1064,12 +1064,13 @@ public class Controller {
 
 	@FXML
 	public void lanciaDadi() throws RemoteException, SQLException {
-		dadoNero.setOpacity(0);
 		dadoNero.setImage(new Image(getClass().getResourceAsStream("dado1.png")));
+		System.out.println(dadoBianco.isVisible());
 		dadoBianco.setImage(new Image(getClass().getResourceAsStream("dado14.png")));
 		dadoArancio.setImage(new Image(getClass().getResourceAsStream("dado7.png")));
 		notifySpostamentoPuntiFede(250.0,558.0,"blue");
-		dadoBianco.setVisible(true);
+		dadoBianco.setVisible(false);
+		System.out.println(dadoBianco.isVisible());
 		//notifySpostamentoPuntiFede()
 	}
 
