@@ -403,42 +403,21 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 				}
 				if (mom.equals("Pay")) {
 					this.pay = false;
-					List<String> choices = new ArrayList<>();
-					for (int i = 0; i < 10; i++) {
-						choices.add(String.valueOf(i));
+					System.out.println("Non potresti posizionare qui il tuo familiare, a meno che non paghi qualche servitore\nVuoi pagare?\nQuanto?");
+					System.out.println("Inserisci il numero di servitori:");
+					int valore = input.nextInt();
+					input.nextLine();
+					if (serverMethods.scomunicato(2, positionGame, account) == 25)
+						valore -= 2;
+					if (controlloPosizionamento(color, x, y, valore, destinazione)) {
+						valoreAgg = valore;
+						
+							serverMethods.getRisorse(positionGame, account).addRis("servitori",
+									-valore);
+							serverMethods.notifyAddRisorse(positionGame, account, "servitori",
+									serverMethods.getRisorse(positionGame, account).getDimRisorse("servitori"));
+						setFlag();
 					}
-					ChoiceDialog<String> dialog = new ChoiceDialog<>("0", choices);
-					dialog.setTitle("Pay or not Pay");
-					dialog.setHeaderText(
-							"Non potresti posizionare qui il tuo familiare, a meno che non paghi qualche servitore\nVuoi pagare?\nQuanto?");
-					dialog.setContentText("Inserisci il numero di servitori:");
-
-					// Traditional way to get the response value.
-					Optional<String> result = dialog.showAndWait();
-					result.ifPresent(val -> {
-						System.out.println(color);
-						int valore = Integer.parseInt(val);
-						try {
-							if (serverMethods.scomunicato(2, positionGame, account) == 25)
-								valore -= 2;
-							if (controlloPosizionamento(color, x, y, valore, destinazione)) {
-								valoreAgg = valore;
-								try {
-									serverMethods.getRisorse(positionGame, account).addRis("servitori",
-											-Integer.parseInt(val));
-									serverMethods.notifyAddRisorse(positionGame, account, "servitori",
-											serverMethods.getRisorse(positionGame, account).getDimRisorse("servitori"));
-								} catch (NumberFormatException | IOException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-								setFlag();
-							}
-						} catch (NumberFormatException | RemoteException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					});
 					return pay;
 				} else if (mom == null) {
 					System.out.println("Ci dispiace ma il nostro servizio a smesso di funzionare");
@@ -479,7 +458,7 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 		}
 		return "ciao";
 	}
-	
+
 	private void setFlag() {
 		pay = true;
 
@@ -490,7 +469,6 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 		p = serverMethods.getRisorse(positionGame, account);
 		String pos = "ciao";
 		pos = getNamePosition(x, y);
-		System.out.println(pos);
 		switch (pos) {
 		case "PIANO 1 CARTE EDIFICI":
 			if (getCarddaPiano(2, 0).getCostoLegno() < p.getDimRisorse("legno")
@@ -577,9 +555,10 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 		return null;
 	}
 
-	public void moveFamiliareAvv(double x, double y, String colorPlayer, String colorFam) throws RemoteException {
-		System.out.println("Il giocatore di colore " + colorPlayer + "ha mosso il suo familiare di colore " + colorFam
-				+ " nella posizione " + x + " " + y);
+	public void moveFamiliareAvv(double x, double y, String nameAvv, String colorFam) throws RemoteException {
+		if (!nameAvv.equals(account))
+			System.out.println("Il giocatore di nome " + nameAvv + "ha mosso il suo familiare di colore " + colorFam
+					+ " nella posizione " + x + " " + y);
 	}
 
 	@Override
