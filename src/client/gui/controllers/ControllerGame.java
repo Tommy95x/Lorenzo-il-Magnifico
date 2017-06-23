@@ -2475,10 +2475,10 @@ public class ControllerGame {
 					familiareNeutro.setDisable(true);
 					familiareNeutro.setVisible(false);
 					try {
-						start.getClient().notifySpostamento("neutro", destinazione1.getLayoutX(),
-								destinazione1.getLayoutY());
 						setCardGiocatore(start.getClient().getNamePosition(destinazione1.getLayoutX(),
 								destinazione1.getLayoutY()), 0, 0, "neutro");
+						start.getClient().notifySpostamento("neutro", destinazione1.getLayoutX(),
+								destinazione1.getLayoutY());
 					} catch (IOException | ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
@@ -2496,10 +2496,10 @@ public class ControllerGame {
 					familiareNeutro.setDisable(true);
 					familiareNeutro.setVisible(false);
 					try {
-						start.getClient().notifySpostamento("neutro", destinazione1.getLayoutX(),
-								destinazione1.getLayoutY());
 						setCardGiocatore(start.getClient().getNamePosition(destinazione2.getLayoutX(),
 								destinazione2.getLayoutY()), 0, 0, "neutro");
+						start.getClient().notifySpostamento("neutro", destinazione1.getLayoutX(),
+								destinazione1.getLayoutY());
 					} catch (IOException | ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
@@ -2529,10 +2529,10 @@ public class ControllerGame {
 					familiareNero.setDisable(true);
 					familiareNero.setVisible(false);
 					try {
-						start.getClient().notifySpostamento("black", destinazione1.getLayoutX(),
-								destinazione1.getLayoutY());
 						setCardGiocatore(start.getClient().getNamePosition(destinazione1.getLayoutX(),
 								destinazione1.getLayoutY()), 1, 0, "black");
+						start.getClient().notifySpostamento("black", destinazione1.getLayoutX(),
+								destinazione1.getLayoutY());
 					} catch (IOException | ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
@@ -2560,10 +2560,10 @@ public class ControllerGame {
 					familiareNero.setDisable(true);
 					familiareNero.setVisible(false);
 					try {
-						start.getClient().notifySpostamento("black", destinazione2.getLayoutX(),
-								destinazione2.getLayoutY());
 						setCardGiocatore(start.getClient().getNamePosition(destinazione2.getLayoutX(),
 								destinazione2.getLayoutY()), 1, 0, "black");
+						start.getClient().notifySpostamento("black", destinazione2.getLayoutX(),
+								destinazione2.getLayoutY());
 					} catch (IOException | ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
@@ -2591,10 +2591,10 @@ public class ControllerGame {
 					familiareArancio.setDisable(true);
 					familiareArancio.setVisible(false);
 					try {
-						start.getClient().notifySpostamento("orange", destinazione1.getLayoutX(),
-								destinazione1.getLayoutY());
 						setCardGiocatore(start.getClient().getNamePosition(destinazione1.getLayoutX(),
 								destinazione1.getLayoutY()), 2, 0, "black");
+						start.getClient().notifySpostamento("orange", destinazione1.getLayoutX(),
+								destinazione1.getLayoutY());
 					} catch (IOException | ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
@@ -2621,10 +2621,10 @@ public class ControllerGame {
 					familiareArancio.setDisable(true);
 					familiareArancio.setVisible(false);
 					try {
-						start.getClient().notifySpostamento("orange", destinazione2.getLayoutX(),
-								destinazione2.getLayoutY());
 						setCardGiocatore(start.getClient().getNamePosition(destinazione2.getLayoutX(),
 								destinazione2.getLayoutY()), 2, 0, "black");
+						start.getClient().notifySpostamento("orange", destinazione2.getLayoutX(),
+								destinazione2.getLayoutY());
 					} catch (IOException | ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
@@ -2652,10 +2652,10 @@ public class ControllerGame {
 					familiareBianco.setDisable(true);
 					familiareBianco.setVisible(false);
 					try {
-						start.getClient().notifySpostamento("white", destinazione1.getLayoutX(),
-								destinazione1.getLayoutY());
 						setCardGiocatore(start.getClient().getNamePosition(destinazione1.getLayoutX(),
 								destinazione1.getLayoutY()), 3, 0, "black");
+						start.getClient().notifySpostamento("white", destinazione1.getLayoutX(),
+								destinazione1.getLayoutY());
 					} catch (IOException | ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
@@ -2681,10 +2681,10 @@ public class ControllerGame {
 					familiareBianco.setDisable(true);
 					familiareBianco.setVisible(false);
 					try {
-						start.getClient().notifySpostamento("white", destinazione2.getLayoutX(),
-								destinazione2.getLayoutY());
 						setCardGiocatore(start.getClient().getNamePosition(destinazione2.getLayoutX(),
 								destinazione2.getLayoutY()), 3, 0, "black");
+						start.getClient().notifySpostamento("white", destinazione2.getLayoutX(),
+								destinazione2.getLayoutY());
 					} catch (IOException | ClassNotFoundException | SQLException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
@@ -2898,15 +2898,15 @@ public class ControllerGame {
 			try {
 				start.getClient().changeGamer();
 				isInTurno = false;
-				if (familiareBianco.isVisible()) {
+				if (familiareBianco.isVisible())
 					familiareBianco.setDisable(true);
-				} else if (familiareNero.isVisible()) {
+				 if (familiareNero.isVisible()) 
 					familiareNero.setDisable(true);
-				} else if (familiareArancio.isVisible()) {
+				if (familiareArancio.isVisible()) 
 					familiareArancio.setDisable(true);
-				} else if (familiareNeutro.isVisible()) {
+				if (familiareNeutro.isVisible()) 
 					familiareNeutro.setDisable(true);
-				}
+				
 			} catch (RemoteException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -2918,29 +2918,27 @@ public class ControllerGame {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			if (familiareBianco.isVisible()) {
-				familiareBianco.setDisable(true);
-			} else if (familiareNero.isVisible()) {
+			if (familiareBianco.isVisible());
+			familiareBianco.setDisable(true);
+			if (familiareNero.isVisible())
 				familiareNero.setDisable(true);
-			} else if (familiareArancio.isVisible()) {
+			if (familiareArancio.isVisible())
 				familiareArancio.setDisable(true);
-			} else if (familiareNeutro.isVisible()) {
+			if (familiareNeutro.isVisible())
 				familiareNeutro.setDisable(true);
-			}
 		}
 	}
 
 	public void scambio() {
 		isInTurno = true;
-		if (familiareBianco.isVisible()) {
+		if (familiareBianco.isVisible())
 			familiareBianco.setDisable(false);
-		} else if (familiareNero.isVisible()) {
+		if (familiareNero.isVisible()) 
 			familiareNero.setDisable(false);
-		} else if (familiareArancio.isVisible()) {
+		if (familiareArancio.isVisible())
 			familiareArancio.setDisable(false);
-		} else if (familiareNeutro.isVisible()) {
+		if (familiareNeutro.isVisible());
 			familiareNeutro.setDisable(false);
-		}
 	}
 
 	private void setDestinazione2(HBox azioniTerritoridaunGiocatore2) {
@@ -2957,8 +2955,8 @@ public class ControllerGame {
 	public void notifySpostamentoPuntiMilitari(double x, double y, String color2) {
 		System.out.println((isInTurno() && color2.equals(start.getClient().getColor()))
 				|| (!color2.equals(start.getClient().getColor()) && !isInTurno()));
-		if (((isInTurno() && color2.equals(start.getClient().getColor()))
-				|| (!color2.equals(start.getClient().getColor()) && !isInTurno()))) {
+		if ( color2.equals(start.getClient().getColor())
+				|| (!color2.equals(start.getClient().getColor()) && !isInTurno())) {
 			System.out.println("Notifico lo spostamento della pedina punti militari del giocatore con il colore "
 					+ color2 + " " + x + " " + y);
 			switch (color2) {
@@ -2995,8 +2993,8 @@ public class ControllerGame {
 	public void notifySpostamentoPuntiFede(double x, double y, String color2) {
 		System.out.println((isInTurno() && color2.equals(start.getClient().getColor()))
 				|| (!color2.equals(start.getClient().getColor()) && !isInTurno()));
-		if (((isInTurno() && color2.equals(start.getClient().getColor()))
-				|| (!color2.equals(start.getClient().getColor()) && !isInTurno()))) {
+		if (color2.equals(start.getClient().getColor())
+				|| (!color2.equals(start.getClient().getColor()) && !isInTurno())) {
 			System.out.println("Notifico lo spostamento della pedina punti fede del giocatore con il colore " + color2
 					+ " " + x + " " + y);
 			switch (color2) {
@@ -3027,7 +3025,7 @@ public class ControllerGame {
 	public void notifySpostamentoPuntiVittoria(double x, double y, String color2) {
 		System.out.println((isInTurno() && color2.equals(start.getClient().getColor()))
 				|| (!color2.equals(start.getClient().getColor()) && !isInTurno()));
-		if ((isInTurno() && color2.equals(start.getClient().getColor()))
+		if (color2.equals(start.getClient().getColor())
 				|| (!isInTurno() && !color2.equals(start.getClient().getColor()))) {
 			System.out.println("Notifico lo spostamento della pedina punti vittoria del giocatore con il colore "
 					+ color2 + " " + x + " " + y);

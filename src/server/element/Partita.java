@@ -234,6 +234,7 @@ public class Partita implements Serializable {
 	}
 
 	public boolean addTurno() {
+		System.out.println("Sto resettando per il turno");
 		NumberOfPlayers = 0;
 		totaleMosse = 0;
 		rimbalzo = 0;
@@ -246,6 +247,7 @@ public class Partita implements Serializable {
 		for(int i=0;i<3;i++){
 			for(int j=i+1;j<4;j++){
 				if(giocatori[i] != null && giocatori[j] != null && giocatori[i].getPos() > giocatori[j].getPos()){
+					System.out.println("Cambio il giocatore"+giocatori[j].getName() +" con "+giocatori[i].getName());
 					Giocatore mom = giocatori[i];
 					giocatori[i] = giocatori[j];
 					giocatori[j] = mom;
@@ -495,19 +497,23 @@ public class Partita implements Serializable {
 	}
 
 	public void changeGamer() throws RemoteException, SQLException {
-		System.out.println("Inizio i turni " + NumberOfPlayers);
+		System.out.println("Gioca " + NumberOfPlayers);
 		if (totaleMosse == 16) {
 			System.out.println("Aggiungo un turno");
-			addTurno();
+			this.addTurno();
+		}else if(totaleMosse == 4){
+			scambio();
 		} else {
 			try {
 				if (giocatori[NumberOfPlayers] != null) {
 					giocatori[NumberOfPlayers].notifyTurno(turno);
+					totaleMosse++;
 					NumberOfPlayers++;
 					rimbalzo++;
 				} else {
 					NumberOfPlayers++;
 					rimbalzo++;
+					totaleMosse++;
 					changeGamer();
 				}
 			} catch (IOException e) {
@@ -519,15 +525,24 @@ public class Partita implements Serializable {
 	}
 
 	public void scambio() {
-		if (totaleMosse <= 16) {
+		System.out.println("Iniziano i rimbalzi"+ rimbalzo+" "+totaleMosse);
+		if (totaleMosse == 16) {
 			if (rimbalzo >= 4) {
+				System.out.println("Azzero i rimbalzi");
 				rimbalzo = 0;
-				totaleMosse += 4;
+				scambio();
 			} else {
 				if (giocatori[rimbalzo] != null) {
+					System.out.println("Giocatore non a null");
 					giocatori[rimbalzo].rimbalzo();
+					rimbalzo++;
+					totaleMosse++;
+				}else{
+					System.out.println("Giocatore a null");
+					rimbalzo++;
+					totaleMosse++;
+					scambio();
 				}
-				rimbalzo++;
 			}
 		}else{
 			try {
@@ -670,7 +685,7 @@ public class Partita implements Serializable {
 						}
 						rs.close();
 						stmt.close();
-						g.notifySpostamentopuntiMilitari(x, y, g.getColor());
+						g.notifySpostamentopuntiMilitari(x, y, color2);
 					} catch (RemoteException | SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -698,7 +713,7 @@ public class Partita implements Serializable {
 						rs.close();
 						stmt.close();
 						System.out.println(x + "   " + y);
-						g.notifySpostamentopuntiVittoria(x, y, g.getColor());
+						g.notifySpostamentopuntiVittoria(x, y, color2);
 					} catch (RemoteException | SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -707,8 +722,8 @@ public class Partita implements Serializable {
 			}
 			break;
 		case "fede":
-			for (int i = 0; i < 4; i++) {
-				if (giocatori[i] != null) {
+			for (Giocatore g : giocatori) {
+				if (g != null) {
 					double x = 0;
 					double y = 0;
 					String query;
@@ -725,7 +740,7 @@ public class Partita implements Serializable {
 						}
 						rs.close();
 						stmt.close();
-						giocatori[i].notifySpostamentopuntiFede(x, y, giocatori[i].getColor());
+						g.notifySpostamentopuntiFede(x, y, color2);
 					} catch (RemoteException | SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -774,6 +789,7 @@ public class Partita implements Serializable {
 		for(int i = 0;i<4;i++){
 			if(posizionamento[i] == null){
 				posizionamento[i] = name;
+				giocatori[i].setPosizione(i);
 			}
 		}
 		

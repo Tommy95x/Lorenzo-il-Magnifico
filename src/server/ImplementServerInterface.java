@@ -127,9 +127,6 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 
 	public void changeGamer(int positionGame) throws RemoteException, SQLException {
 		commonServer.getLobbyByNumber(positionGame).changeGamer();
-		if(commonServer.getLobbyByNumber(positionGame).getNumberOfPlayers() == 4){
-			
-		}
 	}
 
 	public void notifySpostamento(String color, double x, double y, String colorAvv, int positionGame)

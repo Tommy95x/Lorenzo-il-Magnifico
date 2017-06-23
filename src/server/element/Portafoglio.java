@@ -53,25 +53,28 @@ public class Portafoglio implements Serializable {
 	private boolean addMonete(int incr) {
 		if (monete == 0 && incr <= 0) {
 			return false;
-		}
+		}else{
 		monete += incr;
 		return true;
+		}
 	}
 
 	private boolean addLengo(int incr) {
 		if (legno <= 0 ) {
 			return false;
-		}
+		}else{
 		legno += incr;
 		return true;
+		}
 	}
 
 	private boolean addPietra(int incr) {
 		if (pietra == 0 && incr <= 0) {
 			return false;
-		}
+		}else{
 		pietra += incr;
 		return true;
+		}
 	}
 
 	public void addCarta(CartaSviluppo c) {
@@ -113,12 +116,18 @@ public class Portafoglio implements Serializable {
 		switch (tipo) {
 		case "militari":
 			puntiMilitari += qta;
+			if(puntiMilitari<=0)
+				puntiMilitari =0;
 			break;
 		case "vittoria":
 			puntiTot += qta;
+			if(puntiTot<=0)
+				puntiTot =0;
 			break;
 		case "fede":
 			puntiFede += qta;
+			if(puntiFede<=0)
+				puntiFede =0;
 			break;
 		}
 	}
