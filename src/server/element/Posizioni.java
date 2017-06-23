@@ -1,12 +1,16 @@
 package server.element;
 
-public class Posizioni {
+import java.io.Serializable;
+
+public class Posizioni implements Serializable{
 	
 	private double x;
 	private double y;
 	private String name;
 	public Posizioni(double double1, double double2, String string) {
-		// TODO Auto-generated constructor stub
+		this.x=double1;
+		this.y=double2;
+		this.name=string;
 	}
 	public double getX() {
 		return x;

@@ -291,7 +291,7 @@ public class ImplementServerInterface extends UnicastRemoteObject implements Ser
 		rs.close();
 		stmt.close();
 		commonServer.getDBConnection().releaseConnection(con);
-		return null;
+		return mom;
 	}
 
 	public int scomunicato(int i, int positionGame, String name) throws RemoteException {

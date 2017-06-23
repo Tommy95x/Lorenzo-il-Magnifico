@@ -132,7 +132,7 @@ public class Giocatore implements Serializable {
 			System.out.println("utente socket" + server.toString());
 			try {
 				server.notifyStartGame();
-			} catch (ClassNotFoundException | IOException | SQLException e) {
+			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

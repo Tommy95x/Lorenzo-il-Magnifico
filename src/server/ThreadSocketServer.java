@@ -250,6 +250,7 @@ public class ThreadSocketServer implements Runnable, Serializable {
 		System.out.println("\n\n\notifica partita");
 		output.writeObject("start");
 		output.flush();
+		run();
 	}
 
 	public void notifyTurno(int turno) throws IOException {

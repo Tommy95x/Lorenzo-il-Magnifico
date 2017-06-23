@@ -10,11 +10,16 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 import com.sun.glass.events.KeyEvent;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Tooltip;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import server.element.CartaSviluppo;
@@ -43,6 +48,8 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 	private int mosseDisponibili = 4;
 	private String lobby;
 	private Dado[] dadi = new Dado[3];
+	private int valoreAgg = 0;
+	private boolean pay = false;
 
 	public ConnectionClientConsole() throws RemoteException {
 
@@ -212,7 +219,7 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 	public void startGame(String name) {
 		System.out.println("Il gioco e' iniziato");
 		System.out.println("Inizia il turno " + name);
-		System.out.println("Potrai fare le tue mosse quando arriverà il tuo turno");
+		System.out.println("Potrai fare le tue mosse quando arriverï¿½ il tuo turno");
 		waitNotifiche();
 	}
 
@@ -233,34 +240,13 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 			System.out.println(
 					"Fai le tue mosse nel seguente ordine:\n1)Lancia i dadi(verranno lanciati all'inizio del tuo turno mostrando i loro valori)\n2)Scrivi il colore del familiare che vuoi spostare (ricorda i familiari sono di colore Arancio, Nero, Bianco, Neutro)\n3)Scrivi la posizione numerica nel tabellone in cui vuoi inserire il familiare (scrivendo back de-selezioni il familiare selezionato)\n4)Acquisisci carte e vedi i relativi effetti\n5)Verifichi il tuo punteggio, scrivendo punteggio o personal score\n");
 			System.out.println(
-					"Ricordati che puoi sempre vedere le posizioni del tabellone scrivendo ''posizioni'' e con ''carte'' scopri che carte sono disponibili nei vari piani delle torri");
+					"Ricordati che puoi sempre vedere le posizioni del tabellone scrivendo ''posizioni'' e con ''carte'' scopri che carte sono disponibili nei vari piani delle torri, mentre se vuoi abbandonare la partita e tornare al menu' scrivi quit, mentre se vuoi uscire dal gioco scrivi exit");
 			for (int i = 0; i < 3; i++) {
 				System.out.println("Il dado " + dadi[i].getColor() + " vale " + dadi[i].getValore());
 			}
 			String action = input.nextLine();
 			try {
 				switch (action.toLowerCase()) {
-				case "nero":
-					System.out.println("Inserisci la posizione o scrivi back per tornare indietro");
-					action = input.nextLine();
-					if (action.equals("back"))
-						break;
-					else {
-						double y = input.nextDouble();
-						input.nextLine();
-						String mom = serverMethods.controlloPosizionamento("black", positionGame, account,
-								Double.parseDouble(action), y, 0);
-						if (mom.equals("OK")) {
-							System.out.println("Familiare posizionato");
-							incrPosizionamento();
-						} else {
-							System.out.println(mom);
-							mosseDisponibili++;
-						}
-						serverMethods.notifySpostamento("black", Double.valueOf(action), y, account, positionGame);
-						mosseDisponibili--;
-					}
-					break;
 				case "black":
 					System.out.println("Inserisci la posizione o scrivi back per tornare indietro");
 					action = input.nextLine();
@@ -269,17 +255,11 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 					else {
 						double y = input.nextDouble();
 						input.nextLine();
-						String mom = serverMethods.controlloPosizionamento("black", positionGame, account,
-								Double.valueOf(action), y, 0);
-						if (mom.equals("OK")) {
+						if (controlloPosizionamento("black", Double.valueOf(action), y, 0, null)) {
 							System.out.println("Familiare posizionato");
 							incrPosizionamento();
-						} else {
-							System.out.println(mom);
-							mosseDisponibili++;
+							serverMethods.notifySpostamento("black", Double.valueOf(action), y, account, positionGame);
 						}
-						serverMethods.notifySpostamento("black", Double.valueOf(action), y, account, positionGame);
-						mosseDisponibili--;
 					}
 					break;
 				case "orange":
@@ -290,38 +270,11 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 					else {
 						double y = input.nextDouble();
 						input.nextLine();
-						String mom = serverMethods.controlloPosizionamento("orange", positionGame, account,
-								Double.valueOf(action), y, 0);
-						if (mom.equals("OK")) {
+						if (controlloPosizionamento("orange", Double.valueOf(action), y, 0, null)) {
 							System.out.println("Familiare posizionato");
 							incrPosizionamento();
-						} else {
-							System.out.println(mom);
-							mosseDisponibili++;
+							serverMethods.notifySpostamento("orange", Double.valueOf(action), y, account, positionGame);
 						}
-						serverMethods.notifySpostamento("orange", Double.valueOf(action), y, account, positionGame);
-						mosseDisponibili--;
-					}
-					break;
-				case "arancione":
-					System.out.println("Inserisci la posizione o scrivi back per tornare indietro");
-					action = input.nextLine();
-					if (action.equals("back"))
-						break;
-					else {
-						double y = input.nextDouble();
-						input.nextLine();
-						String mom = serverMethods.controlloPosizionamento("orange", positionGame, account,
-								Double.valueOf(action), y, 0);
-						if (mom.equals("OK")) {
-							System.out.println("Familiare posizionato");
-							incrPosizionamento();
-						} else {
-							System.out.println(mom);
-							mosseDisponibili++;
-						}
-						serverMethods.notifySpostamento("orange", Double.valueOf(action), y, account, positionGame);
-						mosseDisponibili--;
 					}
 					break;
 				case "white":
@@ -332,38 +285,11 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 					else {
 						double y = input.nextDouble();
 						input.nextLine();
-						String mom = serverMethods.controlloPosizionamento("white", positionGame, account,
-								Double.valueOf(action), y, 0);
-						if (mom.equals("OK")) {
+						if (controlloPosizionamento("white", Double.valueOf(action), y, 0, null)) {
 							System.out.println("Familiare posizionato");
 							incrPosizionamento();
-						} else {
-							System.out.println(mom);
-							mosseDisponibili++;
+							serverMethods.notifySpostamento("white", Double.valueOf(action), y, account, positionGame);
 						}
-						serverMethods.notifySpostamento("white", Double.valueOf(action), y, account, positionGame);
-						mosseDisponibili--;
-					}
-					break;
-				case "bianco":
-					System.out.println("Inserisci la posizione x e poi o scrivi back per tornare indietro");
-					action = input.nextLine();
-					if (action.equals("back"))
-						break;
-					else {
-						double y = input.nextDouble();
-						input.nextLine();
-						String mom = serverMethods.controlloPosizionamento("white", positionGame, account,
-								Double.valueOf(action), y, 0);
-						if (mom.equals("OK")) {
-							System.out.println("Familiare posizionato");
-							incrPosizionamento();
-						} else {
-							System.out.println(mom);
-							mosseDisponibili++;
-						}
-						serverMethods.notifySpostamento("white", Double.valueOf(action), y, account, positionGame);
-						mosseDisponibili--;
 					}
 					break;
 				case "neutro":
@@ -374,38 +300,11 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 					else {
 						double y = input.nextDouble();
 						input.nextLine();
-						String mom = serverMethods.controlloPosizionamento("neutro", positionGame, account,
-								Double.valueOf(action), y, 0);
-						if (mom.equals("OK")) {
+						if (controlloPosizionamento("orange", Double.valueOf(action), y, 0, null)) {
 							System.out.println("Familiare posizionato");
 							incrPosizionamento();
-						} else {
-							System.out.println(mom);
-							mosseDisponibili++;
+							serverMethods.notifySpostamento("neutro", Double.valueOf(action), y, account, positionGame);
 						}
-						serverMethods.notifySpostamento("neutro", Double.valueOf(action), y, account, positionGame);
-						mosseDisponibili--;
-					}
-					break;
-				case "neutral":
-					System.out.println("Inserisci la posizione o scrivi back per tornare indietro");
-					action = input.nextLine();
-					if (action.equals("back"))
-						break;
-					else {
-						double y = input.nextDouble();
-						input.nextLine();
-						String mom = serverMethods.controlloPosizionamento("neutro", positionGame, account,
-								Double.valueOf(action), y, 0);
-						if (mom.equals("OK")) {
-							System.out.println("Familiare posizionato");
-							serverMethods.getCardsGamer(positionGame, account);
-							incrPosizionamento();
-						} else {
-							System.out.println(mom);
-							mosseDisponibili++;
-						}
-						serverMethods.notifySpostamento("neutro", Double.valueOf(action), y, account, positionGame);
 					}
 					break;
 				case "posizioni":
@@ -452,6 +351,18 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 								+ carte[i].getTooltipString());
 					}
 					break;
+				case "tue carte":
+					for (CartaSviluppo c : cartePersonali)
+						System.out.println(c.getNameCard() + "\t" + c.getTooltipString());
+					break;
+				case "exit":
+					System.exit(0);
+					break;
+				case "quit":
+					startMenu();
+					break;
+				default:
+					System.out.println("Mi sa che hai sbagliato a digitare...");
 				}
 			} catch (InputMismatchException | NullPointerException e) {
 				e.printStackTrace();
@@ -480,6 +391,192 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 		}
 	}
 
+	public boolean controlloPosizionamento(String color, double x, double y, int addRisorse, ImageView destinazione) {
+		try {
+			if (controlCard(x, y)) {
+				String mom = null;
+				try {
+					mom = serverMethods.controlloPosizionamento(color, positionGame, account, x, y, addRisorse);
+				} catch (IOException | SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				if (mom.equals("Pay")) {
+					this.pay = false;
+					List<String> choices = new ArrayList<>();
+					for (int i = 0; i < 10; i++) {
+						choices.add(String.valueOf(i));
+					}
+					ChoiceDialog<String> dialog = new ChoiceDialog<>("0", choices);
+					dialog.setTitle("Pay or not Pay");
+					dialog.setHeaderText(
+							"Non potresti posizionare qui il tuo familiare, a meno che non paghi qualche servitore\nVuoi pagare?\nQuanto?");
+					dialog.setContentText("Inserisci il numero di servitori:");
+
+					// Traditional way to get the response value.
+					Optional<String> result = dialog.showAndWait();
+					result.ifPresent(val -> {
+						System.out.println(color);
+						int valore = Integer.parseInt(val);
+						try {
+							if (serverMethods.scomunicato(2, positionGame, account) == 25)
+								valore -= 2;
+							if (controlloPosizionamento(color, x, y, valore, destinazione)) {
+								valoreAgg = valore;
+								try {
+									serverMethods.getRisorse(positionGame, account).addRis("servitori",
+											-Integer.parseInt(val));
+									serverMethods.notifyAddRisorse(positionGame, account, "servitori",
+											serverMethods.getRisorse(positionGame, account).getDimRisorse("servitori"));
+								} catch (NumberFormatException | IOException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								setFlag();
+							}
+						} catch (NumberFormatException | RemoteException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					});
+					return pay;
+				} else if (mom == null) {
+					System.out.println("Ci dispiace ma il nostro servizio a smesso di funzionare");
+					return false;
+				} else if (mom.equals("OK")) {
+					if (destinazione != null)
+						destinazione.setDisable(true);
+					return true;
+				} else if (mom.equals("NotEnough")) {
+					System.out.println("Non fare il furbo!! Non hai abbastanza servitori!");
+					return false;
+				} else if (mom.equals("Cancel")) {
+					return false;
+				}
+			} else {
+				System.out.println("Non hai abbastanza risorse per acquisire questa carta");
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	public String getNamePosition(double x, double y) throws IOException {
+		try {
+			String mom = serverMethods.getNamePosition(x, y, positionGame, account);
+			System.out.println(mom);
+			return mom;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			if (x == 265.0 && y == 440.0)
+				return "ZONA MERCATO";
+			if (x == 100.0 && y == 691.0)
+				return "AZIONE RACCOLTO 4";
+			if (x == 105.0 && y == 628.0)
+				return "AZIONE PRODUZIONE 4";
+		}
+		return "ciao";
+	}
+	
+	private void setFlag() {
+		pay = true;
+
+	}
+
+	public boolean controlCard(double x, double y) throws IOException {
+		Portafoglio p = new Portafoglio();
+		p = serverMethods.getRisorse(positionGame, account);
+		String pos = "ciao";
+		pos = getNamePosition(x, y);
+		System.out.println(pos);
+		switch (pos) {
+		case "PIANO 1 CARTE EDIFICI":
+			if (getCarddaPiano(2, 0).getCostoLegno() < p.getDimRisorse("legno")
+					&& getCarddaPiano(2, 0).getCostoMoneta() < p.getDimRisorse("monete")
+					&& getCarddaPiano(2, 0).getCostoPietra() < p.getDimRisorse("pietra")
+					&& getCarddaPiano(2, 0).getCostoServitori() < p.getDimRisorse("servitori"))
+				return false;
+			return true;
+		case "PIANO 2 CARTE EDIFICI":
+			if (getCarddaPiano(2, 1).getCostoLegno() < p.getDimRisorse("legno")
+					&& getCarddaPiano(2, 1).getCostoMoneta() < p.getDimRisorse("monete")
+					&& getCarddaPiano(2, 1).getCostoPietra() < p.getDimRisorse("pietra")
+					&& getCarddaPiano(2, 1).getCostoServitori() < p.getDimRisorse("servitori"))
+				return false;
+			return true;
+		case "PIANO 3 CARTE EDIFICI":
+			if (getCarddaPiano(2, 2).getCostoLegno() < p.getDimRisorse("legno")
+					&& getCarddaPiano(2, 2).getCostoMoneta() < p.getDimRisorse("monete")
+					&& getCarddaPiano(2, 2).getCostoPietra() < p.getDimRisorse("pietra")
+					&& getCarddaPiano(2, 2).getCostoServitori() < p.getDimRisorse("servitori"))
+				return false;
+			return true;
+		case "PIANO 4 CARTE EDIFICI":
+			if (getCarddaPiano(2, 3).getCostoLegno() < p.getDimRisorse("legno")
+					&& getCarddaPiano(2, 3).getCostoMoneta() < p.getDimRisorse("monete")
+					&& getCarddaPiano(2, 3).getCostoPietra() < p.getDimRisorse("pietra")
+					&& getCarddaPiano(2, 3).getCostoServitori() < p.getDimRisorse("servitori"))
+				return false;
+			return true;
+		case "PIANO 1 CARTE IMPRESE":
+			if ((getCarddaPiano(3, 0).getCostoLegno() < p.getDimRisorse("legno")
+					&& getCarddaPiano(3, 0).getCostoMoneta() < p.getDimRisorse("monete")
+					&& getCarddaPiano(3, 0).getCostoPietra() < p.getDimRisorse("pietra")
+					&& getCarddaPiano(3, 0).getCostoServitori() < p.getDimRisorse("servitori"))
+					|| (getCarddaPiano(3, 0).getPuntiMilitariRichiesti() < p.getPunti("militari")))
+				return false;
+			return true;
+		case "PIANO 2 CARTE IMPRESE":
+			if ((getCarddaPiano(3, 1).getCostoLegno() < p.getDimRisorse("legno")
+					&& getCarddaPiano(3, 1).getCostoMoneta() < p.getDimRisorse("monete")
+					&& getCarddaPiano(3, 1).getCostoPietra() < p.getDimRisorse("pietra")
+					&& getCarddaPiano(3, 1).getCostoServitori() < p.getDimRisorse("servitori"))
+					|| (getCarddaPiano(3, 1).getPuntiMilitariRichiesti() < p.getPunti("militari")))
+				return false;
+			return true;
+		case "PIANO 3 CARTE IMPRESE":
+			if ((getCarddaPiano(3, 2).getCostoLegno() < p.getDimRisorse("legno")
+					&& getCarddaPiano(3, 2).getCostoMoneta() < p.getDimRisorse("monete")
+					&& getCarddaPiano(3, 2).getCostoPietra() < p.getDimRisorse("pietra")
+					&& getCarddaPiano(3, 2).getCostoServitori() < p.getDimRisorse("servitori"))
+					|| (getCarddaPiano(3, 2).getPuntiMilitariRichiesti() < p.getPunti("militari")))
+				return false;
+			return true;
+		case "PIANO 4 CARTE IMPRESE":
+			if ((getCarddaPiano(3, 0).getCostoLegno() < p.getDimRisorse("legno")
+					&& getCarddaPiano(3, 0).getCostoMoneta() < p.getDimRisorse("monete")
+					&& getCarddaPiano(3, 0).getCostoPietra() < p.getDimRisorse("pietra")
+					&& getCarddaPiano(3, 0).getCostoServitori() < p.getDimRisorse("servitori"))
+					|| (getCarddaPiano(3, 0).getPuntiMilitariRichiesti() < p.getPunti("militari")))
+				return false;
+			return true;
+		case "PIANO 1 CARTE PERSONAGGI":
+			if (getCarddaPiano(2, 0).getCostoMoneta() < p.getDimRisorse("monete"))
+				return false;
+			return true;
+		case "PIANO 2 CARTE PERSONAGGI":
+			if (getCarddaPiano(2, 1).getCostoMoneta() < p.getDimRisorse("monete"))
+				return false;
+			return true;
+		case "PIANO 3 CARTE PERSONAGGI":
+			if (getCarddaPiano(2, 2).getCostoMoneta() < p.getDimRisorse("monete"))
+				return false;
+			return true;
+		case "PIANO 4 CARTE PERSONAGGI":
+			if (getCarddaPiano(2, 3).getCostoMoneta() < p.getDimRisorse("monete"))
+				return false;
+			return true;
+		}
+		return true;
+	}
+
+	private CartaSviluppo getCarddaPiano(int i, int j) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	public void moveFamiliareAvv(double x, double y, String colorPlayer, String colorFam) throws RemoteException {
 		System.out.println("Il giocatore di colore " + colorPlayer + "ha mosso il suo familiare di colore " + colorFam
 				+ " nella posizione " + x + " " + y);
@@ -499,7 +596,7 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 
 	@Override
 	public void resetTabellone() throws RemoteException {
-		System.out.println("Il tabellone è stato resettato ora le nuove carte presenti sono: ");
+		System.out.println("Il tabellone ï¿½ stato resettato ora le nuove carte presenti sono: ");
 		int i = 0, j = 4, k = 8, l = 12;
 		for (int p = 0; p < 4; p++) {
 			System.out.println(carte[i].getNameCard() + " \t" + carte[j].getNameCard() + " \t" + carte[k].getNameCard()
@@ -671,274 +768,271 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 		System.out.println("Ehi l'altro giocatore ha fatto una mossa posiziona un altro familiare");
 
 	}
-	
-	public void setCardGiocatore(String namePosition, int piano, int tipo) throws IOException {
+
+	public void setCardGiocatore(String namePosition, int piano, int tipo, String coloreFam) throws IOException {
 		ImageView mom;
 		switch (namePosition) {
 		case "PIANO 1 FAMILIARE TERRITORI":
-			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteTerritori[3].getImage())));
-			mom.setFitHeight(130);
-			mom.setFitWidth(90);
-			Tooltip.install(mom, arrayCarteTerritori[3].getTooltip());
-			carteTerritoriGiocatore.getChildren().add(mom);
-			sistemaCarte(0, 3);
-			start.getClient().setCardGiocatore(arrayCarteTerritori[3], 0, 3);
+			try {
+				serverMethods.giveCard(resituisceCard(3, 0), account, positionGame, 0, 3);
+			} catch (SQLException e6) {
+				// TODO Auto-generated catch block
+				e6.printStackTrace();
+			}
 			break;
 		case "PIANO 2 FAMILIARE TERRITORI":
-			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteTerritori[2].getImage())));
-			mom.setFitHeight(130);
-			mom.setFitWidth(90);
-			Tooltip.install(mom, arrayCarteTerritori[2].getTooltip());
-			carteTerritoriGiocatore.getChildren().add(mom);
-			sistemaCarte(0, 2);
-			start.getClient().setCardGiocatore(arrayCarteTerritori[2], 0, 2);
+			try {
+				serverMethods.giveCard(resituisceCard(2, 0), account, positionGame, 0, 2);
+			} catch (SQLException e6) {
+				// TODO Auto-generated catch block
+				e6.printStackTrace();
+			}
 			break;
 		case "PIANO 3 FAMILIARE TERRITORI":
-			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteTerritori[1].getImage())));
-			mom.setFitHeight(130);
-			mom.setFitWidth(90);
-			Tooltip.install(mom, arrayCarteTerritori[1].getTooltip());
-			carteTerritoriGiocatore.getChildren().add(mom);
-			sistemaCarte(0, 1);
 			try {
-				start.getClient().addRisorse("legno", 1);
-				start.getClient().notifyRisorse("legno", start.getClient().getRisorse().getDimRisorse("legno"));
-			} catch (SQLException | ClassNotFoundException e3) {
-				// TODO Auto-generated catch block
-				e3.printStackTrace();
-			}
-			start.getClient().setCardGiocatore(arrayCarteTerritori[1], 0, 1);
-			break;
-		case "PIANO 4 FAMILIARE TERRITORI":
-			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteTerritori[0].getImage())));
-			mom.setFitHeight(130);
-			mom.setFitWidth(90);
-			Tooltip.install(mom, arrayCarteTerritori[0].getTooltip());
-			carteTerritoriGiocatore.getChildren().add(mom);
-			sistemaCarte(0, 0);
-			try {
-				start.getClient().addRisorse("legno", 2);
-				start.getClient().notifyRisorse("legno", start.getClient().getRisorse().getDimRisorse("legno"));
-			} catch (SQLException | ClassNotFoundException e3) {
-				// TODO Auto-generated catch block
-				e3.printStackTrace();
-			}
-			start.getClient().setCardGiocatore(arrayCarteTerritori[0], 0, 0);
-			break;
-		case "PIANO 1 FAMILIARE EDIFICI":
-			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteEdifici[3].getImage())));
-			mom.setFitHeight(130);
-			mom.setFitWidth(90);
-			Tooltip.install(mom, arrayCarteEdifici[3].getTooltip());
-			carteEdificiGiocatore.getChildren().add(mom);
-			sistemaCarte(2, 3);
-			start.getClient().setCardGiocatore(arrayCarteEdifici[3], 2, 3);
-			break;
-		case "PIANO 2 FAMILIARE EDIFICI":
-			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteEdifici[2].getImage())));
-			mom.setFitHeight(130);
-			mom.setFitWidth(90);
-			Tooltip.install(mom, arrayCarteEdifici[2].getTooltip());
-			carteEdificiGiocatore.getChildren().add(mom);
-			sistemaCarte(2, 2);
-			start.getClient().setCardGiocatore(arrayCarteEdifici[2], 2, 2);
-			break;
-		case "PIANO 3 FAMILIARE EDIFICI":
-			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteEdifici[1].getImage())));
-			mom.setFitHeight(130);
-			mom.setFitWidth(90);
-			Tooltip.install(mom, arrayCarteEdifici[1].getTooltip());
-			carteEdificiGiocatore.getChildren().add(mom);
-			try {
-				start.getClient().addPunti("militari", 1);
-				start.getClient().notifySpostamentoPunti("militari");
-			} catch (SQLException e4) {
-				// TODO Auto-generated catch block
-				e4.printStackTrace();
-			}
-			sistemaCarte(2, 1);
-			start.getClient().setCardGiocatore(arrayCarteEdifici[1], 2, 1);
-			break;
-		case "PIANO 4 FAMILIARE EDIFICI":
-			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteEdifici[0].getImage())));
-			mom.setFitHeight(130);
-			mom.setFitWidth(90);
-			Tooltip.install(mom, arrayCarteEdifici[0].getTooltip());
-			carteEdificiGiocatore.getChildren().add(mom);
-			try {
-				start.getClient().addPunti("militari", 2);
-				start.getClient().notifySpostamentoPunti("militari");
-			} catch (SQLException e4) {
-				// TODO Auto-generated catch block
-				e4.printStackTrace();
-			}
-			sistemaCarte(2, 0);
-			start.getClient().setCardGiocatore(arrayCarteEdifici[0], 2, 0);
-			break;
-		case "PIANO 1 FAMILIARE IMPRESE":
-			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteImpresa[3].getImage())));
-			mom.setFitHeight(130);
-			mom.setFitWidth(90);
-			Tooltip.install(mom, arrayCarteImpresa[3].getTooltip());
-			carteImpresaGiocatore.getChildren().add(mom);
-			sistemaCarte(3, 3);
-			start.getClient().setCardGiocatore(arrayCarteImpresa[3], 3, 3);
-			break;
-		case "PIANO 2 FAMILIARE IMPRESE":
-			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteImpresa[2].getImage())));
-			mom.setFitHeight(130);
-			mom.setFitWidth(90);
-			Tooltip.install(mom, arrayCarteImpresa[2].getTooltip());
-			carteImpresaGiocatore.getChildren().add(mom);
-			sistemaCarte(3, 2);
-			start.getClient().setCardGiocatore(arrayCarteImpresa[2], 3, 2);
-			break;
-		case "PIANO 3 FAMILIARE IMPRESE":
-			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteImpresa[1].getImage())));
-			mom.setFitHeight(130);
-			mom.setFitWidth(90);
-			Tooltip.install(mom, arrayCarteImpresa[1].getTooltip());
-			carteImpresaGiocatore.getChildren().add(mom);
-			try {
-				start.getClient().addRisorse("monete", 1);
-				start.getClient().notifyRisorse("monete", start.getClient().getRisorse().getDimRisorse("monete"));
-			} catch (SQLException | ClassNotFoundException e4) {
-				// TODO Auto-generated catch block
-				e4.printStackTrace();
-			}
-			sistemaCarte(3, 1);
-			start.getClient().setCardGiocatore(arrayCarteImpresa[1], 3, 1);
-			break;
-		case "PIANO 4 FAMILIARE IMPRESE":
-			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCarteImpresa[0].getImage())));
-			mom.setFitHeight(130);
-			mom.setFitWidth(90);
-			Tooltip.install(mom, arrayCarteImpresa[0].getTooltip());
-			carteImpresaGiocatore.getChildren().add(mom);
-			try {
-				start.getClient().addRisorse("monete", 2);
-				start.getClient().notifyRisorse("monete", start.getClient().getRisorse().getDimRisorse("monete"));
-			} catch (SQLException | ClassNotFoundException e4) {
-				// TODO Auto-generated catch block
-				e4.printStackTrace();
-			}
-			sistemaCarte(3, 0);
-			start.getClient().setCardGiocatore(arrayCarteImpresa[0], 3, 0);
-			break;
-		case "PIANO 1 FAMILIARE PERSONAGGI":
-			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCartePersonaggi[3].getImage())));
-			mom.setFitHeight(130);
-			mom.setFitWidth(90);
-			Tooltip.install(mom, arrayCartePersonaggi[3].getTooltip());
-			cartePersonaggiGiocatore.getChildren().add(mom);
-			sistemaCarte(1, 3);
-			start.getClient().setCardGiocatore(arrayCartePersonaggi[3], 1, 3);
-			break;
-		case "PIANO 2 FAMILIARE PERSONAGGI":
-			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCartePersonaggi[2].getImage())));
-			mom.setFitHeight(130);
-			mom.setFitWidth(90);
-			Tooltip.install(mom, arrayCartePersonaggi[2].getTooltip());
-			cartePersonaggiGiocatore.getChildren().add(mom);
-			sistemaCarte(1, 2);
-			start.getClient().setCardGiocatore(arrayCartePersonaggi[2], 1, 2);
-			break;
-		case "PIANO 3 FAMILIARE PERSONAGGI":
-			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCartePersonaggi[1].getImage())));
-			mom.setFitHeight(130);
-			mom.setFitWidth(90);
-			Tooltip.install(mom, arrayCartePersonaggi[1].getTooltip());
-			cartePersonaggiGiocatore.getChildren().add(mom);
-			sistemaCarte(1, 1);
-			try {
-				start.getClient().addRisorse("pietra", 1);
-				start.getClient().notifyRisorse("pietra", 1);
+				serverMethods.addRisorse(positionGame, account, "legno", 1);
+				serverMethods.notifyAddRisorse(positionGame, account, "legno",
+						serverMethods.getRisorse(positionGame, account).getDimRisorse("legno"));
+				serverMethods.giveCard(resituisceCard(1, 0), account, positionGame, 0, 1);
 			} catch (SQLException e3) {
 				// TODO Auto-generated catch block
 				e3.printStackTrace();
 			}
-			start.getClient().setCardGiocatore(arrayCartePersonaggi[1], 1, 1);
 			break;
-		case "PIANO 4 FAMILIARE PERSONAGGI":
-			mom = new ImageView(new Image(getClass().getResourceAsStream(arrayCartePersonaggi[0].getImage())));
-			mom.setFitHeight(130);
-			mom.setFitWidth(90);
-			Tooltip.install(mom, arrayCartePersonaggi[0].getTooltip());
-			cartePersonaggiGiocatore.getChildren().add(mom);
-			sistemaCarte(1, 0);
+		case "PIANO 4 FAMILIARE TERRITORI":
 			try {
-				start.getClient().addRisorse("pietra", 2);
-				start.getClient().notifyRisorse("pietra", start.getClient().getRisorse().getDimRisorse("pietra"));
-			} catch (SQLException | ClassNotFoundException e3) {
+				serverMethods.addRisorse(positionGame, account, "legno", 2);
+				serverMethods.notifyAddRisorse(positionGame, account, "legno",
+						serverMethods.getRisorse(positionGame, account).getDimRisorse("legno"));
+				serverMethods.giveCard(resituisceCard(0, 0), account, positionGame, 0, 0);
+			} catch (SQLException e3) {
 				// TODO Auto-generated catch block
 				e3.printStackTrace();
 			}
-			start.getClient().setCardGiocatore(arrayCartePersonaggi[0], 1, 0);
+
 			break;
-		case "AZIONE PRODUZIONE 4":
-			switch (tipo) {
-			case 0:
-				start.getClient().produzione(0);
-				break;
-			case 1:
-				start.getClient().produzione(start.getClient().getDado("black") - 3);
-				break;
-			case 2:
-				produzione(start.getClient().getDado("orange") - 3);
-				break;
-			case 3:
-				produzione(dadi[3],- 3);
-				break;
+		case "PIANO 1 FAMILIARE EDIFICI":
+			try {
+				serverMethods.giveCard(resituisceCard(3, 2), account, positionGame, 2, 3);
+			} catch (SQLException e5) {
+				// TODO Auto-generated catch block
+				e5.printStackTrace();
+			}
+			break;
+		case "PIANO 2 FAMILIARE EDIFICI":
+			try {
+				serverMethods.giveCard(resituisceCard(2, 2), account, positionGame, 2, 2);
+			} catch (SQLException e5) {
+				// TODO Auto-generated catch block
+				e5.printStackTrace();
+			}
+			break;
+		case "PIANO 3 FAMILIARE EDIFICI":
+			try {
+				serverMethods.addPunti(positionGame, account, "militari", 1);
+				serverMethods.notifySpostamentoPunti(positionGame, account, "militari", color);
+				serverMethods.giveCard(resituisceCard(2, 1), account, positionGame, 2, 1);
+			} catch (SQLException e4) {
+				// TODO Auto-generated catch block
+				e4.printStackTrace();
+			}
+			break;
+		case "PIANO 4 FAMILIARE EDIFICI":
+			try {
+				serverMethods.addPunti(positionGame, account, "militari", 2);
+				serverMethods.notifySpostamentoPunti(positionGame, account, "militari", color);
+				serverMethods.giveCard(resituisceCard(2, 0), account, positionGame, 2, 0);
+			} catch (SQLException e4) {
+				// TODO Auto-generated catch block
+				e4.printStackTrace();
+			}
+
+			break;
+		case "PIANO 1 FAMILIARE IMPRESE":
+			try {
+				serverMethods.giveCard(resituisceCard(3, 3), account, positionGame, 3, 3);
+			} catch (SQLException e5) {
+				// TODO Auto-generated catch block
+				e5.printStackTrace();
+			}
+			break;
+		case "PIANO 2 FAMILIARE IMPRESE":
+			try {
+				serverMethods.giveCard(resituisceCard(3, 2), account, positionGame, 3, 2);
+			} catch (SQLException e5) {
+				// TODO Auto-generated catch block
+				e5.printStackTrace();
+			}
+			break;
+		case "PIANO 3 FAMILIARE IMPRESE":
+			try {
+				serverMethods.addRisorse(positionGame, account, "monete", 1);
+				serverMethods.notifyAddRisorse(positionGame, account, "monete",
+						serverMethods.getRisorse(positionGame, account).getDimRisorse("monete"));
+				serverMethods.giveCard(resituisceCard(3, 1), account, positionGame, 3, 1);
+			} catch (SQLException e4) {
+				// TODO Auto-generated catch block
+				e4.printStackTrace();
+			}
+			break;
+		case "PIANO 4 FAMILIARE IMPRESE":
+			try {
+				serverMethods.addRisorse(positionGame, account, "monete", 2);
+				serverMethods.notifyAddRisorse(positionGame, account, "monete",
+						serverMethods.getRisorse(positionGame, account).getDimRisorse("monete"));
+				serverMethods.giveCard(resituisceCard(3, 0), account, positionGame, 3, 0);
+			} catch (SQLException e4) {
+				// TODO Auto-generated catch block
+				e4.printStackTrace();
+			}
+
+			break;
+		case "PIANO 1 FAMILIARE PERSONAGGI":
+			try {
+				serverMethods.giveCard(resituisceCard(1, 3), account, positionGame, 1, 3);
+			} catch (SQLException e4) {
+				// TODO Auto-generated catch block
+				e4.printStackTrace();
+			}
+			break;
+		case "PIANO 2 FAMILIARE PERSONAGGI":
+			try {
+				serverMethods.giveCard(resituisceCard(1, 2), account, positionGame, 1, 2);
+			} catch (SQLException e4) {
+				// TODO Auto-generated catch block
+				e4.printStackTrace();
+			}
+			break;
+		case "PIANO 3 FAMILIARE PERSONAGGI":
+			try {
+				serverMethods.addRisorse(positionGame, account, "pietra", 1);
+				serverMethods.notifyAddRisorse(positionGame, account, "pietra", 1);
+				serverMethods.giveCard(resituisceCard(1, 1), account, positionGame, 1, 1);
+			} catch (SQLException e3) {
+				// TODO Auto-generated catch block
+				e3.printStackTrace();
+			}
+			break;
+		case "PIANO 4 FAMILIARE PERSONAGGI":
+			try {
+				serverMethods.addRisorse(positionGame, account, "pietra", 2);
+				serverMethods.notifyAddRisorse(positionGame, account, "pietra",
+						serverMethods.getRisorse(positionGame, account).getDimRisorse("pietra"));
+				serverMethods.giveCard(resituisceCard(1, 0), account, positionGame, 1, 0);
+			} catch (SQLException e3) {
+				// TODO Auto-generated catch block
+				e3.printStackTrace();
 			}
 			break;
 		case "AZIONE PRODUZIONE 1":
-			produzione(0);
+			try {
+				switch (coloreFam) {
+				case "neutro":
+
+					serverMethods.produzione(positionGame, account, valoreAgg);
+					valoreAgg = 0;
+					break;
+				case "black":
+					serverMethods.produzione(positionGame, account,
+							serverMethods.getDado("black", positionGame, account));
+					break;
+				case "orange":
+					serverMethods.produzione(positionGame, account,
+							serverMethods.getDado("orange", positionGame, account));
+					break;
+				case "white":
+					serverMethods.produzione(positionGame, account,
+							serverMethods.getDado("white", positionGame, account));
+					break;
+				}
+			} catch (SQLException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
 			break;
 		case "AZIONE RACCOLTO 4":
-			raccolto(-3);
+			try {
+				switch (coloreFam) {
+				case "neutro":
+					serverMethods.raccolto(positionGame, account, valoreAgg - 3);
+					valoreAgg = 0;
+					break;
+				case "black":
+					serverMethods.raccolto(positionGame, account,
+							serverMethods.getDado("black", positionGame, account) - 3);
+					break;
+				case "orange":
+					serverMethods.raccolto(positionGame, account,
+							serverMethods.getDado("white", positionGame, account) - 3);
+					break;
+				case "white":
+					serverMethods.raccolto(positionGame, account,
+							serverMethods.getDado("orange", positionGame, account) - 3);
+					break;
+				}
+			} catch (SQLException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
 			break;
 		case "AZIONE RACCOLTO 1":
-			raccolto(0);
-			break;
-		case "PRENDI 5 MONETE":
 			try {
-				addRisorse("monete", 5);
-				notifyRisorse("monete", start.getClient().getRisorse().getDimRisorse("monete"));
-			} catch (SQLException | ClassNotFoundException e2) {
+				switch (coloreFam) {
+				case "neutro":
+					serverMethods.raccolto(positionGame, account, valoreAgg);
+					valoreAgg = 0;
+					break;
+				case "black":
+					serverMethods.raccolto(positionGame, account,
+							serverMethods.getDado("black", positionGame, account));
+					break;
+				case "orange":
+					serverMethods.raccolto(positionGame, account,
+							serverMethods.getDado("orange", positionGame, account));
+					break;
+				case "white":
+					serverMethods.raccolto(positionGame, account,
+							serverMethods.getDado("white", positionGame, account));
+					break;
+				}
+			} catch (SQLException e2) {
 				// TODO Auto-generated catch block
 				e2.printStackTrace();
 			}
 			break;
 		case "PRENDI 5 SERVITORI":
 			try {
-				addRisorse("servitori", 5);
-				notifyRisorse("servitori", start.getClient().getRisorse().getDimRisorse("servitori"));
-			} catch (SQLException | ClassNotFoundException e1) {
+				serverMethods.addRisorse(positionGame, account, "servitori", 5);
+				serverMethods.notifyAddRisorse(positionGame, account, "servitori",
+						serverMethods.getRisorse(positionGame, account).getDimRisorse("servitori"));
+			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			break;
 		case "PRENDI 2 MONETE E 3 MILITARI":
 			try {
-				addRisorse("monete", 2);
-				addPunti("militari", 5);
-				notifyRisorse("monete", start.getClient().getRisorse().getDimRisorse("monete"));
-				notifySpostamentoPunti("militari");
-			} catch (SQLException | ClassNotFoundException e) {
+				serverMethods.addRisorse(positionGame, account, "monete", 2);
+				serverMethods.addPunti(positionGame, account, "militari", 5);
+				serverMethods.notifyAddRisorse(positionGame, account, "monete",
+						serverMethods.getRisorse(positionGame, account).getDimRisorse("monete"));
+				serverMethods.notifySpostamentoPunti(positionGame, account, "militari", color);
+			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
 			break;
 		case "PRENDI 2 PERGAMENE":
-			addPergamene(2);
+			serverMethods.pergamene(positionGame, account, 2);
 			break;
 		case "ZONA MERCATO":
-			addPergamene(1);
+			serverMethods.pergamene(positionGame, account, 1);
 			try {
-				addRisorse("monete", 1);
-				notifyRisorse("monete", start.getClient().getRisorse().getDimRisorse("monete"));
-			} catch (SQLException | ClassNotFoundException e) {
+				serverMethods.addRisorse(positionGame, account, "monete", 1);
+				serverMethods.notifyAddRisorse(positionGame, account, "monete",
+						serverMethods.getRisorse(positionGame, account).getDimRisorse("monete"));
+			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -957,6 +1051,11 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 			}
 			break;
 		}
+	}
+
+	private CartaSviluppo resituisceCard(int tipo, int piano) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
