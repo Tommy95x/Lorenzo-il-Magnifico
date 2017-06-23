@@ -68,6 +68,7 @@ public class ControllerGame {
 	private boolean isInTurno = false;
 	private Image trasparente = new Image(getClass().getResourceAsStream("Trasparente.png"));
 	private int valoreAgg;
+	private boolean sostegno = false;
 
 	// Componenti tabellone
 	@FXML
@@ -290,6 +291,7 @@ public class ControllerGame {
 	public ImageView cuboScomunica2;
 	@FXML
 	public ImageView cuboScomunica3;
+	
 
 	public void setGUI(StartClientGui startClientGui) throws ClassNotFoundException, IOException {
 		this.setStart(startClientGui);
@@ -865,28 +867,26 @@ public class ControllerGame {
 					// Traditional way to get the response value.
 					Optional<String> result = dialog.showAndWait();
 					result.ifPresent(val -> {
-						System.out.println(color);
-						int valore = Integer.parseInt(val);
-						try {
-							if (start.getClient().scomunicato(2) == 25)
-								valore -= 2;
-							if (controlloPosizionamento(color, x, y, valore, destinazione)) {
-								valoreAgg = valore;
-								try {
-									start.getClient().getRisorse().addRis("servitori", -Integer.parseInt(val));
-									start.getClient().notifyRisorse("servitori",
-											start.getClient().getRisorse().getDimRisorse("servitori"));
-								} catch (NumberFormatException | ClassNotFoundException | IOException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-								setFlag();
-							}
-						} catch (NumberFormatException | RemoteException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+						valoreAgg = Integer.parseInt(val);
 					});
+					try {
+						if (start.getClient().scomunicato(2) == 25)
+							valoreAgg -= 2;
+						if (controlloPosizionamento(color, x, y, valoreAgg, destinazione)) {
+							try {
+								start.getClient().getRisorse().addRis("servitori", -valoreAgg);
+								start.getClient().notifyRisorse("servitori",
+										start.getClient().getRisorse().getDimRisorse("servitori"));
+							} catch (NumberFormatException | ClassNotFoundException | IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							setFlag();
+						}
+					} catch (NumberFormatException | RemoteException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					return pay;
 				} else if (mom == null) {
 					Alert alert = new Alert(AlertType.WARNING);
@@ -2151,6 +2151,7 @@ public class ControllerGame {
 		familiareNero.setDisable(false);
 		familiareArancio.setDisable(false);
 		familiareBianco.setDisable(false);
+		bandiera.setDisable(false);
 	}
 
 	public void notifyAddCardAvv(String nameAvv, String tipo, int piano) {
@@ -2900,13 +2901,13 @@ public class ControllerGame {
 				isInTurno = false;
 				if (familiareBianco.isVisible())
 					familiareBianco.setDisable(true);
-				 if (familiareNero.isVisible()) 
+				if (familiareNero.isVisible())
 					familiareNero.setDisable(true);
-				if (familiareArancio.isVisible()) 
+				if (familiareArancio.isVisible())
 					familiareArancio.setDisable(true);
-				if (familiareNeutro.isVisible()) 
+				if (familiareNeutro.isVisible())
 					familiareNeutro.setDisable(true);
-				
+				bandiera.setDisable(true);
 			} catch (RemoteException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -2918,7 +2919,8 @@ public class ControllerGame {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			if (familiareBianco.isVisible());
+			if (familiareBianco.isVisible())
+				;
 			familiareBianco.setDisable(true);
 			if (familiareNero.isVisible())
 				familiareNero.setDisable(true);
@@ -2926,19 +2928,30 @@ public class ControllerGame {
 				familiareArancio.setDisable(true);
 			if (familiareNeutro.isVisible())
 				familiareNeutro.setDisable(true);
+			bandiera.setDisable(true);
 		}
 	}
 
 	public void scambio() {
 		isInTurno = true;
+		bandiera.setDisable(false);
 		if (familiareBianco.isVisible())
 			familiareBianco.setDisable(false);
-		if (familiareNero.isVisible()) 
+		if (familiareNero.isVisible())
 			familiareNero.setDisable(false);
 		if (familiareArancio.isVisible())
 			familiareArancio.setDisable(false);
-		if (familiareNeutro.isVisible());
-			familiareNeutro.setDisable(false);
+		if (familiareNeutro.isVisible())
+			;
+		familiareNeutro.setDisable(false);
+		if (familiareBianco.isVisible() && !familiareNero.isVisible() && familiareArancio.isVisible()
+				&& familiareNeutro.isVisible())
+			try {
+				start.getClient().scambio();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 
 	private void setDestinazione2(HBox azioniTerritoridaunGiocatore2) {
@@ -2955,7 +2968,7 @@ public class ControllerGame {
 	public void notifySpostamentoPuntiMilitari(double x, double y, String color2) {
 		System.out.println((isInTurno() && color2.equals(start.getClient().getColor()))
 				|| (!color2.equals(start.getClient().getColor()) && !isInTurno()));
-		if ( color2.equals(start.getClient().getColor())
+		if (color2.equals(start.getClient().getColor())
 				|| (!color2.equals(start.getClient().getColor()) && !isInTurno())) {
 			System.out.println("Notifico lo spostamento della pedina punti militari del giocatore con il colore "
 					+ color2 + " " + x + " " + y);
@@ -3025,8 +3038,7 @@ public class ControllerGame {
 	public void notifySpostamentoPuntiVittoria(double x, double y, String color2) {
 		System.out.println((isInTurno() && color2.equals(start.getClient().getColor()))
 				|| (!color2.equals(start.getClient().getColor()) && !isInTurno()));
-		if (color2.equals(start.getClient().getColor())
-				|| (!isInTurno() && !color2.equals(start.getClient().getColor()))) {
+		if (color2.equals(start.getClient().getColor()) || !isInTurno() && !color2.equals(start.getClient().getColor())) {
 			System.out.println("Notifico lo spostamento della pedina punti vittoria del giocatore con il colore "
 					+ color2 + " " + x + " " + y);
 			switch (color2) {
@@ -3082,6 +3094,8 @@ public class ControllerGame {
 	}
 
 	public void notifyPergamena(int i) {
+		int decisione = 0;
+		try {
 		for (int j = 0; j < i; j++) {
 			Stage popup = new Stage();
 			popup.setTitle("Pergamene");
@@ -3090,6 +3104,7 @@ public class ControllerGame {
 			ImageView im = new ImageView(new Image(getClass().getResourceAsStream("Pergamena.png")));
 			Button risorse = new Button("Click Me!");
 			risorse.setOnAction(e -> {
+				setDecisione(0);
 				try {
 					start.getClient().getRisorse().addRis("pietra", 1);
 					start.getClient().getRisorse().addRis("legno", 1);
@@ -3120,41 +3135,22 @@ public class ControllerGame {
 
 			Button moneteB = new Button("Click Me!");
 			moneteB.setOnAction(e -> {
-				try {
-					start.getClient().getRisorse().addRis("monete", 2);
-					start.getClient().notifyRisorse("monete", start.getClient().getRisorse().getDimRisorse("monete"));
-					popup.close();
-				} catch (ClassNotFoundException | IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				setDecisione(2);
 				popup.close();
 				e.consume();
 			});
 
 			Button militariB = new Button("Click Me!");
 			militariB.setOnAction(e -> {
-				try {
-					start.getClient().getRisorse().addPunti("militari", 2);
-					start.getClient().notifySpostamentoPunti("militari");
+					setDecisione(3);
 					popup.close();
 					e.consume();
-				} catch (ClassNotFoundException | IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
 			});
 			Button fedeB = new Button("Click Me!");
 			fedeB.setOnAction(e -> {
-				try {
-					start.getClient().getRisorse().addPunti("fede", 1);
-					start.getClient().notifySpostamentoPunti("fede");
-					popup.close();
-					e.consume();
-				} catch (ClassNotFoundException | IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				setDecisione(4);
+				popup.close();
+				e.consume();
 			});
 			buttonBox.getChildren().addAll(risorse, servitoriB, moneteB, militariB, fedeB);
 			box.getChildren().addAll(im, buttonBox);
@@ -3162,7 +3158,38 @@ public class ControllerGame {
 			popup.centerOnScreen();
 			popup.setScene(scene);
 			popup.show();
+			switch(valoreAgg){
+			case 0:
+				start.getClient().addRisorse("pietra", 1);
+				start.getClient().addRisorse("legno", 1);
+				start.getClient().notifyRisorse("pietra", start.getClient().getRisorse().getDimRisorse("pietra"));
+				start.getClient().notifyRisorse("legno", start.getClient().getRisorse().getDimRisorse("legno"));
+				break;
+			case 1:
+				break;
+			case 2:
+				start.getClient().getRisorse().addRis("monete", 2);
+				start.getClient().notifyRisorse("monete", start.getClient().getRisorse().getDimRisorse("monete"));
+				break;
+			case 3:
+				start.getClient().getRisorse().addPunti("militari", 2);
+				start.getClient().notifySpostamentoPunti("militari");
+				break;
+			case 4:
+				start.getClient().getRisorse().addPunti("fede", 1);
+				start.getClient().notifySpostamentoPunti("fede");
+				break;
+			}
 		}
+		} catch (ClassNotFoundException | IOException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+
+	private void setDecisione(int i) {
+		valoreAgg = i;
+		
 	}
 
 	public void notifyTutteCarte(int valore) {
@@ -3398,6 +3425,12 @@ public class ControllerGame {
 
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.get() == buttonTypeOne) {
+			sostegno = true;
+
+		} else if (result.get() == buttonTypeTwo) {
+			sostegno = false;
+		}
+		if(sostegno){
 			try {
 				start.getClient().notifyDecisionChiesa(true);
 				start.getClient().addPunti("fede", -start.getClient().getRisorse().getPunti("fede"));
@@ -3406,8 +3439,7 @@ public class ControllerGame {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
-		} else if (result.get() == buttonTypeTwo) {
+		}else{
 			try {
 				start.getClient().notifyDecisionChiesa(false);
 				start.getClient().addScomunica();
@@ -3458,4 +3490,9 @@ public class ControllerGame {
 
 	}
 
+	@FXML
+	public void skipMossa(){
+		posizionatoFamiliare();
+	}
+	
 }

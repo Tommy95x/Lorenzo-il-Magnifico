@@ -239,23 +239,25 @@ public class Partita implements Serializable {
 		totaleMosse = 0;
 		rimbalzo = 0;
 		setCards = true;
-		for(int i=0;i<4;i++){
-			if(giocatori[i] != null && giocatori[i].getPos() == 0){
+		for (int i = 0; i < 4; i++) {
+			if (giocatori[i] != null && giocatori[i].getPos() == 0) {
 				giocatori[i].setPosizione(primaPosLibera());
 			}
 		}
-		for(int i=0;i<3;i++){
-			for(int j=i+1;j<4;j++){
-				if(giocatori[i] != null && giocatori[j] != null && giocatori[i].getPos() > giocatori[j].getPos()){
-					System.out.println("Cambio il giocatore"+giocatori[j].getName() +" con "+giocatori[i].getName());
+		for (int i = 0; i < 3; i++) {
+			for (int j = i + 1; j < 4; j++) {
+				if (giocatori[i] != null && giocatori[j] != null && giocatori[i].getPos() > giocatori[j].getPos()) {
+					System.out
+							.println("Cambio il giocatore" + giocatori[j].getName() + " con " + giocatori[i].getName());
 					Giocatore mom = giocatori[i];
 					giocatori[i] = giocatori[j];
 					giocatori[j] = mom;
 				}
 			}
 		}
-		for(int i=0;i<4;i++){
-			giocatori[i].setPosizione(0);
+		for (int i = 0; i < 4; i++) {
+			if (giocatori[i] != null)
+				giocatori[i].setPosizione(0);
 			posizionamento[i] = null;
 		}
 		notifyResetTabellone();
@@ -279,8 +281,8 @@ public class Partita implements Serializable {
 
 	private int primaPosLibera() {
 		int re = 0;
-		for(int i=0;i<4;i++){
-			if(posizionamento[i] == null){
+		for (int i = 0; i < 4; i++) {
+			if (posizionamento[i] == null) {
 				re = i;
 				break;
 			}
@@ -500,8 +502,12 @@ public class Partita implements Serializable {
 		System.out.println("Gioca " + NumberOfPlayers);
 		if (totaleMosse == 16) {
 			System.out.println("Aggiungo un turno");
-			this.addTurno();
-		}else if(totaleMosse == 4){
+			try {
+				this.addTurno();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (totaleMosse == 4) {
 			scambio();
 		} else {
 			try {
@@ -525,8 +531,8 @@ public class Partita implements Serializable {
 	}
 
 	public void scambio() {
-		System.out.println("Iniziano i rimbalzi"+ rimbalzo+" "+totaleMosse);
-		if (totaleMosse == 16) {
+		System.out.println("Iniziano i rimbalzi" + rimbalzo + " " + totaleMosse);
+		if (totaleMosse < 16) {
 			if (rimbalzo >= 4) {
 				System.out.println("Azzero i rimbalzi");
 				rimbalzo = 0;
@@ -537,14 +543,14 @@ public class Partita implements Serializable {
 					giocatori[rimbalzo].rimbalzo();
 					rimbalzo++;
 					totaleMosse++;
-				}else{
+				} else {
 					System.out.println("Giocatore a null");
 					rimbalzo++;
 					totaleMosse++;
 					scambio();
 				}
 			}
-		}else{
+		} else {
 			try {
 				changeGamer();
 			} catch (RemoteException | SQLException e) {
@@ -786,12 +792,12 @@ public class Partita implements Serializable {
 	}
 
 	public void sistemaPosizioni(String name2) {
-		for(int i = 0;i<4;i++){
-			if(posizionamento[i] == null){
+		for (int i = 0; i < 4; i++) {
+			if (posizionamento[i] == null) {
 				posizionamento[i] = name;
 				giocatori[i].setPosizione(i);
 			}
 		}
-		
+
 	}
 }
