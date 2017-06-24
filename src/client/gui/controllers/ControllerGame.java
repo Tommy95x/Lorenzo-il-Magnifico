@@ -291,7 +291,6 @@ public class ControllerGame {
 	public ImageView cuboScomunica2;
 	@FXML
 	public ImageView cuboScomunica3;
-	
 
 	public void setGUI(StartClientGui startClientGui) throws ClassNotFoundException, IOException {
 		this.setStart(startClientGui);
@@ -3038,7 +3037,8 @@ public class ControllerGame {
 	public void notifySpostamentoPuntiVittoria(double x, double y, String color2) {
 		System.out.println(color2.equals(start.getClient().getColor())
 				|| (!color2.equals(start.getClient().getColor()) && !isInTurno()));
-		if (color2.equals(start.getClient().getColor()) || !isInTurno() && !color2.equals(start.getClient().getColor())) {
+		if (color2.equals(start.getClient().getColor())
+				|| !isInTurno() && !color2.equals(start.getClient().getColor())) {
 			System.out.println("Notifico lo spostamento della pedina punti vittoria del giocatore con il colore "
 					+ color2 + " " + x + " " + y);
 			switch (color2) {
@@ -3095,7 +3095,6 @@ public class ControllerGame {
 
 	public void notifyPergamena(int i) {
 		int decisione = 0;
-		try {
 		for (int j = 0; j < i; j++) {
 			Stage popup = new Stage();
 			popup.setTitle("Pergamene");
@@ -3104,34 +3103,66 @@ public class ControllerGame {
 			ImageView im = new ImageView(new Image(getClass().getResourceAsStream("Pergamena.png")));
 			Button risorse = new Button("Click Me!");
 			risorse.setOnAction(e -> {
-				setDecisione(0);
+				try {
+					start.getClient().addRisorse("pietra", 1);
+					start.getClient().notifyRisorse("pietra", start.getClient().getRisorse().getDimRisorse("pietra"));
+					start.getClient().notifyRisorse("legno", start.getClient().getRisorse().getDimRisorse("legno"));
+					start.getClient().addRisorse("legno", 1);
+				} catch (SQLException | ClassNotFoundException | IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				popup.close();
 				e.consume();
 			});
 
 			Button servitoriB = new Button("Click Me!");
 			servitoriB.setOnAction(e -> {
-				setDecisione(1);
+				try {
+					start.getClient().getRisorse().addRis("servitori", 2);
+					start.getClient().notifyRisorse("servitori", start.getClient().getRisorse().getDimRisorse("servitori"));
+				} catch (ClassNotFoundException | IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				popup.close();
 				e.consume();
 			});
 
 			Button moneteB = new Button("Click Me!");
 			moneteB.setOnAction(e -> {
-				setDecisione(2);
+				try {
+					start.getClient().getRisorse().addRis("monete", 2);
+					start.getClient().notifyRisorse("monete", start.getClient().getRisorse().getDimRisorse("monete"));
+				} catch (ClassNotFoundException | IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				popup.close();
 				e.consume();
 			});
 
 			Button militariB = new Button("Click Me!");
 			militariB.setOnAction(e -> {
-					setDecisione(3);
-					popup.close();
-					e.consume();
+				try {
+					start.getClient().getRisorse().addPunti("militari", 2);
+					start.getClient().notifySpostamentoPunti("militari");
+				} catch (ClassNotFoundException | IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				popup.close();
+				e.consume();
 			});
 			Button fedeB = new Button("Click Me!");
 			fedeB.setOnAction(e -> {
-				setDecisione(4);
+				try {
+					start.getClient().getRisorse().addPunti("fede", 1);
+					start.getClient().notifySpostamentoPunti("fede");
+				} catch (ClassNotFoundException | IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				popup.close();
 				e.consume();
 			});
@@ -3141,41 +3172,12 @@ public class ControllerGame {
 			popup.centerOnScreen();
 			popup.setScene(scene);
 			popup.show();
-			switch(valoreAgg){
-			case 0:
-				start.getClient().addRisorse("pietra", 1);
-				start.getClient().addRisorse("legno", 1);
-				start.getClient().notifyRisorse("pietra", start.getClient().getRisorse().getDimRisorse("pietra"));
-				start.getClient().notifyRisorse("legno", start.getClient().getRisorse().getDimRisorse("legno"));
-				break;
-			case 1:
-				start.getClient().getRisorse().addRis("servitori", 2);
-				start.getClient().notifyRisorse("servitori",
-				start.getClient().getRisorse().getDimRisorse("servitori"));
-				break;
-			case 2:
-				start.getClient().getRisorse().addRis("monete", 2);
-				start.getClient().notifyRisorse("monete", start.getClient().getRisorse().getDimRisorse("monete"));
-				break;
-			case 3:
-				start.getClient().getRisorse().addPunti("militari", 2);
-				start.getClient().notifySpostamentoPunti("militari");
-				break;
-			case 4:
-				start.getClient().getRisorse().addPunti("fede", 1);
-				start.getClient().notifySpostamentoPunti("fede");
-				break;
-			}
-		}
-		} catch (ClassNotFoundException | IOException | SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
 		}
 	}
 
 	private void setDecisione(int i) {
 		valoreAgg = i;
-		
+
 	}
 
 	public void notifyTutteCarte(int valore) {
@@ -3416,7 +3418,7 @@ public class ControllerGame {
 		} else if (result.get() == buttonTypeTwo) {
 			sostegno = false;
 		}
-		if(sostegno){
+		if (sostegno) {
 			try {
 				start.getClient().notifyDecisionChiesa(true);
 				start.getClient().addPunti("fede", -start.getClient().getRisorse().getPunti("fede"));
@@ -3425,7 +3427,7 @@ public class ControllerGame {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else{
+		} else {
 			try {
 				start.getClient().notifyDecisionChiesa(false);
 				start.getClient().addScomunica();
@@ -3477,8 +3479,8 @@ public class ControllerGame {
 	}
 
 	@FXML
-	public void skipMossa(){
+	public void skipMossa() {
 		posizionatoFamiliare();
 	}
-	
+
 }

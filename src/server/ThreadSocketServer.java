@@ -254,12 +254,11 @@ public class ThreadSocketServer implements Runnable, Serializable {
 	}
 
 	public void notifyTurno(int turno) throws IOException {
-		if (commonServer.getLobbyByNumber(positionGame).getNumberOfPlayers() == commonServer
-				.getLobbyByNumber(positionGame).getOk()) {
-			output.writeObject("startTurno");
-			output.flush();
-			output.writeObject(turno);
-			output.flush();
+		if(commonServer.getLobbyByNumber(positionGame).getOk() == commonServer.getLobbyByNumber(positionGame).numberOfPlayer()){
+		output.writeObject("startTurno");
+		output.flush();
+		output.writeObject(turno);
+		output.flush();
 		}
 		run();
 	}
