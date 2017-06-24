@@ -45,6 +45,8 @@ public class Portafoglio implements Serializable {
 			return false;
 		}
 		servitori += incr;
+		if(servitori<0)
+			servitori=0;
 		return true;
 	}
 
@@ -55,6 +57,8 @@ public class Portafoglio implements Serializable {
 			return false;
 		}else{
 		monete += incr;
+		if(monete<0)
+			monete=0;
 		return true;
 		}
 	}
@@ -64,6 +68,8 @@ public class Portafoglio implements Serializable {
 			return false;
 		}else{
 		legno += incr;
+		if(legno<0)
+			legno=0;
 		return true;
 		}
 	}
@@ -73,6 +79,8 @@ public class Portafoglio implements Serializable {
 			return false;
 		}else{
 		pietra += incr;
+		if(pietra<0)
+			pietra=0;
 		return true;
 		}
 	}

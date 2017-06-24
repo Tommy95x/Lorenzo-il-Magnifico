@@ -1489,58 +1489,34 @@ public class ControllerGame {
 		System.out.println(pos);
 		switch (pos) {
 		case "PIANO 1 CARTE EDIFICI":
-			if (arrayCarteEdifici[0].getCostoLegno() < p.getDimRisorse("legno")
-					&& arrayCarteEdifici[0].getCostoMoneta() < p.getDimRisorse("monete")
-					&& arrayCarteEdifici[0].getCostoPietra() < p.getDimRisorse("pietra")
-					&& arrayCarteEdifici[0].getCostoServitori() < p.getDimRisorse("servitori"))
-				return false;
-			return true;
-		case "PIANO 2 CARTE EDIFICI":
-			if (arrayCarteEdifici[1].getCostoLegno() < p.getDimRisorse("legno")
-					&& arrayCarteEdifici[1].getCostoMoneta() < p.getDimRisorse("monete")
-					&& arrayCarteEdifici[1].getCostoPietra() < p.getDimRisorse("pietra")
-					&& arrayCarteEdifici[1].getCostoServitori() < p.getDimRisorse("servitori"))
-				return false;
-			return true;
-		case "PIANO 3 CARTE EDIFICI":
-			if (arrayCarteEdifici[2].getCostoLegno() < p.getDimRisorse("legno")
-					&& arrayCarteEdifici[2].getCostoMoneta() < p.getDimRisorse("monete")
-					&& arrayCarteEdifici[2].getCostoPietra() < p.getDimRisorse("pietra")
-					&& arrayCarteEdifici[2].getCostoServitori() < p.getDimRisorse("servitori"))
-				return false;
-			return true;
-		case "PIANO 4 CARTE EDIFICI":
 			if (arrayCarteEdifici[3].getCostoLegno() < p.getDimRisorse("legno")
 					&& arrayCarteEdifici[3].getCostoMoneta() < p.getDimRisorse("monete")
 					&& arrayCarteEdifici[3].getCostoPietra() < p.getDimRisorse("pietra")
 					&& arrayCarteEdifici[3].getCostoServitori() < p.getDimRisorse("servitori"))
 				return false;
 			return true;
+		case "PIANO 2 CARTE EDIFICI":
+			if (arrayCarteEdifici[2].getCostoLegno() < p.getDimRisorse("legno")
+					&& arrayCarteEdifici[2].getCostoMoneta() < p.getDimRisorse("monete")
+					&& arrayCarteEdifici[2].getCostoPietra() < p.getDimRisorse("pietra")
+					&& arrayCarteEdifici[2].getCostoServitori() < p.getDimRisorse("servitori"))
+				return false;
+			return true;
+		case "PIANO 3 CARTE EDIFICI":
+			if (arrayCarteEdifici[1].getCostoLegno() < p.getDimRisorse("legno")
+					&& arrayCarteEdifici[1].getCostoMoneta() < p.getDimRisorse("monete")
+					&& arrayCarteEdifici[1].getCostoPietra() < p.getDimRisorse("pietra")
+					&& arrayCarteEdifici[1].getCostoServitori() < p.getDimRisorse("servitori"))
+				return false;
+			return true;
+		case "PIANO 4 CARTE EDIFICI":
+			if (arrayCarteEdifici[0].getCostoLegno() < p.getDimRisorse("legno")
+					&& arrayCarteEdifici[0].getCostoMoneta() < p.getDimRisorse("monete")
+					&& arrayCarteEdifici[0].getCostoPietra() < p.getDimRisorse("pietra")
+					&& arrayCarteEdifici[0].getCostoServitori() < p.getDimRisorse("servitori"))
+				return false;
+			return true;
 		case "PIANO 1 CARTE IMPRESE":
-			if ((arrayCarteImpresa[0].getCostoLegno() < p.getDimRisorse("legno")
-					&& arrayCarteImpresa[0].getCostoMoneta() < p.getDimRisorse("monete")
-					&& arrayCarteImpresa[0].getCostoPietra() < p.getDimRisorse("pietra")
-					&& arrayCarteImpresa[0].getCostoServitori() < p.getDimRisorse("servitori"))
-					|| (arrayCarteImpresa[0].getPuntiMilitariRichiesti() < p.getPunti("militari")))
-				return false;
-			return true;
-		case "PIANO 2 CARTE IMPRESE":
-			if ((arrayCarteImpresa[1].getCostoLegno() < p.getDimRisorse("legno")
-					&& arrayCarteImpresa[1].getCostoMoneta() < p.getDimRisorse("monete")
-					&& arrayCarteImpresa[1].getCostoPietra() < p.getDimRisorse("pietra")
-					&& arrayCarteImpresa[1].getCostoServitori() < p.getDimRisorse("servitori"))
-					|| (arrayCarteImpresa[1].getPuntiMilitariRichiesti() < p.getPunti("militari")))
-				return false;
-			return true;
-		case "PIANO 3 CARTE IMPRESE":
-			if ((arrayCarteImpresa[2].getCostoLegno() < p.getDimRisorse("legno")
-					&& arrayCarteImpresa[2].getCostoMoneta() < p.getDimRisorse("monete")
-					&& arrayCarteImpresa[2].getCostoPietra() < p.getDimRisorse("pietra")
-					&& arrayCarteImpresa[2].getCostoServitori() < p.getDimRisorse("servitori"))
-					|| (arrayCarteImpresa[2].getPuntiMilitariRichiesti() < p.getPunti("militari")))
-				return false;
-			return true;
-		case "PIANO 4 CARTE IMPRESE":
 			if ((arrayCarteImpresa[3].getCostoLegno() < p.getDimRisorse("legno")
 					&& arrayCarteImpresa[3].getCostoMoneta() < p.getDimRisorse("monete")
 					&& arrayCarteImpresa[3].getCostoPietra() < p.getDimRisorse("pietra")
@@ -1548,20 +1524,44 @@ public class ControllerGame {
 					|| (arrayCarteImpresa[3].getPuntiMilitariRichiesti() < p.getPunti("militari")))
 				return false;
 			return true;
+		case "PIANO 2 CARTE IMPRESE":
+			if ((arrayCarteImpresa[2].getCostoLegno() < p.getDimRisorse("legno")
+					&& arrayCarteImpresa[2].getCostoMoneta() < p.getDimRisorse("monete")
+					&& arrayCarteImpresa[2].getCostoPietra() < p.getDimRisorse("pietra")
+					&& arrayCarteImpresa[2].getCostoServitori() < p.getDimRisorse("servitori"))
+					|| (arrayCarteImpresa[2].getPuntiMilitariRichiesti() < p.getPunti("militari")))
+				return false;
+			return true;
+		case "PIANO 3 CARTE IMPRESE":
+			if ((arrayCarteImpresa[1].getCostoLegno() < p.getDimRisorse("legno")
+					&& arrayCarteImpresa[1].getCostoMoneta() < p.getDimRisorse("monete")
+					&& arrayCarteImpresa[1].getCostoPietra() < p.getDimRisorse("pietra")
+					&& arrayCarteImpresa[1].getCostoServitori() < p.getDimRisorse("servitori"))
+					|| (arrayCarteImpresa[1].getPuntiMilitariRichiesti() < p.getPunti("militari")))
+				return false;
+			return true;
+		case "PIANO 4 CARTE IMPRESE":
+			if ((arrayCarteImpresa[0].getCostoLegno() < p.getDimRisorse("legno")
+					&& arrayCarteImpresa[0].getCostoMoneta() < p.getDimRisorse("monete")
+					&& arrayCarteImpresa[0].getCostoPietra() < p.getDimRisorse("pietra")
+					&& arrayCarteImpresa[0].getCostoServitori() < p.getDimRisorse("servitori"))
+					|| (arrayCarteImpresa[0].getPuntiMilitariRichiesti() < p.getPunti("militari")))
+				return false;
+			return true;
 		case "PIANO 1 CARTE PERSONAGGI":
-			if (arrayCartePersonaggi[0].getCostoMoneta() < p.getDimRisorse("monete"))
+			if (arrayCartePersonaggi[3].getCostoMoneta() < p.getDimRisorse("monete"))
 				return false;
 			return true;
 		case "PIANO 2 CARTE PERSONAGGI":
-			if (arrayCartePersonaggi[1].getCostoMoneta() < p.getDimRisorse("monete"))
-				return false;
-			return true;
-		case "PIANO 3 CARTE PERSONAGGI":
 			if (arrayCartePersonaggi[2].getCostoMoneta() < p.getDimRisorse("monete"))
 				return false;
 			return true;
+		case "PIANO 3 CARTE PERSONAGGI":
+			if (arrayCartePersonaggi[1].getCostoMoneta() < p.getDimRisorse("monete"))
+				return false;
+			return true;
 		case "PIANO 4 CARTE PERSONAGGI":
-			if (arrayCartePersonaggi[3].getCostoMoneta() < p.getDimRisorse("monete"))
+			if (arrayCartePersonaggi[0].getCostoMoneta() < p.getDimRisorse("monete"))
 				return false;
 			return true;
 		}
@@ -3420,9 +3420,9 @@ public class ControllerGame {
 		}
 		if (sostegno) {
 			try {
-				start.getClient().notifyDecisionChiesa(true);
 				start.getClient().addPunti("fede", -start.getClient().getRisorse().getPunti("fede"));
 				start.getClient().notifySpostamentoPunti("fede");
+				start.getClient().notifyDecisionChiesa(true);
 			} catch (ClassNotFoundException | SQLException | IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
