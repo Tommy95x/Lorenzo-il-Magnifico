@@ -798,6 +798,5 @@ public class Partita implements Serializable {
 				giocatori[i].setPosizione(i);
 			}
 		}
-
 	}
 }
