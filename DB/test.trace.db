@@ -871,3 +871,99 @@ org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
 org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
 06-22 00:46:12 jdbc[13]: exception
 org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-22 01:37:56 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-22 01:38:14 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-22 01:38:19 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-22 01:40:11 jdbc[20]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+2017-06-24 15:41:18 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/parke/test.mv.db [1.4.194/7]" [50000-194]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:295)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:378)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:361)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2930)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2474)
+	at org.h2.engine.Database.open(Database.java:697)
+	at org.h2.engine.Database.openDatabase(Database.java:276)
+	at org.h2.engine.Database.<init>(Database.java:270)
+	at org.h2.engine.Engine.openSession(Engine.java:64)
+	at org.h2.engine.Engine.openSession(Engine.java:176)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:154)
+	at org.h2.engine.Engine.createSession(Engine.java:137)
+	at org.h2.server.TcpServerThread.run(TcpServerThread.java:148)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: org.h2.jdbc.JdbcSQLException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/parke/test.mv.db [1.4.194/7]" [50000-194]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 18 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/parke/test.mv.db [1.4.194/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:765)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:347)
+	... 13 more
+06-24 16:08:12 jdbc[18]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+06-24 16:09:07 jdbc[19]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-182]
+2017-06-24 16:37:49 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/parke/test.mv.db [1.4.194/7]" [50000-194]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:295)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:378)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:361)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2930)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2474)
+	at org.h2.engine.Database.open(Database.java:697)
+	at org.h2.engine.Database.openDatabase(Database.java:276)
+	at org.h2.engine.Database.<init>(Database.java:270)
+	at org.h2.engine.Engine.openSession(Engine.java:64)
+	at org.h2.engine.Engine.openSession(Engine.java:176)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:154)
+	at org.h2.engine.Engine.createSession(Engine.java:137)
+	at org.h2.server.TcpServerThread.run(TcpServerThread.java:148)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: org.h2.jdbc.JdbcSQLException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/parke/test.mv.db [1.4.194/7]" [50000-194]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 18 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/parke/test.mv.db [1.4.194/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:765)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:347)
+	... 13 more
+2017-06-24 16:37:50 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/parke/test.mv.db [1.4.194/7]" [50000-194]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:295)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:95)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:378)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:361)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2930)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:155)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:100)
+	at org.h2.engine.Database.getPageStore(Database.java:2474)
+	at org.h2.engine.Database.open(Database.java:697)
+	at org.h2.engine.Database.openDatabase(Database.java:276)
+	at org.h2.engine.Database.<init>(Database.java:270)
+	at org.h2.engine.Engine.openSession(Engine.java:64)
+	at org.h2.engine.Engine.openSession(Engine.java:176)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:154)
+	at org.h2.engine.Engine.createSession(Engine.java:137)
+	at org.h2.server.TcpServerThread.run(TcpServerThread.java:148)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: org.h2.jdbc.JdbcSQLException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/parke/test.mv.db [1.4.194/7]" [50000-194]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 18 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/parke/test.mv.db [1.4.194/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:765)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:347)
+	... 13 more
