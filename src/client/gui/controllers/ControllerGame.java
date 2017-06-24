@@ -3317,6 +3317,7 @@ public class ControllerGame {
 						start.getClient().setCardGiocatore(i.getC(), i.getTipo(), i.getPiano());
 						setCardGiocatore("tutteCarte", i.getPiano(), i.getTipo(), "niente");
 						sistemaCarte(i.getTipo(), i.getPiano());
+						e.consume();
 						popup.close();
 					} catch (ClassNotFoundException | IOException e1) {
 						// TODO Auto-generated catch block
