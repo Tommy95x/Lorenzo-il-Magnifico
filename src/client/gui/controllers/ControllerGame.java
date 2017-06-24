@@ -2030,7 +2030,7 @@ public class ControllerGame {
 				municipio.getChildren().remove(i);
 			}
 		} catch (ClassNotFoundException | IOException e) {
-			// TODO Auto-generated catch block
+			System.out.println("Durante il reset del tabellone qualcosa non era pieno");
 			e.printStackTrace();
 		}
 		start.getClient().waitTurno();
