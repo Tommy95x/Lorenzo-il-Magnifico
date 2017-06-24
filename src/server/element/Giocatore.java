@@ -443,7 +443,7 @@ public class Giocatore implements Serializable {
 							e1.printStackTrace();
 						}
 						break;
-					case "unTipodicarta":
+					case "unacarta":
 						try {
 							notifyUnTipoCarta(e.getTipo(), e.getQta(), carta.scontoAzione);
 						} catch (RemoteException e1) {

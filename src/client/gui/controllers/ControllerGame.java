@@ -3254,6 +3254,7 @@ public class ControllerGame {
 	public void notifyUnTipoCarta(int tipo, int valore, int scontoAzioneImmediata1) {
 		System.out.println("Notifica di scegliere un tipo di carta da prendere");
 		Stage popup = new Stage();
+		ScrollPane pane = new ScrollPane();
 		popup.setTitle("Un tipo di carta");
 		VBox vBox = new VBox();
 		HBox box = new HBox();
@@ -3270,6 +3271,7 @@ public class ControllerGame {
 					im[i] = new Immagine(new Image(getClass().getResourceAsStream(arrayCarteTerritori[i].getImage())));
 					im[i].setC(arrayCarteEdifici[i]);
 					im[i].setTipo(0);
+					im[i].setPiano(i);
 				}
 			}
 			break;
@@ -3279,6 +3281,7 @@ public class ControllerGame {
 					im[i] = new Immagine(new Image(getClass().getResourceAsStream(arrayCartePersonaggi[i].getImage())));
 					im[i].setC(arrayCartePersonaggi[i]);
 					im[i].setTipo(1);
+					im[i].setPiano(i);
 				}
 			}
 			break;
@@ -3288,6 +3291,7 @@ public class ControllerGame {
 					im[i] = new Immagine(new Image(getClass().getResourceAsStream(arrayCarteEdifici[i].getImage())));
 					im[i].setC(arrayCarteEdifici[i]);
 					im[i].setTipo(2);
+					im[i].setPiano(i);
 				}
 			}
 			break;
@@ -3297,6 +3301,7 @@ public class ControllerGame {
 					im[i] = new Immagine(new Image(getClass().getResourceAsStream(arrayCarteImpresa[i].getImage())));
 					im[i].setC(arrayCarteImpresa[i]);
 					im[i].setTipo(3);
+					im[i].setPiano(i);
 				}
 			}
 			break;
@@ -3321,7 +3326,8 @@ public class ControllerGame {
 			}
 		}
 		vBox.getChildren().addAll(labelBox, box);
-		Scene scene = new Scene(vBox, 600, 400);
+		pane.setContent(vBox);
+		Scene scene = new Scene(pane, 600, 400);
 		popup.centerOnScreen();
 		popup.setScene(scene);
 		popup.show();
