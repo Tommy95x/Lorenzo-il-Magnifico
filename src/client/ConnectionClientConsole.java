@@ -1,7 +1,6 @@
 package client;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -10,17 +9,8 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Optional;
 import java.util.Scanner;
 
-import com.sun.glass.events.KeyEvent;
-
-import javafx.scene.control.Alert;
-import javafx.scene.control.ChoiceDialog;
-import javafx.scene.control.Tooltip;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import server.element.CartaSviluppo;
 import server.element.Dado;
@@ -31,9 +21,12 @@ import server.element.TesseraScomunica;
 import shared.RMIClientInterface;
 import shared.ServerInterface;
 
-@SuppressWarnings("restriction")
 public class ConnectionClientConsole extends UnicastRemoteObject implements RMIClientInterface {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int port;
 	private ServerInterface serverMethods;
 	private int positionGame;
@@ -391,6 +384,7 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 		}
 	}
 
+	@SuppressWarnings("unused")
 	public boolean controlloPosizionamento(String color, double x, double y, int addRisorse, ImageView destinazione) {
 		try {
 			if (controlCard(x, y)) {
@@ -403,7 +397,8 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 				}
 				if (mom.equals("Pay")) {
 					this.pay = false;
-					System.out.println("Non potresti posizionare qui il tuo familiare, a meno che non paghi qualche servitore\nVuoi pagare?\nQuanto?");
+					System.out.println(
+							"Non potresti posizionare qui il tuo familiare, a meno che non paghi qualche servitore\nVuoi pagare?\nQuanto?");
 					System.out.println("Inserisci il numero di servitori:");
 					int valore = input.nextInt();
 					input.nextLine();
@@ -411,11 +406,10 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 						valore -= 2;
 					if (controlloPosizionamento(color, x, y, valore, destinazione)) {
 						valoreAgg = valore;
-						
-							serverMethods.getRisorse(positionGame, account).addRis("servitori",
-									-valore);
-							serverMethods.notifyAddRisorse(positionGame, account, "servitori",
-									serverMethods.getRisorse(positionGame, account).getDimRisorse("servitori"));
+
+						serverMethods.getRisorse(positionGame, account).addRis("servitori", -valore);
+						serverMethods.notifyAddRisorse(positionGame, account, "servitori",
+								serverMethods.getRisorse(positionGame, account).getDimRisorse("servitori"));
 						setFlag();
 					}
 					return pay;
@@ -749,11 +743,11 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 	}
 
 	public void setCardGiocatore(String namePosition, int piano, int tipo, String coloreFam) throws IOException {
-		ImageView mom;
 		switch (namePosition) {
 		case "PIANO 1 FAMILIARE TERRITORI":
 			try {
-				serverMethods.giveCard(resituisceCard(3, 0), account, positionGame, 0, 3);
+				cartePersonali.add(carte[3]);
+				serverMethods.giveCard(resituisceCard(0, 3), account, positionGame, 0, 3);
 			} catch (SQLException e6) {
 				// TODO Auto-generated catch block
 				e6.printStackTrace();
@@ -761,7 +755,8 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 			break;
 		case "PIANO 2 FAMILIARE TERRITORI":
 			try {
-				serverMethods.giveCard(resituisceCard(2, 0), account, positionGame, 0, 2);
+				cartePersonali.add(carte[2]);
+				serverMethods.giveCard(resituisceCard(0, 2), account, positionGame, 0, 2);
 			} catch (SQLException e6) {
 				// TODO Auto-generated catch block
 				e6.printStackTrace();
@@ -769,10 +764,11 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 			break;
 		case "PIANO 3 FAMILIARE TERRITORI":
 			try {
+				cartePersonali.add(carte[1]);
 				serverMethods.addRisorse(positionGame, account, "legno", 1);
 				serverMethods.notifyAddRisorse(positionGame, account, "legno",
 						serverMethods.getRisorse(positionGame, account).getDimRisorse("legno"));
-				serverMethods.giveCard(resituisceCard(1, 0), account, positionGame, 0, 1);
+				serverMethods.giveCard(resituisceCard(0, 1), account, positionGame, 0, 1);
 			} catch (SQLException e3) {
 				// TODO Auto-generated catch block
 				e3.printStackTrace();
@@ -780,6 +776,7 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 			break;
 		case "PIANO 4 FAMILIARE TERRITORI":
 			try {
+				cartePersonali.add(carte[0]);
 				serverMethods.addRisorse(positionGame, account, "legno", 2);
 				serverMethods.notifyAddRisorse(positionGame, account, "legno",
 						serverMethods.getRisorse(positionGame, account).getDimRisorse("legno"));
@@ -792,7 +789,8 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 			break;
 		case "PIANO 1 FAMILIARE EDIFICI":
 			try {
-				serverMethods.giveCard(resituisceCard(3, 2), account, positionGame, 2, 3);
+				cartePersonali.add(carte[11]);
+				serverMethods.giveCard(resituisceCard(2, 3), account, positionGame, 2, 3);
 			} catch (SQLException e5) {
 				// TODO Auto-generated catch block
 				e5.printStackTrace();
@@ -800,6 +798,7 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 			break;
 		case "PIANO 2 FAMILIARE EDIFICI":
 			try {
+				cartePersonali.add(carte[10]);
 				serverMethods.giveCard(resituisceCard(2, 2), account, positionGame, 2, 2);
 			} catch (SQLException e5) {
 				// TODO Auto-generated catch block
@@ -808,6 +807,7 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 			break;
 		case "PIANO 3 FAMILIARE EDIFICI":
 			try {
+				cartePersonali.add(carte[9]);
 				serverMethods.addPunti(positionGame, account, "militari", 1);
 				serverMethods.notifySpostamentoPunti(positionGame, account, "militari", color);
 				serverMethods.giveCard(resituisceCard(2, 1), account, positionGame, 2, 1);
@@ -818,6 +818,7 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 			break;
 		case "PIANO 4 FAMILIARE EDIFICI":
 			try {
+				cartePersonali.add(carte[8]);
 				serverMethods.addPunti(positionGame, account, "militari", 2);
 				serverMethods.notifySpostamentoPunti(positionGame, account, "militari", color);
 				serverMethods.giveCard(resituisceCard(2, 0), account, positionGame, 2, 0);
@@ -829,6 +830,7 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 			break;
 		case "PIANO 1 FAMILIARE IMPRESE":
 			try {
+				cartePersonali.add(carte[15]);
 				serverMethods.giveCard(resituisceCard(3, 3), account, positionGame, 3, 3);
 			} catch (SQLException e5) {
 				// TODO Auto-generated catch block
@@ -837,6 +839,7 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 			break;
 		case "PIANO 2 FAMILIARE IMPRESE":
 			try {
+				cartePersonali.add(carte[14]);
 				serverMethods.giveCard(resituisceCard(3, 2), account, positionGame, 3, 2);
 			} catch (SQLException e5) {
 				// TODO Auto-generated catch block
@@ -845,6 +848,7 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 			break;
 		case "PIANO 3 FAMILIARE IMPRESE":
 			try {
+				cartePersonali.add(carte[13]);
 				serverMethods.addRisorse(positionGame, account, "monete", 1);
 				serverMethods.notifyAddRisorse(positionGame, account, "monete",
 						serverMethods.getRisorse(positionGame, account).getDimRisorse("monete"));
@@ -856,6 +860,7 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 			break;
 		case "PIANO 4 FAMILIARE IMPRESE":
 			try {
+				cartePersonali.add(carte[12]);
 				serverMethods.addRisorse(positionGame, account, "monete", 2);
 				serverMethods.notifyAddRisorse(positionGame, account, "monete",
 						serverMethods.getRisorse(positionGame, account).getDimRisorse("monete"));
@@ -868,6 +873,7 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 			break;
 		case "PIANO 1 FAMILIARE PERSONAGGI":
 			try {
+				cartePersonali.add(carte[7]);
 				serverMethods.giveCard(resituisceCard(1, 3), account, positionGame, 1, 3);
 			} catch (SQLException e4) {
 				// TODO Auto-generated catch block
@@ -876,6 +882,7 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 			break;
 		case "PIANO 2 FAMILIARE PERSONAGGI":
 			try {
+				cartePersonali.add(carte[6]);
 				serverMethods.giveCard(resituisceCard(1, 2), account, positionGame, 1, 2);
 			} catch (SQLException e4) {
 				// TODO Auto-generated catch block
@@ -884,6 +891,7 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 			break;
 		case "PIANO 3 FAMILIARE PERSONAGGI":
 			try {
+				cartePersonali.add(carte[5]);
 				serverMethods.addRisorse(positionGame, account, "pietra", 1);
 				serverMethods.notifyAddRisorse(positionGame, account, "pietra", 1);
 				serverMethods.giveCard(resituisceCard(1, 1), account, positionGame, 1, 1);
@@ -894,6 +902,7 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 			break;
 		case "PIANO 4 FAMILIARE PERSONAGGI":
 			try {
+				cartePersonali.add(carte[4]);
 				serverMethods.addRisorse(positionGame, account, "pietra", 2);
 				serverMethods.notifyAddRisorse(positionGame, account, "pietra",
 						serverMethods.getRisorse(positionGame, account).getDimRisorse("pietra"));
@@ -1019,12 +1028,16 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 		case "tutteCarte":
 			switch (tipo) {
 			case 0:
+				cartePersonali.add(carte[piano]);
 				break;
 			case 1:
+				cartePersonali.add(carte[piano + 4]);
 				break;
 			case 2:
+				cartePersonali.add(carte[piano + 8]);
 				break;
 			case 3:
+				cartePersonali.add(carte[piano + 12]);
 				break;
 
 			}
@@ -1033,7 +1046,16 @@ public class ConnectionClientConsole extends UnicastRemoteObject implements RMIC
 	}
 
 	private CartaSviluppo resituisceCard(int tipo, int piano) {
-		// TODO Auto-generated method stub
+		switch (tipo) {
+		case 0:
+			return carte[piano];
+		case 1:
+			return carte[piano + 4];
+		case 2:
+			return carte[piano + 8];
+		case 3:
+			return carte[piano + 12];
+		}
 		return null;
 	}
 
