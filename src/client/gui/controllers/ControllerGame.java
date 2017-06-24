@@ -2966,7 +2966,7 @@ public class ControllerGame {
 	}
 
 	public void notifySpostamentoPuntiMilitari(double x, double y, String color2) {
-		System.out.println((isInTurno() && color2.equals(start.getClient().getColor()))
+		System.out.println(color2.equals(start.getClient().getColor())
 				|| (!color2.equals(start.getClient().getColor()) && !isInTurno()));
 		if (color2.equals(start.getClient().getColor())
 				|| (!color2.equals(start.getClient().getColor()) && !isInTurno())) {
@@ -3004,7 +3004,7 @@ public class ControllerGame {
 	}
 
 	public void notifySpostamentoPuntiFede(double x, double y, String color2) {
-		System.out.println((isInTurno() && color2.equals(start.getClient().getColor()))
+		System.out.println(color2.equals(start.getClient().getColor())
 				|| (!color2.equals(start.getClient().getColor()) && !isInTurno()));
 		if (color2.equals(start.getClient().getColor())
 				|| (!color2.equals(start.getClient().getColor()) && !isInTurno())) {
@@ -3036,7 +3036,7 @@ public class ControllerGame {
 	}
 
 	public void notifySpostamentoPuntiVittoria(double x, double y, String color2) {
-		System.out.println((isInTurno() && color2.equals(start.getClient().getColor()))
+		System.out.println(color2.equals(start.getClient().getColor())
 				|| (!color2.equals(start.getClient().getColor()) && !isInTurno()));
 		if (color2.equals(start.getClient().getColor()) || !isInTurno() && !color2.equals(start.getClient().getColor())) {
 			System.out.println("Notifico lo spostamento della pedina punti vittoria del giocatore con il colore "
@@ -3105,30 +3105,13 @@ public class ControllerGame {
 			Button risorse = new Button("Click Me!");
 			risorse.setOnAction(e -> {
 				setDecisione(0);
-				try {
-					start.getClient().getRisorse().addRis("pietra", 1);
-					start.getClient().getRisorse().addRis("legno", 1);
-					start.getClient().notifyRisorse("pietra", start.getClient().getRisorse().getDimRisorse("pietra"));
-					start.getClient().notifyRisorse("legno", start.getClient().getRisorse().getDimRisorse("legno"));
-				} catch (ClassNotFoundException | IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
 				popup.close();
 				e.consume();
 			});
 
 			Button servitoriB = new Button("Click Me!");
 			servitoriB.setOnAction(e -> {
-				try {
-					start.getClient().getRisorse().addRis("servitori", 2);
-					start.getClient().notifyRisorse("servitori",
-							start.getClient().getRisorse().getDimRisorse("servitori"));
-					popup.close();
-				} catch (ClassNotFoundException | IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				setDecisione(1);
 				popup.close();
 				e.consume();
 			});
@@ -3166,6 +3149,9 @@ public class ControllerGame {
 				start.getClient().notifyRisorse("legno", start.getClient().getRisorse().getDimRisorse("legno"));
 				break;
 			case 1:
+				start.getClient().getRisorse().addRis("servitori", 2);
+				start.getClient().notifyRisorse("servitori",
+				start.getClient().getRisorse().getDimRisorse("servitori"));
 				break;
 			case 2:
 				start.getClient().getRisorse().addRis("monete", 2);
