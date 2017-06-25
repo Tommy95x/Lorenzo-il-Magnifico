@@ -9,9 +9,9 @@ import client.gui.StartClientGui;
 import client.gui.controllers.ControllerGame;
 import javafx.application.Platform;
 import javafx.scene.control.Tooltip;
+import server.RMIClientInterface;
 import server.element.CartaSviluppo;
 import server.element.Giocatore;
-import shared.RMIClientInterface;
 
 public class ConnectionRmiInterlocutorClient  extends UnicastRemoteObject implements RMIClientInterface{
 	

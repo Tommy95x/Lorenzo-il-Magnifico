@@ -12,14 +12,14 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import javafx.scene.image.ImageView;
+import server.RMIClientInterface;
+import server.ServerInterface;
 import server.element.CartaSviluppo;
 import server.element.Dado;
 import server.element.Giocatore;
 import server.element.Portafoglio;
 import server.element.Posizioni;
 import server.element.TesseraScomunica;
-import shared.RMIClientInterface;
-import shared.ServerInterface;
 
 public class ConnectionClientConsole extends UnicastRemoteObject implements RMIClientInterface {
 

@@ -19,8 +19,6 @@ import server.element.Partita;
 import server.element.Portafoglio;
 import server.element.Posizioni;
 import server.element.TesseraScomunica;
-import shared.RMIClientInterface;
-import shared.ServerInterface;
 
 /*
 *Classe per l'implementazione dei metodi utilizzati nelle classi RMIServer e ThreadSocketServer, meodoti richiamati e utilizzati per giocare

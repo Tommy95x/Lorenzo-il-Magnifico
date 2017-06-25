@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 import client.gui.controllers.ControllerGame;
+import server.RMIClientInterface;
 import server.ThreadSocketServer;
 import server.database.ConnectionDatabase;
-import shared.RMIClientInterface;
 
 @SuppressWarnings("serial")
 public class Giocatore implements Serializable {

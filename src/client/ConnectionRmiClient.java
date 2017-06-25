@@ -10,13 +10,13 @@ import java.util.ArrayList;
 
 import client.gui.StartClientGui;
 import client.gui.controllers.ControllerGame;
+import server.ServerInterface;
 import server.element.CartaSviluppo;
 import server.element.Dado;
 import server.element.Giocatore;
 import server.element.Partita;
 import server.element.Portafoglio;
 import server.element.TesseraScomunica;
-import shared.ServerInterface;
 
 /*
  * Classe di implementazione 
