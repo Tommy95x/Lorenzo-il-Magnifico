@@ -1,0 +1,574 @@
+ID = IMP11
+PERIODO = 1
+NOME = Ingaggiare Reclute
+COSTOLEGNO = 0
+COSTOPIETRA = 0
+COSTOMONETA = 4
+COSTOSERVITORI = 0
+COSTOPUNTIMILITARI = 0
+REQUISITOPUNTIMILITARI = 0
+IMMAGINE = Ingaggiare Reclute.png
+DESCRIZIONE = INGAGGIARE RECLUTE. Costo: Guadagni 4 MONETE. Effetto immediato: 5 PUNTI MILITARI. Guadagni 4 PUNTI VITTORIA a fine partita.
+EFFETTOIMMEDIATO1 = MILITARI
+QTAEFFETTOIMMEDIATO1 = 5
+EFFETTOIMMEDIATO2 = NIENTE
+QTAEFFETTOIMMEDIATO2 = 0
+EFFETTOIMMEDIATO3 = NIENTE
+QTAEFFETTOIMMEDIATO3 = 0
+AZIONEIMMEDIATA = NIENTE
+VALOREAZIONEIMMEDIATA = 0
+PUNTIVITTORIA = 4
+TIPO = 5
+TIPOPERMANENTE = 5
+
+
+IMP12
+1
+Riparare la Chiesa
+1
+1
+1
+0
+0
+0
+Riparare la Chiesa.png
+RIPARARE LA CHIESA. Costo: 1 MONETA, 1 LEGNO e 1 PIETRA. Effetto immediato: Guadagni 1 PUNTO FEDE. Guadagni 5 PUNTI VITTORIA a fine partita.
+FEDE
+1
+NIENTE
+0
+NIENTE
+0
+NIENTE
+0
+5
+5
+5
+
+
+IMP13
+1
+Sostegno al Vescovo
+1
+1
+2
+0
+2
+4
+Sostegno al Vescovo.png
+SOSTEGNO AL VESCOVO. Costo: 2 MONETE, 1 LEGNO e 1 PIETRA oppure 2 PUNTI MILITARI se ne possiedi almeno 4. Effetto immediato: Guadagni 3 PUNTI FEDE. Guadagni 1 PUNTO VITTORIA a fine partita.
+FEDE
+3
+NIENTE
+0
+NIENTE
+0
+NIENTE
+0
+1
+5
+5
+
+
+IMP14
+1
+Innalzare una Statua
+2
+2
+0
+0
+0
+0
+Innalzare una Statua.png
+INNALAZARE UNA STATUA. Costo: 2 LEGNI e 2 PIETRE. Effetto immediato: Guadagni 2 PERGAMENE DIVERSE. Guadagni 4 PUNTI VITTORIA a fine partita.
+PERGAMENA
+2
+NIENTE
+0
+NIENTE
+0
+NIENTE
+0
+4
+5
+5
+
+
+IMP15
+1
+Ospitare i Mendicanti
+3
+0
+0
+0
+0
+0
+Ospitare i Mendicanti.png
+OSPITARE I MENDICANTI. Costo: 3 LEGNI. Effetto immediato: Guadagni 4 SERVITORI. Guadagni 4 PUNTI VITTORIA a fine partita.
+SERVITORI
+4
+NIENTE
+0
+NIENTE
+0
+NIENTE
+0
+4
+5
+5
+
+
+IMP16
+1
+Combattere le Eresie
+0
+0
+0
+0
+3
+5
+Combattere le Eresie.png
+COMBATTERE LE ERESIE. Costo: 3 PUNTIMILITARI se ne possiedi almeno 5. Effetto immediato: Guadagni 2 PUNTI FEDE. Guadagni 5 PUNTI VITTORIA a fine partita.
+FEDE
+2
+NIENTE
+0
+NIENTE
+0
+NIENTE
+0
+5
+5
+5
+
+
+IMP17
+1
+Costruire le Mura
+0
+3
+0
+0
+0
+0
+Costruire le Mura.png
+COSTRUIRE LE MURA. Costo: 3 LEGNI. Effetto immediato: Guadagni 2 PUNTI MILITARI e 1 PERGAMENA. Guadagni 3 PUNTI VITTORIA a fine partita.
+MILITARI
+2
+PERGAMENA
+1
+NIENTE
+0
+NIENTE
+0
+3
+5
+5
+
+
+IMP18
+1
+Campagna Militare
+0
+0
+0
+0
+2
+3
+Campagna Militare.png
+CAMPAGNA MILITARE. Costo: 2 PUNTI MILTARI se ne possiedi almeno 3. Effetto immediato: Guadagni 3 MONETE. Guadagni 5 PUNTI VITTORIA a fine partita.
+MONETE
+3
+NIENTE
+0
+NIENTE
+0
+NIENTE
+0
+5
+5
+5
+
+
+IMP21
+2
+Costruire i Bastioni
+0
+4
+0
+0
+0
+0
+Costruire i Bastioni.png
+COSTRUIRE I BASTIONI. Costo: 4 PIETRE. Effetto immediato: Guadagni 3 PUNTI MILITARI e 1 PERGAMENA. Guadagni 2 PUNTI VITTORIA a fine partita.
+MILITARI
+3
+PERGAMENA
+1
+NIENTE
+0
+NIENTE
+0
+2
+5
+5
+
+
+IMP22
+2
+Supporto al Re
+0
+0
+0
+0
+3
+6
+Supporto al Re.png
+SUPPORTO AL RE. Costo: 3 PUNTI MILITARI se ne possiedi almeno 6. Effetto immediato: Guadagni 5 MONETE e 1 PERGAMENA. Guadagni 3 PUNTI VITTORIA a fine partita.
+MONETE
+5
+PERGAMENA
+1
+NIENTE
+0
+NIENTE
+0
+3
+5
+5
+
+
+IMP23
+2
+Accogliere gli Stranieri
+4
+0
+0
+0
+0
+0
+Accogliere gli Stranieri.png
+ACCOGLIERE GLI STRANIERI. Costo: 4 LEGNI. Effetto immediato: Guadagni 5 SERVITORI. Guadagni 4 PUNTI VITTORIA a fine partita.
+SERVITORI
+5
+NIENTE
+0
+NIENTE
+0
+NIENTE
+0
+4
+5
+5
+
+
+IMP24
+2
+Sostegno al Cardinale
+2
+2
+3
+0
+4
+7
+Sostegno al Cardinale.png
+SOSTEGNO AL CARDINALE. Costo: 2 LEGNI, 3 MONETE e 2 PIETRE oppure 4 PUNTI MILITARI se ne possiedi almeno 7. Effetto immediato: Guadagni 3 PUNTI FEDE. Guadagni 4 PUNTI VITTORIA a fine partita.
+FEDE
+3
+NIENTE
+0
+NIENTE
+0
+NIENTE
+0
+4
+5
+5
+
+
+IMP25
+2
+Ingaggiare Soldati
+0
+0
+6
+0
+0
+0
+Ingaggiare Soldati.png
+INGAGGIARE I SOLDATI. Costo: 6 MONETE. Effetto immediato: Guadagni 6 PUNTI MILITARI. Guadagni 5 PUNTI VITTORIA a fine partita.
+MILITARI
+6
+NIENTE
+0
+NIENTE
+0
+NIENTE
+0
+5
+5
+5
+
+
+IMP26
+2
+Crociata
+0
+0
+0
+0
+4
+8
+Crociata.png
+CROCIATA. Costo: 4 PUNTI MILITARI se ne possiedi almeno 8. Effetto immediato: Guadagni 1 PUNTO FEDE 5 MONETE. Guadagni 5 PUNTI VITTORIA a fine partita.
+MONETE
+5
+FEDE
+1
+NIENTE
+0
+NIENTE
+0	
+5
+5
+5
+
+
+IMP27
+2
+Riparare l'Abbazzia
+2
+2
+2
+0
+0
+0
+Riparare l'Abbazia.png
+RIPARARE L'ABBAZIA. Costo: 2 LEGNI, 2 MONETE e 2 PIETRE. Effetto immediato: Guadagni 2 PUNTI FEDE. Guadagni 6 PUNTI VITTORIA a fine partita.
+FEDE
+2
+NIENTE
+0
+NIENTE
+0
+NIENTE
+0
+6
+5
+5
+
+
+IMP28
+2
+Costruire Canalizzazioni
+0
+0
+3
+2
+0
+0
+Costruire Canalizzazioni.png
+COSTRUIRE CANALIZZAZIONI. Costo: 3 MONETE e 2 SERVITORI. Effetto immediato: Puoi effettuare un'azione raccolto di un valore azione pari a 4. Guadagni 5 PUNTI VITTORIA a fine partita.
+NIENTE
+0
+NIENTE
+0
+NIENTE
+0
+RACCOLTO
+4
+5
+6
+5
+
+
+IMP31
+3
+Ingaggiare Mercenari
+0
+0
+8
+0
+0
+0
+Ingaggiare Mercenari.png
+INGAGGIARE MERCENARI. Costo: 8 MONETE. Effetto immediato: Guadagni 7 PUNTI MILITARI. Guadagni 6 PUNTI VITTORIA a fine partita.
+MILITARI
+7
+NIENTE
+0
+NIENTE
+0
+NIENTE
+0
+6
+5
+5
+
+
+IMP32
+3
+Conquista Militare
+0
+0
+0
+0
+6
+12
+Conquista Militare.png
+CONQUISTA MILITARE. Costo: 6 PUNTI MILITARI se ne possiedi almeno 12. Effetto immediato: Guadagni 3 LEGNI, 3 PIETRE e 3 MONETE. Guadagni 7 PUNTI VITTORIA a fine partita.
+LEGNO
+3
+PIETRA
+3
+MONETE
+3
+NIENTE
+0
+7
+5
+5
+
+
+IMP33
+3
+Sostegno al Papa
+0
+0
+0
+0
+5
+10
+Sostegno al Papa.png
+SOSTEGNO AL PAPA. Costo: 3 LEGNI, 3 PIETRE e 3 MONETE oppure 5 PUNTI MILITARI se ne possiedi almeno 10. Effetto immediato: Guadagni 2 PUNTI FEDE. Guadagni 10 PUNTI VITTORIA a fine partita.
+FEDE
+2
+NIENTE
+0
+NIENTE
+0
+NIENTE
+0
+10
+5
+5
+
+
+IMP34
+3
+Migliorare le Strade
+0
+0
+4
+3
+0
+0
+Migliorare le Strade.png
+MIGLIORARE LE STRADE. Costo: 3 SERVITORI e 4 MONETE. Effetto immediato: Puoi compiere un'azione produzione di valore azione pari a 3. Guadagni 5 PUNTI VITTORIA a fine partita.
+NIENTE
+0	
+NIENTE
+0
+NIENTE
+0
+PRODUZIONE
+3
+5
+7
+5
+
+
+IMP35
+3
+Riparare la Cattedrale
+3
+3
+3
+0
+0
+0
+Riparare la Cattedrale.png
+RIPARARE LA CATTEDRALE. Costo: 3 LEGNI, 3 MONETE e 3 PIETRE. Effetto immediato: Guadagni 1 PUNTO FEDE e puoi prendere una qualsiasi carta dal piano di gioco con valore azione minimo 7. Guadagni 5 PUNTI VITTORIA a fine partita.
+FEDE
+1
+NIENTE
+0
+NIENTE
+0
+TUTTECARTE
+7
+5
+4
+5
+
+
+IMP36
+3
+Costruire le Torri
+0
+6
+0
+0
+0
+0
+Costruire le Torri.png
+COSTRUIRE LE TORRI. Costo: 6 PIETRE. Effetto immediato: Guadagni 4 PUNTI MILITARI e 1 PERGAMENA. Guadagni 4 PUNTI VITTORIA a fine partita.
+MILITARI
+4
+PERGAMENA
+1
+NIENTE
+0
+NIENTE
+0
+4
+5
+5
+
+
+IMP37
+3
+Commissionare Arte Sacra
+6
+0
+0
+0
+0
+0
+Commissionare Arte Sacra.png
+COMMISSIONARE ARTE SACRA. Costo: 6 LEGNI. Effetto immediato: Guadagni 3 PUNTI FEDE. Guadagni 3 PUNTI VITTORIA a fine partita.
+FEDE
+3
+NIENTE
+0
+NIENTE
+0
+NIENTE
+0
+3
+5
+5
+
+
+IMP38
+3
+Guerra Santa
+0
+0
+0
+0
+8
+15
+Guerra Santa.png
+GUERRA SANTA. Costo: 8 PUNTI MILITARI  se ne possiedi almeno 15. Effetto immediato: Guadagni 4 PUNTI FEDE. Guadagno 8 PUNTI VITTORIA a fine partita.
+FEDE
+4
+NIENTE
+0
+NIENTE
+0
+NIENTE
+0
+8
+5
+5

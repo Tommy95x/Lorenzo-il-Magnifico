@@ -1,0 +1,475 @@
+ID = TER11
+PERIODO = 1
+NOME = Foresta
+COSTO AZIONE = 5
+IMMAGINE = Foresta.png
+DESCRIZIONE = FORESTA. Effetto immediato: guadagni 1 LEGNO.  Azione permanente: guadagni 3 LEGNO.  Costo azione 5.
+EFFETTOIMMEDIATO1 = legno
+QTAEFFETTOIMMEDIATO1 = 1
+EFFETTOIMMEDIATO2 = niente
+QTAEFFETTOIMMEDIATO2 = 0
+EFFETTOPERMANENTE1 = legno
+QTAEFFETTOPERMANENTE1 = 3
+EFFETTOPERMANENTE2 = niente
+QTAEFFETTOPERMANENTE2 = 0
+EFFETTOPERMANENTE3 = niente
+QTAEFFETTOPERMANENTE3 = 0
+TIPO = 5
+TIPOPERMANENTE = 5
+
+
+TER12
+1M
+Monastero
+6
+Monastero.png
+MONASTERO. Effetto immediato: guadagni 2 PUNTI VITTORIA e 1 SERVITORE. Effetto permanente: guadagni 1 PUNTO FEDE  e 1 PIETRA. Costo azione 6.
+SERVITORI
+1
+MILITARI
+2
+PIETRA
+1
+FEDE
+1
+NIENTE
+0
+5
+5
+
+
+TER13
+1
+Cava di Ghiaia
+4
+Cava di Ghiaia.png
+CAVA DI GHIAIA. Effetto immediato: guadagni 2 PIETRE. Effetto permanente: guadagni 2 PIETRE. Costo azione 4.
+PIETRA
+2
+NIENTE
+0
+PIETRA
+2
+NIENTE
+0
+NIENTE
+0
+5
+5
+
+TER14
+1
+Bosco
+2
+Bosco.png
+BOSCO. Effetto immediato: guadagni 1 LEGNO. Effetto permanente: guadagni 1 LEGNO. Costo azione 2.
+LEGNO
+1
+NIENTE
+5
+LEGNO
+1
+NIENTE
+0
+NIENTE
+0
+5
+5
+
+TER15
+1
+Città
+6
+Città.png
+CITTA'. Effetto immediato: guadagni 3 monete. Effetto permanente: guadagni una pergamena. Costo azione 6.
+MONETE
+3
+NIENTE
+0
+PERGAMENA
+1
+NIENTE
+0
+NIENTE
+0
+5
+5
+
+TER16
+1
+Borgo
+3
+Borgo.png
+BORGO. Effetto permanente: guadagni 1 MONETA e 1 SERVITORE. Costo azione 3.
+NIENTE
+0
+NIENTE
+0
+MONETE
+1
+SERVITORI
+1
+NIENTE
+0
+5
+5
+
+TER17
+1
+Rocca
+5
+Rocca.png
+ROCCA. Effetto permanente: guadagni 2 PUNTI MILITARI e 1 PIETRA. Costo azione 5.
+NIENTE
+0
+NIENTE
+0
+PIETRA
+1
+MILITARI
+2
+NIENTE
+0
+5
+5
+
+
+TER18
+1
+Avamposto Commerciale
+1
+Avamposto Commerciale.png
+AVAMPOSTO COMMERCIALE. Effetto permanente: Guadagni 1 MONETA. Costo azione 1.
+NIENTE
+0
+NIENTE
+0
+MONETE
+1
+NIENTE
+0
+NIENTE
+0
+5
+5
+
+
+TER21
+2
+Villaggio Minerario
+4
+Villaggio Minerario.png
+VILLAGGIO MINERARIO. Effetto immediato: guadagni 2 SERVITORI e 1 PIETRA. Effetto permanente: guadagni 1 SERVITORE e 2 PIETRE. Costo azione 4.
+SERVITORI	
+2
+PIETRA
+1
+SERVITORI
+1
+PIETRA
+2
+NIENTE
+0
+5
+5
+
+
+TER22
+2
+Eremo
+2
+Eremo.png
+EREMO. Effetto immediato: guadagni 1 PUNTO FEDE. Effetto permanente: guadagni 1 PUNTO FEDE. Costo azione 2.
+FEDE
+1
+NIENTE
+0
+FEDE
+1
+NIENTE
+0
+NIENTE
+0
+5
+5
+
+
+TER23
+2
+Ducato
+6
+Ducato.png
+DUCATO.
+Effetto immediato: guadagni 4 MONETE. Effetto permanente: guadagni 1 MONETA, 1 PIETRA e 2 LEGNI. Costo azione 6.
+MONETE
+4
+NIENTE
+0
+MONETE
+1
+PIETRA
+1
+LEGNO
+2
+5
+5
+
+
+TER24
+2
+Possedimento
+4
+Possedimento.png
+POSSEDIMENTO. Effetto immediato: guadagni 2 SERVITORI e 1 LEGNO. Effetto permanente: guadagni 1MONETA e 2 LEGNI. Costo azione 4.
+SERVITORI
+2
+LEGNO
+1
+MONETA
+1
+LEGNO
+2
+NIENTE
+0
+5
+5
+
+
+TER25
+2
+Cava di Pietra
+3
+Cava di Pietra.png
+CAVA DI PIETRA. Effetto immediato: guadagni 1 LEGNO. Effetto permanente: guadagni 3 PIETRE. Costo azione 3.
+LEGNO
+1
+NIENTE
+0
+PIETRA
+3
+NIENTE
+0
+NIENTE
+0
+5
+5
+
+
+TER26
+2
+Villaggio Montano
+3
+Villaggio Montano.png
+VILLAGGIO MONTANO. Effetto immediato: guadagni 1 SERVITORE. Effetto permanente: guadagni 1 PUNTO MILITARE e 2 LEGNI. Costo azione 3.
+SERVITORI
+1
+NIENTE
+0
+LEGNO
+2
+MILITARI
+1
+NIENTE
+0
+5
+5
+
+
+TER27
+2
+Maniero
+5
+Maniero.png
+MANIERO. Effetto permanente: guadagni 2 PUNTI MILITARI e 2 SERVITORI. Costo azione 5.
+NIENTE
+0
+NIENTE
+0
+SERVITORI
+2
+MILITARI
+2
+NIENTE
+0
+5
+5
+
+
+TER28
+2
+Miniera d'Oro
+1
+Miniera d'Oro.png
+MINIERA D'ORO. Effetto immediato: guadagni 1 MONETA. Effetto permanente: guadagni 2 MONETE. Costo azione 1.
+MONETE
+1
+NIENTE
+0
+MONETE
+2
+NIENTE
+0
+NIENTE
+0
+5
+5
+
+
+TER31
+3
+Città Mercantile
+1
+Città Mercantile.png
+CITTA' MERCANTILE. Effetto immediato: guadagni 1 MONETA e 1 SERVITORE. Effetto permanente: guadagni 3 MONETE. Costo azione 1.
+SERVITORI
+1
+MONETE	
+1
+MONETE
+3
+NIENTE
+0
+NIENTE
+0
+5
+5
+
+
+TER32
+3
+Castello
+4
+Castello.png
+CASTELLO. Effetto immediato: guadagni 2 PUNTI VITTORIA e 2 MONETE. Effetto permanente: guadagni 3 PUNTO MILITARI e 1 SERVITORE. Costo azione 4.
+MONETE
+2
+VITTORIA
+2
+SERVITORI
+1
+MILITARI
+3
+NIENTE
+0
+5
+5
+
+
+TER33
+3
+Santuario
+1
+Santuario.png
+SANTUARIO. Effetto immediato: guadagni 1 PUNTO FEDE. Effetto permanente: guadagni 1 PUNTO FEDE e 1 MONETA. Costo azione 1.
+FEDE
+1
+NIENTE
+0
+MONETE
+1
+FEDE
+1
+NIENTE
+0
+5
+5
+
+
+TER34
+3
+Provincia
+6
+Provincia.png
+PROVINCIA. Effetto immediato: guadagni 1 PERGAMENA E 1 PIETRA. Effetto permanente: guadagni 4 PUNTO VITTORIA e 1 PIETRA. Costo azione 6.
+PIETRA
+1
+PERGAMENA
+1
+PIETRA
+1
+VITTORIA
+4
+NIENTE
+0
+5
+5
+
+
+TER35
+3
+Colonia
+5
+Colonia.png
+COLONIA. Effetto immediato: guadagni 2 PUNTI MILITARI. Effetto permanente: guadagni 4 PUNTI VITTORIA e 1 LEGNO. Costo azione 5.
+MILITARI
+2
+NIENTE
+0
+LEGNO
+1
+VITTORIA
+4
+NIENTE
+0
+5
+5
+
+
+TER36
+3
+Città Fortificata
+2
+Città Fortificata.png
+CITTA' FORTIFICATA. Effetto immediato: guadagni 2 PUNTI MILITARI e 1 SERVITORE. Effetto permanente: guadagni 1 PUNTO MILITARE e 2 SERVITORI. Costo azione 2.
+SERVITORI
+1
+MILITARI
+2
+SERVITORI
+2
+MILITARI
+1
+NIENTE
+0
+5
+5
+
+
+TER37
+3
+Tenuta
+3
+Tenuta.png
+TENUTA. Effetto immediato: guadagni 1 PUNTO VITTORIA e 1 LEGNO. Effetto permanente: guadagni 2 PUNTI VITTORIA e 2 LEGNI. Costo azione 3.
+LEGNO
+1
+VITTORIA
+1
+LEGNO
+2
+VITTORIA
+2
+NIENTE
+0
+5
+5
+
+
+TER38
+3
+Cava di Marmo
+2
+Cava di Marmo.png
+CAVA DI MARMO. Effetto immediato: guadagni 3 PUNTI VITTORIA. Effetto permanente: guadagni 1 PUNTO VITTORIA e 2 PIETRE. Costo azione 2.
+VITTORIA
+3
+NIENTE
+0
+PIETRA
+2
+VITTORIA
+1
+NIENTE
+0
+5
+5
