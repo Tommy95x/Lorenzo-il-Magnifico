@@ -7,10 +7,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-
 import server.database.ConnectionDatabase;
 
 /**
@@ -106,6 +102,13 @@ public class Partita implements Serializable {
 		this.name = name;
 	}
 
+	/**
+	 * Metodo di start di partita e notifica a tutti i giocatori contenuti nella
+	 * partita dell'avvenimento
+	 * 
+	 * @throws RemoteException
+	 * @throws SQLException
+	 */
 	private void startPartita() throws RemoteException, SQLException {
 		turno = 1;
 		/*
@@ -166,8 +169,8 @@ public class Partita implements Serializable {
 	}
 
 	/**
-	 * This method take the array of the gamers and shuffle it to decide the
-	 * start order of the first turn of the game.
+	 * Quesnto metodo mediante uno shuffle mischia l'ordine di gioco al primo
+	 * turno
 	 * 
 	 * @author Mattia
 	 */
@@ -233,6 +236,15 @@ public class Partita implements Serializable {
 		this.name = lobby;
 	}
 
+	/**
+	 * Questo metodo ha il compito di aggiungere cambio del turno aggiungendolo
+	 * se ancora possibile(ossia se non si è alla fine del gioco) e aggiunge di
+	 * conseguenza il turno per poi notificare ai giocatori dell'inizio delle
+	 * giocate e del reset grafico del tabellon
+	 * 
+	 * @return boolean metodo che ritorna true se è ancora possibile aggiungere
+	 *         un turno
+	 */
 	public boolean addTurno() {
 		System.out.println("Sto resettando per il turno");
 		NumberOfPlayers = 0;
@@ -298,6 +310,10 @@ public class Partita implements Serializable {
 		}
 	}
 
+	/**
+	 * Metodo che viene avviato al momento della fine del gioco e che calcola i
+	 * punti di fine partita e tdecide il giocatore vincitore
+	 */
 	private void endGame() {
 		int[] puntiG = new int[4];
 		int max = 0;
@@ -319,6 +335,10 @@ public class Partita implements Serializable {
 		}
 	}
 
+	/**
+	 * Metodo di verifica dei giocatori che possiedono il numero minimo di punti
+	 * fede (e in caso chiamata del metodo di notifica di sostegno della chiesa)
+	 */
 	private void sostegnoChiesa() {
 		for (int i = 0; i < 4; i++) {
 			if (giocatori[i] != null) {
@@ -357,6 +377,18 @@ public class Partita implements Serializable {
 		return giocatori[0].getName();
 	}
 
+	/**
+	 * Metodo che raccoglie gli start di tutti i giocatori, verifica se il
+	 * numero di giocaotri pronti per giocare e' superiore a due e in caso invia
+	 * le notifiche di start, richiamando poi il metodo commentato in
+	 * precendenza StartGame()
+	 * 
+	 * @param String
+	 *            account nome del giocatore che notifica di essere pronto al
+	 *            gioco
+	 * @throws RemoteException
+	 * @throws SQLException
+	 */
 	public void start(String account) throws RemoteException, SQLException {
 		// Riguardare metodo che e' errato in quanto la partita parte solo e
 		// soltanto per 4 giocatori.
@@ -403,8 +435,10 @@ public class Partita implements Serializable {
 	}
 
 	/**
-	 * This method is used to set all the cards that will be used during the
-	 * game.
+	 * Questo metodo ha il compito di settare tutte le carte di gioco mediante
+	 * collegamento al DB. Il DB di fatto una volta organizzate in modo casuale
+	 * le carte e averle divise per periodo crea delle tabelle che verranno
+	 * utilizzate lungo tutta la durata della partita
 	 * 
 	 * @author Mattia
 	 * @param connection
@@ -486,6 +520,15 @@ public class Partita implements Serializable {
 
 	}
 
+	/**
+	 * Questo metodo viene chiamato al momento della creazione della partita e
+	 * al compito di settare le tre carte scomunica della partita collegandosi
+	 * al DB di sistema
+	 * 
+	 * @author Mattia
+	 * @param connection
+	 * @throws SQLException
+	 */
 	public void setCardsScomunica(ConnectionDatabase connectionDatabase, String account) throws SQLException {
 		System.out.println("Carta1");
 		for (int i = 0; i < 3; i++) {
@@ -530,6 +573,9 @@ public class Partita implements Serializable {
 		}
 	}
 
+	/**
+	 * Metodo di "rimbalzo" della singola mossa di un giocatore
+	 */
 	public void scambio() {
 		System.out.println("Iniziano i rimbalzi" + rimbalzo + " " + totaleMosse);
 		if (totaleMosse < 16) {
@@ -560,6 +606,15 @@ public class Partita implements Serializable {
 		}
 	}
 
+	/**
+	 * Metodo di notifica a tutti i giocatori dello spostamento di un familire
+	 * di un avversario
+	 * 
+	 * @param color
+	 * @param colorAvv
+	 * @param x
+	 * @param y
+	 */
 	public void notifySpostamento(String color, String colorAvv, double x, double y) {
 		for (Giocatore g : giocatori) {
 			if (g != null && !g.getColor().equals(colorAvv)) {
@@ -574,6 +629,19 @@ public class Partita implements Serializable {
 
 	}
 
+	/**
+	 * Metodo che collegandosi al DB cerca il nome della posizione
+	 * corrispondente ai valori x e y inseriti in ingresso
+	 * 
+	 * @param x
+	 *            posizione x della posizione del tabellone richiesta
+	 * @param y
+	 *            posizione y della posizione del tabellone richiesta
+	 * @param c
+	 *            connessione al DB
+	 * @param name
+	 * @return il nome della posizione richiesta
+	 */
 	public String getNamePosition(double x, double y, ConnectionDatabase c, String name) {
 		String nomeposizione = null;
 		Connection connection;
@@ -603,6 +671,14 @@ public class Partita implements Serializable {
 		return nomeposizione;
 	}
 
+	/**
+	 * Metodo di corretta uscita da parte di un giocatore dal gioco
+	 * 
+	 * @param name
+	 *            nome del giocatore che ha chiesto di uscire dalla partita
+	 * @param color
+	 *            colore del giocatore uscente
+	 */
 	public void exitToGame(String name, String color) {
 		int i;
 		for (i = 0; i < giocatori.length; i++) {
@@ -618,6 +694,11 @@ public class Partita implements Serializable {
 		}
 	}
 
+	/**
+	 * Metodo che fornisce agli utenti le carte scomunica della partita
+	 * 
+	 * @return TessereScomunica[] restituisce le carte scomunica della partita
+	 */
 	public TesseraScomunica[] getCardsScomunica() {
 		return tessereScomunica;
 	}
@@ -626,6 +707,15 @@ public class Partita implements Serializable {
 		return giocatori;
 	}
 
+	/**
+	 * Notifica di aggiunta ad un giocatore di una carta e notifica a tutti gli
+	 * avversari del cambiamento del tabellone
+	 * 
+	 * @param name2
+	 * @param carta
+	 * @param piano
+	 * @throws RemoteException
+	 */
 	public void notifyAddCardGiocatoreAvv(String name2, CartaSviluppo carta, int piano) throws RemoteException {
 		System.out.println("Notifico presa carta " + name2);
 		for (int i = 0; i < 4; i++) {
@@ -645,6 +735,13 @@ public class Partita implements Serializable {
 		}
 	}
 
+	/**
+	 * Cancellazione di tutte le tabelle relative ad una partita abbandonata dai
+	 * giocatori o terminata
+	 * 
+	 * @param connection
+	 * @throws SQLException
+	 */
 	public void deleteView(Connection connection) throws SQLException {
 		String querydroppersonaggi = "DROP TABLE " + name.toUpperCase() + "CARTEPERSONAGGIOPARTITA";
 		String querydropedifici = "DROP TABLE " + name.toUpperCase() + "CARTEEDIFICIOPARTITA";
@@ -662,6 +759,15 @@ public class Partita implements Serializable {
 		return this.NumberOfPlayers;
 	}
 
+	/**
+	 * Metodo di notifica punti a tutti gli avversari successivamente ad una
+	 * mossa di un giocatore
+	 * 
+	 * @param tipo
+	 * @param qta
+	 * @param connectionDatabase
+	 * @param color2
+	 */
 	public void notifySpostamentoPunti(String tipo, int qta, ConnectionDatabase connectionDatabase, String color2) {
 		Connection c = null;
 		try {
@@ -758,6 +864,14 @@ public class Partita implements Serializable {
 		connectionDatabase.releaseConnection(c);
 	}
 
+	/**
+	 * Metodo di notifica a tutti gli avversari dell'aggiunta di un tipo di
+	 * risorse da parte di un giocatore al proprio portafoglio
+	 * 
+	 * @param name
+	 * @param tipo
+	 * @param qta
+	 */
 	public void notifyAddRisorse(String name, String tipo, int qta) {
 		for (int i = 0; i < 4; i++) {
 			if (giocatori[i] != null)
@@ -769,6 +883,13 @@ public class Partita implements Serializable {
 		return turno;
 	}
 
+	/**
+	 * Notifica di sistema a tutti i giocaotri che hanno deciso di non sostenere
+	 * la chiesa o che non hanno accumulato abbastanza punti fede
+	 * 
+	 * @param name
+	 * @param numSco
+	 */
 	public void notfyAvvAddScomunica(String name, int numSco) {
 		for (int i = 0; i < 4; i++) {
 			if (giocatori[i] != null)
@@ -798,5 +919,15 @@ public class Partita implements Serializable {
 				giocatori[i].setPosizione(i);
 			}
 		}
+	}
+
+	public void notificaStart() {
+		try {
+			giocatori[ok].notifyStartGame();
+		} catch (ClassNotFoundException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 }

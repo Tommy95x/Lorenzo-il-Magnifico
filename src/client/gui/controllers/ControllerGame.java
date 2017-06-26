@@ -15,7 +15,6 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 import client.gui.StartClientGui;
-import javafx.animation.PathTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -34,11 +33,7 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.CubicCurveTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import server.element.CartaEdifici;
 import server.element.CartaImprese;
 import server.element.CartaPersonaggi;
@@ -2030,7 +2025,7 @@ public class ControllerGame {
 			}
 		} catch (ClassNotFoundException | IOException e) {
 			System.out.println("Durante il reset del tabellone qualcosa non era pieno");
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		start.getClient().waitTurno();
 	}
@@ -2968,7 +2963,7 @@ public class ControllerGame {
 		System.out.println(color2.equals(start.getClient().getColor())
 				|| (!color2.equals(start.getClient().getColor()) && !isInTurno()));
 		if (color2.equals(start.getClient().getColor())
-				|| (!color2.equals(start.getClient().getColor()) && !isInTurno())) {
+				|| !color2.equals(start.getClient().getColor()) && !isInTurno()) {
 			System.out.println("Notifico lo spostamento della pedina punti militari del giocatore con il colore "
 					+ color2 + " " + x + " " + y);
 			switch (color2) {
@@ -3006,7 +3001,7 @@ public class ControllerGame {
 		System.out.println(color2.equals(start.getClient().getColor())
 				|| (!color2.equals(start.getClient().getColor()) && !isInTurno()));
 		if (color2.equals(start.getClient().getColor())
-				|| (!color2.equals(start.getClient().getColor()) && !isInTurno())) {
+				|| !color2.equals(start.getClient().getColor()) && !isInTurno()) {
 			System.out.println("Notifico lo spostamento della pedina punti fede del giocatore con il colore " + color2
 					+ " " + x + " " + y);
 			switch (color2) {
@@ -3093,6 +3088,7 @@ public class ControllerGame {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	public void notifyPergamena(int i) {
 		int decisione = 0;
 		for (int j = 0; j < i; j++) {
@@ -3120,7 +3116,8 @@ public class ControllerGame {
 			servitoriB.setOnAction(e -> {
 				try {
 					start.getClient().getRisorse().addRis("servitori", 2);
-					start.getClient().notifyRisorse("servitori", start.getClient().getRisorse().getDimRisorse("servitori"));
+					start.getClient().notifyRisorse("servitori",
+							start.getClient().getRisorse().getDimRisorse("servitori"));
 				} catch (ClassNotFoundException | IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -3175,6 +3172,7 @@ public class ControllerGame {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private void setDecisione(int i) {
 		valoreAgg = i;
 

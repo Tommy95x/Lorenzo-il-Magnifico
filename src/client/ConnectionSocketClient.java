@@ -1,7 +1,5 @@
 package client;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -12,11 +10,7 @@ import java.util.ArrayList;
 import client.gui.StartClientGui;
 import client.gui.controllers.ControllerGame;
 import javafx.scene.control.Tooltip;
-import server.element.CartaEdifici;
-import server.element.CartaImprese;
-import server.element.CartaPersonaggi;
 import server.element.CartaSviluppo;
-import server.element.CartaTerritori;
 import server.element.Dado;
 import server.element.Giocatore;
 import server.element.Partita;
@@ -173,7 +167,32 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 		return (String[]) inputSocket.readObject();
 
 	}
-
+	
+	public void notifySpostamentoPunti(String tipo) throws RemoteException {
+		try {
+			outputSocket.writeObject("notifyPunti");
+			outputSocket.flush();
+			outputSocket.writeObject(tipo);
+			outputSocket.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void notifyRisorse(String tipo, int qta) {
+		try {
+			outputSocket.writeObject("notifySrisorse");
+			outputSocket.flush();
+			outputSocket.writeObject(tipo);
+			outputSocket.writeObject(qta);
+			outputSocket.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public int getNumberOfGamers() {
 		return numberOfGamers;
 	}
@@ -254,21 +273,74 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 			case "startTurno":
 				guiGame.enableGame((int) inputSocket.readObject());
 				break;
+			case "rimbalzo":
+				guiGame.scambio();
+				break;
+			case "nofySconfitta":
+				guiGame.nofySconfitta((int) inputSocket.readObject());
+				break;
+			case "notifyVittoria":
+				guiGame.notifyVittoria();
+				break;
+			case "resetTabellone":
+				guiGame.resetTabellon();
+				break;
+			case "notifyAskSostegnoChiesa":
+				guiGame.notifyAskSostegnoChiesa();
+				break;
+			case "notifyAddRisorse":
+				guiGame.notifyAddRisorse(inputSocket.readObject().toString(), inputSocket.readObject().toString(), (int) inputSocket.readObject());
+				break;
+			case "notifyPergamena":
+				guiGame.notifyPergamena((int) inputSocket.readObject());
+				break;
+			case "notifyTutteCarte":
+				guiGame.notifyTutteCarte((int) inputSocket.readObject());
+				break;
+			case "notifyUnTipoCarta":
+				guiGame.notifyUnTipoCarta((int)inputSocket.readObject(), (int)inputSocket.readObject(),(int) inputSocket.readObject());
+				break;
 			}
 		} catch (Exception e) {
 			System.out.println("Errore!!\n\n");
 		}
 	}
 
-	public void setCardGiocatore(CartaSviluppo carta, int i) throws IOException {
+	public void setCardGiocatore(CartaSviluppo carta, int tipo, int piano) throws IOException {
 		outputSocket.writeObject("addCard");
 		outputSocket.flush();
 		outputSocket.writeObject(carta);
 		outputSocket.flush();
-		outputSocket.writeObject(i);
+		outputSocket.writeObject(tipo);
+		outputSocket.flush();
+		outputSocket.writeObject(piano);
 		outputSocket.flush();
 	}
 
+	public void produzione(int qta) throws RemoteException {
+		try {
+			outputSocket.writeObject("produzione");
+			outputSocket.flush();
+			outputSocket.writeObject(qta);
+			outputSocket.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void raccolto(int qta) throws RemoteException {
+		try {
+			outputSocket.writeObject("raccolto");
+			outputSocket.flush();
+			outputSocket.writeObject(qta);
+			outputSocket.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void sendGraficaReady() {
 		try {
 			outputSocket.writeObject("pronto la grafica");
@@ -279,7 +351,7 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void notifySpostamento(String color, double x, double y) throws IOException {
 		outputSocket.writeObject("notifySpostamento");
 		outputSocket.flush();
@@ -312,9 +384,12 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 
 	public CartaSviluppo[] getCardsGame() throws ClassNotFoundException, IOException {
 		CartaSviluppo[] c = new CartaSviluppo[16];
+		System.out.println("Ciao");
 		outputSocket.writeObject("getCardsGame");
 		outputSocket.flush();
+		System.out.println("Ciao");
 		c = (CartaSviluppo[]) inputSocket.readObject();
+		System.out.println("Ciao");
 		return c;
 	}
 
@@ -391,9 +466,9 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 	public void addScomunica(int nScomuniche, Tooltip tooltip) {
 	}
 
-	//Commentare quando non si testa il programma
-	/*public Socket getSocket() {
-		// TODO Auto-generated method stub
-		return socket;
-	}*/
+	// Commentare quando non si testa il programma
+	/*
+	 * public Socket getSocket() { // TODO Auto-generated method stub return
+	 * socket; }
+	 */
 }

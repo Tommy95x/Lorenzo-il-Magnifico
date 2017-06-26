@@ -8,12 +8,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Comparator;
-
 import client.gui.controllers.ControllerGame;
 import server.RMIClientInterface;
 import server.ThreadSocketServer;
 import server.database.ConnectionDatabase;
+
+/**
+ * Classe rappresentate un giocatore all'interno di una partita. Un tutente di
+ * fatto diventa un giocatore solo e soltanto una volta entrato in una partita o
+ * dopo aver creato un partita
+ * 
+ * @author Tommy
+ *
+ */
 
 @SuppressWarnings("serial")
 public class Giocatore implements Serializable {
@@ -33,6 +40,7 @@ public class Giocatore implements Serializable {
 	private ThreadSocketServer server = null;
 	private RMIClientInterface client;
 	private Flag flag;
+	@SuppressWarnings("unused")
 	private int nScomuniche = 0;
 	private boolean palazzoTerritori[] = new boolean[4];
 	private boolean palazzoPersonaggi[] = new boolean[4];
@@ -77,6 +85,16 @@ public class Giocatore implements Serializable {
 		}
 	}
 
+	/**
+	 * Cortuttore del giocatore, un giocatore come detto in precedenza viene
+	 * creato solo e soltanto una volta che da utente generico ha deciso di
+	 * entrare in una lobby di gioco selezionando il proprio colore e acquisendo
+	 * un nuvo portafoglio di risorse e punti
+	 * 
+	 * @param name
+	 * @param color
+	 * @param portafoglio
+	 */
 	public Giocatore(String name, String color, Portafoglio portafoglio) {
 		this.color = color;
 		this.name = name;
@@ -103,6 +121,18 @@ public class Giocatore implements Serializable {
 		return name;
 	}
 
+	/**
+	 * Metodo di set in modo casuale dei dadi posseduti da un giocatore una
+	 * volta chiamato il metodo di richiesta del lancio dei dadi nel proprio
+	 * turno di gioco
+	 * 
+	 * @param connection
+	 *            connessione al Db che server per il recupero delle immagini
+	 *            dei dadi
+	 * @return Dado[] array dei 3 dadi selezionati in modo casuale mediante la
+	 *         funzione random
+	 * @throws SQLException
+	 */
 	public Dado[] setDadi(Connection connection) throws SQLException {
 		dadi[0] = new Dado("black");
 		dadi[1] = new Dado("white");
@@ -150,6 +180,21 @@ public class Giocatore implements Serializable {
 		this.flag = flag;
 	}
 
+	/**
+	 * Metodo di controllo della possibilita' di un utente di posizionare in un
+	 * punto x, y specifico del tabellone un proprio specifico familiare. Il
+	 * metodo infatti recupensando il valore del dado del colore corrispondente
+	 * al familiare giocato verifica se l'utente può posizionare la propria
+	 * pedina senza dover pagare servitori supplementari
+	 * 
+	 * @param color
+	 * @param x
+	 * @param y
+	 * @param conn
+	 * @param agg
+	 * @return
+	 * @throws SQLException
+	 */
 	public String controlloPosizionamento(String color, double x, double y, ConnectionDatabase conn, int agg)
 			throws SQLException {
 		Connection connectionDatabase = conn.getConnection(color);
@@ -264,6 +309,15 @@ public class Giocatore implements Serializable {
 
 	}
 
+	/**
+	 * Metodo ceh aggiunge al proprio portafoglio di CarteSviluppo di un
+	 * giocatore un acarta appena acquisita successivamente ad una giocata
+	 * 
+	 * @param carta
+	 * @param tipo
+	 * @param conn
+	 * @param name
+	 */
 	public void addCard(CartaSviluppo carta, int tipo, ConnectionDatabase conn, String name) {
 		carte.add(carta);
 		if (carta.getId().contains("ED") || carta.getId().contains("IMP")) {
@@ -287,6 +341,15 @@ public class Giocatore implements Serializable {
 		}
 	}
 
+	/**
+	 * Notifica di acquisizione di una carta da parte di un avversario, metodo
+	 * che serve per applicare le relative modifiche al tabellon di gioco
+	 * 
+	 * @param tipo
+	 * @param name2
+	 * @param piano
+	 * @throws RemoteException
+	 */
 	public void notifyAddCardAvv(String tipo, String name2, int piano) throws RemoteException {
 		if (client == null) {
 			try {
@@ -301,6 +364,17 @@ public class Giocatore implements Serializable {
 		}
 	}
 
+	/**
+	 * Metodo che attiva gli effeti immediati di una carta appena acquisita
+	 * 
+	 * @param carta
+	 *            carta acquisita dal giocatore
+	 * @param tipo
+	 *            tipo della carta acquisista, valore che può essere 0,1,2,3
+	 * @param c
+	 *            connessione al database
+	 * @throws SQLException
+	 */
 	private void activateCardEffettiImmediati(CartaSviluppo carta, int tipo, ConnectionDatabase c) throws SQLException {
 		switch (tipo) {
 		case 0:
@@ -589,6 +663,18 @@ public class Giocatore implements Serializable {
 		}
 	}
 
+	/**
+	 * Metodo che attiva gli effeti permanenti di una carta posseduta nel
+	 * proprio portafoglio di carte
+	 * 
+	 * @param carta
+	 *            carta acquisita dal giocatore
+	 * @param tipo
+	 *            tipo della carta acquisista, valore che può essere 0,1,2,3
+	 * @param c
+	 *            connessione al database
+	 * @throws SQLException
+	 */
 	public void activateCardEffettiPermanenti(CartaSviluppo c, int tipo, ConnectionDatabase conn) {
 		switch (tipo) {
 		case 0:
@@ -782,6 +868,16 @@ public class Giocatore implements Serializable {
 		}
 	}
 
+	/**
+	 * Metodo di acquisizione delle risorse guadagnate mediante la'ttivazione
+	 * degli effetti permanetei di un carta sviluppo
+	 * 
+	 * @param risorsa
+	 *            tipo di risorsa guadagnata
+	 * @param qta
+	 *            quantita' della risorsa guadagnata
+	 * @param c
+	 */
 	private void prendiRisorseeffettipermanenti(String risorsa, int qta, ConnectionDatabase c) {
 		switch (risorsa) {
 		case "pietra":
@@ -808,6 +904,17 @@ public class Giocatore implements Serializable {
 
 	}
 
+	/**
+	 * Notifica dell'effeto di certi tipi di carte che permetto di acquisire una
+	 * carta senza possizionare un familiare. In questo caso sara' presente un
+	 * tipo solo di carte acquisibile a seocnda dell'effetto della carta
+	 * attivata in precedenza
+	 * 
+	 * @param tipo
+	 * @param qta
+	 * @param scontoAzioneImmediata1
+	 * @throws RemoteException
+	 */
 	private void notifyUnTipoCarta(int tipo, int qta, int scontoAzioneImmediata1) throws RemoteException {
 
 		if (client == null) {
@@ -817,6 +924,16 @@ public class Giocatore implements Serializable {
 		}
 	}
 
+	/**
+	 * Notifica dell'effeto di certi tipi di carte che permetto di acquisire un
+	 * carta di tutti i tipi delle carte acnora prenseti nel tabellone senza
+	 * possizionare un familiare.
+	 * 
+	 * @param tipo
+	 * @param qta
+	 * @param scontoAzioneImmediata1
+	 * @throws RemoteException
+	 */
 	private void notifyTutteCarte(int i) throws RemoteException {
 		if (client == null) {
 			server.notifyTutteCarte(i);
@@ -1097,6 +1214,10 @@ public class Giocatore implements Serializable {
 		}
 	}
 
+	/**
+	 * Attivazione degli effetti delle carte scomunica durante tutta la partita
+	 * successivamente al ricevimento di una scomunica da parte di un giocatore
+	 */
 	public int activateBanCards() {
 		if (partita.getTurno() > 2) {
 			if (cubiScomunica[0] != null) {
@@ -1144,7 +1265,7 @@ public class Giocatore implements Serializable {
 	}
 
 	public void rimbalzo() {
-		if(client == null)
+		if (client == null)
 			server.rimbalzo();
 		else
 			try {
@@ -1157,7 +1278,7 @@ public class Giocatore implements Serializable {
 
 	public void setPosizione(int i) {
 		this.posizione = i;
-		
+
 	}
 
 	public int getPos() {

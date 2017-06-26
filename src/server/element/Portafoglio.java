@@ -41,9 +41,9 @@ public class Portafoglio implements Serializable {
 	}
 
 	private boolean addServitori(int incr) {
-		if (servitori == 0 && incr <= 0) {
+		/*if (servitori == 0 && incr <= 0) {
 			return false;
-		}
+		}*/
 		servitori += incr;
 		if(servitori<0)
 			servitori=0;
@@ -53,36 +53,36 @@ public class Portafoglio implements Serializable {
 	// Rendere public solo per la verifica di test
 	// public boolean addMonete(int incr){
 	private boolean addMonete(int incr) {
-		if (monete == 0 && incr <= 0) {
+		/*if (monete == 0 && incr <= 0) {
 			return false;
-		}else{
+		}else{*/
 		monete += incr;
 		if(monete<0)
 			monete=0;
 		return true;
-		}
+		//}
 	}
 
 	private boolean addLengo(int incr) {
-		if (legno <= 0 ) {
+		/*if (legno <= 0 ) {
 			return false;
-		}else{
+		}else{*/
 		legno += incr;
 		if(legno<0)
 			legno=0;
 		return true;
-		}
+		//}
 	}
 
 	private boolean addPietra(int incr) {
-		if (pietra == 0 && incr <= 0) {
+		/*if (pietra == 0 && incr <= 0) {
 			return false;
-		}else{
+		}else{*/
 		pietra += incr;
 		if(pietra<0)
 			pietra=0;
 		return true;
-		}
+		//}
 	}
 
 	public void addCarta(CartaSviluppo c) {

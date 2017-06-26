@@ -1,6 +1,5 @@
 package server.element;
 
-
 import java.io.Serializable;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -10,7 +9,7 @@ import javafx.scene.control.Tooltip;
 *Classe base delle carte presenti nel gioco. Possiedera' tutti gli attributi e metodi comuni a tutti i tipi di carte sviluppo all'interno del gioco stesso.
 *Questa classe per il settaggio di una generica carta comunichera' con il database che contiene tutti i tipi di carte presenti.
 */
-public class CartaSviluppo implements Serializable{
+public class CartaSviluppo implements Serializable {
 
 	/**
 	 * 
@@ -29,16 +28,16 @@ public class CartaSviluppo implements Serializable{
 	private Risorsa[] prendiRisorse = new Risorsa[2];
 	private ArrayList<Risorsa> acquisisciPunti;
 	private String perognicarta;
-	int scontoAzione=3;
+	int scontoAzione = 3;
 	private int costoPuntiMilitari;
 	private int puntiMilitariRichiesti;
 	private int puntiVittoria;
 	private String tooltip;
 	private String ID;
-	
+
 	public CartaSviluppo(String string, String string2) {
-		this.tooltip=string;
-		this.image=string2;
+		this.tooltip = string;
+		this.image = string2;
 	}
 
 	public CartaSviluppo() {
@@ -46,7 +45,7 @@ public class CartaSviluppo implements Serializable{
 	}
 
 	public void setCarta(Connection connection, String query) {
-	
+
 	}
 
 	public String getImage() {
@@ -56,44 +55,44 @@ public class CartaSviluppo implements Serializable{
 	public String getNameCard() {
 		return name;
 	}
-	
-	public int getCostoMoneta(){
+
+	public int getCostoMoneta() {
 		return costoMoneta;
 	}
-	
-	public int getCostoLegno(){
+
+	public int getCostoLegno() {
 		return costoLegno;
 	}
-	
-	public int getCostoPietra(){
+
+	public int getCostoPietra() {
 		return costoPietra;
 	}
-	
-	public int getCostoServitori(){
+
+	public int getCostoServitori() {
 		return costoServitori;
 	}
-	
-	public ArrayList<Risorsa> getAcquisisciPunti(){
+
+	public ArrayList<Risorsa> getAcquisisciPunti() {
 		return acquisisciPunti;
 	}
-	
-	public String getPerOgniCarta(){
+
+	public String getPerOgniCarta() {
 		return perognicarta;
 	}
-	
-	public int getCostoPuntiMilitari(){
+
+	public int getCostoPuntiMilitari() {
 		return costoPuntiMilitari;
 	}
-	
-	public int getPuntiMilitariRichiesti(){
+
+	public int getPuntiMilitariRichiesti() {
 		return puntiMilitariRichiesti;
 	}
-	
-	public int getPuntiVittoria(){
+
+	public int getPuntiVittoria() {
 		return puntiVittoria;
 	}
-	
-	public int getCostoAzione(){
+
+	public int getCostoAzione() {
 		return costoAzione;
 	}
 
@@ -105,48 +104,48 @@ public class CartaSviluppo implements Serializable{
 		this.tooltip = tooltip;
 	}
 
-	public void setNameCard(String name){
-		this.name=name;
+	public void setNameCard(String name) {
+		this.name = name;
 	}
-	
-	public void setCostoMoneta(int costoMoneta){
-		this.costoMoneta=costoMoneta;
+
+	public void setCostoMoneta(int costoMoneta) {
+		this.costoMoneta = costoMoneta;
 	}
-	
-	public void setCostoPietra(int costoPietra){
-		this.costoPietra=costoPietra;
+
+	public void setCostoPietra(int costoPietra) {
+		this.costoPietra = costoPietra;
 	}
-	
-	public void setCostoLegno(int costoLegno){
-		this.costoLegno=costoLegno;
+
+	public void setCostoLegno(int costoLegno) {
+		this.costoLegno = costoLegno;
 	}
-	
-	public void setCostoServitori(int costoServitori){
-		this.costoServitori=costoServitori;
+
+	public void setCostoServitori(int costoServitori) {
+		this.costoServitori = costoServitori;
 	}
-		
-	public void setCostoAzione(int costoAzione){
-		this.costoAzione=costoAzione;
+
+	public void setCostoAzione(int costoAzione) {
+		this.costoAzione = costoAzione;
 	}
-	
-	public void setPerOgniCarta(String perognicarta){
-		this.perognicarta=perognicarta;
+
+	public void setPerOgniCarta(String perognicarta) {
+		this.perognicarta = perognicarta;
 	}
-	
-	public void setCostoPuntiMilitari(int costoPuntiMilitari){
-		this.costoPuntiMilitari=costoPuntiMilitari;
+
+	public void setCostoPuntiMilitari(int costoPuntiMilitari) {
+		this.costoPuntiMilitari = costoPuntiMilitari;
 	}
-	
-	public void setPuntiMilitariRichiesti(int puntiMilitariRichiesti){
-		this.puntiMilitariRichiesti=puntiMilitariRichiesti;
+
+	public void setPuntiMilitariRichiesti(int puntiMilitariRichiesti) {
+		this.puntiMilitariRichiesti = puntiMilitariRichiesti;
 	}
-	
-	public void setPuntiVittoria(int puntiVittoria){
-		this.puntiVittoria=puntiVittoria;
+
+	public void setPuntiVittoria(int puntiVittoria) {
+		this.puntiVittoria = puntiVittoria;
 	}
-	
-	public void setImage(String url){
-		image =  url;
+
+	public void setImage(String url) {
+		image = url;
 	}
 
 	public String getTooltipString() {
@@ -157,24 +156,24 @@ public class CartaSviluppo implements Serializable{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	public void setId(String ID){
-		this.ID=ID;
+
+	public void setId(String ID) {
+		this.ID = ID;
 	}
-	
-	public String getId(){
+
+	public String getId() {
 		return ID;
 	}
-	
+
 	public int getScontoAzione() {
 		return scontoAzione;
 	}
 
-	public Risorsa[] getSpendiRisorsa(){
+	public Risorsa[] getSpendiRisorsa() {
 		return spendiRisorse;
 	}
-	
-	public Risorsa[] getPrendiRisorsa(){
+
+	public Risorsa[] getPrendiRisorsa() {
 		return prendiRisorse;
 	}
 }

@@ -9,11 +9,7 @@ import java.net.Socket;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 
-import server.element.CartaEdifici;
-import server.element.CartaImprese;
-import server.element.CartaPersonaggi;
 import server.element.CartaSviluppo;
-import server.element.CartaTerritori;
 import server.element.Giocatore;
 import server.element.Partita;
 import server.element.Portafoglio;
@@ -84,6 +80,7 @@ public class ThreadSocketServer implements Runnable, Serializable {
 		double x;
 		double y;
 		try {
+			System.out.println("run");
 			input = new ObjectInputStream(socket.getInputStream());
 			output = new ObjectOutputStream(socket.getOutputStream());
 			output.flush();
@@ -231,12 +228,32 @@ public class ThreadSocketServer implements Runnable, Serializable {
 						}
 					}
 					break;
+				case "raccolto":
+					commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(account).raccolto((int) input.readObject(), commonServer.getDBConnection());
+					break;
+				case "notifySrisorse":
+					String tipo = input.readObject().toString();
+					int qta = (int) input.readObject();
+					commonServer.getLobbyByNumber(positionGame).notifyAddRisorse(account, tipo, qta);
+					break;
+				case "notifyPunti":
+					String tipoPunti = input.readObject().toString();
+					commonServer.getLobbyByNumber(positionGame)
+							.notifySpostamentoPunti(tipoPunti, commonServer.getLobbyByNumber(positionGame)
+									.getGiocatoreByName(account).getRisorse().getPunti(tipoPunti),
+									commonServer.getDBConnection(), this.color);
+					break;
+				case "produzione":
+					commonServer.getLobbyByNumber(positionGame).getGiocatoreByName(account).produzione((int) input.readObject(), commonServer.getDBConnection());
+					break;
 				case "pronto la grafica":
 					commonServer.getLobbyByNumber(positionGame).setOk();
 					if (commonServer.getLobbyByNumber(positionGame).getNumberOfPlayers() == commonServer
 							.getLobbyByNumber(positionGame).getOk()) {
 						commonServer.getLobbyByNumber(positionGame).setResetNumberOfGamer();
 						commonServer.getLobbyByNumber(positionGame).changeGamer();
+					} else {
+						commonServer.getLobbyByNumber(positionGame).notificaStart();
 					}
 					break;
 				}
@@ -254,11 +271,12 @@ public class ThreadSocketServer implements Runnable, Serializable {
 	}
 
 	public void notifyTurno(int turno) throws IOException {
-		if(commonServer.getLobbyByNumber(positionGame).getOk() == commonServer.getLobbyByNumber(positionGame).numberOfPlayer()){
-		output.writeObject("startTurno");
-		output.flush();
-		output.writeObject(turno);
-		output.flush();
+		if (commonServer.getLobbyByNumber(positionGame).getOk() == commonServer.getLobbyByNumber(positionGame)
+				.numberOfPlayer()) {
+			output.writeObject("startTurno");
+			output.flush();
+			output.writeObject(turno);
+			output.flush();
 		}
 		run();
 	}
@@ -274,6 +292,7 @@ public class ThreadSocketServer implements Runnable, Serializable {
 		output.flush();
 		output.writeObject(color);
 		output.flush();
+		run();
 	}
 
 	public void addScomunica(int nScomuniche, String string) {
@@ -287,6 +306,7 @@ public class ThreadSocketServer implements Runnable, Serializable {
 		output.flush();
 		output.writeObject(name);
 		output.flush();
+		run();
 	}
 
 	/*
@@ -348,6 +368,7 @@ public class ThreadSocketServer implements Runnable, Serializable {
 		output.flush();
 		output.writeObject(color);
 		output.flush();
+		run();
 	}
 
 	public void notifySpostamentoPuntiVittoria(double x, double y, String color2) throws IOException {
@@ -360,6 +381,7 @@ public class ThreadSocketServer implements Runnable, Serializable {
 		output.flush();
 		output.writeObject(color2);
 		output.flush();
+		run();
 	}
 
 	public void notifySpostamentoPuntiFede(double x, double y, String color2) throws IOException {
@@ -371,51 +393,125 @@ public class ThreadSocketServer implements Runnable, Serializable {
 		output.flush();
 		output.writeObject(color2);
 		output.flush();
+		run();
 	}
 
 	public void notifyUnTipoCarta(int tipo, int qta, int scontoAzioneImmediata1) {
-		// TODO Auto-generated method stub
-
+		try {
+			output.writeObject("notifyUnTipoCarta");
+			output.flush();
+			output.writeObject(tipo);
+			output.flush();
+			output.writeObject(qta);
+			output.flush();
+			output.writeObject(scontoAzioneImmediata1);
+			output.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		run();
 	}
 
 	public void notifyTutteCarte(int i) {
-		// TODO Auto-generated method stub
-
+		try {
+			output.writeObject("notifyTutteCarte");
+			output.flush();
+			output.writeObject(i);
+			output.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		run();
 	}
 
 	public void notifyPergamena(int i) {
-		// TODO Auto-generated method stub
-
+		try {
+			output.writeObject("notifyPergamena");
+			output.flush();
+			output.writeObject(i);
+			output.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		run();
 	}
 
 	public void notifyAddRisorse(String name, String tipo, int qta) {
-		// TODO Auto-generated method stub
-
+		try {
+			output.writeObject("notifyAddRisorse");
+			output.flush();
+			output.writeObject(name);
+			output.flush();
+			output.writeObject(tipo);
+			output.flush();
+			output.writeObject(qta);
+			output.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		run();
 	}
 
 	public void notifyAskSostegnoChiesa() {
-		// TODO Auto-generated method stub
-
+		try {
+			output.writeObject("notifyAskSostegnoChiesa");
+			output.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		run();
 	}
 
 	public void resetTabellone() {
-		// TODO Auto-generated method stub
-
+		try {
+			output.writeObject("resetTabellone");
+			output.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		run();
 	}
 
 	public void notifyVittoria() {
-		// TODO Auto-generated method stub
-
+		try {
+			output.writeObject("notifyVittoria");
+			output.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		run();
 	}
 
 	public void nofySconfitta(int max) {
-		// TODO Auto-generated method stub
-
+		try {
+			output.writeObject("nofySconfitta");
+			output.flush();
+			output.writeObject(max);
+			output.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		run();
 	}
 
 	public void rimbalzo() {
-		// TODO Auto-generated method stub
-
+		try {
+			output.writeObject("rimbalzo");
+			output.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		run();
 	}
 
 }
