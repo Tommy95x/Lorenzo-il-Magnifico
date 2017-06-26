@@ -44,7 +44,7 @@ public class ControllerLogin {
 	}
 
 	@FXML
-	public void pressSingIn() throws ClassNotFoundException, IOException {
+	public void pressSignIn() throws ClassNotFoundException, IOException {
 		if (pw.getText().equals("") || name.getText().equals("")) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.initOwner(start.getStage());
