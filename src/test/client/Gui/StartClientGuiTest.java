@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import client.gui.StartClientGui;
+import server.StartServer;
 
 public class StartClientGuiTest {
 
@@ -17,15 +18,5 @@ public class StartClientGuiTest {
 		s.setColor("blue");
 		assertEquals("blue", s.getColor());
 	}
-
-	/**
-	 * Test di verifica del corretto settaggio a true della variabile booleana
-	 * che conferma il corretto svolgimento di tutte le azione pre quit game
-	 */
-	/*
-	 * @Test public void testCreateFlase(){ StartClientGui s = new
-	 * StartClientGui(); assertFalse(s.create); s.setCreate(true);
-	 * assertTrue(s.create); }
-	 */
 
 }

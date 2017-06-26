@@ -8,7 +8,7 @@ import client.gui.StartClientGui;
 import test.client.ConnectionRmiClientTest;
 
 @RunWith(Suite.class)
-@SuiteClasses({ConnectionRmiClientTest.class, StartClientGui.class })
+@SuiteClasses({ConnectionRmiClientTest.class})
 public class StartTestClient {
 
 }

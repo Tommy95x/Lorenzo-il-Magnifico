@@ -23,7 +23,7 @@ public class CartaTerritorioTest {
 		CartaTerritori c = new CartaTerritori();
 		c.setCarta(db.getConnection("Test"), "SELECT * FROM CARTATERRITORIO WHERE NOME= 'Foresta'");
 		Tooltip t = new Tooltip(c.getTooltipString());
-		assertEquals(t,c.getTooltip());
+		assertEquals(t.getText(),c.getTooltipString());
 	}
 
 	/**

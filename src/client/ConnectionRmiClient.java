@@ -393,5 +393,20 @@ public class ConnectionRmiClient extends ConnectionClient implements ClientInter
 		}
 		
 	}
+
+	//Commentare quando non si testa
+	/*public boolean testConnetcion() {
+		String mom = null;
+		try {
+			mom = serverMethods.login("prova", "prova");
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(mom != null)
+			return true;
+		else
+			return false;
+	}*/
 	
 }

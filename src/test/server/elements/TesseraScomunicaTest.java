@@ -22,7 +22,7 @@ public class TesseraScomunicaTest {
 		TesseraScomunica tessera = new TesseraScomunica();
 		ConnectionDatabase db = new ConnectionDatabase(1, 1);
 		tessera.setTesseraPrimoPeriodo(db.getConnection("Test"));
-		assertNotNull(tessera.getTooltip());
+		assertNotNull(tessera.getTooltipByString());
 	}
 
 	/**

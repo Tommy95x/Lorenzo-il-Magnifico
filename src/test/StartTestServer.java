@@ -16,8 +16,8 @@ import test.server.elements.TesseraScomunicaTest;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({ LoginTest.class, RegisterTest.class, DBTest.class, ImplementsServerInterfaceTest.class,
-		PortafoglioTest.class, DadoTest.class, TesseraScomunicaTest.class, GiocatoreTest.class, CartaTerritori.class, Partita.class})
-
+		PortafoglioTest.class, DadoTest.class, TesseraScomunicaTest.class, GiocatoreTest.class})
+/*CartaTerritori.class, Partita.class */
 public class StartTestServer {
 
 }

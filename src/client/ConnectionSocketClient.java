@@ -390,4 +390,10 @@ public class ConnectionSocketClient extends ConnectionClient implements ClientIn
 
 	public void addScomunica(int nScomuniche, Tooltip tooltip) {
 	}
+
+	//Commentare quando non si testa il programma
+	/*public Socket getSocket() {
+		// TODO Auto-generated method stub
+		return socket;
+	}*/
 }
